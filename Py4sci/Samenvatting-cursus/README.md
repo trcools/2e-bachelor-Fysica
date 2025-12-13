@@ -10,6 +10,7 @@ Dit hoofdstuk is de *grondwet* van de hele cursus: elke numerieke methode is een
 
 ---
 
+---
 
 ## Hoofdstuk 2 — Systems of Linear Equations
 
@@ -21,6 +22,7 @@ en vooral: **hoe je dat doet op een manier die (i) snel is en (ii) numeriek stab
 
 ---
 
+---
 
 ## Hoofdstuk 3 — Linear Least Squares
 
@@ -31,6 +33,7 @@ In dit hoofdstuk los je problemen op van het type
 
 ---
 
+---
 
 ## Hoofdstuk 4 — Eigenvalue Problems
 
@@ -42,6 +45,7 @@ waar $\lambda$ een **eigenwaarde** is en $\mathbf{x}\neq \mathbf{0}$ een bijhore
 
 ---
 
+---
 
 ## Hoofdstuk 5 — Nonlinear equations
 
@@ -56,6 +60,7 @@ $$
 
 ---
 
+---
 
 ## Hoofdstuk 6 — Optimization
 
@@ -68,6 +73,7 @@ $$
 
 ---
 
+---
 
 ## Hoofdstuk 7 — Interpolation
 
@@ -78,6 +84,7 @@ $$
 
 ---
 
+---
 
 ## Hoofdstuk 8 — Numerical Integration and Differentiation
 
@@ -93,6 +100,7 @@ Doel:
 
 ---
 
+---
 
 ## Hoofdstuk 9 — Ordinary Differential Equations (ODEs)
 
@@ -106,6 +114,8 @@ waar $\mathbf{y}(t)$ een vector is.
 
 ---
 
+---
+
 ## Hoofdstuk 10 — Partial Differential Equations (PDEs)
 
 PDE’s beschrijven velden $u(\mathbf{x},t)$ met ruimte én tijd. Numeriek komt het altijd neer op:
@@ -116,9 +126,13 @@ PDE’s beschrijven velden $u(\mathbf{x},t)$ met ruimte én tijd. Numeriek komt 
 
 ---
 
+---
+
 ## Hoofdstuk 11 — Fast Fourier Transform (FFT)
 
 FFT is een snelle manier om de DFT te berekenen. Het is niet alleen “spectra plotten”; het is een **reken-truc** om dingen te versnellen die anders $O(N^2)$ kosten (convolutie/correlatie) en een **analyse-tool** (frequenties, filtering, aliasing).
+
+---
 
 ---
 
