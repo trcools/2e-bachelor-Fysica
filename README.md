@@ -1,1 +1,1 @@
-# 2e bachelor Fysica
+# 2e-bachelor-Fysica
