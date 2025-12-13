@@ -10,6 +10,7 @@ Dit hoofdstuk is de *grondwet* van de hele cursus: elke numerieke methode is een
 
 ---
 
+
 ## Hoofdstuk 2 — Systems of Linear Equations
 
 Dit hoofdstuk leert je **lineaire stelsels** oplossen
@@ -20,6 +21,7 @@ en vooral: **hoe je dat doet op een manier die (i) snel is en (ii) numeriek stab
 
 ---
 
+
 ## Hoofdstuk 3 — Linear Least Squares
 
 In dit hoofdstuk los je problemen op van het type
@@ -28,6 +30,7 @@ In dit hoofdstuk los je problemen op van het type
 - waarbij het stelsel $\mathbf{A}\mathbf{x}=\mathbf{b}$ **geen exacte oplossing** heeft.
 
 ---
+
 
 ## Hoofdstuk 4 — Eigenvalue Problems
 
@@ -38,6 +41,7 @@ $$
 waar $\lambda$ een **eigenwaarde** is en $\mathbf{x}\neq \mathbf{0}$ een bijhorende **eigenvector**.
 
 ---
+
 
 ## Hoofdstuk 5 — Nonlinear equations
 
@@ -52,6 +56,7 @@ $$
 
 ---
 
+
 ## Hoofdstuk 6 — Optimization
 
 Optimalisatie: vind $\mathbf{x}$ die een functie minimaliseert/maximaliseert:
@@ -63,6 +68,7 @@ $$
 
 ---
 
+
 ## Hoofdstuk 7 — Interpolation
 
 Interpolatie: gegeven discrete data $(x_i,y_i)$, construeer een functie $p(x)$ zodat
@@ -71,6 +77,7 @@ p(x_i)=y_i \quad \text{voor alle } i.
 $$
 
 ---
+
 
 ## Hoofdstuk 8 — Numerical Integration and Differentiation
 
@@ -85,6 +92,7 @@ Doel:
 	$$
 
 ---
+
 
 ## Hoofdstuk 9 — Ordinary Differential Equations (ODEs)
 
