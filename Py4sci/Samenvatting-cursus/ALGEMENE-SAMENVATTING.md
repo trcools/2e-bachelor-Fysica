@@ -1274,7 +1274,10 @@ $$
 
 
 
-<!-- file: hoofdstuk_06_optimization.md -->---
+<!-- file: hoofdstuk_06_optimization.md -->
+
+---
+
 # Hoofdstuk 6 — Optimization
 
 Optimalisatie: vind $\mathbf{x}$ die een functie minimaliseert/maximaliseert:
@@ -1473,7 +1476,10 @@ Conceptueel:
 
 
 
-<!-- file: hoofdstuk_07_interpolation.md -->---
+<!-- file: hoofdstuk_07_interpolation.md -->
+
+---
+
 # Hoofdstuk 7 — Interpolation
 
 Interpolatie: gegeven discrete data $(x_i,y_i)$, construeer een functie $p(x)$ zodat
@@ -1597,7 +1603,10 @@ Typische tools:
 
 
 
-<!-- file: hoofdstuk_08_numerical_integration_and_differentiation.md -->---
+<!-- file: hoofdstuk_08_numerical_integration_and_differentiation.md -->
+
+---
+
 # Hoofdstuk 8 — Numerical Integration and Differentiation
 
 Doel:
@@ -1766,7 +1775,10 @@ $$
 
 
 
-<!-- file: hoofdstuk_09_ordinary_differential_equations.md -->---
+<!-- file: hoofdstuk_09_ordinary_differential_equations.md -->
+
+---
+
 # Hoofdstuk 9 — Ordinary Differential Equations (ODEs)
 
 We lossen een initial value problem (IVP):
@@ -1922,7 +1934,10 @@ Discretiseer en los een (groot) algebraïsch systeem op, vaak sparse.
 
 
 
-<!-- file: hoofdstuk_10_partial_differential_equations.md -->---
+<!-- file: hoofdstuk_10_partial_differential_equations.md -->
+
+---
+
 # Hoofdstuk 10 — Partial Differential Equations (PDEs)
 
 PDE’s beschrijven velden $u(\mathbf{x},t)$ met ruimte én tijd. Numeriek komt het altijd neer op:
@@ -2136,7 +2151,10 @@ $$
 
 
 
-<!-- file: hoofdstuk_11_fast_fourier_transform.md -->---
+<!-- file: hoofdstuk_11_fast_fourier_transform.md -->
+
+---
+
 # Hoofdstuk 11 — Fast Fourier Transform (FFT)
 
 FFT is een snelle manier om de DFT te berekenen. Het is niet alleen “spectra plotten”; het is een **reken-truc** om dingen te versnellen die anders $O(N^2)$ kosten (convolutie/correlatie) en een **analyse-tool** (frequenties, filtering, aliasing).
@@ -2330,7 +2348,10 @@ DCT komt overeen met een **even (reflective) extension** van je data:
 
 
 
-<!-- file: hoofdstuk_12_monte_carlo.md -->---
+<!-- file: hoofdstuk_12_monte_carlo.md -->
+
+---
+
 # Hoofdstuk 12 — Monte Carlo
 
 Monte Carlo (MC) methodes lossen numerieke problemen op via steekproeven. Het “superpower”-argument:
