@@ -24,6 +24,12 @@ def default_parameters():
     y_lim : tuple
         Domain limits for Y coordinate (0, 7)
     """
+    a = 0.06
+    b = 0.4
+    x_lim = (0, 4)
+    y_lim = (0, 7)
+
+    return a, b, x_lim, y_lim
 
 
 # -----------------------------------------------------------------------------
@@ -56,6 +62,9 @@ def glucose_rhs(X, Y, a, b):
     dY : float or ndarray
         Time derivative of Y
     """
+    dX = -X + a*Y + (X**2)*Y
+    dY =  b - a*Y - (X**2)*Y
+    return dX, dY
 
 def get_vector_grid(xlim=(0, 4), ylim=(0, 7), a=0.06, b=0.4, n=250):
     """
@@ -87,6 +96,11 @@ def get_vector_grid(xlim=(0, 4), ylim=(0, 7), a=0.06, b=0.4, n=250):
     dYdt : ndarray
         2D grid of dY/dt values
     """
+    x = np.linspace(xlim[0], xlim[1], n)
+    y = np.linspace(ylim[0], ylim[1], n)
+    X, Y = np.meshgrid(x, y)
+    dXdt, dYdt = glucose_rhs(X, Y, a, b)
+    return x, y, dXdt, dYdt
 
 def nullclines(x, a, b):
     """
@@ -112,6 +126,7 @@ def nullclines(x, a, b):
     Y_ynull : float or ndarray
         Y values on the Y-nullcline
     """
+    return x/(a + x**2), b/(a + x**2)
 
 def equilibrium(a, b):
     """
@@ -133,6 +148,7 @@ def equilibrium(a, b):
     Yeq : float
         Y coordinate of equilibrium
     """
+    return b, b/(a + b**2)
 
 def mask_in_window(x, y, xlim, ylim):
     """
@@ -154,6 +170,8 @@ def mask_in_window(x, y, xlim, ylim):
     mask : bool or ndarray of bool
         True where points are inside the window, False otherwise
     """
+    return ((xlim[0] <= x) & (x <= xlim[1]) &
+            (ylim[0] <= y) & (y <= ylim[1]))
 
 def plot_curve_in_window(ax, x, y, xlim, ylim, *, label=None, **plot_kwargs):
     """
@@ -178,6 +196,9 @@ def plot_curve_in_window(ax, x, y, xlim, ylim, *, label=None, **plot_kwargs):
     **plot_kwargs
         Additional keyword arguments passed to ax.plot()
     """
+    mask = mask_in_window(x, y, xlim, ylim)
+    if np.any(mask):
+        ax.plot(x[mask], y[mask], label=label, **plot_kwargs)
 
 def quiver_on_curve(ax, x, y, xlim, ylim, a, b, orientation="vertical", length=0.15):
     """
@@ -206,6 +227,24 @@ def quiver_on_curve(ax, x, y, xlim, ylim, a, b, orientation="vertical", length=0
     length : float, default 0.15
         Length of arrows in data coordinates
     """
+    mask = mask_in_window(x, y, xlim, ylim)
+    x, y = x[mask], y[mask]
+
+    if x.size == 0:
+        return
+
+    s = np.sign(b - x) * length
+
+    if orientation == "vertical":
+        X = np.zeros_like(s)
+        Y = s
+    elif orientation == "horizontal":
+        X = s
+        Y = np.zeros_like(s)
+    else:
+        raise ValueError("orientation must be 'vertical' or 'horizontal'")
+
+    ax.quiver(x, y, X, Y, angles="xy", scale_units="xy", scale=1, width=0.003, color="k", zorder=1.5)
     # keep only points inside the window
     mask = mask_in_window(x, y, xlim, ylim)
     x, y = x[mask], y[mask]
@@ -378,6 +417,10 @@ def jacobian(X, Y, a, b):
     J : ndarray
         Jacobian matrix (2×2) or array of 2×2 matrices
     """
+    return np.array([
+        [-1 + 2*X*Y,  a + X**2],
+        [-2*X*Y,     -(a + X**2)]
+    ], dtype=float)
 
 
 def get_equilibrium_eigvals(a, b):
@@ -400,6 +443,10 @@ def get_equilibrium_eigvals(a, b):
     eig : ndarray
         Eigenvalues of the Jacobian (complex numbers in general)
     """
+    Xeq, Yeq = equilibrium(a, b)
+    J_eq = jacobian(Xeq, Yeq, a, b)
+    eig = np.linalg.eigvals(J_eq)
+    return (Xeq, Yeq), J_eq, eig
 
 def classify_equilibrium(a, b):
     """
@@ -469,6 +516,9 @@ def default_initial_conditions(a, b, xlim, ylim, step=0.08):
     near_edge : list of tuples
         Initial conditions near domain boundaries
     """
+    Xeq, Yeq = equilibrium(a, b)
+    dx = step * (xlim[1] - xlim[0])
+    dy = step * (ylim[1] - ylim[0])
 
     # near equilibrium (local)
     near_eq = [
@@ -691,6 +741,20 @@ def trace_det_at_eq(a, b):
     Delta = s
     return tau, Delta
 
+def _max_real_part_from_trace_det_vec(tau, det):
+    """
+    Vectorized maximum real part of eigenvalues of a 2x2 matrix given trace and determinant.
+
+    For eigenvalues solving λ^2 - τ λ + Δ = 0:
+    - If discriminant D = τ^2 - 4Δ >= 0 (real eigenvalues), max real = (τ + sqrt(D))/2
+    - If D < 0 (complex pair), real parts are equal τ/2, so max real = τ/2
+    """
+    tau = np.asarray(tau)
+    det = np.asarray(det)
+    disc = tau*tau - 4.0*det
+    sqrt_disc = np.sqrt(np.maximum(disc, 0.0))
+    return np.where(disc >= 0.0, 0.5*(tau + sqrt_disc), 0.5*tau)
+
 def bcrit_values(a):
     """
     Calculate critical b-values where Hopf bifurcations occur (τ(b) = 0).
@@ -809,6 +873,105 @@ def plot_varying_b(a):
     plt.title("Equilibrium stability vs b (a fixed)")
     plt.grid(True, alpha=0.4)
     plt.legend()
+    plt.show()
+
+def plot_bifurcation_summary_figures(a=0.06, xlim=(0, 1.2), fast=True):
+    """
+    Create a comprehensive set of bifurcation visuals for varying b with fixed a.
+
+    Figures:
+    - Top: max Re(eigenvalue) vs b with shaded stable/unstable regions and critical b lines.
+    - Middle: Equilibrium Y*(b) with stability coloring and markers at b_crit.
+    - Bottom: Phase portraits for b before, at, and after the first bifurcation.
+
+    Parameters
+    ----------
+    a : float
+        Fixed parameter a.
+    xlim : tuple
+        Range of b values shown.
+    """
+    # --- Compute stability curve (vectorized, no eigensolver) ---
+    n_b = 30 if fast else 200
+    b_vals = np.linspace(xlim[0], xlim[1], n_b)
+    s = a + b_vals**2
+    tau_vals = 1.0 - s - (2.0*a)/s
+    det_vals = s
+    max_real = _max_real_part_from_trace_det_vec(tau_vals, det_vals)
+
+    b_crit = bcrit_values(a)
+
+    plt.close('all')
+    fig = plt.figure(figsize=(12, 12))
+
+    # Top panel: max Re(lambda) vs b
+    ax1 = fig.add_subplot(3,1,1)
+    ax1.plot(b_vals, max_real, color='tab:blue', label='max Re(λ) at equilibrium')
+    ax1.axhline(0, color='k', linewidth=1)
+    for bc in b_crit:
+        ax1.axvline(bc, linestyle='--', color='tab:red', label='b_crit' if bc == b_crit[0] else None)
+    # Shade stable/unstable regions using tau sign (equivalent here)
+    stable_mask = tau_vals < 0
+    ax1.fill_between(b_vals, max_real, 0, where=stable_mask, color='tab:green', alpha=0.15, label='stable')
+    ax1.fill_between(b_vals, max_real, 0, where=~stable_mask, color='tab:orange', alpha=0.12, label='unstable')
+    ax1.set_xlim(*xlim)
+    ax1.set_xlabel('b')
+    ax1.set_ylabel('max Re(λ)')
+    ax1.set_title(f'Stability vs b (a={a})')
+    handles, labels = ax1.get_legend_handles_labels()
+    uniq = dict(zip(labels, handles))
+    ax1.legend(uniq.values(), uniq.keys(), framealpha=0.9, loc='upper right')
+    ax1.grid(True, alpha=0.3)
+
+    # Middle panel: Y*(b) with stability coloring
+    ax2 = fig.add_subplot(3,1,2)
+    Xeq = b_vals
+    Yeq = b_vals/(a + b_vals**2)
+    ax2.plot(b_vals[stable_mask], Yeq[stable_mask], color='tab:green', label='stable equilibrium')
+    ax2.plot(b_vals[~stable_mask], Yeq[~stable_mask], color='tab:orange', label='unstable equilibrium')
+    for bc in b_crit:
+        ax2.axvline(bc, linestyle='--', color='tab:red', label='b_crit' if bc == b_crit[0] else None)
+        ax2.scatter(bc, bc/(a+bc**2), color='tab:red', zorder=3)
+    ax2.set_xlim(*xlim)
+    ax2.set_xlabel('b')
+    ax2.set_ylabel('Y*')
+    ax2.set_title('Equilibrium position vs b (stability coloring)')
+    handles, labels = ax2.get_legend_handles_labels()
+    uniq = dict(zip(labels, handles))
+    ax2.legend(uniq.values(), uniq.keys(), framealpha=0.9, loc='upper right')
+    ax2.grid(True, alpha=0.3)
+
+    # Bottom panel: phase portraits around first bifurcation (if exists)
+    ax3a = fig.add_subplot(3,3,7)
+    ax3b = fig.add_subplot(3,3,8)
+    ax3c = fig.add_subplot(3,3,9)
+    if len(b_crit) > 0:
+        b0 = b_crit[0]
+        eps = 0.03
+        bs = [max(xlim[0], b0 - eps), b0, min(xlim[1], b0 + eps)]
+        titles = [f'before (b={bs[0]:.3f})', f'at bifurcation (b={bs[1]:.3f})', f'after (b={bs[2]:.3f})']
+        axes = [ax3a, ax3b, ax3c]
+        for axp, bb, tt in zip(axes, bs, titles):
+            if fast:
+                # Lightweight panel: sparse field, no trajectories
+                draw_nullclines_panel(axp, a=a, b=bb, xlim=(0, 1.5), ylim=(0, 3),
+                                      n=50, arrows=0, density=0.25, alpha=0.25,
+                                      title=tt, show_equilibrium=True)
+            else:
+                draw_nullclines_panel(axp, a=a, b=bb, xlim=(0, 1.5), ylim=(0, 3),
+                                      n=150, arrows=0, density=0.8, alpha=0.3,
+                                      title=tt, show_equilibrium=True)
+                near_eq, _ = default_initial_conditions(a, bb, xlim=(0,1.5), ylim=(0,3), step=0.1)
+                draw_trajectories(axp, a, bb, xlim=(0,1.5), ylim=(0,3), initials=near_eq,
+                                  t_span=(0, 40), t_eval_n=1500,
+                                  line_kw=dict(linewidth=0.8, alpha=0.85))
+    else:
+        ax3b.text(0.5, 0.5, 'No bifurcation for this a', ha='center', va='center')
+        for axp in (ax3a, ax3b, ax3c):
+            axp.axis('off')
+
+    fig.suptitle(f'Bifurcation summary (a={a})', fontsize=14, fontweight='bold', y=0.98)
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
     plt.show()
 
 def plot_bifurcation_phase_portraits(a=0.06, b_crit_vals=None, xlim=(0, 1.5), ylim=(0, 3)):
@@ -1000,10 +1163,9 @@ def plot_stability_map(a_max=0.14, b_max=1.2, na=300, nb=400):
     A, B = np.meshgrid(a_vals, b_vals, indexing="xy")
 
     # trace on grid
-    Tau = np.zeros_like(A)
-    for i in range(nb):
-        for j in range(na):
-            Tau[i, j] = trace_at_equilibrium(A[i, j], B[i, j])
+    # Vectorized: tau(a,b) = 1 - (a+b^2) - 2a/(a+b^2)
+    S = A + B*B
+    Tau = 1.0 - S - (2.0*A)/S
 
     stable = Tau < 0  # stable if trace < 0 (det>0 for a>0)
 
@@ -1023,61 +1185,134 @@ def plot_stability_map(a_max=0.14, b_max=1.2, na=300, nb=400):
     plt.grid(True, alpha=0.3)
     plt.show()
 
-def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
-                     na=250, nb=250):
+def plot_stability_map_enhanced(a_max=0.14, b_max=1.2, na=300, nb=400, annotate=True):
     """
-    Plot 2D stability map showing max real eigenvalue at equilibrium.
-    
-    Color intensity represents max Re(λ):
-    - Negative (blue): stable equilibrium
-    - Positive (red): unstable equilibrium
-    
-    A contour line at max Re(λ) = 0 shows the bifurcation set.
-    
+    Enhanced 2D stability map with annotations and Hopf curves.
+
+    - Background: stability by trace criterion (stable vs unstable)
+    - Overlays: Hopf curves b_-(a), b_+(a)
+    - Optional: annotate regions and example parameter points
+    """
+    a_vals = np.linspace(0, a_max, na)
+    b_vals = np.linspace(0, b_max, nb)
+    A, B = np.meshgrid(a_vals, b_vals, indexing="xy")
+
+    # Compute trace on grid (vectorized for speed and numerical clarity)
+    S = A + B*B
+    Tau = 1.0 - S - (2.0*A)/S
+    stable = Tau < 0  # True=stable, False=unstable
+
+    from matplotlib.colors import ListedColormap
+    from matplotlib.patches import Patch
+    from matplotlib.lines import Line2D
+
+    plt.close('all')
+    fig, ax = plt.subplots(figsize=(9, 6))
+
+    # Two-tone map with strong contrast (unstable, stable)
+    # Unstable: light orange; Stable: light green
+    cmap = ListedColormap(["#fde2b8", "#c9e9c5"])  # 0 -> unstable, 1 -> stable
+    quad = ax.pcolormesh(a_vals, b_vals, stable.astype(int), shading="auto", cmap=cmap, vmin=0, vmax=1)
+
+    # Hopf curves with distinct colors/linestyles for clarity
+    b_m, b_p = hopf_curves(a_vals)
+    line_bm, = ax.plot(a_vals, b_m, color='#1f77b4', linewidth=2.0, linestyle='--', label='Hopf b_-(a)')
+    line_bp, = ax.plot(a_vals, b_p, color='#d62728', linewidth=2.0, linestyle=':',  label='Hopf b_+(a)')
+
+    # Optional example points (remain as small red dots)
+    example_handles = []
+    if annotate:
+        examples = [(0.06, 0.4), (0.06, 0.2), (0.06, 0.8)]
+        for a0, b0 in examples:
+            ax.scatter(a0, b0, s=40, color='tab:red', zorder=3)
+        # Provide a single legend entry for example points
+        example_handles = [
+            Line2D(
+                [0], [0], marker='o', linewidth=0,
+                markerfacecolor='tab:red', markeredgecolor='tab:red', markersize=7,
+                label='Example points'
+            )
+        ]
+
+    # Build a clear legend instead of in-plot text
+    stable_patch = Patch(facecolor="#c9e9c5", edgecolor='none', label='Stable (τ < 0)')
+    unstable_patch = Patch(facecolor="#fde2b8", edgecolor='none', label='Unstable (τ > 0)')
+    handles = [stable_patch, unstable_patch, line_bm, line_bp] + example_handles
+    ax.legend(handles=handles, loc='lower right', framealpha=0.95, title='Legend')
+
+    ax.set_xlim(0, a_max)
+    ax.set_ylim(0, b_max)
+    ax.set_xlabel('a')
+    ax.set_ylabel('b')
+    ax.set_title('Enhanced stability map in (a,b)-plane with Hopf curves')
+    ax.grid(True, alpha=0.25)
+    plt.show()
+
+def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
+                     na=250, nb=250, show_legend=True):
+    """
+    Assignment-style 2D stability map (a,b-plane).
+
+    - Background: stable (τ<0) vs unstable (τ>0) regions using the trace criterion
+    - Overlays: Hopf curves b_-(a), b_+(a)
+    - Legend: English labels for stable/unstable and the two Hopf branches
+
     Parameters
     ----------
-    a_min, a_max : float
-        Range of a parameter to scan (default 0.0 to 0.14)
-    b_min, b_max : float
-        Range of b parameter to scan (default 0.0 to 1.2)
-    na : int
-        Number of a grid points (default 250)
-    nb : int
-        Number of b grid points (default 250)
-    
+    show_legend : bool, default True
+        Whether to draw the legend (use False for a clean figure without labels).
+
     Returns
     -------
-    a_vals : ndarray
-        Grid of a values
-    b_vals : ndarray
-        Grid of b values
+    a_vals, b_vals : ndarray
+        Meshgrid axes used for the plot.
     max_real : ndarray
-        Maximum real eigenvalue at each (a, b) point
+        Maximum real part of the eigenvalues at each (a,b) (analytic, vectorized).
     """
     a_vals = np.linspace(a_min, a_max, na)
     b_vals = np.linspace(b_min, b_max, nb)
     A, B = np.meshgrid(a_vals, b_vals, indexing="xy")
 
-    max_real = np.zeros_like(A, dtype=float)
+    # Vectorized stability metrics at equilibrium
+    S = A + B*B
+    Tau = 1.0 - S - (2.0*A)/S
+    Det = S
 
-    for i in range(nb):
-        for j in range(na):
-            a = A[i, j]
-            b = B[i, j]
-            if a == 0 and b == 0:
-                max_real[i, j] = np.nan
-                continue
-            (_, _), _, eig = get_equilibrium_eigvals(a, b)
-            max_real[i, j] = np.max(np.real(eig))
+    # Analytic max real part of eigenvalues from trace/determinant
+    discr = Tau*Tau - 4.0*Det
+    max_real = np.where(discr >= 0.0,
+                       0.5*(Tau + np.sqrt(discr)),  # real eigenvalues
+                       0.5*Tau)                      # complex pair: real part = Tau/2
 
-    plt.figure(figsize=(8,5))
-    plt.pcolormesh(a_vals, b_vals, max_real, shading="auto")
-    plt.colorbar(label="max Re(eigenvalue at equilibrium)")
-    plt.contour(a_vals, b_vals, max_real, levels=[0.0], linewidths=2)
-    plt.xlabel("a")
-    plt.ylabel("b")
-    plt.title("2D stability map of equilibrium in (a,b)")
-    plt.grid(True, alpha=0.25)
+    stable = Tau < 0
+
+    from matplotlib.colors import ListedColormap
+    from matplotlib.patches import Patch
+    from matplotlib.lines import Line2D
+
+    plt.close('all')
+    fig, ax = plt.subplots(figsize=(8.5, 5.5))
+
+    cmap = ListedColormap(["#fde2b8", "#c9e9c5"])  # unstable, stable
+    ax.pcolormesh(a_vals, b_vals, stable.astype(int), shading="auto", cmap=cmap, vmin=0, vmax=1)
+
+    # Hopf curves
+    b_m, b_p = hopf_curves(a_vals)
+    line_bm, = ax.plot(a_vals, b_m, color='#1f77b4', linewidth=2.0, linestyle='--', label='Hopf b_-(a)')
+    line_bp, = ax.plot(a_vals, b_p, color='#d62728', linewidth=2.0, linestyle=':',  label='Hopf b_+(a)')
+
+    if show_legend:
+        stable_patch = Patch(facecolor="#c9e9c5", edgecolor='none', label='Stable (τ < 0)')
+        unstable_patch = Patch(facecolor="#fde2b8", edgecolor='none', label='Unstable (τ > 0)')
+        handles = [stable_patch, unstable_patch, line_bm, line_bp]
+        ax.legend(handles=handles, loc='lower right', framealpha=0.95)
+
+    ax.set_xlim(a_min, a_max)
+    ax.set_ylim(b_min, b_max)
+    ax.set_xlabel('a')
+    ax.set_ylabel('b')
+    ax.set_title('Stability of equilibrium in (a,b)-plane (trace criterion)')
+    ax.grid(True, alpha=0.25)
     plt.show()
 
     return a_vals, b_vals, max_real
