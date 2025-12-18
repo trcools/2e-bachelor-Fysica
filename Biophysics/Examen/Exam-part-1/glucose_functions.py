@@ -1,7 +1,22 @@
-# --- imports ---
+"""
+Note:
+
+This module was refactored with assistance from an AI tool to improve structure,
+naming, and documentation for readability and maintainability.
+
+"""
+
+# -----------------------------------------------------------------------------
+# imports
+# -----------------------------------------------------------------------------
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
+
+# -----------------------------------------------------------------------------
+# parameters
+# -----------------------------------------------------------------------------
 
 def default_parameters():
     """
