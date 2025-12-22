@@ -24,7 +24,7 @@ naming, and documentation for readability and maintainability.
 # Imports
 # =============================================================================
 
-import numpy as np
+import numpy as np 
 
 import sympy as sp
 from sympy.solvers import solve
