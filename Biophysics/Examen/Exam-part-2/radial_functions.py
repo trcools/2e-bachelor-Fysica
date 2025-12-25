@@ -84,13 +84,109 @@ def classify_stability_1d(r_eq, mu, tol=1e-10):
     return "stable" if lam < 0 else "unstable"
 
 
-def bifurcation_points():
-    """Analytical bifurcation markers for this normal form."""
+def classify_stability_2d(r_eq, mu, omega=1.0):
+    """
+    2D stability of a limit cycle at radius r_eq for the Cartesian system
+    using equilibrium_classification().
+    
+    For a limit cycle, the eigenvalues are:
+      λ = df_radial(r_eq, mu) ± iω
+    
+    Special cases:
+    - r ≈ 0 with Re(λ) ≈ 0: Hopf bifurcation at origin
+    - r > 0 with Re(λ) ≈ 0: Saddle-node bifurcation of limit cycles
+    
+    Parameters
+    ----------
+    r_eq : float
+        Equilibrium radius (must be > 0 for limit cycle)
+    mu : float
+        System parameter
+    omega : float
+        Angular velocity (default 1.0)
+    
+    Returns
+    -------
+    classification : str
+        Equilibrium type from equilibrium_classification()
+    """
+    tol = 1e-9
+    
+    if r_eq <= 1e-12:
+        # Origin: eigenvalues are μ ± iω
+        eigvals = np.array([mu + 1j*omega, mu - 1j*omega])
+        classification = equilibrium_classification(eigvals)
+    else:
+        # Limit cycle: eigenvalues are df_radial(r_eq, mu) ± iω
+        lam_radial = df_radial(r_eq, mu)
+        eigvals = np.array([lam_radial + 1j*omega, lam_radial - 1j*omega])
+        
+        # Check if this is a saddle-node bifurcation (f'(r) ≈ 0 at r > 0)
+        if abs(lam_radial) < tol:
+            # Saddle-node: two limit cycles collide
+            classification = "saddle-node bifurcation"
+        else:
+            classification = equilibrium_classification(eigvals)
+    
+    return classification
+
+
+def bifurcation_points(omega=1.0):
+    """
+    Compute analytic bifurcation markers and classify them using equilibrium_classification().
+
+    - Saddle-node of cycles: solve f(r,mu)=0 and df/dr=0 for r>0.
+    - Hopf at origin: where Re(eigs) = mu crosses 0 => mu=0.
+    
+    Parameters
+    ----------
+    omega : float
+        Angular velocity for 2D system classification (default 1.0)
+    
+    Returns
+    -------
+    list of dict
+        Each dict contains mu, type, r_eq, label, color, marker, linestyle
+    """
+    # Get styles for different equilibrium types
+    groups = get_groups(dim="1D")
+    
+    # --- Saddle-node: solve f=0 and df=0 for r>0 ---
+    # From f=0 with r>0: mu = r^4 - r^2
+    # Plug into df=0: mu + 3r^2 - 5r^4 = 0
+    # -> (r^4 - r^2) + 3r^2 - 5r^4 = 0 -> 2r^2 - 4r^4 = 0 -> r^2 = 1/2
+    r_sn = float(np.sqrt(0.5))
+    mu_sn = float(r_sn**4 - r_sn**2)
+    type_sn = classify_stability_2d(r_sn, mu_sn, omega=omega)
+    
+    # Get style for this type, or use defaults
+    if type_sn in groups:
+        style_sn = groups[type_sn]["style"]
+        marker_sn = style_sn.get("marker", "^")
+        color_sn = style_sn.get("facecolors", style_sn.get("color", "#00bcd4"))
+    else:
+        marker_sn, color_sn = "^", "#00bcd4"
+
+    # --- Hopf at origin (for omega != 0) ---
+    mu_hopf = 0.0
+    r_hopf = 0.0
+    type_hopf = classify_stability_2d(r_hopf, mu_hopf, omega=omega)
+    
+    # Get style for this type
+    if type_hopf in groups:
+        style_hopf = groups[type_hopf]["style"]
+        marker_hopf = style_hopf.get("marker", "D")
+        color_hopf = style_hopf.get("facecolors", style_hopf.get("color", "#ff9800"))
+    else:
+        marker_hopf, color_hopf = "D", "#ff9800"
+
     return [
-        dict(mu=-0.25, type="saddle-node", r_eq=np.sqrt(0.5),
-             label=r"Saddle-node ($\mu=-1/4$)", color="#00bcd4", marker="^", linestyle="--"),
-        dict(mu=0.0, type="pitchfork", r_eq=0.0,
-             label=r"Subcritical pitchfork / Hopf ($\mu=0$)", color="#ff9800", marker="D", linestyle=":"),
+        dict(mu=mu_sn, type=type_sn, r_eq=r_sn,
+             label=rf"{type_sn} ($\mu={mu_sn:.3f}$, $r={r_sn:.3f}$)", 
+             color=color_sn, marker=marker_sn, linestyle="--"),
+        dict(mu=mu_hopf, type=type_hopf, r_eq=r_hopf,
+             label=rf"{type_hopf} ($\mu={mu_hopf:.1f}$)", 
+             color=color_hopf, marker=marker_hopf, linestyle=":"),
     ]
 
 
@@ -116,6 +212,136 @@ def sample_equilibria(mu_values, include_negative=True):
         "neutral":  (np.array(neutral_mu),  np.array(neutral_r)),
     }
 
+
+
+# ============================================================
+# Classification and grouping of equilibria
+# ============================================================
+
+def equilibrium_classification(eigvals):
+    """
+    Classify an equilibrium based on the eigenvalues of the Jacobian.
+
+    Uses a small tolerance to decide whether eigenvalues are effectively zero.
+
+    Parameters
+    ----------
+    eigvals : array-like of complex
+        Eigenvalues of the Jacobian at the equilibrium.
+
+    Returns
+    -------
+    eq_type : str
+         One of:
+        - "stable node"
+        - "stable spiral"
+        - "unstable node"
+        - "unstable spiral"
+        - "saddle point"
+        - "saddle spiral"
+        - "pitchfork bifurcation"
+        - "Hopf bifurcation"
+        - "other equilibrium"
+    """
+    # Introduce a tolerance to find the eigenvalues of zero:
+    tol = 1e-9
+    real_eigvals = np.real(eigvals)
+    imag_eigvals = np.imag(eigvals)
+    has_complex = np.any(np.abs(imag_eigvals) > tol)
+    
+    # Count the number 'n' of positive, negative and zero eigenvalues
+    n_pos = np.sum(real_eigvals >  tol)
+    n_neg = np.sum(real_eigvals < -tol)
+    n_zero = len(eigvals) - n_pos - n_neg
+    
+    # 1) All real parts < 0  -> stable
+    if n_pos == 0 and n_zero == 0:
+        if has_complex:
+            eq_type = "stable spiral"
+        else:
+            eq_type = "stable node"
+    
+    # 2) At least one > 0, none negative -> purely unstable
+    elif n_pos > 0 and n_neg == 0 and n_zero == 0:
+        if has_complex:
+            eq_type = "unstable spiral"
+        else:
+            eq_type = "unstable node"
+    
+    # 3) Both positive and negative real parts -> saddle / saddle-focus
+    elif n_pos > 0 and n_neg > 0:
+        if has_complex:
+            eq_type = "saddle spiral"
+        else:
+            eq_type = "saddle point"
+    
+    # 4) At least one eigenvalue ≈ 0, all real -> pitchfork
+    elif n_pos == 0 and n_zero > 0 and not has_complex:
+        eq_type = "pitchfork bifurcation"
+    
+    # 5) At least one eigenvalue ≈ 0, complex pair present -> Hopf
+    elif n_pos == 0 and n_zero > 0 and has_complex:
+        eq_type = "Hopf bifurcation"
+    
+    # 6) Exotic / other cases
+    else:
+        eq_type = "other equilibrium"
+    
+    return eq_type
+
+
+def get_groups(dim="1D"):
+    """
+    Create plotting groups for equilibria.
+
+    Parameters
+    ----------
+    dim : {"1D", "2D"}
+        - "1D": (c, val)
+        - "2D": (c, v1, v2)
+
+    Returns
+    -------
+    dict
+        keys = equilibrium type
+        values = dict with coordinate lists + style dict
+    """
+    if dim not in {"1D", "2D"}:
+        raise ValueError(f"dim must be '1D' or '2D', got {dim!r}")
+        
+    
+    base_styles = {"stable node": dict(marker="o", s=10, label="stable node"),
+                   "stable spiral": dict(marker="o", s=10, label="stable spiral"),
+                   "unstable node": dict(marker="x", s=10, label="unstable node"),
+                   "unstable spiral": dict(marker="x", s=10, label="unstable spiral"),
+                   "saddle point": dict(marker="o", s=10, label="saddle point"),
+                   "saddle spiral": dict(marker="o", s=10, label="saddle spiral"),
+                   "saddle-node bifurcation": dict(marker="^", s=50, facecolors="#00bcd4", edgecolors="black", label="saddle-node bifurcation"),
+                   "pitchfork bifurcation": dict(marker="D", s=50, facecolors="blue", edgecolors="blue",label="pitchfork bifurcation"),
+                   "Hopf bifurcation": dict(marker="D", s=50, facecolors="#ff9800", edgecolors="black", label="Hopf bifurcation"),
+                   "other equilibrium": dict(marker="^", color="gray", s=20, label="other / unspecified"),
+                  }
+    
+    groups = {}
+
+    if dim == "2D":
+        for key, style in base_styles.items():
+            groups[key] = {
+                "c": [],
+                "v1": [],
+                "v2": [],
+                "style": style.copy(),
+            }
+    else: # dim == "1D"
+        for key, style in base_styles.items():
+            groups[key] = {
+                "c": [],
+                "val": [],
+                "style": style.copy(),
+            }
+
+    return groups
+    
 
 # ============================================================
 # 1D bifurcation plot (μ vs r)
@@ -143,12 +369,12 @@ def plot_bifurcation_1d(
     else:
         fig = ax.figure
 
-    ax.scatter(stable_mu, stable_r, s=2, alpha=0.25, label="stable")
-    ax.scatter(unstable_mu, unstable_r, s=2, alpha=0.25, label="unstable")
+    ax.scatter(stable_mu, stable_r, s=2, alpha=0.25, color="red", label="stable")
+    ax.scatter(unstable_mu, unstable_r, s=2, alpha=0.25, color="blue", label="unstable")
 
     if show_bif_points:
         for b in bifurcation_points():
-            ax.axvline(b["mu"], color=b["color"], ls=b["linestyle"], lw=1.8, alpha=0.5)
+            ax.axvline(b["mu"], color="k", ls=b["linestyle"], lw=1.8)
             ax.scatter([b["mu"]], [b["r_eq"]], color=b["color"], marker=b["marker"],
                        s=80, edgecolors="black", linewidths=1.2, label=b["label"], zorder=10)
             if include_negative and b["r_eq"] != 0:
@@ -171,7 +397,10 @@ def plot_bifurcation_1d(
         for h, l in zip(handles, labels):
             if l and l not in seen:
                 seen.add(l); H.append(h); L.append(l)
-        ax.legend(H, L, loc="best")
+        leg = ax.legend(H, L, loc="best")
+        # Increase alpha for legend markers to make colors more visible
+        for handle in leg.legend_handles:
+            handle.set_alpha(1.0)
 
     return fig, ax
 
@@ -327,8 +556,10 @@ def plot_eigenvalues_vs_mu(mu_range=(-0.3, 0.2), n_points=800, omega=1.0):
     ax.scatter(MU_st, LAM_st, s=6, alpha=0.35, label=r"limit cycle (stable)")
     ax.scatter(MU_un, LAM_un, s=6, alpha=0.35, label=r"limit cycle (unstable)")
     ax.axhline(0, ls=":", lw=1.5, alpha=0.7)
-    ax.axvline(-0.25, ls="--", lw=1.2, alpha=0.6)
-    ax.axvline(0.0,   ls="--", lw=1.2, alpha=0.6)
+
+    for bp in bifurcation_points():
+        ax.axvline(bp["mu"], ls=bp["linestyle"], lw=1.2, alpha=0.6)
+
     ax.set_xlim(mu_min, mu_max)
     ax.set_xlabel(r"$\mu$")
     ax.set_ylabel(r"real stability rates (origin + $\lambda_r$ for cycles)")
@@ -435,8 +666,10 @@ def plot_stability_equilibria(mu_range=(-0.6, 1.0), n_mu=800):
     ax.scatter(MU[ST=="stable"],   LAM[ST=="stable"],   s=5, alpha=0.35, label="stable limit cycle")
     ax.scatter(MU[ST=="unstable"], LAM[ST=="unstable"], s=5, alpha=0.35, label="unstable limit cycle")
     ax.axhline(0, ls=":", lw=1.5, alpha=0.7)
-    ax.axvline(-0.25, ls="--", lw=1.2, alpha=0.6)
-    ax.axvline(0.0,   ls="--", lw=1.2, alpha=0.6)
+
+    for bp in bifurcation_points():
+        ax.axvline(bp["mu"], ls=bp["linestyle"], lw=1.2, alpha=0.6)
+
     ax.set_xlabel(r"$\mu$")
     ax.set_ylabel(r"radial exponent $\lambda_r = f'(r_{eq},\mu)$")
     ax.set_title("Stability of limit cycles via radial Floquet exponent")
@@ -444,14 +677,6 @@ def plot_stability_equilibria(mu_range=(-0.6, 1.0), n_mu=800):
     ax.legend()
     plt.tight_layout()
     return fig
-
-
-def print_bifurcation_points_info():
-    """Print information about bifurcation points."""
-    print("Analytical bifurcation points from radial.bifurcation_points():")
-    for bp in bifurcation_points():
-        print(f"  μ = {bp['mu']:.4f}: {bp['type']} at r = {bp['r_eq']:.4f}")
-        print(f"    Label: {bp['label']}")
 
 
 def print_cartesian_rhs_demo(mu_demo=-0.1, omega_demo=1.0, state_demo=None):

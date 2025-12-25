@@ -879,7 +879,10 @@ def plot_3d_trajectory(ax, t, x, y, z, *, c, a=a, b=b, initial_condition=None,
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
-    ax.legend(loc='best',fontsize=6)
+    # Increase legend line width for better visibility
+    legend = ax.legend(loc='best', fontsize=6)
+    for line in legend.get_lines():
+        line.set_linewidth(2.0)
 
 # ===================================
 # Visualization: Multiple Panels
@@ -1004,7 +1007,7 @@ def plot_3d_attractor(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
 # ============================================================
 
 def plot_parameter_sweep(a=0.1, b=0.1, c_values=None,
-                        initial_condition=initial_condition,
+                        initial_condition=None,
                         t_min=0, t_max=200, dt=0.01,
                         method='RK45', rtol=1e-8, atol=1e-10,
                         figsize=(15, 10)):
@@ -1027,6 +1030,9 @@ def plot_parameter_sweep(a=0.1, b=0.1, c_values=None,
     if c_values is None:
         c_values = [0.1, 0.15, 0.2, 0.3, 0.4]
     
+    if initial_condition is None:
+        initial_condition = (0.1, 0.1, 0.1)
+    
     n_c = len(c_values)
     n_cols = 3
     n_rows = (n_c + n_cols - 1) // n_cols
@@ -1040,7 +1046,8 @@ def plot_parameter_sweep(a=0.1, b=0.1, c_values=None,
                     t_min=t_min, t_max=t_max, dt=dt)
         plot_3d_trajectory(ax, t, x, y, z, c=c, a=a, b=b,
                   title=f'a = {a}, b = {b}, c = {c}',
-                  skip_first_frac=0.2, color='darkblue', linewidth=0.3)
+                  skip_first_frac=0.2, color='darkblue', linewidth=0.3,
+                  initial_condition=initial_condition)
     
     plt.tight_layout()
     return fig

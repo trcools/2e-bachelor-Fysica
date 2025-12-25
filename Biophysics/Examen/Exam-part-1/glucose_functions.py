@@ -14,6 +14,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 from matplotlib.lines import Line2D
+from matplotlib.colors import ListedColormap
+from matplotlib.patches import Patch
 
 # -----------------------------------------------------------------------------
 # parameters
@@ -1244,8 +1246,6 @@ def hopf_curves(a_vals):
     b_plus[ok]  = np.sqrt(np.maximum(b2_plus,  0.0))
     b_minus[ok] = np.sqrt(np.maximum(b2_minus, 0.0))
     return b_minus, b_plus
-
-  
         
 
 def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
@@ -1286,9 +1286,6 @@ def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
 
     stable = Tau < 0
 
-    from matplotlib.colors import ListedColormap
-    from matplotlib.patches import Patch
-    from matplotlib.lines import Line2D
 
     plt.close('all')
     fig, ax = plt.subplots(figsize=(8.5, 5.5))
