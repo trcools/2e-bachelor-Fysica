@@ -35,7 +35,6 @@ from matplotlib.lines import Line2D
 from mpl_toolkits.mplot3d import Axes3D 
 
 import scipy
-from scipy.integrate import solve_ivp
 
 from ipywidgets import interact
     
@@ -103,14 +102,12 @@ def get_time_array(t_min=t_min, t_max=t_max, dt=dt):
     # 1.2 Core Rössler Dynamics
     # ========================================
 
-def rossler_rhs(t, state, a=0.2, b=0.2, c=5.7):
+def rossler_rhs(state, a=0.2, b=0.2, c=5.7):
     """
     Compute the right-hand side of the Rössler system.
     
     Parameters
     ----------
-    t : float
-        Time (not explicitly used, included for compatibility with solve_ivp)
     state : array-like, shape (3,)
         Current state (x, y, z)
     a, b, c : float
@@ -120,38 +117,6 @@ def rossler_rhs(t, state, a=0.2, b=0.2, c=5.7):
     -------
     dstate : ndarray, shape (3,)
         Time derivatives (dx/dt, dy/dt, dz/dt)
-    """
-    x, y, z = state
-    dx = -y - z
-    dy = x + a * y
-    dz = b + z * (x - c)
-    return np.array([dx, dy, dz])
-
-def rossler_chaos(state, t, c, a=a, b=b):
-    """
-    Right-hand side of the Rössler system, specifically designed for use with `scipy.integrate.odeint`.
-
-    This function is identical to `rossler_rhs`, but is written specifically for use with `odeint`, 
-    because `odeint` requires the function signature `f(state, t)` rather than `f(t, state)` as in `solve_ivp`.
-
-    While the functionality is the same,
-    the difference lies in the expected parameter order by the numerical solvers.
-
-    Parameters
-    ----------
-    state : array-like, shape (3,)
-        Current state [x, y, z].
-    t : float
-        Time (not used explicitly, but required by odeint).
-    c : float
-        Control parameter c.
-    a, b : float
-        Rössler parameters a and b.
-
-    Returns
-    -------
-    rhs : list of float
-        Time derivatives [dx/dt, dy/dt, dz/dt].
     """
     x, y, z = state
     dx = -y - z
@@ -212,54 +177,41 @@ def get_euler_vectors(c=2.0, initial_condition=initial_condition, t_min=t_min, t
     # 1.4. Integrator based on solve_ivp (Runge–Kutta)
     # ============================================================
 
-def get_RK_vectors(a=a, b=b, c=c,
-                    initial_condition=initial_condition,
-                    t_min=t_min, t_max=t_max, dt=dt,
-                    method="RK45",
-                    rtol=1e-8, atol=1e-10):
+
+    # ========================================
+    # Manual RK4 integrator
+    # ========================================
+
+def rk4_integrate_rossler(a, b, c, initial_condition, t_min, t_max, h):
     """
-    Integrate the Rössler system using scipy.integrate.solve_ivp
-    with a higher-order Runge–Kutta method.
-
-    Parameters
-    ----------
-    c : float
-        Control parameter c (bifurcation parameter).
-    initial_condition : tuple of float
-        Initial state (X0, Y0, Z0).
-    t_min, t_max : float
-        Time interval.
-    dt : float
-        Time step used to *sample* the solution (t_eval grid).
-        Internal steps are chosen adaptively by the solver.
-    method : str
-        Integrator used by solve_ivp (e.g. "RK45", "DOP853").
-    rtol, atol : float
-        Relative and absolute tolerances for the solver.
-
-    Returns
-    -------
-    x, y, z : ndarray
-        Arrays containing X(t), Y(t), Z(t) evaluated on the uniform
-        grid defined by get_time_array(t_min, t_max, dt).
+    Classic RK4 integrator for the 3D Rössler system.
+    Returns t, x, y, z on a uniform grid with step h.
     """
-    t_eval = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
+    t = np.arange(t_min, t_max + 1e-15, h)
+    n = len(t)
 
-    sol = solve_ivp(
-        fun=rossler_rhs,
-        t_span=(t_min, t_max),
-        y0=np.array(initial_condition, dtype=float),
-        t_eval=t_eval,
-        args=(a,b,c),
-        method=method,
-        rtol=rtol,
-        atol=atol)
+    X = np.zeros((n, 3), dtype=float)
+    X[0] = np.array(initial_condition, dtype=float)
 
-    if not sol.success:
-        raise RuntimeError(f"Rössler integration failed: {sol.message}")
+    def f(state):
+        return rossler_rhs(state, a=a, b=b, c=c)
 
-    x, y, z = sol.y  # shape (3, len(t_eval))
-    return x, y, z
+    for i in range(n - 1):
+        s = X[i]
+        k1 = f(s)
+        k2 = f(s + 0.5 * h * k1)
+        k3 = f(s + 0.5 * h * k2)
+        k4 = f(s + h * k3)
+        X[i + 1] = s + (h / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
+
+    x, y, z = X[:, 0], X[:, 1], X[:, 2]
+    return t, x, y, z
+
+def get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
+                    t_min=t_min, t_max=t_max, dt=dt):
+    t, x, y, z = rk4_integrate_rossler(a, b, c, initial_condition, t_min, t_max, dt)
+    return t, x, y, z
+
 
 # ============================================================
 # 2. Symbolic equilibria of the Rössler system
@@ -616,45 +568,91 @@ def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=d
     return eigvals_by_c
 
 
+
+
 # ============================================================
-# 5. Wing classification and derived data
+#  Find fitting Euler dt for given RK4 precision 
 # ============================================================
 
 
-def ZY_data_and_wings(c, t_min, t_max, dt=dt):
+def max_abs_error_on_common_grid(t_ref, x_ref, t_test, x_test):
+    # Interpoleer test op ref-grid (1D)
+    x_test_on_ref = np.interp(t_ref, t_test, x_test)
+    return np.max(np.abs(x_test_on_ref - x_ref))
+
+
+def find_euler_dt_for_rk4_precision(a, b, c, ic, t_min, t_max, h_rk4=0.1, h0_euler=0.1, max_halvings=20):
     """
-    Helper: calculate Y(t), Z(t) and left/right-wing masks.
-
-    Returned:
-        y, z, left_mask, right_mask
+    RK4 met stap h_rk4 is referentie. We halveren Euler-h tot de fout <= RK4-fout (baseline).
+    
+    Returns
+    -------
+    h_best, err_best : tuple[float, float]
+        Gevonden Euler-stapgrootte en maximale fout t.o.v. RK4-referentie.
+        Indien geen geschikte stap gevonden, wordt de laatste geteste (h, err) teruggegeven.
     """
-    if t_min >= t_max:
-        raise ValueError("t_min must be smaller than t_max")
+    # Referentie: RK4(h=0.1)
+    t_ref, x_ref, y_ref, z_ref = rk4_integrate_rossler(a, b, c, ic, t_min, t_max, h_rk4)
 
-    x, y, z = get_RK_vectors(c, t_min=t_min, t_max=t_max, dt=dt)
+    # Baseline "precision target": neem bv. RK4 vs RK4 met kleinere h als interne referentie
+    # (zo vermijd je dat je een 'exacte' oplossing nodig hebt)
+    t_fine, x_fine, y_fine, z_fine = rk4_integrate_rossler(a, b, c, ic, t_min, t_max, h_rk4/2)
 
-    right = x >= 0
-    left  = x < 0
+    target = max(
+        max_abs_error_on_common_grid(t_ref, x_ref, t_fine, x_fine),
+        max_abs_error_on_common_grid(t_ref, y_ref, t_fine, y_fine),
+        max_abs_error_on_common_grid(t_ref, z_ref, t_fine, z_fine),
+    )
 
-    return y, z, left, right
+    h = h0_euler
+    best_h = None
+    best_err = None
 
+    for _ in range(max_halvings):
+        t_eu, x_eu, y_eu, z_eu = euler_integrate_rossler(a, b, c, ic, t_min, t_max, h)
+        err = max(
+            max_abs_error_on_common_grid(t_ref, x_ref, t_eu, x_eu),
+            max_abs_error_on_common_grid(t_ref, y_ref, t_eu, y_eu),
+            max_abs_error_on_common_grid(t_ref, z_ref, t_eu, z_eu),
+        )
 
-def XYZ_data_and_wings(c, t_min, t_max, dt=dt):
-    """
-    Helper: calculate X(t), Y(t), Z(t) and left/right-wing masks.
+        # Als err niet eindig is (overflow/NaN), verklein stap en ga verder
+        if not np.isfinite(err):
+            h /= 2
+            continue
 
-    Returned:
-        x, y, z, left_mask, right_mask
-    """
-    if t_min >= t_max:
-        raise ValueError("t_min must be smaller than t_max")
+        if err <= target:
+            best_h = h
+            best_err = err
+            break
 
-    x, y, z = get_RK_vectors(c, t_min=t_min, t_max=t_max, dt=dt)
+        h /= 2
 
-    right = x >= 0
-    left  = x < 0
+    # Resultaat teruggeven (gevonden of laatste poging)
+    if best_h is not None and best_err is not None:
+        return best_h, best_err
+    else:
+        # Bereken laatste err opnieuw indien nodig
+        t_eu, x_eu, y_eu, z_eu = euler_integrate_rossler(a, b, c, ic, t_min, t_max, h)
+        err = max(
+            max_abs_error_on_common_grid(t_ref, x_ref, t_eu, x_eu),
+            max_abs_error_on_common_grid(t_ref, y_ref, t_eu, y_eu),
+            max_abs_error_on_common_grid(t_ref, z_ref, t_eu, z_eu),
+        )
+        return h, err
 
-    return x, y, z, left, right
+def euler_integrate_rossler(a, b, c, initial_condition, t_min, t_max, h):
+    t = np.arange(t_min, t_max + 1e-15, h)
+    n = len(t)
+    X = np.zeros((n, 3), dtype=float)
+    X[0] = np.array(initial_condition, dtype=float)
+
+    for i in range(n - 1):
+        X[i + 1] = X[i] + h * rossler_rhs(X[i], a=a, b=b, c=c)
+
+    x, y, z = X[:, 0], X[:, 1], X[:, 2]
+    return t, x, y, z
+
 
 
 # ============================================================
@@ -686,8 +684,7 @@ def get_Z_maxima(a, b, c, initial_condition, skip_first=5, t_min=0, t_max=100, d
     Z_max : ndarray
         Values of Z at those maxima.
     """
-    t = get_time_array(t_min, t_max, dt)
-    _, _, z = get_RK_vectors(a, b, c, initial_condition=initial_condition, 
+    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
                              t_min=t_min, t_max=t_max, dt=dt)
 
 
@@ -794,8 +791,21 @@ def plot_2d_projection(ax, t, x, y, z, plane='XY',
         ax.set_title(title)
     ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
 
+def equilibria_at_c(c_val, a_val=a, b_val=b):
+    sols, (x_sym, y_sym, z_sym) = get_solutions()
+    c_sym, a_sym, b_sym = symbols("c a b", real=True)
 
-def plot_3d_trajectory(ax, t, x, y, z, initial_condition=initial_condition,
+    eqs = []
+    for sol in sols:
+        eq = get_equilibria_for_c(sol, x_sym, y_sym, z_sym,
+                                  c_sym, a_sym, b_sym,
+                                  c_val, a_val=a_val, b_val=b_val)
+        if eq is not None:
+            eqs.append(eq)
+    return eqs
+
+
+def plot_3d_trajectory(ax, t, x, y, z, *, c, a=a, b=b, initial_condition=None,
                       title=None, alpha=0.8, linewidth=1.0, color='blue',
                       skip_first_frac=0.2):
     """
@@ -829,10 +839,9 @@ def plot_3d_trajectory(ax, t, x, y, z, initial_condition=initial_condition,
         ax.set_title(title)
 
     # --- Show equilibrium ---
-    sols, (x_sym, y_sym, z_sym) = get_solutions()
-    all_eq = compute_jacobian_and_stability(sols, x_sym, y_sym, z_sym,
-                                            small_c=(c <= 2))
-    eq_needed = [eq for eq in all_eq if np.isclose(eq["c"], c)]
+    eq_needed = equilibria_at_c(c, a_val=a, b_val=b)
+
+
 
     # How we can recognize the different kinds of equilibrium:
     eq_styles = {"stable node": dict(marker="o", color="C2", label="stable node"),
@@ -893,10 +902,8 @@ def plot_time_series(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
     figsize : tuple
         Figure size
     """
-    x, y, z = get_RK_vectors(a, b, c, initial_condition,
-                                t_min, t_max, dt,
-                                method,rtol, atol)
-    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
+    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
+                                t_min=t_min, t_max=t_max, dt=dt)
     fig, axes = plt.subplots(3, 1, figsize=figsize, sharex=True)
     
     axes[0].plot(t, x, 'b-', linewidth=0.8, alpha=0.8)
@@ -934,10 +941,8 @@ def plot_projections_2D(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition
     figsize : tuple
         Figure size
     """
-    x, y, z = get_RK_vectors(a, b, c, initial_condition,
-                                t_min, t_max, dt,
-                                method,rtol, atol)
-    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
+    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
+                                t_min=t_min, t_max=t_max, dt=dt)
     
     fig, axes = plt.subplots(1, 3, figsize=figsize)
     
@@ -974,17 +979,15 @@ def plot_3d_attractor(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
     """
 
     't, x, y, z = integrate_trajectory_dense(x0, y0, z0, a, b, c, t_span)'
-    x ,y, z = get_RK_vectors(a, b, c, initial_condition,
-                                t_min, t_max, dt,
-                                method,rtol, atol)
-    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
+    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
+                                t_min=t_min, t_max=t_max, dt=dt)
     skip = int(len(t) * 0.2)
     
     fig = plt.figure(figsize=figsize)
     
     # 3D plot
     ax1 = fig.add_subplot(121, projection='3d')
-    plot_3d_trajectory(ax1, t, x, y, z, title='3D Rössler Attractor',
+    plot_3d_trajectory(ax1, t, x, y, z, c=c, a=a, b=b, title='3D Rössler Attractor',
                       skip_first_frac=0.2, color='darkblue', linewidth=0.5)
     
     # 2D projection
@@ -1033,58 +1036,75 @@ def plot_parameter_sweep(a=0.1, b=0.1, c_values=None,
     for idx, c in enumerate(c_values, 1):
         ax = fig.add_subplot(n_rows, n_cols, idx, projection='3d')
         
-        x, y, z = get_RK_vectors(a, b, c, initial_condition=initial_condition,
-                                t_min=t_min, t_max=t_max, dt=dt,
-                                method=method, rtol=rtol, atol=atol)
-        t = get_time_array(t_min=t_min, t_max=t_max,dt=dt)
-        plot_3d_trajectory(ax, t, x, y, z,
-                          title=f'a = {a}, b = {b}, c = {c}',
-                          skip_first_frac=0.2, color='darkblue', linewidth=0.3)
+        t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
+                    t_min=t_min, t_max=t_max, dt=dt)
+        plot_3d_trajectory(ax, t, x, y, z, c=c, a=a, b=b,
+                  title=f'a = {a}, b = {b}, c = {c}',
+                  skip_first_frac=0.2, color='darkblue', linewidth=0.3)
     
     plt.tight_layout()
     return fig
 
+def local_maxima(values):
+    values = np.asarray(values)
+    idx = np.where((values[1:-1] > values[:-2]) & (values[1:-1] > values[2:]))[0] + 1
+    return idx
 
-def bifurcation_analysis_parameter_c(a=0.1, b=0.1, c_values=None,
-                        initial_condition=initial_condition,
-                        t_min=0, t_max=200, dt=0.01,
-                        method='RK45', rtol=1e-8, atol=1e-10,
-                        skip_frac=0.5):
+def bifurcation_maxima_X(param_name, param_values, a, b, c, ic,
+                         t_min=0.0, t_max=200.0, h=0.01, skip_frac=0.5):
     """
-    Create a bifurcation diagram: x(t) values versus parameter 'c'.
+    Returns arrays (p_plot, x_max_plot) for maxima of X after transients.
+    param_name: "b" or "c"
     """
-    if c_values is None:
-        c_values = np.linspace(0.05, 0.5, 300)
-    
+    p_plot = []
     x_plot = []
-    c_plot = []
-    
-    for c in c_values:
-        # FAST version: fewer points, looser tolerances
-        x, y, z = get_RK_vectors(a, b, c, initial_condition=initial_condition,
-                                t_min=t_min, t_max=t_max, dt=dt,
-                                method=method, rtol=rtol, atol=atol)
-        t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
+
+    for p in param_values:
+        aa, bb, cc = a, b, c
+        if param_name == "b":
+            bb = p
+        elif param_name == "c":
+            cc = p
+        else:
+            raise ValueError("param_name must be 'b' or 'c'")
+
+        t, x, y, z = rk4_integrate_rossler(aa, bb, cc, ic, t_min, t_max, h)
         skip = int(len(t) * skip_frac)
-        
-        # Collect only local maxima of x (characteristic points)
-        x_vals = x[skip:]
-        local_max_indices = np.where((x_vals[1:-1] > x_vals[:-2]) & 
-                                      (x_vals[1:-1] > x_vals[2:]))[0] + 1
-        
-        if len(local_max_indices) > 0:
-            for idx in local_max_indices:
-                x_plot.append(x_vals[idx])
-                c_plot.append(c)
-    
-    fig, ax = plt.subplots(figsize=(12, 7))
-    ax.scatter(c_plot, x_plot, s=1, alpha=0.5, color='darkblue')
-    ax.set_xlabel('Parameter c', fontsize=12)
-    ax.set_ylabel('x (local maxima)', fontsize=12)
-    ax.set_title('Bifurcation Diagram: Rössler System (varying c)', fontsize=14)
+        x_use = x[skip:]
+
+        idx = local_maxima(x_use)
+        for j in idx:
+            x_plot.append(x_use[j])
+            p_plot.append(p)
+
+    return np.array(p_plot), np.array(x_plot)
+
+def plot_bifurcation(param_name, param_values, a, b, c, ic, **kwargs):
+    p_plot, x_plot = bifurcation_maxima_X(param_name, param_values, a, b, c, ic, **kwargs)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.scatter(p_plot, x_plot, s=1, alpha=0.5)
+    ax.set_xlabel(param_name)
+    ax.set_ylabel("maxima of X")
+    ax.set_title(f"Bifurcation diagram: maxima of X vs {param_name}")
     ax.grid(True, alpha=0.3)
-    
-    return fig, np.array(c_plot), np.array(x_plot)
+    return fig
+
+def nb_bifurcation_vs_c(a=0.2, b=0.2, c_min=0.0, c_max=18.0, n=400,
+                        ic=initial_condition, t_min=0.0, t_max=200.0, h=0.01):
+    c_values = np.linspace(c_min, c_max, n)
+    fig = plot_bifurcation("c", c_values, a=a, b=b, c=0.0, ic=ic,
+                           t_min=t_min, t_max=t_max, h=h, skip_frac=0.5)
+    plt.show()
+    return fig
+
+def nb_bifurcation_vs_b(a=0.2, c=5.7, b_min=0.0, b_max=1.0, n=400,
+                        ic=initial_condition, t_min=0.0, t_max=200.0, h=0.01):
+    b_values = np.linspace(b_min, b_max, n)
+    fig = plot_bifurcation("b", b_values, a=a, b=0.0, c=c, ic=ic,
+                           t_min=t_min, t_max=t_max, h=h, skip_frac=0.5)
+    plt.show()
+    return fig
+
 
 
 # ============================================================
@@ -1119,10 +1139,8 @@ def compare_initial_conditions(a=0.2, b=0.2, c=5.7, initial_conditions= None,
     colors = ['blue', 'green', 'red', 'purple', 'orange']
     
     for ic_idx, (x0, y0, z0) in enumerate(initial_conditions):
-        x, y, z = get_RK_vectors(a, b, c, initial_condition=(x0, y0, z0),
-                                t_min=t_min, t_max=t_max, dt=dt,
-                                method=method, rtol=rtol, atol=atol)
-        t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
+        t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=(x0, y0, z0),
+                    t_min=t_min, t_max=t_max, dt=dt)
         skip = int(len(t) * 0.2)
 
         color = colors[ic_idx % len(colors)]
@@ -1170,24 +1188,20 @@ def lyapunov_exponent_estimate(a=0.2, b=0.2, c=5.7, initial_condition=initial_co
         Lyapunov exponent estimate over time
     """
     # Reference trajectory
-    x1, y1, z1 = get_RK_vectors(
-        a=0.2, b=0.2, c=5.7,
+    t, x1, y1, z1 = get_RK4_vectors_manual(
+        a=a, b=b, c=c,
         initial_condition=initial_condition,
-        t_min=t_min, t_max=t_max, dt=dt,
-        method="RK45",rtol=1e-8, atol=1e-10
+        t_min=t_min, t_max=t_max, dt=dt
         )
     
     # Perturbed trajectory
-    x2, y2, z2 = get_RK_vectors(
-        a=0.2, b=0.2, c=5.7,
+    t, x2, y2, z2 = get_RK4_vectors_manual(
+        a=a, b=b, c=c,
         initial_condition=(initial_condition[0] + eps,
                            initial_condition[1],
                            initial_condition[2]),
-        t_min=t_min, t_max=t_max, dt=dt,
-        method="RK45",rtol=1e-8, atol=1e-10
+        t_min=t_min, t_max=t_max, dt=dt
         )
-    
-    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
     
     # Distance between trajectories
     dx = x2 - x1
@@ -1220,16 +1234,15 @@ def plot_sensitivity_to_initial_conditions(c=5.7, t_min=t_min, t_max=t_max, dt=d
     in the X-component, integrate both trajectories, and plot how their
     distance in state space evolves in time (linear and log scale).
     """
-    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
 
     # Choose reference initial condition from the general parameters
     base_ic = initial_condition
     ic1 = base_ic
     ic2 = (base_ic[0] + delta, base_ic[1], base_ic[2])
 
-    x1, y1, z1 = get_RK_vectors(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
+    t, x1, y1, z1 = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
                                 initial_condition=ic1)
-    x2, y2, z2 = get_RK_vectors(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
+    _, x2, y2, z2 = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
                                 initial_condition=ic2)
     # Euclidean distance in (X, Y, Z)
     d = np.sqrt((x1 - x2)**2 + (y1 - y2)**2 + (z1 - z2)**2)
@@ -1264,18 +1277,15 @@ def show_butterfly_effect(a, b, c, initial_condition, delta=1e-6, t_min=0, t_max
     """
     plt.close('all')
     
-    # Time array
-    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
-    
     # Two initial conditions that differ by delta in X
     base_ic = initial_condition
     ic1 = base_ic
     ic2 = (base_ic[0] + delta, base_ic[1], base_ic[2])
     
     # Integrate both trajectories
-    x1, y1, z1 = get_RK_vectors(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
+    t, x1, y1, z1 = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
                                 initial_condition=ic1)
-    x2, y2, z2 = get_RK_vectors(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
+    _, x2, y2, z2 = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
                                 initial_condition=ic2)
     
     series1 = {"X": x1, "Y": y1, "Z": z1}
@@ -1320,8 +1330,7 @@ def plot_Z_time_with_maxima(a, b, c, initial_condition, t_min=0, t_max=200, dt=0
     dt : float
         Time step used in the integration.
     """
-    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
-    _, _, z = get_RK_vectors(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
+    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
                                 initial_condition=initial_condition)
     t_max_vals, Z_max = get_Z_maxima(a, b, c, initial_condition, t_min=t_min, t_max=t_max, dt=dt)
 
