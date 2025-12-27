@@ -51,7 +51,7 @@ def default_parameters():
 
 
 # -----------------------------------------------------------------------------
-# Glucose system functions part 3
+# Glucose system functions part 1
 # -----------------------------------------------------------------------------
 
 def glucose_rhs(X, Y, a, b):
@@ -191,6 +191,7 @@ def mask_in_window(x, y, xlim, ylim):
     return ((xlim[0] <= x) & (x <= xlim[1]) &
             (ylim[0] <= y) & (y <= ylim[1]))
 
+
 def plot_curve_in_window(ax, x, y, xlim, ylim, *, label=None, **plot_kwargs):
     """
     Plot a curve (x, y) only where it lies inside the plot window.
@@ -217,7 +218,6 @@ def plot_curve_in_window(ax, x, y, xlim, ylim, *, label=None, **plot_kwargs):
     mask = mask_in_window(x, y, xlim, ylim)
     if np.any(mask):
         ax.plot(x[mask], y[mask], label=label, **plot_kwargs)
-
 
 def draw_nullclines_panel(
         ax, a=0.06, b=0.4, xlim=(0, 4), ylim=(0, 7),
@@ -302,7 +302,6 @@ def draw_nullclines_panel(
 
 def draw_change_vectors(ax, points, a, b, *,
                         len_comp=0.28, len_res=0.35,
-                        show_resultant=True,
                         color_x="red", color_y="blue", color_res="k",
                         width=0.006, zorder=4):
     pts = np.asarray(points, dtype=float)
@@ -321,138 +320,58 @@ def draw_change_vectors(ax, points, a, b, *,
     ax.quiver(Xp, Yp, Uy, Vy, angles="xy", scale_units="xy", scale=1,
               color=color_y, width=width, zorder=zorder)
 
-    if show_resultant:
-        # resultant direction (normalize to constant length)
-        R = np.sqrt(dX*dX + dY*dY)
-        # avoid division by zero
-        R = np.where(R == 0, 1.0, R)
-        Ur = (dX / R) * len_res
-        Vr = (dY / R) * len_res
-        ax.quiver(Xp, Yp, Ur, Vr, angles="xy", scale_units="xy", scale=1,
-                  color=color_res, width=width, zorder=zorder)
+    # resultant direction (always drawn)
+    R = np.sqrt(dX*dX + dY*dY)
+    R = np.where(R == 0, 1.0, R)
+    Ur = (dX / R) * len_res
+    Vr = (dY / R) * len_res
+    ax.quiver(Xp, Yp, Ur, Vr, angles="xy", scale_units="xy", scale=1,
+              color=color_res, width=width, zorder=zorder)
 
 
-def region_representative_points(a, b, xlim, ylim, nx=50, ny=50, delta=None):
-    """
-    Select one representative point per region bounded by the nullclines.
-
-    We classify regions by the signs of:
-      sX = sign(Y - Y_xnull(X))  -> sign of dX
-      sY = sign(Y_ynull(X) - Y)  -> sign of dY
-
-    For clarity, choose points far from both nullclines and away from
-    plot edges so arrows are fully visible.
-
-    Returns up to four points (one per sign combination).
-    """
-    x = np.linspace(xlim[0], xlim[1], nx)
-    y = np.linspace(ylim[0], ylim[1], ny)
-    X, Y = np.meshgrid(x, y)
-
-    Yx, Yy = nullclines(X, a, b)
-
-    if delta is None:
-        delta = 0.06 * (ylim[1] - ylim[0])
-
-    sX = np.sign(Y - Yx)
-    sY = np.sign(Yy - Y)
-
-    edge_margin_x = 0.05 * (xlim[1] - xlim[0])
-    edge_margin_y = 0.05 * (ylim[1] - ylim[0])
-    away_from_edges = ((X > xlim[0] + edge_margin_x) & (X < xlim[1] - edge_margin_x) &
-                       (Y > ylim[0] + edge_margin_y) & (Y < ylim[1] - edge_margin_y))
-
-    combos = [(1, 1), (1, -1), (-1, 1), (-1, -1)]
-    pts = []
-    # Distance metric: product of distances to each nullcline for better separation
-    dist = np.abs(Y - Yx) * np.abs(Y - Yy)
-
-    for cx, cy in combos:
-        # progressively relax delta if region not found
-        found = False
-        for scale in (1.0, 0.7, 0.5, 0.3):
-            far = (np.abs(Y - Yx) > (delta * scale)) & (np.abs(Y - Yy) > (delta * scale))
-            valid = far & away_from_edges & (sX != 0) & (sY != 0)
-            m = valid & (sX == cx) & (sY == cy)
-            if np.any(m):
-                iy, ix = np.where(m)
-                dsel = dist[m]
-                k = int(np.argmax(dsel))
-                i, j = iy[k], ix[k]
-                pts.append((float(X[i, j]), float(Y[i, j])))
-                found = True
-                break
-        if not found:
-            # as last resort, pick mid-grid point in this sign region
-            m = (sX == cx) & (sY == cy)
-            if np.any(m):
-                iy, ix = np.where(m)
-                k = len(iy) // 2
-                i, j = iy[k], ix[k]
-                pts.append((float(X[i, j]), float(Y[i, j])))
-
-    return pts
-
-
-def _equilibrium_xy(a, b):
-    xe = b
-    ye = b / (a + b * b)
-    return xe, ye
-
+def region_representative_points():
+    """Hardcoded arrow positions for standard plot."""
+    return [(0.1, 2.5), (1.2, 2.5), (0.4, 0.6), (1.2, 0.6)]
 
 def nudge_points(points, a, b, xlim, ylim, delta=None):
-    """Apply small, targeted nudges to improve arrow placement clarity.
-
-    - Move upper-right arrows slightly toward the equilibrium to avoid the legend.
-    - Push top-left arrows a bit away from the Y'=0 nullcline.
-    - Shift bottom-left arrows slightly to the right to avoid the left edge.
-    """
+    """Apply small nudges to improve arrow placement."""
     if not points:
         return points
     if delta is None:
         delta = 0.06 * (ylim[1] - ylim[0])
 
-    xe, ye = _equilibrium_xy(a, b)
-    w = (xlim[1] - xlim[0])
-    h = (ylim[1] - ylim[0])
-
+    xe, ye = equilibrium(a, b)
+    w, h = (xlim[1] - xlim[0]), (ylim[1] - ylim[0])
     nudged = []
+    
     for (x, y) in points:
-        # Rule 1: if near the upper-right corner, move closer to equilibrium
+        # Upper-right: move toward equilibrium
         if (x > xlim[1] - 0.6) and (y > ylim[1] - 0.8):
-            x = x - 0.35 * (x - xe)
-            y = y - 0.35 * (y - ye)
-
-        # Rule 2: if in the upper-left area and too close to Y'=0, nudge away
-        if (x < xlim[0] + 0.8) and (y > ylim[0] + 0.8 * h):
+            x -= 0.35 * (x - xe)
+            y -= 0.35 * (y - ye)
+        # Upper-left: nudge away from Y'=0
+        elif (x < xlim[0] + 0.8) and (y > ylim[0] + 0.8 * h):
             Yy = b / (a + x * x)
             if abs(y - Yy) < 0.6 * delta:
-                sign = 1.0 if (y > Yy) else -1.0
-                y = y + sign * 0.35 * delta
-            # Slight left shift per request (very small)
-            x = x - 0.03 * w
+                y += (1.0 if y > Yy else -1.0) * 0.35 * delta
+            x -= 0.03 * w
+        # Lower-left: nudge right
+        elif (y < ylim[0] + 0.20 * h) and (x < xlim[0] + 0.35 * w):
+            x += 0.015 * w
 
-        # Rule 3: if in the lower-left area, nudge a tiny bit right
-        if (y < ylim[0] + 0.20 * h) and (x < xlim[0] + 0.35 * w):
-            x = x + 0.015 * w
-
-        # Keep within bounds
-        x = float(np.clip(x, xlim[0] + 1e-6, xlim[1] - 1e-6))
-        y = float(np.clip(y, ylim[0] + 1e-6, ylim[1] - 1e-6))
-        nudged.append((x, y))
-
+        nudged.append((float(np.clip(x, xlim[0] + 1e-6, xlim[1] - 1e-6)),
+                       float(np.clip(y, ylim[0] + 1e-6, ylim[1] - 1e-6))))
     return nudged
 
 
 def plot_nullclines(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
-                             n=250, density=0.6, alpha=0.35,
-                             show_resultant=True):
+                             n=250, density=0.6, alpha=0.35):
     """
     Combine the classic nullclines figure (title + legend) with the
     photo-style directional arrows.
 
     - Keeps the original title and legend from the classic plot.
-    - Uses colored nullclines and component/resultant arrows like the photo style.
+    - Uses colored nullclines and component/resultant arrows.
 
     Parameters
     ----------
@@ -466,8 +385,6 @@ def plot_nullclines(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
         Streamline density.
     alpha : float
         Streamline transparency.
-    show_resultant : bool
-        Whether to draw the black resultant arrows.
     """
     plt.close("all")
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -480,14 +397,12 @@ def plot_nullclines(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
         title=rf"Degradation of Glucose: Nullclines with $a={a}$ and $b={b}$"
     )
 
-    # Overlay photo-style change vectors: one pair per region
-    pts = region_representative_points(a, b, xlim, ylim)
+    pts = region_representative_points()
     pts = nudge_points(pts, a, b, xlim, ylim)
-    draw_change_vectors(ax, pts, a, b, show_resultant=show_resultant,
+    draw_change_vectors(ax, pts, a, b,
                         color_x="red", color_y="blue", color_res="k",
                         len_comp=0.32, len_res=0.40, width=0.008, zorder=4)
 
-    # Keep the classic legend (nullclines + equilibrium)
     ax.legend(loc="upper right", framealpha=0.9)
 
     ax.set_xlabel("X")
@@ -535,7 +450,6 @@ def jacobian(X, Y, a, b):
         [-2*X*Y,     -(a + X**2)]
     ], dtype=float)
 
-
 def get_equilibrium_eigvals(a, b):
     """
     Compute the equilibrium point, Jacobian, and its eigenvalues.
@@ -561,38 +475,29 @@ def get_equilibrium_eigvals(a, b):
     eig = np.linalg.eigvals(J_eq)
     return (Xeq, Yeq), J_eq, eig
 
-# -----------------------------------------------------------------------------
-# Glucose system functions part 3
-# -----------------------------------------------------------------------------
-
-def rhs_state(t, z, a, b):
+def show_equilibrium_info(a, b):
     """
-    Right-hand side function for scipy.integrate.solve_ivp.
-    
-    Wraps glucose_rhs for compatibility with ODE solver API.
+    Print equilibrium coordinates, Jacobian, and eigenvalues.
     
     Parameters
     ----------
-    t : float
-        Time (not used but required by solve_ivp)
-    z : list or ndarray
-        State vector [X, Y]
     a : float
         Enzyme-protein interaction parameter
     b : float
         Protein production rate
-    
-    Returns
-    -------
-    dzdt : list
-        Time derivatives [dX/dt, dY/dt]
     """
-    X, Y = z
-    dX, dY = glucose_rhs(X, Y, a, b)
-    return [dX, dY]
+    (Xeq, Yeq), J_eq, eig = get_equilibrium_eigvals(a, b)
+    print(f"Equilibrium point: Xeq = {Xeq:.4f}, Yeq = {Yeq:.4f}\n")
+    print("Jacobian at equilibrium:")
+    print(J_eq)
+    print(f"\n Eigenvalues: \n λ1 = {eig[0]:.4f} \n λ2 = {eig[1]:.4f}")
+
+#-----------------------------------------------------------------------------
+# Glucose system functions part 3: Trajectory plotting
+#-----------------------------------------------------------------------------
 
 
-def default_initial_conditions(a, b, xlim, ylim, step=0.08):
+def trajectory_initial_conditions(a, b, xlim, ylim, step=0.08):
     """
     Generate sets of initial conditions for trajectory integration.
     
@@ -603,9 +508,8 @@ def default_initial_conditions(a, b, xlim, ylim, step=0.08):
     Parameters
     ----------
     a : float
-        Enzyme-protein interaction parameter
+        interaction parameter
     b : float
-        Protein production rate
     xlim : tuple
         X domain limits (x_min, x_max)
     ylim : tuple
@@ -624,7 +528,7 @@ def default_initial_conditions(a, b, xlim, ylim, step=0.08):
     dx = step * (xlim[1] - xlim[0])
     dy = step * (ylim[1] - ylim[0])
 
-    # near equilibrium (local)
+    # near equilibrium
     near_eq = [
         (Xeq + dx, Yeq),
         (Xeq - dx, Yeq),
@@ -683,13 +587,13 @@ def draw_trajectories(ax, a, b, xlim, ylim, initials, t_span=(0,60), t_eval_n=25
         start_kw = {}
 
     for (X0, Y0) in initials:
-        sol = solve_ivp(rhs_state, t_span, [X0, Y0],
-                        args=(a, b), t_eval=t_eval,
-                        rtol=1e-8, atol=1e-10)
+        sol = solve_ivp(
+            lambda t, z: glucose_rhs(z[0], z[1], a, b),
+            t_span, [X0, Y0], t_eval=t_eval,
+            rtol=1e-8, atol=1e-10
+        )
         ax.plot(sol.y[0], sol.y[1], **line_kw)
         ax.plot([X0], [Y0], **start_kw)
-
-
 
 def plot_2glucose_trajectories(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
                   n=250, step=0.08,
@@ -722,26 +626,26 @@ def plot_2glucose_trajectories(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
         Number of evaluation points (default 2500)
     """
 
-    near_eq, near_edge = default_initial_conditions(a, b, xlim, ylim, step=step)
+    near_eq, near_edge = trajectory_initial_conditions(a, b, xlim, ylim, step=step)
 
     plt.close("all")
     fig, axes = plt.subplots(1, 2, figsize=(14, 5), sharex=True, sharey=True)
 
-    # --- Local panel ---
+    # --- Local trajectories panel ---
     ax = axes[0]
     draw_nullclines_panel(ax, a=a, b=b, xlim=xlim, ylim=ylim, n=n,
                           density=0.8, alpha=0.30, show_equilibrium=True,
                           title="Local trajectories near equilibrium")
     draw_trajectories(ax, a, b, xlim, ylim, near_eq, t_span=t_span, t_eval_n=t_eval_n)
 
-    # --- Global panel ---
+    # --- Global trajectories panel ---
     ax = axes[1]
     draw_nullclines_panel(ax, a=a, b=b, xlim=xlim, ylim=ylim, n=n,
                           density=0.8, alpha=0.30, show_equilibrium=True,
                           title="Global trajectories further from equilibrium")
     draw_trajectories(ax, a, b, xlim, ylim, near_edge, t_span=t_span, t_eval_n=t_eval_n)
 
-    # One general legend
+    # General legend
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, framealpha=0.9, loc='upper center')
 
@@ -753,7 +657,7 @@ def plot_zoomed_spiral_convergence(a=0.06, b=0.4, xlim=(0, 1.5), ylim=(0, 3),
                                     t_span=(0, 60), t_eval_n=2500, step=0.08,
                                     single_init=(0.465, 0.6)):
     """
-    Plot side-by-side visualization of spiral convergence to stable equilibrium.
+    Plot side-by-side visualization of trajectories spiraling from unstable equilibrium to limit cycle.
     
     Left panel: Multiple trajectories from near_eq points (all marked with green circles)
     Right panel: Single detailed trajectory from single_init point
@@ -775,16 +679,16 @@ def plot_zoomed_spiral_convergence(a=0.06, b=0.4, xlim=(0, 1.5), ylim=(0, 3),
     fig, axes = plt.subplots(1, 2, figsize=(15, 6))
     ax1, ax2 = axes
     
-    # Get equilibrium point
+    # Equilibrium point
     Xeq, Yeq = equilibrium(a, b)
     
     # --- Left panel: Multiple trajectories ---
     draw_nullclines_panel(
         ax1, a=a, b=b, xlim=xlim, ylim=ylim,
         n=250, density=0.6, alpha=0.35,
-        title="Multiple trajectories converging to equilibrium", show_equilibrium=True
+        title="Multiple trajectories spiraling away from unstable equilibrium", show_equilibrium=True
     )
-    near_eq, _ = default_initial_conditions(a, b, xlim=xlim, ylim=ylim, step=step)
+    near_eq, _ = trajectory_initial_conditions(a, b, xlim=xlim, ylim=ylim, step=step)
     draw_trajectories(ax1, a, b, xlim=xlim, ylim=ylim, initials=near_eq, 
                       t_span=t_span, t_eval_n=t_eval_n,
                       line_kw=dict(linewidth=1.2, alpha=0.7))
@@ -808,7 +712,7 @@ def plot_zoomed_spiral_convergence(a=0.06, b=0.4, xlim=(0, 1.5), ylim=(0, 3),
     ax2.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
     
     # Main title
-    fig.suptitle('Zoomed view: Spiral convergence to stable equilibrium (a={:.2f}, b={:.2f})'.format(a, b), 
+    fig.suptitle('Zoomed view: Trajectories spiral from unstable equilibrium to limit cycle (a={:.2f}, b={:.2f})'.format(a, b), 
                  fontsize=13, fontweight='bold', y=1.00)
     
     # Get all unique labels from both axes and combine
@@ -844,7 +748,7 @@ def trace_det_at_eq(a, b):
         Delta: Determinant = a + b² (always > 0 for a > 0)
     """
     s = a + b**2
-    tau = 1 - s - 2*a/s  # Formula derived from linearization at equilibrium
+    tau = 1 - s - 2*a/s 
     Delta = s
     return tau, Delta
 
@@ -889,12 +793,12 @@ def bcrit_values(a):
     s1 = (1 + np.sqrt(disc))/2  # s_+ (larger root)
     s2 = (1 - np.sqrt(disc))/2  # s_- (smaller root)
     
-    bs = []
+    hop_val_bs = []
     for s in (s2, s1):  # Process in order from smaller to larger b
         b2 = s - a      # Since b² = s - a
         if b2 >= 0:
-            bs.append(np.sqrt(b2))  # b_± = √(s_± - a)
-    return bs
+            hop_val_bs.append(np.sqrt(b2))  # b_± = √(s_± - a)
+    return hop_val_bs
 
 def scan_bifurcation_in_b(a=0.06, b_min=0.0, b_max=1.2, n=2000):
     """
@@ -1068,7 +972,7 @@ def plot_bifurcation_summary_figures(a=0.06, xlim=(0, 1.2), fast=True):
                 draw_nullclines_panel(axp, a=a, b=bb, xlim=(0, 1.5), ylim=(0, 3),
                                       n=150, density=0.8, alpha=0.3,
                                       title=tt, show_equilibrium=True)
-                near_eq, _ = default_initial_conditions(a, bb, xlim=(0,1.5), ylim=(0,3), step=0.1)
+                near_eq, _ = trajectory_initial_conditions(a, bb, xlim=(0,1.5), ylim=(0,3), step=0.1)
                 draw_trajectories(axp, a, bb, xlim=(0,1.5), ylim=(0,3), initials=near_eq,
                                   t_span=(0, 40), t_eval_n=1500,
                                   line_kw=dict(linewidth=0.8, alpha=0.85))
@@ -1128,7 +1032,7 @@ def plot_bifurcation_phase_portraits(a=0.06, b_crit_vals=None, xlim=(0, 1.5), yl
                                  title=title, show_equilibrium=True)
             
             # Add some trajectories
-            near_eq, _ = default_initial_conditions(a, b_val, xlim, ylim, step=0.1)
+            near_eq, _ = trajectory_initial_conditions(a, b_val, xlim, ylim, step=0.1)
             draw_trajectories(ax, a, b_val, xlim, ylim, initials=near_eq,
                             t_span=(0, 40), t_eval_n=2000,
                             line_kw=dict(linewidth=0.7, zorder=2.5, alpha=0.8))
