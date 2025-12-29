@@ -44,17 +44,17 @@ def default_parameters():
     """
     a = 0.06
     b = 0.4
-    x_lim = (0, 4)
-    y_lim = (0, 7)
+    xlim = (0, 4)
+    ylim = (0, 7)
 
-    return a, b, x_lim, y_lim
+    return a, b, xlim, ylim
 
-
+a, b, xlim, ylim = default_parameters()
 # -----------------------------------------------------------------------------
 # Glucose system functions part 1
 # -----------------------------------------------------------------------------
 
-def glucose_rhs(X, Y, a, b):
+def glucose_rhs(X, Y, a=a, b=b):
     """
     Compute the right-hand side of the glucose degradation model.
     
@@ -84,7 +84,7 @@ def glucose_rhs(X, Y, a, b):
     dY =  b - a*Y - (X**2)*Y
     return dX, dY
 
-def get_vector_grid(xlim=(0, 4), ylim=(0, 7), a=0.06, b=0.4, n=250):
+def get_vector_grid(xlim=xlim, ylim=ylim, a=a, b=b, n=250):
     """
     Compute the vector field (dXdt, dYdt) on a regular grid.
     
@@ -120,7 +120,7 @@ def get_vector_grid(xlim=(0, 4), ylim=(0, 7), a=0.06, b=0.4, n=250):
     dXdt, dYdt = glucose_rhs(X, Y, a, b)
     return x, y, dXdt, dYdt
 
-def nullclines(x, a, b):
+def nullclines(x, a=a, b=b):
     """
     Compute the nullclines (curves where derivatives are zero).
     
@@ -146,7 +146,7 @@ def nullclines(x, a, b):
     """
     return x/(a + x**2), b/(a + x**2)
 
-def equilibrium(a, b):
+def equilibrium(a=a, b=b):
     """
     Compute the equilibrium point (fixed point) of the glucose model.
     
@@ -168,7 +168,7 @@ def equilibrium(a, b):
     """
     return b, b/(a + b**2)
 
-def mask_in_window(x, y, xlim, ylim):
+def mask_in_window(x, y, xlim=xlim, ylim=ylim):
     """
     Create a boolean mask for points inside a rectangular window.
     
@@ -192,7 +192,7 @@ def mask_in_window(x, y, xlim, ylim):
             (ylim[0] <= y) & (y <= ylim[1]))
 
 
-def plot_curve_in_window(ax, x, y, xlim, ylim, *, label=None, **plot_kwargs):
+def plot_curve_in_window(ax, x, y, xlim=xlim, ylim=ylim, *, label=None, **plot_kwargs):
     """
     Plot a curve (x, y) only where it lies inside the plot window.
     
@@ -220,7 +220,7 @@ def plot_curve_in_window(ax, x, y, xlim, ylim, *, label=None, **plot_kwargs):
         ax.plot(x[mask], y[mask], label=label, **plot_kwargs)
 
 def draw_nullclines_panel(
-        ax, a=0.06, b=0.4, xlim=(0, 4), ylim=(0, 7),
+        ax, a=a, b=b, xlim=xlim, ylim=ylim,
         n=250,
         density=0.6, alpha=0.35,
         n_nullcline=800, show_equilibrium=True,
@@ -300,8 +300,8 @@ def draw_nullclines_panel(
 # Change vectors and direction arrows
 #=============================================================================
 
-def draw_change_vectors(ax, points, a, b, *,
-                        len_comp=0.28, len_res=0.35,
+def draw_change_vectors(ax, points, a=a, b=b, *,
+                        len_comp=0.32, len_res=0.40,
                         color_x="red", color_y="blue", color_res="k",
                         width=0.006, zorder=4):
     pts = np.asarray(points, dtype=float)
@@ -328,12 +328,11 @@ def draw_change_vectors(ax, points, a, b, *,
     ax.quiver(Xp, Yp, Ur, Vr, angles="xy", scale_units="xy", scale=1,
               color=color_res, width=width, zorder=zorder)
 
-
 def region_representative_points():
     """Hardcoded arrow positions for standard plot."""
     return [(0.1, 2.5), (1.2, 2.5), (0.4, 0.6), (1.2, 0.6)]
 
-def nudge_points(points, a, b, xlim, ylim, delta=None):
+def nudge_points(points, a=a, b=b, xlim=xlim, ylim=ylim, delta=None):
     """Apply small nudges to improve arrow placement."""
     if not points:
         return points
@@ -364,8 +363,8 @@ def nudge_points(points, a, b, xlim, ylim, delta=None):
     return nudged
 
 
-def plot_nullclines(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
-                             n=250, density=0.6, alpha=0.35):
+def plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
+                    n=250, density=0.6, alpha=0.35):
     """
     Combine the classic nullclines figure (title + legend) with the
     photo-style directional arrows.
@@ -398,10 +397,10 @@ def plot_nullclines(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
     )
 
     pts = region_representative_points()
-    pts = nudge_points(pts, a, b, xlim, ylim)
-    draw_change_vectors(ax, pts, a, b,
+    pts = nudge_points(pts, a=a, b=b, xlim=xlim, ylim=ylim)
+    draw_change_vectors(ax, pts, a=a, b=b,
                         color_x="red", color_y="blue", color_res="k",
-                        len_comp=0.32, len_res=0.40, width=0.008, zorder=4)
+                        len_comp=0.32, len_res=0.40, width=0.006, zorder=4)
 
     ax.legend(loc="upper right", framealpha=0.9)
 
@@ -417,7 +416,7 @@ def plot_nullclines(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
 # Glucose system functions part 2
 # -----------------------------------------------------------------------------
 
-def jacobian(X, Y, a, b):
+def jacobian(X, Y, a=a, b=b):
     """
     Compute the Jacobian matrix of the glucose model at point (X, Y).
     
@@ -450,7 +449,7 @@ def jacobian(X, Y, a, b):
         [-2*X*Y,     -(a + X**2)]
     ], dtype=float)
 
-def get_equilibrium_eigvals(a, b):
+def get_equilibrium_eigvals(a=a, b=b):
     """
     Compute the equilibrium point, Jacobian, and its eigenvalues.
     
@@ -470,12 +469,12 @@ def get_equilibrium_eigvals(a, b):
     eig : ndarray
         Eigenvalues of the Jacobian (complex numbers in general)
     """
-    Xeq, Yeq = equilibrium(a, b)
-    J_eq = jacobian(Xeq, Yeq, a, b)
+    Xeq, Yeq = equilibrium(a=a, b=b)
+    J_eq = jacobian(Xeq, Yeq, a=a, b=b)
     eig = np.linalg.eigvals(J_eq)
     return (Xeq, Yeq), J_eq, eig
 
-def show_equilibrium_info(a, b):
+def show_equilibrium_info(a=a, b=b):
     """
     Print equilibrium coordinates, Jacobian, and eigenvalues.
     
@@ -486,7 +485,7 @@ def show_equilibrium_info(a, b):
     b : float
         Protein production rate
     """
-    (Xeq, Yeq), J_eq, eig = get_equilibrium_eigvals(a, b)
+    (Xeq, Yeq), J_eq, eig = get_equilibrium_eigvals(a=a, b=b)
     print(f"Equilibrium point: Xeq = {Xeq:.4f}, Yeq = {Yeq:.4f}\n")
     print("Jacobian at equilibrium:")
     print(J_eq)
@@ -497,7 +496,7 @@ def show_equilibrium_info(a, b):
 #-----------------------------------------------------------------------------
 
 
-def trajectory_initial_conditions(a, b, xlim, ylim, step=0.08):
+def trajectory_initial_conditions(a=a, b=b, xlim=xlim, ylim=ylim, step=0.08):
     """
     Generate sets of initial conditions for trajectory integration.
     
@@ -524,7 +523,7 @@ def trajectory_initial_conditions(a, b, xlim, ylim, step=0.08):
     near_edge : list of tuples
         Initial conditions near domain boundaries
     """
-    Xeq, Yeq = equilibrium(a, b)
+    Xeq, Yeq = equilibrium(a=a, b=b)
     dx = step * (xlim[1] - xlim[0])
     dy = step * (ylim[1] - ylim[0])
 
@@ -547,7 +546,7 @@ def trajectory_initial_conditions(a, b, xlim, ylim, step=0.08):
 
     return near_eq , near_edge
 
-def draw_trajectories(ax, a, b, xlim, ylim, initials, t_span=(0,60), t_eval_n=2500,
+def draw_trajectories(ax, a=a, b=b, xlim=xlim, ylim=ylim, initials=None, t_span=(0,60), t_eval_n=2500,
                       line_kw=None, start_kw=None):
     """
     Integrate and plot trajectories from multiple initial conditions.
@@ -595,7 +594,7 @@ def draw_trajectories(ax, a, b, xlim, ylim, initials, t_span=(0,60), t_eval_n=25
         ax.plot(sol.y[0], sol.y[1], **line_kw)
         ax.plot([X0], [Y0], **start_kw)
 
-def plot_2glucose_trajectories(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
+def plot_2glucose_trajectories(a=a, b=b, xlim=xlim, ylim=ylim,
                   n=250, step=0.08,
                   t_span=(0,60), t_eval_n=2500):
     """
@@ -626,7 +625,7 @@ def plot_2glucose_trajectories(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
         Number of evaluation points (default 2500)
     """
 
-    near_eq, near_edge = trajectory_initial_conditions(a, b, xlim, ylim, step=step)
+    near_eq, near_edge = trajectory_initial_conditions(a=a, b=b, xlim=xlim, ylim=ylim, step=step)
 
     plt.close("all")
     fig, axes = plt.subplots(1, 2, figsize=(14, 5), sharex=True, sharey=True)
@@ -636,14 +635,14 @@ def plot_2glucose_trajectories(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
     draw_nullclines_panel(ax, a=a, b=b, xlim=xlim, ylim=ylim, n=n,
                           density=0.8, alpha=0.30, show_equilibrium=True,
                           title="Local trajectories near equilibrium")
-    draw_trajectories(ax, a, b, xlim, ylim, near_eq, t_span=t_span, t_eval_n=t_eval_n)
+    draw_trajectories(ax, a=a, b=b, xlim=xlim, ylim=ylim, initials=near_eq, t_span=t_span, t_eval_n=t_eval_n)
 
     # --- Global trajectories panel ---
     ax = axes[1]
     draw_nullclines_panel(ax, a=a, b=b, xlim=xlim, ylim=ylim, n=n,
                           density=0.8, alpha=0.30, show_equilibrium=True,
                           title="Global trajectories further from equilibrium")
-    draw_trajectories(ax, a, b, xlim, ylim, near_edge, t_span=t_span, t_eval_n=t_eval_n)
+    draw_trajectories(ax, a=a, b=b, xlim=xlim, ylim=ylim, initials=near_edge, t_span=t_span, t_eval_n=t_eval_n)
 
     # General legend
     handles, labels = axes[0].get_legend_handles_labels()
@@ -653,7 +652,7 @@ def plot_2glucose_trajectories(a=0.06, b=0.4, xlim=(0,4), ylim=(0,7),
     plt.show()
 
 
-def plot_zoomed_spiral_convergence(a=0.06, b=0.4, xlim=(0, 1.5), ylim=(0, 3),
+def plot_zoomed_spiral_convergence(a=a, b=b, xlim=xlim, ylim=ylim,
                                     t_span=(0, 60), t_eval_n=2500, step=0.08,
                                     single_init=(0.465, 0.6)):
     """
@@ -680,7 +679,7 @@ def plot_zoomed_spiral_convergence(a=0.06, b=0.4, xlim=(0, 1.5), ylim=(0, 3),
     ax1, ax2 = axes
     
     # Equilibrium point
-    Xeq, Yeq = equilibrium(a, b)
+    Xeq, Yeq = equilibrium(a=a, b=b)
     
     # --- Left panel: Multiple trajectories ---
     draw_nullclines_panel(
@@ -688,8 +687,8 @@ def plot_zoomed_spiral_convergence(a=0.06, b=0.4, xlim=(0, 1.5), ylim=(0, 3),
         n=250, density=0.6, alpha=0.35,
         title="Multiple trajectories spiraling away from unstable equilibrium", show_equilibrium=True
     )
-    near_eq, _ = trajectory_initial_conditions(a, b, xlim=xlim, ylim=ylim, step=step)
-    draw_trajectories(ax1, a, b, xlim=xlim, ylim=ylim, initials=near_eq, 
+    near_eq, _ = trajectory_initial_conditions(a=a, b=b, xlim=xlim, ylim=ylim, step=step)
+    draw_trajectories(ax1, a=a, b=b, xlim=xlim, ylim=ylim, initials=near_eq, 
                       t_span=t_span, t_eval_n=t_eval_n,
                       line_kw=dict(linewidth=1.2, alpha=0.7))
     # Mark all start points
@@ -705,7 +704,7 @@ def plot_zoomed_spiral_convergence(a=0.06, b=0.4, xlim=(0, 1.5), ylim=(0, 3),
         n=500, density=2, alpha=0.35,
         title="Single trajectory", show_equilibrium=True
     )
-    draw_trajectories(ax2, a, b, xlim=xlim, ylim=ylim, initials=[single_init], 
+    draw_trajectories(ax2, a=a, b=b, xlim=xlim, ylim=ylim, initials=[single_init], 
                       t_span=t_span, t_eval_n=t_eval_n,
                       line_kw=dict(linewidth=2.0, alpha=0.85, color='red'))
     ax2.plot(single_init[0], single_init[1], 'go', markersize=10, label='Start points', zorder=5)
@@ -733,7 +732,7 @@ def plot_zoomed_spiral_convergence(a=0.06, b=0.4, xlim=(0, 1.5), ylim=(0, 3),
 # Glucose system functions part 4: Bifurcation Analysis
 # -----------------------------------------------------------------------------
 
-def trace_det_at_eq(a, b):
+def trace_det_at_eq(a=a, b=b):
     """
     Compute trace and determinant of Jacobian at equilibrium.
     
@@ -800,7 +799,7 @@ def bcrit_values(a):
             hop_val_bs.append(np.sqrt(b2))  # b_± = √(s_± - a)
     return hop_val_bs
 
-def scan_bifurcation_in_b(a=0.06, b_min=0.0, b_max=1.2, n=2000):
+def scan_bifurcation_in_b(a=a, b_min=0.0, b_max=1.2, n=2000):
     """
     Scan the stability of the equilibrium as b varies (with a fixed).
     
@@ -826,8 +825,8 @@ def scan_bifurcation_in_b(a=0.06, b_min=0.0, b_max=1.2, n=2000):
     b_vals = np.linspace(b_min, b_max, n)
     max_real = np.empty_like(b_vals)
 
-    for i, b in enumerate(b_vals):
-        (_, _), _, eig = get_equilibrium_eigvals(a, b)
+    for i, bval in enumerate(b_vals):
+        (_, _), _, eig = get_equilibrium_eigvals(a=a, b=bval)
         max_real[i] = np.max(np.real(eig))   # stability indicator
 
     # detect sign changes in max_real: where it crosses 0
@@ -856,7 +855,71 @@ def scan_bifurcation_in_b(a=0.06, b_min=0.0, b_max=1.2, n=2000):
 
     return b_crit
 
-def plot_varying_b(a):
+def plot_equilibrium_vs_b(a=a, b_min=0.0, b_max=1.2, n=2000):
+    """
+    Plot both X_eq and Y_eq vs b with stability coloring in a single figure.
+    
+    Left panel: X_eq = b (linear relationship)
+    Right panel: Y_eq = b/(a + b²) (nonlinear relationship)
+    
+    Both are colored by stability (green = stable, orange = unstable).
+    
+    Parameters
+    ----------
+    a : float
+        Enzyme-protein interaction parameter (kept fixed)
+    b_min, b_max : float
+        Range of b values to plot
+    n : int
+        Number of points
+    """
+    b_vals = np.linspace(b_min, b_max, n)
+    Xeq = b_vals  # X_eq = b
+    Yeq = b_vals / (a + b_vals**2)  # Y_eq = b/(a + b²)
+    
+    # Compute stability using trace criterion
+    s = a + b_vals**2
+    tau = 1.0 - s - (2.0*a)/s
+    stable = tau < 0
+    
+    b_crit = bcrit_values(a)
+
+    plt.close("all")
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4), sharex=True)
+    
+    # --- Left panel: X_eq vs b ---
+    ax1.plot(b_vals[stable],  Xeq[stable],  color="tab:green", label="stable equilibrium", linewidth=2)
+    ax1.plot(b_vals[~stable], Xeq[~stable], color="tab:orange", label="unstable equilibrium", linewidth=2)
+    
+    for i, bc in enumerate(b_crit):
+        ax1.axvline(bc, linestyle="--", color="tab:red", label="b_crit" if i == 0 else None)
+        ax1.scatter(bc, bc, color="tab:red", zorder=3, s=50)
+    
+    ax1.set_xlabel("b")
+    ax1.set_ylabel(r"$X_{eq}$")
+    ax1.set_title(rf"$X_{{eq}}$ vs $b$ (a={a})")
+    ax1.grid(True, alpha=0.4)
+    ax1.legend(framealpha=0.9, loc="upper left")
+    
+    # --- Right panel: Y_eq vs b ---
+    ax2.plot(b_vals[stable],  Yeq[stable],  color="tab:green", label="stable equilibrium", linewidth=2)
+    ax2.plot(b_vals[~stable], Yeq[~stable], color="tab:orange", label="unstable equilibrium", linewidth=2)
+    
+    for i, bc in enumerate(b_crit):
+        ax2.axvline(bc, linestyle="--", color="tab:red", label="b_crit" if i == 0 else None)
+        ax2.scatter(bc, bc/(a + bc**2), color="tab:red", zorder=3, s=50)
+    
+    ax2.set_xlabel("b")
+    ax2.set_ylabel(r"$Y_{eq}$")
+    ax2.set_title(rf"$Y_{{eq}}$ vs $b$ (a={a})")
+    ax2.grid(True, alpha=0.4)
+    ax2.legend(framealpha=0.9, loc="upper right")
+    
+    fig.suptitle(rf"Equilibrium position vs $b$ (a={a})", fontsize=13, fontweight="bold")
+    fig.tight_layout()
+    plt.show()
+
+def plot_varying_b(a=a, b_min=0.0, b_max=1.2, n=2000):
     """
     Plot equilibrium curve with regions of stability vs instability.
     
@@ -868,9 +931,9 @@ def plot_varying_b(a):
     a : float
         Enzyme-protein interaction parameter (kept fixed)
     """
-    b_vals = np.linspace(0, 1.2, 600)
+    b_vals = np.linspace(b_min, b_max, n)
     Xeq, Yeq = b_vals, b_vals/(a + b_vals**2)
-    tau = np.array([trace_det_at_eq(a, bb)[0] for bb in b_vals])
+    tau = np.array([trace_det_at_eq(a=a, b=bb)[0] for bb in b_vals])
 
     stable = tau < 0
 
@@ -886,7 +949,57 @@ def plot_varying_b(a):
     plt.legend()
     plt.show()
 
-def plot_bifurcation_summary_figures(a=0.06, xlim=(0, 1.2), fast=True):
+def plot_Xeq_vs_b(a=a, b_min=0.0, b_max=1.2, n=2000):
+    """
+    Plot X_eq vs b with stability coloring.
+    
+    Since X_eq = b, this is a simple linear relationship, but colored
+    by stability to show which regions are stable/unstable.
+    
+    Parameters
+    ----------
+    a : float
+        Enzyme-protein interaction parameter (kept fixed)
+    b_min, b_max : float
+        Range of b values to plot
+    n : int
+        Number of points
+    """
+    b_vals = np.linspace(b_min, b_max, n)
+    Xeq = b_vals  # X_eq = b
+    
+    # Compute stability using trace criterion
+    s = a + b_vals**2
+    tau = 1.0 - s - (2.0*a)/s
+    stable = tau < 0
+    
+    b_crit = bcrit_values(a)
+
+    plt.figure(figsize=(7, 4))
+    plt.plot(b_vals[stable],  Xeq[stable],  color="tab:green", label="stable equilibrium", linewidth=2)
+    plt.plot(b_vals[~stable], Xeq[~stable], color="tab:orange", label="unstable equilibrium", linewidth=2)
+    
+    for i, bc in enumerate(b_crit):
+        plt.axvline(bc, linestyle="--", color="tab:red", label="b_crit" if i == 0 else None)
+        plt.scatter(bc, bc, color="tab:red", zorder=3, s=50)
+    
+    plt.xlabel("b")
+    plt.ylabel(r"$X_{eq}$")
+    plt.title(rf"Equilibrium $X_{{eq}}$ vs $b$ (a={a})")
+    plt.grid(True, alpha=0.4)
+    plt.legend(framealpha=0.9)
+    plt.tight_layout()
+    plt.show()
+
+def _unique_legend(ax, **kwargs):
+    h, l = ax.get_legend_handles_labels()
+    uniq = dict(zip(l, h))
+    ax.legend(uniq.values(), uniq.keys(), **kwargs)
+
+
+def plot_bifurcation_summary_figures(a, b_range,
+                                     zoom_xlim=(0, 1.5),zoom_ylim=(0, 3),
+                                     n_b=2000, eps=0.03):
     """
     Create a comprehensive set of bifurcation visuals for varying b with fixed a.
 
@@ -903,89 +1016,72 @@ def plot_bifurcation_summary_figures(a=0.06, xlim=(0, 1.2), fast=True):
         Range of b values shown.
     """
     # --- Compute stability curve (vectorized, no eigensolver) ---
-    n_b = 30 if fast else 200
-    b_vals = np.linspace(xlim[0], xlim[1], n_b)
+    b_vals = np.linspace(b_range[0], b_range[1], n_b)
     s = a + b_vals**2
-    tau_vals = 1.0 - s - (2.0*a)/s
-    det_vals = s
-    max_real = _max_real_part_from_trace_det_vec(tau_vals, det_vals)
+    tau = 1.0 - s - (2.0*a)/s
+    det = s
+    max_real = _max_real_part_from_trace_det_vec(tau, det)
 
+    stable = max_real < 0  # most direct definition
     b_crit = bcrit_values(a)
 
-    plt.close('all')
+    plt.close("all")
     fig = plt.figure(figsize=(12, 12))
 
-    # Top panel: max Re(lambda) vs b
-    ax1 = fig.add_subplot(3,1,1)
-    ax1.plot(b_vals, max_real, color='tab:blue', label='max Re(λ) at equilibrium')
-    ax1.axhline(0, color='k', linewidth=1)
-    for bc in b_crit:
-        ax1.axvline(bc, linestyle='--', color='tab:red', label='b_crit' if bc == b_crit[0] else None)
-    # Shade stable/unstable regions using tau sign (equivalent here)
-    stable_mask = tau_vals < 0
-    ax1.fill_between(b_vals, max_real, 0, where=stable_mask, color='tab:green', alpha=0.15, label='stable')
-    ax1.fill_between(b_vals, max_real, 0, where=~stable_mask, color='tab:orange', alpha=0.12, label='unstable')
-    ax1.set_xlim(*xlim)
-    ax1.set_xlabel('b')
-    ax1.set_ylabel('max Re(λ)')
-    ax1.set_title(f'Stability vs b (a={a})')
-    handles, labels = ax1.get_legend_handles_labels()
-    uniq = dict(zip(labels, handles))
-    ax1.legend(uniq.values(), uniq.keys(), framealpha=0.9, loc='upper right')
+    # --- Top: stability curve ---
+    ax1 = fig.add_subplot(3, 1, 1)
+    ax1.plot(b_vals, max_real, label="max Re(λ) at equilibrium")
+    ax1.axhline(0, color="k", lw=1)
+    for i, bc in enumerate(b_crit):
+        ax1.axvline(bc, ls="--", color="tab:red", label="b_crit" if i == 0 else None)
+
+    ax1.fill_between(b_vals, max_real, 0, where=stable,  alpha=0.15, label="stable")
+    ax1.fill_between(b_vals, max_real, 0, where=~stable, alpha=0.12, label="unstable")
+
+    ax1.set(xlim=b_range, xlabel="b", ylabel="max Re(λ)", title=f"Stability vs b (a={a})")
     ax1.grid(True, alpha=0.3)
+    _unique_legend(ax1, framealpha=0.9, loc="upper right")
 
-    # Middle panel: Y*(b) with stability coloring
-    ax2 = fig.add_subplot(3,1,2)
-    Xeq = b_vals
-    Yeq = b_vals/(a + b_vals**2)
-    ax2.plot(b_vals[stable_mask], Yeq[stable_mask], color='tab:green', label='stable equilibrium')
-    ax2.plot(b_vals[~stable_mask], Yeq[~stable_mask], color='tab:orange', label='unstable equilibrium')
-    for bc in b_crit:
-        ax2.axvline(bc, linestyle='--', color='tab:red', label='b_crit' if bc == b_crit[0] else None)
-        ax2.scatter(bc, bc/(a+bc**2), color='tab:red', zorder=3)
-    ax2.set_xlim(*xlim)
-    ax2.set_xlabel('b')
-    ax2.set_ylabel('Y*')
-    ax2.set_title('Equilibrium position vs b (stability coloring)')
-    handles, labels = ax2.get_legend_handles_labels()
-    uniq = dict(zip(labels, handles))
-    ax2.legend(uniq.values(), uniq.keys(), framealpha=0.9, loc='upper right')
+    # --- Middle: equilibrium location ---
+    ax2 = fig.add_subplot(3, 1, 2)
+    Yeq = b_vals / (a + b_vals**2)
+
+    ax2.plot(b_vals[stable],  Yeq[stable],  color="tab:green",  label="stable equilibrium")
+    ax2.plot(b_vals[~stable], Yeq[~stable], color="tab:orange", label="unstable equilibrium")
+
+    for i, bc in enumerate(b_crit):
+        ax2.axvline(bc, ls="--", color="tab:red", label="b_crit" if i == 0 else None)
+        ax2.scatter(bc, bc/(a + bc**2), color="tab:red", zorder=3)
+
+    ax2.set(xlim=b_range, xlabel="b", ylabel=r"$Y_{eq}$", title="Equilibrium position vs b")
     ax2.grid(True, alpha=0.3)
+    _unique_legend(ax2, framealpha=0.9, loc="upper right")
 
-    # Bottom panel: phase portraits around first bifurcation (if exists)
-    ax3a = fig.add_subplot(3,3,7)
-    ax3b = fig.add_subplot(3,3,8)
-    ax3c = fig.add_subplot(3,3,9)
-    if len(b_crit) > 0:
+    # --- Bottom: phase portraits around first bifurcation ---
+    axes = [fig.add_subplot(3, 3, k) for k in (7, 8, 9)]
+    if b_crit:
         b0 = b_crit[0]
-        eps = 0.03
-        bs = [max(xlim[0], b0 - eps), b0, min(xlim[1], b0 + eps)]
-        titles = [f'before (b={bs[0]:.3f})', f'at bifurcation (b={bs[1]:.3f})', f'after (b={bs[2]:.3f})']
-        axes = [ax3a, ax3b, ax3c]
-        for axp, bb, tt in zip(axes, bs, titles):
-            if fast:
-                # Lightweight panel: sparse field, no trajectories
-                draw_nullclines_panel(axp, a=a, b=bb, xlim=(0, 1.5), ylim=(0, 3),
-                                      n=50, density=0.25, alpha=0.25,
-                                      title=tt, show_equilibrium=True)
-            else:
-                draw_nullclines_panel(axp, a=a, b=bb, xlim=(0, 1.5), ylim=(0, 3),
-                                      n=150, density=0.8, alpha=0.3,
-                                      title=tt, show_equilibrium=True)
-                near_eq, _ = trajectory_initial_conditions(a, bb, xlim=(0,1.5), ylim=(0,3), step=0.1)
-                draw_trajectories(axp, a, bb, xlim=(0,1.5), ylim=(0,3), initials=near_eq,
-                                  t_span=(0, 40), t_eval_n=1500,
-                                  line_kw=dict(linewidth=0.8, alpha=0.85))
-    else:
-        ax3b.text(0.5, 0.5, 'No bifurcation for this a', ha='center', va='center')
-        for axp in (ax3a, ax3b, ax3c):
-            axp.axis('off')
+        bs = [np.clip(b0 - eps, *b_range), b0, np.clip(b0 + eps, *b_range)]
+        titles = [f"before (b={bs[0]:.3f})", f"at bifurcation (b={bs[1]:.3f})", f"after (b={bs[2]:.3f})"]
 
-    fig.suptitle(f'Bifurcation summary (a={a})', fontsize=14, fontweight='bold', y=0.98)
+        for axp, bb, tt in zip(axes, bs, titles):
+            draw_nullclines_panel(axp, a=a, b=bb, xlim=zoom_xlim, ylim=zoom_ylim,
+                                  n=150, density=0.8, alpha=0.3,
+                                  title=tt, show_equilibrium=True)
+            near_eq, _ = trajectory_initial_conditions(a, bb, xlim=zoom_xlim, ylim=zoom_ylim, step=0.1)
+            draw_trajectories(axp, a, bb, xlim=zoom_xlim, ylim=zoom_ylim, initials=near_eq,
+                              t_span=(0, 40), t_eval_n=1500,
+                              line_kw=dict(linewidth=0.8, alpha=0.85))
+    else:
+        axes[1].text(0.5, 0.5, "No bifurcation for this a", ha="center", va="center")
+        for axp in axes:
+            axp.axis("off")
+
+    fig.suptitle(f"Bifurcation summary (a={a})", fontsize=14, fontweight="bold", y=0.98)
     fig.tight_layout(rect=[0, 0, 1, 0.96])
     plt.show()
 
-def plot_bifurcation_phase_portraits(a=0.06, b_crit_vals=None, xlim=(0, 1.5), ylim=(0, 3)):
+def plot_bifurcation_phase_portraits(a=a, b_crit_vals=None, xlim=xlim, ylim=ylim):
     """
     Plot phase portraits before, at, and after each bifurcation point.
     
@@ -1032,15 +1128,15 @@ def plot_bifurcation_phase_portraits(a=0.06, b_crit_vals=None, xlim=(0, 1.5), yl
                                  title=title, show_equilibrium=True)
             
             # Add some trajectories
-            near_eq, _ = trajectory_initial_conditions(a, b_val, xlim, ylim, step=0.1)
-            draw_trajectories(ax, a, b_val, xlim, ylim, initials=near_eq,
+            near_eq, _ = trajectory_initial_conditions(a=a, b=b_val, xlim=xlim, ylim=ylim, step=0.1)
+            draw_trajectories(ax, a=a, b=b_val, xlim=xlim, ylim=ylim, initials=near_eq,
                             t_span=(0, 40), t_eval_n=2000,
                             line_kw=dict(linewidth=0.7, zorder=2.5, alpha=0.8))
     
     plt.tight_layout()
     plt.show()
 
-def summarize_bifurcations_in_b(a=0.06):
+def summarize_bifurcations_in_b(a=a):
     """
     Print a detailed summary of bifurcations when varying b.
     
@@ -1081,7 +1177,7 @@ def summarize_bifurcations_in_b(a=0.06):
     print(f"\nEquilibrium displacement:")
     b_test_vals = np.linspace(0.01, b_crit[-1] + 0.1, 5)
     for b_test in b_test_vals:
-        Xeq, Yeq = equilibrium(a, b_test)
+        Xeq, Yeq = equilibrium(a=a, b=b_test)
         print(f"  b = {b_test:.4f}: (X*, Y*) = ({Xeq:.4f}, {Yeq:.4f})")
     
     print("=" * 60)
@@ -1091,7 +1187,7 @@ def summarize_bifurcations_in_b(a=0.06):
 # Glucose system functions part 5: 2D Bifurcation Analysis
 # -----------------------------------------------------------------------------
 
-def trace_at_equilibrium(a, b):
+def trace_at_equilibrium(a=a, b=b):
     """
     Compute the trace of the Jacobian at equilibrium.
     
@@ -1110,8 +1206,8 @@ def trace_at_equilibrium(a, b):
     tau : float
         Trace of the Jacobian matrix at (X*, Y*)
     """
-    Xeq, Yeq = equilibrium(a, b)
-    J = jacobian(Xeq, Yeq, a, b)
+    Xeq, Yeq = equilibrium(a=a, b=b)
+    J = jacobian(Xeq, Yeq, a=a, b=b)
     return np.trace(J)
 
 def hopf_curves(a_vals):
