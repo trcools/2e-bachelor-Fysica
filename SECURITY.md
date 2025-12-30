@@ -188,4 +188,3 @@ If you discover a security issue (accidentally committed passwords, API keys, et
 1. Do NOT create a public issue
 2. Contact the repository owner directly
 3. Delete sensitive data from your local copy
-

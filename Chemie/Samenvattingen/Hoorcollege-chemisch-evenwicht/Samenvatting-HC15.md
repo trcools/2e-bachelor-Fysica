@@ -21,14 +21,14 @@ $$
 
 ### Ideaal gas + zuivere vloeistof
 - Zuivere vloeistof: drukafhankelijkheid vaak verwaarloosbaar (klein molair volume) → neem $\mu_A^{(l)}\approx \mu_{A,l}^\circ(T)$.
-- Ideaal gas: 
+- Ideaal gas:
 $$
 \mu_A^{(g)}=\mu_{A,g}^\circ(T)+RT\ln\!\left(\frac{p_A}{p^\circ}\right).
 $$
 Dan volgt voor de dampdruk:
 $$
 \frac{p_A^{eq}}{p^\circ}=\exp\!\left(-\frac{\Delta G_{vap}^\circ(T)}{RT}\right),
-\quad 
+\quad
 \Delta G_{vap}^\circ=\mu_{A,g}^\circ-\mu_{A,l}^\circ.
 $$
 
@@ -144,7 +144,7 @@ Gebruik $p_i = x_i\,p_{tot}$ en schrijf:
 $$
 Q=\frac{\prod_p x_p^{\nu_p}}{\prod_r x_r^{\nu_r}}
 \left(\frac{p_{tot}}{p^\circ}\right)^{\Delta\nu},
-\quad 
+\quad
 \Delta\nu=\sum_p \nu_p-\sum_r \nu_r.
 $$
 Dus:
