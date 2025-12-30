@@ -1621,14 +1621,20 @@ def nb_parameter_sweep(c_values=None, a=0.1, b=0.1, initial_condition=None,
 
 
 def nb_bifurcation(c_range=None, a=None, b=None, initial_condition=None,
-                   t_min=0, t_max=60, skip_frac=0.6):
+                   t_min=0, t_max=60, skip_frac=0.6, h=0.01):
     """Produce the bifurcation diagram for varying c (same defaults as notebook)."""
     a, b, _, ic, _, _, _ = _with_defaults(a, b, None, initial_condition, None, None, None)
     if c_range is None:
         c_range = np.linspace(0.05, 45, 100)
-    fig, c_vals, x_vals = bifurcation_analysis_parameter_c(
-        a=a, b=b, c_values=c_range, initial_condition=ic,
-        t_min=t_min, t_max=t_max, skip_frac=skip_frac
+    c_vals, x_vals = bifurcation_maxima_X(
+        param_name="c", param_values=c_range, a=a, b=b, c=0.0, ic=ic,
+        t_min=t_min, t_max=t_max, h=h, skip_frac=skip_frac
     )
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.scatter(c_vals, x_vals, s=1, alpha=0.5)
+    ax.set_xlabel("c")
+    ax.set_ylabel("maxima of X")
+    ax.set_title("Bifurcation diagram: maxima of X vs c")
+    ax.grid(True, alpha=0.3)
     plt.show()
     return fig, c_vals, x_vals
