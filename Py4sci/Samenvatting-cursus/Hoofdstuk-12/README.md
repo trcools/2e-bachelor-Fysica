@@ -6,9 +6,9 @@ Monte Carlo (MC) methodes lossen numerieke problemen op via steekproeven. Het â€
 - dus bij hoge dimensie (waar deterministische quadrature explodeert) is MC vaak de enige praktische optie.
 
 Tegelijk: $1/\sqrt{N}$ is traag. Het examen draait dus om:
-1) **wanneer MC de juiste hamer is**,  
-2) **hoe je error en betrouwbaarheid kwantificeert**,  
-3) **hoe je variance verlaagt** (variance reduction),  
+1) **wanneer MC de juiste hamer is**,
+2) **hoe je error en betrouwbaarheid kwantificeert**,
+3) **hoe je variance verlaagt** (variance reduction),
 4) **wat MCMC doet en wanneer je het nodig hebt**.
 
 ---

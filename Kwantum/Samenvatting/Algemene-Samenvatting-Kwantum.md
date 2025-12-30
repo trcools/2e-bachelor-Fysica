@@ -375,7 +375,7 @@ Onderaan noteer je:
 
 
 
-> Examenstof: 3.1 t/m 3.9  
+> Examenstof: 3.1 t/m 3.9
 > Niet: **oneindige potentiële energie** (p113) en **Schmidt procedure** (p117–p118).
 
 ---
@@ -387,11 +387,11 @@ Onderaan noteer je:
 - Wordt postulaat-achtig ingevoerd (niet “formeel afgeleid” zoals Newton).
 
 **Hamiltoniaan**
-- Klassiek (voorbeeld):  
+- Klassiek (voorbeeld):
   $$
   E(\mathbf r,\mathbf p,t)=\frac{\mathbf p^2}{2m}+V(\mathbf r,t)
   $$
-- Kwantum: vervang door operatoren  
+- Kwantum: vervang door operatoren
   $$
   \hat{\mathbf r}=\mathbf r,\qquad \hat{\mathbf p}=-i\hbar\nabla,\qquad \hat E=i\hbar\frac{\partial}{\partial t}
   $$
@@ -457,9 +457,9 @@ $$
 $$
 
 **“Recept” om $\hat A$ te bouwen**
-1. Start met klassieke dynamische variabele $A(\mathbf r,\mathbf p,t)$  
-2. Vervang $\mathbf r,\mathbf p$ door operatoren $(\hat{\mathbf r},\hat{\mathbf p})$  
-3. “Sandwich”: $\langle A\rangle=\int \Psi^*\hat A\Psi\,d^3r$  
+1. Start met klassieke dynamische variabele $A(\mathbf r,\mathbf p,t)$
+2. Vervang $\mathbf r,\mathbf p$ door operatoren $(\hat{\mathbf r},\hat{\mathbf p})$
+3. “Sandwich”: $\langle A\rangle=\int \Psi^*\hat A\Psi\,d^3r$
 4. Fysisch meetbare $\Rightarrow$ **hermitische** operator (verwachtingswaarde reëel)
 
 **Impulsoperator**
@@ -641,7 +641,7 @@ $$
 \langle A\rangle=\int d^3p\,\Phi^*(\mathbf p,t)\,A(i\hbar\nabla_{\mathbf p},\mathbf p,t)\,\Phi(\mathbf p,t)
 $$
 
-# H3 — Schrödingervergelijking 
+# H3 — Schrödingervergelijking
 
 ---
 

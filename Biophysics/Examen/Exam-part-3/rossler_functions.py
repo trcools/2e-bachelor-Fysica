@@ -24,59 +24,54 @@ naming, and documentation for readability and maintainability.
 # Imports
 # =============================================================================
 
-import numpy as np 
+import numpy as np
 
-import sympy as sp
 from sympy.solvers import solve
-from sympy import Symbol, re, im, Matrix, symbols, Eq
-    
+from sympy import symbols, Eq
+
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
-from mpl_toolkits.mplot3d import Axes3D 
 
-import scipy
-
-from ipywidgets import interact
-    
-import tqdm
-from tqdm.auto import tqdm
 
 # =============================================================================
 # General Parameters
 # =============================================================================
 
+
 def get_parameters():
-    
     # Rössler system parameters
     a = 0.2
     b = 0.2
     c = 5.7
     # c will be varied as the bifurcation parameter
-        
+
     # --- Time settings ---
     t_min, t_max = 0.0, 200.0  # Longer time for Rössler to show attractor
     dt = 0.01
-        
+
     # --- Initial conditions ---
     x0, y0, z0 = 1, 1, 1
     initial_condition = (x0, y0, z0)
-    
-    initial_conditions = [(1, 1, 1),
-                          (2, 1, 0),
-                          (-1, 2, 1),]
+
+    initial_conditions = [
+        (1, 1, 1),
+        (2, 1, 0),
+        (-1, 2, 1),
+    ]
     return a, b, c, t_min, t_max, dt, initial_condition, initial_conditions
+
 
 # ------- parameters ----
 a, b, c, t_min, t_max, dt, initial_condition, initial_conditions = get_parameters()
 
 # ============================================================
-# 1. Time grid and numerical integration 
+# 1. Time grid and numerical integration
 # ============================================================
 
 
-    # ========================================
-    # 1.1. Time grid
-    # ========================================
+# ========================================
+# 1.1. Time grid
+# ========================================
+
 
 def get_time_array(t_min=t_min, t_max=t_max, dt=dt):
     """
@@ -97,22 +92,22 @@ def get_time_array(t_min=t_min, t_max=t_max, dt=dt):
     t = np.arange(t_min, t_max, dt)
     return t
 
-
     # ========================================
     # 1.2 Core Rössler Dynamics
     # ========================================
 
+
 def rossler_rhs(state, a=0.2, b=0.2, c=5.7):
     """
     Compute the right-hand side of the Rössler system.
-    
+
     Parameters
     ----------
     state : array-like, shape (3,)
         Current state (x, y, z)
     a, b, c : float
         System parameters
-        
+
     Returns
     -------
     dstate : ndarray, shape (3,)
@@ -128,7 +123,10 @@ def rossler_rhs(state, a=0.2, b=0.2, c=5.7):
     # 1.3. Euler integration
     # ========================================
 
-def get_euler_vectors(c=2.0, initial_condition=initial_condition, t_min=t_min, t_max=t_max, dt=dt):
+
+def get_euler_vectors(
+    c=2.0, initial_condition=initial_condition, t_min=t_min, t_max=t_max, dt=dt
+):
     """
     Integrate the Rössler system using a simple explicit Euler scheme.
 
@@ -148,39 +146,40 @@ def get_euler_vectors(c=2.0, initial_condition=initial_condition, t_min=t_min, t
     x, y, z : ndarray
         Arrays containing X(t), Y(t), Z(t) along the trajectory.
     """
-    t = get_time_array(t_min=t_min, t_max=t_max , dt=dt)
+    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
+
     # ---Arrays for the results---
     def get_arrays(t=t):
-        x,y,z = np.zeros_like(t), np.zeros_like(t), np.zeros_like(t)
-        return x,y,z
-        
-    # ---initial conditions---
-    def get_initial_conditions(x,y,z,x0,y0,z0):
-        x[0],y[0],z[0] = x0,y0,z0
-        return x,y,z
-    
-    # ---Euler integration---
-    def get_euler_integration(x,y,z,c,dt=dt,a=a, b=b):
-        for i in range (1,len(t)):
-            x[i] = x[i-1] + dt*(-y[i-1] - z[i-1])
-            y[i] = y[i-1] + dt*(x[i-1] + a*y[i-1])
-            z[i] = z[i-1] + dt*(b + z[i-1]*(x[i-1] - c))
-        return x,y,z
+        x, y, z = np.zeros_like(t), np.zeros_like(t), np.zeros_like(t)
+        return x, y, z
 
-    x,y,z = get_arrays()
-    x,y,z = get_initial_conditions(x,y,z,*initial_condition)
-    x,y,z = get_euler_integration(x,y,z,c,dt=dt)
-    
-    return x,y,z
+    # ---initial conditions---
+    def get_initial_conditions(x, y, z, x0, y0, z0):
+        x[0], y[0], z[0] = x0, y0, z0
+        return x, y, z
+
+    # ---Euler integration---
+    def get_euler_integration(x, y, z, c, dt=dt, a=a, b=b):
+        for i in range(1, len(t)):
+            x[i] = x[i - 1] + dt * (-y[i - 1] - z[i - 1])
+            y[i] = y[i - 1] + dt * (x[i - 1] + a * y[i - 1])
+            z[i] = z[i - 1] + dt * (b + z[i - 1] * (x[i - 1] - c))
+        return x, y, z
+
+    x, y, z = get_arrays()
+    x, y, z = get_initial_conditions(x, y, z, *initial_condition)
+    x, y, z = get_euler_integration(x, y, z, c, dt=dt)
+
+    return x, y, z
 
     # ============================================================
     # 1.4. Integrator based on solve_ivp (Runge–Kutta)
     # ============================================================
 
-
     # ========================================
     # Manual RK4 integrator
     # ========================================
+
 
 def rk4_integrate_rossler(a, b, c, initial_condition, t_min, t_max, h):
     """
@@ -202,13 +201,15 @@ def rk4_integrate_rossler(a, b, c, initial_condition, t_min, t_max, h):
         k2 = f(s + 0.5 * h * k1)
         k3 = f(s + 0.5 * h * k2)
         k4 = f(s + h * k3)
-        X[i + 1] = s + (h / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
+        X[i + 1] = s + (h / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4)
 
     x, y, z = X[:, 0], X[:, 1], X[:, 2]
     return t, x, y, z
 
-def get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
-                    t_min=t_min, t_max=t_max, dt=dt):
+
+def get_RK4_vectors_manual(
+    a=a, b=b, c=c, initial_condition=initial_condition, t_min=t_min, t_max=t_max, dt=dt
+):
     t, x, y, z = rk4_integrate_rossler(a, b, c, initial_condition, t_min, t_max, dt)
     return t, x, y, z
 
@@ -229,17 +230,13 @@ def get_solutions():
     (x, y, z) : tuple of SymPy symbols
         The state variables used in the symbolic system.
     """
-    x, y, z, c, a_sym, b_sym = symbols('x y z c a b', real=True)
+    x, y, z, c, a_sym, b_sym = symbols("x y z c a b", real=True)
 
-    eqs = [
-        Eq(-y - z, 0),
-        Eq(x + a_sym * y, 0),
-        Eq(b_sym + z * (x - c), 0)]
-    
+    eqs = [Eq(-y - z, 0), Eq(x + a_sym * y, 0), Eq(b_sym + z * (x - c), 0)]
+
     sols = solve(eqs, (x, y, z), dict=True)
 
     return sols, (x, y, z)
-
 
 
 def show_solutions():
@@ -247,8 +244,9 @@ def show_solutions():
     Print all symbolic equilibria in a human-readable format.
     """
     sols, (x, y, z) = get_solutions()
-    for i,sol in enumerate(sols):
-            print(f"Solution {i+1}:\n X = {sol[x]} Y = {sol[y]} Z = {sol[z]} \n")
+    for i, sol in enumerate(sols):
+        print(f"Solution {i + 1}:\n X = {sol[x]} Y = {sol[y]} Z = {sol[z]} \n")
+
 
 # ============================================================
 # 3. Classification and grouping of equilibria
@@ -285,48 +283,47 @@ def equilibrium_classification(eigvals):
     real_eigvals = np.real(eigvals)
     imag_eigvals = np.imag(eigvals)
     has_complex = np.any(np.abs(imag_eigvals) > tol)
-    
+
     # Count the number 'n' of positive, negative and zero eigenvalues
-    n_pos = np.sum(real_eigvals >  tol)
+    n_pos = np.sum(real_eigvals > tol)
     n_neg = np.sum(real_eigvals < -tol)
     n_zero = len(eigvals) - n_pos - n_neg
-    
+
     # 1) All real parts < 0  -> stable
     if n_pos == 0 and n_zero == 0:
         if has_complex:
             eq_type = "stable spiral"
         else:
             eq_type = "stable node"
-    
+
     # 2) At least one > 0, none negative -> purely unstable
     elif n_pos > 0 and n_neg == 0 and n_zero == 0:
         if has_complex:
             eq_type = "unstable spiral"
         else:
             eq_type = "unstable node"
-    
+
     # 3) Both positive and negative real parts -> saddle / saddle-focus
     elif n_pos > 0 and n_neg > 0:
         if has_complex:
             eq_type = "saddle spiral"
         else:
             eq_type = "saddle point"
-    
+
     # 4) At least one eigenvalue ≈ 0, all real -> pitchfork
     elif n_pos == 0 and n_zero > 0 and not has_complex:
         eq_type = "pitchfork bifurcation"
-    
+
     # 5) At least one eigenvalue ≈ 0, complex pair present -> Hopf
     elif n_pos == 0 and n_zero > 0 and has_complex:
         eq_type = "Hopf bifurcation"
-    
+
     # 6) Exotic / other cases
     else:
         eq_type = "other equilibrium"
-    
+
     return eq_type
 
-    
 
 def get_groups(dim="1D"):
     """
@@ -346,19 +343,33 @@ def get_groups(dim="1D"):
     """
     if dim not in {"1D", "2D"}:
         raise ValueError(f"dim must be '1D' or '2D', got {dim!r}")
-        
-    
-    base_styles = {"stable node": dict(marker="o", s=10, label="stable node"),
-                   "stable spiral": dict(marker="o", s=10, label="stable spiral"),
-                   "unstable node": dict(marker="x", s=10, label="unstable node"),
-                   "unstable spiral": dict(marker="x", s=10, label="unstable spiral"),
-                   "saddle point": dict(marker="o", s=10, label="saddle point"),
-                   "saddle spiral": dict(marker="o", s=10, label="saddle-spiral"),
-                   "pitchfork bifurcation": dict(marker="D", s=50, facecolors="blue", edgecolors="blue",label="pitchfork bifurcation"),
-                   "Hopf bifurcation": dict(marker="s", s=50, facecolors="purple", edgecolors="purple", label="Hopf bifurcation"),
-                   "other equilibrium": dict(marker="^", color="gray", s=20, label="other / unspecified"),
-                  }
-    
+
+    base_styles = {
+        "stable node": dict(marker="o", s=10, label="stable node"),
+        "stable spiral": dict(marker="o", s=10, label="stable spiral"),
+        "unstable node": dict(marker="x", s=10, label="unstable node"),
+        "unstable spiral": dict(marker="x", s=10, label="unstable spiral"),
+        "saddle point": dict(marker="o", s=10, label="saddle point"),
+        "saddle spiral": dict(marker="o", s=10, label="saddle-spiral"),
+        "pitchfork bifurcation": dict(
+            marker="D",
+            s=50,
+            facecolors="blue",
+            edgecolors="blue",
+            label="pitchfork bifurcation",
+        ),
+        "Hopf bifurcation": dict(
+            marker="s",
+            s=50,
+            facecolors="purple",
+            edgecolors="purple",
+            label="Hopf bifurcation",
+        ),
+        "other equilibrium": dict(
+            marker="^", color="gray", s=20, label="other / unspecified"
+        ),
+    }
+
     groups = {}
 
     if dim == "2D":
@@ -369,7 +380,7 @@ def get_groups(dim="1D"):
                 "v2": [],
                 "style": style.copy(),
             }
-    else: # dim == "1D"
+    else:  # dim == "1D"
         for key, style in base_styles.items():
             groups[key] = {
                 "c": [],
@@ -379,10 +390,11 @@ def get_groups(dim="1D"):
 
     return groups
 
+
 # ============================================================
 # 4. Jacobian, equilibria and eigenvalues as function of c
 # ============================================================
-        
+
 
 def get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a, b_val=b):
     """
@@ -416,7 +428,7 @@ def get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a, b_va
     x_expr = sol[x]
     y_expr = sol[y]
     z_expr = sol[z]
-        
+
     subs_dict = {c_sym: c_val, a_sym: a_val, b_sym: b_val}
 
     # Here we substitute c, a and b into the symbolic equations
@@ -424,24 +436,22 @@ def get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a, b_va
     y_num = y_expr.subs(subs_dict).evalf()
     z_num = z_expr.subs(subs_dict).evalf()
 
-    #Only keep real solutions
+    # Only keep real solutions
     if not (x_num.is_real and y_num.is_real and z_num.is_real):
         return None
-                
+
     xsol = float(x_num)
     ysol = float(y_num)
     zsol = float(z_num)
 
     # Jacobian at equilibrium for Rössler system
-    J_eq = np.array([
-        [0.0,        -1.0,      -1.0],
-        [1.0,        a_val,      0.0],
-        [zsol,       0.0,    xsol - c_val]
-    ], dtype=float)
+    J_eq = np.array(
+        [[0.0, -1.0, -1.0], [1.0, a_val, 0.0], [zsol, 0.0, xsol - c_val]], dtype=float
+    )
 
     eigvals, eigvecs = np.linalg.eig(J_eq)
     eq_type = equilibrium_classification(eigvals)
-            
+
     return {
         "c": c_val,
         "x_eq": xsol,
@@ -449,11 +459,13 @@ def get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a, b_va
         "z_eq": zsol,
         "J": J_eq,
         "eigvals": eigvals,
-        "eq_type": eq_type}
-    
+        "eq_type": eq_type,
+    }
 
-def get_equilibria_from_jacobian(sol, x, y, z, c_sym, a_sym, b_sym, c_values,
-                                 a_val=a, b_val=b):
+
+def get_equilibria_from_jacobian(
+    sol, x, y, z, c_sym, a_sym, b_sym, c_values, a_val=a, b_val=b
+):
     """
     Helper function: compute equilibria for many c values for a single solution.
 
@@ -476,12 +488,13 @@ def get_equilibria_from_jacobian(sol, x, y, z, c_sym, a_sym, b_sym, c_values,
         List of equilibrium dictionaries (see get_equilibria_for_c).
     """
     equilibrium = []
-    
+
     for c_val in c_values:
-        eq = get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val,
-                                    a_val=a_val, b_val=b_val)
+        eq = get_equilibria_for_c(
+            sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a_val, b_val=b_val
+        )
         if eq is not None:
-                equilibrium.append(eq)
+            equilibrium.append(eq)
     return equilibrium
 
 
@@ -505,24 +518,26 @@ def compute_jacobian_and_stability(sols, x, y, z, small_c=False):
         Each dict contains keys:
         {"c", "x_eq", "y_eq", "z_eq", "J", "eigvals", "eq_type"}.
     """
-    c_sym, a_sym, b_sym = symbols('c a b', real=True)
+    c_sym, a_sym, b_sym = symbols("c a b", real=True)
     all_equilibria = []
-    
-    if small_c: 
+
+    if small_c:
         c_values = np.linspace(0, 2, 51)
     else:
         c_values = np.linspace(0, 18, 181)
-        
+
     for sol in sols:
-        all_equilibria.extend(get_equilibria_from_jacobian(sol, x, y, z,
-                                                           c_sym, a_sym, b_sym,
-                                                           c_values,
-                                                           a_val=a, b_val=b))
+        all_equilibria.extend(
+            get_equilibria_from_jacobian(
+                sol, x, y, z, c_sym, a_sym, b_sym, c_values, a_val=a, b_val=b
+            )
+        )
     return all_equilibria
 
-    
 
-def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=dt, small_c=False):
+def get_eigvals_for_c(
+    sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=dt, small_c=False
+):
     """
     Collect the Jacobian eigenvalues of all real equilibria as a function of c.
 
@@ -558,9 +573,9 @@ def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=d
     for c_val in c_values:
         eigvals_list = []
         for sol in sols:
-            eq = get_equilibria_for_c(sol, x, y, z,
-                                        c_sym, a_sym, b_sym, c_val,
-                                        a_val=a_val, b_val=b_val)
+            eq = get_equilibria_for_c(
+                sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a_val, b_val=b_val
+            )
             if eq is not None:
                 eigvals_list.append(eq["eigvals"])
         eigvals_by_c[c_val] = eigvals_list
@@ -568,10 +583,8 @@ def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=d
     return eigvals_by_c
 
 
-
-
 # ============================================================
-#  Find fitting Euler dt for given RK4 precision 
+#  Find fitting Euler dt for given RK4 precision
 # ============================================================
 
 
@@ -581,10 +594,12 @@ def max_abs_error_on_common_grid(t_ref, x_ref, t_test, x_test):
     return np.max(np.abs(x_test_on_ref - x_ref))
 
 
-def find_euler_dt_for_rk4_precision(a, b, c, ic, t_min, t_max, h_rk4=0.1, h0_euler=0.1, max_halvings=20):
+def find_euler_dt_for_rk4_precision(
+    a, b, c, ic, t_min, t_max, h_rk4=0.1, h0_euler=0.1, max_halvings=20
+):
     """
     RK4 met stap h_rk4 is referentie. We halveren Euler-h tot de fout <= RK4-fout (baseline).
-    
+
     Returns
     -------
     h_best, err_best : tuple[float, float]
@@ -596,7 +611,9 @@ def find_euler_dt_for_rk4_precision(a, b, c, ic, t_min, t_max, h_rk4=0.1, h0_eul
 
     # Baseline "precision target": neem bv. RK4 vs RK4 met kleinere h als interne referentie
     # (zo vermijd je dat je een 'exacte' oplossing nodig hebt)
-    t_fine, x_fine, y_fine, z_fine = rk4_integrate_rossler(a, b, c, ic, t_min, t_max, h_rk4/2)
+    t_fine, x_fine, y_fine, z_fine = rk4_integrate_rossler(
+        a, b, c, ic, t_min, t_max, h_rk4 / 2
+    )
 
     target = max(
         max_abs_error_on_common_grid(t_ref, x_ref, t_fine, x_fine),
@@ -641,6 +658,7 @@ def find_euler_dt_for_rk4_precision(a, b, c, ic, t_min, t_max, h_rk4=0.1, h0_eul
         )
         return h, err
 
+
 def euler_integrate_rossler(a, b, c, initial_condition, t_min, t_max, h):
     t = np.arange(t_min, t_max + 1e-15, h)
     n = len(t)
@@ -652,7 +670,6 @@ def euler_integrate_rossler(a, b, c, initial_condition, t_min, t_max, h):
 
     x, y, z = X[:, 0], X[:, 1], X[:, 2]
     return t, x, y, z
-
 
 
 # ============================================================
@@ -684,16 +701,22 @@ def get_Z_maxima(a, b, c, initial_condition, skip_first=5, t_min=0, t_max=100, d
     Z_max : ndarray
         Values of Z at those maxima.
     """
-    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
-                             t_min=t_min, t_max=t_max, dt=dt)
-
+    t, x, y, z = get_RK4_vectors_manual(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=initial_condition,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+    )
 
     t_max = []
     Z_max = []
 
     # How we find the maxima: z[i-1] < z[i] > z[i+1]
     for i in range(1, len(z) - 1):
-        if z[i] > z[i-1] and z[i] > z[i+1]:
+        if z[i] > z[i - 1] and z[i] > z[i + 1]:
             t_max.append(t[i])
             Z_max.append(z[i])
 
@@ -706,8 +729,6 @@ def get_Z_maxima(a, b, c, initial_condition, skip_first=5, t_min=0, t_max=100, d
         t_max = t_max[skip_first:]
 
     return t_max, Z_max
-
-
 
 
 def rossler_return_map_from_data(Z_n):
@@ -739,11 +760,9 @@ def rossler_return_map_from_data(Z_n):
     return F
 
 
-
 # ============================================================
 # Figures
 # ============================================================
-
 
 
 # ====================================
@@ -751,12 +770,22 @@ def rossler_return_map_from_data(Z_n):
 # ====================================
 
 
-def plot_2d_projection(ax, t, x, y, z, plane='XY',
-                       initial_condition=initial_condition, title=None,
-                       alpha=0.7, linewidth=1.0, color='blue'):
+def plot_2d_projection(
+    ax,
+    t,
+    x,
+    y,
+    z,
+    plane="XY",
+    initial_condition=initial_condition,
+    title=None,
+    alpha=0.7,
+    linewidth=1.0,
+    color="blue",
+):
     """
     Plot a 2D projection of the Rössler trajectory.
-    
+
     Parameters
     ----------
     ax : matplotlib.axes.Axes
@@ -774,22 +803,23 @@ def plot_2d_projection(ax, t, x, y, z, plane='XY',
     color : str
         Line color
     """
-    if plane == 'XY':
+    if plane == "XY":
         ax.plot(x, y, color=color, alpha=alpha, linewidth=linewidth)
-        ax.set_xlabel('X')
-        ax.set_ylabel('Y')
-    elif plane == 'XZ':
+        ax.set_xlabel("X")
+        ax.set_ylabel("Y")
+    elif plane == "XZ":
         ax.plot(x, z, color=color, alpha=alpha, linewidth=linewidth)
-        ax.set_xlabel('X')
-        ax.set_ylabel('Z')
-    elif plane == 'YZ':
+        ax.set_xlabel("X")
+        ax.set_ylabel("Z")
+    elif plane == "YZ":
         ax.plot(y, z, color=color, alpha=alpha, linewidth=linewidth)
-        ax.set_xlabel('Y')
-        ax.set_ylabel('Z')
-    
+        ax.set_xlabel("Y")
+        ax.set_ylabel("Z")
+
     if title:
         ax.set_title(title)
-    ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
+    ax.grid(True, alpha=0.3, linestyle="--", linewidth=0.5)
+
 
 def equilibria_at_c(c_val, a_val=a, b_val=b):
     sols, (x_sym, y_sym, z_sym) = get_solutions()
@@ -797,20 +827,43 @@ def equilibria_at_c(c_val, a_val=a, b_val=b):
 
     eqs = []
     for sol in sols:
-        eq = get_equilibria_for_c(sol, x_sym, y_sym, z_sym,
-                                  c_sym, a_sym, b_sym,
-                                  c_val, a_val=a_val, b_val=b_val)
+        eq = get_equilibria_for_c(
+            sol,
+            x_sym,
+            y_sym,
+            z_sym,
+            c_sym,
+            a_sym,
+            b_sym,
+            c_val,
+            a_val=a_val,
+            b_val=b_val,
+        )
         if eq is not None:
             eqs.append(eq)
     return eqs
 
 
-def plot_3d_trajectory(ax, t, x, y, z, *, c, a=a, b=b, initial_condition=None,
-                      title=None, alpha=0.8, linewidth=1.0, color='blue',
-                      skip_first_frac=0.2):
+def plot_3d_trajectory(
+    ax,
+    t,
+    x,
+    y,
+    z,
+    *,
+    c,
+    a=a,
+    b=b,
+    initial_condition=None,
+    title=None,
+    alpha=0.8,
+    linewidth=1.0,
+    color="blue",
+    skip_first_frac=0.2,
+):
     """
     Plot a 3D trajectory of the Rössler system.
-    
+
     Parameters
     ----------
     ax : matplotlib.axes.Axes3DSubplot
@@ -830,40 +883,47 @@ def plot_3d_trajectory(ax, t, x, y, z, *, c, a=a, b=b, initial_condition=None,
     """
     # Skip transient behavior
     skip_idx = int(len(t) * skip_first_frac)
-    
-    ax.plot(x[skip_idx:], y[skip_idx:], z[skip_idx:],
-            color=color, alpha=alpha, linewidth=linewidth,
-            label=f"Trajectory IC={initial_condition}")
-    
+
+    ax.plot(
+        x[skip_idx:],
+        y[skip_idx:],
+        z[skip_idx:],
+        color=color,
+        alpha=alpha,
+        linewidth=linewidth,
+        label=f"Trajectory IC={initial_condition}",
+    )
+
     if title:
         ax.set_title(title)
 
     # --- Show equilibrium ---
     eq_needed = equilibria_at_c(c, a_val=a, b_val=b)
 
-
-
     # How we can recognize the different kinds of equilibrium:
-    eq_styles = {"stable node": dict(marker="o", color="C2", label="stable node"),
-                   "stable spiral": dict(marker="o", color="darkgreen", label="stable-spiral"),
-                   "unstable node": dict(marker="x", color="red", label="unstable node"),
-                   "unstable spiral": dict(marker="x", color="black", label="unstable-spiral"),
-                   "saddle point": dict(marker="o", color="orange", label="saddle"),
-                   "saddle spiral": dict(marker="o", color="green", label="saddle-spiral"),
-                   "pitchfork bifurcation": dict(marker="o", color="red", label="Pitchfork bifurcation"),
-                   "Hopf bifurcation": dict(marker="o", color="blue", label="Hopf bifurcation"),
-                  }
-    
-    used_labels = set() # To not get the same legend twice.
-    
+    eq_styles = {
+        "stable node": dict(marker="o", color="C2", label="stable node"),
+        "stable spiral": dict(marker="o", color="darkgreen", label="stable-spiral"),
+        "unstable node": dict(marker="x", color="red", label="unstable node"),
+        "unstable spiral": dict(marker="x", color="black", label="unstable-spiral"),
+        "saddle point": dict(marker="o", color="orange", label="saddle"),
+        "saddle spiral": dict(marker="o", color="green", label="saddle-spiral"),
+        "pitchfork bifurcation": dict(
+            marker="o", color="red", label="Pitchfork bifurcation"
+        ),
+        "Hopf bifurcation": dict(marker="o", color="blue", label="Hopf bifurcation"),
+    }
+
+    used_labels = set()  # To not get the same legend twice.
+
     for eq in eq_needed:
         x_eq = eq["x_eq"]
         y_eq = eq["y_eq"]
         z_eq = eq["z_eq"]
         eq_type = eq["eq_type"]
-        
+
         style = eq_styles.get(eq_type, dict(marker="o", color="gray", label=eq_type))
-        
+
         label = style["label"]
 
         if label in used_labels:
@@ -871,29 +931,48 @@ def plot_3d_trajectory(ax, t, x, y, z, *, c, a=a, b=b, initial_condition=None,
         else:
             plot_label = label
             used_labels.add(label)
-            
-        ax.scatter(x_eq, y_eq, z_eq, s=40, marker=style["marker"],
-            color=style["color"], label=plot_label)
 
-   # --- General plot settings --- 
+        ax.scatter(
+            x_eq,
+            y_eq,
+            z_eq,
+            s=40,
+            marker=style["marker"],
+            color=style["color"],
+            label=plot_label,
+        )
+
+    # --- General plot settings ---
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
     # Increase legend line width for better visibility
-    legend = ax.legend(loc='best', fontsize=6)
+    legend = ax.legend(loc="best", fontsize=6)
     for line in legend.get_lines():
         line.set_linewidth(2.0)
+
 
 # ===================================
 # Visualization: Multiple Panels
 # ===================================
 
-def plot_time_series(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
-                    t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                    rtol=1e-8, atol=1e-10, figsize=(14, 8)):
+
+def plot_time_series(
+    a=0.2,
+    b=0.2,
+    c=5.7,
+    initial_condition=initial_condition,
+    t_min=t_min,
+    t_max=t_max,
+    dt=dt,
+    method="RK45",
+    rtol=1e-8,
+    atol=1e-10,
+    figsize=(14, 8),
+):
     """
     Plot time series of x(t), y(t), z(t).
-    
+
     Parameters
     ----------
     x0, y0, z0 : float
@@ -905,34 +984,51 @@ def plot_time_series(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
     figsize : tuple
         Figure size
     """
-    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
-                                t_min=t_min, t_max=t_max, dt=dt)
+    t, x, y, z = get_RK4_vectors_manual(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=initial_condition,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+    )
     fig, axes = plt.subplots(3, 1, figsize=figsize, sharex=True)
-    
-    axes[0].plot(t, x, 'b-', linewidth=0.8, alpha=0.8)
-    axes[0].set_ylabel('x(t)')
+
+    axes[0].plot(t, x, "b-", linewidth=0.8, alpha=0.8)
+    axes[0].set_ylabel("x(t)")
     axes[0].grid(True, alpha=0.3)
-    axes[0].set_title('Time Series: Rössler System')
-    
-    axes[1].plot(t, y, 'g-', linewidth=0.8, alpha=0.8)
-    axes[1].set_ylabel('y(t)')
+    axes[0].set_title("Time Series: Rössler System")
+
+    axes[1].plot(t, y, "g-", linewidth=0.8, alpha=0.8)
+    axes[1].set_ylabel("y(t)")
     axes[1].grid(True, alpha=0.3)
-    
-    axes[2].plot(t, z, 'r-', linewidth=0.8, alpha=0.8)
-    axes[2].set_ylabel('z(t)')
-    axes[2].set_xlabel('time (t)')
+
+    axes[2].plot(t, z, "r-", linewidth=0.8, alpha=0.8)
+    axes[2].set_ylabel("z(t)")
+    axes[2].set_xlabel("time (t)")
     axes[2].grid(True, alpha=0.3)
-    
+
     plt.tight_layout()
     return fig
 
 
-def plot_projections_2D(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
-                     t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                     rtol=1e-8, atol=1e-10, figsize=(15, 5)):
+def plot_projections_2D(
+    a=0.2,
+    b=0.2,
+    c=5.7,
+    initial_condition=initial_condition,
+    t_min=t_min,
+    t_max=t_max,
+    dt=dt,
+    method="RK45",
+    rtol=1e-8,
+    atol=1e-10,
+    figsize=(15, 5),
+):
     """
     Plot all three 2D projections of a trajectory.
-    
+
     Parameters
     ----------
     x0, y0, z0 : float
@@ -944,31 +1040,63 @@ def plot_projections_2D(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition
     figsize : tuple
         Figure size
     """
-    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
-                                t_min=t_min, t_max=t_max, dt=dt)
-    
+    t, x, y, z = get_RK4_vectors_manual(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=initial_condition,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+    )
+
     fig, axes = plt.subplots(1, 3, figsize=figsize)
-    
+
     # Skip transient
     skip = int(len(t) * 0.2)
-    
-    plot_2d_projection(axes[0], t[skip:], x[skip:], y[skip:], z[skip:],
-                      plane='XY', title='x-y plane (top view)')
-    plot_2d_projection(axes[1], t[skip:], x[skip:], y[skip:], z[skip:],
-                      plane='XZ', title='x-z plane (side view)')
-    plot_2d_projection(axes[2], t[skip:], x[skip:], y[skip:], z[skip:],
-                      plane='YZ', title='y-z plane')
-    
+
+    plot_2d_projection(
+        axes[0],
+        t[skip:],
+        x[skip:],
+        y[skip:],
+        z[skip:],
+        plane="XY",
+        title="x-y plane (top view)",
+    )
+    plot_2d_projection(
+        axes[1],
+        t[skip:],
+        x[skip:],
+        y[skip:],
+        z[skip:],
+        plane="XZ",
+        title="x-z plane (side view)",
+    )
+    plot_2d_projection(
+        axes[2], t[skip:], x[skip:], y[skip:], z[skip:], plane="YZ", title="y-z plane"
+    )
+
     plt.tight_layout()
     return fig
 
 
-def plot_3d_attractor(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
-                    t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                    rtol=1e-8, atol=1e-10, figsize=(12, 5)):
+def plot_3d_attractor(
+    a=0.2,
+    b=0.2,
+    c=5.7,
+    initial_condition=initial_condition,
+    t_min=t_min,
+    t_max=t_max,
+    dt=dt,
+    method="RK45",
+    rtol=1e-8,
+    atol=1e-10,
+    figsize=(12, 5),
+):
     """
     Plot 3D trajectory and a 2D projection.
-    
+
     Parameters
     ----------
     x0, y0, z0 : float
@@ -981,23 +1109,43 @@ def plot_3d_attractor(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
         Figure size
     """
 
-    't, x, y, z = integrate_trajectory_dense(x0, y0, z0, a, b, c, t_span)'
-    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
-                                t_min=t_min, t_max=t_max, dt=dt)
+    "t, x, y, z = integrate_trajectory_dense(x0, y0, z0, a, b, c, t_span)"
+    t, x, y, z = get_RK4_vectors_manual(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=initial_condition,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+    )
     skip = int(len(t) * 0.2)
-    
+
     fig = plt.figure(figsize=figsize)
-    
+
     # 3D plot
-    ax1 = fig.add_subplot(121, projection='3d')
-    plot_3d_trajectory(ax1, t, x, y, z, c=c, a=a, b=b, title='3D Rössler Attractor',
-                      skip_first_frac=0.2, color='darkblue', linewidth=0.5)
-    
+    ax1 = fig.add_subplot(121, projection="3d")
+    plot_3d_trajectory(
+        ax1,
+        t,
+        x,
+        y,
+        z,
+        c=c,
+        a=a,
+        b=b,
+        title="3D Rössler Attractor",
+        skip_first_frac=0.2,
+        color="darkblue",
+        linewidth=0.5,
+    )
+
     # 2D projection
     ax2 = fig.add_subplot(122)
-    plot_2d_projection(ax2, t[skip:], x[skip:], y[skip:], z[skip:],
-                      plane='XY', title='x-y Projection')
-    
+    plot_2d_projection(
+        ax2, t[skip:], x[skip:], y[skip:], z[skip:], plane="XY", title="x-y Projection"
+    )
+
     plt.tight_layout()
     return fig
 
@@ -1006,14 +1154,23 @@ def plot_3d_attractor(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
 # Parameter Study
 # ============================================================
 
-def plot_parameter_sweep(a=0.1, b=0.1, c_values=None,
-                        initial_condition=None,
-                        t_min=0, t_max=200, dt=0.01,
-                        method='RK45', rtol=1e-8, atol=1e-10,
-                        figsize=(15, 10)):
+
+def plot_parameter_sweep(
+    a=0.1,
+    b=0.1,
+    c_values=None,
+    initial_condition=None,
+    t_min=0,
+    t_max=200,
+    dt=0.01,
+    method="RK45",
+    rtol=1e-8,
+    atol=1e-10,
+    figsize=(15, 10),
+):
     """
     Show how the attractor changes as parameter 'a' varies.
-    
+
     Parameters
     ----------
     a_values : list, optional
@@ -1029,36 +1186,57 @@ def plot_parameter_sweep(a=0.1, b=0.1, c_values=None,
     """
     if c_values is None:
         c_values = [0.1, 0.15, 0.2, 0.3, 0.4]
-    
+
     if initial_condition is None:
         initial_condition = (0.1, 0.1, 0.1)
-    
+
     n_c = len(c_values)
     n_cols = 3
     n_rows = (n_c + n_cols - 1) // n_cols
-    
+
     fig = plt.figure(figsize=figsize)
-    
+
     for idx, c in enumerate(c_values, 1):
-        ax = fig.add_subplot(n_rows, n_cols, idx, projection='3d')
-        
-        t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=initial_condition,
-                    t_min=t_min, t_max=t_max, dt=dt)
-        plot_3d_trajectory(ax, t, x, y, z, c=c, a=a, b=b,
-                  title=f'a = {a}, b = {b}, c = {c}',
-                  skip_first_frac=0.2, color='darkblue', linewidth=0.3,
-                  initial_condition=initial_condition)
-    
+        ax = fig.add_subplot(n_rows, n_cols, idx, projection="3d")
+
+        t, x, y, z = get_RK4_vectors_manual(
+            a=a,
+            b=b,
+            c=c,
+            initial_condition=initial_condition,
+            t_min=t_min,
+            t_max=t_max,
+            dt=dt,
+        )
+        plot_3d_trajectory(
+            ax,
+            t,
+            x,
+            y,
+            z,
+            c=c,
+            a=a,
+            b=b,
+            title=f"a = {a}, b = {b}, c = {c}",
+            skip_first_frac=0.2,
+            color="darkblue",
+            linewidth=0.3,
+            initial_condition=initial_condition,
+        )
+
     plt.tight_layout()
     return fig
+
 
 def local_maxima(values):
     values = np.asarray(values)
     idx = np.where((values[1:-1] > values[:-2]) & (values[1:-1] > values[2:]))[0] + 1
     return idx
 
-def bifurcation_maxima_X(param_name, param_values, a, b, c, ic,
-                         t_min=0.0, t_max=200.0, h=0.01, skip_frac=0.5):
+
+def bifurcation_maxima_X(
+    param_name, param_values, a, b, c, ic, t_min=0.0, t_max=200.0, h=0.01, skip_frac=0.5
+):
     """
     Returns arrays (p_plot, x_max_plot) for maxima of X after transients.
     param_name: "b" or "c"
@@ -1086,8 +1264,11 @@ def bifurcation_maxima_X(param_name, param_values, a, b, c, ic,
 
     return np.array(p_plot), np.array(x_plot)
 
+
 def plot_bifurcation(param_name, param_values, a, b, c, ic, **kwargs):
-    p_plot, x_plot = bifurcation_maxima_X(param_name, param_values, a, b, c, ic, **kwargs)
+    p_plot, x_plot = bifurcation_maxima_X(
+        param_name, param_values, a, b, c, ic, **kwargs
+    )
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.scatter(p_plot, x_plot, s=1, alpha=0.5)
     ax.set_xlabel(param_name)
@@ -1096,34 +1277,84 @@ def plot_bifurcation(param_name, param_values, a, b, c, ic, **kwargs):
     ax.grid(True, alpha=0.3)
     return fig
 
-def nb_bifurcation_vs_c(a=0.2, b=0.2, c_min=0.0, c_max=18.0, n=400,
-                        ic=initial_condition, t_min=0.0, t_max=200.0, h=0.01):
+
+def nb_bifurcation_vs_c(
+    a=0.2,
+    b=0.2,
+    c_min=0.0,
+    c_max=18.0,
+    n=400,
+    ic=initial_condition,
+    t_min=0.0,
+    t_max=200.0,
+    h=0.01,
+):
     c_values = np.linspace(c_min, c_max, n)
-    fig = plot_bifurcation("c", c_values, a=a, b=b, c=0.0, ic=ic,
-                           t_min=t_min, t_max=t_max, h=h, skip_frac=0.5)
+    fig = plot_bifurcation(
+        "c",
+        c_values,
+        a=a,
+        b=b,
+        c=0.0,
+        ic=ic,
+        t_min=t_min,
+        t_max=t_max,
+        h=h,
+        skip_frac=0.5,
+    )
     plt.show()
     return fig
 
-def nb_bifurcation_vs_b(a=0.2, c=5.7, b_min=0.0, b_max=1.0, n=400,
-                        ic=initial_condition, t_min=0.0, t_max=200.0, h=0.01):
+
+def nb_bifurcation_vs_b(
+    a=0.2,
+    c=5.7,
+    b_min=0.0,
+    b_max=1.0,
+    n=400,
+    ic=initial_condition,
+    t_min=0.0,
+    t_max=200.0,
+    h=0.01,
+):
     b_values = np.linspace(b_min, b_max, n)
-    fig = plot_bifurcation("b", b_values, a=a, b=0.0, c=c, ic=ic,
-                           t_min=t_min, t_max=t_max, h=h, skip_frac=0.5)
+    fig = plot_bifurcation(
+        "b",
+        b_values,
+        a=a,
+        b=0.0,
+        c=c,
+        ic=ic,
+        t_min=t_min,
+        t_max=t_max,
+        h=h,
+        skip_frac=0.5,
+    )
     plt.show()
     return fig
-
 
 
 # ============================================================
 # Comparison and Analysis
 # ============================================================
 
-def compare_initial_conditions(a=0.2, b=0.2, c=5.7, initial_conditions= None,
-                    t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                    rtol=1e-8, atol=1e-10, figsize=(15, 5)):
+
+def compare_initial_conditions(
+    a=0.2,
+    b=0.2,
+    c=5.7,
+    initial_conditions=None,
+    t_min=t_min,
+    t_max=t_max,
+    dt=dt,
+    method="RK45",
+    rtol=1e-8,
+    atol=1e-10,
+    figsize=(15, 5),
+):
     """
     Compare trajectories from different initial conditions.
-    
+
     Parameters
     ----------
     a, b, c : float
@@ -1136,46 +1367,82 @@ def compare_initial_conditions(a=0.2, b=0.2, c=5.7, initial_conditions= None,
         Figure size
     """
     if initial_conditions is None:
-        initial_conditions = [
-            (0.1, 0.1, 0.1),
-            (1.0, 1.0, 1.0),
-            (-1.0, 0.5, 0.5)
-        ]
-    
+        initial_conditions = [(0.1, 0.1, 0.1), (1.0, 1.0, 1.0), (-1.0, 0.5, 0.5)]
+
     fig, axes = plt.subplots(1, 3, figsize=figsize)
-    colors = ['blue', 'green', 'red', 'purple', 'orange']
-    
+    colors = ["blue", "green", "red", "purple", "orange"]
+
     for ic_idx, (x0, y0, z0) in enumerate(initial_conditions):
-        t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, initial_condition=(x0, y0, z0),
-                    t_min=t_min, t_max=t_max, dt=dt)
+        t, x, y, z = get_RK4_vectors_manual(
+            a=a,
+            b=b,
+            c=c,
+            initial_condition=(x0, y0, z0),
+            t_min=t_min,
+            t_max=t_max,
+            dt=dt,
+        )
         skip = int(len(t) * 0.2)
 
         color = colors[ic_idx % len(colors)]
-        label = f'IC: ({x0}, {y0}, {z0})'
-        
-        plot_2d_projection(axes[0], t[skip:], x[skip:], y[skip:], z[skip:],
-                          plane='XY', color=color, title='x-y Plane')
-        plot_2d_projection(axes[1], t[skip:], x[skip:], y[skip:], z[skip:],
-                          plane='XZ', color=color, title='x-z Plane')
-        plot_2d_projection(axes[2], t[skip:], x[skip:], y[skip:], z[skip:],
-                          plane='YZ', color=color, title='y-z Plane')
-        
+        label = f"IC: ({x0}, {y0}, {z0})"
+
+        plot_2d_projection(
+            axes[0],
+            t[skip:],
+            x[skip:],
+            y[skip:],
+            z[skip:],
+            plane="XY",
+            color=color,
+            title="x-y Plane",
+        )
+        plot_2d_projection(
+            axes[1],
+            t[skip:],
+            x[skip:],
+            y[skip:],
+            z[skip:],
+            plane="XZ",
+            color=color,
+            title="x-z Plane",
+        )
+        plot_2d_projection(
+            axes[2],
+            t[skip:],
+            x[skip:],
+            y[skip:],
+            z[skip:],
+            plane="YZ",
+            color=color,
+            title="y-z Plane",
+        )
+
         axes[0].plot([], [], color=color, label=label, linewidth=2)
-    
+
     for ax in axes:
-        ax.legend(loc='best', fontsize=9)
-    
+        ax.legend(loc="best", fontsize=9)
+
     plt.tight_layout()
     return fig
 
 
-def lyapunov_exponent_estimate(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
-                               t_min=0, t_max=100, dt=dt,
-                               method="RK45", rtol=1e-8,
-                               atol=1e-10, eps=1e-8):
+def lyapunov_exponent_estimate(
+    a=0.2,
+    b=0.2,
+    c=5.7,
+    initial_condition=initial_condition,
+    t_min=0,
+    t_max=100,
+    dt=dt,
+    method="RK45",
+    rtol=1e-8,
+    atol=1e-10,
+    eps=1e-8,
+):
     """
     Estimate the largest Lyapunov exponent numerically.
-    
+
     Parameters
     ----------
     x0, y0, z0 : float
@@ -1186,7 +1453,7 @@ def lyapunov_exponent_estimate(a=0.2, b=0.2, c=5.7, initial_condition=initial_co
         Time interval
     eps : float
         Initial perturbation magnitude
-        
+
     Returns
     -------
     t : ndarray
@@ -1196,32 +1463,42 @@ def lyapunov_exponent_estimate(a=0.2, b=0.2, c=5.7, initial_condition=initial_co
     """
     # Reference trajectory
     t, x1, y1, z1 = get_RK4_vectors_manual(
-        a=a, b=b, c=c,
+        a=a,
+        b=b,
+        c=c,
         initial_condition=initial_condition,
-        t_min=t_min, t_max=t_max, dt=dt
-        )
-    
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+    )
+
     # Perturbed trajectory
     t, x2, y2, z2 = get_RK4_vectors_manual(
-        a=a, b=b, c=c,
-        initial_condition=(initial_condition[0] + eps,
-                           initial_condition[1],
-                           initial_condition[2]),
-        t_min=t_min, t_max=t_max, dt=dt
-        )
-    
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=(
+            initial_condition[0] + eps,
+            initial_condition[1],
+            initial_condition[2],
+        ),
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+    )
+
     # Distance between trajectories
     dx = x2 - x1
     dy = y2 - y1
     dz = z2 - z1
     distance = np.sqrt(dx**2 + dy**2 + dz**2)
-    
+
     # Avoid log(0)
     distance = np.maximum(distance, 1e-12)
-    
+
     # Lyapunov exponent estimate: ln(distance(t)) / t
     lyap_exp = np.log(distance) / (t + 1e-10)
-    
+
     return t, lyap_exp
 
 
@@ -1229,11 +1506,14 @@ def lyapunov_exponent_estimate(a=0.2, b=0.2, c=5.7, initial_condition=initial_co
 #  Analysis of Chaotic Characteristics
 # ============================================================
 
-    # ====================================================
-    # Sensitivity to initial conditions (Lyapunov flavour)
-    # ====================================================
+# ====================================================
+# Sensitivity to initial conditions (Lyapunov flavour)
+# ====================================================
 
-def plot_sensitivity_to_initial_conditions(c=5.7, t_min=t_min, t_max=t_max, dt=dt, delta=1e-6):
+
+def plot_sensitivity_to_initial_conditions(
+    c=5.7, t_min=t_min, t_max=t_max, dt=dt, delta=1e-6
+):
     """
     Show sensitivity to initial conditions in the Rössler system.
 
@@ -1247,79 +1527,90 @@ def plot_sensitivity_to_initial_conditions(c=5.7, t_min=t_min, t_max=t_max, dt=d
     ic1 = base_ic
     ic2 = (base_ic[0] + delta, base_ic[1], base_ic[2])
 
-    t, x1, y1, z1 = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
-                                initial_condition=ic1)
-    _, x2, y2, z2 = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
-                                initial_condition=ic2)
+    t, x1, y1, z1 = get_RK4_vectors_manual(
+        a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt, initial_condition=ic1
+    )
+    _, x2, y2, z2 = get_RK4_vectors_manual(
+        a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt, initial_condition=ic2
+    )
     # Euclidean distance in (X, Y, Z)
-    d = np.sqrt((x1 - x2)**2 + (y1 - y2)**2 + (z1 - z2)**2)
+    d = np.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2 + (z1 - z2) ** 2)
 
-    plt.close('all')
+    plt.close("all")
     fig, axes = plt.subplots(2, 1, figsize=(8, 8))
 
     # Upper: distance on linear scale
     ax = axes[0]
     ax.plot(t, d)
-    ax.set_xlabel('t')
-    ax.set_ylabel('distance d(t)')
-    ax.set_title(rf'Distance between two nearby trajectories, $c={c:.2f}$')
+    ax.set_xlabel("t")
+    ax.set_ylabel("distance d(t)")
+    ax.set_title(rf"Distance between two nearby trajectories, $c={c:.2f}$")
     ax.grid(True)
 
     # Lower: log-scale to highlight exponential growth
     ax = axes[1]
     ax.semilogy(t, d)
-    ax.set_xlabel('t')
-    ax.set_ylabel('d(t) log scale')
-    ax.set_title('Approximate exponential divergence (semilogy)')
+    ax.set_xlabel("t")
+    ax.set_ylabel("d(t) log scale")
+    ax.set_title("Approximate exponential divergence (semilogy)")
     ax.grid(True)
 
     plt.show()
 
-def show_butterfly_effect(a, b, c, initial_condition, delta=1e-6, t_min=0, t_max=100, dt=0.01):
+
+def show_butterfly_effect(
+    a, b, c, initial_condition, delta=1e-6, t_min=0, t_max=100, dt=0.01
+):
     """
     Illustrate the butterfly effect in the Rössler system.
-    
+
     We integrate two trajectories with almost identical
     initial conditions and compare X(t), Y(t), Z(t) in time.
     """
-    plt.close('all')
-    
+    plt.close("all")
+
     # Two initial conditions that differ by delta in X
     base_ic = initial_condition
     ic1 = base_ic
     ic2 = (base_ic[0] + delta, base_ic[1], base_ic[2])
-    
+
     # Integrate both trajectories
-    t, x1, y1, z1 = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
-                                initial_condition=ic1)
-    _, x2, y2, z2 = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
-                                initial_condition=ic2)
-    
+    t, x1, y1, z1 = get_RK4_vectors_manual(
+        a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt, initial_condition=ic1
+    )
+    _, x2, y2, z2 = get_RK4_vectors_manual(
+        a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt, initial_condition=ic2
+    )
+
     series1 = {"X": x1, "Y": y1, "Z": z1}
     series2 = {"X": x2, "Y": y2, "Z": z2}
-    
-    fig, axes = plt.subplots(3, 1, figsize=(12, 8), constrained_layout=True)
-    
-    for ax, comp in zip(axes, ("X", "Y", "Z")):
-        ax.plot(t, series1[comp],
-                label=rf'{comp}(t), initial condition',
-                alpha=0.8)
-        ax.plot(t, series2[comp],
-                label=rf'{comp}(t), initial condition + $\delta$',
-                alpha=0.8, linestyle='--')
-    
-        ax.set_ylabel(rf'{comp}(t)')
-        ax.grid(True)
-        ax.legend(loc='best', fontsize=8)
-    
-    axes[-1].set_xlabel('t')
-    fig.suptitle(rf'Butterfly effect in Rössler system for $c={c:.2f}$, $\delta={delta:.1e}$')
-    plt.show()  
 
+    fig, axes = plt.subplots(3, 1, figsize=(12, 8), constrained_layout=True)
+
+    for ax, comp in zip(axes, ("X", "Y", "Z")):
+        ax.plot(t, series1[comp], label=rf"{comp}(t), initial condition", alpha=0.8)
+        ax.plot(
+            t,
+            series2[comp],
+            label=rf"{comp}(t), initial condition + $\delta$",
+            alpha=0.8,
+            linestyle="--",
+        )
+
+        ax.set_ylabel(rf"{comp}(t)")
+        ax.grid(True)
+        ax.legend(loc="best", fontsize=8)
+
+    axes[-1].set_xlabel("t")
+    fig.suptitle(
+        rf"Butterfly effect in Rössler system for $c={c:.2f}$, $\delta={delta:.1e}$"
+    )
+    plt.show()
 
     # =================================
     #   Return map: maxima of Z(t)
     # =================================
+
 
 def plot_Z_time_with_maxima(a, b, c, initial_condition, t_min=0, t_max=200, dt=0.01):
     """
@@ -1337,24 +1628,35 @@ def plot_Z_time_with_maxima(a, b, c, initial_condition, t_min=0, t_max=200, dt=0
     dt : float
         Time step used in the integration.
     """
-    t, x, y, z = get_RK4_vectors_manual(a=a, b=b, c=c, t_min=t_min, t_max=t_max, dt=dt,
-                                initial_condition=initial_condition)
-    t_max_vals, Z_max = get_Z_maxima(a, b, c, initial_condition, t_min=t_min, t_max=t_max, dt=dt)
+    t, x, y, z = get_RK4_vectors_manual(
+        a=a,
+        b=b,
+        c=c,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+        initial_condition=initial_condition,
+    )
+    t_max_vals, Z_max = get_Z_maxima(
+        a, b, c, initial_condition, t_min=t_min, t_max=t_max, dt=dt
+    )
 
-    plt.close('all')
+    plt.close("all")
     fig, ax = plt.subplots(figsize=(12, 4))
-    ax.plot(t, z, label='Z(t)', linewidth=0.7)
-    ax.scatter(t_max_vals, Z_max, color='red', s=20, label='local maxima $Z_n$')
-    ax.set_xlabel('t')
-    ax.set_ylabel('Z(t)')
-    ax.set_title(rf'Local maxima $Z_n$ of $Z(t)$ for $c={c:.2f}$')
-    ax.legend(loc='best',fontsize=8)
+    ax.plot(t, z, label="Z(t)", linewidth=0.7)
+    ax.scatter(t_max_vals, Z_max, color="red", s=20, label="local maxima $Z_n$")
+    ax.set_xlabel("t")
+    ax.set_ylabel("Z(t)")
+    ax.set_title(rf"Local maxima $Z_n$ of $Z(t)$ for $c={c:.2f}$")
+    ax.legend(loc="best", fontsize=8)
     ax.grid(True)
 
     plt.show()
 
 
-def plot_Zn_vs_Znplus1(a, b, c, initial_condition, skip_first=20, t_min=0, t_max=200, dt=0.01):
+def plot_Zn_vs_Znplus1(
+    a, b, c, initial_condition, skip_first=20, t_min=0, t_max=200, dt=0.01
+):
     """
     Plot the return map Z_{n+1} versus Z_n, where Z_n are the local maxima of Z(t).
 
@@ -1362,14 +1664,22 @@ def plot_Zn_vs_Znplus1(a, b, c, initial_condition, skip_first=20, t_min=0, t_max
     (almost) uniquely determines the next one Z_{n+1} for a given c.
     """
     # Extract the local maxima Z_n of Z(t)
-    _, Z_max = get_Z_maxima(a=a, b=b, c=c, initial_condition=initial_condition,
-                            skip_first=skip_first, t_min=t_min, t_max=t_max, dt=dt)
+    _, Z_max = get_Z_maxima(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=initial_condition,
+        skip_first=skip_first,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+    )
 
     # Getting couples (Z_n, Z_{n+1})
     Z_n = Z_max[:-1]
     Z_n1 = Z_max[1:]
 
-    plt.close('all')
+    plt.close("all")
     fig, ax = plt.subplots(figsize=(6, 5))
 
     # Check if Z_n and Z_n1 are not empty
@@ -1379,18 +1689,28 @@ def plot_Zn_vs_Znplus1(a, b, c, initial_condition, skip_first=20, t_min=0, t_max
         ax.scatter(Z_n, Z_n1, s=10, alpha=0.7, label=r"$(Z_n, Z_{n+1})$")
 
         # Identity line Z_{n+1} = Z_n to guide (45°)
-        ax.plot([z_min, z_max], [z_min, z_max], 'k--', linewidth=0.8, label='45° slope')
+        ax.plot([z_min, z_max], [z_min, z_max], "k--", linewidth=0.8, label="45° slope")
 
-    ax.set_xlabel(r'Max $Z_n$')
-    ax.set_ylabel(r'Max $Z_{n+1}$')
-    ax.set_title(rf'Return map for max $Z_n$ at $c = {c:.2f}$')
+    ax.set_xlabel(r"Max $Z_n$")
+    ax.set_ylabel(r"Max $Z_{n+1}$")
+    ax.set_title(rf"Return map for max $Z_n$ at $c = {c:.2f}$")
     ax.grid(True)
-    ax.legend(loc='best', fontsize=8)
+    ax.legend(loc="best", fontsize=8)
     plt.show()
 
-def cobweb_plot(f, x0, n_iter: int = 30, x_min: float = 0.0, x_max: float = 1.0, ax=None,
-                func_label: str = r"$x_{n+1} = f(x_n)$", cob_color: str = "tab:red",
-                cob_lw: float = 0.8, mark_start: bool = True):
+
+def cobweb_plot(
+    f,
+    x0,
+    n_iter: int = 30,
+    x_min: float = 0.0,
+    x_max: float = 1.0,
+    ax=None,
+    func_label: str = r"$x_{n+1} = f(x_n)$",
+    cob_color: str = "tab:red",
+    cob_lw: float = 0.8,
+    mark_start: bool = True,
+):
     """
     Draw a cobweb diagram for a one-dimensional map x_{n+1} = f(x_n).
 
@@ -1426,8 +1746,9 @@ def cobweb_plot(f, x0, n_iter: int = 30, x_min: float = 0.0, x_max: float = 1.0,
     # Mark the starting point on the curve: (x0, f(x0))
     if mark_start:
         y0 = f(x0)
-        ax.scatter([x0], [y0], s=20, color="k", 
-                   zorder=4, label=r"start $(x_0, f(x_0))$")
+        ax.scatter(
+            [x0], [y0], s=20, color="k", zorder=4, label=r"start $(x_0, f(x_0))$"
+        )
 
     # Cobweb iterations
     x = x0
@@ -1453,7 +1774,9 @@ def cobweb_plot(f, x0, n_iter: int = 30, x_min: float = 0.0, x_max: float = 1.0,
     return ax
 
 
-def show_rossler_return_cobweb(Z_n, c: float = 5.7, n_iter: int = 30, skip_first: int = 50):
+def show_rossler_return_cobweb(
+    Z_n, c: float = 5.7, n_iter: int = 30, skip_first: int = 50
+):
     """
     Plot the Rössler return map Z_{n+1} vs Z_n with an overlaid cobweb diagram.
 
@@ -1491,7 +1814,9 @@ def show_rossler_return_cobweb(Z_n, c: float = 5.7, n_iter: int = 30, skip_first
 
     # Plot settings
     fig, ax = plt.subplots(figsize=(6, 6))
-    ax.scatter(x_data, y_data, s=12, alpha=0.7, color="tab:blue", label=r"$(Z_n, Z_{n+1})$")
+    ax.scatter(
+        x_data, y_data, s=12, alpha=0.7, color="tab:blue", label=r"$(Z_n, Z_{n+1})$"
+    )
 
     # Diagonal
     x_min = float(np.min(x_data))
@@ -1504,12 +1829,22 @@ def show_rossler_return_cobweb(Z_n, c: float = 5.7, n_iter: int = 30, skip_first
 
     # Cobweb from first usable point for more representative dynamics
     x0 = 7
-    cobweb_plot(F, x0=x0, n_iter=n_iter, x_min=x_min, x_max=x_max, ax=ax,
-                func_label=r"$Z_{n+1} = F(Z_n)$", cob_color="tab:red", cob_lw=0.8, mark_start=True)
+    cobweb_plot(
+        F,
+        x0=x0,
+        n_iter=n_iter,
+        x_min=x_min,
+        x_max=x_max,
+        ax=ax,
+        func_label=r"$Z_{n+1} = F(Z_n)$",
+        cob_color="tab:red",
+        cob_lw=0.8,
+        mark_start=True,
+    )
 
     ax.set_xlabel(r"$Z_n$")
     ax.set_ylabel(r"$Z_{n+1}$")
-    ax.set_title(fr"Rössler return map with cobweb (c={c:.3f})")
+    ax.set_title(rf"Rössler return map with cobweb (c={c:.3f})")
     ax.grid(True, alpha=0.3)
     ax.legend(loc="best", fontsize=8)
     return ax
@@ -1519,7 +1854,10 @@ def show_rossler_return_cobweb(Z_n, c: float = 5.7, n_iter: int = 30, skip_first
 # Notebook Convenience Wrappers (produce same results as notebook)
 # ============================================================
 
-def _with_defaults(a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None):
+
+def _with_defaults(
+    a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None
+):
     """
     Resolve defaults from get_parameters() while allowing overrides.
     Returns (a, b, c, initial_condition, t_min, t_max, dt).
@@ -1544,91 +1882,220 @@ def nb_print_parameters():
     return a, b, c, t_min, t_max, dt, initial_condition, initial_conditions
 
 
-def nb_show_attractor(a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None):
+def nb_show_attractor(
+    a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None
+):
     """Show 3D attractor (identical to notebook cell)."""
-    a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, initial_condition, t_min, t_max, dt)
-    plot_3d_attractor(a=a, b=b, c=c, initial_condition=ic,
-                      t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                      rtol=1e-8, atol=1e-10, figsize=(12, 5))
+    a, b, c, ic, t_min, t_max, dt = _with_defaults(
+        a, b, c, initial_condition, t_min, t_max, dt
+    )
+    plot_3d_attractor(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=ic,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+        method="RK45",
+        rtol=1e-8,
+        atol=1e-10,
+        figsize=(12, 5),
+    )
     plt.show()
 
 
-def nb_show_projections(a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None):
+def nb_show_projections(
+    a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None
+):
     """Show all three 2D projections (identical to notebook cell)."""
-    a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, initial_condition, t_min, t_max, dt)
-    plot_projections_2D(a=a, b=b, c=c, initial_condition=ic,
-                        t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                        rtol=1e-8, atol=1e-10, figsize=(15, 5))
+    a, b, c, ic, t_min, t_max, dt = _with_defaults(
+        a, b, c, initial_condition, t_min, t_max, dt
+    )
+    plot_projections_2D(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=ic,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+        method="RK45",
+        rtol=1e-8,
+        atol=1e-10,
+        figsize=(15, 5),
+    )
     plt.show()
 
 
-def nb_time_series(a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None):
+def nb_time_series(
+    a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None
+):
     """Show x(t), y(t), z(t) time series."""
-    a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, initial_condition, t_min, t_max, dt)
-    plot_time_series(a=a, b=b, c=c, initial_condition=ic,
-                     t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                     rtol=1e-8, atol=1e-10, figsize=(14, 8))
+    a, b, c, ic, t_min, t_max, dt = _with_defaults(
+        a, b, c, initial_condition, t_min, t_max, dt
+    )
+    plot_time_series(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=ic,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+        method="RK45",
+        rtol=1e-8,
+        atol=1e-10,
+        figsize=(14, 8),
+    )
     plt.show()
 
 
-def nb_compare_initial_conditions(a=None, b=None, c=None, initial_conditions=None,
-                                  t_min=None, t_max=None, dt=None):
+def nb_compare_initial_conditions(
+    a=None, b=None, c=None, initial_conditions=None, t_min=None, t_max=None, dt=None
+):
     """Compare trajectories from several initial conditions."""
     a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, None, t_min, t_max, dt)
     if initial_conditions is None:
         # Use defaults list from get_parameters
         _, _, _, _, _, _, _, initial_conditions = get_parameters()
-    compare_initial_conditions(a=a, b=b, c=c, initial_conditions=initial_conditions,
-                               t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                               rtol=1e-8, atol=1e-10, figsize=(15, 5))
+    compare_initial_conditions(
+        a=a,
+        b=b,
+        c=c,
+        initial_conditions=initial_conditions,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+        method="RK45",
+        rtol=1e-8,
+        atol=1e-10,
+        figsize=(15, 5),
+    )
     plt.show()
 
 
-def nb_return_map_and_cobweb(a=None, b=None, c=5.7, initial_condition=None,
-                             t_min=None, t_max=None, dt=None,
-                             skip_first_maxima=5, cobweb_skip_first=50, n_iter=15):
+def nb_return_map_and_cobweb(
+    a=None,
+    b=None,
+    c=5.7,
+    initial_condition=None,
+    t_min=None,
+    t_max=None,
+    dt=None,
+    skip_first_maxima=5,
+    cobweb_skip_first=50,
+    n_iter=15,
+):
     """Plot Z(t) with maxima, the return map, and a cobweb plot (same as notebook trio)."""
-    a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, initial_condition, t_min, t_max, dt)
-    plot_Z_time_with_maxima(a=a, b=b, c=c, initial_condition=ic, t_min=t_min, t_max=200, dt=dt)
+    a, b, c, ic, t_min, t_max, dt = _with_defaults(
+        a, b, c, initial_condition, t_min, t_max, dt
+    )
+    plot_Z_time_with_maxima(
+        a=a, b=b, c=c, initial_condition=ic, t_min=t_min, t_max=200, dt=dt
+    )
     plot_Zn_vs_Znplus1(a=a, b=b, c=c, initial_condition=ic, t_min=0, t_max=2000)
-    _, Z_maxima = get_Z_maxima(a=a, b=b, c=c, initial_condition=ic,
-                                skip_first=skip_first_maxima, t_min=0, t_max=2000, dt=dt)
-    show_rossler_return_cobweb(Z_maxima, c=c, n_iter=n_iter, skip_first=cobweb_skip_first)
+    _, Z_maxima = get_Z_maxima(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=ic,
+        skip_first=skip_first_maxima,
+        t_min=0,
+        t_max=2000,
+        dt=dt,
+    )
+    show_rossler_return_cobweb(
+        Z_maxima, c=c, n_iter=n_iter, skip_first=cobweb_skip_first
+    )
 
 
-def nb_butterfly_effect(a=None, b=None, c=5.7, initial_condition=None, delta=1e-6, t_min=50, t_max=280, dt=None):
+def nb_butterfly_effect(
+    a=None,
+    b=None,
+    c=5.7,
+    initial_condition=None,
+    delta=1e-6,
+    t_min=50,
+    t_max=280,
+    dt=None,
+):
     """Show butterfly effect plot (two nearby initial conditions)."""
     a, b, c, ic, _, _, dt = _with_defaults(a, b, c, initial_condition, None, None, dt)
-    show_butterfly_effect(a=a, b=b, c=c, initial_condition=ic, delta=delta, t_min=t_min, t_max=t_max, dt=dt)
+    show_butterfly_effect(
+        a=a,
+        b=b,
+        c=c,
+        initial_condition=ic,
+        delta=delta,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+    )
 
 
 def nb_plot_sensitivity(c=5.7, t_min=None, t_max=None, dt=None, delta=1e-6):
     """Plot distance growth on lin/log scale as sensitivity visualization."""
-    _, _, _, _, t_min, t_max, dt = _with_defaults(None, None, None, None, t_min, t_max, dt)
-    plot_sensitivity_to_initial_conditions(c=c, t_min=t_min, t_max=t_max, dt=dt, delta=delta)
+    _, _, _, _, t_min, t_max, dt = _with_defaults(
+        None, None, None, None, t_min, t_max, dt
+    )
+    plot_sensitivity_to_initial_conditions(
+        c=c, t_min=t_min, t_max=t_max, dt=dt, delta=delta
+    )
 
 
-def nb_parameter_sweep(c_values=None, a=0.1, b=0.1, initial_condition=None,
-                       t_min=None, t_max=200, dt=None):
+def nb_parameter_sweep(
+    c_values=None, a=0.1, b=0.1, initial_condition=None, t_min=None, t_max=200, dt=None
+):
     """Show attractor panels for a list of c values."""
-    a, b, _, ic, t_min, _, dt = _with_defaults(a, b, None, initial_condition, t_min, None, dt)
+    a, b, _, ic, t_min, _, dt = _with_defaults(
+        a, b, None, initial_condition, t_min, None, dt
+    )
     if c_values is None:
         c_values = [4, 5, 6, 7, 8, 3]
-    plot_parameter_sweep(a=a, b=b, c_values=c_values, initial_condition=ic,
-                         t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                         rtol=1e-8, atol=1e-10, figsize=(15, 10))
+    plot_parameter_sweep(
+        a=a,
+        b=b,
+        c_values=c_values,
+        initial_condition=ic,
+        t_min=t_min,
+        t_max=t_max,
+        dt=dt,
+        method="RK45",
+        rtol=1e-8,
+        atol=1e-10,
+        figsize=(15, 10),
+    )
     plt.show()
 
 
-def nb_bifurcation(c_range=None, a=None, b=None, initial_condition=None,
-                   t_min=0, t_max=60, skip_frac=0.6, h=0.01):
+def nb_bifurcation(
+    c_range=None,
+    a=None,
+    b=None,
+    initial_condition=None,
+    t_min=0,
+    t_max=60,
+    skip_frac=0.6,
+    h=0.01,
+):
     """Produce the bifurcation diagram for varying c (same defaults as notebook)."""
-    a, b, _, ic, _, _, _ = _with_defaults(a, b, None, initial_condition, None, None, None)
+    a, b, _, ic, _, _, _ = _with_defaults(
+        a, b, None, initial_condition, None, None, None
+    )
     if c_range is None:
         c_range = np.linspace(0.05, 45, 100)
     c_vals, x_vals = bifurcation_maxima_X(
-        param_name="c", param_values=c_range, a=a, b=b, c=0.0, ic=ic,
-        t_min=t_min, t_max=t_max, h=h, skip_frac=skip_frac
+        param_name="c",
+        param_values=c_range,
+        a=a,
+        b=b,
+        c=0.0,
+        ic=ic,
+        t_min=t_min,
+        t_max=t_max,
+        h=h,
+        skip_frac=skip_frac,
     )
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.scatter(c_vals, x_vals, s=1, alpha=0.5)

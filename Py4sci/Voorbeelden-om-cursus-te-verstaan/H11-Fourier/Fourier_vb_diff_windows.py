@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from scipy import signal
 from scipy.fft import fft, fftshift
 
+
 def compare_windows(M=51, nfft=2047):
     win_fns = {
         "cosine": signal.windows.cosine,
@@ -34,6 +35,7 @@ def compare_windows(M=51, nfft=2047):
     axf.legend()
 
     plt.tight_layout()
+
 
 compare_windows()
 plt.show()

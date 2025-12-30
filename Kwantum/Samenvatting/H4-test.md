@@ -6,7 +6,7 @@
 
 ## 4.1 General formulae
 
-**TDSE**  
+**TDSE**
 \[
 i\hbar\,\frac{\partial}{\partial t}\Psi(x,t)=
 \left[
@@ -15,7 +15,7 @@ i\hbar\,\frac{\partial}{\partial t}\Psi(x,t)=
 \right]\Psi(x,t)
 \]
 
-**TISE**  
+**TISE**
 \[
 \left[
 -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}
@@ -24,7 +24,7 @@ i\hbar\,\frac{\partial}{\partial t}\Psi(x,t)=
 E\,\psi(x)
 \]
 
-**Probability current (1D)**  
+**Probability current (1D)**
 \[
 j(x,t)=\frac{\hbar}{2mi}
 \left[
@@ -57,7 +57,7 @@ k=\sqrt{\frac{2mE}{\hbar^2}}.
 \]
 
 **Interpretation**
-- \(A e^{ikx}\): vrij deeltje met impuls in de \(+\)x-richting  
+- \(A e^{ikx}\): vrij deeltje met impuls in de \(+\)x-richting
 - \(B e^{-ikx}\): vrij deeltje met impuls in de \(-\)x-richting
 
 **Stationary state**
@@ -393,7 +393,7 @@ met coëfficiënten uit beginconditie:
 c_n=\int \psi_n^*(x)\,\Psi(x,0)\,dx.
 \]
 
-Voor de infinite square well: \(E_n=n^2E_1\).  
+Voor de infinite square well: \(E_n=n^2E_1\).
 Dan:
 \[
 \Psi(x,t+T)=\Psi(x,t)\quad\text{voor}\quad T=\frac{2\pi\hbar}{E_1}
@@ -545,4 +545,3 @@ I=\sqrt{\pi}.
 \]
 
 ---
-

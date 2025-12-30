@@ -89,7 +89,7 @@ m=a+\frac{b-a}{2}.
 $$
 Kies het subinterval waar het teken verandert.
 
-**Waarom die lijn exact zo staat** (zoals in examenvraag Q7):  
+**Waarom die lijn exact zo staat** (zoals in examenvraag Q7):
 $m=a+(b-a)/2$ vermijdt kleine “numerieke” verrassingen en is de standaard mid-point (zelfde als $(a+b)/2$ maar explicieter in floating-point redenering).
 
 - Convergentie: lineair, fout halveert per iteratie

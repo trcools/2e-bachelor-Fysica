@@ -23,7 +23,7 @@ Kernboodschap: meer precision garandeert geen accuracy (bv. een lang getal kan t
 - **Truncation error**: komt uit de *wiskundige benadering* (afkappen van reeksen, finite differences, discretisatie, …).
 - **Rounding error**: komt uit het feit dat computers met **eindige precisie** rekenen en voortdurend afronden.
 
-**Belangrijk patroon voor “wanneer welke methode?”**  
+**Belangrijk patroon voor “wanneer welke methode?”**
 Als je de stapgrootte $h$ kleiner maakt (of $N$ groter, meer iteraties, fijnere grid):
 - truncation error daalt meestal,
 - rounding error en kost stijgen meestal,
@@ -53,7 +53,7 @@ Praktisch in Python:
 
 ### 1.2.2 Properties (discreet, eindig, en soms gemeen)
 
-**(1) Discreet getallenrooster**  
+**(1) Discreet getallenrooster**
 Tussen twee representabele floats zit een “gat”. Veel decimalen bestaan niet exact in binair.
 
 **(2) Overflow/underflow**
@@ -61,7 +61,7 @@ Tussen twee representabele floats zit een “gat”. Veel decimalen bestaan niet
 - Te klein $\to$ afronding naar `0.0` (underflow), eventueel via subnormals/denormals.
 
 **(3) $0.1$ is niet exact**
-Klassiek gevolg: `0.1 + 0.1 + 0.1 != 0.3`.  
+Klassiek gevolg: `0.1 + 0.1 + 0.1 != 0.3`.
 Dus: `==` is bijna altijd fout bij floats.
 
 **(4) Afronding maakt optellen niet-associatief**
@@ -76,7 +76,7 @@ Concreet gevolg: **somvolgorde** van een lange reeks verandert de uitkomst (en s
 ### 1.2.3 Good Practices for computer arithmetic (de survival kit)
 
 #### A. Cancellation (catastrophic cancellation)
-- **Vermijd**: subtractie van bijna gelijke getallen.  
+- **Vermijd**: subtractie van bijna gelijke getallen.
   Voorbeeldidee: $\sqrt{x+1} - \sqrt{x}$ voor groot $x$ $\to$ twee bijna gelijke grote getallen $\to$ verschil verliest significant digits.
 - **Fix**: herschrijf algebraïsch naar een stabiele vorm:
   $$
@@ -118,15 +118,15 @@ Zelfde wiskunde, andere route $\to$ andere rounding error.
 
 ## Links naar andere hoofdstukken (de bruggen die examenvragen graag testen)
 
-- **Hoofdstuk 2 (Linear systems)**  
+- **Hoofdstuk 2 (Linear systems)**
   Pivoting en keuze van factorisatie (LU vs Gauss-Jordan vs Cholesky) zijn antwoorden op rounding error, stabiliteit en conditioning.
 
-- **Hoofdstuk 3 (Least squares)**  
+- **Hoofdstuk 3 (Least squares)**
   “Normal equations” vs “QR” vs “SVD” is een klassieker:
   - normal equations kunnen conditioning verslechteren $\to$ rounding wordt gevaarlijker,
   - QR en SVD zijn duurder maar stabieler.
 
-- **Niet-lineaire oplossingen / optimalisatie / integratie / ODE’s**  
+- **Niet-lineaire oplossingen / optimalisatie / integratie / ODE’s**
   Overal zie je hetzelfde thema: kleinere $h$ verlaagt truncation, maar kan rounding/foutopstapeling verhogen; stabiliteit bepaalt of “harder werken” ook echt “beter antwoord” geeft.
 
 ---
