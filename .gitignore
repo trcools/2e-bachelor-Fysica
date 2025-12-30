@@ -13,3 +13,16 @@ venv/
 # VSCode
 .vscode/
 
+# Course Materials & Documents
+# Uncomment the following lines to prevent committing PDFs and other documents
+# This helps protect copyrighted materials and keeps repository size manageable
+# *.pdf
+# *.docx
+# *.pptx
+
+# Exam Materials
+# Uncomment to prevent committing sensitive exam content
+# **/Examen/**
+# **/*exam*.pdf
+# **/*test*.pdf
+
