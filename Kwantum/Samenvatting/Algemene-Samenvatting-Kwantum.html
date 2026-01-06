@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Algemene-Samenvatting-Kwantum.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="h1--the-origins-of-quantum-theory">H1 — The origins of quantum theory</h1>
+<h2 id="niet-te-kennen-zoals-in-je-notities">Niet te kennen (zoals in je notities)</h2>
+<ul>
+<li>1.1 <em>(geen afleidingen)</em></li>
+<li>“Finite nuclear mass” in 1.4</li>
+<li>Experimenten van o.a. G.P. Thompson / Jansson / … <em>(stukje is handgeschreven en niet volledig leesbaar)</em></li>
+</ul>
+<hr>
+<h2 id="12-photo-elektrisch-effect-einstein">1.2 Photo-elektrisch effect (Einstein)</h2>
+<ul>
+<li>Licht bestaat uit “energiepakketjes” (fotonen) met
+$$
+E = h\nu = \frac{hc}{\lambda}.
+$$</li>
+</ul>
+<hr>
+<h2 id="13-compton-effect-relativistisch-nodig">1.3 Compton-effect (relativistisch nodig)</h2>
+<h3 id="relativistische-energie-en-impuls">Relativistische energie en impuls</h3>
+<p>Voor een deeltje met rustmassa $m$ en snelheid $v$:
+$$
+E=\frac{mc^2}{\sqrt{1-\frac{v^2}{c^2}}}, \qquad
+p=\frac{mv}{\sqrt{1-\frac{v^2}{c^2}}}.
+$$</p>
+<p>Hieruit volgt de energie-impulsrelatie:
+$$
+E^2 = p^2c^2 + m^2c^4
+\quad\Rightarrow\quad
+E=\sqrt{m^2c^4+p^2c^2}.
+$$</p>
+<p>Voor een foton geldt $m=0$, dus:
+$$
+E=pc, \qquad p=\frac{E}{c}=\frac{h}{\lambda}.
+$$</p>
+<h3 id="botsing-behoud-van-impuls-en-energie">Botsing: behoud van impuls en energie</h3>
+<p>Situatie: invallend foton $(E_0,p_0)$ botst met elektron in rust; uitgaand foton $(E_1,p_1)$ onder hoek $\theta$; elektron recoilt met impuls $p_2$ onder hoek $\varphi$.</p>
+<p><strong>1) Impulsbehoud (vectorieel):</strong>
+$$
+\vec p_0=\vec p_1+\vec p_2.
+$$
+Componenten (zoals in je notities):
+$$
+p_0 = p_1\cos\theta + p_2\cos\varphi, \qquad
+0 = p_1\sin\theta - p_2\sin\varphi.
+$$
+Hieruit volgt (cosinusregel):
+$$
+p_2^2=p_0^2+p_1^2-2p_0p_1\cos\theta.
+$$</p>
+<p><strong>2) Energiebehoud:</strong>
+$$
+E_0 + mc^2 = E_1 + \sqrt{m^2c^4+p_2^2c^2}.
+$$</p>
+<p>Definieer de kinetische energie van het elektron na de botsing:
+$$
+T_2=\sqrt{m^2c^4+p_2^2c^2}-mc^2.
+$$
+Dan:
+$$
+T_2 = E_0 - E_1 = c(p_0-p_1).
+$$</p>
+<p>Uitwerken geeft (zoals in je afleiding):
+$$
+p_2^2 = (p_0-p_1)^2 + 2mc(p_0-p_1).
+$$</p>
+<p><strong>Combineer</strong> met
+$p_2^2=p_0^2+p_1^2-2p_0p_1\cos\theta$ en gebruik $p=h/\lambda$:</p>
+<p>$$
+\lambda_1-\lambda_0
+= \frac{h}{mc}(1-\cos\theta)
+= 2\frac{h}{mc}\sin^2!\left(\frac{\theta}{2}\right).
+$$</p>
+<p>Met de Compton-golflengte van het elektron
+$$
+\lambda_C=\frac{h}{mc}
+$$
+wordt dit:
+$$
+\Delta\lambda = \lambda_1-\lambda_0 = 2\lambda_C\sin^2!\left(\frac{\theta}{2}\right).
+$$</p>
+<hr>
+<h2 id="14-atomaire-spectra-en-bohr-model">1.4 Atomaire spectra en Bohr-model</h2>
+<h3 id="coulombkracht--middelpuntzoekende-kracht">Coulombkracht = middelpuntzoekende kracht</h3>
+<p>Voor 1 elektron rond een kern met ladingsgetal $Z$:
+$$
+\frac{Ze^2}{4\pi\varepsilon_0,r^2}=\frac{mv^2}{r}.
+$$</p>
+<h3 id="bohr-postulaat-kwantisatie-van-impulsmoment">Bohr-postulaat (kwantisatie van impulsmoment)</h3>
+<p>$$
+L = |\vec r\times\vec p| = mvr = n\hbar,\qquad n=1,2,3,\dots
+$$</p>
+<h3 id="straal-en-snelheid">Straal en snelheid</h3>
+<p>Hieruit volgt:
+$$
+v_n=\frac{Ze^2}{4\pi\varepsilon_0\hbar}\frac{1}{n}
+= \frac{Z\alpha c}{n},
+\qquad
+\alpha=\frac{e^2}{4\pi\varepsilon_0\hbar c}.
+$$</p>
+<p>En:
+$$
+r_n=\frac{4\pi\varepsilon_0\hbar^2}{Zm e^2},n^2
+= \frac{a_0}{Z},n^2,
+\qquad
+a_0=\frac{4\pi\varepsilon_0\hbar^2}{m e^2}.
+$$</p>
+<h3 id="energie%C3%ABn">Energieën</h3>
+<p>Met $T=\tfrac12 mv^2$ en $V=-\dfrac{Ze^2}{4\pi\varepsilon_0 r}$ krijg je:
+$$
+E_n=T+V=-\frac{m}{2\hbar^2}\left(\frac{Ze^2}{4\pi\varepsilon_0}\right)^2\frac{1}{n^2}.
+$$</p>
+<p>(Je notities vermelden ook: als $Z$ niet te groot is, dan is $|E_n| \ll mc^2$ → niet-relativistische aanpak oké.)</p>
+<h3 id="spectrum--overgangsfrequentie">Spectrum / overgangsfrequentie</h3>
+<p>Voor een overgang $n_i\to n_f$:
+$$
+h\nu = E_{n_i}-E_{n_f}.
+$$
+Equivalent in “spectroscopische vorm” (Rydberg-achtig):
+$$
+\tilde\nu = \frac{1}{\lambda} = RZ^2\left(\frac{1}{n_f^2}-\frac{1}{n_i^2}\right).
+$$</p>
+<h3 id="franck%E2%80%93hertz-zoals-je-samenvat">Franck–Hertz (zoals je samenvat)</h3>
+<ul>
+<li>Elektronen worden versneld door een spanning $V$.</li>
+<li>Bij bepaalde spanningen treedt <strong>inelastische</strong> botsing op: elektron verliest een vaste energie $E_{\text{exc}}$ om het atoom te exciteren.</li>
+<li>Dit toont: atomen hebben <strong>discrete</strong> excitatie-energieën (kwantisatie).</li>
+</ul>
+<hr>
+<h2 id="15-stern%E2%80%93gerlach-experiment">1.5 Stern–Gerlach experiment</h2>
+<h3 id="magnetisch-moment-van-een-baanstroom-orbitaal">Magnetisch moment van een baanstroom (orbitaal)</h3>
+<p>Modelleer het elektron als een stroomlus:
+$$
+\mu = IA.
+$$
+Met $I=\dfrac{ev}{2\pi r}$ en $A=\pi r^2$:
+$$
+\mu = \frac{evr}{2}.
+$$
+Omdat $L=mvr$:
+$$
+\vec\mu_\ell = -\frac{e}{2m}\vec L = -\mu_B\frac{\vec L}{\hbar},
+\qquad
+\mu_B=\frac{e\hbar}{2m}.
+$$</p>
+<h3 id="energie-in-een-magneetveld-en-kracht">Energie in een magneetveld en kracht</h3>
+<p>Potentiële energie:
+$$
+W=-\vec\mu\cdot\vec B.
+$$
+Kracht:
+$$
+\vec F = -\nabla W = \nabla(\vec\mu\cdot\vec B).
+$$</p>
+<p>In Stern–Gerlach: $B_x=B_y=0$ en $B_z$ is <strong>inhomogeen</strong> (afhankelijk van $z$), dus:
+$$
+F_x=F_y=0,\qquad
+F_z = \mu_z,\frac{\partial B_z}{\partial z}.
+$$</p>
+<h3 id="klassieke-verwachting-vs-observatie">Klassieke verwachting vs observatie</h3>
+<ul>
+<li>Klassiek zou $\mu_z$ continu kunnen variëren → continue spreiding.</li>
+<li>Experiment: <strong>discrete</strong> bundels → kwantisatie van hoekimpulscomponenten.</li>
+</ul>
+<p>Quantumresultaten (netjes geformuleerd):
+$$
+|\vec L|=\sqrt{\ell(\ell+1)},\hbar,\qquad
+L_z = m_\ell\hbar,\quad m_\ell=-\ell,\dots,+\ell.
+$$</p>
+<h3 id="spin-intrinsiek-impulsmoment">Spin (intrinsiek impulsmoment)</h3>
+<p>Voor elektronen:
+$$
+s=\frac12,\qquad
+|\vec S|=\sqrt{s(s+1)},\hbar,\qquad
+S_z=m_s\hbar,; m_s=\pm\frac12.
+$$</p>
+<p>Spinmagnetisch moment (met $g_s\approx 2$):
+$$
+\vec\mu_s = -g_s,\mu_B\frac{\vec S}{\hbar}.
+$$</p>
+<p>Totaal magnetisch moment:
+$$
+\vec\mu = \vec\mu_\ell + \vec\mu_s.
+$$</p>
+<h1 id="h2--de-golffunctie-en-het-onzekerheidsbeginsel">H2 — De golffunctie en het onzekerheidsbeginsel</h1>
+<h2 id="niet-te-kennen-zoals-in-je-notities">Niet te kennen (zoals in je notities)</h2>
+<ul>
+<li>(deze 2 bullets zijn in de scan niet 100% leesbaar)
+<ul>
+<li>oplossingen in 3D met … + golfpakket … (2.4)</li>
+<li>twee staten … (experiment/…) … breking, resonantie-absorptie (2.5)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="superpositie-en-interferentie">Superpositie en interferentie</h2>
+<p>Neem een superpositie:
+$$
+\psi = c_1\psi_1 + c_2\psi_2,
+$$
+met $c_1,c_2$ complexe constanten en schrijf
+$$
+\psi_1 = |\psi_1|e^{i\alpha_1}, \qquad \psi_2 = |\psi_2|e^{i\alpha_2}.
+$$</p>
+<p>De probabiliteitsdichtheid is
+$$
+|\psi|^2=\psi^*\psi.
+$$</p>
+<p>Uitwerken geeft:
+$$
+|\psi|^2
+=|c_1|^2|\psi_1|^2+|c_2|^2|\psi_2|^2
++c_1^*c_2|\psi_1||\psi_2|e^{i(\alpha_2-\alpha_1)}
++c_2^*c_1|\psi_1||\psi_2|e^{-i(\alpha_2-\alpha_1)}.
+$$</p>
+<p>Dus:
+$$
+|\psi|^2
+=|c_1|^2|\psi_1|^2+|c_2|^2|\psi_2|^2
++2,\mathrm{Re}!\left{c_1^*c_2|\psi_1||\psi_2|e^{i(\alpha_2-\alpha_1)}\right}.
+$$</p>
+<p>➡️ Die laatste term is de <strong>interferentieterm</strong> (komt door het complexe faseverschil).</p>
+<hr>
+<h2 id="23-golfpakketten-1d-en-groepssnelheid">2.3 Golfpakketten (1D) en groepssnelheid</h2>
+<p>Een golfpakket kan je schrijven als een superpositie van vlakke golven:
+$$
+\psi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}
+\int dp_x;
+\exp!\left[\frac{i}{\hbar}\big(p_x x - E(p_x)t\big)\right],
+\phi(p_x).
+$$</p>
+<p>Hier is $\phi(p_x)$ een “gewicht”-functie die typisch <strong>gepiekt</strong> is rond $p_x=p_0$.</p>
+<h3 id="groepssnelheid">Groepssnelheid</h3>
+<p>$$
+v_g=\left.\frac{dE(p_x)}{dp_x}\right|_{p_x=p_0}.
+$$</p>
+<h3 id="taylor-rond-p0">Taylor rond $p_0$</h3>
+<p>$$
+E(p_x)=E(p_0)+(p_x-p_0)\left.\frac{dE}{dp_x}\right|<em>{p_0}
++\frac{(p_x-p_0)^2}{2!}\left.\frac{d^2E}{dp_x^2}\right|</em>{p_0}+\cdots
+$$</p>
+<p>In eerste orde:
+$$
+E(p_x)\approx E(p_0)+v_g(p_x-p_0).
+$$</p>
+<hr>
+<h2 id="fouriertransformatie-paar">Fouriertransformatie (paar)</h2>
+<p>(Zoals in je notities:)
+$$
+\psi(x,t)=(2\pi\hbar)^{-1/2}\int_{-\infty}^{+\infty} e^{i p_x x/\hbar},\Phi(p_x,t),dp_x,
+$$
+$$
+\Phi(p_x,t)=(2\pi\hbar)^{-1/2}\int_{-\infty}^{+\infty} e^{-i p_x x/\hbar},\psi(x,t),dx.
+$$</p>
+<hr>
+<h2 id="hulprelatie-gauss-integralen">Hulprelatie: Gauss-integralen</h2>
+<p>Je gebruikt o.a. de klassieke identiteit
+$$
+\int_{-\infty}^{+\infty} e^{-x^2},dx=\sqrt{\pi}.
+$$</p>
+<p>In je notities wordt dit afgeleid via:
+$$
+\left(\int_{-\infty}^{+\infty} e^{-x^2},dx\right)
+\left(\int_{-\infty}^{+\infty} e^{-y^2},dy\right)
+=\int!!\int_{\mathbb{R}^2} e^{-(x^2+y^2)},dx,dy,
+$$
+en dan naar poolcoördinaten:
+$$
+\int_0^{2\pi} d\theta \int_0^\infty r e^{-r^2},dr
+=2\pi\cdot\frac12=\pi,
+$$
+dus $I^2=\pi \Rightarrow I=\sqrt{\pi}$.</p>
+<p>(Er staat ook een uitwerking met “completing the square” voor integralen van de vorm
+$\int e^{-\alpha u^2-\beta u},du$.)</p>
+<hr>
+<h2 id="gaussisch-golfpakket">Gaussisch golfpakket</h2>
+<p>Neem een Gauss in impulsmruimte:
+$$
+\Phi(p_x)=\frac{1}{\sqrt{\Delta p_x\sqrt{\pi}}};
+\exp!\left[-\frac{(p_x-p_0)^2}{2(\Delta p_x)^2}\right],
+$$
+met normalisatieconstante
+$$
+c=\pi^{-1/4}(\Delta p_x)^{-1/2}
+=\frac{1}{\sqrt{\sqrt{\pi},\Delta p_x}}.
+$$</p>
+<p>De tijdsevolutie:
+$$
+\psi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}
+\int_{-\infty}^{+\infty} dp_x;
+e^{i p_x x/\hbar},\Phi(p_x),e^{-iE(p_x)t/\hbar},
+$$
+met voor een vrij deeltje:
+$$
+E(p_x)=\frac{p_x^2}{2m}.
+$$</p>
+<p>Door de Gauss-integralen krijg je opnieuw een Gauss in $x$ (maar met tijdafhankelijke breedte);
+in je notities wordt dit uitgewerkt door de exponent te herschrijven als
+$$
+-a p_x^2+\beta p_x+\text{const},
+$$
+en dan de standaard Gauss-integraal toe te passen.</p>
+<h3 id="onzekerheidsrelatie">Onzekerheidsrelatie</h3>
+<p>Onderaan noteer je:</p>
+<ul>
+<li>voor het <strong>Gaussisch</strong> golfpakket (op $t=0$) is het product minimaal:
+$$
+\Delta x(t=0),\Delta p_x = \frac{\hbar}{2},
+$$</li>
+<li>algemeen (Fourier-eigenschap):
+$$
+\Delta x,\Delta p_x \ge \frac{\hbar}{2}.
+$$</li>
+</ul>
+<blockquote>
+<p>Examenstof: 3.1 t/m 3.9<br>
+Niet: <strong>oneindige potentiële energie</strong> (p113) en <strong>Schmidt procedure</strong> (p117–p118).</p>
+</blockquote>
+<hr>
+<h2 id="31-de-tijdsafhankelijke-schr%C3%B6dingervergelijking-tdse">3.1 De tijdsafhankelijke Schrödingervergelijking (TDSE)</h2>
+<p><strong>Context</strong></p>
+<ul>
+<li>Geldig voor <strong>niet-relativistische</strong> en <strong>gesloten</strong> systemen.</li>
+<li>Wordt postulaat-achtig ingevoerd (niet “formeel afgeleid” zoals Newton).</li>
+</ul>
+<p><strong>Hamiltoniaan</strong></p>
+<ul>
+<li>Klassiek (voorbeeld):<br>
+$$
+E(\mathbf r,\mathbf p,t)=\frac{\mathbf p^2}{2m}+V(\mathbf r,t)
+$$</li>
+<li>Kwantum: vervang door operatoren<br>
+$$
+\hat{\mathbf r}=\mathbf r,\qquad \hat{\mathbf p}=-i\hbar\nabla,\qquad \hat E=i\hbar\frac{\partial}{\partial t}
+$$
+$$
+\hat H = \frac{\hat{\mathbf p}^2}{2m}+V(\mathbf r,t)
+$$</li>
+</ul>
+<p><strong>TDSE</strong></p>
+<ul>
+<li>Algemeen:
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf r,t)=\hat H,\Psi(\mathbf r,t)
+$$</li>
+<li>Vrij deeltje (3D):
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf r,t)= -\frac{\hbar^2}{2m}\nabla^2\Psi(\mathbf r,t)
+$$</li>
+</ul>
+<p>Vlakke golf (vrij deeltje):
+$$
+\Psi(\mathbf r,t)=A,e^{i(\mathbf k\cdot\mathbf r-\omega t)}
+$$
+Opmerking: als $\Psi$ zuiver reëel is, volgt vaak $\mathbf j=\mathbf 0$.</p>
+<hr>
+<h2 id="32-behoud-van-waarschijnlijkheid">3.2 Behoud van waarschijnlijkheid</h2>
+<p><strong>Waarschijnlijkheidsdichtheid</strong>
+$$
+P(\mathbf r,t)=|\Psi(\mathbf r,t)|^2=\Psi^*(\mathbf r,t)\Psi(\mathbf r,t)
+$$</p>
+<p><strong>Stroomdichtheid (probability current)</strong>
+$$
+\mathbf j(\mathbf r,t)=\frac{\hbar}{2mi}\Big(\Psi^<em>\nabla\Psi-(\nabla\Psi^</em>)\Psi\Big)
+=\mathrm{Re}\Big{\Psi^*\frac{\hbar}{im}\nabla\Psi\Big}
+$$</p>
+<ul>
+<li>Als $\mathrm{Im},\Psi=0$ (zuiver reëel), dan volgt vaak $\mathbf j=\mathbf 0$.</li>
+</ul>
+<p><strong>Continuïteitsvergelijking</strong> (voor <strong>reële</strong> potentiaal)
+$$
+\frac{\partial P}{\partial t}+\nabla\cdot\mathbf j=0
+$$</p>
+<p><strong>Normbehoud</strong>
+$$
+\frac{d}{dt}\int_{\mathbb R^3}|\Psi(\mathbf r,t)|^2,d^3r = 0
+$$
+Dus: <em>eens genormeerd, altijd genormeerd</em> (mits hermitische $\hat H$).</p>
+<p><strong>Hermiticiteit van $\hat H$</strong>
+$$
+\int d^3r,\Psi^<em>(\hat H\Psi)=\int d^3r,(\hat H\Psi)^</em>\Psi
+$$</p>
+<ul>
+<li>Reële $V(\mathbf r,t)$  $\Rightarrow$  $\hat H$ hermitisch.</li>
+<li>Imaginair deel in $V$  $\Rightarrow$  typisch niet-hermitisch.</li>
+</ul>
+<hr>
+<h2 id="33-verwachtingswaarden-en-operatoren">3.3 Verwachtingswaarden en operatoren</h2>
+<p><strong>Basisdefinitie</strong>
+$$
+\langle \mathbf r\rangle=\int d^3r,\Psi^<em>(\mathbf r,t),\mathbf r,\Psi(\mathbf r,t)
+$$
+Algemeen voor een functie/observeerbare $A$:
+$$
+\langle A\rangle=\int d^3r,\Psi^</em>(\mathbf r,t),\hat A,\Psi(\mathbf r,t)
+$$</p>
+<p><strong>“Recept” om $\hat A$ te bouwen</strong></p>
+<ol>
+<li>Start met klassieke dynamische variabele $A(\mathbf r,\mathbf p,t)$</li>
+<li>Vervang $\mathbf r,\mathbf p$ door operatoren $(\hat{\mathbf r},\hat{\mathbf p})$</li>
+<li>“Sandwich”: $\langle A\rangle=\int \Psi^*\hat A\Psi,d^3r$</li>
+<li>Fysisch meetbare $\Rightarrow$ <strong>hermitische</strong> operator (verwachtingswaarde reëel)</li>
+</ol>
+<p><strong>Impulsoperator</strong></p>
+<ul>
+<li>In coördinatenruimte:
+$$
+\hat{\mathbf p}=-i\hbar\nabla
+$$
+en dus
+$$
+\langle\mathbf p\rangle=\int d^3r,\Psi^*(-i\hbar\nabla)\Psi
+$$</li>
+</ul>
+<p><strong>Energie</strong>
+$$
+\langle E\rangle=\int d^3r,\Psi^<em>\Big(i\hbar\frac{\partial}{\partial t}\Big)\Psi
+=\int d^3r,\Psi^</em>,\hat H,\Psi
+$$</p>
+<p><strong>Commutatoren</strong>
+$$
+[A,B]=AB-BA
+$$
+Voorbeeld (1D):
+$$
+[x,p_x]=i\hbar,\qquad [p_x,x]=-i\hbar
+$$
+Moraal: operatorvolgorde doet ertoe (klassiek vaak niet).</p>
+<hr>
+<p>Aanvullende operatoren
+$$
+\hat E=i\hbar\frac{\partial}{\partial t},\qquad
+\hat{\mathbf L}=\mathbf r\times \hat{\mathbf p}
+$$
+Kinetische energie-operator:
+$$
+\hat T=\frac{\hat p^2}{2m}=-\frac{\hbar^2}{2m}\nabla^2
+$$</p>
+<p>Afleiding van $\langle \mathbf p\rangle$ via Fourierrepresentatie</p>
+<p>Stap 1 (van p-ruimte naar r-ruimte):
+$$
+\psi(\mathbf r) = (2\pi\hbar)^{-3/2}\int \Phi(\mathbf p),e^{\frac{i}{\hbar}\mathbf p\cdot\mathbf r},d^3p,
+\quad
+\Phi(\mathbf p) = (2\pi\hbar)^{-3/2}\int \psi(\mathbf r),e^{-\frac{i}{\hbar}\mathbf p\cdot\mathbf r},d^3r.
+$$</p>
+<p>Stap 2:
+$$
+\langle \mathbf p\rangle=\int \Phi^*(\mathbf p),\mathbf p,\Phi(\mathbf p),d^3p
+$$
+en substitueer de Fourierrelaties.</p>
+<p>Stap 3:
+$$
+\mathbf p,e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')}=
+-,i\hbar,\nabla_{\mathbf r},e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')}
+$$</p>
+<p>Stap 4:
+$$
+\int e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')},d^3p=(2\pi\hbar)^3\delta(\mathbf r-\mathbf r')
+$$</p>
+<p>Stap 5 (resultaat):
+$$
+\boxed{;\langle \mathbf p\rangle=\int \psi^*(\mathbf r),(-i\hbar\nabla),\psi(\mathbf r),d^3r;}
+$$</p>
+<hr>
+<h2 id="34-ehrenfest-overgang-naar-klassieke-mechanica">3.4 Ehrenfest: overgang naar klassieke mechanica</h2>
+<p><strong>Klassiek</strong>
+$$
+\frac{d\mathbf r}{dt}=\frac{\mathbf p}{m},\qquad
+\frac{d\mathbf p}{dt}=-\nabla V
+$$</p>
+<p><strong>Kwantum (Ehrenfest)</strong>
+$$
+\frac{d\langle\mathbf r\rangle}{dt}=\frac{\langle\mathbf p\rangle}{m},\qquad
+\frac{d\langle\mathbf p\rangle}{dt}=-\langle\nabla V\rangle
+$$</p>
+<p><strong>Algemene formule</strong>
+$$
+\frac{d}{dt}\langle A\rangle=\frac{1}{i\hbar}\langle[\hat A,\hat H]\rangle
++\Big\langle\frac{\partial \hat A}{\partial t}\Big\rangle
+$$</p>
+<p>Interpretatie (niet-mystiek maar wel mooi):</p>
+<ul>
+<li>Klassiek: één traject.</li>
+<li>Kwantum: verwachtingswaarden volgen “klassiek-achtige” bewegingswetten, maar de toestand blijft statistisch/gespreid.</li>
+</ul>
+<hr>
+<p>Bewijs voor $\dfrac{d}{dt}\langle x\rangle$</p>
+<p>Start:
+$$
+\frac{d}{dt}\langle x\rangle=\frac{d}{dt}\int \Psi^*(\mathbf r,t),x,\Psi(\mathbf r,t),d^3r.
+$$
+Na uitwerken volgt:
+$$
+\boxed{;\frac{d}{dt}\langle x\rangle=\frac{1}{m}\langle p_x\rangle;}
+$$</p>
+<p>Bewijs voor $\dfrac{d}{dt}\langle p_x\rangle$</p>
+<p>Start:
+$$
+\frac{d}{dt}\langle p_x\rangle=\frac{d}{dt}\int \Psi^*(\mathbf r,t),(-i\hbar\partial_x),\Psi(\mathbf r,t),d^3r.
+$$
+Gebruik TDSE + partiële integratie (randtermen $=0$):
+$$
+\boxed{;\frac{d}{dt}\langle p_x\rangle=-\Big\langle\frac{\partial V}{\partial x}\Big\rangle;}
+$$</p>
+<hr>
+<h2 id="35-tijdonafhankelijke-schr%C3%B6dingervergelijking-tise--stationaire-toestanden">3.5 Tijdonafhankelijke Schrödingervergelijking (TISE) — stationaire toestanden</h2>
+<p>Neem een <strong>tijdonafhankelijke potentiaal</strong> $V(\mathbf r)$.</p>
+<p><strong>Scheiding der variabelen</strong>
+$$
+\Psi(\mathbf r,t)=\psi_E(\mathbf r),T(t)
+$$
+Leidt tot
+$$
+T(t)=e^{-iEt/\hbar}
+$$
+en de <strong>TISE</strong>
+$$
+\hat H\psi_E(\mathbf r)=E\psi_E(\mathbf r),
+\qquad
+\hat H=-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf r)
+$$</p>
+<p><strong>Stationaire toestand</strong>
+$$
+\Psi_E(\mathbf r,t)=\psi_E(\mathbf r),e^{-iEt/\hbar}
+$$
+Dan is
+$$
+|\Psi_E(\mathbf r,t)|^2 = |\psi_E(\mathbf r)|^2
+$$
+(tijdonafhankelijke dichtheid).</p>
+<hr>
+<p>Verwachtingswaarde energie in eigenstaat
+$$
+\langle E\rangle=\int d^3r,\Psi^<em>(\mathbf r,t),(i\hbar\partial_t),\Psi(\mathbf r,t)
+=\int d^3r,\Psi^</em>(\mathbf r,t),\hat H,\Psi(\mathbf r,t)
+=E\int |\psi_E(\mathbf r)|^2,d^3r=E.
+$$</p>
+<p>Voor een tijdonafhankelijke operator $\hat A$:
+$$
+\langle A\rangle=\int d^3r,\psi_E^*(\mathbf r),\hat A,\psi_E(\mathbf r).
+$$</p>
+<hr>
+<h2 id="36-energiekwantisatie">3.6 Energiekwantisatie</h2>
+<p><strong>Waarom kwantisatie?</strong></p>
+<ul>
+<li>Fysische randvoorwaarden (normaliseerbaarheid, continuïteit, grensvoorwaarden) laten vaak enkel <strong>discrete</strong> $E$ toe.</li>
+</ul>
+<p><strong>Typen spectra</strong></p>
+<ul>
+<li><strong>Gebonden toestanden</strong>: discrete energieën $E_1&lt;E_2&lt;\dots$</li>
+<li><strong>Ongebonden / verstrooiing</strong>: typisch continu spectrum (energie “loopt door”).</li>
+</ul>
+<hr>
+<p>1D-TISE en cases
+$$
+-\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}+V(x)\psi(x)=E\psi(x)
+$$</p>
+<p>Rand/regulariteitsvoorwaarden (typisch):</p>
+<ul>
+<li>$\psi(x)$ eindig / normaliseerbaar</li>
+<li>$\psi$ continu; $d\psi/dx$ continu als $V$ eindig</li>
+</ul>
+<p>Cases:</p>
+<ul>
+<li>Case 1: $E &lt; V_{\min}$</li>
+<li>Case 2: $V_{\min} &lt; E &lt; V_-$</li>
+<li>Case 3: $V_- &lt; E &lt; V_+$</li>
+<li>Case 4: $E &gt; V_+$</li>
+</ul>
+<p>Klassieke interpretatie:</p>
+<ul>
+<li>$V(x)\le E$: klassieke beweging mogelijk → oplossingen oscillatoir</li>
+<li>$V(x)&gt;E$: klassieke beweging onmogelijk → oplossingen exponentieel</li>
+</ul>
+<hr>
+<h2 id="37-eigenschappen-van-energie-eigenfuncties">3.7 Eigenschappen van energie-eigenfuncties</h2>
+<p><strong>Hermiticiteit ⇒ reële eigenwaarden</strong></p>
+<ul>
+<li>Voor hermitische $\hat H$ zijn energieën $E$ reëel.</li>
+</ul>
+<p><strong>Orthogonaliteit / orthonormaliteit (schets)</strong></p>
+<ul>
+<li>Voor discrete niveaus:
+$$
+\int d^3r,\psi_n^*(\mathbf r)\psi_m(\mathbf r)=\delta_{nm}
+$$</li>
+<li>(Voor continue spectra verschijnt een Dirac-delta i.p.v. Kronecker-delta.)</li>
+</ul>
+<p><strong>Oscillatietheorema (1D, discrete niveaus)</strong></p>
+<ul>
+<li>Voor $E_1&lt;E_2&lt;E_3&lt;\dots$ en bijhorende $\psi_1(x),\psi_2(x),\dots$:
+<ul>
+<li>$\psi_n(x)$ heeft <strong>$(n-1)$ nuldoorgangen</strong> (“zeros”) voor eindige $x$.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Niet in de examenstof: Schmidt-procedure (Gram–Schmidt orthonormalisatie van ontaarde eigenfuncties).</p>
+</blockquote>
+<hr>
+<h2 id="38-algemene-oplossing-van-de-tdse-voor-tijdonafhankelijke-potentiaal">3.8 Algemene oplossing van de TDSE voor tijdonafhankelijke potentiaal</h2>
+<p><strong>Superpositie in energie-eigenfuncties</strong>
+$$
+\Psi(\mathbf r,t)=\sum_E C_E(t),\psi_E(\mathbf r)
+$$
+Voor tijdonafhankelijke $\hat H$:
+$$
+C_E(t)=C_E(t_0)\exp\Big[-\frac{i}{\hbar}E(t-t_0)\Big]
+$$
+Dus
+$$
+\Psi(\mathbf r,t)=\sum_E c_E,e^{-iEt/\hbar},\psi_E(\mathbf r)
+$$</p>
+<p><strong>Coefficients uit beginvoorwaarde</strong>
+$$
+C_E(t_0)=\int d^3r,\psi_E^*(\mathbf r)\Psi(\mathbf r,t_0)
+$$</p>
+<p><strong>Propagator</strong>
+$$
+\Psi(\mathbf r,t)=\int d^3r',K(\mathbf r,t;\mathbf r',t_0),\Psi(\mathbf r',t_0)
+$$
+met
+$$
+K(\mathbf r,t;\mathbf r',t_0)=\sum_E \psi_E^*(\mathbf r')\psi_E(\mathbf r),
+\exp\Big[-\frac{i}{\hbar}E(t-t_0)\Big]
+$$</p>
+<hr>
+<h2 id="39-schr%C3%B6dingervergelijking-in-de-impulsruimte">3.9 Schrödingervergelijking in de impulsruimte</h2>
+<p><strong>Fouriertransformatie tussen representaties</strong>
+$$
+\Psi(\mathbf r,t)=\frac{1}{(2\pi\hbar)^{3/2}}\int d^3p,\Phi(\mathbf p,t),
+e^{+i\mathbf p\cdot\mathbf r/\hbar}
+$$
+$$
+\Phi(\mathbf p,t)=\frac{1}{(2\pi\hbar)^{3/2}}\int d^3r,\Psi(\mathbf r,t),
+e^{-i\mathbf p\cdot\mathbf r/\hbar}
+$$</p>
+<p>Fouriertransformatie van het potentiaal:
+$$
+ilde V(\mathbf p-\mathbf p',t)=(2\pi\hbar)^{-3/2}\int d^3r,e^{-\frac{i}{\hbar}(\mathbf p-\mathbf p')\cdot\mathbf r},V(\mathbf r,t).
+$$</p>
+<p><strong>TDSE in impulsruimte (integro-differentiaal)</strong>
+$$
+i\hbar\frac{\partial}{\partial t}\Phi(\mathbf p,t)=\frac{\mathbf p^2}{2m}\Phi(\mathbf p,t)
++\frac{1}{(2\pi\hbar)^{3/2}}\int d^3p',\tilde V(\mathbf p-\mathbf p',t),\Phi(\mathbf p',t)
+$$</p>
+<ul>
+<li>Komt uit convolutietheorema; vaak moeilijker dan in $\mathbf r$-ruimte.</li>
+</ul>
+<p><strong>Verwachtingswaarden in impulsruimte</strong>
+$$
+\langle\mathbf p\rangle=\int d^3p,\Phi^<em>(\mathbf p,t),\mathbf p,\Phi(\mathbf p,t)
+$$
+$$
+\langle\mathbf r\rangle=\int d^3p,\Phi^</em>(\mathbf p,t),(i\hbar\nabla_{\mathbf p}),\Phi(\mathbf p,t)
+$$
+Algemeen:
+$$
+\langle A\rangle=\int d^3p,\Phi^*(\mathbf p,t),A(i\hbar\nabla_{\mathbf p},\mathbf p,t),\Phi(\mathbf p,t)
+$$</p>
+<hr>
+<h1 id="4-one-dimensional-examples">4 One-dimensional examples</h1>
+<h2 id="41-general-formulae">4.1 General formulae</h2>
+<p>TDSE:
+$$
+i\hbar \frac{\partial}{\partial t}\psi(x,t)=
+\left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x)\right]\psi(x,t)
+$$</p>
+<p>TISE:
+$$
+-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\psi(x)+V(x)\psi(x)=E\psi(x)
+$$</p>
+<p>$$
+\vec{j}(x,t)=\frac{\hbar}{2mi}\left[\psi^<em>(x,t)\frac{\partial\psi(x,t)}{\partial x}-\psi(x,t)\frac{\partial\psi^</em>(x,t)}{\partial x}\right]
+$$</p>
+<h2 id="42-the-free-particle">4.2 The free particle</h2>
+<p>$$
+E=\frac{\hbar^2k^2}{2m}
+$$
+$$
+(V=0)\Rightarrow -\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}=E\psi(x)
+\Rightarrow \frac{d^2\psi(x)}{dx^2}+\frac{2mE}{\hbar^2}\psi(x)=0
+\Rightarrow \frac{d^2\psi(x)}{dx^2}+k^2\psi(x)=0
+$$</p>
+<p>De dimensie van $k$ volgt uit $k=\left(\frac{2mE}{\hbar^2}\right)^{1/2}$.</p>
+<p><strong>Algemene oplossing:</strong>
+$$
+\psi(x)=Ae^{ikx}+Be^{-ikx}
+$$</p>
+<p><strong>Interpretatie:</strong></p>
+<ol>
+<li>
+<p>$Ae^{ikx}$: vrij deeltje met impuls $+\hbar k$ in de positieve $x$-richting</p>
+</li>
+<li>
+<p>$Be^{-ikx}$: vrij deeltje met impuls $-\hbar k$ in de negatieve $x$-richting</p>
+</li>
+</ol>
+<p>$$
+\psi(x,t)=Ae^{i(kx-\omega t)}+Be^{-i(kx+\omega t)}
+$$</p>
+<p><strong>Stationaire toestand:</strong> meting van de energie van het vrij deeltje zal steeds de waarde $E=\hbar\omega$ opleveren.</p>
+<h3 id="geval-1-b0-vrij-deeltje-in-de-positieve-x-richting">Geval 1: $B=0$ (vrij deeltje in de positieve $x$-richting)</h3>
+<ul>
+<li>$P(x,t)=P(x)=|A|^2$</li>
+</ul>
+<p>$$
+\Delta x\to\infty \quad \text{want}\quad \Delta p_x=0
+$$</p>
+<ul>
+<li>Waarschijnlijkheidsdichtheid:
+$$
+j(x,t)=j(x)=\frac{\hbar k}{m}|A|^2=v|A|^2=vP(x)
+$$</li>
+</ul>
+<p>$$
+j=v\cdot P \quad \text{(flux = snelheid × dichtheid)}
+$$</p>
+<h3 id="geval-2-a0--analoge-resultaten">Geval 2: $A=0$ — analoge resultaten</h3>
+<p>$$
+P(x,t)=P(x)=|B|^2
+$$</p>
+<p>$$
+j(x,t)=j(x)=-v|B|^2=-vP(x)
+$$</p>
+<h3 id="geval-3-ab--twee-vlakke-golven-in-tegengestelde-richting">Geval 3: $A=B$ — twee vlakke golven in tegengestelde richting</h3>
+<p>Twee vlakke golven die met gelijke amplitude in tegengestelde richting bewegen.</p>
+<p>$$
+\psi(x,t)=2(A\cos(kx)),e^{-i\omega t}
+$$</p>
+<p>Nulpunten:
+$$
+x_m = \pm\frac{\left(\frac{\pi}{2}+m\pi\right)}{k}, \quad m=0,1,2,\ldots
+$$</p>
+<p>$$
+P(x,t)=P(x)=|2A|^2\cos^2(kx)
+$$</p>
+<p>$$
+j(x,t)=j(x)=0
+$$</p>
+<p>(geen netto stroom, want $\text{Im}(\psi^*(x,t)\frac{\partial\psi(x,t)}{\partial x})=0$)</p>
+<h3 id="geval-4-a-b">Geval 4: $A=-B$</h3>
+<p>$$
+P(x,t)=P(x)=|2A|^2\sin^2(kx)
+$$</p>
+<p>$$
+j(x,t)=j_0=0
+$$</p>
+<h3 id="geval-5-a-en-b-willekeurig">Geval 5: $A$ en $B$ willekeurig</h3>
+<p>Superpositie van 2 vlakke golven in tegengestelde richting met amplitude $A$ en $B$.</p>
+<p>$$
+\psi(x,t)=Ae^{i(kx-\omega t)}+Be^{-i(kx+\omega t)}
+$$</p>
+<p>$$
+P(x,t)=P(x)=|A|^2+|B|^2+\left(AB^*e^{2ikx}+A^*Be^{-2ikx}\right)
+$$</p>
+<p>Met interferentie-effecten tussen de twee golven.</p>
+<p>$$
+j(x,t)=j(x)=\frac{\hbar}{m}\ \text{Im}\left(\psi^*(x,t)\frac{\partial\psi(x,t)}{\partial x}\right)
+=v\left(|A|^2-|B|^2\right)
+$$</p>
+<p>Netto flux van 2 golven: één in de positieve $x$-richting (amplitude $A$) en één in de negatieve $x$-richting (amplitude $B$).</p>
+<hr>
+<h3 id="vrij-deeltje-in-eindige-doos">Vrij deeltje in eindige doos</h3>
+<p>De golffunctie voor een vrij deeltje is <strong>niet</strong> kwadraat integreerbaar. In de praktijk wordt de beweging van het vrij deeltje vaak beperkt tot 1D met behulp van box-normalisatie.</p>
+<p>Met periodieke randvoorwaarden: $\psi_n(x=0)=\psi_n(x=L)$</p>
+<p>Mogelijke impuls- en energie-eigenwaarden:
+$$
+k_n=\frac{2\pi n}{L}, \qquad
+E_n=\frac{\hbar^2k_n^2}{2m}=\frac{2\pi^2\hbar^2}{mL^2}n^2
+\quad (n=0,\pm1,\pm2,\ldots)
+$$</p>
+<p>De golffunctie kan genormeerd worden in de basis-doos $(0\le x\le L)$:
+$$
+\psi_n(x)=\frac{1}{\sqrt{L}}e^{ik_nx}
+\qquad
+\text{met}\quad
+\int_0^L \psi_n^*(x)\psi_n(x),dx=1
+$$</p>
+<h2 id="44-the-potential-barrier">4.4 The potential barrier</h2>
+<p>Het potentiaal is gegeven door:
+$$
+V(x)=
+\begin{cases}
+0, &amp; x&lt;0 \
+V_0, &amp; 0&lt;x&lt;a \
+0, &amp; x&gt;a
+\end{cases}
+$$</p>
+<h3 id="regio-i--inftyxle-0">Regio I: $-\infty&lt;x\le 0$</h3>
+<p>$$
+\psi(x)=Ae^{i\ell x}+Be^{-i\ell x}
+$$</p>
+<p>$$
+E=\frac{\hbar^2\ell^2}{2m}
+$$</p>
+<p>$$
+j_0=v(|A|^2-|B|^2)=j_{\text{inkomend}}-j_{\text{gereflecteerd}}
+$$</p>
+<h3 id="regio-ii-0le-xle-a">Regio II: $0\le x\le a$</h3>
+<p><strong>Geval 1:</strong> $E&lt;V_0$ (klassiek verboden gebied)
+$$
+\psi(x)=Fe^{Kx}+Ge^{-Kx}
+\quad \text{met}\quad
+K=\left[\frac{2m(V_0-E)}{\hbar^2}\right]^{1/2}
+$$</p>
+<p><strong>Geval 2:</strong> $E&gt;V_0$ (klassiek toegestaan)
+$$
+\psi(x)=Fe^{i\ell' x}+Ge^{-i\ell' x}
+\quad \text{met}\quad
+\ell'=\left[\frac{2m(E-V_0)}{\hbar^2}\right]^{1/2}
+$$</p>
+<h3 id="regio-iii-axinfty">Regio III: $a&lt;x&lt;+\infty$</h3>
+<p>$$
+\psi(x)=Ce^{i\ell x}
+$$
+(het deeltje beweegt alleen in de positieve $x$-richting)</p>
+<p>$$
+E=\frac{\hbar^2\ell^2}{2m}
+$$</p>
+<p>$$
+j_0=v|C|^2=j_{\text{doorgelaten}}
+$$</p>
+<h3 id="reflectie--en-transmissieco%C3%ABffici%C3%ABnten">Reflectie- en transmissiecoëfficiënten</h3>
+<p><strong>Reflectiecoëfficiënt:</strong>
+$$
+R=\frac{j_{\text{gereflecteerd}}}{j_{\text{inkomend}}}
+$$</p>
+<p><strong>Transmissiecoëfficiënt:</strong>
+$$
+T=\frac{j_{\text{doorgelaten}}}{j_{\text{inkomend}}}
+$$</p>
+<p>$R$ en $T$ worden berekend via de waarschijnlijkheidsstromen $j(x,t)$ (niet via de positiewaarschijnlijkheid $P(x,t)$).</p>
+<p>$$
+R=\frac{|B|^2}{|A|^2}, \quad T=\frac{|C|^2}{|A|^2}
+$$</p>
+<p>$$
+R+T=\frac{|B|^2+|C|^2}{|A|^2}=1
+$$</p>
+<h3 id="geval-1-ev0-tunneling">Geval 1: $E&lt;V_0$ (tunneling)</h3>
+<p>De golffunctie is continu op $x=0$ en $x=a$:
+$$
+A+B=F+G
+$$</p>
+<p>$$
+Fe^{Ka}+Ge^{-Ka}=Ce^{i\ell a}
+$$</p>
+<p>De afgeleiden moeten ook continu zijn (omdat $V$ eindig is):
+$$
+i\ell(A-B)=K(F-G)
+$$</p>
+<p>$$
+K(Fe^{Ka}-Ge^{-Ka})=i\ell Ce^{i\ell a}
+$$</p>
+<p>Door $F$ en $G$ te elimineren, vinden we $\frac{B}{A}$ en $\frac{C}{A}$:</p>
+<p>$$
+\frac{B}{A}=\frac{(\ell^2+K^2)(e^{2Ka}-1)}{e^{2Ka}(\ell+iK)^2-(\ell-iK)^2}
+$$</p>
+<p>$$
+\frac{C}{A}=\frac{4i\ell K,e^{-i\ell a},e^{Ka}}{e^{2Ka}(\ell+iK)^2-(\ell-iK)^2}
+$$</p>
+<p>Dit leidt tot transmissie- en reflectiecoëfficiënten:</p>
+<p>$$
+T=\frac{|C|^2}{|A|^2}=\left[1+\frac{V_0^2\sinh^2(Ka)}{4E(V_0-E)}\right]^{-1}
+$$</p>
+<p>$$
+R=\frac{|B|^2}{|A|^2}=\left[1+\frac{4E(V_0-E)}{V_0^2\sinh^2(Ka)}\right]^{-1}
+$$</p>
+<p>We kunnen verifiëren: $R+T=1$ ✓</p>
+<p><strong>Opaciteit van de potentiaalbarrière:</strong>
+$$
+\frac{mV_0a^2}{\hbar^2} \quad \text{(maat van kwantummechanische ondoordringbaarheid)}
+$$</p>
+<p><strong>Tunnelingbenadering (tunnel effect):</strong>
+$$
+T \approx \frac{16E(V_0-E)}{V_0^2},e^{-2Ka}
+$$
+Dit is het basis-effect dat in scanning tunneling microscopen wordt gebruikt.</p>
+<h3 id="geval-2-ev0-klassiek-toegestaan">Geval 2: $E&gt;V_0$ (klassiek toegestaan)</h3>
+<p>Voor $E&gt;V_0$ geldt:
+$$
+\psi(x)=Fe^{i\ell' x}+Ge^{-i\ell' x}
+\quad \text{met}\quad
+\ell'=\left[\frac{2m(E-V_0)}{\hbar^2}\right]^{1/2}
+$$</p>
+<p>De reflectie- en transmissiecoëfficiënten zijn:</p>
+<p>$$
+R=\frac{|B|^2}{|A|^2}=\left[1+\frac{4E(E-V_0)}{V_0^2\sin^2(\ell'a)}\right]^{-1}
+$$</p>
+<p>$$
+T=\frac{|C|^2}{|A|^2}=\left[1+\frac{V_0^2\sin^2(\ell'a)}{4E(E-V_0)}\right]^{-1}
+$$</p>
+<p>Verifiëring: $R+T=1$ ✓</p>
+<p><strong>Vergelijking klassiek vs. kwantum:</strong></p>
+<ul>
+<li>Klassiek: $R=0$ en $T=1$ (alles gaat door)</li>
+<li>Kwantum: $R\ne 0$ en $T&lt;1$ (partiële reflectie treedt op!)</li>
+</ul>
+<p><strong>Dimensieloze parameters:</strong>
+$$
+(\ell a)^2=\left(\frac{2mV_0a^2}{\hbar^2}\right)\left(\frac{E}{V_0}\right)
+$$</p>
+<p>$$
+(Ka)^2=\left(\frac{2mV_0a^2}{\hbar^2}\right)\left(1-\frac{E}{V_0}\right)
+$$</p>
+<p>$T$ hangt <strong>alleen af</strong> van twee dimensieloze grootheden:</p>
+<ol>
+<li>De opaciteit $\frac{mV_0a^2}{\hbar^2}$</li>
+<li>De energieverhouding $\frac{E}{V_0}$</li>
+</ol>
+<h2 id="45-the-infinite-square-well">4.5 The infinite square well</h2>
+<p>Het potentiaal is gegeven door:
+$$
+V(x)=
+\begin{cases}
+0, &amp; -a&lt;x&lt;a \
+\infty, &amp; |x|&gt;a
+\end{cases}
+$$</p>
+<p><strong>Randvoorwaarde:</strong> $\psi(x=\pm a)=0$</p>
+<p>Voor $|x|&lt;a$ geldt de Schrödingervergelijking:
+$$
+-\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}=E\psi(x)
+\Rightarrow \frac{d^2\psi(x)}{dx^2}+k^2\psi(x)=0
+$$</p>
+<p>met $k=\left(\frac{2mE}{\hbar^2}\right)^{1/2}$.</p>
+<p><strong>Algemene oplossing:</strong>
+$$
+\psi(x)=A\cos(kx)+B\sin(kx)
+$$</p>
+<p><strong>Toepassing van randvoorwaarden:</strong>
+$$
+A\cos(ka)=0 \quad \text{en} \quad B\sin(ka)=0
+$$</p>
+<h3 id="geval-1-b0-rightarrow-coska0">Geval 1: $B=0 \Rightarrow \cos(ka)=0$</h3>
+<p>De toegestane $k$-waarden zijn:
+$$
+k_m=\frac{m\pi}{2a}=\frac{m\pi}{L}
+\quad (m=1,3,5,\ldots)
+$$</p>
+<p>De corresponderende genormaliseerde eigenfuncties zijn:
+$$
+\psi_m(x)=\frac{1}{\sqrt{a}}\cos\left(\frac{m\pi}{2a}x\right)
+\quad (m=1,3,5,\ldots)
+$$</p>
+<h3 id="geval-2-a0-rightarrow-sinka0">Geval 2: $A=0 \Rightarrow \sin(ka)=0$</h3>
+<p>De genormaliseerde eigenfuncties zijn:
+$$
+\psi_m(x)=\frac{1}{\sqrt{a}}\sin\left(\frac{m\pi}{2a}x\right)
+\quad (m=2,4,\ldots)
+$$</p>
+<p>Met:
+$$
+k_m=\frac{m\pi}{L}
+\quad \text{en} \quad
+\lambda_m=\frac{2\pi}{k_m}=\frac{2L}{m}
+$$</p>
+<h3 id="energiequantisatie">Energiequantisatie</h3>
+<p>De energie is sterk gekwantiseerd met eigenwaarden:
+$$
+E_m=\frac{\hbar^2 k_m^2}{2m}
+=\frac{\hbar^2\pi^2 m^2}{8ma^2}
+=\frac{\hbar^2\pi^2 m^2}{2mL^2}
+\quad (m=1,2,3,\ldots)
+$$</p>
+<hr>
+<h3 id="spectrum-orthogonaliteit-en-nulpuntsenergie">Spectrum, orthogonaliteit en nulpuntsenergie</h3>
+<p>Het energiespectrum bevat een <strong>oneindig aantal</strong> discrete energieniveaus voor gebonden toestanden.</p>
+<p><strong>Orthogonaliteit:</strong> Eigenfuncties $\psi_n(x)$ en $\psi_m(x)$ behorend bij verschillende eigenwaarden $E_n$ en $E_m$ zijn orthogonaal:
+$$
+\int_{-a}^{a}\psi_n^*(x)\psi_m(x),dx=0
+\quad (n\ne m)
+$$</p>
+<p><strong>Nulpuntsenergie:</strong> De laagste energie is:
+$$
+E_1=\frac{\hbar^2\pi^2}{8ma^2}
+$$</p>
+<p><strong>Er is geen nulenergie-toestand!</strong></p>
+<p><strong>Onzekerheidsbeginsel:</strong> Met $\Delta x\approx a$ volgt:
+$$
+\Delta p_x \approx \frac{\hbar}{a}
+$$</p>
+<p>Dit geeft een minimale kinetische energie:
+$$
+\frac{(\Delta p_x)^2}{2m}=\frac{\hbar^2}{2ma^2}=\frac{4E_1}{\pi^2}
+$$</p>
+<h3 id="pariteit-symmetrie">Pariteit (symmetrie)</h3>
+<p>De cosinuseigenfuncties hebben even pariteit:
+$$
+\psi_n(-x)=\psi_n(x)
+$$</p>
+<p>De sinuseigenfuncties hebben oneven pariteit:
+$$
+\psi_n(-x)=-\psi_n(x)
+$$</p>
+<hr>
+<hr>
+<p>If the potential is symmetric the Hamiltonian
+$$
+H=-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)
+$$
+does not change when $x$ is replaced by $-x$ (invariant under parity operation).</p>
+<h2 id="p9-degeneratie-en-symmetrie">(p.9) Degeneratie en symmetrie</h2>
+<p><strong>Geval 1: Niet-gedegenereerde eigenwaarden</strong></p>
+<p>Eigenfuncties $\psi_1(x)$ en $\psi_2(x)$ die bij dezelfde energie $E$ horen, kunnen alleen verschillen door een multiplicatieve constante:
+$$
+\psi_1(x)=c,\psi_2(x)
+$$</p>
+<p>We kunnen de eigenfunctie $\psi(x)$ kiezen met bepaalde pariteit (even of oneven).</p>
+<p><strong>Geval 2: Gedegenereerde eigenwaarden</strong></p>
+<p>Meer dan één lineair onafhankelijke eigenfunctie kan dezelfde energieeigenwaarde hebben. Het is echter altijd mogelijk lineaire combinaties te construeren die bepaalde pariteit hebben.</p>
+<hr>
+<h2 id="47-the-harmonic-oscillator">4.7 The harmonic oscillator</h2>
+<h3 id="energie">Energie</h3>
+<p>$$
+E=\frac{1}{2}m\dot{x}^{,2}+\frac{1}{2}kx^2
+=\frac{1}{2}m\dot{x}^{,2}+V(x)
+$$</p>
+<h3 id="potentiaal">Potentiaal</h3>
+<p>$$
+V(x)=\frac{1}{2}kx^2=\frac{1}{2}m\omega^2x^2
+\qquad\text{met}\qquad
+\omega=\sqrt{\frac{k}{m}}
+$$</p>
+<h3 id="lho-in-de-klassieke-mechanica">LHO in de klassieke mechanica</h3>
+<p>$$
+\frac{d^2x}{dt^2}=-\omega^2x
+\Rightarrow x(t)=x_0\cos(\omega t)
+$$
+(waar $x_0$ bepaald wordt door de startcondities)</p>
+<p>$$
+v_{\max}=\omega x_0
+$$</p>
+<p>$$
+T=\frac{2\pi}{\omega}\quad \text{(interval }(-x_0,x_0)\text{)}
+$$</p>
+<p>de “turning points” (waar $v=0$):
+$$
+\frac{1}{2}kx_0^2=E
+\Rightarrow
+x_0=\sqrt{\frac{2E}{k}}=\sqrt{\frac{2E}{m\omega^2}}
+$$</p>
+<h3 id="lho-in-de-quantum-mechanica">LHO in de quantum mechanica</h3>
+<p>TISE:
+$$
+-\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}+\frac{1}{2}m\omega^2x^2,\psi(x)=E\psi(x)
+$$</p>
+<p><strong>Dimensieloze eigenwaarden:</strong>
+$$
+\lambda=\frac{2E}{\hbar\omega}
+\quad \text{met} \quad
+\omega=\left(\frac{k}{m}\right)^{1/2}
+$$</p>
+<p>Definieer de dimensieloze variabele $\xi=\alpha x$ met:
+$$
+\alpha=\left(\frac{m\omega}{\hbar}\right)^{1/2}
+$$</p>
+<p>De Schrödingervergelijking wordt:
+$$
+\frac{d^2\psi(\xi)}{d\xi^2}+(\lambda-\xi^2)\psi(\xi)=0
+$$</p>
+<p><strong>Voor grote</strong> $|\xi|$:
+$$
+\psi(\xi)=e^{-\xi^2/2}
+$$</p>
+<p>Dit voldoet asymptotisch aan de vergelijking voor $\xi\to\infty$.</p>
+<p><strong>Voor alle waarden van</strong> $\xi$:
+$$
+\psi(\xi)=e^{-\xi^2/2}H(\xi)
+$$</p>
+<p>Hieruit volgt voor $H(\xi)$ de <strong>Hermite-vergelijking</strong>:
+$$
+\frac{d^2H}{d\xi^2}-2\xi\frac{dH}{d\xi}+(\lambda-1)H=0
+$$</p>
+<h3 id="energieniveaus">Energieniveaus</h3>
+<p><strong>Energiespectrum van de LHO:</strong>
+$$
+E_n=\left(n+\frac{1}{2}\right)\hbar\omega
+\quad (n=0,1,2,\ldots)
+$$</p>
+<p><strong>Laagste toestand</strong> $(n=0)$:
+$$
+E_0=\frac{1}{2}\hbar\omega \quad \text{(nulpuntsenergie)}
+$$</p>
+<h3 id="hermite-polynomen">Hermite-polynomen</h3>
+<p>$$
+\psi_n(\xi)=\text{(const)} \cdot e^{-\xi^2/2}H_n(\xi)
+$$</p>
+<p>waar $H_n(\xi)$ een polynoom van orde $n$ is.</p>
+<p>Zowel $\psi_n(\xi)$ als $H_n(\xi)$ hebben pariteit $(-1)^n$.</p>
+<p>De polynomen $H_n(\xi)$ voldoen aan de Hermite-vergelijking met $\lambda=2n+1$:
+$$
+\frac{d^2H_n}{d\xi^2}-2\xi\frac{dH_n}{d\xi}+2nH_n=0
+$$</p>
+<p><strong>Definitie van Hermite-polynomen:</strong>
+$$
+H_n(\xi)=(-1)^n e^{\xi^2}\frac{d^n}{d\xi^n}\left(e^{-\xi^2}\right)
+$$</p>
+<p><strong>De eerste Hermite-polynomen</strong> zijn:
+$$
+H_0(\xi)=1
+$$</p>
+<p>$$
+H_1(\xi)=2\xi
+$$</p>
+<p>$$
+H_2(\xi)=4\xi^2-2
+$$</p>
+<p>$$
+H_3(\xi)=8\xi^3-12\xi
+$$</p>
+<p>$$
+H_4(\xi)=16\xi^4-48\xi^2+12
+$$</p>
+<p>$$
+H_5(\xi)=32\xi^5-160\xi^3+120\xi
+$$</p>
+<h3 id="orthogonaliteit-en-normering">Orthogonaliteit en normering</h3>
+<p><strong>Orthogonaliteit:</strong>
+$$
+\int_{-\infty}^{\infty}e^{-\xi^2}H_m(\xi)H_n(\xi),d\xi=0
+\quad (m\ne n)
+$$</p>
+<p><strong>Normering:</strong>
+$$
+\int_{-\infty}^{\infty}e^{-\xi^2}H_n^2(\xi),d\xi=\sqrt{\pi},2^n n!
+$$</p>
+<h3 id="eigenfuncties-en-eigenwaarden-van-de-lho">Eigenfuncties en eigenwaarden van de LHO</h3>
+<p><strong>Energie-eigenfuncties:</strong>
+$$
+\psi_n(x)=\left(\frac{\alpha}{\sqrt{\pi},2^n n!}\right)^{1/2}
+e^{-\alpha^2x^2/2},H_n(\alpha x)
+\quad \text{met} \quad
+\alpha=\sqrt{m\omega/\hbar}
+$$</p>
+<p><strong>Orthonormaliteit</strong> (omdat de Hamiltoniaan hermitisch is):
+$$
+\langle m|n\rangle=\int_{-\infty}^{\infty}\psi_m^*(x)\psi_n(x),dx=\delta_{mn}
+$$</p>
+<p><strong>Verwachtingswaarde van</strong> $x$:
+$$
+\langle x\rangle=\int_{-\infty}^{\infty}\psi_n^*(x),x,\psi_n(x),dx=0
+$$</p>
+<p>(omdat $\psi_n$ even of oneven is)</p>
+<hr>
+<h3 id="bewijs-van-generating-function-4178">Bewijs van Generating Function (4.178)</h3>
+<p>$$
+I=\int_{-\infty}^{\infty}e^{-\xi^2},e^{(-s^2+2s\xi)},e^{(-t^2+2t\xi)},d\xi
+$$</p>
+<p>$$
+=\int_{-\infty}^{\infty}e^{-\xi^2},e^{2\xi(s+t)},e^{-(s^2+t^2)},d\xi
+$$</p>
+<p>$$
+=e^{-(s^2+t^2)}\int_{-\infty}^{\infty}e^{-(\xi^2-2\xi(s+t))},d\xi
+$$</p>
+<p>$$
+=e^{-(s^2+t^2)}\int_{-\infty}^{\infty}e^{-(\xi-(s+t))^2},e^{(s+t)^2},d\xi
+$$</p>
+<p>$$
+=e^{-(s^2+t^2)},e^{(s+t)^2}\int_{-\infty}^{\infty}e^{-(\xi-(s+t))^2},d\xi
+$$</p>
+<p>Stel $u=\xi-(s+t)$:
+$$
+I=e^{2st}\int_{-\infty}^{\infty}e^{-u^2},du
+$$</p>
+<p>Omdat
+$$
+\int_{-\infty}^{\infty}e^{-u^2},du=\sqrt{\pi}
+$$</p>
+<p>volgt:
+$$
+I=\sqrt{\pi},e^{2st}
+\quad \square
+$$</p>
+
+</body>
+</html>
