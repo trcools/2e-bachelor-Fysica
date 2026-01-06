@@ -1,0 +1,9 @@
+from: markdown+tex_math_dollars
+pdf-engine: tectonic
+toc: true
+number-sections: true
+include-in-header:
+  - preamble.tex
+metadata:
+  title: Algemene Samenvatting Kwantum
+  lang: nl
