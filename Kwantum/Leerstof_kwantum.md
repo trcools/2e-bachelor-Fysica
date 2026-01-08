@@ -55,4 +55,50 @@
 9. ~~Padintegralen~~ **Niet te kennen**
 10. ~~Symmetrieprincipes en behoudswetten~~ **Niet te kennen**
 11. De klassieke limiet
-    + **Niet**: _"De Hamilton-Jacobi vergelijking (p258-259)_
+    + **Niet**: _"De Hamilton-Jacobi vergelijking" (p258-259)_
+
+
+
+## Meest “gerecycleerde” examenvragen (op basis van de bundel)
+
+Hier is de harde realiteit: de prof heeft een paar comfort-food thema’s waar die bijna elk jaar op terugvalt.
+
+### Tier 1 — komt constant terug
+1. **Deeltje in een oneindig diepe put (particle in a box)**  
+    Superpositie van eigenstaten, $P(x,t)$, $\langle H\rangle$, pariteit, metingen, soms $j(x,t)$.  
+   (Meerdere jaren: 2011, 2012, 2017, 2022, 2023, 2025, …)
+
+2. **Waarschijnlijkheidsstroom $j$ + continuïteit/behoud van kans**  
+   Ook heel vaak, soms in de put, soms algemeen.
+
+3. **Operatoralgebra**  
+    Commutatoren, hermiticiteit/anti-hermiticiteit, functies van operatoren, unitairheid (bv. $e^{iA}$), matrixrepresentaties.
+
+4. **Heisenberg-onzekerheid**  
+   (i) bewijs/algemene vorm, of (ii) kwalitatieve energiebovengrens/energieschatting in een potentiaal.
+
+### Tier 2 — zeer belangrijk
+5. **Tijdsevolutieoperator $U(t,t_0)$**  
+   Unitariteit, link met Hamiltoniaan, soms propagator.
+
+6. **Impulsruimte/Fourier en verwachtingswaarden in $p$-ruimte**  
+    $\Phi(p)$, $\langle x\rangle$ als afgeleide in $p$-ruimte, enz.
+
+7. **Harmonische oscillator (LHO)**  
+    Superpositie van $\psi_n$, tijdsevolutie van verwachtingswaarden, onzekerheden.
+
+### Tier 3 — af en toe, maar kan veel punten zijn
+8. **Scattering aan step/barrière (tunneling)**  
+    $R,T$, limieten, $\kappa$.
+
+9. **Compton-effect / “QM meets experiment”**  
+    Afleiding van $\Delta\lambda$.
+
+10. **2-deeltjessysteem (CM/relatieve coördinaat), impulsruimte**  
+    Meer niche, maar wel examenvraag geweest.
+
+**Pragmatische strategie:** als je in weinig tijd maximaal punten wil “kopen”, word absurd vlot in  
+**(i)** superpositie → tijdsevolutie → metingsprobabiliteiten,  
+**(ii)** $j$ en continuïteit,  
+**(iii)** commutator-trucs + hermitisch/unitair,  
+**(iv)** onzekerheidsprincipe (bewijs én energieschatting).
