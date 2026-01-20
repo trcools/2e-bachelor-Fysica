@@ -28,18 +28,17 @@ import numpy as np
 
 import sympy as sp
 from sympy.solvers import solve
-from sympy import Symbol, re, im, Matrix, symbols, Eq
+from sympy import Symbol, Matrix, symbols, Eq
     
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from mpl_toolkits.mplot3d import Axes3D 
 
 import scipy
+from scipy.signal import find_peaks
 
 from ipywidgets import interact
     
-import tqdm
-from tqdm.auto import tqdm
 
 # =============================================================================
 # General Parameters
@@ -525,7 +524,7 @@ def compute_jacobian_and_stability(sols, x, y, z, small_c=False):
                                                            a_val=a, b_val=b))
     return all_equilibria
  
-def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=dt, small_c=False):
+def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, h=dt, small_c=False):
     """
     Collect the Jacobian eigenvalues of all real equilibria as a function of c.
 
@@ -541,7 +540,7 @@ def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=d
         Parameter symbols.
     a_val, b_val : float
         Rössler parameters.
-    dt : float
+    h : float
         Step in c-space.
     small_c : bool
         Whether to scan [0,2) or [2,18).
@@ -553,9 +552,9 @@ def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=d
         values: list of eigenvalue arrays (one per equilibrium at that c).
     """
     if small_c:
-        c_values = np.arange(0, 2, dt)
+        c_values = np.arange(0, 2, h)
     else:
-        c_values = np.arange(2, 18, dt)
+        c_values = np.arange(2, 18, h)
     eigvals_by_c = {}
 
     for c_val in c_values:
@@ -660,7 +659,8 @@ def find_euler_dt_for_rk4_precision(a, b, c, ic, t_min, t_max, h_rk4=0.1, h0_eul
 # ============================================================
 
 
-def get_Z_maxima(a, b, c, initial_condition, skip_first=5, t_min=0, t_max=100, dt=0.01):
+def get_Z_maxima(a, b, c, initial_condition, skip_first=5, t_min=0, t_max=100, dt=0.01,
+                 prominence=None, distance=None):
     """
     Determine the local maxima Z_n of Z(t) for a given c.
 
@@ -677,6 +677,13 @@ def get_Z_maxima(a, b, c, initial_condition, skip_first=5, t_min=0, t_max=100, d
     dt : float
         Time step.
 
+    Additional peak parameters (passed to scipy.signal.find_peaks)
+    -------------------------------------------------------------
+    prominence : float or None
+        Minimum prominence of peaks; helps ignore small noisy bumps.
+    distance : float or None
+        Minimum horizontal distance between neighboring peaks (in samples).
+
     Returns
     -------
     t_max : ndarray
@@ -687,18 +694,11 @@ def get_Z_maxima(a, b, c, initial_condition, skip_first=5, t_min=0, t_max=100, d
     t, _, _, z = get_RK4_vectors(a=a, b=b, c=c, initial_condition=initial_condition,
                              t_min=t_min, t_max=t_max, dt=dt)
 
+    # Robust peak detection using prominence/distance to suppress noise-driven peaks
+    peaks, _ = find_peaks(z, prominence=prominence, distance=distance)
 
-    t_max = []
-    Z_max = []
-
-    # How we find the maxima: z[i-1] < z[i] > z[i+1]
-    for i in range(1, len(z) - 1):
-        if z[i] > z[i-1] and z[i] > z[i+1]:
-            t_max.append(t[i])
-            Z_max.append(z[i])
-
-    Z_max = np.array(Z_max)
-    t_max = np.array(t_max)
+    Z_max = z[peaks]
+    t_max = t[peaks]
 
     # Throw the first maxima away ('skip_first').
     if len(Z_max) > skip_first:
