@@ -41,7 +41,71 @@ from mpl_toolkits.mplot3d import Axes3D
 
 import scipy
 
-from ipywidgets import interact
+from ipywidgets import interact, FloatSlider, HBox, interactive_output
+from IPython.display import display
+
+
+# =============================================================================
+# Interactive Plot Helper Function
+# =============================================================================
+
+def create_interactive_plot(plot_func, slider_configs, n_cols=3):
+    """
+    Create an interactive plot with dynamically generated sliders.
+    
+    This helper function eliminates code duplication for interactive plotting
+    by handling slider creation, layout, and output display.
+    
+    Parameters
+    ----------
+    plot_func : callable
+        Function that takes slider values as keyword arguments and creates the plot.
+        Example: def my_plot(a_val, b_val, c_val, x0_val, ...): ...
+    
+    slider_configs : dict
+        Dictionary mapping slider names to their configurations.
+        Each value should be a dict with keys: 'value', 'min', 'max', 'step'
+        Example: {'a': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05}, ...}
+    
+    n_cols : int, optional
+        Number of sliders to display per row (default: 3)
+    
+    Returns
+    -------
+    None
+        Displays the interactive plot in the notebook cell.
+    
+    Example
+    -------
+    >>> slider_configs = {
+    ...     'a': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05},
+    ...     'b': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05},
+    ...     'c': {'value': 5.7, 'min': 0.05, 'max': 11.4, 'step': 0.05},
+    ... }
+    >>> def my_plot(a, b, c):
+    ...     # plotting code here
+    ...     pass
+    >>> create_interactive_plot(my_plot, slider_configs, n_cols=3)
+    """
+    # Create sliders from configurations
+    sliders = {}
+    for name, config in slider_configs.items():
+        sliders[name] = FloatSlider(
+            value=config['value'],
+            min=config['min'],
+            max=config['max'],
+            step=config['step'],
+            description=f'{name}:'
+        )
+    
+    # Display sliders in rows
+    slider_list = list(sliders.values())
+    for i in range(0, len(slider_list), n_cols):
+        display(HBox(slider_list[i:i+n_cols]))
+    
+    # Create and display interactive output
+    output = interactive_output(plot_func, sliders)
+    display(output)
 
 
 # =============================================================================
@@ -220,7 +284,7 @@ def plot_3d_trajectory(ax, t, x, y, z, *, c, a=a, b=b, initial_condition=None,
     
     # Create label for trajectory
     if initial_condition is not None:
-        traj_label = f"Trajectory IC={initial_condition}"
+        traj_label = f"Trajectory IC=({initial_condition[0]:.2f}, {initial_condition[1]:.2f}, {initial_condition[2]:.2f})"
     else:
         traj_label = "Trajectory"
     
@@ -814,61 +878,84 @@ def plot_bifurcation(param_name, param_values, a, b, c, ic, **kwargs):
 
 
 # ============================================================
-# Notebook Convenience Wrappers
-# ============================================================
-
-
-def _with_defaults(a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None):
-    """
-    Resolve defaults from get_parameters() while allowing overrides.
-    Returns (a, b, c, initial_condition, t_min, t_max, dt).
-    """
-    a0, b0, c0, tmin0, tmax0, dt0, ic0, _ = rossler.get_parameters()
-    return (
-        a if a is not None else a0,
-        b if b is not None else b0,
-        c if c is not None else c0,
-        initial_condition if initial_condition is not None else ic0,
-        t_min if t_min is not None else tmin0,
-        t_max if t_max is not None else tmax0,
-        dt if dt is not None else dt0,
-    )
-
-
-# ===========================================================
 # Wrappers used in notebook cells
 # ===========================================================
 
 # --- 3.1 Basic Visualization ---
-def nb_show_attractor(a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None):
-    """Show 3D attractor (identical to notebook cell)."""
-    a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, initial_condition, t_min, t_max, dt)
-    plot_3d_attractor(a=a, b=b, c=c, initial_condition=ic,
-                      t_min=t_min, t_max=t_max, dt=dt, figsize=(12, 5))
-    plt.show()
+def nb_show_attractor(a, b, c, initial_condition, t_min, t_max, dt):
+    """Show 3D attractor with interactive sliders for parameters and initial conditions."""
+    x0, y0, z0 = initial_condition
+    
+    # Define slider configurations
+    slider_configs = {
+        'a': {'value': a, 'min': 0.05, 'max': 0.4, 'step': 0.05},
+        'b': {'value': b, 'min': 0.05, 'max': 0.4, 'step': 0.05},
+        'c': {'value': c, 'min': 0.05, 'max': 11.4, 'step': 0.05},
+        'x0': {'value': x0, 'min': -30, 'max': 30, 'step': 0.1},
+        'y0': {'value': y0, 'min': -30, 'max': 30, 'step': 0.1},
+        'z0': {'value': z0, 'min': -30, 'max': 30, 'step': 0.1},
+    }
+    
+    # Define plotting function
+    def _plot(a, b, c, x0, y0, z0):
+        ic_val = (x0, y0, z0)
+        plot_3d_attractor(a=a, b=b, c=c, initial_condition=ic_val,
+                          t_min=t_min, t_max=t_max, dt=dt, figsize=(12, 5))
+        plt.show()
+    
+    # Create interactive plot
+    create_interactive_plot(_plot, slider_configs, n_cols=3)
 
 # --- All three 2D projections ---
-def nb_show_projections(a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None, skip_first_frac=0.2):
-    """Show all three 2D projections (identical to notebook cell)."""
-    a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, initial_condition, t_min, t_max, dt)
-    plot_projections_2D(a=a, b=b, c=c, initial_condition=ic,
-                        t_min=t_min, t_max=t_max, dt=dt, method="RK45",
-                        figsize=(15, 5), skip_first_frac=skip_first_frac)
-    plt.show()
+def nb_show_projections(a, b, c, initial_condition, t_min, t_max, dt, skip_first_frac=0.2):
+    """Show all three 2D projections with interactive sliders."""
+    x0, y0, z0 = initial_condition
+    
+    # Define slider configurations
+    slider_configs = {
+        'a': {'value': a, 'min': 0.05, 'max': 0.4, 'step': 0.05},
+        'b': {'value': b, 'min': 0.05, 'max': 0.4, 'step': 0.05},
+        'c': {'value': c, 'min': 0.05, 'max': 11.4, 'step': 0.05},
+        'x0': {'value': x0, 'min': -10, 'max': 10, 'step': 0.1},
+        'y0': {'value': y0, 'min': -10, 'max': 10, 'step': 0.1},
+        'z0': {'value': z0, 'min': -10, 'max': 10, 'step': 0.1},
+    }
+    
+    # Define plotting function
+    def _plot(a, b, c, x0, y0, z0):
+        ic_val = (x0, y0, z0)
+        plot_projections_2D(a=a, b=b, c=c, initial_condition=ic_val,
+                           t_min=t_min, t_max=t_max, dt=dt, method="RK45",
+                           figsize=(15, 5), skip_first_frac=skip_first_frac)
+        plt.show()
+    
+    # Create interactive plot
+    create_interactive_plot(_plot, slider_configs, n_cols=3)
 
 # --- Time series plots ---
-def nb_time_series(a=None, b=None, c=None, initial_condition=None, t_min=None, t_max=None, dt=None):
-    """Show x(t), y(t), z(t) time series."""
-    a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, initial_condition, t_min, t_max, dt)
-    plot_time_series(a=a, b=b, c=c, initial_condition=ic,
-                     t_min=t_min, t_max=t_max, dt=dt, figsize=(14, 8))
-    plt.show()
+def nb_time_series(a, b, c, initial_condition, t_min, t_max, dt):
+    """Show x(t), y(t), z(t) time series with interactive sliders."""
+    x0, y0, z0 = initial_condition
+    
+    # Define slider configurations
+    slider_configs = {
+        't_min': {'value': t_min, 'min': 0.0, 'max': 100.0, 'step': 10},
+        't_max': {'value': t_max, 'min': 10, 'max': 500.0, 'step': 10},
+    }
+    
+    # Define plotting function
+    def _plot(t_min, t_max):
+        ic_val = (x0, y0, z0)
+        plot_time_series(a=a, b=b, c=c, initial_condition=ic_val,
+                        t_min=t_min, t_max=t_max, dt=dt, figsize=(14, 8))
+        plt.show()
+    
+    # Create interactive plot
+    create_interactive_plot(_plot, slider_configs, n_cols=3)
 
 # --- Part 3.3: Compare Different Initial Conditions ---
-def nb_compare_initial_conditions(a=None, b=None, c=None, initial_conditions=None,
-                                  t_min=None, t_max=None, dt=None, skip_first_frac=0.2):
+def nb_compare_initial_conditions(a, b, c, initial_conditions, t_min, t_max, dt, skip_first_frac=0.2):
     """Compare trajectories from several initial conditions."""
-    a, b, c, _, t_min, t_max, dt = _with_defaults(a, b, c, None, t_min, t_max, dt)
     if initial_conditions is None:
         # Use defaults list from get_parameters
         _, _, _, _, _, _, _, initial_conditions = rossler.get_parameters()
@@ -877,12 +964,11 @@ def nb_compare_initial_conditions(a=None, b=None, c=None, initial_conditions=Non
     plt.show()
 
 # --- Return map + cobweb in one go ---
-def nb_return_map_and_cobweb(a=None, b=None, c=5.7, initial_condition=None,
-                             t_min=None, t_max=None, dt=None,
+def nb_return_map_and_cobweb(a, b, c, initial_condition, t_min, t_max, dt,
                              skip_first_maxima=5, cobweb_skip_first=50, n_iter=15,
                              show_cobweb=True, use_widget=False):
-    """Plot Z(t) with maxima plus return map; cobweb overlay is optional (widget-capable)."""
-    a, b, c, ic, t_min, t_max, dt = _with_defaults(a, b, c, initial_condition, t_min, t_max, dt)
+    """Plot Z(t) with maxima plus return map; cobweb overlay is optional."""
+    ic = initial_condition
 
     # Time series (short window) with marked maxima
     t_ts, z_ts_data, t_series, z_series = rossler.get_Z_maxima(a, b, c, ic, t_min=0, t_max=200, dt=dt)
@@ -986,29 +1072,48 @@ def nb_return_map_and_cobweb(a=None, b=None, c=5.7, initial_condition=None,
             pass
 
 
-    
-
 # --- Butterfly effect plot --- 
-def nb_butterfly_effect(a=None, b=None, c=5.7, initial_condition=None, delta=1e-6, t_min=50, t_max=280, dt=None):
-    """Show butterfly effect plot (two nearby initial conditions)."""
-    a, b, c, ic, _, _, dt = _with_defaults(a, b, c, initial_condition, None, None, dt)
-    show_butterfly_effect(a=a, b=b, c=c, initial_condition=ic, delta=delta, t_min=t_min, t_max=t_max, dt=dt)
+def nb_butterfly_effect(a, b, c, initial_condition, delta=1e-6, t_min=50, t_max=280, dt=0.01):
+    """Show butterfly effect plot with interactive sliders."""
+    x0, y0, z0 = initial_condition
+    
+    # Define slider configurations
+    slider_configs = {
+        't_min': {'value': t_min, 'min': 0.0, 'max': 100.0, 'step': 10},
+        't_max': {'value': t_max, 'min': 10, 'max': 500.0, 'step': 10},
+    }
+    
+    # Define plotting function
+    def _plot(t_min, t_max):
+        ic_val = (x0, y0, z0)
+        show_butterfly_effect(a=a, b=b, c=c, initial_condition=ic_val, 
+                            delta=delta, t_min=t_min, t_max=t_max, dt=dt)
+    
+    # Create interactive plot
+    create_interactive_plot(_plot, slider_configs, n_cols=3)
 
 # --- Sensitivity to initial conditions plot ---
-def nb_plot_sensitivity(c=5.7, t_min=None, t_max=None, dt=None, delta=1e-6):
-    """Plot distance growth on lin/log scale as sensitivity visualization."""
-    _, _, _, _, t_min, t_max, dt = _with_defaults(None, None, None, None, t_min, t_max, dt)
-    plot_sensitivity_to_initial_conditions(c=c, t_min=t_min, t_max=t_max, dt=dt, delta=delta)
+def nb_plot_sensitivity(c, t_min, t_max, dt, delta=1e-6):
+    """Plot distance growth with interactive sliders."""
+    # Define slider configurations
+    slider_configs = {
+        'c': {'value': c, 'min': 0.05, 'max': 11.4, 'step': 0.05},
+        'delta': {'value': delta, 'min': 1e-8, 'max': 1e-4, 'step': 1e-7},
+    }
+    
+    # Define plotting function
+    def _plot(c, delta):
+        plot_sensitivity_to_initial_conditions(c=c, t_min=t_min, t_max=t_max, 
+                                              dt=dt, delta=delta)
+    
+    # Create interactive plot
+    create_interactive_plot(_plot, slider_configs, n_cols=2)
 
 # --- Parameter sweep for c values ---
-def nb_parameter_sweep(c_values=None, a=0.1, b=0.1, initial_condition=None,
-                       t_min=0.0, t_max=200, dt=None):
+def nb_parameter_sweep(c_values, a, b, initial_condition, t_min, t_max, dt):
     """Show attractor panels for a list of c values."""
-    a, b, _, ic, t_min, _, dt = _with_defaults(a, b, None, initial_condition, t_min, None, dt)
-    if c_values is None:
-        c_values = [4, 6, 8.5, 8.7, 9, 12]
     plot_parameter_sweep(a=a, b=b, c_values=c_values,
-                        initial_condition=ic, t_min=t_min, t_max=t_max, dt=dt,
+                        initial_condition=initial_condition, t_min=t_min, t_max=t_max, dt=dt,
                         figsize=(15, 10))
     plt.show()
 
@@ -1029,44 +1134,55 @@ def nb_bifurcation_vs_b(a=0.2, c=5.7, b_min=0.0, b_max=1.0, n=400,
     plt.show()
     return fig
 # --- Euler vs RK4 Comparison ---
-def nb_compare_euler_vs_rk4(a=None, b=None, c=None, initial_condition=None,
-                            t_min=None, t_max=None, h_rk4=0.1, h_euler=None,
-                            h0_euler=0.1, max_halvings=20):
-    """Compare Euler vs RK4 trajectories and show shared legend."""
-    a, b, c, ic, t_min, t_max, _ = _with_defaults(a, b, c, initial_condition, t_min, t_max, None)
-
-    results = rossler.compare_euler_vs_rk4(
-        a, b, c, ic, t_min, t_max, h_rk4, h_euler, h0_euler, max_halvings
-    )
-
-    t_ref, x_ref, y_ref, z_ref = results['t_ref'], results['x_ref'], results['y_ref'], results['z_ref']
-    t_eu, x_eu, y_eu, z_eu = results['t_eu'], results['x_eu'], results['y_eu'], results['z_eu']
-    h_best = results['h_euler']
+def nb_compare_euler_vs_rk4(a, b, c, initial_condition, t_min, t_max, 
+                            h_rk4=0.1, h_euler=None, h0_euler=0.1, max_halvings=20):
+    """Compare Euler vs RK4 trajectories with interactive sliders."""
+    x0, y0, z0 = initial_condition
     
-    # Print error statistics
-    print(f"Max |Δx|: {results['max_err_x']:.3e} | Max |Δy|: {results['max_err_y']:.3e} | Max |Δz|: {results['max_err_z']:.3e}")
+    # Define slider configurations
+    slider_configs = {
+        't_max': {'value': t_max, 'min': 1.0, 'max': 500.0, 'step': 1.0},
+    }
     
-    # Create comparison plots
-    fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
+    # Define plotting function
+    def _plot(t_max):
+        ic_val = (x0, y0, z0)
+        
+        results = rossler.compare_euler_vs_rk4(
+            a, b, c, ic_val, t_min, t_max, h_rk4, h_euler, h0_euler, max_halvings
+        )
 
-    axes[0].plot(t_ref, x_ref, label='RK4 h=0.1')
-    axes[0].plot(t_eu, x_eu, '--', label=f'Euler h={h_best:.4f}')
-    axes[0].set_ylabel('x(t)')
-    axes[0].grid(True, alpha=0.3)
+        t_ref, x_ref, y_ref, z_ref = results['t_ref'], results['x_ref'], results['y_ref'], results['z_ref']
+        t_eu, x_eu, y_eu, z_eu = results['t_eu'], results['x_eu'], results['y_eu'], results['z_eu']
+        h_best = results['h_euler']
+        
+        # Print error statistics
+        print(f"Max |Δx|: {results['max_err_x']:.3e} | Max |Δy|: {results['max_err_y']:.3e} | Max |Δz|: {results['max_err_z']:.3e}")
+        
+        # Create comparison plots
+        fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
 
-    axes[1].plot(t_ref, y_ref, label='RK4 h=0.1')
-    axes[1].plot(t_eu, y_eu, '--', label=f'Euler h={h_best:.4f}')
-    axes[1].set_ylabel('y(t)')
-    axes[1].grid(True, alpha=0.3)
+        axes[0].plot(t_ref, x_ref, label=f'RK4 h={h_rk4:.3f}')
+        axes[0].plot(t_eu, x_eu, '--', label=f'Euler h={h_best:.4f}')
+        axes[0].set_ylabel('x(t)')
+        axes[0].grid(True, alpha=0.3)
 
-    axes[2].plot(t_ref, z_ref, label='RK4 h=0.1')
-    axes[2].plot(t_eu, z_eu, '--', label=f'Euler h={h_best:.4f}')
-    axes[2].set_ylabel('z(t)')
-    axes[2].set_xlabel('t')
-    axes[2].grid(True, alpha=0.3)
+        axes[1].plot(t_ref, y_ref, label=f'RK4 h={h_rk4:.3f}')
+        axes[1].plot(t_eu, y_eu, '--', label=f'Euler h={h_best:.4f}')
+        axes[1].set_ylabel('y(t)')
+        axes[1].grid(True, alpha=0.3)
 
-    fig_legend_dedup(fig, axes[0], loc='lower center', ncol=2, bbox_to_anchor=(0.5, 0.0),
-                     frameon=True, fontsize=10, edgecolor='black')
+        axes[2].plot(t_ref, z_ref, label=f'RK4 h={h_rk4:.3f}')
+        axes[2].plot(t_eu, z_eu, '--', label=f'Euler h={h_best:.4f}')
+        axes[2].set_ylabel('z(t)')
+        axes[2].set_xlabel('t')
+        axes[2].grid(True, alpha=0.3)
 
-    plt.tight_layout(rect=[0, 0.05, 1, 1])
-    plt.show()
+        fig_legend_dedup(fig, axes[0], loc='lower center', ncol=2, bbox_to_anchor=(0.5, 0.0),
+                         frameon=True, fontsize=10, edgecolor='black')
+
+        plt.tight_layout(rect=[0, 0.05, 1, 1])
+        plt.show()
+    
+    # Create interactive plot
+    create_interactive_plot(_plot, slider_configs, n_cols=3)

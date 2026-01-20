@@ -60,9 +60,12 @@ def get_parameters():
     x0, y0, z0 = 1, 1, 1
     initial_condition = (x0, y0, z0)
     
-    initial_conditions = [(1, 1, 1),
-                          (2, 1, 0),
-                          (-1, 2, 1),]
+    initial_conditions = [
+        (0.1, 0.1, 0.1),
+        (5.0, 5.0, 5.0),
+        (-5.0, 2.0, 1.0),
+        (0.5, 0.5, 0.5)
+    ]
     return a, b, c, t_min, t_max, dt, initial_condition, initial_conditions
 
 # ------- parameters ----
