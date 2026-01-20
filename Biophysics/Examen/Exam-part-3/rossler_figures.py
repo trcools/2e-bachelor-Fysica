@@ -308,7 +308,7 @@ def plot_3d_attractor(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
     fig_legend_dedup(fig, ax1, loc='lower center', ncol=4, bbox_to_anchor=(0.5, 0.1), 
                      frameon=True, fontsize=8, edgecolor='black')
     
-    plt.tight_layout(rect=[0, 0.08, 1, 1])
+    plt.tight_layout(rect=[0, 0.08, 1, 1]) 
     return fig
 
 def plot_projections_2D(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
