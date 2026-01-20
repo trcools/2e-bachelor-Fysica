@@ -32,7 +32,8 @@ import numpy as np
 
 import sympy as sp
 from sympy.solvers import solve
-from sympy import Symbol, re, im, Matrix, symbols, Eq
+from sympy import Symbol, Matrix, symbols, Eq
+from collections import OrderedDict
     
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -41,9 +42,87 @@ from mpl_toolkits.mplot3d import Axes3D
 import scipy
 
 from ipywidgets import interact
+
+
+# =============================================================================
+# Legend Helper Functions
+# =============================================================================
+
+def legend_dedup(ax, *, loc="best", **kwargs):
+    """
+    Create a legend on ax, deduplicating entries by (label, handle_type).
     
-import tqdm
-from tqdm.auto import tqdm
+    Removes "_nolegend_" entries and empty labels.
+    
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Axes object on which to place the legend.
+    loc : str, optional
+        Legend location (passed to ax.legend).
+    **kwargs : dict
+        Additional keyword arguments passed to ax.legend.
+    """
+    handles, labels = ax.get_legend_handles_labels()
+    uniq = OrderedDict()
+    for h, lab in zip(handles, labels):
+        if not lab or lab == "_nolegend_":
+            continue
+        key = (lab, type(h).__name__)
+        uniq.setdefault(key, (h, lab))
+    if uniq:
+        legend = ax.legend([h for h, _ in uniq.values()],
+                           [lab for _, lab in uniq.values()],
+                           loc=loc, **kwargs)
+        # Ensure a thin border when frameon=True
+        if legend and legend.get_frame():
+            legend.get_frame().set_linewidth(0.5)
+
+
+def fig_legend_dedup(fig, ax_list, *, loc="best", **kwargs):
+    """
+    Create a shared legend on figure, collecting and deduplicating from multiple axes.
+    
+    Removes "_nolegend_" entries and empty labels.
+    
+    Parameters
+    ----------
+    fig : matplotlib.figure.Figure
+        Figure object on which to place the shared legend.
+    ax_list : list or Axes
+        Axes object or list of Axes objects to collect legend entries from.
+    loc : str, optional
+        Legend location (passed to fig.legend).
+    **kwargs : dict
+        Additional keyword arguments passed to fig.legend.
+    
+    Returns
+    -------
+    legend : matplotlib.legend.Legend
+        The created legend object.
+    """
+    if not isinstance(ax_list, list):
+        ax_list = [ax_list]
+    
+    uniq = OrderedDict()
+    for ax in ax_list:
+        handles, labels = ax.get_legend_handles_labels()
+        for h, lab in zip(handles, labels):
+            if not lab or lab == "_nolegend_":
+                continue
+            key = (lab, type(h).__name__)
+            uniq.setdefault(key, (h, lab))
+    
+    if uniq:
+        legend = fig.legend([h for h, _ in uniq.values()],
+                            [lab for _, lab in uniq.values()],
+                            loc=loc, **kwargs)
+        # Ensure a thin border when frameon=True
+        if legend and legend.get_frame():
+            legend.get_frame().set_linewidth(0.5)
+        return legend
+    return None
+
 
 # =============================================================================
 # General Parameters
@@ -226,9 +305,8 @@ def plot_3d_attractor(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
     plot_2d_projection(ax2, t, x, y, z, plane='XY', title='x-y Projection')
     
     # Collect legend from 3D plot and display below
-    handles, labels = ax1.get_legend_handles_labels()
-    fig.legend(handles, labels, loc='lower center', ncol=4, bbox_to_anchor=(0.5, 0.1), 
-               frameon=False, fontsize=8)
+    fig_legend_dedup(fig, ax1, loc='lower center', ncol=4, bbox_to_anchor=(0.5, 0.1), 
+                     frameon=True, fontsize=8, edgecolor='black')
     
     plt.tight_layout(rect=[0, 0.08, 1, 1])
     return fig
@@ -348,9 +426,8 @@ def compare_initial_conditions(a=0.2, b=0.2, c=5.7, initial_conditions= None,
         axes[0].plot([], [], color=color, label=label, linewidth=2)
     
     # Place a single shared legend below the axes
-    handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc='upper center', bbox_to_anchor=(0.5, 0.1),
-               ncol=min(len(initial_conditions), 4), frameon=False)
+    fig_legend_dedup(fig, axes[0], loc='upper center', bbox_to_anchor=(0.5, 0.1),
+                     ncol=min(len(initial_conditions), 4), frameon=True, edgecolor='black')
     
     plt.tight_layout(rect=[0, 0.08, 1, 1])
     return fig
@@ -402,9 +479,8 @@ def show_butterfly_effect(a, b, c, initial_condition, delta=1e-6, t_min=0, t_max
     fig.suptitle(rf'Butterfly effect in Rössler system for $c={c:.2f}$, $\delta={delta:.1e}$')
     
     # Shared legend below all panels
-    handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, 0.06), ncol=2, 
-               frameon=False, fontsize=9)
+    fig_legend_dedup(fig, axes[0], loc='lower center', bbox_to_anchor=(0.5, 0.06), ncol=2, 
+                     frameon=True, fontsize=9, edgecolor='black')
     plt.tight_layout(rect=[0, 0.08, 1, 1])
     plt.show()  
 
@@ -711,17 +787,17 @@ def plot_parameter_sweep(a=0.1, b=0.1, c_values=None,
     
     # Create shared legend below the figure
     if first_ax is not None:
-        handles, labels = first_ax.get_legend_handles_labels()
         # Remove the temporary legend from first subplot
         if first_ax.get_legend():
             first_ax.get_legend().remove()
-        # Add shared legend below with increased line width for trajectory
-        legend = fig.legend(handles, labels, loc='upper center', bbox_to_anchor=(0.5, 0.02),
-                           ncol=min(len(handles), 4), frameon=False, fontsize=9)
+        # Add shared deduplicated legend below with increased line width for trajectory
+        legend = fig_legend_dedup(fig, first_ax, loc='upper center', bbox_to_anchor=(0.5, 0.02),
+                      ncol=4, frameon=True, fontsize=9, edgecolor='black')
         # Make trajectory line thicker in legend for better visibility
-        for line in legend.get_lines():
-            if line.get_label() and 'Trajectory' in line.get_label():
-                line.set_linewidth(2.0)
+        if legend:
+            for line in legend.get_lines():
+                if line.get_label() and 'Trajectory' in line.get_label():
+                    line.set_linewidth(2.0)
     
     plt.tight_layout(rect=[0, 0.05, 1, 1])
     return fig
@@ -878,7 +954,8 @@ def nb_return_map_and_cobweb(a=None, b=None, c=5.7, initial_condition=None,
         handles.extend(h)
         labels.extend(l)
     if handles:
-        fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, 0.05), ncol=4, frameon=False, fontsize=9)
+        fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, 0.05),
+                   ncol=4, frameon=True, fontsize=9, edgecolor='black')
 
     plt.tight_layout(rect=[0, 0.12, 1, 1])
 
@@ -899,7 +976,8 @@ def nb_return_map_and_cobweb(a=None, b=None, c=5.7, initial_condition=None,
                         handles.extend(h)
                         labels.extend(l)
                     if handles:
-                        fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, -0.1), ncol=3, frameon=False, fontsize=9)
+                        fig.legend(handles, labels, loc='lower center', bbox_to_anchor=(0.5, -0.1), ncol=3,
+                                   frameon=True, fontsize=9, edgecolor='black')
                     fig.canvas.draw_idle()
 
             toggle.observe(_on_change, names='value')
@@ -987,9 +1065,8 @@ def nb_compare_euler_vs_rk4(a=None, b=None, c=None, initial_condition=None,
     axes[2].set_xlabel('t')
     axes[2].grid(True, alpha=0.3)
 
-    handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc='lower center', ncol=2, bbox_to_anchor=(0.5, 0.0),
-               frameon=False, fontsize=10)
+    fig_legend_dedup(fig, axes[0], loc='lower center', ncol=2, bbox_to_anchor=(0.5, 0.0),
+                     frameon=True, fontsize=10, edgecolor='black')
 
     plt.tight_layout(rect=[0, 0.05, 1, 1])
     plt.show()
