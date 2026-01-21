@@ -10,12 +10,23 @@ naming, and documentation for readability and maintainability.
 # imports
 # -----------------------------------------------------------------------------
 
+import sys
+import os
+
+# Add parent directory to path to import personalized_layout
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 from matplotlib.lines import Line2D
 from matplotlib.colors import ListedColormap
 from matplotlib.patches import Patch
+
+from personalized_layout import create_interactive_plot
+from ipywidgets import Checkbox
+# Import helper functions from centralized module
+from personalized_layout import create_interactive_plot
 
 # -----------------------------------------------------------------------------
 # parameters
@@ -301,6 +312,52 @@ def draw_nullclines_panel(
 # Change vectors and direction arrows
 #=============================================================================
 
+def quiver_on_curve(ax, x, y, xlim, ylim, a, b, orientation="vertical", length=0.15):
+    """
+    Plot direction arrows along a curve inside the plot window.
+    
+    For the glucose model, the direction along both nullclines is determined by sign(b - X).
+    
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Target axes for plotting
+    x : ndarray
+        X coordinates of the curve
+    y : ndarray
+        Y coordinates of the curve
+    xlim : tuple
+        X domain limits (x_min, x_max)
+    ylim : tuple
+        Y domain limits (y_min, y_max)
+    a : float
+        Enzyme-protein interaction parameter
+    b : float
+        Protein production rate (determines direction sign)
+    orientation : str, default "vertical"
+        Direction of arrows ("vertical" for vertical motion on X-nullcline or "horizontal" for Y-nullcline)
+    length : float, default 0.15
+        Length of arrows in data coordinates
+    """
+    mask = mask_in_window(x, y, xlim, ylim)
+    x, y = x[mask], y[mask]
+
+    if x.size == 0:
+        return
+
+    s = np.sign(b - x) * length
+
+    if orientation == "vertical":
+        X = np.zeros_like(s)
+        Y = s
+    elif orientation == "horizontal":
+        X = s
+        Y = np.zeros_like(s)
+    else:
+        raise ValueError("orientation must be 'vertical' or 'horizontal'")
+
+    ax.quiver(x, y, X, Y, angles="xy", scale_units="xy", scale=1, width=0.003, color="k", zorder=1.5)
+
 def draw_change_vectors(ax, points, a=a, b=b, *,
                         len_comp=0.32, len_res=0.40,
                         color_x="red", color_y="blue", color_res="k",
@@ -328,6 +385,14 @@ def draw_change_vectors(ax, points, a=a, b=b, *,
     Vr = (dY / R) * len_res
     ax.quiver(Xp, Yp, Ur, Vr, angles="xy", scale_units="xy", scale=1,
               color=color_res, width=width, zorder=zorder)
+
+    # wrapper to keep backward compatibility if used elsewhere
+
+def draw_nullcline_arrows(ax, a=a, b=b, xlim=xlim, ylim=ylim, *, n_points=20, arrow_len=0.15, width=0.003, zorder=1.5):
+    xx = np.linspace(xlim[0], xlim[1], n_points)
+    Y_xnull, Y_ynull = nullclines(xx, a, b)
+    quiver_on_curve(ax, xx, Y_xnull, xlim, ylim, a, b, orientation="vertical", length=arrow_len)
+    quiver_on_curve(ax, xx, Y_ynull, xlim, ylim, a, b, orientation="horizontal", length=arrow_len)
 
 def region_representative_points():
     """Hardcoded arrow positions for standard plot."""
@@ -364,13 +429,14 @@ def nudge_points(points, a=a, b=b, xlim=xlim, ylim=ylim, delta=None):
     return nudged
 
 def plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
-                    n=250, density=0.6, alpha=0.35, nullcline_linestyle="solid"):
+                    n=250, density=0.6, alpha=0.35, nullcline_linestyle="solid",
+                    show_arrows=True, show_nullcline_arrows=False):
     """
-    Combine the classic nullclines figure (title + legend) with the
-    photo-style directional arrows.
+    Combine the classic nullclines figure (title + legend) with optional directional arrows.
 
     - Keeps the original title and legend from the classic plot.
     - Uses colored nullclines and component/resultant arrows.
+    - Optionally shows direction arrows along the nullclines themselves.
 
     Parameters
     ----------
@@ -386,6 +452,10 @@ def plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
         Streamline transparency.
     nullcline_linestyle : str
         Line style for nullclines: 'solid', 'dashed', 'dotted', or 'dashdot' (default 'solid')
+    show_arrows : bool
+        Whether to show the directional change vectors (default True)
+    show_nullcline_arrows : bool
+        Whether to show arrows along the nullclines indicating flow direction (default False)
     """
     plt.close("all")
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -395,15 +465,21 @@ def plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
         ax, a=a, b=b, xlim=xlim, ylim=ylim,
         n=n, density=density, alpha=alpha,
         nullcline_colors=("red", "blue"),
-        title=rf"Degradation of Glucose: Nullclines with $a={a}$ and $b={b}$",
+        title=rf"Degradation of Glucose: Nullclines with $a={a:.2f}$ and $b={b:.2f}$",
         nullcline_linestyle=nullcline_linestyle
     )
 
-    pts = region_representative_points()
-    pts = nudge_points(pts, a=a, b=b, xlim=xlim, ylim=ylim)
-    draw_change_vectors(ax, pts, a=a, b=b,
-                        color_x="red", color_y="blue", color_res="k",
-                        len_comp=0.32, len_res=0.40, width=0.006, zorder=4)
+    # Optionally show arrows on the nullclines
+    if show_nullcline_arrows:
+        draw_nullcline_arrows(ax, a=a, b=b, xlim=xlim, ylim=ylim, n_points=25, arrow_len=0.25, zorder=3.5)
+
+    # Optionally show change vectors
+    if show_arrows:
+        pts = region_representative_points()
+        pts = nudge_points(pts, a=a, b=b, xlim=xlim, ylim=ylim)
+        draw_change_vectors(ax, pts, a=a, b=b,
+                            color_x="red", color_y="blue", color_res="k",
+                            len_comp=0.32, len_res=0.40, width=0.006, zorder=4)
 
     ax.legend(loc="upper right", framealpha=0.9)
 
@@ -413,6 +489,7 @@ def plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
     ax.set_ylim(*ylim)
     ax.grid(True, alpha=0.35)
     plt.show()
+
 
 
 # -----------------------------------------------------------------------------
@@ -789,6 +866,15 @@ def trace_det_at_eq(a=a, b=b):
     J_eq = jacobian(Xeq, Yeq, a=a, b=b)
     return np.trace(J_eq), np.linalg.det(J_eq)
 
+def get_trace_det_arrays(a=a, b_vals=None):
+    """Vectorized trace/determinant for an array of b values."""
+    b_vals = np.asarray(b_vals, dtype=float)
+    tr = np.empty_like(b_vals)
+    det = np.empty_like(b_vals)
+    for i, bb in enumerate(b_vals):
+        tr[i], det[i] = trace_det_at_eq(a=a, b=bb)
+    return tr, det
+
 def _max_real_part(trace, det):
     """
     Vectorized maximum real part of eigenvalues of a 2x2 matrix given trace and determinant.
@@ -1014,6 +1100,7 @@ def plot_equilibrium_3d(a=a, b_min=0.0, b_max=1.2, n=2000):
     
     plt.tight_layout()
     plt.show()
+
 
 
 def plot_trace_and_determinant(a=a, b_min=0.0, b_max=1.2, n=2000):
@@ -1349,4 +1436,93 @@ def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
     ax.grid(True, alpha=0.25)
     plt.show()
 
-    return a_vals, b_vals, max_real
+
+
+# ==============================================================================
+# interactive functions for notebook
+# ==============================================================================
+
+def interactive_nullclines(xlim=xlim, ylim=ylim):
+    """
+    Create an interactive nullclines plot with sliders for parameters.
+    
+    This function provides an interactive widget-based visualization where users
+    can dynamically adjust model parameters (a, b), plot resolution (n), 
+    streamline density, transparency (alpha), and toggle various arrow displays.
+    
+    Parameters
+    ----------
+    xlim : tuple
+        X domain limits (default from module settings)
+    ylim : tuple
+        Y domain limits (default from module settings)
+    
+    Notes
+    -----
+    Requires ipywidgets and the personalized_layout module.
+    Best used in Jupyter notebooks with interactive widget support.
+    
+    Example
+    -------
+    >>> interactive_nullclines()
+    # Display interactive plot with sliders for a, b, n, density, alpha, 
+    # and checkboxes for show_arrows and show_nullcline_arrows
+    """
+    
+    # Define the interactive plotting function
+    def _plot(a, b, n, density, alpha, show_arrows, show_nullcline_arrows):
+        plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
+                       n=int(n), density=density, alpha=alpha, 
+                       show_arrows=show_arrows, show_nullcline_arrows=show_nullcline_arrows)
+    
+    # Configure sliders for continuous parameters
+    slider_configs = {
+        'a': {'value': 0.06, 'min': 0.01, 'max': 0.14, 'step': 0.01},
+        'b': {'value': 0.4, 'min': 0.0, 'max': 1.2, 'step': 0.05},
+        'n': {'value': 250, 'min': 50, 'max': 500, 'step': 50},
+        'density': {'value': 0.6, 'min': 0.2, 'max': 1.5, 'step': 0.1},
+        'alpha': {'value': 0.35, 'min': 0.1, 'max': 1.0, 'step': 0.05}
+    }
+    
+    # Create checkboxes for arrow display options
+    show_arrows_checkbox = Checkbox(
+        value=True,
+        description='Show change vectors',
+        indent=False)
+    
+    show_nullcline_arrows_checkbox = Checkbox(
+        value=False,
+        description='Show nullcline arrows',
+        indent=False)
+    
+    # Use centralized helper with extra widgets
+    extra_widgets = {
+        'show_arrows': show_arrows_checkbox,
+        'show_nullcline_arrows': show_nullcline_arrows_checkbox
+    }
+    create_interactive_plot(_plot, slider_configs, n_cols=2, extra_widgets=extra_widgets, extra_widgets_inline=True)
+
+def interactive_single_traj_plot():
+    """Interactive version of plot_zoomed_spiral_convergence."""
+    def _plot(a, b, t_span_max=200, t_eval_n=2500, x=0.465, y=0.6):
+        fig, ax = plt.subplots(figsize=(8, 6))
+        draw_nullclines_panel(
+        ax, a=a, b=b, xlim=xlim, ylim=ylim,
+        n=500, density=2, alpha=0.35,
+        title="Single trajectory", show_equilibrium=True,
+        nullcline_linestyle="dashed")
+        draw_trajectories(ax, a=a, b=b, xlim=xlim, ylim=ylim, initials=[(x, y)], 
+                      t_span=(0, t_span_max), t_eval_n=t_eval_n,
+                      line_kw=dict(linewidth=2.0, alpha=0.85, color='red'))
+        ax.plot(x, y, 'go', markersize=10, label='Start points', zorder=5)
+
+    slider_configs = {
+        'a': {'value': 0.06, 'min': 0.01, 'max': 0.14, 'step': 0.01},
+        'x' : {'value': 0.465, 'min': 0.0, 'max': 2.0, 'step': 0.01},
+        'b': {'value': 0.4,  'min': 0.0,  'max': 1.2,  'step': 0.05},
+        'y' : {'value': 0.6, 'min': 0.0, 'max': 2.0, 'step': 0.01}
+    }
+
+    create_interactive_plot(_plot, slider_configs, n_cols=2)
+
+
