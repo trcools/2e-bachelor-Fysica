@@ -6,7 +6,7 @@ $$
 $$
 waar $\lambda$ een **eigenwaarde** is en $\mathbf{x}\neq \mathbf{0}$ een bijhorende **eigenvector**.
 
-De examenkern is (zoals altijd in deze cursus): **welke methode kies je wanneer, en waarom (kost + stabiliteit + doel: 1 eigenwaarde of allemaal)?**
+De examenkern is (zoals altijd in deze cursus): **welke methode kies je wanneer, en waarom (kost + stabiliteit + doel: 1 eigenwaarde of allemaal)?**  
 En: hoe dit terugkoppelt naar H2 (lineaire stelsels oplossen) en H3 (SVD/conditioning/rank).
 
 ---
@@ -41,7 +41,7 @@ heet de **characteristic polynomial**; zijn wortels zijn de eigenwaarden.
 
 De cursus geeft een lijst “eigenwaarden blijven hetzelfde, of transformeren voorspelbaar”:
 
-- **Symmetric/Hermitian:**
+- **Symmetric/Hermitian:**  
   Als $\mathbf{A}$ symmetric/Hermitian is, dan zijn alle eigenwaarden **reëel**.
 
 - **Shift:** als $\mathbf{A}\mathbf{x}=\lambda\mathbf{x}$ en $\sigma$ is een scalair:
@@ -270,7 +270,7 @@ In het symmetrische voorbeeld uit de cursus geldt zelfs $\mathbf{U}=\mathbf{V}$.
 Cursusboodschap (belangrijk): QR-iteratie was lang de standaard; nieuwere methodes (divide-and-conquer, RRR) zijn vaak sneller voor **alle eigenvectoren**, maar QR heeft een lange “reliability track record”. In SciPy is `linalg.eig` de meest algemene methode.
 
 Praktisch:
-- `scipy.linalg.eig`
+- `scipy.linalg.eig`  
   Algemeen eigenprobleem (complex mogelijk), gebruikt QR-achtige aanpak.
 - Voor matrices met speciale structuur zijn er snellere routines (cursus geeft o.a. tridiagonal symmetric varianten).
 - Voor SVD:

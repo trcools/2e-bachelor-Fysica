@@ -82,3 +82,4 @@ git commit -m "Block PDF files from being committed"
 ## Hulp Nodig?
 
 Zie [SECURITY.md](SECURITY.md) voor uitgebreide richtlijnen.
+

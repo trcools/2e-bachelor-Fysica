@@ -11,7 +11,7 @@
   - **samenstelling** van de oplossing (gemeenschappelijke ionen, complexvorming, pH, …)
   - **temperatuur**
 
-**Cruciale examenvuistregel:**
+**Cruciale examenvuistregel:**  
 > Je mag $K_s$ van verschillende zouten **niet** zomaar onderling vergelijken om te zeggen welk zout het “meest oplosbaar” is, tenzij je eerst de **molaire oplosbaarheid $S$** uitrekent.
 
 ---
@@ -41,13 +41,13 @@ $$
 
 **Mini-cheatsheet (komt rechtstreeks uit de slides/oefeningen):**
 
-- $\text{MX(s)} \rightleftharpoons \text{M}^+ + \text{X}^-$
+- $\text{MX(s)} \rightleftharpoons \text{M}^+ + \text{X}^-$  
   $K_s = x^2 \Rightarrow S = \sqrt{K_s}$
 
-- $\text{M}_2 \text{X(s)} \rightleftharpoons 2\text{M}^+ + \text{X}^{2-}$
+- $\text{M}_2 \text{X(s)} \rightleftharpoons 2\text{M}^+ + \text{X}^{2-}$  
   $K_s = (2x)^2 x = 4x^3 \Rightarrow S = \left(\dfrac{K_s}{4}\right)^{1/3}$
 
-- $\text{M}_2 \text{X}_3(s) \rightleftharpoons 2\text{M}^{3+} + 3\text{X}^{2-}$
+- $\text{M}_2 \text{X}_3(s) \rightleftharpoons 2\text{M}^{3+} + 3\text{X}^{2-}$  
   $K_s = (2x)^2 (3x)^3 = 108x^5 \Rightarrow S = \left(\dfrac{K_s}{108}\right)^{1/5}$
 
 
@@ -84,7 +84,7 @@ K_s \approx (0{,}10)^2 x
 \Rightarrow x\approx \frac{K_s}{(0{,}10)^2}
 $$
 
-**Altijd doen op examen:** check achteraf of $2x \ll 0{,}10$ echt klopt.
+**Altijd doen op examen:** check achteraf of $2x \ll 0{,}10$ echt klopt.  
 Als dat niet klopt → geen benadering, dan los je exact op (vaak een kubiek/kwadratisch, maar meestal is de benadering juist gekozen).
 
 ---

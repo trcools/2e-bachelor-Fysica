@@ -51,3 +51,4 @@ Bij het bijdragen aan deze repository:
 ## Licentie en Academische Integriteit
 
 Deze repository is bedoeld voor persoonlijke studie en samenwerking tussen studenten. Respecteer auteursrechten van docenten en de academische integriteit van de opleiding.
+

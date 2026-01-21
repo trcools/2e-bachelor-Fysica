@@ -6,7 +6,7 @@ $$
 $$
 en vooral: **hoe je dat doet op een manier die (i) snel is en (ii) numeriek stabiel** is in floating-point (link met H1).
 
-De rode draad (en dit is letterlijk de “type 1”-examenvraag zoals Q1):
+De rode draad (en dit is letterlijk de “type 1”-examenvraag zoals Q1):  
 **transformeer** het probleem naar een vorm die je **goedkoop** kan oplossen (triangulair), en doe dat met controle op stabiliteit (pivoting).
 
 ---
@@ -116,10 +116,10 @@ $$
 ### 2.2.4 Partial pivoting (stabiliteit + vermijden van breakdown)
 De cursus geeft 2 problemen bij “naïeve” Gaussian elimination:
 
-1) **Breakdown** als pivot $a_{kk}=0$ (je moet delen door 0).
+1) **Breakdown** als pivot $a_{kk}=0$ (je moet delen door 0).  
    Oplossing: wissel rijen zodat je een niet-nul pivot hebt → **pivoting**.
 
-2) **Numerieke instabiliteit** in floating-point: te grote multipliers versterken rounding errors.
+2) **Numerieke instabiliteit** in floating-point: te grote multipliers versterken rounding errors.  
    Oplossing: **partial pivoting**: kies in kolom $k$ de entry met **grootste absolute waarde** op/onder de diagonaal als pivot. Dan blijven multipliers in grootte $\le 1$.
 
 Met pivoting verschijnt een permutatiematrix $\mathbf{P}$ en typisch krijg je (notatie zoals in veel software):
@@ -159,7 +159,7 @@ De cursus somt expliciet voordelen op:
 
 Conclusie (cursus): Cholesky is ongeveer **half zoveel werk en opslag** als algemene LU.
 
-**Wanneer kies je Cholesky?**
+**Wanneer kies je Cholesky?**  
 Als je uit de fysica/matrixstructuur kunt argumenteren dat $\mathbf{A}$ SPD is (bv. bepaalde energie/Hessiaan-achtige matrices, normal equations later in H3).
 
 ---
@@ -172,7 +172,7 @@ De cursus geeft de typische flop-counts:
 - Oplossen met forward + backward substitution na LU: ongeveer $n^2$ flops (voor grote $n$ verwaarloosbaar t.o.v. factorisatie)
 - Cramer’s rule: “astronomisch duur”
 
-**Belangrijkste praktijkregel (cursus zegt dit letterlijk in spirit):**
+**Belangrijkste praktijkregel (cursus zegt dit letterlijk in spirit):**  
 Bereken $\mathbf{A}^{-1}$ bijna nooit expliciet; los $\mathbf{A}\mathbf{x}=\mathbf{b}$ op via factorisatie + substitutie (sneller én nauwkeuriger).
 
 ---

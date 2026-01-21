@@ -121,7 +121,7 @@ N_{\text{pad}} \ge N_y + N_g - 1.
 $$
 
 **Typische “insights”-vraag na coding:**
-- Waarom zag ik wrap-around/artefacten?
+- Waarom zag ik wrap-around/artefacten?  
   → omdat je circulair deed zonder padding.
 
 ### Correlatie
