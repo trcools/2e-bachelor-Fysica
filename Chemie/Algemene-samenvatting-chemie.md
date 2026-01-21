@@ -252,14 +252,14 @@ $$
 
 ### Ideaal gas + zuivere vloeistof
 - Zuivere vloeistof: drukafhankelijkheid vaak verwaarloosbaar (klein molair volume) → neem $\mu_A^{(l)}\approx \mu_{A,l}^\circ(T)$.
-- Ideaal gas:
+- Ideaal gas: 
 $$
 \mu_A^{(g)}=\mu_{A,g}^\circ(T)+RT\ln\!\left(\frac{p_A}{p^\circ}\right).
 $$
 Dan volgt voor de dampdruk:
 $$
 \frac{p_A^{eq}}{p^\circ}=\exp\!\left(-\frac{\Delta G_{vap}^\circ(T)}{RT}\right),
-\quad
+\quad 
 \Delta G_{vap}^\circ=\mu_{A,g}^\circ-\mu_{A,l}^\circ.
 $$
 
@@ -375,7 +375,7 @@ Gebruik $p_i = x_i\,p_{tot}$ en schrijf:
 $$
 Q=\frac{\prod_p x_p^{\nu_p}}{\prod_r x_r^{\nu_r}}
 \left(\frac{p_{tot}}{p^\circ}\right)^{\Delta\nu},
-\quad
+\quad 
 \Delta\nu=\sum_p \nu_p-\sum_r \nu_r.
 $$
 Dus:
@@ -683,11 +683,11 @@ Opmerking uit de les: databanken (bv. NIST) geven Henry-constanten soms in molal
   $$
 
 - **$K_s$ ≠ “oplosbaarheid”.** $K_s$ zegt iets over het evenwicht, maar de *molaire oplosbaarheid* $S$ (mol/L) hangt ook af van:
-  - **stoichiometrie** van het zout
-  - **samenstelling** van de oplossing (gemeenschappelijke ionen, complexvorming, pH, …)
+  - **stoichiometrie** van het zout  
+  - **samenstelling** van de oplossing (gemeenschappelijke ionen, complexvorming, pH, …)  
   - **temperatuur**
 
-**Cruciale examenvuistregel:**
+**Cruciale examenvuistregel:**  
 > Je mag $K_s$ van verschillende zouten **niet** zomaar onderling vergelijken om te zeggen welk zout het “meest oplosbaar” is, tenzij je eerst de **molaire oplosbaarheid $S$** uitrekent.
 
 ---
@@ -710,7 +710,7 @@ $$
 
 Laat $S = x$ mol/L zout oplossen. Dan:
 
-- $[M^{n+}] = a x$
+- $[M^{n+}] = a x$  
 - $[X^{m-}] = b x$
 
 Dus:
@@ -723,13 +723,13 @@ $$
 
 **Mini-cheatsheet (komt rechtstreeks uit de slides/oefeningen):**
 
-- $MX(s) \rightleftharpoons M^+ + X^-$
+- $MX(s) \rightleftharpoons M^+ + X^-$  
   $K_s = x^2 \Rightarrow S = \sqrt{K_s}$
 
-- $M_2X(s) \rightleftharpoons 2M^+ + X^{2-}$
+- $M_2X(s) \rightleftharpoons 2M^+ + X^{2-}$  
   $K_s = (2x)^2 x = 4x^3 \Rightarrow S = \left(\frac{K_s}{4}\right)^{1/3}$
 
-- $M_2X_3(s) \rightleftharpoons 2M^{3+} + 3X^{2-}$
+- $M_2X_3(s) \rightleftharpoons 2M^{3+} + 3X^{2-}$  
   $K_s = (2x)^2 (3x)^3 = 108x^5 \Rightarrow S = \left(\frac{K_s}{108}\right)^{1/5}$
 
 **Waarom dit belangrijk is:** in de slides staat expliciet een oefening waar zouten met verschillende stoichiometrie een $K_s$ krijgen en je *moet* rangschikken op oplosbaarheid. Dat kan enkel via $S$.
@@ -752,7 +752,7 @@ $$
 
 Stel: je hebt al $0{,}10\ \text{mol/L}$ $Ag^+$ in oplossing, en extra oplosbaarheid is $x$:
 
-- $[Ag^+] = 0{,}10 + 2x$
+- $[Ag^+] = 0{,}10 + 2x$  
 - $[CrO_4^{2-}] = x$
 
 Dan:
@@ -761,7 +761,7 @@ $$
 K_s = (0{,}10 + 2x)^2 x
 $$
 
-**De exametruc die de prof toont:**
+**De exametruc die de prof toont:**  
 Als $0{,}10 \gg 2x$, dan:
 
 $$
@@ -771,38 +771,38 @@ K_s \approx (0{,}10)^2 x
 \Rightarrow x \approx \frac{K_s}{(0{,}10)^2}
 $$
 
-**Altijd doen op examen:** check achteraf of $2x \ll 0{,}10$ echt klopt.
+**Altijd doen op examen:** check achteraf of $2x \ll 0{,}10$ echt klopt.  
 Als dat niet klopt → geen benadering, dan los je exact op (vaak een kubiek/kwadratisch, maar meestal is de benadering juist gekozen).
 
 ---
 
 ## 4) Stappenplan dat bijna elke oefening oplost
 
-1. **Schrijf de oplosreactie** correct (met stoichiometrie).
-2. **Schrijf $K_s$** als product van ionconcentraties met machten.
-3. **ICE/massabalans**: zet beginconcentraties + verandering door oplossen ($x$).
-4. **Substitueer** alles in $K_s$.
-5. **Kies (indien mogelijk) een benadering** (bv. gemeenschappelijk ion domineert).
-6. **Los op voor $x$ (= $S$)**.
-7. **Consistentiecheck** van je benadering.
+1. **Schrijf de oplosreactie** correct (met stoichiometrie).  
+2. **Schrijf $K_s$** als product van ionconcentraties met machten.  
+3. **ICE/massabalans**: zet beginconcentraties + verandering door oplossen ($x$).  
+4. **Substitueer** alles in $K_s$.  
+5. **Kies (indien mogelijk) een benadering** (bv. gemeenschappelijk ion domineert).  
+6. **Los op voor $x$ (= $S$)**.  
+7. **Consistentiecheck** van je benadering.  
 
 ---
 
 ## 5) Typische valkuilen (waar punten verdampen)
 
-- $K_s$-waarden vergelijken zonder naar stoichiometrie te kijken.
-- Vergeten dat bij $M_2X$: $[M] = 2S$ en niet $S$.
-- Benadering maken (“$0{,}10 + 2x \approx 0{,}10$”) en **niet** checken.
+- $K_s$-waarden vergelijken zonder naar stoichiometrie te kijken.  
+- Vergeten dat bij $M_2X$: $[M] = 2S$ en niet $S$.  
+- Benadering maken (“$0{,}10 + 2x \approx 0{,}10$”) en **niet** checken.  
 - Denken dat “groter $K_s$ altijd groter $S$” is — *soms*, maar niet universeel.
 
 ---
 
 ## 6) Wat je “paraat” wil hebben voor het examen
 
-- Definitie: $K_s$ als evenwichtsconstante van oplossen.
-- Omzetting $K_s \leftrightarrow S$ via stoichiometrie (voor 1:1, 2:1, 2:3 moet je dit snel kunnen).
-- Gemeenschappelijk-ion-effect kunnen opstellen én benaderen.
-- Het mantra: **“$K_s$ is niet oplosbaarheid; $S$ is oplosbaarheid.”**
+- Definitie: $K_s$ als evenwichtsconstante van oplossen.  
+- Omzetting $K_s \leftrightarrow S$ via stoichiometrie (voor 1:1, 2:1, 2:3 moet je dit snel kunnen).  
+- Gemeenschappelijk-ion-effect kunnen opstellen én benaderen.  
+- Het mantra: **“$K_s$ is niet oplosbaarheid; $S$ is oplosbaarheid.”**  
 
 ---
 
@@ -814,26 +814,26 @@ Een **galvanische (volta-)cel** zet een **spontane redoxreactie** om in **elektr
 
 Spontaniteit-criteria (cruciaal):
 
-- **Spontaan:** $E_\text{cel} > 0 \;\Leftrightarrow\; \Delta G < 0$
+- **Spontaan:** $E_\text{cel} > 0 \;\Leftrightarrow\; \Delta G < 0$  
 - **Evenwicht / cel “plat”:** $E_\text{cel} = 0 \;\Leftrightarrow\; \Delta G = 0$ en dan geldt $Q = K$
 
 **Anode/Kathode (altijd examenvalkuil):**
 
-- **Anode = oxidatie**
-- **Kathode = reductie**
+- **Anode = oxidatie**  
+- **Kathode = reductie**  
 - In een **galvanische** cel: anode is typisch **negatief**, kathode **positief**.
 
 ---
 
 ## 2) Opbouw van een galvanische cel (Daniell/Zn–Cu is het archetype)
 
-- 2 **halfcellen** (elk een elektrode + elektrolyt).
-- **Zoutbrug** (bv. KNO₃ of NH₄NO₃ in gel) zorgt voor ionenmigratie zodat elke halfcel elektrisch neutraal blijft.
+- 2 **halfcellen** (elk een elektrode + elektrolyt).  
+- **Zoutbrug** (bv. KNO₃ of NH₄NO₃ in gel) zorgt voor ionenmigratie zodat elke halfcel elektrisch neutraal blijft.  
 - **Uitwendig circuit**: elektronen lopen van anode → kathode.
 
 **Actieve vs inerte elektroden**
 
-- Actief: de elektrode doet mee in de redox (bv. Zn(s), Cu(s)).
+- Actief: de elektrode doet mee in de redox (bv. Zn(s), Cu(s)).  
 - Inert: geleidt enkel elektronen, doet niet mee (bv. Pt(s), grafiet).
 
 ---
@@ -850,10 +850,10 @@ $$
 
 **Examenschema om $E^\circ_\text{cel}$ te vinden**
 
-1. Schrijf beide halfreacties als **reducties** (zoals in de tabel met $E^\circ$).
-2. De halfreactie met **grootste $E^\circ$** wordt de **kathode** (gaat effectief als reductie).
-3. De andere wordt **anode** (gaat effectief als oxidatie; teken keert om in je reactie, maar je gebruikt in de formule nog steeds het *reductie*-$E^\circ$).
-4. Bereken $E^\circ_\text{cel}$ met de formule hierboven.
+1. Schrijf beide halfreacties als **reducties** (zoals in de tabel met $E^\circ$).  
+2. De halfreactie met **grootste $E^\circ$** wordt de **kathode** (gaat effectief als reductie).  
+3. De andere wordt **anode** (gaat effectief als oxidatie; teken keert om in je reactie, maar je gebruikt in de formule nog steeds het *reductie*-$E^\circ$).  
+4. Bereken $E^\circ_\text{cel}$ met de formule hierboven.  
 5. Balanceer elektronen voor de totale reactie, maar let op:
    - **Je vermenigvuldigt $E^\circ$ nooit met stoichiometrische factoren.**
 
@@ -885,8 +885,8 @@ $$
 
 Interpretatie in één oogopslag:
 
-- $\Delta G^\circ < 0 \Rightarrow K > 1 \Rightarrow E^\circ_\text{cel} > 0$ (spontaan in standaardcondities)
-- $\Delta G^\circ = 0 \Rightarrow K = 1 \Rightarrow E^\circ_\text{cel} = 0$ (evenwicht)
+- $\Delta G^\circ < 0 \Rightarrow K > 1 \Rightarrow E^\circ_\text{cel} > 0$ (spontaan in standaardcondities)  
+- $\Delta G^\circ = 0 \Rightarrow K = 1 \Rightarrow E^\circ_\text{cel} = 0$ (evenwicht)  
 - $\Delta G^\circ > 0 \Rightarrow K < 1 \Rightarrow E^\circ_\text{cel} < 0$ (niet spontaan)
 
 ---
@@ -905,7 +905,7 @@ $$
 E = E^\circ - \frac{0{,}05916}{n} \log_{10} Q
 $$
 
-**Wat is $Q$?**
+**Wat is $Q$?**  
 Het reactiequotiënt: producten / reactanten met macht volgens stoichiometrie.
 
 - Zuivere vaste stoffen en vloeistoffen komen **niet** in $Q$.
@@ -924,14 +924,14 @@ $$
 
 Belangrijk:
 
-- De celspanning is typisch **klein**.
+- De celspanning is typisch **klein**.  
 - Je berekent elke halfcelpotentiaal met **Nernst**, en dan:
 
   $$
   E_\text{cel} = E_\text{rechts} - E_\text{links}
   $$
 
-  (of consistent met kathode–anode)
+  (of consistent met kathode–anode)  
 
 - De kant met **hogere reductiepotentiaal** fungeert als **kathode**.
 
@@ -943,65 +943,65 @@ Je hoeft dit meestal niet hyper-diep af te leiden, maar je moet het **type, de i
 
 ### Loodaccumulator (auto, ~12 V totaal)
 
-- Ongeveer **2 V per cel**, typisch 6 cellen in serie.
-- Bij ontlading wordt **$H_2SO_4$ verbruikt** (dichtheid daalt).
-- Oplaadbaar: reacties omkeerbaar via externe stroombron.
+- Ongeveer **2 V per cel**, typisch 6 cellen in serie.  
+- Bij ontlading wordt **$H_2SO_4$ verbruikt** (dichtheid daalt).  
+- Oplaadbaar: reacties omkeerbaar via externe stroombron.  
 - Bij laden kan water-elektrolyse ($H_2/O_2$) optreden → veiligheidsaspect.
 
 ### Droge cellen (1,25–1,50 V)
 
-- **Leclanché-element** (klassieke “zink-kool”-achtige cel).
-- **Alkalische batterij**: langere levensduur (zinkanode corrodeert trager in basisch milieu).
+- **Leclanché-element** (klassieke “zink-kool”-achtige cel).  
+- **Alkalische batterij**: langere levensduur (zinkanode corrodeert trager in basisch milieu).  
 - **Zilvercel**: gebruikt in kleine toestellen (uurwerken, pacemakers, hoorapparaten, …).
 
 ### Nikkel–cadmium (Ni–Cd, ~1,4 V)
 
-- Oplaadbaar (producten blijven aan elektroden “kleven” volgens de cursuscontext).
+- Oplaadbaar (producten blijven aan elektroden “kleven” volgens de cursuscontext).  
 - Toepassingen: boormachines, scheerapparaten, …
 
 ### Brandstofcel (H$_2$/O$_2$, $E_\text{cel} \approx 1{,}2\ \text{V}$)
 
-- Reagentia worden continu aangevoerd.
-- Nettoreactie:
+- Reagentia worden continu aangevoerd.  
+- Nettoreactie:  
   $$
   2H_2 + O_2 \rightarrow 2H_2O
   $$
-- Efficiëntie-idee: groot deel van theoretische $\Delta G$ → elektrische energie.
+- Efficiëntie-idee: groot deel van theoretische $\Delta G$ → elektrische energie.  
 - Nadelen: opslag van reagentia en dure elektroden.
 
 ### Li-ion (conceptueel herkennen)
 
-- **Anode: grafiet**
-- **Kathode: LiCoO_2**
+- **Anode: grafiet**  
+- **Kathode: LiCoO_2**  
 - **Li⁺-transport** tussen elektroden (intercalatie/de-intercalatie als idee).
 
 ---
 
 ## 8) Examenvallen & mini-checklist
 
-- **Anode ≠ altijd positief**: in een galvanische cel is de anode typisch **negatief** (oxidatie), kathode **positief** (reductie).
-- **$E^\circ$ nooit schalen met coëfficiënten.**
-- **Tabelwaarden zijn reductiepotentialen**: als je een oxidatie gebruikt, keer je de reactie om maar je werkt nog steeds met reductie-$E^\circ$ in
+- **Anode ≠ altijd positief**: in een galvanische cel is de anode typisch **negatief** (oxidatie), kathode **positief** (reductie).  
+- **$E^\circ$ nooit schalen met coëfficiënten.**  
+- **Tabelwaarden zijn reductiepotentialen**: als je een oxidatie gebruikt, keer je de reactie om maar je werkt nog steeds met reductie-$E^\circ$ in  
   $$
   E^\circ_\text{cel} = E^\circ_\text{kath} - E^\circ_\text{an}.
   $$
-- **Standaardcondities**: opgeloste species 1 M, gassen 1 bar, zuivere vaste stoffen/vloeistoffen activiteit 1.
+- **Standaardcondities**: opgeloste species 1 M, gassen 1 bar, zuivere vaste stoffen/vloeistoffen activiteit 1.  
 - Bij “cel plat”: **$E_\text{cel} = 0$ én $\Delta G = 0$ én $Q = K$.**
 
 ---
 
 ## 9) Snelle “rekenflow” (wat je op je kladpapier wil)
 
-1. Identificeer halfreacties + $E^\circ$ uit tabel.
-2. Kies kathode = hoogste $E^\circ$.
-3. Bereken $E^\circ_\text{cel} = E^\circ_\text{kath} - E^\circ_\text{an}$.
-4. Balanceer de volledige reactie → bepaal $n$.
-5. Indien niet-standaard: gebruik
+1. Identificeer halfreacties + $E^\circ$ uit tabel.  
+2. Kies kathode = hoogste $E^\circ$.  
+3. Bereken $E^\circ_\text{cel} = E^\circ_\text{kath} - E^\circ_\text{an}$.  
+4. Balanceer de volledige reactie → bepaal $n$.  
+5. Indien niet-standaard: gebruik  
    $$
    E = E^\circ - \frac{R T}{n F} \ln Q.
-   $$
-6. Gebruik $\Delta G = -n F E$ en eventueel
+   $$  
+6. Gebruik $\Delta G = -n F E$ en eventueel  
    $$
    E^\circ_\text{cel} = \frac{R T}{n F} \ln K
-   $$
+   $$  
    om $K$ te vinden.

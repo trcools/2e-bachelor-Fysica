@@ -23,7 +23,7 @@ Kernboodschap: meer precision garandeert geen accuracy (bv. een lang getal kan t
 - **Truncation error**: komt uit de *wiskundige benadering* (afkappen van reeksen, finite differences, discretisatie, …).
 - **Rounding error**: komt uit het feit dat computers met **eindige precisie** rekenen en voortdurend afronden.
 
-**Belangrijk patroon voor “wanneer welke methode?”**
+**Belangrijk patroon voor “wanneer welke methode?”**  
 Als je de stapgrootte $h$ kleiner maakt (of $N$ groter, meer iteraties, fijnere grid):
 - truncation error daalt meestal,
 - rounding error en kost stijgen meestal,
@@ -53,7 +53,7 @@ Praktisch in Python:
 
 ### 1.2.2 Properties (discreet, eindig, en soms gemeen)
 
-**(1) Discreet getallenrooster**
+**(1) Discreet getallenrooster**  
 Tussen twee representabele floats zit een “gat”. Veel decimalen bestaan niet exact in binair.
 
 **(2) Overflow/underflow**
@@ -61,7 +61,7 @@ Tussen twee representabele floats zit een “gat”. Veel decimalen bestaan niet
 - Te klein $\to$ afronding naar `0.0` (underflow), eventueel via subnormals/denormals.
 
 **(3) $0.1$ is niet exact**
-Klassiek gevolg: `0.1 + 0.1 + 0.1 != 0.3`.
+Klassiek gevolg: `0.1 + 0.1 + 0.1 != 0.3`.  
 Dus: `==` is bijna altijd fout bij floats.
 
 **(4) Afronding maakt optellen niet-associatief**
@@ -76,7 +76,7 @@ Concreet gevolg: **somvolgorde** van een lange reeks verandert de uitkomst (en s
 ### 1.2.3 Good Practices for computer arithmetic (de survival kit)
 
 #### A. Cancellation (catastrophic cancellation)
-- **Vermijd**: subtractie van bijna gelijke getallen.
+- **Vermijd**: subtractie van bijna gelijke getallen.  
   Voorbeeldidee: $\sqrt{x+1} - \sqrt{x}$ voor groot $x$ $\to$ twee bijna gelijke grote getallen $\to$ verschil verliest significant digits.
 - **Fix**: herschrijf algebraïsch naar een stabiele vorm:
   $$
@@ -118,15 +118,15 @@ Zelfde wiskunde, andere route $\to$ andere rounding error.
 
 ## Links naar andere hoofdstukken (de bruggen die examenvragen graag testen)
 
-- **Hoofdstuk 2 (Linear systems)**
+- **Hoofdstuk 2 (Linear systems)**  
   Pivoting en keuze van factorisatie (LU vs Gauss-Jordan vs Cholesky) zijn antwoorden op rounding error, stabiliteit en conditioning.
 
-- **Hoofdstuk 3 (Least squares)**
+- **Hoofdstuk 3 (Least squares)**  
   “Normal equations” vs “QR” vs “SVD” is een klassieker:
   - normal equations kunnen conditioning verslechteren $\to$ rounding wordt gevaarlijker,
   - QR en SVD zijn duurder maar stabieler.
 
-- **Niet-lineaire oplossingen / optimalisatie / integratie / ODE’s**
+- **Niet-lineaire oplossingen / optimalisatie / integratie / ODE’s**  
   Overal zie je hetzelfde thema: kleinere $h$ verlaagt truncation, maar kan rounding/foutopstapeling verhogen; stabiliteit bepaalt of “harder werken” ook echt “beter antwoord” geeft.
 
 ---
@@ -152,7 +152,7 @@ $$
 $$
 en vooral: **hoe je dat doet op een manier die (i) snel is en (ii) numeriek stabiel** is in floating-point (link met H1).
 
-De rode draad (en dit is letterlijk de “type 1”-examenvraag zoals Q1):
+De rode draad (en dit is letterlijk de “type 1”-examenvraag zoals Q1):  
 **transformeer** het probleem naar een vorm die je **goedkoop** kan oplossen (triangulair), en doe dat met controle op stabiliteit (pivoting).
 
 ---
@@ -262,10 +262,10 @@ $$
 ### 2.2.4 Partial pivoting (stabiliteit + vermijden van breakdown)
 De cursus geeft 2 problemen bij “naïeve” Gaussian elimination:
 
-1) **Breakdown** als pivot $a_{kk}=0$ (je moet delen door 0).
+1) **Breakdown** als pivot $a_{kk}=0$ (je moet delen door 0).  
    Oplossing: wissel rijen zodat je een niet-nul pivot hebt → **pivoting**.
 
-2) **Numerieke instabiliteit** in floating-point: te grote multipliers versterken rounding errors.
+2) **Numerieke instabiliteit** in floating-point: te grote multipliers versterken rounding errors.  
    Oplossing: **partial pivoting**: kies in kolom $k$ de entry met **grootste absolute waarde** op/onder de diagonaal als pivot. Dan blijven multipliers in grootte $\le 1$.
 
 Met pivoting verschijnt een permutatiematrix $\mathbf{P}$ en typisch krijg je (notatie zoals in veel software):
@@ -305,7 +305,7 @@ De cursus somt expliciet voordelen op:
 
 Conclusie (cursus): Cholesky is ongeveer **half zoveel werk en opslag** als algemene LU.
 
-**Wanneer kies je Cholesky?**
+**Wanneer kies je Cholesky?**  
 Als je uit de fysica/matrixstructuur kunt argumenteren dat $\mathbf{A}$ SPD is (bv. bepaalde energie/Hessiaan-achtige matrices, normal equations later in H3).
 
 ---
@@ -318,7 +318,7 @@ De cursus geeft de typische flop-counts:
 - Oplossen met forward + backward substitution na LU: ongeveer $n^2$ flops (voor grote $n$ verwaarloosbaar t.o.v. factorisatie)
 - Cramer’s rule: “astronomisch duur”
 
-**Belangrijkste praktijkregel (cursus zegt dit letterlijk in spirit):**
+**Belangrijkste praktijkregel (cursus zegt dit letterlijk in spirit):**  
 Bereken $\mathbf{A}^{-1}$ bijna nooit expliciet; los $\mathbf{A}\mathbf{x}=\mathbf{b}$ op via factorisatie + substitutie (sneller én nauwkeuriger).
 
 ---
@@ -617,7 +617,7 @@ Je zoekt een **numerieke rank**: hoeveel richtingen zijn “significant” boven
 - Kies tolerance, bv. $\sigma_i > \tau$ met $\tau$ typisch gekoppeld aan machine precision en schaal (in de cursus vaak “relative threshold”).
 - Rank = aantal singular values boven de threshold.
 
-**Voordeel**: zeer betrouwbaar.
+**Voordeel**: zeer betrouwbaar.  
 **Nadeel**: duur.
 
 ### Methode 2: Rank-revealing QR (QR met pivoting)
@@ -628,7 +628,7 @@ $$
 waar $\mathbf{P}$ kolommen herschikt zodat diagonaal van $\mathbf{R}$ afneemt.
 Dan lees je rank af uit de grootte van $|r_{ii}|$ (met tolerance).
 
-**Voordeel**: goedkoper dan SVD, vaak “goed genoeg”.
+**Voordeel**: goedkoper dan SVD, vaak “goed genoeg”.  
 **Nadeel**: minder robuust dan SVD in lastige gevallen.
 
 ---
@@ -722,7 +722,7 @@ $$
 $$
 waar $\lambda$ een **eigenwaarde** is en $\mathbf{x}\neq \mathbf{0}$ een bijhorende **eigenvector**.
 
-De examenkern is (zoals altijd in deze cursus): **welke methode kies je wanneer, en waarom (kost + stabiliteit + doel: 1 eigenwaarde of allemaal)?**
+De examenkern is (zoals altijd in deze cursus): **welke methode kies je wanneer, en waarom (kost + stabiliteit + doel: 1 eigenwaarde of allemaal)?**  
 En: hoe dit terugkoppelt naar H2 (lineaire stelsels oplossen) en H3 (SVD/conditioning/rank).
 
 ---
@@ -757,7 +757,7 @@ heet de **characteristic polynomial**; zijn wortels zijn de eigenwaarden.
 
 De cursus geeft een lijst “eigenwaarden blijven hetzelfde, of transformeren voorspelbaar”:
 
-- **Symmetric/Hermitian:**
+- **Symmetric/Hermitian:**  
   Als $\mathbf{A}$ symmetric/Hermitian is, dan zijn alle eigenwaarden **reëel**.
 
 - **Shift:** als $\mathbf{A}\mathbf{x}=\lambda\mathbf{x}$ en $\sigma$ is een scalair:
@@ -986,7 +986,7 @@ In het symmetrische voorbeeld uit de cursus geldt zelfs $\mathbf{U}=\mathbf{V}$.
 Cursusboodschap (belangrijk): QR-iteratie was lang de standaard; nieuwere methodes (divide-and-conquer, RRR) zijn vaak sneller voor **alle eigenvectoren**, maar QR heeft een lange “reliability track record”. In SciPy is `linalg.eig` de meest algemene methode.
 
 Praktisch:
-- `scipy.linalg.eig`
+- `scipy.linalg.eig`  
   Algemeen eigenprobleem (complex mogelijk), gebruikt QR-achtige aanpak.
 - Voor matrices met speciale structuur zijn er snellere routines (cursus geeft o.a. tridiagonal symmetric varianten).
 - Voor SVD:
@@ -1154,7 +1154,7 @@ m=a+\frac{b-a}{2}.
 $$
 Kies het subinterval waar het teken verandert.
 
-**Waarom die lijn exact zo staat** (zoals in examenvraag Q7):
+**Waarom die lijn exact zo staat** (zoals in examenvraag Q7):  
 $m=a+(b-a)/2$ vermijdt kleine “numerieke” verrassingen en is de standaard mid-point (zelfde als $(a+b)/2$ maar explicieter in floating-point redenering).
 
 - Convergentie: lineair, fout halveert per iteratie
@@ -2277,7 +2277,7 @@ N_{\text{pad}} \ge N_y + N_g - 1.
 $$
 
 **Typische “insights”-vraag na coding:**
-- Waarom zag ik wrap-around/artefacten?
+- Waarom zag ik wrap-around/artefacten?  
   → omdat je circulair deed zonder padding.
 
 ### Correlatie
@@ -2359,9 +2359,9 @@ Monte Carlo (MC) methodes lossen numerieke problemen op via steekproeven. Het �
 - dus bij hoge dimensie (waar deterministische quadrature explodeert) is MC vaak de enige praktische optie.
 
 Tegelijk: $1/\sqrt{N}$ is traag. Het examen draait dus om:
-1) **wanneer MC de juiste hamer is**,
-2) **hoe je error en betrouwbaarheid kwantificeert**,
-3) **hoe je variance verlaagt** (variance reduction),
+1) **wanneer MC de juiste hamer is**,  
+2) **hoe je error en betrouwbaarheid kwantificeert**,  
+3) **hoe je variance verlaagt** (variance reduction),  
 4) **wat MCMC doet en wanneer je het nodig hebt**.
 
 ---
@@ -2589,3 +2589,5 @@ Je wil een “sweet spot” (afhankelijk van dimensie/proposal).
 - H1: errorbars, rounding, reproducibility (seed) zijn essentieel.
 - H3/H6: stochastic sampling vs fitting/optimisation; control variates lijken op “modelfout compenseren”.
 - Statistische interpretatie: CLT, variantie, confidence intervals (wordt vaak in “insights” gevraagd na coding).
+
+

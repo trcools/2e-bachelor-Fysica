@@ -163,7 +163,7 @@ Je zoekt een **numerieke rank**: hoeveel richtingen zijn “significant” boven
 - Kies tolerance, bv. $\sigma_i > \tau$ met $\tau$ typisch gekoppeld aan machine precision en schaal (in de cursus vaak “relative threshold”).
 - Rank = aantal singular values boven de threshold.
 
-**Voordeel**: zeer betrouwbaar.
+**Voordeel**: zeer betrouwbaar.  
 **Nadeel**: duur.
 
 ### Methode 2: Rank-revealing QR (QR met pivoting)
@@ -174,7 +174,7 @@ $$
 waar $\mathbf{P}$ kolommen herschikt zodat diagonaal van $\mathbf{R}$ afneemt.
 Dan lees je rank af uit de grootte van $|r_{ii}|$ (met tolerance).
 
-**Voordeel**: goedkoper dan SVD, vaak “goed genoeg”.
+**Voordeel**: goedkoper dan SVD, vaak “goed genoeg”.  
 **Nadeel**: minder robuust dan SVD in lastige gevallen.
 
 ---

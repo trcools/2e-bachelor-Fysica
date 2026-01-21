@@ -34,14 +34,11 @@ The Rössler equations are:
 # ============================================================
 
 # ----- Imports -----
-from imports import (
-    np,
-    solve,
-    symbols,
-    Eq,
-    solve_ivp,
-)
+import importlib
+import imports
+from imports import (np, sp, solve, Symbol, re, im, Matrix, symbols, Eq, plt,Axes3D, solve_ivp, interact, tqdm)
 
+import parameters
 from parameters import get_parameters
 
 # ------- parameters ----
@@ -49,14 +46,13 @@ a, b, t_min, t_max, dt, initial_condition, initial_conditions = get_parameters()
 
 
 # ============================================================
-# 1. Time grid and numerical integration
+# 1. Time grid and numerical integration 
 # ============================================================
 
 
-# ========================================
-# 1.1. Time grid
-# ========================================
-
+    # ========================================
+    # 1.1. Time grid
+    # ========================================
 
 def get_time_array(t_min=t_min, t_max=t_max, dt=dt):
     """
@@ -77,10 +73,11 @@ def get_time_array(t_min=t_min, t_max=t_max, dt=dt):
     t = np.arange(t_min, t_max, dt)
     return t
 
+
+
     # ========================================
     # 1.2. Rössler RHS (new better/faster method)
     # ========================================
-
 
 def rossler_rhs(t, state, c, a=a, b=b):
     """
@@ -109,12 +106,11 @@ def rossler_rhs(t, state, c, a=a, b=b):
     dz = b + z * (x - c)
     return [dx, dy, dz]
 
-
 def rossler_chaos(state, t, c, a=a, b=b):
     """
     Right-hand side of the Rössler system, specifically designed for use with `scipy.integrate.odeint`.
 
-    This function is identical to `rossler_rhs`, but is written specifically for use with `odeint`,
+    This function is identical to `rossler_rhs`, but is written specifically for use with `odeint`, 
     because `odeint` requires the function signature `f(state, t)` rather than `f(t, state)` as in `solve_ivp`.
 
     While the functionality is the same,
@@ -142,14 +138,15 @@ def rossler_chaos(state, t, c, a=a, b=b):
     dz = b + z * (x - c)
     return [dx, dy, dz]
 
+
+
+
     # ========================================
     # 1.3. Euler integration (old and slow)
     # ========================================
 
 
-def get_vectors_old(
-    c=2.0, initial_condition=initial_condition, t_min=t_min, t_max=t_max, dt=dt
-):
+def get_vectors_old(c=2.0, initial_condition=initial_condition, t_min=t_min, t_max=t_max, dt=dt):
     """
     Integrate the Rössler system using a simple explicit Euler scheme.
 
@@ -169,47 +166,43 @@ def get_vectors_old(
     x, y, z : ndarray
         Arrays containing X(t), Y(t), Z(t) along the trajectory.
     """
-    t = get_time_array(t_min=t_min, t_max=t_max, dt=dt)
-
+    t = get_time_array(t_min=t_min, t_max=t_max , dt=dt)
     # ---Arrays for the results---
     def get_arrays_old(t=t):
-        x, y, z = np.zeros_like(t), np.zeros_like(t), np.zeros_like(t)
-        return x, y, z
-
+        x,y,z = np.zeros_like(t), np.zeros_like(t), np.zeros_like(t)
+        return x,y,z
+        
     # ---initial conditions---
-    def get_initial_conditions_old(x, y, z, x0, y0, z0):
-        x[0], y[0], z[0] = x0, y0, z0
-        return x, y, z
-
+    def get_initial_conditions_old(x,y,z,x0,y0,z0):
+        x[0],y[0],z[0] = x0,y0,z0
+        return x,y,z
+    
     # ---Euler integration---
-    def get_euler_integration_old(x, y, z, c, dt=dt, a=a, b=b):
-        for i in range(1, len(t)):
-            x[i] = x[i - 1] + dt * (-y[i - 1] - z[i - 1])
-            y[i] = y[i - 1] + dt * (x[i - 1] + a * y[i - 1])
-            z[i] = z[i - 1] + dt * (b + z[i - 1] * (x[i - 1] - c))
-        return x, y, z
+    def get_euler_integration_old(x,y,z,c,dt=dt,a=a, b=b):
+        for i in range (1,len(t)):
+            x[i] = x[i-1] + dt*(-y[i-1] - z[i-1])
+            y[i] = y[i-1] + dt*(x[i-1] + a*y[i-1])
+            z[i] = z[i-1] + dt*(b + z[i-1]*(x[i-1] - c))
+        return x,y,z
 
-    x, y, z = get_arrays_old()
-    x, y, z = get_initial_conditions_old(x, y, z, *initial_condition)
-    x, y, z = get_euler_integration_old(x, y, z, c, dt=dt)
+    x,y,z = get_arrays_old()
+    x,y,z = get_initial_conditions_old(x,y,z,*initial_condition)
+    x,y,z = get_euler_integration_old(x,y,z,c,dt=dt)
+    
+    return x,y,z
 
-    return x, y, z
+
 
     # ============================================================
     # 1.4. New integrator based on solve_ivp (Runge–Kutta)
     # ============================================================
 
 
-def get_vectors(
-    c=2.0,
-    initial_condition=initial_condition,
-    t_min=t_min,
-    t_max=t_max,
-    dt=dt,
-    method="RK45",
-    rtol=1e-8,
-    atol=1e-10,
-):
+def get_vectors(c=2.0,
+                    initial_condition=initial_condition,
+                    t_min=t_min, t_max=t_max, dt=dt,
+                    method="RK45",
+                    rtol=1e-8, atol=1e-10):
     """
     Integrate the Rössler system using scipy.integrate.solve_ivp
     with a higher-order Runge–Kutta method.
@@ -246,14 +239,14 @@ def get_vectors(
         args=(c,),
         method=method,
         rtol=rtol,
-        atol=atol,
-    )
+        atol=atol)
 
     if not sol.success:
         raise RuntimeError(f"Rössler integration failed: {sol.message}")
 
     x, y, z = sol.y  # shape (3, len(t_eval))
     return x, y, z
+
 
 
 # ============================================================
@@ -272,13 +265,17 @@ def get_solutions():
     (x, y, z) : tuple of SymPy symbols
         The state variables used in the symbolic system.
     """
-    x, y, z, c, a_sym, b_sym = symbols("x y z c a b", real=True)
+    x, y, z, c, a_sym, b_sym = symbols('x y z c a b', real=True)
 
-    eqs = [Eq(-y - z, 0), Eq(x + a_sym * y, 0), Eq(b_sym + z * (x - c), 0)]
-
+    eqs = [
+        Eq(-y - z, 0),
+        Eq(x + a_sym * y, 0),
+        Eq(b_sym + z * (x - c), 0)]
+    
     sols = solve(eqs, (x, y, z), dict=True)
 
     return sols, (x, y, z)
+
 
 
 def show_solutions():
@@ -286,8 +283,8 @@ def show_solutions():
     Print all symbolic equilibria in a human-readable format.
     """
     sols, (x, y, z) = get_solutions()
-    for i, sol in enumerate(sols):
-        print(f"Solution {i + 1}:\n X = {sol[x]} Y = {sol[y]} Z = {sol[z]} \n")
+    for i,sol in enumerate(sols):
+            print(f"Solution {i+1}:\n X = {sol[x]} Y = {sol[y]} Z = {sol[z]} \n")
 
 
 # ============================================================
@@ -325,47 +322,48 @@ def equilibrium_classification(eigvals):
     real_eigvals = np.real(eigvals)
     imag_eigvals = np.imag(eigvals)
     has_complex = np.any(np.abs(imag_eigvals) > tol)
-
+    
     # Count the number 'n' of positive, negative and zero eigenvalues
-    n_pos = np.sum(real_eigvals > tol)
+    n_pos = np.sum(real_eigvals >  tol)
     n_neg = np.sum(real_eigvals < -tol)
     n_zero = len(eigvals) - n_pos - n_neg
-
+    
     # 1) All real parts < 0  -> stable
     if n_pos == 0 and n_zero == 0:
         if has_complex:
             eq_type = "stable spiral"
         else:
             eq_type = "stable node"
-
+    
     # 2) At least one > 0, none negative -> purely unstable
     elif n_pos > 0 and n_neg == 0 and n_zero == 0:
         if has_complex:
             eq_type = "unstable spiral"
         else:
             eq_type = "unstable node"
-
+    
     # 3) Both positive and negative real parts -> saddle / saddle-focus
     elif n_pos > 0 and n_neg > 0:
         if has_complex:
             eq_type = "saddle spiral"
         else:
             eq_type = "saddle point"
-
+    
     # 4) At least one eigenvalue ≈ 0, all real -> pitchfork
     elif n_pos == 0 and n_zero > 0 and not has_complex:
         eq_type = "pitchfork bifurcation"
-
+    
     # 5) At least one eigenvalue ≈ 0, complex pair present -> Hopf
     elif n_pos == 0 and n_zero > 0 and has_complex:
         eq_type = "Hopf bifurcation"
-
+    
     # 6) Exotic / other cases
     else:
         eq_type = "other equilibrium"
-
+    
     return eq_type
 
+    
 
 def get_groups(dim="1D"):
     """
@@ -385,33 +383,19 @@ def get_groups(dim="1D"):
     """
     if dim not in {"1D", "2D"}:
         raise ValueError(f"dim must be '1D' or '2D', got {dim!r}")
-
-    base_styles = {
-        "stable node": dict(marker="o", s=10, label="stable node"),
-        "stable spiral": dict(marker="o", s=10, label="stable spiral"),
-        "unstable node": dict(marker="x", s=10, label="unstable node"),
-        "unstable spiral": dict(marker="x", s=10, label="unstable spiral"),
-        "saddle point": dict(marker="o", s=10, label="saddle point"),
-        "saddle spiral": dict(marker="o", s=10, label="saddle-spiral"),
-        "pitchfork bifurcation": dict(
-            marker="D",
-            s=50,
-            facecolors="blue",
-            edgecolors="blue",
-            label="pitchfork bifurcation",
-        ),
-        "Hopf bifurcation": dict(
-            marker="s",
-            s=50,
-            facecolors="purple",
-            edgecolors="purple",
-            label="Hopf bifurcation",
-        ),
-        "other equilibrium": dict(
-            marker="^", color="gray", s=20, label="other / unspecified"
-        ),
-    }
-
+        
+    
+    base_styles = {"stable node": dict(marker="o", s=10, label="stable node"),
+                   "stable spiral": dict(marker="o", s=10, label="stable spiral"),
+                   "unstable node": dict(marker="x", s=10, label="unstable node"),
+                   "unstable spiral": dict(marker="x", s=10, label="unstable spiral"),
+                   "saddle point": dict(marker="o", s=10, label="saddle point"),
+                   "saddle spiral": dict(marker="o", s=10, label="saddle-spiral"),
+                   "pitchfork bifurcation": dict(marker="D", s=50, facecolors="blue", edgecolors="blue",label="pitchfork bifurcation"),
+                   "Hopf bifurcation": dict(marker="s", s=50, facecolors="purple", edgecolors="purple", label="Hopf bifurcation"),
+                   "other equilibrium": dict(marker="^", color="gray", s=20, label="other / unspecified"),
+                  }
+    
     groups = {}
 
     if dim == "2D":
@@ -422,7 +406,7 @@ def get_groups(dim="1D"):
                 "v2": [],
                 "style": style.copy(),
             }
-    else:  # dim == "1D"
+    else: # dim == "1D"
         for key, style in base_styles.items():
             groups[key] = {
                 "c": [],
@@ -436,7 +420,7 @@ def get_groups(dim="1D"):
 # ============================================================
 # 4. Jacobian, equilibria and eigenvalues as function of c
 # ============================================================
-
+        
 
 def get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a, b_val=b):
     """
@@ -470,7 +454,7 @@ def get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a, b_va
     x_expr = sol[x]
     y_expr = sol[y]
     z_expr = sol[z]
-
+        
     subs_dict = {c_sym: c_val, a_sym: a_val, b_sym: b_val}
 
     # Here we substitute c, a and b into the symbolic equations
@@ -478,22 +462,24 @@ def get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a, b_va
     y_num = y_expr.subs(subs_dict).evalf()
     z_num = z_expr.subs(subs_dict).evalf()
 
-    # Only keep real solutions
+    #Only keep real solutions
     if not (x_num.is_real and y_num.is_real and z_num.is_real):
         return None
-
+                
     xsol = float(x_num)
     ysol = float(y_num)
     zsol = float(z_num)
 
     # Jacobian at equilibrium for Rössler system
-    J_eq = np.array(
-        [[0.0, -1.0, -1.0], [1.0, a_val, 0.0], [zsol, 0.0, xsol - c_val]], dtype=float
-    )
+    J_eq = np.array([
+        [0.0,        -1.0,      -1.0],
+        [1.0,        a_val,      0.0],
+        [zsol,       0.0,    xsol - c_val]
+    ], dtype=float)
 
     eigvals, eigvecs = np.linalg.eig(J_eq)
     eq_type = equilibrium_classification(eigvals)
-
+            
     return {
         "c": c_val,
         "x_eq": xsol,
@@ -501,13 +487,11 @@ def get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a, b_va
         "z_eq": zsol,
         "J": J_eq,
         "eigvals": eigvals,
-        "eq_type": eq_type,
-    }
+        "eq_type": eq_type}
+    
 
-
-def get_equilibria_from_jacobian(
-    sol, x, y, z, c_sym, a_sym, b_sym, c_values, a_val=a, b_val=b
-):
+def get_equilibria_from_jacobian(sol, x, y, z, c_sym, a_sym, b_sym, c_values,
+                                 a_val=a, b_val=b):
     """
     Helper function: compute equilibria for many c values for a single solution.
 
@@ -530,13 +514,12 @@ def get_equilibria_from_jacobian(
         List of equilibrium dictionaries (see get_equilibria_for_c).
     """
     equilibrium = []
-
+    
     for c_val in c_values:
-        eq = get_equilibria_for_c(
-            sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a_val, b_val=b_val
-        )
+        eq = get_equilibria_for_c(sol, x, y, z, c_sym, a_sym, b_sym, c_val,
+                                    a_val=a_val, b_val=b_val)
         if eq is not None:
-            equilibrium.append(eq)
+                equilibrium.append(eq)
     return equilibrium
 
 
@@ -560,26 +543,24 @@ def compute_jacobian_and_stability(sols, x, y, z, small_c=False):
         Each dict contains keys:
         {"c", "x_eq", "y_eq", "z_eq", "J", "eigvals", "eq_type"}.
     """
-    c_sym, a_sym, b_sym = symbols("c a b", real=True)
+    c_sym, a_sym, b_sym = symbols('c a b', real=True)
     all_equilibria = []
-
-    if small_c:
+    
+    if small_c: 
         c_values = np.linspace(0, 2, 51)
     else:
         c_values = np.linspace(0, 18, 181)
-
+        
     for sol in sols:
-        all_equilibria.extend(
-            get_equilibria_from_jacobian(
-                sol, x, y, z, c_sym, a_sym, b_sym, c_values, a_val=a, b_val=b
-            )
-        )
+        all_equilibria.extend(get_equilibria_from_jacobian(sol, x, y, z,
+                                                           c_sym, a_sym, b_sym,
+                                                           c_values,
+                                                           a_val=a, b_val=b))
     return all_equilibria
 
+    
 
-def get_eigvals_for_c(
-    sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=dt, small_c=False
-):
+def get_eigvals_for_c(sols, x, y, z, c_sym, a_sym, b_sym, a_val=a, b_val=b, dt=dt, small_c=False):
     """
     Collect the Jacobian eigenvalues of all real equilibria as a function of c.
 
@@ -615,9 +596,9 @@ def get_eigvals_for_c(
     for c_val in c_values:
         eigvals_list = []
         for sol in sols:
-            eq = get_equilibria_for_c(
-                sol, x, y, z, c_sym, a_sym, b_sym, c_val, a_val=a_val, b_val=b_val
-            )
+            eq = get_equilibria_for_c(sol, x, y, z,
+                                        c_sym, a_sym, b_sym, c_val,
+                                        a_val=a_val, b_val=b_val)
             if eq is not None:
                 eigvals_list.append(eq["eigvals"])
         eigvals_by_c[c_val] = eigvals_list
@@ -643,7 +624,7 @@ def ZY_data_and_wings(c, t_min, t_max, dt=dt):
     x, y, z = get_vectors(c, t_min=t_min, t_max=t_max, dt=dt)
 
     right = x >= 0
-    left = x < 0
+    left  = x < 0
 
     return y, z, left, right
 
@@ -661,7 +642,7 @@ def XYZ_data_and_wings(c, t_min, t_max, dt=dt):
     x, y, z = get_vectors(c, t_min=t_min, t_max=t_max, dt=dt)
 
     right = x >= 0
-    left = x < 0
+    left  = x < 0
 
     return x, y, z, left, right
 
@@ -696,12 +677,13 @@ def get_Z_maxima(c=5.7, skip_first=5, t_min=t_min, t_max=t_max, dt=dt):
     t = get_time_array(t_min, t_max, dt)
     _, _, z = get_vectors(c, t_min=t_min, t_max=t_max, dt=dt)
 
+
     t_max = []
     Z_max = []
 
     # How we find the maxima: z[i-1] < z[i] > z[i+1]
     for i in range(1, len(z) - 1):
-        if z[i] > z[i - 1] and z[i] > z[i + 1]:
+        if z[i] > z[i-1] and z[i] > z[i+1]:
             t_max.append(t[i])
             Z_max.append(z[i])
 
@@ -714,6 +696,8 @@ def get_Z_maxima(c=5.7, skip_first=5, t_min=t_min, t_max=t_max, dt=dt):
         t_max = t_max[skip_first:]
 
     return t_max, Z_max
+
+
 
 
 def rossler_return_map_from_data(Z_n):
