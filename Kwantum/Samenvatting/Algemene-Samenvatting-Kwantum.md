@@ -240,22 +240,22 @@ $$
 
 De probabiliteitsdichtheid is
 $$
-|\psi|^2=\psi^\*\psi.
+|\psi|^2=\psi^*\psi.
 $$
 
 Uitwerken geeft:
 $$
 |\psi|^2
 =|c_1|^2|\psi_1|^2+|c_2|^2|\psi_2|^2
-+c_1^\*c_2|\psi_1||\psi_2|e^{i(\alpha_2-\alpha_1)}
-+c_2^\*c_1|\psi_1||\psi_2|e^{-i(\alpha_2-\alpha_1)}.
++c_1^*c_2|\psi_1||\psi_2|e^{i(\alpha_2-\alpha_1)}
++c_2^*c_1|\psi_1||\psi_2|e^{-i(\alpha_2-\alpha_1)}.
 $$
 
 Dus:
 $$
 |\psi|^2
 =|c_1|^2|\psi_1|^2+|c_2|^2|\psi_2|^2
-+2\,\mathrm{Re}\!\left\{c_1^\*c_2|\psi_1||\psi_2|e^{i(\alpha_2-\alpha_1)}\right\}.
++2\,\mathrm{Re}\!\left\{c_1^*c_2|\psi_1||\psi_2|e^{i(\alpha_2-\alpha_1)}\right\}.
 $$
 
 ➡️ Die laatste term is de **interferentieterm** (komt door het complexe faseverschil).
@@ -409,6 +409,12 @@ Onderaan noteer je:
   i\hbar\frac{\partial}{\partial t}\Psi(\mathbf r,t)= -\frac{\hbar^2}{2m}\nabla^2\Psi(\mathbf r,t)
   $$
 
+Vlakke golf (vrij deeltje):
+$$
+\Psi(\mathbf r,t)=A\,e^{i(\mathbf k\cdot\mathbf r-\omega t)}
+$$
+Opmerking: als $\Psi$ zuiver reëel is, volgt vaak $\mathbf j=\mathbf 0$.
+
 ---
 
 ## 3.2 Behoud van waarschijnlijkheid
@@ -490,6 +496,49 @@ Moraal: operatorvolgorde doet ertoe (klassiek vaak niet).
 
 ---
 
+Aanvullende operatoren
+$$
+\hat E=i\hbar\frac{\partial}{\partial t},\qquad
+\hat{\mathbf L}=\mathbf r\times \hat{\mathbf p}
+$$
+Kinetische energie-operator:
+$$
+\hat T=\frac{\hat p^2}{2m}=-\frac{\hbar^2}{2m}\nabla^2
+$$
+
+Afleiding van $\langle \mathbf p\rangle$ via Fourierrepresentatie
+
+Stap 1 (van p-ruimte naar r-ruimte):
+$$
+\psi(\mathbf r) = (2\pi\hbar)^{-3/2}\int \Phi(\mathbf p)\,e^{\frac{i}{\hbar}\mathbf p\cdot\mathbf r}\,d^3p,
+\quad
+\Phi(\mathbf p) = (2\pi\hbar)^{-3/2}\int \psi(\mathbf r)\,e^{-\frac{i}{\hbar}\mathbf p\cdot\mathbf r}\,d^3r.
+$$
+
+Stap 2:
+$$
+\langle \mathbf p\rangle=\int \Phi^*(\mathbf p)\,\mathbf p\,\Phi(\mathbf p)\,d^3p
+$$
+en substitueer de Fourierrelaties.
+
+Stap 3:
+$$
+\mathbf p\,e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')}=
+-\,i\hbar\,\nabla_{\mathbf r}\,e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')}
+$$
+
+Stap 4:
+$$
+\int e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')}\,d^3p=(2\pi\hbar)^3\delta(\mathbf r-\mathbf r')
+$$
+
+Stap 5 (resultaat):
+$$
+\boxed{\;\langle \mathbf p\rangle=\int \psi^*(\mathbf r)\,(-i\hbar\nabla)\,\psi(\mathbf r)\,d^3r\;}
+$$
+
+---
+
 ## 3.4 Ehrenfest: overgang naar klassieke mechanica
 
 **Klassiek**
@@ -513,6 +562,30 @@ $$
 Interpretatie (niet-mystiek maar wel mooi):
 - Klassiek: één traject.
 - Kwantum: verwachtingswaarden volgen “klassiek-achtige” bewegingswetten, maar de toestand blijft statistisch/gespreid.
+
+---
+
+Bewijs voor $\dfrac{d}{dt}\langle x\rangle$
+
+Start:
+$$
+\frac{d}{dt}\langle x\rangle=\frac{d}{dt}\int \Psi^*(\mathbf r,t)\,x\,\Psi(\mathbf r,t)\,d^3r.
+$$
+Na uitwerken volgt:
+$$
+\boxed{\;\frac{d}{dt}\langle x\rangle=\frac{1}{m}\langle p_x\rangle\;}
+$$
+
+Bewijs voor $\dfrac{d}{dt}\langle p_x\rangle$
+
+Start:
+$$
+\frac{d}{dt}\langle p_x\rangle=\frac{d}{dt}\int \Psi^*(\mathbf r,t)\,(-i\hbar\partial_x)\,\Psi(\mathbf r,t)\,d^3r.
+$$
+Gebruik TDSE + partiële integratie (randtermen $=0$):
+$$
+\boxed{\;\frac{d}{dt}\langle p_x\rangle=-\Big\langle\frac{\partial V}{\partial x}\Big\rangle\;}
+$$
 
 ---
 
@@ -547,6 +620,20 @@ $$
 
 ---
 
+Verwachtingswaarde energie in eigenstaat
+$$
+\langle E\rangle=\int d^3r\,\Psi^*(\mathbf r,t)\,(i\hbar\partial_t)\,\Psi(\mathbf r,t)
+=\int d^3r\,\Psi^*(\mathbf r,t)\,\hat H\,\Psi(\mathbf r,t)
+=E\int |\psi_E(\mathbf r)|^2\,d^3r=E.
+$$
+
+Voor een tijdonafhankelijke operator $\hat A$:
+$$
+\langle A\rangle=\int d^3r\,\psi_E^*(\mathbf r)\,\hat A\,\psi_E(\mathbf r).
+$$
+
+---
+
 ## 3.6 Energiekwantisatie
 
 **Waarom kwantisatie?**
@@ -555,6 +642,26 @@ $$
 **Typen spectra**
 - **Gebonden toestanden**: discrete energieën $E_1<E_2<\dots$
 - **Ongebonden / verstrooiing**: typisch continu spectrum (energie “loopt door”).
+
+---
+1D-TISE en cases
+$$
+-\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}+V(x)\psi(x)=E\psi(x)
+$$
+
+Rand/regulariteitsvoorwaarden (typisch):
+- $\psi(x)$ eindig / normaliseerbaar
+- $\psi$ continu; $d\psi/dx$ continu als $V$ eindig
+
+Cases:
+- Case 1: $E < V_{\min}$
+- Case 2: $V_{\min} < E < V_-$
+- Case 3: $V_- < E < V_+$
+- Case 4: $E > V_+$
+
+Klassieke interpretatie:
+- $V(x)\le E$: klassieke beweging mogelijk → oplossingen oscillatoir
+- $V(x)>E$: klassieke beweging onmogelijk → oplossingen exponentieel
 
 ---
 
@@ -622,10 +729,15 @@ $$
 e^{-i\mathbf p\cdot\mathbf r/\hbar}
 $$
 
+Fouriertransformatie van het potentiaal:
+$$
+  ilde V(\mathbf p-\mathbf p',t)=(2\pi\hbar)^{-3/2}\int d^3r\,e^{-\frac{i}{\hbar}(\mathbf p-\mathbf p')\cdot\mathbf r}\,V(\mathbf r,t).
+$$
+
 **TDSE in impulsruimte (integro-differentiaal)**
 $$
 i\hbar\frac{\partial}{\partial t}\Phi(\mathbf p,t)=\frac{\mathbf p^2}{2m}\Phi(\mathbf p,t)
-+\frac{1}{(2\pi\hbar)^{3/2}}\int d^3p'\,V(\mathbf p-\mathbf p',t)\,\Phi(\mathbf p',t)
++\frac{1}{(2\pi\hbar)^{3/2}}\int d^3p'\,\tilde V(\mathbf p-\mathbf p',t)\,\Phi(\mathbf p',t)
 $$
 - Komt uit convolutietheorema; vaak moeilijker dan in $\mathbf r$-ruimte.
 
@@ -641,304 +753,6 @@ $$
 \langle A\rangle=\int d^3p\,\Phi^*(\mathbf p,t)\,A(i\hbar\nabla_{\mathbf p},\mathbf p,t)\,\Phi(\mathbf p,t)
 $$
 
-# H3 — Schrödingervergelijking 
-
----
-
-Tijdsafhankelijke Schrödingervergelijking:
-$$
-i\hbar\frac{\partial}{\partial t}\Psi(\mathbf r,t)=\hat H\,\Psi(\mathbf r,t)
-$$
-Hamiltoniaan:
-$$
-\hat H=-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf r,t)
-$$
-
-Opmerking:
-- als $\Psi$ reëel is $\Rightarrow \mathbf j=0$ `[zoals genoteerd]`
-
-Vlakke golf (free particle):
-$$
-\Psi(\mathbf r,t)=A\,e^{i(\mathbf k\cdot\mathbf r-\omega t)}
-$$
-
-## — Operatoren + continuïteitsvergelijking
-
-Operatoren:
-$$
-\hat E=i\hbar\frac{\partial}{\partial t},\qquad
-\hat{\mathbf L}=\mathbf r\times \hat{\mathbf p}
-$$
-Kinetische energie:
-$$
-\hat T=\frac{\hat p^2}{2m}=-\frac{\hbar^2}{2m}\nabla^2
-$$
-
-Continuïteitsvergelijking (uit TDSE):
-$$
-P(\mathbf r,t)=|\Psi(\mathbf r,t)|^2
-$$
-$$
-\mathbf j(\mathbf r,t)=\frac{\hbar}{2mi}\left(\Psi^*\nabla\Psi-(\nabla\Psi^*)\Psi\right)
-$$
-$$
-\boxed{\;\frac{\partial P}{\partial t}+\nabla\cdot\mathbf j=0\;}
-$$
-
----
-
-##  Expectation values and operators
-
-Configuratieruimte:
-$$
-\langle \mathbf r\rangle=\int \Psi^*(\mathbf r,t)\,\mathbf r\,\Psi(\mathbf r,t)\,d^3r
-$$
-Voor $f(\mathbf r,t)$:
-$$
-\langle f(\mathbf r,t)\rangle=\int \Psi^*\,f(\mathbf r,t)\,\Psi\,d^3r
-$$
-Voor potentiaal:
-$$
-\langle V(\mathbf r)\rangle=\int \Psi^*(\mathbf r,t)\,V(\mathbf r)\,\Psi(\mathbf r,t)\,d^3r
-$$
-
-Voor dynamische variabele $A(\mathbf p,\mathbf r,t)$:
-$$
-\langle A\rangle=\int \Psi^*(\mathbf r,t)\,\hat A\,\Psi(\mathbf r,t)\,d^3r
-$$
-
-Belangrijke operatoren:
-- configuratieruimte:
-$$
-\hat{\mathbf p}=-i\hbar\nabla
-$$
-- impulsmruimte:
-$$
-\hat{\mathbf p}=\mathbf p,\qquad \hat{\mathbf r}=i\hbar\nabla_{\mathbf p}
-$$
-
----
-
-**Stap 1: vanuit golffunctie in p-ruimte**
-$$
-\psi(\mathbf r) = (2\pi\hbar)^{-3/2}\int \Phi(\mathbf p)\,e^{\frac{i}{\hbar}\mathbf p\cdot\mathbf r}\,d^3p
-$$
-$$
-\Phi(\mathbf p) = (2\pi\hbar)^{-3/2}\int \psi(\mathbf r)\,e^{-\frac{i}{\hbar}\mathbf p\cdot\mathbf r}\,d^3r
-$$
-
-**Stap 2: van p-ruimte naar r-ruimte**
-$$
-\langle \mathbf p\rangle=\int \Phi^*(\mathbf p)\,\mathbf p\,\Phi(\mathbf p)\,d^3p
-$$
-Substitutie van de Fourierrelaties geeft een drievoudige integraal in $\mathbf r,\mathbf r',\mathbf p$.
-
-**Stap 3: gebruik**
-$$
-\mathbf p\,e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')}
-= -\,i\hbar\,\nabla_{\mathbf r}\,e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')}
-$$
-
-**Stap 4: p-integraal**
-$$
-\int e^{\frac{i}{\hbar}\mathbf p\cdot(\mathbf r-\mathbf r')}\,d^3p=(2\pi\hbar)^3\delta(\mathbf r-\mathbf r')
-$$
-
-**Stap 5: resultaat**
-$$
-\boxed{\;\langle \mathbf p\rangle=\int \psi^*(\mathbf r)\,(-i\hbar\nabla)\,\psi(\mathbf r)\,d^3r\;}
-$$
-
----
-
-## Verwachtingswaarde energie + operatoren
-
-Verwachtingswaarde:
-$$
-\langle \hat H\rangle=\left\langle \frac{\hat p^2}{2m}+V\right\rangle
-=\langle \hat T\rangle+\langle V\rangle
-$$
-
-Hermitische operatoren (kernpunten):
-- eigenwaarden reëel
-- eigenfuncties orthogonaal (bij verschillende eigenwaarden)
-- $\hat A^\dagger=\hat A$  `[onleesbaar detail]`
-
----
-
-
-
-## Ehrenfest: bewijs voor $\frac{d}{dt}\langle x\rangle$
-
-Start:
-$$
-\frac{d}{dt}\langle x\rangle=\frac{d}{dt}\int \Psi^*\,x\,\Psi\,d^3r
-$$
-Na uitwerken:
-$$
-\boxed{\;\frac{d}{dt}\langle x\rangle=\frac{1}{m}\langle p_x\rangle\;}
-$$
-
----
-
-
-## — Ehrenfest: bewijs voor $\frac{d}{dt}\langle p_x\rangle$
-
-Start:
-$$
-\frac{d}{dt}\langle p_x\rangle=\frac{d}{dt}\int \Psi^*(-i\hbar\partial_x)\Psi\,d^3r
-$$
-Gebruik TDSE + integraalmanipulaties (partiële integratie, randtermen $=0$):
-$$
-\boxed{\;\frac{d}{dt}\langle p_x\rangle=-\left\langle\frac{\partial V}{\partial x}\right\rangle\;}
-$$
-
----
-
-
-## 3.5 The time-independent Schrödinger equation (stationary state)
-
-Ansatz:
-$$
-\Psi(\mathbf r,t)=\psi(\mathbf r)\,f(t)
-$$
-In TDSE:
-$$
-i\hbar\frac{\partial}{\partial t}(\psi f)=\hat H(\psi f)
-\Rightarrow i\hbar \psi \frac{df}{dt}=f\,\hat H\psi
-$$
-Deel door $\psi f$:
-$$
-i\hbar\frac{1}{f}\frac{df}{dt}=\frac{1}{\psi}\hat H\psi = E
-$$
-Dus:
-$$
-f(t)=e^{-\frac{i}{\hbar}Et},\qquad \hat H\psi=E\psi
-$$
-Superpositie geeft de algemene oplossing:
-$$
-\Psi(\mathbf r,t)=\sum_E c_E\,\psi_E(\mathbf r)\,e^{-\frac{i}{\hbar}Et}
-$$
-
----
-
-## Stationaire toestanden (eigenschappen)
-
-Stationaire oplossing:
-$$
-\Psi(\mathbf r,t)=\psi(\mathbf r)\,e^{-\frac{i}{\hbar}Et}
-$$
-met $\hat H\psi=E\psi$ en (voor hermitische $\hat H$) $E\in\mathbb R$.
-
-Verwachtingswaarde energie in eigenstaat:
-$$
-\langle E\rangle=\int \Psi^*(i\hbar\partial_t)\Psi\,d^3r
-=\int \Psi^*\hat H\Psi\,d^3r
-=E\int |\psi|^2\,d^3r=E
-$$
-
-Eigenschappen stationaire toestand:
-- $P(\mathbf r,t)=|\Psi|^2=|\psi(\mathbf r)|^2$ (tijdonafhankelijk)
-- $\mathbf j(\mathbf r,t)$ tijdonafhankelijk `[onleesbaar detail]`
-
-Als $\hat A$ niet expliciet tijdsafhankelijk is:
-$$
-\langle A\rangle=\int \psi^*(\mathbf r)\,\hat A\,\psi(\mathbf r)\,d^3r
-$$
-
----
-
-## 3.6 Energie-kwantisatie
-
-1D-TISE:
-$$
--\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}+V(x)\psi(x)=E\psi(x)
-$$
-
-Rand/regulariteitsvoorwaarden (typisch):
-- $\psi(x)$ eindig / normaliseerbaar
-- $\psi$ continu; $d\psi/dx$ continu als $V$ eindig
-
-Cases (zoals genoteerd):
-- Case 1: $E < V_{\min}$
-- Case 2: $V_{\min} < E < V_-$  `[onleesbaar]`
-- Case 3: $V_- < E < V_+$
-- Case 4: $E > V_+$
-
-Interpretatie (klassiek):
-- $V(x)\le E$: klassieke beweging mogelijk → oplossingen oscillatoir
-- $V(x)>E$: klassieke beweging onmogelijk → oplossingen exponentieel
-
----
-
-
-## Coëfficiënten, propagator, algemene oplossing
-
-Projectiecoëfficiënten:
-$$
-C_E(t_0)=\int \psi_E^*(\mathbf r)\,\Psi(\mathbf r,t_0)\,d^3r
-$$
-
-Propagator:
-$$
-\Psi(\mathbf r,t)=\int K(\mathbf r,t;\mathbf r',t_0)\,\Psi(\mathbf r',t_0)\,d^3r'
-$$
-$$
-K(\mathbf r,t;\mathbf r',t_0)=\sum_E \psi_E(\mathbf r)\psi_E^*(\mathbf r')\,
-\exp\!\left[-\frac{i}{\hbar}E(t-t_0)\right]
-$$
-
-Algemene oplossing (tijdonafhankelijke $\hat H$):
-$$
-\Psi(\mathbf r,t)=\sum_E C_E(t_0)\exp\!\left[-\frac{i}{\hbar}E(t-t_0)\right]\psi_E(\mathbf r)
-$$
-
-Normalisatie:
-$$
-\int |\Psi(\mathbf r,t_0)|^2\,d^3r=1
-\quad\Rightarrow\quad
-\sum_E |C_E|^2=1
-$$
-
-Probabiliteitsdichtheid:
-$$
-P(\mathbf r,t)=\Psi^*(\mathbf r,t)\Psi(\mathbf r,t)
-=\sum_E |C_E|^2|\psi_E(\mathbf r)|^2
-+\sum_{E\neq E'} C_E^*C_{E'}\,e^{\frac{i}{\hbar}(E-E')t}\,\psi_E^*\psi_{E'}
-$$
-(laatste term = interferentie)
-
----
-
-
-
-## 3.3 The Schrödinger equation in momentum space (bewijs ufora)
-
-Definieer de Fouriertransformatie van het potentiaal:
-$$
-\tilde V(\mathbf p-\mathbf p',t)=(2\pi\hbar)^{-3/2}\int
-e^{-\frac{i}{\hbar}(\mathbf p-\mathbf p')\cdot\mathbf r}\,V(\mathbf r,t)\,d^3r
-$$
-
-**TDSE in impulsmruimte**
-$$
-i\hbar\frac{\partial}{\partial t}\Phi(\mathbf p,t)
-=\frac{p^2}{2m}\Phi(\mathbf p,t)
-+(2\pi\hbar)^{-3/2}\int \tilde V(\mathbf p-\mathbf p',t)\,\Phi(\mathbf p',t)\,d^3p'
-$$
-
-**Verwachtingswaarden in impulsmruimte**
-$$
-\langle \mathbf p\rangle=\int \Phi^*(\mathbf p,t)\,\mathbf p\,\Phi(\mathbf p,t)\,d^3p
-$$
-$$
-\langle \mathbf r\rangle=\int \Phi^*(\mathbf p,t)\,(i\hbar\nabla_{\mathbf p})\,\Phi(\mathbf p,t)\,d^3p
-$$
-Algemeen:
-$$
-\langle A\rangle=\int \Phi^*(\mathbf p,t)\,A(i\hbar\nabla_{\mathbf p},\mathbf p,t)\,\Phi(\mathbf p,t)\,d^3p
-$$
-
 ---
 
 
@@ -948,739 +762,673 @@ $$
 ## 4.1 General formulae
 
 TDSE:
-\[
+$$
 i\hbar \frac{\partial}{\partial t}\psi(x,t)=
 \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x)\right]\psi(x,t)
-\]
+$$
 
 TISE:
-\[
+$$
 -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\psi(x)+V(x)\psi(x)=E\psi(x)
-\]
+$$
 
-\[
+$$
 \vec{j}(x,t)=\frac{\hbar}{2mi}\left[\psi^*(x,t)\frac{\partial\psi(x,t)}{\partial x}-\psi(x,t)\frac{\partial\psi^*(x,t)}{\partial x}\right]
-\]
+$$
 
 
 ## 4.2 The free particle
 
-\[
+$$
 E=\frac{\hbar^2k^2}{2m}
-\]
-\[
+$$
+$$
 (V=0)\Rightarrow -\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}=E\psi(x)
 \Rightarrow \frac{d^2\psi(x)}{dx^2}+\frac{2mE}{\hbar^2}\psi(x)=0
 \Rightarrow \frac{d^2\psi(x)}{dx^2}+k^2\psi(x)=0
-\]
+$$
 
-dimensions: \[onleesbaar\] (iets met \(\left(\frac{2mE}{\hbar^2}\right)^{1/2}\))
+De dimensie van $k$ volgt uit $k=\left(\frac{2mE}{\hbar^2}\right)^{1/2}$.
 
-general solution:
-\[
+**Algemene oplossing:**
+$$
 \psi(x)=Ae^{ikx}+Be^{-ikx}
-\]
+$$
 
-interpretatie:
+**Interpretatie:**
 
-1) \(Ae^{ikx}\): vrij deeltje met impuls \(+\hbar k\) in de positieve \(x\)-richting
+1) $Ae^{ikx}$: vrij deeltje met impuls $+\hbar k$ in de positieve $x$-richting
 
-2) \(Be^{-ikx}\): vrij deeltje met impuls \(-\hbar k\) in de negatieve \(x\)-richting
+2) $Be^{-ikx}$: vrij deeltje met impuls $-\hbar k$ in de negatieve $x$-richting
 
-\[
+$$
 \psi(x,t)=Ae^{i(kx-\omega t)}+Be^{-i(kx+\omega t)}
-\]
+$$
 
-stationaire toestand: meting van de energie van het vrij deeltje zal steeds de waarde \(E=\hbar\omega\) opleveren.
+**Stationaire toestand:** meting van de energie van het vrij deeltje zal steeds de waarde $E=\hbar\omega$ opleveren.
 
+### Geval 1: $B=0$ (vrij deeltje in de positieve $x$-richting)
 
-Geval 1: \(B=0\) (vrij deeltje in de positieve \(x\)-richting)
+- $P(x,t)=P(x)=|A|^2$
 
-- \(P(x,t)=P(x)=|A|^2\)
-
-\[
+$$
 \Delta x\to\infty \quad \text{want}\quad \Delta p_x=0
-\]
+$$
 
-- waarschijnlijkheidsdichtheid:
-\[
+- Waarschijnlijkheidsdichtheid:
+$$
 j(x,t)=j(x)=\frac{\hbar k}{m}|A|^2=v|A|^2=vP(x)
-\]
+$$
 
-\[
-j=v\cdot P \qquad \text{(flux = snelheid}\cdot\text{dichtheid)}
-\]
+$$
+j=v\cdot P \quad \text{(flux = snelheid × dichtheid)}
+$$
 
+### Geval 2: $A=0$ — analoge resultaten
 
-Geval 2: \(A=0\) analoge resultaten
-
-\[
+$$
 P(x,t)=P(x)=|B|^2
-\]
+$$
 
-\[
+$$
 j(x,t)=j(x)=-v|B|^2=-vP(x)
-\]
+$$
 
+### Geval 3: $A=B$ — twee vlakke golven in tegengestelde richting
 
-Geval 3: \(A=B\) (twee vlakke golven die met gelijke amplitude in tegengestelde richting bewegen)
+Twee vlakke golven die met gelijke amplitude in tegengestelde richting bewegen.
 
-- \[
+$$
 \psi(x,t)=2(A\cos(kx))\,e^{-i\omega t}
-\]
+$$
 
-\[
-x_m\ \text{nodes}=\pm\frac{\left(\frac{\pi}{2}+m\pi\right)}{k}\ ,\quad m=0,1,2,\ldots
-\]
+Nulpunten:
+$$
+x_m = \pm\frac{\left(\frac{\pi}{2}+m\pi\right)}{k}, \quad m=0,1,2,\ldots
+$$
 
-- \[
+$$
 P(x,t)=P(x)=|2A|^2\cos^2(kx)
-\]
+$$
 
-- \[
+$$
 j(x,t)=j(x)=0
-\]
-(geen netto stroom, want \(\mathrm{im}(\psi^*(x,t)\frac{\partial\psi(x,t)}{\partial x})=0\))
+$$
 
+(geen netto stroom, want $\text{Im}(\psi^*(x,t)\frac{\partial\psi(x,t)}{\partial x})=0$)
 
-Geval 4: \(A=-B\)
+### Geval 4: $A=-B$
 
-\[
+$$
 P(x,t)=P(x)=|2A|^2\sin^2(kx)
-\]
+$$
 
-\[
+$$
 j(x,t)=j_0=0
-\]
+$$
 
+### Geval 5: $A$ en $B$ willekeurig
 
-Geval 5: \(A\) en \(B\) arbitrair (superpositie van 2 vlakke golven die in tegengestelde richting bewegen resp. met amplitude A en B)
+Superpositie van 2 vlakke golven in tegengestelde richting met amplitude $A$ en $B$.
 
-\[
+$$
 \psi(x,t)=Ae^{i(kx-\omega t)}+Be^{-i(kx+\omega t)}
-\]
+$$
 
-\[
+$$
 P(x,t)=P(x)=|A|^2+|B|^2+\left(AB^*e^{2ikx}+A^*Be^{-2ikx}\right)
-\]
+$$
 
-met interferentie effecten tussen de 2 golven
+Met interferentie-effecten tussen de twee golven.
 
-\[
-j(x,t)=j(x)=\frac{\hbar}{m}\ \mathrm{Im}\left(\psi^*(x,t)\frac{\partial\psi(x,t)}{\partial x}\right)
+$$
+j(x,t)=j(x)=\frac{\hbar}{m}\ \text{Im}\left(\psi^*(x,t)\frac{\partial\psi(x,t)}{\partial x}\right)
 =v\left(|A|^2-|B|^2\right)
-\]
+$$
 
-netto flux van 2 golven: 1 in de positieve \(x\)-richting (amplitude A) en 1 in de negatieve \(x\)-richting (amplitude B)
+Netto flux van 2 golven: één in de positieve $x$-richting (amplitude $A$) en één in de negatieve $x$-richting (amplitude $B$).
 
+---
 
-* De golffunctie voor een vrij deeltje is niet kwadraat integreerbaar!!
+### Vrij deeltje in eindige doos
 
-In de praktijk wordt de beweging van het vrij deeltje vaak beperkt tot 1D met behulp van box normalisatie.
+De golffunctie voor een vrij deeltje is **niet** kwadraat integreerbaar. In de praktijk wordt de beweging van het vrij deeltje vaak beperkt tot 1D met behulp van box-normalisatie.
 
-vrij deeltje in eindige doos:
-met periodieke randvoorwaarden opgelegd: \(\psi_n(x=0)=\psi_n(x=L)\)
+Met periodieke randvoorwaarden: $\psi_n(x=0)=\psi_n(x=L)$
 
-mogelijke impuls eigenwaarden en energie eigenwaarden:
-\[
-k_n=\frac{2\pi n}{L}\ ,\qquad
+Mogelijke impuls- en energie-eigenwaarden:
+$$
+k_n=\frac{2\pi n}{L}, \qquad
 E_n=\frac{\hbar^2k_n^2}{2m}=\frac{2\pi^2\hbar^2}{mL^2}n^2
 \quad (n=0,\pm1,\pm2,\ldots)
-\]
+$$
 
-de golffunctie kan genormeerd worden in de basis-doos \((0\le x\le L)\):
-\[
+De golffunctie kan genormeerd worden in de basis-doos $(0\le x\le L)$:
+$$
 \psi_n(x)=\frac{1}{\sqrt{L}}e^{ik_nx}
 \qquad
 \text{met}\quad
 \int_0^L \psi_n^*(x)\psi_n(x)\,dx=1
-\]
+$$
 
 
 ## 4.4 The potential barrier
 
-```
-(I)            (II)                 (III)
-─────| 0        | a ───────────────────────> x
-    |----------|
-    V0
-      V0
-```
-*(Schematische barrière: regio I links, regio II hoogt​e \(V_0\) tussen 0 en \(a\), regio III rechts.)*
-
-
-\[
+Het potentiaal is gegeven door:
+$$
 V(x)=
 \begin{cases}
 0, & x<0 \\
 V_0, & 0<x<a \\
 0, & x>a
 \end{cases}
-\]
+$$
 
-**Region I:** \(-\infty<x\le 0\)
+### Regio I: $-\infty<x\le 0$
 
-\[
+$$
 \psi(x)=Ae^{i\ell x}+Be^{-i\ell x}
-\]
-\[
+$$
+
+$$
 E=\frac{\hbar^2\ell^2}{2m}
-\]
-\[
-j_0=v(|A|^2-|B|^2)=j(\text{incoming})-j(\text{reflected})
-\]
+$$
 
-**Region II:** \(0\le x\le a\)
+$$
+j_0=v(|A|^2-|B|^2)=j_{\text{inkomend}}-j_{\text{gereflecteerd}}
+$$
 
-2 gevallen:
-- **geval 1:** \(E<V_0\)
-\[
+### Regio II: $0\le x\le a$
+
+**Geval 1:** $E<V_0$ (klassiek verboden gebied)
+$$
 \psi(x)=Fe^{Kx}+Ge^{-Kx}
-\qquad \text{met}\quad
+\quad \text{met}\quad
 K=\left[\frac{2m(V_0-E)}{\hbar^2}\right]^{1/2}
-\]
+$$
 
-- **geval 2:** \(E>V_0\)
-\[
+**Geval 2:** $E>V_0$ (klassiek toegestaan)
+$$
 \psi(x)=Fe^{i\ell' x}+Ge^{-i\ell' x}
-\qquad \text{met}\quad
+\quad \text{met}\quad
 \ell'=\left[\frac{2m(E-V_0)}{\hbar^2}\right]^{1/2}
-\]
+$$
 
-**Region III:** \(a<x<+\infty\)
+### Regio III: $a<x<+\infty$
 
-\[
+$$
 \psi(x)=Ce^{i\ell x}
-\quad
-(\text{want deeltje alleen in de positieve }x\text{-richting beweegt})
-\]
-\[
+$$
+(het deeltje beweegt alleen in de positieve $x$-richting)
+
+$$
 E=\frac{\hbar^2\ell^2}{2m}
-\]
-\[
-j_0=v|C|^2=j(\text{doorgelaten})
-\]
+$$
 
-* Reflectie-coëfficiënt \(R\):
-\[
-R=\frac{j(\text{reflected})}{j(\text{incoming})}
-\]
+$$
+j_0=v|C|^2=j_{\text{doorgelaten}}
+$$
 
-* Transmissie-coëfficiënt \(T\):
-\[
-T=\frac{j(\text{doorgelaten})}{j(\text{incoming})}
-\]
+### Reflectie- en transmissiecoëfficiënten
 
-R en T worden berekend via de waarschijnlijkheidsstromen \(j(x,t)\)
-(niet via de positie waarschijnlijkheid \(P(x,t)\)).
+**Reflectiecoëfficiënt:**
+$$
+R=\frac{j_{\text{gereflecteerd}}}{j_{\text{inkomend}}}
+$$
 
+**Transmissiecoëfficiënt:**
+$$
+T=\frac{j_{\text{doorgelaten}}}{j_{\text{inkomend}}}
+$$
 
-\[
-R=\frac{|B|^2}{|A|^2}
-\qquad ; \qquad
-T=\frac{|C|^2}{|A|^2}
-\]
-\[
+$R$ en $T$ worden berekend via de waarschijnlijkheidsstromen $j(x,t)$ (niet via de positiewaarschijnlijkheid $P(x,t)$).
+
+$$
+R=\frac{|B|^2}{|A|^2}, \quad T=\frac{|C|^2}{|A|^2}
+$$
+
+$$
 R+T=\frac{|B|^2+|C|^2}{|A|^2}=1
-\]
+$$
 
-Terug naar geval 1: \(E<V_0\)
+### Geval 1: $E<V_0$ (tunneling)
 
-De golffunctie op \(x=0\) en \(x=a\) is continu, dus:
+De golffunctie is continu op $x=0$ en $x=a$:
+$$
+A+B=F+G
+$$
 
-met \(Ae^{i\ell x}+Be^{-i\ell x}=Fe^{Kx}+Ge^{-Kx}\) op \(x=0\) en \(x=a\) (lijnen), vinden we:
-\[
-\begin{cases}
-A+B=F+G \\
+$$
 Fe^{Ka}+Ge^{-Ka}=Ce^{i\ell a}
-\end{cases}
-\]
+$$
 
-De \[onleesbaar\] afgeleiden op \(x=0,\ x=a\) moeten ook gelijk zijn om in dezelfde fase te blijven:
-\[
-\begin{cases}
-i\ell(A-B)=K(F-G) \\
+De afgeleiden moeten ook continu zijn (omdat $V$ eindig is):
+$$
+i\ell(A-B)=K(F-G)
+$$
+
+$$
 K(Fe^{Ka}-Ge^{-Ka})=i\ell Ce^{i\ell a}
-\end{cases}
-\]
+$$
 
-We elimineren \(F\) en \(G\), en bekomen \(\frac{B}{A}\) en \(\frac{C}{A}\):
+Door $F$ en $G$ te elimineren, vinden we $\frac{B}{A}$ en $\frac{C}{A}$:
 
-\[
-\frac{B}{A}=
-\frac{(\ell^2+K^2)(e^{2Ka}-1)}
-{e^{2Ka}(\ell+iK)^2-(\ell-iK)^2}
-\]
+$$
+\frac{B}{A}=\frac{(\ell^2+K^2)(e^{2Ka}-1)}{e^{2Ka}(\ell+iK)^2-(\ell-iK)^2}
+$$
 
-\[
-\frac{C}{A}=
-\frac{4i\ell K\,e^{-i\ell a}\,e^{Ka}}
-{e^{2Ka}(\ell+iK)^2-(\ell-iK)^2}
-\]
+$$
+\frac{C}{A}=\frac{4i\ell K\,e^{-i\ell a}\,e^{Ka}}{e^{2Ka}(\ell+iK)^2-(\ell-iK)^2}
+$$
 
-\[
-T=\frac{|C|^2}{|A|^2}=
-\left[1+\frac{(\ell^2+K^2)^2\sinh^2(Ka)}{4\ell^2K^2}\right]^{-1}=
-\left[1+\frac{V_0^2\sinh^2(Ka)}{4E(V_0-E)}\right]^{-1}
-\]
+Dit leidt tot transmissie- en reflectiecoëfficiënten:
 
-\[
-R=\frac{|B|^2}{|A|^2}=
-\left[1+\frac{4\ell^2K^2}{(\ell^2+K^2)^2\sinh^2(Ka)}\right]^{-1}=
-\left[1+\frac{4E(V_0-E)}{V_0^2\sinh^2(Ka)}\right]^{-1}
-\]
+$$
+T=\frac{|C|^2}{|A|^2}=\left[1+\frac{V_0^2\sinh^2(Ka)}{4E(V_0-E)}\right]^{-1}
+$$
 
-Nu kunnen we nog eens verifiëren dat \(R+T=1\) wat intuitief ook logisch is.
+$$
+R=\frac{|B|^2}{|A|^2}=\left[1+\frac{4E(V_0-E)}{V_0^2\sinh^2(Ka)}\right]^{-1}
+$$
 
+We kunnen verifiëren: $R+T=1$ ✓
 
-\[
-\frac{mV_0a^2}{\hbar^2}
-:\ \text{opaciteit van de potentiaal barriere}
-\quad
-(\text{maat van kwantum mechanische ondoordringbaarheid})
-\]
+**Opaciteit van de potentiaalbarrière:**
+$$
+\frac{mV_0a^2}{\hbar^2} \quad \text{(maat van kwantummechanische ondoordringbaarheid)}
+$$
 
-\[
+**Tunnelingbenadering (tunnel effect):**
+$$
 T \approx \frac{16E(V_0-E)}{V_0^2}\,e^{-2Ka}
-\quad
-(\text{toepassing in scanning tunneling microscope})
-\]
+$$
+Dit is het basis-effect dat in scanning tunneling microscopen wordt gebruikt.
 
-Terug naar Case 2: \(E>V_0\)
+### Geval 2: $E>V_0$ (klassiek toegestaan)
 
-\[
+Voor $E>V_0$ geldt:
+$$
 \psi(x)=Fe^{i\ell' x}+Ge^{-i\ell' x}
-\qquad \text{met}\quad
+\quad \text{met}\quad
 \ell'=\left[\frac{2m(E-V_0)}{\hbar^2}\right]^{1/2}
-\]
+$$
 
-Analoge oplossing probleem vinden we:
+De reflectie- en transmissiecoëfficiënten zijn:
 
-\[
-R=\frac{|B|^2}{|A|^2}=
-\left[1+\frac{4\ell^2\ell'^2}{(\ell^2-\ell'^2)^2\sin^2(\ell'a)}\right]^{-1}=
-\left[1+\frac{4E(E-V_0)}{V_0^2\sin^2(\ell'a)}\right]^{-1}
-\]
+$$
+R=\frac{|B|^2}{|A|^2}=\left[1+\frac{4E(E-V_0)}{V_0^2\sin^2(\ell'a)}\right]^{-1}
+$$
 
-\[
-T=\frac{|C|^2}{|A|^2}=
-\left[1+\frac{V_0^2\sin^2(\ell'a)}{4E(E-V_0)}\right]^{-1}
-\]
+$$
+T=\frac{|C|^2}{|A|^2}=\left[1+\frac{V_0^2\sin^2(\ell'a)}{4E(E-V_0)}\right]^{-1}
+$$
 
-gemakkelijk zien we dat \(R+T=1\)
+Verifiëring: $R+T=1$ ✓
 
-klassiek: \(R=0\) en \(T=1\)
+**Vergelijking klassiek vs. kwantum:**
+- Klassiek: $R=0$ en $T=1$ (alles gaat door)
+- Kwantum: $R\ne 0$ en $T<1$ (partiële reflectie treedt op!)
 
-kwantum: \(R\ne 0\) en \(T<1\)
-
-\[
+**Dimensieloze parameters:**
+$$
 (\ell a)^2=\left(\frac{2mV_0a^2}{\hbar^2}\right)\left(\frac{E}{V_0}\right)
-\]
-\[
-(Ka)^2=\left(\frac{2mV_0a^2}{\hbar^2}\right)\left(1-\frac{E}{V_0}\right)
-\]
+$$
 
-T hangt enkel af van 2 dimensieloze grootheden:
-de opaciteit \(\frac{mV_0a^2}{\hbar^2}\) en de ratio \(\frac{E}{V_0}\).
+$$
+(Ka)^2=\left(\frac{2mV_0a^2}{\hbar^2}\right)\left(1-\frac{E}{V_0}\right)
+$$
+
+$T$ hangt **alleen af** van twee dimensieloze grootheden:
+1. De opaciteit $\frac{mV_0a^2}{\hbar^2}$
+2. De energieverhouding $\frac{E}{V_0}$
 
 
 ## 4.5 The infinite square well
 
-\[
+Het potentiaal is gegeven door:
+$$
 V(x)=
 \begin{cases}
 0, & -a<x<a \\
 \infty, & |x|>a
 \end{cases}
-\]
+$$
 
-\[
-\psi(x=\pm a)=0
-\]
+**Randvoorwaarde:** $\psi(x=\pm a)=0$
 
-Schrödinger for \(|x|<a\):
-\[
+Voor $|x|<a$ geldt de Schrödingervergelijking:
+$$
 -\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}=E\psi(x)
 \Rightarrow \frac{d^2\psi(x)}{dx^2}+k^2\psi(x)=0
-\qquad
-\left(k=\left(\frac{2mE}{\hbar^2}\right)^{1/2}\right)
-\]
+$$
 
-general solution:
-\[
+met $k=\left(\frac{2mE}{\hbar^2}\right)^{1/2}$.
+
+**Algemene oplossing:**
+$$
 \psi(x)=A\cos(kx)+B\sin(kx)
-\]
+$$
 
-if we apply the boundary conditions:
-\[
+**Toepassing van randvoorwaarden:**
+$$
 A\cos(ka)=0 \quad \text{en} \quad B\sin(ka)=0
-\]
+$$
 
-1) \(B=0\Rightarrow \cos(ka)=0\)
+### Geval 1: $B=0 \Rightarrow \cos(ka)=0$
 
-The only allowed values of \(k\) are:
-\[
+De toegestane $k$-waarden zijn:
+$$
 k_m=\frac{m\pi}{2a}=\frac{m\pi}{L}
-\qquad (m=1,3,5,\ldots)
-\]
+\quad (m=1,3,5,\ldots)
+$$
 
-The corresponding eigenfunction
-\[
-\psi_m(x)=A_m\cos(k_m x)
-\]
-can be normalized so that:
-\[
-\int_{-a}^{a}\psi_m^*(x)\psi_m(x)\,dx=1
-\]
+De corresponderende genormaliseerde eigenfuncties zijn:
+$$
+\psi_m(x)=\frac{1}{\sqrt{a}}\cos\left(\frac{m\pi}{2a}x\right)
+\quad (m=1,3,5,\ldots)
+$$
 
-The normalized eigenfunctions are:
-\[
-\psi_m(x)=\frac{1}{\sqrt{a}}\cos\!\left(\frac{m\pi}{2a}x\right)
-\qquad (m=1,3,5,\ldots)
-\]
+### Geval 2: $A=0 \Rightarrow \sin(ka)=0$
 
-2) \(A=0\Rightarrow \sin(ka)=0\)
+De genormaliseerde eigenfuncties zijn:
+$$
+\psi_m(x)=\frac{1}{\sqrt{a}}\sin\left(\frac{m\pi}{2a}x\right)
+\quad (m=2,4,\ldots)
+$$
 
-The normalized eigenfunctions are:
-\[
-\psi_m(x)=\frac{1}{\sqrt{a}}\sin\!\left(\frac{m\pi}{2a}x\right)
-\qquad (m=2,4,\ldots)
-\]
-
-\[
+Met:
+$$
 k_m=\frac{m\pi}{L}
-\qquad
+\quad \text{en} \quad
 \lambda_m=\frac{2\pi}{k_m}=\frac{2L}{m}
-\]
+$$
 
-The energy is quantized, the energy eigenvalues being:
-\[
+### Energiequantisatie
+
+De energie is sterk gekwantiseerd met eigenwaarden:
+$$
 E_m=\frac{\hbar^2 k_m^2}{2m}
 =\frac{\hbar^2\pi^2 m^2}{8ma^2}
 =\frac{\hbar^2\pi^2 m^2}{2mL^2}
-\qquad (m=1,2,3,\ldots)
-\]
+\quad (m=1,2,3,\ldots)
+$$
 
+---
 
-## (p.8) vervolg: spectrum + orthogonaliteit + zero-point energy
+### Spectrum, orthogonaliteit en nulpuntsenergie
 
-The energy spectrum obtained consists of an infinite number of discrete energy levels corresponding to bound states.
+Het energiespectrum bevat een **oneindig aantal** discrete energieniveaus voor gebonden toestanden.
 
-eigenfunctions \(\psi_n(x)\) and \(\psi_m(x)\) corresponding to different eigenvalues \(E_n\) and \(E_m\) are orthogonal:
-\[
+**Orthogonaliteit:** Eigenfuncties $\psi_n(x)$ en $\psi_m(x)$ behorend bij verschillende eigenwaarden $E_n$ en $E_m$ zijn orthogonaal:
+$$
 \int_{-a}^{a}\psi_n^*(x)\psi_m(x)\,dx=0
-\qquad n\ne m
-\]
+\quad (n\ne m)
+$$
 
-Note that the lowest energy (zero-point energy) is:
-\[
+**Nulpuntsenergie:** De laagste energie is:
+$$
 E_1=\frac{\hbar^2\pi^2}{8ma^2}
-\]
-so there is no state of zero-energy!!
+$$
 
-uncertainty principle:
-\[
-\Delta x\approx a \ \Rightarrow\ \Delta p_x \approx \frac{\hbar}{a}
-\]
-indicates an minimal kinetic energy:
-\[
+**Er is geen nulenergie-toestand!**
+
+**Onzekerheidsbeginsel:** Met $\Delta x\approx a$ volgt:
+$$
+\Delta p_x \approx \frac{\hbar}{a}
+$$
+
+Dit geeft een minimale kinetische energie:
+$$
 \frac{(\Delta p_x)^2}{2m}=\frac{\hbar^2}{2ma^2}=\frac{4E_1}{\pi^2}
-\]
+$$
 
-* Parity
+### Pariteit (symmetrie)
 
-The eigenfunctions of the cosine function are such that:
-\[
+De cosinuseigenfuncties hebben even pariteit:
+$$
 \psi_n(-x)=\psi_n(x)
-\]
-and are therefore even function of \(x\),
+$$
 
-while the eigenfunctions with a sine function in it are such that:
-\[
+De sinuseigenfuncties hebben oneven pariteit:
+$$
 \psi_n(-x)=-\psi_n(x)
-\]
-and hence are odd.
+$$
 
-Reflection through the origin \(x\to -x\) is called the parity operation.
+---
+
+---
 
 If the potential is symmetric the Hamiltonian
-\[
+$$
 H=-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)
-\]
-does not change when \(x\) is replaced by \(-x\) (invariant under parity operation).
+$$
+does not change when $x$ is replaced by $-x$ (invariant under parity operation).
 
+## (p.9) Degeneratie en symmetrie
 
-## (p.9) Case 1–2 (degeneracy)  [gedeeltelijk onleesbaar]
+**Geval 1: Niet-gedegenereerde eigenwaarden**
 
-Case 1: The eigenvalue \(E\) is non-degenerate \([onleesbaar]\)
-
-The eigenfunctions \(\psi_1(x)\) and \(\psi_2(x)\) corresponding to the same energy eigenvalue \(E\) can thus only differ by a multiplicative constant:
-\[
+Eigenfuncties $\psi_1(x)$ en $\psi_2(x)$ die bij dezelfde energie $E$ horen, kunnen alleen verschillen door een multiplicatieve constante:
+$$
 \psi_1(x)=c\,\psi_2(x)
-\]
+$$
 
-Combining the above with the parity equation yields: \([onleesbaar]\)
+We kunnen de eigenfunctie $\psi(x)$ kiezen met bepaalde pariteit (even of oneven).
 
-and hence we may choose the eigenfunction \(\psi(x)\) have a definite parity being either even or odd.
+**Geval 2: Gedegenereerde eigenwaarden**
 
-Case 2: The eigenvalue \(E\) is degenerate \([onleesbaar]\)
+Meer dan één lineair onafhankelijke eigenfunctie kan dezelfde energieeigenwaarde hebben. Het is echter altijd mogelijk lineaire combinaties te construeren die bepaalde pariteit hebben.
 
-In this case more than one linearly independent eigenfunction corresponds to the same energy eigenvalue. \([onleesbaar]\)
+---
 
-However, it is always possible to construct linear combinations of these eigenfunctions which do have definite parity. \([onleesbaar]\)
+## 4.7 The harmonic oscillator
 
-The Schrödinger equation becomes: \([onleesbaar]\)
-
-\[
-\left[-\frac{\hbar^2}{2m}\left(\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}\right)+V(x,y,z)\right]\psi(x,y,z)=E\psi(x,y,z)
-\]
-
-Using parity operation \([onleesbaar]\)
-
-We can have \(P\psi=\pm\psi\) \([onleesbaar]\)
-
-The commutation equation becomes: \([onleesbaar]\)
-
-
-* wave function representation
-
-general solution TDSE:
-\[
-\psi(x,t)=\sum_n c_n\,\psi_n(x)\,e^{-iE_nt/\hbar}
-\]
-
-\[
-c_n=\int \psi_n^*(x)\,\psi(x,t=0)\,dx
-\]
-
-\[
-\psi(x,t=T)=\psi(x,t=0)
-\]
-
-Since \(E_n=nE_1\) we have
-\[
-\psi(x,t+T)=\sum_n c_n\psi_n(x)\exp\!\left(-i\frac{nE_1(t+T)}{\hbar}\right)
-=\sum_n c_n\psi_n(x)e^{-inE_1t/\hbar}\exp\!\left(-i\frac{nE_1T}{\hbar}\right)
-\]
-
-Choose
-\[
-T=\frac{2\pi\hbar}{E_1}
-\Rightarrow
-\exp\!\left(-i\frac{nE_1T}{\hbar}\right)=\exp(-i2\pi n)=1
-\]
-
-and thus
-\[
-\psi(x,t+T)=\psi(x,t)
-\]
-
-----------------------------------------------------------------
-
-4.7 The harmonic oscillator
-
-Energy:
-\[
+### Energie
+$$
 E=\frac{1}{2}m\dot{x}^{\,2}+\frac{1}{2}kx^2
 =\frac{1}{2}m\dot{x}^{\,2}+V(x)
-\]
+$$
 
-Potential:
-\[
+### Potentiaal
+$$
 V(x)=\frac{1}{2}kx^2=\frac{1}{2}m\omega^2x^2
 \qquad\text{met}\qquad
 \omega=\sqrt{\frac{k}{m}}
-\]
+$$
 
-* LHO in de klassieke mechanica
+### LHO in de klassieke mechanica
 
-\[
+$$
 \frac{d^2x}{dt^2}=-\omega^2x
 \Rightarrow x(t)=x_0\cos(\omega t)
-\qquad
-(\text{waar }x_0\text{ bepaald wordt door de startcondities})
-\]
+$$
+(waar $x_0$ bepaald wordt door de startcondities)
 
-\[
+$$
 v_{\max}=\omega x_0
-\qquad
-T=\frac{2\pi}{\omega}\ \ \text{(interval }(-x_0,x_0)\text{)}
-\]
+$$
 
-de “turning points” (waar \(v=0\)):
-\[
+$$
+T=\frac{2\pi}{\omega}\quad \text{(interval }(-x_0,x_0)\text{)}
+$$
+
+de “turning points” (waar $v=0$):
+$$
 \frac{1}{2}kx_0^2=E
 \Rightarrow
 x_0=\sqrt{\frac{2E}{k}}=\sqrt{\frac{2E}{m\omega^2}}
-\]
+$$
 
-* LHO in de quantum mechanica
+### LHO in de quantum mechanica
 
 TISE:
-\[
+$$
 -\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}+\frac{1}{2}m\omega^2x^2\,\psi(x)=E\psi(x)
-\]
+$$
 
-dimensionless eigenvalues:
-\[
+**Dimensieloze eigenwaarden:**
+$$
 \lambda=\frac{2E}{\hbar\omega}
-\qquad\text{where}\qquad
+\quad \text{met} \quad
 \omega=\left(\frac{k}{m}\right)^{1/2}
-\]
+$$
 
-we solicit the dimensionless variable \(\xi=\alpha x\) where
-\[
-\alpha=\left(\frac{m^2\omega^2}{\hbar^2}\right)^{1/4}
-=\left(\frac{m\omega}{\hbar}\right)^{1/2}
-\]
+Definieer de dimensieloze variabele $\xi=\alpha x$ met:
+$$
+\alpha=\left(\frac{m\omega}{\hbar}\right)^{1/2}
+$$
 
-The Schrödinger equation then becomes
-\[
+De Schrödingervergelijking wordt:
+$$
 \frac{d^2\psi(\xi)}{d\xi^2}+(\lambda-\xi^2)\psi(\xi)=0
-\]
+$$
 
-----------------------------------------------------------------
-
-For large \(|\xi|\):
-\[
+**Voor grote** $|\xi|$:
+$$
 \psi(\xi)=e^{-\xi^2/2}
-\qquad
-(\text{satisfy the equation as an asymptotic solution, } \xi\to\infty)
-\]
+$$
 
-For all values of \(\xi\):
-\[
+Dit voldoet asymptotisch aan de vergelijking voor $\xi\to\infty$.
+
+**Voor alle waarden van** $\xi$:
+$$
 \psi(\xi)=e^{-\xi^2/2}H(\xi)
-\]
-(we obtain for \(H(\xi)\) the differential equation)
+$$
 
-\[
+Hieruit volgt voor $H(\xi)$ de **Hermite-vergelijking**:
+$$
 \frac{d^2H}{d\xi^2}-2\xi\frac{dH}{d\xi}+(\lambda-1)H=0
-\]
-which is called the Hermite equation
+$$
 
-* Energy levels
+### Energieniveaus
 
-Energy spectrum of the LHO:
-\[
+**Energiespectrum van de LHO:**
+$$
 E_n=\left(n+\frac{1}{2}\right)\hbar\omega
-\qquad (n=0,1,2,\ldots)
-\]
+\quad (n=0,1,2,\ldots)
+$$
 
-LHO with lowest state \((n=0)\):
-\[
-E_0=\frac{1}{2}\hbar\omega \qquad (\text{zero-point energy})
-\]
+**Laagste toestand** $(n=0)$:
+$$
+E_0=\frac{1}{2}\hbar\omega \quad \text{(nulpuntsenergie)}
+$$
 
-* Hermite polynomials
+### Hermite-polynomen
 
-\[
-\psi_n(\xi)=\text{(const)}\ e^{-\xi^2/2}H_n(\xi)
-\]
+$$
+\psi_n(\xi)=\text{(const)} \cdot e^{-\xi^2/2}H_n(\xi)
+$$
 
-where the function \(H_n(\xi)\) is a polynomial of order \(n\).
+waar $H_n(\xi)$ een polynoom van orde $n$ is.
 
-Both \(\psi_n(\xi)\) and \(H_n(\xi)\) have parity \((-1)^n\).
+Zowel $\psi_n(\xi)$ als $H_n(\xi)$ hebben pariteit $(-1)^n$.
 
-The polynomials \(H_n(\xi)\) satisfy the Hermite equation with \(\lambda=2n+1\):
-\[
+De polynomen $H_n(\xi)$ voldoen aan de Hermite-vergelijking met $\lambda=2n+1$:
+$$
 \frac{d^2H_n}{d\xi^2}-2\xi\frac{dH_n}{d\xi}+2nH_n=0
-\]
+$$
 
-The Hermite polynomials:
-\[
+**Definitie van Hermite-polynomen:**
+$$
 H_n(\xi)=(-1)^n e^{\xi^2}\frac{d^n}{d\xi^n}\left(e^{-\xi^2}\right)
-\]
+$$
 
-The first few Hermite polynomials \(H_n(\xi)\) are:
-\[
+**De eerste Hermite-polynomen** zijn:
+$$
 H_0(\xi)=1
-\]
-\[
+$$
+
+$$
 H_1(\xi)=2\xi
-\]
-\[
+$$
+
+$$
 H_2(\xi)=4\xi^2-2
-\]
-\[
+$$
+
+$$
 H_3(\xi)=8\xi^3-12\xi
-\]
-\[
+$$
+
+$$
 H_4(\xi)=16\xi^4-48\xi^2+12
-\]
-\[
+$$
+
+$$
 H_5(\xi)=32\xi^5-160\xi^3+120\xi
-\]
+$$
 
-Orthogonaliteit:
-\[
+### Orthogonaliteit en normering
+
+**Orthogonaliteit:**
+$$
 \int_{-\infty}^{\infty}e^{-\xi^2}H_m(\xi)H_n(\xi)\,d\xi=0
-\qquad (m\ne n)
-\]
+\quad (m\ne n)
+$$
 
-Normering:
-\[
+**Normering:**
+$$
 \int_{-\infty}^{\infty}e^{-\xi^2}H_n^2(\xi)\,d\xi=\sqrt{\pi}\,2^n n!
-\]
+$$
 
-Energy-eigenfunctions in eigenwaarden van de lineaire harmonische oscillator:
+### Eigenfuncties en eigenwaarden van de LHO
 
-Energy eigenfunctions:
-\[
+**Energie-eigenfuncties:**
+$$
 \psi_n(x)=\left(\frac{\alpha}{\sqrt{\pi}\,2^n n!}\right)^{1/2}
 e^{-\alpha^2x^2/2}\,H_n(\alpha x)
-\qquad
-(\alpha=\sqrt{m\omega/\hbar})
-\]
-\[onleesbaar\ \text{alternatieve vorm met }x_0=\sqrt{\hbar/(m\omega)}\]
+\quad \text{met} \quad
+\alpha=\sqrt{m\omega/\hbar}
+$$
 
-- omdat de Hamiltoniaan voor de LHO Hermitisch is geldt:
-\[
+**Orthonormaliteit** (omdat de Hamiltoniaan hermitisch is):
+$$
 \langle m|n\rangle=\int_{-\infty}^{\infty}\psi_m^*(x)\psi_n(x)\,dx=\delta_{mn}
-\]
+$$
 
-- verwachtingswaarde van \(x\):
-\[
+**Verwachtingswaarde van** $x$:
+$$
 \langle x\rangle=\int_{-\infty}^{\infty}\psi_n^*(x)\,x\,\psi_n(x)\,dx=0
-\]
-(zoals \(\psi_n\) even of oneven is)
+$$
 
-----------------------------------------------------------------
+(omdat $\psi_n$ even of oneven is)
 
-Bewijs van (4.178)
+---
 
-\[
+### Bewijs van Generating Function (4.178)
+
+$$
 I=\int_{-\infty}^{\infty}e^{-\xi^2}\,e^{(-s^2+2s\xi)}\,e^{(-t^2+2t\xi)}\,d\xi
-\]
+$$
 
-\[
+$$
 =\int_{-\infty}^{\infty}e^{-\xi^2}\,e^{2\xi(s+t)}\,e^{-(s^2+t^2)}\,d\xi
-\]
+$$
 
-\[
-=e^{-(s^2+t^2)}\int_{-\infty}^{\infty}e^{-\left(\xi^2-2\xi(s+t)\right)}\,d\xi
-\]
+$$
+=e^{-(s^2+t^2)}\int_{-\infty}^{\infty}e^{-(\xi^2-2\xi(s+t))}\,d\xi
+$$
 
-\[
+$$
 =e^{-(s^2+t^2)}\int_{-\infty}^{\infty}e^{-(\xi-(s+t))^2}\,e^{(s+t)^2}\,d\xi
-\]
+$$
 
-\[
+$$
 =e^{-(s^2+t^2)}\,e^{(s+t)^2}\int_{-\infty}^{\infty}e^{-(\xi-(s+t))^2}\,d\xi
-\]
+$$
 
-zet \(x=\xi-(s+t)\):
-\[
-I=e^{2st}\int_{-\infty}^{\infty}e^{-x^2}\,dx
-\]
+Stel $u=\xi-(s+t)$:
+$$
+I=e^{2st}\int_{-\infty}^{\infty}e^{-u^2}\,du
+$$
 
 Omdat
-\[
-\int_{-\infty}^{\infty}e^{-x^2}\,dx=\sqrt{\pi}
-\]
+$$
+\int_{-\infty}^{\infty}e^{-u^2}\,du=\sqrt{\pi}
+$$
 
-zeggen we:
-\[
+volgt:
+$$
 I=\sqrt{\pi}\,e^{2st}
-\]
-\(\square\)
+\quad \square
+$$
