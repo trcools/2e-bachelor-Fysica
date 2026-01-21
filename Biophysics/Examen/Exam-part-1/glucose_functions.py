@@ -789,13 +789,6 @@ def trace_det_at_eq(a=a, b=b):
     J_eq = jacobian(Xeq, Yeq, a=a, b=b)
     return np.trace(J_eq), np.linalg.det(J_eq)
 
-    b_vals = np.asarray(b_vals, dtype=float)
-    tr = np.empty_like(b_vals)
-    det = np.empty_like(b_vals)
-    for i, bb in enumerate(b_vals):
-        tr[i], det[i] = trace_det_at_eq(a=a, b=bb)
-    return tr, det
-
 def _max_real_part(trace, det):
     """
     Vectorized maximum real part of eigenvalues of a 2x2 matrix given trace and determinant.
