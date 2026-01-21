@@ -25,6 +25,12 @@ naming, and documentation for readability and maintainability.
 # Imports
 # =============================================================================
 
+import sys
+import os
+
+# Add parent directory to path to import personalized_layout
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import importlib
 import rossler_functions as rossler
 
@@ -33,7 +39,6 @@ import numpy as np
 import sympy as sp
 from sympy.solvers import solve
 from sympy import Symbol, Matrix, symbols, Eq
-from collections import OrderedDict
     
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -41,151 +46,8 @@ from mpl_toolkits.mplot3d import Axes3D
 
 import scipy
 
-from ipywidgets import interact, FloatSlider, HBox, interactive_output
-from IPython.display import display
-
-
-# =============================================================================
-# Interactive Plot Helper Function
-# =============================================================================
-
-def create_interactive_plot(plot_func, slider_configs, n_cols=3):
-    """
-    Create an interactive plot with dynamically generated sliders.
-    
-    This helper function eliminates code duplication for interactive plotting
-    by handling slider creation, layout, and output display.
-    
-    Parameters
-    ----------
-    plot_func : callable
-        Function that takes slider values as keyword arguments and creates the plot.
-        Example: def my_plot(a_val, b_val, c_val, x0_val, ...): ...
-    
-    slider_configs : dict
-        Dictionary mapping slider names to their configurations.
-        Each value should be a dict with keys: 'value', 'min', 'max', 'step'
-        Example: {'a': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05}, ...}
-    
-    n_cols : int, optional
-        Number of sliders to display per row (default: 3)
-    
-    Returns
-    -------
-    None
-        Displays the interactive plot in the notebook cell.
-    
-    Example
-    -------
-    >>> slider_configs = {
-    ...     'a': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05},
-    ...     'b': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05},
-    ...     'c': {'value': 5.7, 'min': 0.05, 'max': 11.4, 'step': 0.05},
-    ... }
-    >>> def my_plot(a, b, c):
-    ...     # plotting code here
-    ...     pass
-    >>> create_interactive_plot(my_plot, slider_configs, n_cols=3)
-    """
-    # Create sliders from configurations
-    sliders = {}
-    for name, config in slider_configs.items():
-        sliders[name] = FloatSlider(
-            value=config['value'],
-            min=config['min'],
-            max=config['max'],
-            step=config['step'],
-            description=f'{name}:'
-        )
-    
-    # Display sliders in rows
-    slider_list = list(sliders.values())
-    for i in range(0, len(slider_list), n_cols):
-        display(HBox(slider_list[i:i+n_cols]))
-    
-    # Create and display interactive output
-    output = interactive_output(plot_func, sliders)
-    display(output)
-
-
-# =============================================================================
-# Legend Helper Functions
-# =============================================================================
-
-def legend_dedup(ax, *, loc="best", **kwargs):
-    """
-    Create a legend on ax, deduplicating entries by (label, handle_type).
-    
-    Removes "_nolegend_" entries and empty labels.
-    
-    Parameters
-    ----------
-    ax : matplotlib.axes.Axes
-        Axes object on which to place the legend.
-    loc : str, optional
-        Legend location (passed to ax.legend).
-    **kwargs : dict
-        Additional keyword arguments passed to ax.legend.
-    """
-    handles, labels = ax.get_legend_handles_labels()
-    uniq = OrderedDict()
-    for h, lab in zip(handles, labels):
-        if not lab or lab == "_nolegend_":
-            continue
-        key = (lab, type(h).__name__)
-        uniq.setdefault(key, (h, lab))
-    if uniq:
-        legend = ax.legend([h for h, _ in uniq.values()],
-                           [lab for _, lab in uniq.values()],
-                           loc=loc, **kwargs)
-        # Ensure a thin border when frameon=True
-        if legend and legend.get_frame():
-            legend.get_frame().set_linewidth(0.5)
-
-
-def fig_legend_dedup(fig, ax_list, *, loc="best", **kwargs):
-    """
-    Create a shared legend on figure, collecting and deduplicating from multiple axes.
-    
-    Removes "_nolegend_" entries and empty labels.
-    
-    Parameters
-    ----------
-    fig : matplotlib.figure.Figure
-        Figure object on which to place the shared legend.
-    ax_list : list or Axes
-        Axes object or list of Axes objects to collect legend entries from.
-    loc : str, optional
-        Legend location (passed to fig.legend).
-    **kwargs : dict
-        Additional keyword arguments passed to fig.legend.
-    
-    Returns
-    -------
-    legend : matplotlib.legend.Legend
-        The created legend object.
-    """
-    if not isinstance(ax_list, list):
-        ax_list = [ax_list]
-    
-    uniq = OrderedDict()
-    for ax in ax_list:
-        handles, labels = ax.get_legend_handles_labels()
-        for h, lab in zip(handles, labels):
-            if not lab or lab == "_nolegend_":
-                continue
-            key = (lab, type(h).__name__)
-            uniq.setdefault(key, (h, lab))
-    
-    if uniq:
-        legend = fig.legend([h for h, _ in uniq.values()],
-                            [lab for _, lab in uniq.values()],
-                            loc=loc, **kwargs)
-        # Ensure a thin border when frameon=True
-        if legend and legend.get_frame():
-            legend.get_frame().set_linewidth(0.5)
-        return legend
-    return None
+# Import helper functions from centralized module
+from personalized_layout import create_interactive_plot, legend_dedup, fig_legend_dedup
 
 
 # =============================================================================
@@ -493,7 +355,7 @@ def compare_initial_conditions(a=0.2, b=0.2, c=5.7, initial_conditions= None,
     fig_legend_dedup(fig, axes[0], loc='upper center', bbox_to_anchor=(0.5, 0.1),
                      ncol=min(len(initial_conditions), 4), frameon=True, edgecolor='black')
     
-    plt.tight_layout(rect=[0, 0.08, 1, 1])
+    plt.tight_layout(rect=[0.0, 0.08, 1.0, 1.0])
     return fig
 
 
