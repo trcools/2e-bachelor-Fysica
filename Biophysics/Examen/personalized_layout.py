@@ -17,9 +17,10 @@ naming, and documentation for readability and maintainability.
 # Imports
 # =============================================================================
 
-from ipywidgets import interact, FloatSlider, HBox, interactive_output, Checkbox
-from IPython.display import display
+from ipywidgets import interact, FloatSlider, HBox, interactive_output, Checkbox, Output
+from IPython.display import display, clear_output
 from collections import OrderedDict
+import matplotlib.pyplot as plt
 
 # =============================================================================
 # Interactive Plot Helper Function
@@ -103,9 +104,25 @@ def create_interactive_plot(plot_func, slider_configs, n_cols=3, extra_widgets=N
     if extra_widgets:
         all_widgets.update(extra_widgets)
     
-    # Create and display interactive output
-    output = interactive_output(plot_func, all_widgets)
+    # Create output widget for controlled display
+    output = Output()
     display(output)
+    
+    def update_plot(**kwargs):
+        """Update function that clears old output and displays new plot."""
+        with output:
+            clear_output(wait=True)
+            fig = plot_func(**kwargs)
+            if fig is not None:
+                display(fig)
+                plt.close(fig)  # Prevent memory leaks and duplicate displays
+    
+    # Connect widgets to update function
+    for widget in all_widgets.values():
+        widget.observe(lambda change: update_plot(**{k: w.value for k, w in all_widgets.items()}), names='value')
+    
+    # Initial plot
+    update_plot(**{k: w.value for k, w in all_widgets.items()})
 
 
 # =============================================================================
