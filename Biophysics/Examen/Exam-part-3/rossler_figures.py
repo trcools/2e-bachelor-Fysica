@@ -235,6 +235,7 @@ def plot_3d_attractor(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
                      frameon=True, fontsize=8, edgecolor='black')
     
     plt.tight_layout(rect=[0, 0.08, 1, 1]) 
+
     return fig
 
 def plot_projections_2D(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
@@ -408,7 +409,7 @@ def show_butterfly_effect(a, b, c, initial_condition, delta=1e-6, t_min=0, t_max
     fig_legend_dedup(fig, axes[0], loc='lower center', bbox_to_anchor=(0.5, 0.06), ncol=2, 
                      frameon=True, fontsize=9, edgecolor='black')
     plt.tight_layout(rect=[0, 0.08, 1, 1])
-    plt.show()  
+    return fig 
 
 # --- Sensitivity to initial conditions (Lyapunov flavour) ---
 def plot_sensitivity_to_initial_conditions(c=5.7, t_min=t_min, t_max=t_max, dt=dt, delta=1e-6):
@@ -450,7 +451,7 @@ def plot_sensitivity_to_initial_conditions(c=5.7, t_min=t_min, t_max=t_max, dt=d
     ax.set_title('Approximate exponential divergence (semilogy)')
     ax.grid(True)
 
-    plt.show()
+    return fig
 
 
 
@@ -487,7 +488,7 @@ def plot_Z_time_with_maxima(a, b, c, initial_condition, t_min=0, t_max=200, dt=0
     ax.legend(loc='best',fontsize=8)
     ax.grid(True)
 
-    plt.show()
+    return fig
 
 def plot_Zn_vs_Znplus1(a, b, c, initial_condition, skip_first=20, t_min=0, t_max=200, dt=0.01):
     """
@@ -521,7 +522,8 @@ def plot_Zn_vs_Znplus1(a, b, c, initial_condition, skip_first=20, t_min=0, t_max
     ax.set_title(rf'Return map for max $Z_n$ at $c = {c:.2f}$')
     ax.grid(True)
     ax.legend(loc='best', fontsize=8)
-    plt.show()
+    
+    return fig
 
 def cobweb_plot(f, x0, n_iter: int = 30, x_min: float = 0.0, x_max: float = 1.0, ax=None,
                 func_label: str = r"$x_{n+1} = f(x_n)$", cob_color: str = "tab:red",
@@ -608,8 +610,8 @@ def show_rossler_return_cobweb(Z_n, c: float = 5.7, n_iter: int = 30, skip_first
 
     Returns
     -------
-    ax : matplotlib.axes.Axes
-        Axes with the return map scatter and cobweb overlay.
+    fig : matplotlib.figure.Figure
+        Figure containing the return map scatter and cobweb overlay.
     """
     Z_n = np.asarray(Z_n).astype(float)
     if Z_n.size < 2:
@@ -763,10 +765,11 @@ def nb_show_attractor(a, b, c, initial_condition, t_min, t_max, dt):
         ic_val = (x0, y0, z0)
         plot_3d_attractor(a=a, b=b, c=c, initial_condition=ic_val,
                           t_min=t_min, t_max=t_max, dt=dt, figsize=(12, 5))
-        plt.show()
+        plt.show() 
+
     
     # Create interactive plot
-    create_interactive_plot(_plot, slider_configs, n_cols=3)
+    return create_interactive_plot(_plot, slider_configs, n_cols=3)
 
 # --- All three 2D projections ---
 def nb_show_projections(a, b, c, initial_condition, t_min, t_max, dt, skip_first_frac=0.2):
@@ -789,7 +792,6 @@ def nb_show_projections(a, b, c, initial_condition, t_min, t_max, dt, skip_first
         plot_projections_2D(a=a, b=b, c=c, initial_condition=ic_val,
                            t_min=t_min, t_max=t_max, dt=dt, method="RK45",
                            figsize=(15, 5), skip_first_frac=skip_first_frac)
-        plt.show()
     
     # Create interactive plot
     create_interactive_plot(_plot, slider_configs, n_cols=3)
