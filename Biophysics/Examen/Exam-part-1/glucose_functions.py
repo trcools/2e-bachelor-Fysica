@@ -457,7 +457,6 @@ def plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
     show_nullcline_arrows : bool
         Whether to show arrows along the nullclines indicating flow direction (default False)
     """
-    plt.close("all")
     fig, ax = plt.subplots(figsize=(8, 6))
 
     # classic panel with colored nullclines
@@ -488,7 +487,7 @@ def plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
     ax.set_xlim(*xlim)
     ax.set_ylim(*ylim)
     ax.grid(True, alpha=0.35)
-    plt.show()
+    return fig
 
 
 
@@ -732,7 +731,6 @@ def plot_2glucose_trajectories(a=a, b=b, xlim=xlim, ylim=ylim,
 
     near_eq, near_edge = trajectory_initial_conditions(a=a, b=b, xlim=xlim, ylim=ylim, step=step)
 
-    plt.close("all")
     fig, axes = plt.subplots(1, 2, figsize=(14, 5), sharex=True, sharey=True)
 
     # --- Local trajectories panel ---
@@ -757,7 +755,7 @@ def plot_2glucose_trajectories(a=a, b=b, xlim=xlim, ylim=ylim,
               bbox_to_anchor=(0.5, 0.05), ncol=4, fontsize=10)
 
     fig.tight_layout(rect=[0, 0.04, 1, 0.96])
-    plt.show()
+    return fig
 
 def plot_zoomed_spiral_convergence(a=a, b=b, xlim=xlim, ylim=ylim,
                                     t_span=(0, 60), t_eval_n=2500, step=0.08,
@@ -1215,7 +1213,8 @@ def plot_bifurcation_summary_figures(a, b_range,
         for axp, bb, tt in zip(axes, bs, titles):
             draw_nullclines_panel(axp, a=a, b=bb, xlim=zoom_xlim, ylim=zoom_ylim,
                                   n=150, density=0.8, alpha=0.3,
-                                  title=tt, show_equilibrium=True)
+                                  title=tt, show_equilibrium=True,
+                                  nullcline_linestyle="dashed")
             near_eq, _ = trajectory_initial_conditions(a, bb, xlim=zoom_xlim, ylim=zoom_ylim, step=0.1)
             draw_trajectories(axp, a, bb, xlim=zoom_xlim, ylim=zoom_ylim, initials=near_eq,
                               t_span=(0, 40), t_eval_n=1500,
@@ -1273,7 +1272,8 @@ def plot_bifurcation_phase_portraits(a=a, b_crit_vals=None, xlim=xlim, ylim=ylim
             # Draw nullclines and vector field
             draw_nullclines_panel(ax, a=a, b=b_val, xlim=xlim, ylim=ylim,
                                  n=250, density=0.8, alpha=0.3,
-                                 title=title, show_equilibrium=True)
+                                 title=title, show_equilibrium=True,
+                                 nullcline_linestyle="dashed")
             
             # Add some trajectories
             near_eq, _ = trajectory_initial_conditions(a=a, b=b_val, xlim=xlim, ylim=ylim, step=0.1)
