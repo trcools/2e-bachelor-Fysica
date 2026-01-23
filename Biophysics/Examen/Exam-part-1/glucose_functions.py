@@ -22,12 +22,12 @@ from scipy.integrate import solve_ivp
 from matplotlib.lines import Line2D
 from matplotlib.colors import ListedColormap
 from matplotlib.patches import Patch
+from mpl_toolkits.mplot3d import Axes3D
 
 from personalized_layout import create_interactive_plot
 from ipywidgets import Checkbox
 # Import helper functions from centralized module
 from personalized_layout import create_interactive_plot
-
 # -----------------------------------------------------------------------------
 # parameters
 # -----------------------------------------------------------------------------
@@ -487,7 +487,7 @@ def plot_nullclines(a=a, b=b, xlim=xlim, ylim=ylim,
     ax.set_xlim(*xlim)
     ax.set_ylim(*ylim)
     ax.grid(True, alpha=0.35)
-    return fig
+    plt.show()
 
 
 
@@ -755,7 +755,7 @@ def plot_2glucose_trajectories(a=a, b=b, xlim=xlim, ylim=ylim,
               bbox_to_anchor=(0.5, 0.05), ncol=4, fontsize=10)
 
     fig.tight_layout(rect=[0, 0.04, 1, 0.96])
-    return fig
+    plt.show()
 
 def plot_zoomed_spiral_convergence(a=a, b=b, xlim=xlim, ylim=ylim,
                                     t_span=(0, 60), t_eval_n=2500, step=0.08,
@@ -1011,24 +1011,22 @@ def plot_equilibrium_vs_b(a=a, b_min=0.0, b_max=1.2, n=2000):
     plt.close("all")
     fig, axes = plt.subplots(1, 2, figsize=(12, 4), sharex=True)
 
-    def panel(ax, yvals, ylabel, title, y_at_bcrit):
+    def panel(ax, yvals, ylabel, y_at_bcrit):
         ax.scatter(b_vals[stable],  yvals[stable],  s=1, color="tab:green",  label="stable equilibrium")
         ax.scatter(b_vals[~stable], yvals[~stable], s=1, color="tab:orange", label="unstable equilibrium")
 
         for i, bc in enumerate(b_crit):
-            ax.axvline(bc, ls="--", color="tab:red", label="b_crit" if i == 0 else None)
-            ax.scatter(bc, y_at_bcrit(bc), color="tab:red", zorder=3, s=50)
+            ax.axvline(bc, ls="--", color="tab:red", label=r"$b_{crit}$" if i == 0 else None)
+            ax.scatter(bc, y_at_bcrit(bc), color="tab:red", zorder=3, s=50, label='Bifurcation points' if i == 0 else None)
 
-        ax.set(xlabel="b", ylabel=ylabel, title=title)
+        ax.set(xlabel="b", ylabel=ylabel)
         ax.grid(True, alpha=0.4)
-        ax.legend(framealpha=0.9)
     
     # --- Left panel: X_eq vs b ---
     panel(
         axes[0],
         Xeq,
         r"$X_{eq}$",
-        rf"$X_{{eq}}$ vs $b$ (a={a})",
         y_at_bcrit=lambda bc: bc)
 
     # --- Right panel: Y_eq vs b ---
@@ -1036,12 +1034,15 @@ def plot_equilibrium_vs_b(a=a, b_min=0.0, b_max=1.2, n=2000):
         axes[1],
         Yeq,
         r"$Y_{eq}$",
-        rf"$Y_{{eq}}$ vs $b$ (a={a})",
         y_at_bcrit=lambda bc: bc / (a + bc**2))
 
+    # --- Shared legend at bottom ---
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc='lower center', ncol=4, framealpha=0.95, 
+               bbox_to_anchor=(0.5, -0.05), frameon=True)
 
-    fig.suptitle(rf"Equilibrium position vs $b$ (a={a})", fontsize=13, fontweight="bold")
-    fig.tight_layout()
+    fig.suptitle(rf"Equilibrium $X_{{eq}}$ and $Y_{{eq}}$ for variable $b$ and fixed $a={a}$", fontsize=13, fontweight="bold")
+    fig.tight_layout(rect=[0, 0.06, 1, 0.96])
     plt.show()
 
 
@@ -1060,13 +1061,12 @@ def plot_equilibrium_3d(a=a, b_min=0.0, b_max=1.2, n=2000):
     n : int
         Number of points
     """
-    from mpl_toolkits.mplot3d import Axes3D
     
     b_vals, _, Xeq, Yeq, stable = get_array_conditions(a=a, b_min=b_min, b_max=b_max, n=n)
     b_crit = bcrit_values(a)
     
     plt.close("all")
-    fig = plt.figure(figsize=(12, 8))
+    fig = plt.figure(figsize=(10, 6))
     ax = fig.add_subplot(111, projection='3d')
     
     # Plot stable points (green)
@@ -1084,19 +1084,22 @@ def plot_equilibrium_3d(a=a, b_min=0.0, b_max=1.2, n=2000):
         bcrit_Xeq = np.array([b for b in b_crit])
         bcrit_Yeq = np.array([b / (a + b**2) for b in b_crit])
         ax.scatter(b_crit, bcrit_Xeq, bcrit_Yeq, 
-                   c='tab:red', s=100, marker='*', label='Bifurcation points', zorder=5)
+                   c='tab:red', s=30, label='Bifurcation points', zorder=50)
     
     # Draw lines connecting the equilibrium curve
     ax.plot(b_vals, Xeq, Yeq, 'k-', alpha=0.3, linewidth=0.5, zorder=1)
     
     ax.set_xlabel('b', fontsize=11, fontweight='bold')
     ax.set_ylabel('$X_{eq}$', fontsize=11, fontweight='bold')
-    ax.set_zlabel('$Y_{eq}$', fontsize=11, fontweight='bold')
-    ax.set_title(f'3D Equilibrium Manifold (a={a})', fontsize=13, fontweight='bold')
-    ax.legend(framealpha=0.9, loc='upper left')
+    ax.set_zlabel('$Y_{eq}$', fontsize=11, fontweight='bold', labelpad=8)
+    ax.set_title(f'3D Equilibrium with fixed a={a}', fontsize=13, fontweight='bold', pad=15)
     ax.grid(True, alpha=0.3)
     
-    plt.tight_layout()
+    # Legend at bottom
+    fig.legend(ax.get_legend_handles_labels()[0], ax.get_legend_handles_labels()[1],
+               loc='lower center', ncol=3, framealpha=0.95, bbox_to_anchor=(0.5, -0.02), frameon=True)
+    
+    plt.tight_layout(rect=[0, 0.05, 1, 0.98])
     plt.show()
 
 
@@ -1131,32 +1134,30 @@ def plot_trace_and_determinant(a=a, b_min=0.0, b_max=1.2, n=2000):
     axes[0].scatter(b_vals[~stable], trace_vals[~stable], s=1, color="tab:orange", label="unstable")
     axes[0].axhline(0, color="k", lw=1.5, linestyle='-', alpha=0.5)
     for i, bc in enumerate(b_crit):
-        axes[0].axvline(bc, ls="--", color="tab:red", label="b_crit" if i == 0 else None)
-        axes[0].scatter(bc, 0, color="tab:red", zorder=3, s=50)
-    axes[0].set(xlabel="b", ylabel=r"$\mathrm{trace}(J)$", title=r"$\mathrm{trace}(J_{eq})$ vs $b$")
+        axes[0].axvline(bc, ls="--", color="tab:red", label=r"$b_{crit}$" if i == 0 else None)
+        axes[0].scatter(bc, 0, color="tab:red", zorder=3, s=50, label='Bifurcation points' if i == 0 else None)
+    axes[0].set(xlabel="b", ylabel=r"$\mathrm{trace}(J)$", title=r"$\mathrm{trace}(J_{eq})$ for parameter $b$")
     axes[0].grid(True, alpha=0.4)
-    axes[0].legend(framealpha=0.9, fontsize=9)
     
     # Panel 2: determinant vs b
     axes[1].scatter(b_vals[stable],  det_vals[stable],  s=1, color="tab:green",  label="stable")
     axes[1].scatter(b_vals[~stable], det_vals[~stable], s=1, color="tab:orange", label="unstable")
     axes[1].axhline(0, color="k", lw=1.5, linestyle='-', alpha=0.5)
     for i, bc in enumerate(b_crit):
-        axes[1].axvline(bc, ls="--", color="tab:red", label="b_crit" if i == 0 else None)
+        axes[1].axvline(bc, ls="--", color="tab:red", label=r"$b_{crit}$" if i == 0 else None)
         axes[1].scatter(bc, bc**2 + a, color="tab:red", zorder=3, s=50)
-    axes[1].set(xlabel="b", ylabel=r"$\det(J)$", title=r"$\det(J_{eq})$ vs $b$")
+    axes[1].set(xlabel="b", ylabel=r"$\det(J)$", title=r"$\det(J_{eq})$ for parameter $b$")
     axes[1].grid(True, alpha=0.4)
-    axes[1].legend(framealpha=0.9, fontsize=9)
     
-    fig.suptitle(rf"Jacobian properties at equilibrium (a={a})", fontsize=13, fontweight="bold")
-    fig.tight_layout()
+    fig.suptitle(rf"Jacobian properties at equilibrium with a={a} fixed", fontsize=13, fontweight="bold")
+    
+    # Shared legend at the bottom
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc='lower center', ncol=4, framealpha=0.95,
+               bbox_to_anchor=(0.5, -0.05), frameon=True)
+    fig.tight_layout(rect=[0, 0.06, 1, 0.96])
     plt.show()
 
-
-def _unique_legend(ax, **kwargs):
-    h, l = ax.get_legend_handles_labels()
-    uniq = dict(zip(l, h))
-    ax.legend(uniq.values(), uniq.keys(), **kwargs)
 
 def plot_bifurcation_summary_figures(a, b_range,
                                      zoom_xlim=(0, 1.5),zoom_ylim=(0, 3),
@@ -1187,45 +1188,57 @@ def plot_bifurcation_summary_figures(a, b_range,
     b_crit = bcrit_values(a)
 
     plt.close("all")
-    fig = plt.figure(figsize=(12, 9))
+    fig = plt.figure(figsize=(12, 10))
 
     # --- Top: stability curve ---
     ax1 = fig.add_subplot(2, 1, 1)
     ax1.plot(b_vals, max_real, label="max Re(λ) at equilibrium")
     ax1.axhline(0, color="k", lw=1)
     for i, bc in enumerate(b_crit):
-        ax1.axvline(bc, ls="--", color="tab:red", label="b_crit" if i == 0 else None)
+        ax1.axvline(bc, color="tab:red", label="b_crit" if i == 0 else None)
 
     ax1.fill_between(b_vals, max_real, 0, where=stable,  alpha=0.15, label="stable")
     ax1.fill_between(b_vals, max_real, 0, where=~stable, alpha=0.12, label="unstable")
 
-    ax1.set(xlim=b_range, xlabel="b", ylabel="max Re(λ)", title=f"Stability vs b (a={a})")
+    ax1.set(xlim=b_range, xlabel="b", ylabel="max Re(λ)", title=f"Stability for parameter b and a={a} fixed")
     ax1.grid(True, alpha=0.3)
-    _unique_legend(ax1, framealpha=0.9, loc="upper right")
+    # Don't add legend here - we'll create a shared one at the bottom
 
     # --- Bottom: phase portraits around first bifurcation ---
     axes = [fig.add_subplot(2, 3, k) for k in (4, 5, 6)]
     if b_crit:
         b0 = b_crit[0]
         bs = [np.clip(b0 - eps, *b_range), b0, np.clip(b0 + eps, *b_range)]
-        titles = [f"before (b={bs[0]:.3f})", f"at bifurcation (b={bs[1]:.3f})", f"after (b={bs[2]:.3f})"]
+        titles = [f"before bifurcation b={bs[0]:.3f}", f"at bifurcation b={bs[1]:.3f}", f"after bifurcation b={bs[2]:.3f}"]
 
         for axp, bb, tt in zip(axes, bs, titles):
-            draw_nullclines_panel(axp, a=a, b=bb, xlim=zoom_xlim, ylim=zoom_ylim,
-                                  n=150, density=0.8, alpha=0.3,
+            draw_nullclines_panel(axp, a=a, b=bb, xlim=(0.0,0.75), ylim=(1,2.5),
+                                  n=150, density=0.6, alpha=0.1,
                                   title=tt, show_equilibrium=True,
                                   nullcline_linestyle="dashed")
             near_eq, _ = trajectory_initial_conditions(a, bb, xlim=zoom_xlim, ylim=zoom_ylim, step=0.1)
-            draw_trajectories(axp, a, bb, xlim=zoom_xlim, ylim=zoom_ylim, initials=near_eq,
-                              t_span=(0, 40), t_eval_n=1500,
+            draw_trajectories(axp, a, bb, xlim=zoom_xlim, ylim=zoom_ylim, initials=2*near_eq[:1],
+                              t_span=(0, 150), t_eval_n=5000,
                               line_kw=dict(linewidth=0.8, alpha=0.85))
+            axp.plot(near_eq[0][0], near_eq[0][1], 'go', markersize=4, label='Start point', zorder=5)    
     else:
         axes[1].text(0.5, 0.5, "No bifurcation for this a", ha="center", va="center")
         for axp in axes:
             axp.axis("off")
 
     fig.suptitle(f"Bifurcation summary (a={a})", fontsize=14, fontweight="bold", y=0.995)
-    fig.tight_layout(rect=[0, 0, 1, 0.99])
+    fig.tight_layout(rect=[0, 0.04, 1, 0.99])
+    
+    # --- Shared legend at the bottom ---
+    handles1, labels1 = ax1.get_legend_handles_labels()
+    handles2, labels2 = axes[0].get_legend_handles_labels()
+    all_handles = handles1 + handles2
+    all_labels = labels1 + labels2
+    # Remove duplicates while preserving order
+    legend_dict = dict(zip(all_labels, all_handles))
+    fig.legend(legend_dict.values(), legend_dict.keys(), loc='lower center', 
+               ncol=4, framealpha=0.95, bbox_to_anchor=(0.5, -0.01), frameon=True)
+    
     plt.show()
 
 def plot_bifurcation_phase_portraits(a=a, b_crit_vals=None, xlim=xlim, ylim=ylim):
@@ -1259,81 +1272,55 @@ def plot_bifurcation_phase_portraits(a=a, b_crit_vals=None, xlim=xlim, ylim=ylim
     if n_bifurcations == 1:
         axes = axes.reshape(1, -1)
     
+    axes_flat = np.ravel(axes)
+
     for row, b_crit in enumerate(b_crit_vals):
         epsilon = 0.02  # Small perturbation around bifurcation
         b_vals = [b_crit - epsilon, b_crit, b_crit + epsilon]
-        titles = [f"Before (b={b_crit-epsilon:.4f})", 
-                  f"At bifurcation (b={b_crit:.4f})", 
-                  f"After (b={b_crit+epsilon:.4f})"]
+        titles = [f"Before bifurcation b={b_crit-epsilon:.4f}", 
+                  f"At bifurcation b={b_crit:.4f}", 
+                  f"After bifurcation b={b_crit+epsilon:.4f}"]
         
         for col, (b_val, title) in enumerate(zip(b_vals, titles)):
             ax = axes[row, col]
             
             # Draw nullclines and vector field
             draw_nullclines_panel(ax, a=a, b=b_val, xlim=xlim, ylim=ylim,
-                                 n=250, density=0.8, alpha=0.3,
+                                 n=250, density=0.8, alpha=0.1,
                                  title=title, show_equilibrium=True,
                                  nullcline_linestyle="dashed")
             
-            # Add some trajectories
+            # Add a single trajectory
             near_eq, _ = trajectory_initial_conditions(a=a, b=b_val, xlim=xlim, ylim=ylim, step=0.1)
-            draw_trajectories(ax, a=a, b=b_val, xlim=xlim, ylim=ylim, initials=near_eq,
-                            t_span=(0, 40), t_eval_n=2000,
-                            line_kw=dict(linewidth=0.7, zorder=2.5, alpha=0.8))
-    
-    plt.tight_layout()
+            draw_trajectories(ax, a=a, b=b_val, xlim=xlim, ylim=ylim, initials=2*near_eq[:1],
+                            t_span=(0, 150), t_eval_n=5000,
+                            line_kw=dict(linewidth=0.7, zorder=2.5, alpha=0.9))
+            # Mark the start point
+            ax.plot(near_eq[0][0], near_eq[0][1], 'go', markersize=8, label='Start point', zorder=5)
+
+    # Figure-level legend below all subplots
+    handles, labels = [], []
+    for ax in axes_flat:
+        h, l = ax.get_legend_handles_labels()
+        handles.extend(h)
+        labels.extend(l)
+
+    uniq_handles, uniq_labels = [], []
+    for h, l in zip(handles, labels):
+        if l not in uniq_labels:
+            uniq_labels.append(l)
+            uniq_handles.append(h)
+
+    fig.legend(uniq_handles, uniq_labels, loc='lower center', ncol=5,
+               framealpha=0.95, bbox_to_anchor=(0.5, 0.0), frameon=True)
+
+    plt.tight_layout(rect=[0, 0.05, 1, 0.98])
     plt.show()
 
-def summarize_bifurcations_in_b(a=a):
-    """
-    Print a detailed summary of bifurcations when varying b.
-    
-    Displays:
-    - Critical b values where bifurcations occur
-    - Stability status at various b values
-    - Equilibrium positions as b changes
-    
-    Parameters
-    ----------
-    a : float
-        Enzyme-protein interaction parameter (kept fixed)
-    """
-    print(f"BIFURCATION ANALYSIS: Glucose model with a = {a}")
-    print("=" * 60)
-    
-    b_crit = bcrit_values(a)
-    
-    if len(b_crit) == 0:
-        print(f"No bifurcations exist for a = {a}")
-        return
-    
-    print(f"\nCritical b-values (where trace(J_eq) = 0):")
-    for i, b_c in enumerate(b_crit):
-        print(f"  b_{i+1} = {b_c:.6f}")
-    
-    # Evaluate stability at different regions
-    print(f"\nStability along the b-axis:")
-    test_points = [0.01] + [b_c + (-1)**(i % 2) * 0.01 for i, b_c in enumerate(b_crit)] + [b_crit[-1] + 0.1]
-    test_points = sorted(set(test_points))
-    
-    for b_test in test_points:
-        (Xeq, Yeq), _, eig = get_equilibrium_eigvals(a, b_test)
-        max_re = np.max(np.real(eig))
-        status = "STABLE" if max_re < 0 else "UNSTABLE"
-        print(f"  b = {b_test:.4f}: max Re(λ) = {max_re:8.5f}  →  {status}")
-    
-    print(f"\nEquilibrium displacement:")
-    b_test_vals = np.linspace(0.01, b_crit[-1] + 0.1, 5)
-    for b_test in b_test_vals:
-        Xeq, Yeq = equilibrium(a=a, b=b_test)
-        print(f"  b = {b_test:.4f}: (X_eq, Y_eq) = ({Xeq:.4f}, {Yeq:.4f})")
-    
-    print("=" * 60)
 
-
-# -----------------------------------------------------------------------------
+# ==============================================================================
 # Glucose system functions part 5: 2D Bifurcation Analysis
-# -----------------------------------------------------------------------------
+# ==============================================================================
 
 def hopf_curves(a_vals):
     """
@@ -1373,7 +1360,7 @@ def hopf_curves(a_vals):
     return b_minus, b_plus
         
 def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
-                     na=250, nb=250, show_legend=True):
+                     na=250, nb=250):
     """
     Assignment-style 2D stability map (a,b-plane).
 
@@ -1381,17 +1368,9 @@ def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
     - Overlays: Hopf curves b_-(a), b_+(a)
     - Legend: English labels for stable/unstable and the two Hopf branches
 
-    Parameters
-    ----------
-    show_legend : bool, default True
-        Whether to draw the legend (use False for a clean figure without labels).
-
     Returns
     -------
-    a_vals, b_vals : ndarray
-        Meshgrid axes used for the plot.
-    max_real : ndarray
-        Maximum real part of the eigenvalues at each (a,b) (analytic, vectorized).
+    Stability map figure
     """
     a_vals = np.linspace(a_min, a_max, na)
     b_vals = np.linspace(b_min, b_max, nb)
@@ -1404,10 +1383,6 @@ def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
 
     # Analytic max real part of eigenvalues from trace/determinant
     discr = trace*trace - 4.0*det
-    max_real = np.where(discr >= 0.0,
-                       0.5*(trace + np.sqrt(discr)),  # real eigenvalues
-                       0.5*trace)                      # complex pair: real part = trace/2
-
     stable = trace < 0
 
 
@@ -1419,21 +1394,24 @@ def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
 
     # Hopf curves
     b_m, b_p = hopf_curves(a_vals)
-    line_bm, = ax.plot(a_vals, b_m, color='#1f77b4', linewidth=2.0, linestyle='--', label='Hopf b_-(a)')
-    line_bp, = ax.plot(a_vals, b_p, color='#d62728', linewidth=2.0, linestyle=':',  label='Hopf b_+(a)')
-
-    if show_legend:
-        stable_patch = Patch(facecolor="#c9e9c5", edgecolor='none', label='Stable (trace < 0)')
-        unstable_patch = Patch(facecolor="#fde2b8", edgecolor='none', label='Unstable (trace > 0)')
-        handles = [stable_patch, unstable_patch, line_bm, line_bp]
-        ax.legend(handles=handles, loc='lower right', framealpha=0.95)
+    line_bm, = ax.plot(a_vals, b_m, color='#1f77b4', linewidth=2.0, linestyle='--', label=r'Hopf $b_-(a)$')
+    line_bp, = ax.plot(a_vals, b_p, color='#d62728', linewidth=2.0, linestyle=':',  label=r'Hopf $b_+(a)$')
 
     ax.set_xlim(a_min, a_max)
     ax.set_ylim(b_min, b_max)
     ax.set_xlabel('a')
     ax.set_ylabel('b')
-    ax.set_title('Stability of equilibrium in (a,b)-plane (trace criterion)')
+    ax.set_title(r'Stability of equilibrium in $ab$-plane')
     ax.grid(True, alpha=0.25)
+    
+    
+    stable_patch = Patch(facecolor="#c9e9c5", edgecolor='none', label='Stable (trace < 0)')
+    unstable_patch = Patch(facecolor="#fde2b8", edgecolor='none', label='Unstable (trace > 0)')
+    handles = [stable_patch, unstable_patch, line_bm, line_bp]
+    fig.legend(handles=handles, loc='lower center', ncol=4, framealpha=0.95, 
+                bbox_to_anchor=(0.5, 0.0), frameon=True)
+    plt.tight_layout(rect=[0, 0.06, 1, 0.96])
+    
     plt.show()
 
 
