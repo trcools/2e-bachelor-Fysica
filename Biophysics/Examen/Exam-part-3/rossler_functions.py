@@ -25,20 +25,9 @@ naming, and documentation for readability and maintainability.
 # =============================================================================
 
 import numpy as np 
-
-import sympy as sp
 from sympy.solvers import solve
-from sympy import Symbol, Matrix, symbols, Eq
-    
-import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
-from mpl_toolkits.mplot3d import Axes3D 
-
-import scipy
+from sympy import symbols, Eq
 from scipy.signal import find_peaks
-
-from ipywidgets import interact
-    
 
 # =============================================================================
 # General Parameters
@@ -743,10 +732,6 @@ def local_maxima(values):
     idx = np.where((values[1:-1] > values[:-2]) & (values[1:-1] > values[2:]))[0] + 1
     return idx
 
-
-
-
-
 def lyapunov_exponent_estimate(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
                                t_min=0, t_max=100, dt=dt, eps=1e-8):
     """
@@ -874,7 +859,6 @@ def find_optimal_euler_step(a, b, c, initial_condition, t_min=0.0, t_max=60.0,
     )
     return h_best, err_best
 
-
 def compare_euler_vs_rk4(a, b, c, initial_condition, t_min=0.0, t_max=60.0,
                          h_rk4=0.1, h_euler=None, h0_euler=0.1, max_halvings=20):
     """
@@ -941,12 +925,3 @@ def compare_euler_vs_rk4(a, b, c, initial_condition, t_min=0.0, t_max=60.0,
         'err_x': err_x, 'err_y': err_y, 'err_z': err_z,
         'max_err_x': err_x.max(), 'max_err_y': err_y.max(), 'max_err_z': err_z.max()
     }
-
-
-
-
-
-
-
-
-
