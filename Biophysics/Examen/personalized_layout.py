@@ -18,7 +18,7 @@ naming, and documentation for readability and maintainability.
 # =============================================================================
 
 from ipywidgets import interact, FloatSlider, HBox, interactive_output, Checkbox, Output, VBox
-from IPython.display import display
+from IPython.display import display, update_display
 from collections import OrderedDict
 import matplotlib.pyplot as plt
 import time
@@ -27,56 +27,10 @@ import time
 # Interactive Plot Helper Function
 # =============================================================================
 
-def create_interactive_plot(plot_func, slider_configs, n_cols=3, extra_widgets=None, extra_widgets_inline=False):
-    """
-    Create an interactive plot with dynamically generated sliders and optional extra widgets.
-    
-    This helper function eliminates code duplication for interactive plotting
-    by handling widget creation, layout, and output display.
-    
-    Parameters
-    ----------
-    plot_func : callable
-        Function that takes widget values as keyword arguments and creates the plot.
-        Example: def my_plot(a_val, b_val, c_val, x0_val, ...): ...
-    
-    slider_configs : dict
-        Dictionary mapping slider names to their configurations.
-        Each value should be a dict with keys: 'value', 'min', 'max', 'step'
-        Example: {'a': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05}, ...}
-    
-    n_cols : int, optional
-        Number of sliders to display per row (default: 3)
-    
-    extra_widgets : dict, optional
-        Dictionary mapping widget names to widget objects (e.g., Checkbox, ToggleButton).
-        These widgets will be displayed after the sliders and included in the interactive output.
-        Example: {'show_arrows': Checkbox(value=True, description='Show arrows')}
-    
-    extra_widgets_inline : bool, optional
-        When True, display all extra widgets in a single horizontal row (HBox).
-        When False (default), display each widget on its own line.
-    
-    Returns
-    -------
-    None
-        Displays the interactive plot in the notebook cell.
-    
-    Example
-    -------
-    >>> slider_configs = {
-    ...     'a': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05},
-    ...     'b': {'value': 0.2, 'min': 0.05, 'max': 0.4, 'step': 0.05},
-    ... }
-    >>> checkbox = Checkbox(value=True, description='Show feature')
-    >>> extra_widgets = {'show_feature': checkbox}
-    >>> def my_plot(a, b, show_feature):
-    ...     # plotting code here
-    ...     pass
-    >>> create_interactive_plot(my_plot, slider_configs, extra_widgets=extra_widgets)
-    """
 
-    # 1) create sliders
+
+def create_interactive_plot(plot_func, slider_configs, n_cols=3, extra_widgets=None, extra_widgets_inline=False):
+    # --- build widgets ---
     sliders = {}
     for name, cfg in slider_configs.items():
         sliders[name] = FloatSlider(
@@ -88,55 +42,64 @@ def create_interactive_plot(plot_func, slider_configs, n_cols=3, extra_widgets=N
             continuous_update=False,
         )
 
-    # 2) layout controls
     slider_list = list(sliders.values())
-    rows = []
-    for i in range(0, len(slider_list), n_cols):
-        rows.append(HBox(slider_list[i:i+n_cols]))
+    rows = [HBox(slider_list[i:i+n_cols]) for i in range(0, len(slider_list), n_cols)]
 
+    all_widgets = dict(sliders)
     if extra_widgets:
         if extra_widgets_inline:
             rows.append(HBox(list(extra_widgets.values())))
         else:
             rows.extend(list(extra_widgets.values()))
-
-    controls = VBox(rows)
-    display(controls)
-
-    # 3) output area
-    output = Output()
-    display(output)
-
-    last_draw = 0.0
-    THROTTLE_SEC = 0.25  # 250 ms: init-burst
-
-    all_widgets = dict(sliders)
-    if extra_widgets:
         all_widgets.update(extra_widgets)
 
+    display(VBox(rows))
 
-    def draw():
-        nonlocal last_draw
+    out = Output()
+    display(out)
+
+    
+    last_call = 0.0
+    MIN_DT = 0.15  
+
+    display_id = None
+
+    def render():
+        nonlocal last_call, display_id
         now = time.perf_counter()
-        if now - last_draw < THROTTLE_SEC:
+        if now - last_call < MIN_DT:
             return
-        last_draw = now
+        last_call = now
 
-        with output:
-            output.clear_output(wait=True)
-            plt.close("all")  # extra defensief in VS Code
-            fig = plot_func(**{k: w.value for k, w in all_widgets.items()})
-            if fig is not None:
-                display(fig)
-                plt.close(fig)
+        plt.close("all")
+
+        kwargs = {k: w.value for k, w in all_widgets.items()}
+        fig = plot_func(**kwargs)
+
+        if fig is None:
+            return
+
+        with out:
+        
+            if display_id is None:
+                h = display(fig, display_id=True)
+                display_id = h.display_id
+            else:
+                update_display(fig, display_id=display_id)
+
+        plt.close(fig)
 
     def on_change(change):
-        draw()
+        # ignore pure sync no-ops
+        if change.get("old") == change.get("new"):
+            return
+        render()
 
+  
     for w in all_widgets.values():
         w.observe(on_change, names="value")
 
-    draw() 
+    render()
 
 
 
