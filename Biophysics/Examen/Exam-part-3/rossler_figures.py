@@ -753,7 +753,7 @@ def nb_show_attractor(a, b, c, initial_condition, t_min, t_max, dt):
     # Define plotting function
     def _plot(a, b, c, x0, y0, z0):
         ic_val = (x0, y0, z0)
-        return plot_3d_attractor(a=a, b=b, c=c, initial_condition=ic_val, t_min=t_min, t_max=t_max, dt=dt, figsize=(12, 5))
+        plot_3d_attractor(a=a, b=b, c=c, initial_condition=ic_val, t_min=t_min, t_max=t_max, dt=dt, figsize=(12, 5))
     
 
     
@@ -834,7 +834,7 @@ def nb_compare_euler_vs_rk4(a, b, c, initial_condition, t_min, t_max,
                          frameon=True, fontsize=10, edgecolor='black')
 
         plt.tight_layout(rect=[0, 0.05, 1, 1])
-        return fig
+        return 
     
     # Create interactive plot
     create_interactive_plot(_plot, slider_configs, n_cols=3)
@@ -853,7 +853,7 @@ def nb_time_series(a, b, c, initial_condition, t_min, t_max, dt):
     # Define plotting function
     def _plot(t_min, t_max):
         ic_val = (x0, y0, z0)
-        return plot_time_series(a=a, b=b, c=c, initial_condition=ic_val,
+        plot_time_series(a=a, b=b, c=c, initial_condition=ic_val,
                         t_min=t_min, t_max=t_max, dt=dt, figsize=(14, 8))
     
     
@@ -866,7 +866,7 @@ def nb_compare_initial_conditions(a, b, c, initial_conditions, t_min, t_max, dt,
     if initial_conditions is None:
         # Use defaults list from get_parameters
         _, _, _, _, _, _, _, initial_conditions = rossler.get_parameters()
-    return compare_initial_conditions(a=a, b=b, c=c, initial_conditions=initial_conditions,
+    compare_initial_conditions(a=a, b=b, c=c, initial_conditions=initial_conditions,
                                t_min=t_min, t_max=t_max, dt=dt, figsize=(15, 5), skip_first_frac=skip_first_frac)
 
 # --- Return map + cobweb in one go ---
