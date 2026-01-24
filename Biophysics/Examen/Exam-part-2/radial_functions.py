@@ -295,7 +295,6 @@ def sample_equilibria(mu_values, include_negative=True):
         "neutral":  (np.array(neutral_mu),  np.array(neutral_r)),
     }
 
-
 def get_groups(dim="1D"):
     """
     Create plotting groups for equilibria.
@@ -437,7 +436,6 @@ def hopf_origin_numeric(omega=1.0, mu_bracket=(-1.0, 1.0), hJ=1e-6):
     typ = classify_stability_2d(0.0, mu_h, omega=omega)
     return 0.0, mu_h, typ
 
-
 def bifurcation_points(omega=1.0):
     """
     Compute bifurcation markers numerically and classify them.
@@ -487,7 +485,6 @@ def bifurcation_points(omega=1.0):
         dict(mu=mu_hopf, type=type_hopf, r_eq=r_hopf,
              label=rf"{type_hopf} ($\mu={mu_hopf:.3f}$)", 
              color=color_hopf, marker=marker_hopf, linestyle=":")]
-
 
 def plot_bifurcation_1d(mu_range=(-3, 3), r_range=(-2, 2),
                         n_mu=3000, include_negative=True,

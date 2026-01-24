@@ -1339,14 +1339,14 @@ def hopf_curves(a_vals):
     b_plus  = np.full_like(a_vals, np.nan, dtype=float)
 
     ok = disc >= 0
-    s_plus  = (1 + np.sqrt(disc[ok]))/2
     s_minus = (1 - np.sqrt(disc[ok]))/2
+    s_plus  = (1 + np.sqrt(disc[ok]))/2
 
-    b2_plus  = s_plus  - a_vals[ok]
     b2_minus = s_minus - a_vals[ok]
+    b2_plus  = s_plus  - a_vals[ok]
 
-    b_plus[ok]  = np.sqrt(np.maximum(b2_plus,  0.0))
     b_minus[ok] = np.sqrt(np.maximum(b2_minus, 0.0))
+    b_plus[ok]  = np.sqrt(np.maximum(b2_plus,  0.0))
     return b_minus, b_plus
         
 def stability_map_ab(a_min=0.0, a_max=0.14, b_min=0.0, b_max=1.2,
