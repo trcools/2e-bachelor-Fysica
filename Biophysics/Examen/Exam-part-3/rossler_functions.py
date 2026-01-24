@@ -748,9 +748,7 @@ def local_maxima(values):
 
 
 def lyapunov_exponent_estimate(a=0.2, b=0.2, c=5.7, initial_condition=initial_condition,
-                               t_min=0, t_max=100, dt=dt,
-                               method="RK45", rtol=1e-8,
-                               atol=1e-10, eps=1e-8):
+                               t_min=0, t_max=100, dt=dt, eps=1e-8):
     """
     Estimate the largest Lyapunov exponent numerically.
     
@@ -796,12 +794,18 @@ def lyapunov_exponent_estimate(a=0.2, b=0.2, c=5.7, initial_condition=initial_co
     
     # Avoid log(0)
     distance = np.maximum(distance, 1e-12)
-    
-    # Lyapunov exponent estimate: ln(distance(t)) / t
-    lyap_exp = np.log(distance) / (t + 1e-10)
-    
-    return t, lyap_exp
 
+    def lyapunov_from_two_trajs(t, distance, eps, t_fit=(20, 60)):
+        # Take frame where log-distance approximately linear
+        mask = (t >= t_fit[0]) & (t <= t_fit[1])
+        y = np.log(distance[mask] / eps)
+        x = t[mask]
+        lam = np.polyfit(x, y, 1)[0]   # slope
+        return lam
+    
+    lam = lyapunov_from_two_trajs(t, distance, eps=1e-8, t_fit=(20, 60))
+    print("Largest Lyapunov exponent ≈", lam)
+    return
 
 def bifurcation_maxima_X(param_name, param_values, a, b, c, ic,
                          t_min=0.0, t_max=200.0, h=0.01, skip_frac=0.5):
