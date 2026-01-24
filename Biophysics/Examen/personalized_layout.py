@@ -17,10 +17,11 @@ naming, and documentation for readability and maintainability.
 # Imports
 # =============================================================================
 
-from ipywidgets import interact, FloatSlider, HBox, interactive_output, Checkbox, Output
-from IPython.display import display, clear_output
+from ipywidgets import interact, FloatSlider, HBox, interactive_output, Checkbox, Output, VBox
+from IPython.display import display
 from collections import OrderedDict
 import matplotlib.pyplot as plt
+import time
 
 # =============================================================================
 # Interactive Plot Helper Function
@@ -74,55 +75,71 @@ def create_interactive_plot(plot_func, slider_configs, n_cols=3, extra_widgets=N
     ...     pass
     >>> create_interactive_plot(my_plot, slider_configs, extra_widgets=extra_widgets)
     """
-    # Create sliders from configurations
+
+    # 1) create sliders
     sliders = {}
-    for name, config in slider_configs.items():
+    for name, cfg in slider_configs.items():
         sliders[name] = FloatSlider(
-            value=config['value'],
-            min=config['min'],
-            max=config['max'],
-            step=config['step'],
-            description=f'{name}:',
-            continuous_update=False  # Only update when slider is released
+            value=cfg["value"],
+            min=cfg["min"],
+            max=cfg["max"],
+            step=cfg["step"],
+            description=f"{name}:",
+            continuous_update=False,
         )
-    
-    # Display sliders in rows
+
+    # 2) layout controls
     slider_list = list(sliders.values())
+    rows = []
     for i in range(0, len(slider_list), n_cols):
-        display(HBox(slider_list[i:i+n_cols]))
-    
-    # Display extra widgets (e.g., Checkboxes) if provided
+        rows.append(HBox(slider_list[i:i+n_cols]))
+
     if extra_widgets:
         if extra_widgets_inline:
-            display(HBox(list(extra_widgets.values())))
+            rows.append(HBox(list(extra_widgets.values())))
         else:
-            for widget in extra_widgets.values():
-                display(widget)
-    
-    # Combine sliders and extra widgets for interactive output
-    all_widgets = {**sliders}
-    if extra_widgets:
-        all_widgets.update(extra_widgets)
-    
-    # Create output widget for controlled display
+            rows.extend(list(extra_widgets.values()))
+
+    controls = VBox(rows)
+    display(controls)
+
+    # 3) output area
     output = Output()
     display(output)
-    
-    def update_plot(**kwargs):
-        """Update function that clears old output and displays new plot."""
+
+    last_draw = 0.0
+    THROTTLE_SEC = 0.25  # 250 ms: init-burst
+
+    all_widgets = dict(sliders)
+    if extra_widgets:
+        all_widgets.update(extra_widgets)
+
+
+    def draw():
+        nonlocal last_draw
+        now = time.perf_counter()
+        if now - last_draw < THROTTLE_SEC:
+            return
+        last_draw = now
+
         with output:
-            clear_output(wait=True)
-            fig = plot_func(**kwargs)
+            output.clear_output(wait=True)
+            plt.close("all")  # extra defensief in VS Code
+            fig = plot_func(**{k: w.value for k, w in all_widgets.items()})
             if fig is not None:
                 display(fig)
-                plt.close(fig)  # Prevent memory leaks and duplicate displays
-    
-    # Connect widgets to update function
-    for widget in all_widgets.values():
-        widget.observe(lambda change: update_plot(**{k: w.value for k, w in all_widgets.items()}), names='value')
-    
-    # Initial plot
-    update_plot(**{k: w.value for k, w in all_widgets.items()})
+                plt.close(fig)
+
+    def on_change(change):
+        draw()
+
+    for w in all_widgets.values():
+        w.observe(on_change, names="value")
+
+    draw() 
+
+
+
 
 
 # =============================================================================

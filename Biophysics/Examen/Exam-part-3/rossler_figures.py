@@ -33,18 +33,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 import importlib
 import rossler_functions as rossler
-
-import numpy as np 
-
-import sympy as sp
-from sympy.solvers import solve
-from sympy import Symbol, Matrix, symbols, Eq
-    
+import numpy as np     
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
-from mpl_toolkits.mplot3d import Axes3D 
-
-import scipy
 
 # Import helper functions from centralized module
 from personalized_layout import create_interactive_plot, legend_dedup, fig_legend_dedup
@@ -763,13 +753,12 @@ def nb_show_attractor(a, b, c, initial_condition, t_min, t_max, dt):
     # Define plotting function
     def _plot(a, b, c, x0, y0, z0):
         ic_val = (x0, y0, z0)
-        plot_3d_attractor(a=a, b=b, c=c, initial_condition=ic_val,
-                          t_min=t_min, t_max=t_max, dt=dt, figsize=(12, 5))
-        plt.show() 
+        return plot_3d_attractor(a=a, b=b, c=c, initial_condition=ic_val, t_min=t_min, t_max=t_max, dt=dt, figsize=(12, 5))
+    
 
     
     # Create interactive plot
-    return create_interactive_plot(_plot, slider_configs, n_cols=3)
+    create_interactive_plot(_plot, slider_configs, n_cols=3)
 
 # --- All three 2D projections ---
 def nb_show_projections(a, b, c, initial_condition, t_min, t_max, dt, skip_first_frac=0.2):
@@ -796,6 +785,60 @@ def nb_show_projections(a, b, c, initial_condition, t_min, t_max, dt, skip_first
     # Create interactive plot
     create_interactive_plot(_plot, slider_configs, n_cols=3)
 
+# --- Euler vs RK4 Comparison ---
+def nb_compare_euler_vs_rk4(a, b, c, initial_condition, t_min, t_max, 
+                            h_rk4=0.1, h_euler=None, h0_euler=0.1, max_halvings=20):
+    """Compare Euler vs RK4 trajectories with interactive sliders."""
+    x0, y0, z0 = initial_condition
+    
+    # Define slider configurations
+    slider_configs = {
+        't_max': {'value': t_max, 'min': 1.0, 'max': 500.0, 'step': 1.0},
+    }
+    
+    # Define plotting function
+    def _plot(t_max):
+        ic_val = (x0, y0, z0)
+        
+        results = rossler.compare_euler_vs_rk4(
+            a, b, c, ic_val, t_min, t_max, h_rk4, h_euler, h0_euler, max_halvings
+        )
+
+        t_ref, x_ref, y_ref, z_ref = results['t_ref'], results['x_ref'], results['y_ref'], results['z_ref']
+        t_eu, x_eu, y_eu, z_eu = results['t_eu'], results['x_eu'], results['y_eu'], results['z_eu']
+        h_best = results['h_euler']
+        
+        # Print error statistics
+        print(f"Max |Δx|: {results['max_err_x']:.3e} | Max |Δy|: {results['max_err_y']:.3e} | Max |Δz|: {results['max_err_z']:.3e}")
+        
+        # Create comparison plots
+        fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
+
+        axes[0].plot(t_ref, x_ref, label=f'RK4 h={h_rk4:.4f}')
+        axes[0].plot(t_eu, x_eu, '--', label=f'Euler h={h_best:.4f}')
+        axes[0].set_ylabel('x(t)')
+        axes[0].grid(True, alpha=0.3)
+
+        axes[1].plot(t_ref, y_ref, label=f'RK4 h={h_rk4:.4f}')
+        axes[1].plot(t_eu, y_eu, '--', label=f'Euler h={h_best:.4f}')
+        axes[1].set_ylabel('y(t)')
+        axes[1].grid(True, alpha=0.3)
+
+        axes[2].plot(t_ref, z_ref, label=f'RK4 h={h_rk4:.4f}')
+        axes[2].plot(t_eu, z_eu, '--', label=f'Euler h={h_best:.4f}')
+        axes[2].set_ylabel('z(t)')
+        axes[2].set_xlabel('t')
+        axes[2].grid(True, alpha=0.3)
+
+        fig_legend_dedup(fig, axes[0], loc='lower center', ncol=2, bbox_to_anchor=(0.5, 0.0),
+                         frameon=True, fontsize=10, edgecolor='black')
+
+        plt.tight_layout(rect=[0, 0.05, 1, 1])
+        return fig
+    
+    # Create interactive plot
+    create_interactive_plot(_plot, slider_configs, n_cols=3)
+
 # --- Time series plots ---
 def nb_time_series(a, b, c, initial_condition, t_min, t_max, dt):
     """Show x(t), y(t), z(t) time series with interactive sliders."""
@@ -810,9 +853,9 @@ def nb_time_series(a, b, c, initial_condition, t_min, t_max, dt):
     # Define plotting function
     def _plot(t_min, t_max):
         ic_val = (x0, y0, z0)
-        plot_time_series(a=a, b=b, c=c, initial_condition=ic_val,
+        return plot_time_series(a=a, b=b, c=c, initial_condition=ic_val,
                         t_min=t_min, t_max=t_max, dt=dt, figsize=(14, 8))
-        plt.show()
+    
     
     # Create interactive plot
     create_interactive_plot(_plot, slider_configs, n_cols=3)
@@ -823,9 +866,8 @@ def nb_compare_initial_conditions(a, b, c, initial_conditions, t_min, t_max, dt,
     if initial_conditions is None:
         # Use defaults list from get_parameters
         _, _, _, _, _, _, _, initial_conditions = rossler.get_parameters()
-    compare_initial_conditions(a=a, b=b, c=c, initial_conditions=initial_conditions,
+    return compare_initial_conditions(a=a, b=b, c=c, initial_conditions=initial_conditions,
                                t_min=t_min, t_max=t_max, dt=dt, figsize=(15, 5), skip_first_frac=skip_first_frac)
-    plt.show()
 
 # --- Return map + cobweb in one go ---
 def nb_return_map_and_cobweb(a, b, c, initial_condition, t_min, t_max, dt,
@@ -935,7 +977,6 @@ def nb_return_map_and_cobweb(a, b, c, initial_condition, t_min, t_max, dt,
         except Exception:
             pass
 
-
 # --- Butterfly effect plot --- 
 def nb_butterfly_effect(a, b, c, initial_condition, delta=1e-6, t_min=50, t_max=280, dt=0.01):
     """Show butterfly effect plot with interactive sliders."""
@@ -976,77 +1017,20 @@ def nb_plot_sensitivity(c, t_min, t_max, dt, delta=1e-6):
 # --- Parameter sweep for c values ---
 def nb_parameter_sweep(c_values, a, b, initial_condition, t_min, t_max, dt):
     """Show attractor panels for a list of c values."""
-    plot_parameter_sweep(a=a, b=b, c_values=c_values,
+    return plot_parameter_sweep(a=a, b=b, c_values=c_values,
                         initial_condition=initial_condition, t_min=t_min, t_max=t_max, dt=dt,
                         figsize=(15, 10))
-    plt.show()
+
 
 # --- Part 3.5: Bifurcation Diagram ---
 def nb_bifurcation_vs_c(a=0.2, b=0.2, c_min=0.0, c_max=18.0, n=400,
                         ic=initial_condition, t_min=0.0, t_max=200.0, h=0.01):
     c_values = np.linspace(c_min, c_max, n)
-    fig = plot_bifurcation("c", c_values, a=a, b=b, c=0.0, ic=ic,
+    return plot_bifurcation("c", c_values, a=a, b=b, c=0.0, ic=ic,
                            t_min=t_min, t_max=t_max, h=h, skip_frac=0.5)
-    plt.show()
-    return fig
 
 def nb_bifurcation_vs_b(a=0.2, c=5.7, b_min=0.0, b_max=1.0, n=400,
                         ic=initial_condition, t_min=0.0, t_max=200.0, h=0.01):
     b_values = np.linspace(b_min, b_max, n)
-    fig = plot_bifurcation("b", b_values, a=a, b=0.0, c=c, ic=ic,
+    return plot_bifurcation("b", b_values, a=a, b=0.0, c=c, ic=ic,
                            t_min=t_min, t_max=t_max, h=h, skip_frac=0.5)
-    plt.show()
-    return fig
-# --- Euler vs RK4 Comparison ---
-def nb_compare_euler_vs_rk4(a, b, c, initial_condition, t_min, t_max, 
-                            h_rk4=0.1, h_euler=None, h0_euler=0.1, max_halvings=20):
-    """Compare Euler vs RK4 trajectories with interactive sliders."""
-    x0, y0, z0 = initial_condition
-    
-    # Define slider configurations
-    slider_configs = {
-        't_max': {'value': t_max, 'min': 1.0, 'max': 500.0, 'step': 1.0},
-    }
-    
-    # Define plotting function
-    def _plot(t_max):
-        ic_val = (x0, y0, z0)
-        
-        results = rossler.compare_euler_vs_rk4(
-            a, b, c, ic_val, t_min, t_max, h_rk4, h_euler, h0_euler, max_halvings
-        )
-
-        t_ref, x_ref, y_ref, z_ref = results['t_ref'], results['x_ref'], results['y_ref'], results['z_ref']
-        t_eu, x_eu, y_eu, z_eu = results['t_eu'], results['x_eu'], results['y_eu'], results['z_eu']
-        h_best = results['h_euler']
-        
-        # Print error statistics
-        print(f"Max |Δx|: {results['max_err_x']:.3e} | Max |Δy|: {results['max_err_y']:.3e} | Max |Δz|: {results['max_err_z']:.3e}")
-        
-        # Create comparison plots
-        fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
-
-        axes[0].plot(t_ref, x_ref, label=f'RK4 h={h_rk4:.3f}')
-        axes[0].plot(t_eu, x_eu, '--', label=f'Euler h={h_best:.4f}')
-        axes[0].set_ylabel('x(t)')
-        axes[0].grid(True, alpha=0.3)
-
-        axes[1].plot(t_ref, y_ref, label=f'RK4 h={h_rk4:.3f}')
-        axes[1].plot(t_eu, y_eu, '--', label=f'Euler h={h_best:.4f}')
-        axes[1].set_ylabel('y(t)')
-        axes[1].grid(True, alpha=0.3)
-
-        axes[2].plot(t_ref, z_ref, label=f'RK4 h={h_rk4:.3f}')
-        axes[2].plot(t_eu, z_eu, '--', label=f'Euler h={h_best:.4f}')
-        axes[2].set_ylabel('z(t)')
-        axes[2].set_xlabel('t')
-        axes[2].grid(True, alpha=0.3)
-
-        fig_legend_dedup(fig, axes[0], loc='lower center', ncol=2, bbox_to_anchor=(0.5, 0.0),
-                         frameon=True, fontsize=10, edgecolor='black')
-
-        plt.tight_layout(rect=[0, 0.05, 1, 1])
-        plt.show()
-    
-    # Create interactive plot
-    create_interactive_plot(_plot, slider_configs, n_cols=3)
