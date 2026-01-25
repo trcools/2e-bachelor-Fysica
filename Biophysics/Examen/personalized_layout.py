@@ -4,8 +4,6 @@ Personalized Layout Utilities
 This module provides reusable helper functions for creating interactive plots
 and managing legends across different exam parts of the Biophysics course.
 
-Author: Tristan Cools
-Date: January 2026
 
 Note:
 This module was refactored with assistance from an AI tool to improve structure,
@@ -27,7 +25,16 @@ import time
 # Interactive Plot Helper Function
 # =============================================================================
 
+"""
+Note:
 
+I have a lot of problems with my interactive plots giving the figure back to sometimes 6 times, I was working on this problem for at least 2 days,
+and haven't been able to solve it. Even when I asked AI to help me it couldn't give me an answer why I have this bug.
+Maybe it is because I swithed to VSCode and something in my environment or settings is not right, but i haven't been able to find out what the problem was.
+
+I tried some code what from AI recommanded to fix my problem, but this only made it messy and did not fix the code.
+Now I am in some time issues, so I will just leave it like this for now.
+"""
 
 def create_interactive_plot(plot_func, slider_configs, n_cols=3, extra_widgets=None, extra_widgets_inline=False):
     # --- build widgets ---

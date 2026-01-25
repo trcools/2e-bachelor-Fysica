@@ -29,8 +29,13 @@ naming, and documentation for readability and maintainability.
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
-from scipy.optimize import fsolve, root_scalar, root
-from matplotlib.patches import FancyArrowPatch
+from scipy.optimize import root_scalar, root
+import sys
+from pathlib import Path
+
+# Add parent directory to path to import personalized_layout
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from personalized_layout import legend_dedup
 
 # ============================================================
 # Core radial dynamics
@@ -62,64 +67,6 @@ def jacobian(fun, x, args=(), h=1e-6):
         fm = np.asarray(fun(x - dx, *args), dtype=float)
         J[:, i] = (fp - fm) / (2*h)
     return J
-
-def dedup_legend(ax, loc=None, bbox_to_anchor=None, ncol=None, **kwargs):
-    """
-    De-duplicate and display legend on an axes object with sensible defaults.
-    
-    Removes duplicate labels while preserving order and applying custom kwargs.
-    If no location is specified, places legend as horizontal bar below the plot.
-    
-    Parameters
-    ----------
-    ax : matplotlib.axes.Axes
-        The axes to add legend to
-    loc : str, optional
-        Legend location. Default: "upper center" (for horizontal bar below plot)
-    bbox_to_anchor : tuple, optional
-        Box to anchor legend to. Default: (0.5, -0.15) (below plot, centered)
-    ncol : int, optional
-        Number of columns. Default: 3 (for horizontal layout)
-    **kwargs : dict
-        Additional arguments to pass to ax.legend()
-    
-    Returns
-    -------
-    matplotlib.legend.Legend or None
-        The legend object if entries exist, None otherwise
-    """
-    handles, labels = ax.get_legend_handles_labels()
-    seen, H, L = set(), [], []
-    for h, l in zip(handles, labels):
-        if l and l not in seen:
-            seen.add(l); H.append(h); L.append(l)
-    if not L:
-        return None
-    
-    # Set sensible defaults for horizontal legend below plot
-    if loc is None and bbox_to_anchor is None:
-        loc = "upper center"
-        bbox_to_anchor = (0.5, -0.15)
-    if ncol is None and bbox_to_anchor is not None:
-        ncol = 3
-    
-    # Build legend arguments with defaults
-    legend_kwargs = dict(
-        loc=loc or "best",
-        fontsize=10,
-        framealpha=0.95,
-        frameon=True,
-        edgecolor="black"
-    )
-    if bbox_to_anchor is not None:
-        legend_kwargs["bbox_to_anchor"] = bbox_to_anchor
-    if ncol is not None:
-        legend_kwargs["ncol"] = ncol
-    
-    # Override with user-provided kwargs
-    legend_kwargs.update(kwargs)
-    
-    return ax.legend(H, L, **legend_kwargs)
 
 # ============================================================
 # Classification and grouping of equilibria
@@ -480,10 +427,10 @@ def bifurcation_points(omega=1.0):
 
     return [
         dict(mu=mu_sn, type=type_sn, r_eq=r_sn,
-             label=rf"{type_sn} ($\mu={mu_sn:.3f}$, $r={r_sn:.3f}$)", 
+             label=f"{type_sn} ",
              color=color_sn, marker=marker_sn, linestyle="--"),
         dict(mu=mu_hopf, type=type_hopf, r_eq=r_hopf,
-             label=rf"{type_hopf} ($\mu={mu_hopf:.3f}$)", 
+             label=f"{type_hopf}",
              color=color_hopf, marker=marker_hopf, linestyle=":")]
 
 def plot_bifurcation_1d(mu_range=(-3, 3), r_range=(-2, 2),
@@ -524,11 +471,10 @@ def plot_bifurcation_1d(mu_range=(-3, 3), r_range=(-2, 2),
     ax.grid(True, alpha=0.3)
 
     if legend:
-        dedup_legend(ax)
-        # Increase alpha for legend markers to make colors more visible
-        leg_handles, _ = ax.get_legend_handles_labels()
-        for handle in leg_handles:
-            handle.set_alpha(1.0)
+        legend_dedup(ax, loc='lower center', ncol=4, bbox_to_anchor=(0.5, -0.15),
+                    frameon=True, fontsize=10, edgecolor='black')
+    
+    plt.tight_layout(rect=[0, -0.15, 1, 1]) 
 
     return fig, ax
 
@@ -563,7 +509,7 @@ def plot_eigenvalues_vs_mu(mu_range=(-0.3, 0.2), n_points=800, omega=1.0):
     ax.scatter(MU_un, LAM_un, s=10, alpha=0.4, color="red", label=r"Unstable limit cycles ($\lambda_r > 0$)")
     
     # Stability boundary
-    ax.axhline(0, ls="--", lw=1.5, color="black", alpha=0.5, label="Stability boundary ($\lambda_r=0$)")
+    ax.axhline(0, ls="--", lw=1.5, color="black", alpha=0.5, label=r"Stability boundary ($\lambda_r=0$)")
 
     # Bifurcation points
     for bp in bifurcation_points():
@@ -577,8 +523,10 @@ def plot_eigenvalues_vs_mu(mu_range=(-0.3, 0.2), n_points=800, omega=1.0):
     ax.grid(True, alpha=0.25, linestyle=":")
     
     # Legend with default horizontal bar below plot
-    dedup_legend(ax)
-    plt.tight_layout()
+    legend_dedup(ax, loc='lower center', ncol=4, bbox_to_anchor=(0.5, -0.15),
+                    frameon=True, fontsize=10, edgecolor='black')
+    
+    plt.tight_layout(rect=[0, -0.15, 1, 1]) 
     return fig, ax
 
 # ============================================================
@@ -650,8 +598,10 @@ def plot_phase_portrait(mu, omega=1.0, ax=None, n_trajectories=8, t_max=30):
     ax.set_title(f"Phase portrait (μ={mu:.3f}, ω={omega})")
     ax.grid(True, alpha=0.3)
 
-    dedup_legend(ax, loc="best", bbox_to_anchor=None, ncol=None)
-
+    legend_dedup(ax, loc='lower center', ncol=4, bbox_to_anchor=(0.5, -0.15),
+                    frameon=True, fontsize=10, edgecolor='black')
+    
+    plt.tight_layout(rect=[0, -0.15, 1, 1]) 
     return ax
 
 def plot_radial_time_evolution(x0, y0, mu, omega=1.0, t_max=50):
@@ -674,8 +624,10 @@ def plot_radial_time_evolution(x0, y0, mu, omega=1.0, t_max=50):
             col = "green" if st == "stable" else "red"
             ax.axhline(r_eq, color=col, ls="--", alpha=0.7, label=f"r={r_eq:.3f} ({st})")
 
-    dedup_legend(ax, loc="best", bbox_to_anchor=None, ncol=None)
+    legend_dedup(ax, loc='lower center', ncol=4, bbox_to_anchor=(0.5, -0.15),
+                         frameon=True, fontsize=10, edgecolor='black')
 
+    plt.tight_layout(rect=[0, -0.15, 1, 1]) 
     return fig, ax
 
 def plot_three_regimes():
@@ -736,12 +688,14 @@ def plot_radial_time_subplots(mu=-0.1, initial_radii=[0.3, 0.6, 1.0], omega=1.0,
             ls = "-" if st == "stable" else "--"
             axes[idx].axhline(r_eq, color=col, ls=ls, alpha=0.7, label=f"r={r_eq:.3f} ({st})")
         
-        # De-duplicate legend
-        dedup_legend(axes[idx], loc="best", bbox_to_anchor=None, ncol=None)
+    
+    legend_dedup(axes[1], loc='lower center', ncol=4, bbox_to_anchor=(0.5, -0.25), # axes[1] chosen to get center of the figure
+                         frameon=True, fontsize=10, edgecolor='black')
+    plt.tight_layout(rect=[0, -0.25, 1, 1])
     
     axes[0].set_ylabel("r(t)")
     fig.suptitle(rf"Radial time evolution ($\mu={mu}$, $\omega={omega}$)", y=1.02)
-    plt.tight_layout()
+    
     return fig
 
 
