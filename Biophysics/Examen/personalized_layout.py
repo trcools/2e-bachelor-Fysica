@@ -109,9 +109,6 @@ def create_interactive_plot(plot_func, slider_configs, n_cols=3, extra_widgets=N
     render()
 
 
-
-
-
 # =============================================================================
 # Legend Helper Functions
 # =============================================================================

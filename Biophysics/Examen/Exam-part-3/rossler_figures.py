@@ -31,13 +31,12 @@ import os
 # Add parent directory to path to import personalized_layout
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-import importlib
 import rossler_functions as rossler
 import numpy as np     
 import matplotlib.pyplot as plt
 
 # Import helper functions from centralized module
-from personalized_layout import create_interactive_plot, legend_dedup, fig_legend_dedup
+from personalized_layout import create_interactive_plot, fig_legend_dedup
 
 
 # =============================================================================

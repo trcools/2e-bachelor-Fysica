@@ -791,7 +791,7 @@ def plot_2glucose_trajectories(a=a, b=b, xlim=xlim, ylim=ylim,
                  frameon=True, edgecolor="black")
 
     fig.tight_layout(rect=[0, 0.04, 1, 0.96])
-    plt.show()
+    return fig
 
 def plot_zoomed_spiral_convergence(a=a, b=b, xlim=xlim, ylim=ylim,
                                     t_span=(0, 60), t_eval_n=2500, step=0.08,
@@ -859,11 +859,11 @@ def plot_zoomed_spiral_convergence(a=a, b=b, xlim=xlim, ylim=ylim,
         if leg is not None:
             leg.remove()
     
-    fig_legend_dedup(fig, [ax1, ax2], loc="upper center",bbox_to_anchor=(0.5, 0.05), frameon=True,
+    fig_legend_dedup(fig, [ax1, ax2], loc="upper center",bbox_to_anchor=(0.5, 0.08), frameon=True,
                      ncol=4,framealpha=0.95,fontsize=10, edgecolor='black')
 
     fig.tight_layout(rect=[0, 0.04, 1, 0.96])
-    plt.show()
+    return fig
 
 # -----------------------------------------------------------------------------
 # Glucose system functions part 4: Bifurcation Analysis
@@ -1050,7 +1050,7 @@ def plot_equilibrium_vs_b(a=a, b_min=0.0, b_max=1.2, n=2000):
     
     fig.suptitle(rf"Equilibrium $X_{{eq}}$ and $Y_{{eq}}$ for variable $b$ and fixed $a={a}$", fontsize=13, fontweight="bold")
     fig.tight_layout(rect=[0, 0.06, 1, 0.96])
-    plt.show()
+    return fig
 
 def plot_equilibrium_3d(a=a, b_min=0.0, b_max=1.2, n=2000):
     """
@@ -1113,7 +1113,7 @@ def plot_equilibrium_3d(a=a, b_min=0.0, b_max=1.2, n=2000):
                  frameon=True, edgecolor="black")
     
     plt.tight_layout(rect=[0, 0.05, 1, 0.98])
-    plt.show()
+    return fig
 
 def plot_trace_and_determinant(a=a, b_min=0.0, b_max=1.2, n=2000):
     """
@@ -1195,6 +1195,8 @@ def plot_bifurcation_summary_figures(a, b_range,
     stable = max_real < 0  # most direct definition
     b_crit = bcrit_values(a)
 
+    plt.close("all")
+
     fig = plt.figure(figsize=(12, 10))
 
     # --- Top: stability curve ---
@@ -1233,15 +1235,14 @@ def plot_bifurcation_summary_figures(a, b_range,
         for axp in axes:
             axp.axis("off")
 
-    fig.suptitle(f"Bifurcation summary (a={a})", fontsize=14, fontweight="bold", y=0.995)
-    fig.tight_layout(rect=[0, 0.04, 1, 0.99])
+    fig.tight_layout(rect=[0, 0.05, 1, 0.99])
     
     # --- Shared legend at the bottom ---
-    fig_legend_dedup(fig, list(axes), loc="lower center", ncol=5,
+    fig_legend_dedup(fig, [ax1,axes[1]], loc="lower center", ncol=4,
                  framealpha=0.95, bbox_to_anchor=(0.5, 0.0),
                  frameon=True, edgecolor="black")
 
-    plt.show()
+    return fig
 
 def plot_bifurcation_phase_portraits(a=a, b_crit_vals=None, xlim=xlim, ylim=ylim):
     """
@@ -1305,7 +1306,7 @@ def plot_bifurcation_phase_portraits(a=a, b_crit_vals=None, xlim=xlim, ylim=ylim
                  frameon=True, edgecolor="black")
 
     plt.tight_layout(rect=[0, 0.05, 1, 0.98])
-    plt.show()
+    return fig
 
 
 # ==============================================================================
