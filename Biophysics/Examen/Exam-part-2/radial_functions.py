@@ -140,7 +140,7 @@ def equilibrium_classification(eigvals):
         - "saddle point"
         - "saddle spiral"
         - "pitchfork bifurcation"
-        - "Hopf bifurcation"
+        - "subcriticalHopf bifurcation"
         - "other equilibrium"
     """
     # Introduce a tolerance to find the eigenvalues of zero:
@@ -172,7 +172,7 @@ def equilibrium_classification(eigvals):
     
     # 5) At least one eigenvalue ≈ 0, complex pair present -> Hopf
     if n_zero > 0 and has_complex and n_pos == 0:
-        return "Hopf bifurcation"
+        return "subcritical Hopf bifurcation"
     # 6) Exotic / other cases
     return "other equilibrium"
 
@@ -503,13 +503,13 @@ def plot_eigenvalues_vs_mu(mu_range=(-0.3, 0.2), n_points=800, omega=1.0):
     ax.plot(mu_vals, mu_vals, lw=2.5, color="darkblue", label=r"Origin: $\mathrm{Re}(\lambda)=\mu$")
     
     # Stable limit cycles (blue dots)
-    ax.scatter(MU_st, LAM_st, s=10, alpha=0.4, color="blue", label=r"Stable limit cycles ($\lambda_r < 0$)")
+    ax.scatter(MU_st, LAM_st, s=10, alpha=0.4, color="blue", label="Stable limit cycles ")
     
     # Unstable limit cycles (red dots)
-    ax.scatter(MU_un, LAM_un, s=10, alpha=0.4, color="red", label=r"Unstable limit cycles ($\lambda_r > 0$)")
+    ax.scatter(MU_un, LAM_un, s=10, alpha=0.4, color="red", label="Unstable limit cycles ")
     
     # Stability boundary
-    ax.axhline(0, ls="--", lw=1.5, color="black", alpha=0.5, label=r"Stability boundary ($\lambda_r=0$)")
+    ax.axhline(0, ls="--", lw=1.5, color="black", alpha=0.5, label="Stability boundary")
 
     # Bifurcation points
     for bp in bifurcation_points():
@@ -519,7 +519,7 @@ def plot_eigenvalues_vs_mu(mu_range=(-0.3, 0.2), n_points=800, omega=1.0):
     ax.set_xlabel(r"$\mu$")
     ax.set_ylabel(r"Real eigenvalue $\lambda_r$")
     
-    ax.set_title(r"Stability of Equilibria vs $\mu$ (2D system with $\omega=1.0$)")
+    ax.set_title(r"Stability of Equilibria when varying $\mu$ with $\omega=1.0$ fixed")
     ax.grid(True, alpha=0.25, linestyle=":")
     
     # Legend with default horizontal bar below plot
@@ -697,30 +697,3 @@ def plot_radial_time_subplots(mu=-0.1, initial_radii=[0.3, 0.6, 1.0], omega=1.0,
     fig.suptitle(rf"Radial time evolution ($\mu={mu}$, $\omega={omega}$)", y=1.02)
     
     return fig
-
-
-# ============================================================
-# High-level plotting and analysis functions
-# ============================================================
-
-
-
-def print_cartesian_rhs_demo(mu_demo=-0.1, omega_demo=1.0, state_demo=None):
-    """Demonstrate cartesian_rhs() function."""
-    if state_demo is None:
-        state_demo = [1.0, 0.5]
-    
-    derivatives = cartesian_rhs(0, state_demo, mu_demo, omega=omega_demo)
-    
-    print(f"At state (x, y) = ({state_demo[0]:.3f}, {state_demo[1]:.3f}) with μ = {mu_demo}, ω = {omega_demo}:")
-    print(f"  dx/dt = {derivatives[0]:.6f}")
-    print(f"  dy/dt = {derivatives[1]:.6f}")
-    
-    # Verify the radial component
-    r_demo = np.hypot(*state_demo)
-    f_r = f_radial(r_demo, mu_demo)
-    print(f"\nRadius r = {r_demo:.6f}")
-    print(f"Radial velocity f(r) = {f_r:.6f}")
-    print(f"Expected radial component f(r)/r = {f_r/r_demo:.6f}")
-    print("\nThis confirms cartesian_rhs() correctly implements the 2D system.")
-
