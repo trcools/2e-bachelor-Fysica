@@ -25,8 +25,7 @@ Deze repository bevat studiemateriaal, samenvattingen, en code voor de 2e bachel
 **Lees de [SECURITY.md](SECURITY.md) voor uitgebreide informatie over het beschermen van deze repository.**
 
 ### Snel Overzicht:
-- ✅ Commit alleen **eigen werk**: samenvattingen, code, notities
-- ❌ Commit **geen copyrighted materiaal**: PDF slides, examens, boekpagina's
+- ✅ Commit: samenvattingen, code, notities
 - ✅ Gebruik de pre-commit hooks voor automatische controles
 - ❌ Deel **geen persoonlijke informatie** of gevoelige data
 
