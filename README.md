@@ -1,4 +1,4 @@
-# 2e Bachelor Fysica - Studiemateriaal
+# Bachelor Fysica - Studiemateriaal
 
 Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor de bachelor Fysica.
 
@@ -41,7 +41,7 @@ Deze repository bevat **academisch studiemateriaal** dat theorie combineert met 
 ### Quick Reference:
 - ✅ **Commit**: samenvattingen, code, notebooks, opdrachten
 - ✅ **Gebruik pre-commit hooks** voor automatische controles
-- ❌ **Geen persoonlijke informatie** of gevoelige data committen
+- ❌ **Geen persoonlijke informatie** of gevoelige data committen (mag op eigen risico)
 
 ### Pre-commit Hooks Installeren
 
@@ -78,11 +78,6 @@ Start Jupyter vanuit de repository root:
 jupyter notebook
 ```
 
-## 📘 Handige Links
-
-- [GITHUB_INFO.md](GITHUB_INFO.md) - Uitleg over GitHub timestamps (rode/oranje kleuren)
-- [PROTECTION_GUIDE.md](PROTECTION_GUIDE.md) - Bescherming van gevoelige bestanden
-- [SECURITY.md](SECURITY.md) - Volledige beveiligingsrichtlijnen
 
 ## 📝 Bijdragen
 
@@ -93,24 +88,13 @@ Bij het bijdragen aan deze repository:
 3. **Commit** alleen bestanden die veilig gedeeld kunnen worden
 4. **Gebruik** duidelijke commit messages in Nederlands of Engels
 
-Voorbeelden van goede commit messages:
-```
-Add Py4sci chapter 3 summary on numerical integration
-Fix typo in Biophysics Assignment 2 parameters
-Update Kwantum notes with harmonic oscillator examples
-```
 
 ## 🎓 Academische Integriteit
 
 Deze repository is bedoeld voor:
-- ✅ Persoonlijke studie en notities
-- ✅ Samenwerking tussen studenten (waar toegestaan)
-- ✅ Referentiemateriaal voor toekomstige studenten
-
-Respecteer:
-- ❌ Auteursrechten van docenten en studiemateriaal
-- ❌ Academische integriteitsregels van de universiteit
-- ❌ Examenreglementen (geen oplossingen van lopende examens)
+- Persoonlijke studie en notities
+- Samenwerking tussen studenten (waar toegestaan)
+- Referentiemateriaal voor toekomstige studenten
 
 ## 📧 Contact
 
@@ -118,4 +102,4 @@ Voor vragen over deze repository, neem contact op via GitHub issues of discussie
 
 ---
 
-**Universiteit Antwerpen - Bachelor Fysica**
+**Bachelor Fysica**
