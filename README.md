@@ -22,49 +22,17 @@ Deze repository bevat **academisch studiemateriaal** dat theorie combineert met 
 
 ### 2e Bachelor - Semester 2
 - **`Groepen-en-Representaties/`** - Groepentheorie en representaties
-- **`Materiaal-Fysica/`** - Materiaalkunde
+- **`Materiaal-Fysica/`** - Materiaal Fysica
 - **`REM/`** - Relativiteit en Elektromagnetisme
 - **`Sterrenstelsels/`** - Astrofysica: sterrenstelsels en kosmologie
 - **`Thermische-Fysica/`** - Statistische mechanica en thermodynamica
 - **`project-exp-2/`** - Experimenteel project semester 2
 
 ### Andere Folders
-- **`1e-bachelor-semester-1/`** - Materiaal uit 1e bachelor (o.a. lineaire algebra)
-- **`Cursussen:boeken/`** - Cursussen en studieboeken
-- **`GIT-commands/`** - Git referentiemateriaal
+- **`1e-bachelor-semester-1/`** - Vakken uit 1e bachelor (o.a. lineaire algebra)
+- **`Cursussen:boeken/`** - Cursussen en (studie)boeken
+- **`GIT-commands/`** - Git referentiemateriaal (samenvatting hoe Git te gebruiken)
 
-## 🔧 Code Conventies
-
-### Py4sci: Self-Contained Teaching Notebooks
-Notebooks in `Py4sci/` zijn **zelfstandige leerdocumenten**:
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import optimize, integrate
-
-def newton_method(f, fp, x0, niter):
-    """Illustrative Newton's method implementation."""
-    # Code prioritizes clarity over optimization
-    pass
-```
-
-**Matplotlib Pattern** (voorkomt duplicate figures):
-```python
-plt.close("unique_name")
-fig, ax = plt.subplots(num="unique_name", figsize=(8, 5))
-# plotting code...
-```
-
-### Biophysics: Modular Separation Pattern
-Voor opdrachten wordt code gescheiden in modules:
-```
-Assignment-X/
-├── imports.py      # Alle library imports
-├── parameters.py   # Parameters via get_parameters()
-├── data.py         # Analyse functies (integratie, eigenwaarden, ...)
-├── figures.py      # Alle plot functies
-└── notebook.ipynb  # Schone notebook die bovenstaande importeert
-```
 
 ## ⚠️ Beveiliging & Privacy
 
