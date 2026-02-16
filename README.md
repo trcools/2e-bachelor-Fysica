@@ -1,6 +1,6 @@
 # 2e Bachelor Fysica - Studiemateriaal
 
-Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor de bachelor Fysica aan de Universiteit Antwerpen.
+Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor de bachelor Fysica.
 
 ## 📚 Repository Overzicht
 
