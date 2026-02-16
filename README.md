@@ -5,7 +5,7 @@ Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor d
 ## 📚 Repository Overzicht
 
 Deze repository bevat **academisch studiemateriaal** dat theorie combineert met computationele methodes:
-- **Markdown samenvattingen** (in Nederlands) voor theoretische vakken
+- **Markdown samenvattingen** (Nederlands of Engels) voor theoretische vakken
 - **Jupyter notebooks** voor numerieke demonstraties en data-analyse
 - **Python code** voor wetenschappelijke berekeningen
 - **Opdrachten en examens** met modulaire code-structuren
@@ -15,10 +15,10 @@ Deze repository bevat **academisch studiemateriaal** dat theorie combineert met 
 ## 📂 Structuur
 
 ### 2e Bachelor - Semester 1
-- **`Biophysics/`** - Biofysica opdrachten met modulaire Python code (zie [Modular Code Pattern](#-code-conventies))
+- **`Biophysics/`** - Biofysica opdrachten met Python code
 - **`Kwantum/`** - Kwantummechanica leerstof en samenvattingen
-- **`Py4sci/`** - Python for Scientific Computing (numerieke methodes, notebooks, samenvattingen)
-- **`VFR/`** - Vaste Faserekenen (Solid State Physics)
+- **`Py4sci/`** - Python for Scientific Computing (notebooks, samenvattingen)
+- **`VFR/`** - Vector en Functieruimten
 
 ### 2e Bachelor - Semester 2
 - **`Groepen-en-Representaties/`** - Groepentheorie en representaties
