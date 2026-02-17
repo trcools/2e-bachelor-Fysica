@@ -8,17 +8,12 @@ Deze repository bevat studiemateriaal voor de 2e bachelor Fysica. Om de reposito
 
 #### Wat NIET te committen:
 
-1. **Auteursrechtelijk beschermde materialen**
-   - PDF's van colleges en powerpoints van docenten
-   - Examens en oude tentamens
-   - Gescande boekpagina's of handouts
-
-2. **Persoonlijke/Gevoelige informatie**
+1. **Persoonlijke/Gevoelige informatie**
    - Studentnummers
    - Persoonlijke notities met gevoelige informatie
    - API keys of wachtwoorden
 
-3. **Grote binaire bestanden**
+2. **Grote binaire bestanden**
    - Video's van colleges
    - Grote datasets (gebruik externe hosting)
 
@@ -85,107 +80,6 @@ pre-commit install
 2. ✅ Gebruik duidelijke commit messages
 3. ✅ Check altijd `git status` voor je commit
 4. ✅ Review je wijzigingen met `git diff`
-5. ❌ Commit geen copyrighted materiaal van docenten
-6. ❌ Deel geen examens of antwoordmodellen
-7. ❌ Commit geen persoonlijke gegevens
+5. ❌ Commit geen persoonlijke gegevens
 
----
-
-## English
-
-### Protecting Course Materials
-
-This repository contains study materials for 2nd year Physics Bachelor. To properly protect the repository and maintain academic integrity, follow these guidelines:
-
-#### What NOT to commit:
-
-1. **Copyrighted materials**
-   - PDF slides from professors
-   - Exams and past papers
-   - Scanned book pages or handouts
-
-2. **Personal/Sensitive information**
-   - Student IDs
-   - Personal notes with sensitive info
-   - API keys or passwords
-
-3. **Large binary files**
-   - Lecture videos
-   - Large datasets (use external hosting)
-
-#### What TO commit:
-
-1. **Your own work**
-   - Self-made summaries
-   - Your own code and scripts
-   - Your own notes and solutions
-
-2. **Open source materials**
-   - Jupyter notebooks with your analyses
-   - Python scripts for calculations
-   - Documentation and README files
-
-### .gitignore Configuration
-
-The `.gitignore` file contains commented lines that you can uncomment to block PDFs and other documents:
-
-```gitignore
-# Remove the # to block PDFs:
-# *.pdf
-# *.docx
-# *.pptx
-```
-
-### Pre-commit Hooks
-
-The repository uses pre-commit hooks that automatically check for:
-- Large files (>500KB warning)
-- Private keys
-- Merge conflicts
-- Python syntax errors
-
-Install them with:
-```bash
-pip install pre-commit
-pre-commit install
-```
-
-### What to do if you accidentally committed sensitive material:
-
-1. **Remove the file from staging area:**
-   ```bash
-   git rm --cached file.pdf
-   ```
-
-2. **Add it to .gitignore:**
-   ```bash
-   echo "file.pdf" >> .gitignore
-   ```
-
-3. **Commit the change:**
-   ```bash
-   git add .gitignore
-   git commit -m "Remove sensitive file from tracking"
-   ```
-
-4. **For already pushed sensitive data:** Contact the repository owner or use `git filter-branch` or BFG Repo-Cleaner (advanced).
-
-### Best Practices
-
-1. ✅ Only share your own summaries and code
-2. ✅ Use clear commit messages
-3. ✅ Always check `git status` before committing
-4. ✅ Review your changes with `git diff`
-5. ❌ Don't commit copyrighted materials from professors
-6. ❌ Don't share exams or answer keys
-7. ❌ Don't commit personal information
-
----
-
-## Reporting Security Issues
-
-If you discover a security issue (accidentally committed passwords, API keys, etc.), please:
-1. Do NOT create a public issue
-2. Contact the repository owner directly
-3. Delete sensitive data from your local copy
 

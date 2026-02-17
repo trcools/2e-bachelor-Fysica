@@ -1,72 +1,105 @@
-# 2e Bachelor Fysica
+# Bachelor Fysica - Studiemateriaal
 
-Deze repository bevat studiemateriaal voor het tweede jaar bachelor Fysica.
+Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor de bachelor Fysica.
 
-## Inhoud
+## 📚 Repository Overzicht
 
-- **Biophysics**: Opdrachten en examens voor biofysica
-- **Chemie**: Samenvattingen en powerpoints voor chemie
-- **Kwantum**: Leerstof en samenvattingen voor kwantummechanica
-- **Py4sci**: Python voor wetenschappelijk rekenen (cursus samenvattingen, voorbeelden en notebooks)
+Deze repository bevat **academisch studiemateriaal** dat theorie combineert met computationele methodes:
+- **Markdown samenvattingen** (Nederlands of Engels) voor theoretische vakken
+- **Jupyter notebooks** voor numerieke demonstraties en data-analyse
+- **Python code** voor wetenschappelijke berekeningen
+- **Opdrachten en examens** met modulaire code-structuren
 
-## ℹ️ Opmerking over GitHub interface
+**Dit is GEEN software project** — het is educatief materiaal georganiseerd per semester en vak.
 
-Zie je rode of oranje kleuren bij de tijdstempels van bestanden? Dat is normaal! Lees [GITHUB_INFO.md](GITHUB_INFO.md) voor een uitleg over dit GitHub-feature.
+## 📂 Structuur
 
-## 📝 Licentie
+### 2e Bachelor - Semester 1
+- **`Biophysics/`** - Biofysica opdrachten met Python code
+- **`Kwantum/`** - Kwantummechanica leerstof en samenvattingen
+- **`Py4sci/`** - Python for Scientific Computing (notebooks, samenvattingen)
+- **`VFR/`** - Vector en Functieruimten
 
-Dit is persoonlijk studiemateriaal.
-# 2e Bachelor Fysica - Studiemateriaal
+### 2e Bachelor - Semester 2
+- **`Groepen-en-Representaties/`** - Groepentheorie en representaties
+- **`Materiaal-Fysica/`** - Materiaal Fysica
+- **`REM/`** - Relativiteit en Elektromagnetisme
+- **`Sterrenstelsels/`** - Astrofysica: sterrenstelsels en kosmologie
+- **`Thermische-Fysica/`** - Statistische mechanica en thermodynamica
+- **`project-exp-2/`** - Experimenteel project semester 2
 
-Deze repository bevat studiemateriaal, samenvattingen, en code voor de 2e bachelor Fysica.
+### Andere Folders
+- **`1e-bachelor-semester-1/`** - Vakken uit 1e bachelor (o.a. lineaire algebra)
+- **`Cursussen:boeken/`** - Cursussen en (studie)boeken
+- **`GIT-commands/`** - Git referentiemateriaal (samenvatting hoe Git te gebruiken)
 
-## ⚠️ Belangrijke Beveiligingsrichtlijnen
 
-**Lees de [SECURITY.md](SECURITY.md) voor uitgebreide informatie over het beschermen van deze repository.**
+## ⚠️ Beveiliging & Privacy
 
-### Snel Overzicht:
-- ✅ Commit alleen **eigen werk**: samenvattingen, code, notities
-- ❌ Commit **geen copyrighted materiaal**: PDF slides, examens, boekpagina's
-- ✅ Gebruik de pre-commit hooks voor automatische controles
-- ❌ Deel **geen persoonlijke informatie** of gevoelige data
+**Lees de [SECURITY.md](SECURITY.md) voor uitgebreide beveiligingsrichtlijnen.**
 
-## Structuur
-
-- `Biophysics/` - Biofysica materiaal
-- `Chemie/` - Chemie materiaal en samenvattingen
-- `Kwantum/` - Kwantummechanica materiaal
-- `Py4sci/` - Python for Scientists cursusmateriaal
-- `pdf/` - Algemene PDF samenvattingen
-
-## Setup
+### Quick Reference:
+- ✅ **Commit**: samenvattingen, code, notebooks, opdrachten
+- ✅ **Gebruik pre-commit hooks** voor automatische controles
+- ❌ **Geen persoonlijke informatie** of gevoelige data committen (mag op eigen risico)
 
 ### Pre-commit Hooks Installeren
-
-Voor automatische controle op grote bestanden, private keys, etc:
 
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
-### Dependencies
+Dit controleert automatisch op:
+- Grote bestanden (>5MB)
+- Private keys of credentials
+- Merge conflicts
+- YAML/JSON syntax
 
-Als er een `requirements.txt` aanwezig is:
+## 🚀 Setup
 
+### Python Dependencies
+
+Voor numerieke notebooks (vooral Py4sci):
+
+```bash
+pip install numpy scipy matplotlib jupyter ipywidgets
+```
+
+Of als er een `requirements.txt` aanwezig is:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Bijdragen
+### Jupyter Notebook
+
+Start Jupyter vanuit de repository root:
+```bash
+jupyter notebook
+```
+
+
+## 📝 Bijdragen
 
 Bij het bijdragen aan deze repository:
 
-1. Check wat je gaat committen: `git status`
-2. Review je wijzigingen: `git diff`
-3. Commit alleen bestanden die veilig gedeeld kunnen worden
-4. Gebruik duidelijke commit messages
+1. **Check** wat je gaat committen: `git status`
+2. **Review** je wijzigingen: `git diff`
+3. **Commit** alleen bestanden die veilig gedeeld kunnen worden
+4. **Gebruik** duidelijke commit messages in Nederlands of Engels
 
-## Licentie en Academische Integriteit
 
-Deze repository is bedoeld voor persoonlijke studie en samenwerking tussen studenten. Respecteer auteursrechten van docenten en de academische integriteit van de opleiding.
+## 🎓 Academische Integriteit
 
+Deze repository is bedoeld voor:
+- Persoonlijke studie en notities
+- Samenwerking tussen studenten (waar toegestaan)
+- Referentiemateriaal voor toekomstige studenten
+
+## 📧 Contact
+
+Voor vragen over deze repository, neem contact op via GitHub issues of discussies.
+
+---
+
+**Bachelor Fysica**
