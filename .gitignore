@@ -15,14 +15,19 @@ venv/
 
 # Course Materials & Documents
 # Uncomment the following lines to prevent committing PDFs and other documents
+# ===========================
+*.pdf
+*.docx
+*.pptx
+# ===========================
 # This helps protect copyrighted materials and keeps repository size manageable
-# *.pdf
-# *.docx
-# *.pptx
 
 # Exam Materials
 # Uncomment to prevent committing sensitive exam content
-# **/Examen/**
-# **/*exam*.pdf
-# **/*test*.pdf
+# ===========================
+**/Examen/**
+**/*exam*.pdf
+**/*test*.pdf
+# ===========================
+# Again: This helps protect copyrighted materials and keeps repository size manageable
 
