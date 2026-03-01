@@ -2,13 +2,10 @@
 
 Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor de bachelor Fysica.
 
-## 📚 Repository Overzicht
-
-Deze repository bevat **academisch studiemateriaal** dat theorie combineert met computationele methodes:
-- **Markdown samenvattingen** (Nederlands of Engels) voor theoretische vakken
-- **Jupyter notebooks** voor numerieke demonstraties en data-analyse
-- **Python code** voor wetenschappelijke berekeningen
-- **Opdrachten en examens** met modulaire code-structuren
+- **Markdown samenvattingen** 
+- **Jupyter notebooks**
+- **Python code** 
+- **Opdrachten en examens**
 
 **Dit is GEEN software project** — het is educatief materiaal georganiseerd per semester en vak.
 
@@ -38,10 +35,9 @@ Deze repository bevat **academisch studiemateriaal** dat theorie combineert met 
 
 **Lees de [SECURITY.md](SECURITY.md) voor uitgebreide beveiligingsrichtlijnen.**
 
-### Quick Reference:
-- ✅ **Commit**: samenvattingen, code, notebooks, opdrachten
-- ✅ **Gebruik pre-commit hooks** voor automatische controles
-- ❌ **Geen persoonlijke informatie** of gevoelige data committen (mag op eigen risico)
+- **Commit**: samenvattingen, code, notebooks, opdrachten
+- **Gebruik pre-commit hooks** voor automatische controles
+- **Geen persoonlijke informatie** of gevoelige data committen (eigen verantwoordelijkheid)
 
 ### Pre-commit Hooks Installeren
 
@@ -60,7 +56,7 @@ Dit controleert automatisch op:
 
 ### Python Dependencies
 
-Voor numerieke notebooks (vooral Py4sci):
+Voor numerieke notebooks:
 
 ```bash
 pip install numpy scipy matplotlib jupyter ipywidgets
