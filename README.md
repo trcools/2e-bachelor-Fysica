@@ -58,13 +58,6 @@ Dit controleert automatisch op:
 
 ### Python Dependencies
 
-Voor numerieke notebooks:
-
-```bash
-pip install numpy scipy matplotlib jupyter ipywidgets
-```
-
-Of als er een `requirements.txt` aanwezig is:
 ```bash
 pip install -r requirements.txt
 ```
