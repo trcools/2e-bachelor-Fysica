@@ -14,15 +14,10 @@ venv/
 .vscode/
 
 # Course Materials & Documents
-# Uncomment the following lines to prevent committing PDFs and other documents
-# This helps protect copyrighted materials and keeps repository size manageable
-# *.pdf
-# *.docx
-# *.pptx
-
-# Exam Materials
-# Uncomment to prevent committing sensitive exam content
-# **/Examen/**
-# **/*exam*.pdf
-# **/*test*.pdf
+# PDFs, Word docs and PowerPoints are blocked to prevent accidental sharing of
+# copyrighted materials (professor slides, course syllabi, textbooks, exam papers).
+# To force-add a specific file that is your own work: git add -f yourfile.pdf
+*.pdf
+*.docx
+*.pptx
 
