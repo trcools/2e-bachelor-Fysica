@@ -14,20 +14,16 @@ venv/
 .vscode/
 
 # Course Materials & Documents
-# Uncomment the following lines to prevent committing PDFs and other documents
-# ===========================
+# PDFs, Word docs and PowerPoints are blocked to prevent accidental sharing of
+# copyrighted materials (professor slides, course syllabi, textbooks, exam papers).
+# To force-add a specific file that is your own work: git add -f yourfile.pdf
 *.pdf
 *.docx
 *.pptx
-# ===========================
-# This helps protect copyrighted materials and keeps repository size manageable
 
-# Exam Materials
-# Uncomment to prevent committing sensitive exam content
-# ===========================
-**/Examen/**
-**/*exam*.pdf
-**/*test*.pdf
-# ===========================
-# Again: This helps protect copyrighted materials and keeps repository size manageable
+# Local-only private files
+# Put any files you want to keep ONLY on your own computer in the _lokaal/ folder.
+# Git will never track or push anything inside it (except _lokaal/README.md).
+_lokaal/**
+!_lokaal/README.md
 
