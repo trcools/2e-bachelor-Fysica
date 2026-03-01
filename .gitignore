@@ -21,3 +21,9 @@ venv/
 *.docx
 *.pptx
 
+# Local-only private files
+# Put any files you want to keep ONLY on your own computer in the _lokaal/ folder.
+# Git will never track or push anything inside it (except _lokaal/README.md).
+_lokaal/**
+!_lokaal/README.md
+

@@ -41,6 +41,8 @@ Deze repository bevat **academisch studiemateriaal** dat theorie combineert met 
 ### Quick Reference:
 - ✅ **Commit**: samenvattingen, code, notebooks, opdrachten
 - ✅ **Gebruik pre-commit hooks** voor automatische controles
+- 🔒 **Privé bestanden** (slides, syllabi, leerboeken): bewaar ze in de `_lokaal/` map — Git negeert die automatisch
+- ❌ **Geen auteursrechtelijk materiaal** committen (professorslides, leerboeken, cursusboeken)
 - ❌ **Geen persoonlijke informatie** of gevoelige data committen (mag op eigen risico)
 
 ### Pre-commit Hooks Installeren
