@@ -12,23 +12,22 @@ Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor d
 ## 📂 Structuur
 
 ### 2e Bachelor - Semester 1
-- **`Biophysics/`** - Biofysica opdrachten met Python code
-- **`Kwantum/`** - Kwantummechanica leerstof en samenvattingen
-- **`Py4sci/`** - Python for Scientific Computing (notebooks, samenvattingen)
+- **`Biophysics/`** - Biofysica 
+- **`Kwantum/`** - Kwantummechanica 
+- **`Py4sci/`** - Python for Scientists
 - **`VFR/`** - Vector en Functieruimten
 
 ### 2e Bachelor - Semester 2
-- **`Groepen-en-Representaties/`** - Groepentheorie en representaties
+- **`Groepen-en-Representaties/`** - Groepen en representaties
 - **`Materiaal-Fysica/`** - Materiaal Fysica
 - **`REM/`** - Relativiteit en Elektromagnetisme
-- **`Sterrenstelsels/`** - Astrofysica: sterrenstelsels en kosmologie
-- **`Thermische-Fysica/`** - Statistische mechanica en thermodynamica
-- **`project-exp-2/`** - Experimenteel project semester 2
+- **`Sterrenstelsels/`** - Sterrenstelsels
+- **`Thermische-Fysica/`** - Thermische Fysica
+- **`exp2/`** - Experimenteren in de fysica 2
 
 ### Andere Folders
-- **`1e-bachelor-semester-1/`** - Vakken uit 1e bachelor (o.a. lineaire algebra)
+- **`1e-bachelor-semester-1/`** - Vakken uit 1e bachelor
 - **`Cursussen:boeken/`** - Cursussen en (studie)boeken
-- **`GIT-commands/`** - Git referentiemateriaal (samenvatting hoe Git te gebruiken)
 
 
 ## ⚠️ Beveiliging & Privacy
@@ -77,25 +76,10 @@ jupyter notebook
 
 ## 📝 Bijdragen
 
-Bij het bijdragen aan deze repository:
-
-1. **Check** wat je gaat committen: `git status`
-2. **Review** je wijzigingen: `git diff`
-3. **Commit** alleen bestanden die veilig gedeeld kunnen worden
-4. **Gebruik** duidelijke commit messages in Nederlands of Engels
-
-
-## 🎓 Academische Integriteit
+Bij het bijdragen aan deze repository is altijd welkom, maar **Check** wat je gaat committen: `git status`, **Review** je wijzigingen: `git diff`, **Commit** alleen bestanden die veilig gedeeld kunnen worden en **Gebruik** duidelijke commit messages.
 
 Deze repository is bedoeld voor:
 - Persoonlijke studie en notities
-- Samenwerking tussen studenten (waar toegestaan)
+- Samenwerking tussen studenten
 - Referentiemateriaal voor toekomstige studenten
 
-## 📧 Contact
-
-Voor vragen over deze repository, neem contact op via GitHub issues of discussies.
-
----
-
-**Bachelor Fysica**
