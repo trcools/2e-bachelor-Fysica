@@ -13,7 +13,13 @@ Deze repository bevat studiemateriaal voor de 2e bachelor Fysica. Om de reposito
    - Persoonlijke notities met gevoelige informatie
    - API keys of wachtwoorden
 
-2. **Grote binaire bestanden**
+2. **Auteursrechtelijk beschermd materiaal**
+   - Professorslides (hoorcolleges)
+   - Cursusboeken en syllabi van docenten
+   - Commercieel gepubliceerde leerboeken
+   - Examenopgaven van het lopende academiejaar
+
+3. **Grote binaire bestanden**
    - Video's van colleges
    - Grote datasets (gebruik externe hosting)
 
@@ -29,15 +35,47 @@ Deze repository bevat studiemateriaal voor de 2e bachelor Fysica. Om de reposito
    - Python scripts voor berekeningen
    - Documentatie en README bestanden
 
+---
+
+### PDFs en documenten privé bewaren
+
+Wil je PDFs (slides, syllabi, leerboeken) bewaren zonder ze publiek te maken?
+Je hebt drie opties:
+
+#### Optie 1 — `_lokaal/` map (aanbevolen voor lokaal gebruik)
+
+Er is een speciale map `_lokaal/` aangemaakt in deze repository. Alles wat je daarin plaatst wordt **nooit** door Git bijgehouden.
+
+```bash
+# Kopieer een PDF naar de lokale privémap:
+cp ~/Downloads/cursusthermische.pdf _lokaal/Thermische-Fysica/
+
+# Git zal dit bestand negeren:
+git status  # _lokaal/*.pdf verschijnt NIET in de output
+```
+
+Zie [`_lokaal/README.md`](_lokaal/README.md) voor een aanbevolen mappenstructuur.
+
+#### Optie 2 — Maak de repository privé
+
+Ga naar **GitHub → Settings → Danger Zone → Change visibility → Make private**.
+Dan kun je alles in de repository bewaren en zijn je bestanden alleen zichtbaar voor jou (en uitgenodigde medewerkers).
+
+#### Optie 3 — Aparte privérepository
+
+Maak een tweede, privé GitHub-repository aan (bijv. `2e-bachelor-Fysica-lokaal`) en bewaar de privébestanden daarin. De publieke repository blijft dan publiek voor je eigen werk.
+
+---
+
 ### .gitignore Configuratie
 
-De `.gitignore` file bevat commentaar bij regels die je kunt uitcommentariëren om PDFs en andere documenten te blokkeren:
+De `.gitignore` blokkeert automatisch:
+- `*.pdf`, `*.docx`, `*.pptx` — documentbestanden
+- `_lokaal/**` — alles in de privémap
 
-```gitignore
-# Verwijder de # om PDFs te blokkeren:
-# *.pdf
-# *.docx
-# *.pptx
+Om één specifieke PDF toch te committen (bijv. een eigen samenvatting):
+```bash
+git add -f mijn_samenvatting.pdf
 ```
 
 ### Pre-commit Hooks
@@ -56,7 +94,7 @@ pre-commit install
 
 ### Wat te doen als je per ongeluk gevoelig materiaal hebt gecommit:
 
-1. **Verwijder het bestand uit de staging area:**
+1. **Verwijder het bestand uit de tracking (maar bewaar het lokaal):**
    ```bash
    git rm --cached bestand.pdf
    ```
@@ -80,6 +118,7 @@ pre-commit install
 2. ✅ Gebruik duidelijke commit messages
 3. ✅ Check altijd `git status` voor je commit
 4. ✅ Review je wijzigingen met `git diff`
-5. ❌ Commit geen persoonlijke gegevens
-
+5. ✅ Gebruik `_lokaal/` voor privébestanden
+6. ❌ Commit geen persoonlijke gegevens
+7. ❌ Commit geen slides/syllabi/leerboeken van docenten
 
