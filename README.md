@@ -34,9 +34,12 @@ Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor d
 
 **Lees de [SECURITY.md](SECURITY.md) voor uitgebreide beveiligingsrichtlijnen.**
 
-- **Commit**: samenvattingen, code, notebooks, opdrachten
-- **Gebruik pre-commit hooks** voor automatische controles
-- **Geen persoonlijke informatie** of gevoelige data committen (eigen verantwoordelijkheid)
+### Quick Reference:
+- ✅ **Commit**: samenvattingen, code, notebooks, opdrachten
+- ✅ **Gebruik pre-commit hooks** voor automatische controles
+- 🔒 **Privé bestanden** (slides, syllabi, leerboeken): bewaar ze in de `_lokaal/` map — Git negeert die automatisch
+- ❌ **Geen auteursrechtelijk materiaal** committen (professorslides, leerboeken, cursusboeken)
+- ❌ **Geen persoonlijke informatie** of gevoelige data committen (mag op eigen risico)
 
 ### Pre-commit Hooks Installeren
 
@@ -55,13 +58,6 @@ Dit controleert automatisch op:
 
 ### Python Dependencies
 
-Voor numerieke notebooks:
-
-```bash
-pip install numpy scipy matplotlib jupyter ipywidgets
-```
-
-Of als er een `requirements.txt` aanwezig is:
 ```bash
 pip install -r requirements.txt
 ```
