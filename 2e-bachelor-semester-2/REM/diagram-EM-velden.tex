@@ -7,65 +7,45 @@
 
 \begin{document}
 
-% Errors fixed from original broken code:
-% 1.  \begin{tikzpicture}[node distance=2cm        -> added missing ] after 2cm
-% 2.  \nodedraw, circle, fill=myred]               -> \node[draw, circle, fill=myred] (missing [)
-% 3.  \node (N)text=white]                         -> \node at (N) [text=white] (missing "at" and [)
-% 4.  foreach \angle in                            -> \foreach \angle in (missing \)
-% 5.  \draw{Triangle}]                             -> \draw[-{Triangle}] (missing - and [)
-% 6.  \node=1cm of N] (1)                          -> \node[left=1cm of N] (B1) (missing [left; (1) invalid node name)
-% 7.  \node[..., right=of N ()                     -> \node[..., right=of N] (S) {}; (missing ], node name, and {};)
-% 8.  \node at () [text=white]                     -> \node at (S) [text=white] (missing S in at ())
-% 9.  \foreach \angle in {0 45, ..., 315}          -> {0, 45, ..., 315} (missing comma after 0)
-% 10. \node[left1cm of S]                          -> \node[left=1cm of S] (missing = after left)
-% 11. \node[..., right=4cm S]                      -> right=4cm of S (missing "of")
-% 12. \node at (EN) [textwhite]                    -> [text=white] (missing =)
-% 13. foreach \radius {.4, 0.8, 1.2}              -> \foreach \radius in {0.4, 0.8, 1.2} (missing \ and "in")
-% 14. \draw[-{Triangle ([yshift=-0.1cm]EN)...      -> \draw[-{Triangle}] ([yshift=-0.1cm]EN)... (missing } and ], missing cm)
-% 15. \node[right=1.cm of S]                       -> right=1cm of S (stray period: 1.cm -> 1cm)
-% 16. \draw{Triangle},, myblue] (V) -- ++(-30)     -> \draw[-{Triangle}, myblue] (V) -- ++(-30:1.5cm) (missing - and [, double comma, missing polar length)
-%     node[midway above {v}                        -> node[midway, above] {v} (missing comma and ])
-% 17. \end{tikpicture}                             -> \end{tikzpicture} (missing z)
-
-\begin{tikzpicture}[node distance=2cm]  % Fix 1: added missing ]
+\begin{tikzpicture}[node distance=2cm]
 
     % North Pole Diagram
-    \node[draw, circle, fill=myred] (N) {};  % Fix 2: added [ before draw
-    \node at (N) [text=white] {N};           % Fix 3: added "at" and [
+    \node[draw, circle, fill=myred] (N) {};
+    \node at (N) [text=white] {N};
 
-    \foreach \angle in {0, 45, ..., 315}    % Fix 4: added \ before foreach
+    \foreach \angle in {0, 45, ..., 315}
     {
-        \draw[-{Triangle}] (N) -- ++(\angle:1.5cm);  % Fix 5: added - and [
+        \draw[-{Triangle}] (N) -- ++(\angle:1.5cm);
     }
 
-    \node[left=1cm of N] (B1) {B};  % Fix 6: added [left; renamed (1) to (B1)
+    \node[left=1cm of N] (B1) {B};
 
     % South Pole Diagram
-    \node[draw, circle, fill=myblue, right=of N] (S) {};  % Fix 7: added ], (S), and {};
-    \node at (S) [text=white] {S};                        % Fix 8: added S in at ()
+    \node[draw, circle, fill=myblue, right=of N] (S) {};
+    \node at (S) [text=white] {S};
 
-    \foreach \angle in {0, 45, ..., 315}  % Fix 9: added comma after 0
+    \foreach \angle in {0, 45, ..., 315}
     {
         \draw[-{Triangle}] ++(\angle:1.5cm) -- (S);
     }
 
-    \node[left=1cm of S] (B2) {B};  % Fix 10: added = after left
+    \node[left=1cm of S] (B2) {B};
 
     % Electric field
-    \node[draw, circle, fill=myred, right=4cm of S] (EN) {};  % Fix 11: added "of"
-    \node at (EN) [text=white] {N};                            % Fix 12: text=white
+    \node[draw, circle, fill=myred, right=4cm of S] (EN) {};
+    \node at (EN) [text=white] {N};
 
     \node[above=0.2cm of EN] (E) {E};
 
-    \foreach \radius in {0.4, 0.8, 1.2}  % Fix 13: added \ and "in"
+    \foreach \radius in {0.4, 0.8, 1.2}
     {
-        \draw[-{Triangle}] ([yshift=-0.1cm]EN) +(0,0) ellipse (\radius cm and 0.6cm);  % Fix 14: added } and ], added cm
+        \draw[-{Triangle}] ([yshift=-0.1cm]EN) +(0,0) ellipse (\radius cm and 0.6cm);
     }
 
     % Velocity
-    \node[right=1cm of S] (V) {};  % Fix 15: 1.cm -> 1cm
-    \draw[-{Triangle}, myblue] (V) -- ++(-30:1.5cm) node[midway, above] {v};  % Fix 16: added - and [, removed extra comma, added polar length, fixed node options
+    \node[right=1cm of S] (V) {};
+    \draw[-{Triangle}, myblue] (V) -- ++(-30:1.5cm) node[midway, above] {v};
 
-\end{tikzpicture}  % Fix 17: tikpicture -> tikzpicture
+\end{tikzpicture}
 
 \end{document}
