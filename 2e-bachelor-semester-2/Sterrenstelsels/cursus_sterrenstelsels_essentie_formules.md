@@ -425,7 +425,6 @@ $$
 M>M_J
 $$
 
-
 $$
 M_J\approx\left(\frac{5kT}{G\mu m_H}\right)^{3/2}\left(\frac{3}{4\pi\rho_0}\right)^{1/2}
 $$
@@ -462,7 +461,6 @@ $$
 
 met $L_{\text{FUV}}$ de lichtkracht in de GALEX FUV band. Deze is handig om galaxieën te selecteren met abnormaal hoge UV-flux.
 
-
 Stervorming met obscured (verduisterde) en unobscured (onverduisterde) term:
 
 $$
@@ -477,7 +475,6 @@ $$
 
 met $T_0$ een bepaald tijdstip waarna de SFR exponentieeel afneemt.
 
-
 "Delayed tau model":
 
 $$
@@ -486,7 +483,6 @@ $$
 
 (Laat een toename van de SFR over tijd toe.)
 
-
 De trend tussen de stervormingsgraad en de dichtheid van de totale koude gasmassa, waarbij beiden vaak in eenheden van oppervlaktedichtheid worden uitgedrukt:
 
 $$
@@ -494,7 +490,6 @@ $$
 $$
 
 Wordt ook wel de Kennicutt-Schmidt relatie of stervormingswet genoemd.
-
 
 $$
 M_{\mathrm{vir}}\approx\frac{5R\sigma_r^2}{G},\qquad \alpha_{\mathrm{vir}}=\frac{5\sigma_r^2R}{GM}
@@ -534,13 +529,19 @@ Voor sterrenstelsels is dit hoofdstuk cruciaal omdat stellair evolutieproces gas
 
 ### Kernformules
 
+Ideale gaswet:
+
 $$
 P=nkT=\frac{\rho kT}{\mu m_H}
 $$
 
+De coulomb-barriere: - de elektrostatische energie die moet overwonnen worden zodat 2 atoomkernen dicht genoeg zijn om aan kernfussie te doen -
+
 $$
 U_{\mathrm{coul}}=\frac{kZ_1Z_2e^2}{r}
 $$
+
+Energie dat vrijkomt bij het instorten van een sferisch symmetrische ster met constante dichtheid (bij benadering)
 
 $$
 E\approx-\frac{3}{10}\frac{GM^2}{R}
@@ -583,9 +584,16 @@ Populaties I/II/III en metalliciteitspatronen helpen de vormingsgeschiedenis rec
 
 ### Kernformules
 
+
+De geïntegreerde fluxformule is letterlijk de som van bijdragen van alle stertypes, geschaald met afstand:
+
 $$
 F_\lambda=\frac{1}{4\pi d^2}\sum_i N_iL_{\lambda,i}
 $$
+
+Initiele massafunctie (IMF):
+
+IMF-vormen (Salpeter, Kroupa) zijn empirische/semiepirische beschrijvingen van stervormingsuitkomsten.
 
 $$
 \xi(M)\propto M^{-2.35}\quad\text{(Salpeter)}
@@ -601,15 +609,11 @@ M^{-4.5}, & M\gtrsim1.0M_\odot
 \quad\text{(Kroupa, zoals in de cursusnotatie)}
 $$
 
+$[\mathrm{Fe}/\mathrm{H}]$ is een logaritmische maat omdat abundantieverhoudingen over grote dynamische bereiken lopen:
+
 $$
 [\mathrm{Fe}/\mathrm{H}]=\log_{10}\left[\frac{(N_{\mathrm{Fe}}/N_H)_\star}{(N_{\mathrm{Fe}}/N_H)_\odot}\right]
 $$
-
-### Vanwaar komen deze formules?
-
-- De geïntegreerde fluxformule is letterlijk de som van bijdragen van alle stertypes, geschaald met afstand.
-- IMF-vormen (Salpeter, Kroupa) zijn empirische/semiepirische beschrijvingen van stervormingsuitkomsten.
-- $[\mathrm{Fe}/\mathrm{H}]$ is een logaritmische maat omdat abundantieverhoudingen over grote dynamische bereiken lopen.
 
 ### Symbolen in dit hoofdstuk
 
