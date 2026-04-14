@@ -584,7 +584,6 @@ Populaties I/II/III en metalliciteitspatronen helpen de vormingsgeschiedenis rec
 
 ### Kernformules
 
-
 De geïntegreerde fluxformule is letterlijk de som van bijdragen van alle stertypes, geschaald met afstand:
 
 $$
