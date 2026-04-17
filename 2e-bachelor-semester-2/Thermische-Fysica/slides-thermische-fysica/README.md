@@ -22,3 +22,5 @@ Deze map bevat de presentaties per hoofdstuk.
 ## Tabel met inhoud (HTML)
 
 Zie ook [Table of Contents.html](Table%20of%20Contents.html) voor de HTML-versie.
+
+Note: De Pdf bestanden staan niet op de github, om te vermijden dat gevoellige informatie openbaar wordt gesteld.
