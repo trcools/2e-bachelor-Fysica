@@ -692,7 +692,6 @@ $$
 
 ### Vanwaar komen deze formules?
 
-- 
 - Oort-relaties zijn lokale linearisaties van de galactische rotatie rond de positie van de zon.
 
 ### Symbolen in dit hoofdstuk
