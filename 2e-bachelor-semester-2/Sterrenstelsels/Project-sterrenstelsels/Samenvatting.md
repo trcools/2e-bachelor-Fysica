@@ -12,11 +12,11 @@ Alle metingen bevestigen het idee dat de lenzende galaxy een zeer groot object i
 
 De straal van de ring is op een afstand van ~30kpc van het center van de LGR gelegen. De cylindrische massa ingesloten in de einstein ring is ~5.4 $\times$ $10^{12} M_\odot$.
 
-## Tweede paper (2008):
+## Tweede paper (2008)
 
 Beetje een vervolg op de eerste, met een paar mensen die de eerste paper uit 2007 ook geschreven hebben.
 
-## Derde paper (2016):
+## Derde paper (2016)
 
 Yap over nieuwe beter methode met fourier reeksen/transformatie van eerste tweede en ... orde
 
