@@ -20,7 +20,7 @@ Beetje een vervolg op de eerste, met een paar mensen die de eerste paper uit 200
 
 Yap over nieuwe beter methode met fourier reeksen/transformatie van eerste tweede en ... orde
 
---> Gebruik van een bayesiaans model (met kansberekening, de meest plausibele/waarschijnlijke waarde neemt... Ik dacht dat dit een soort monte carlo methode was. - zie vak _Python For Scientists_ -)
+--> Gebruik van een bayesiaans model (met kansberekening, de meest plausibele/waarschijnlijke waarde neemt... Ik dacht dat dit een soort Monte Carlo methode was. - zie vak _Python For Scientists_ -)
 
 ## Vierde paper (2025): Unveiling a 36 Billion Solar mass black Hole at the Centre of the Cosmic Horseshoe Gravitational Lens
 
