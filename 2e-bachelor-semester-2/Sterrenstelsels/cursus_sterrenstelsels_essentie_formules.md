@@ -584,7 +584,6 @@ Populaties I/II/III en metalliciteitspatronen helpen de vormingsgeschiedenis rec
 
 ### Kernformules
 
-
 De geïntegreerde fluxformule is letterlijk de som van bijdragen van alle stertypes, geschaald met afstand:
 
 $$
@@ -651,6 +650,8 @@ Oort-constanten en lokale benaderingen zijn praktisch om de nabij-zonneomgeving 
 
 ### Kernformules
 
+Dopplerformules volgen uit golfkinematica in de limiet $v\ll c$.
+
 $$
 \Delta\lambda\approx\lambda_0\frac{v_{\mathrm{los}}}{c}
 $$
@@ -659,9 +660,13 @@ $$
 u\equiv c\ln\lambda,\qquad \Delta u\approx v_{\mathrm{los}}
 $$
 
+De convolutie $G=F\otimes S$ zegt: waargenomen spectrum = templatespectrum “verbreed” door snelheidsverdeling.
+
 $$
 G(u)\propto F(u)\otimes S(u)
 $$
+
+Momenten ($\bar v_{\mathrm{los}}$, $\sigma_{\mathrm{los}}$) komen uit kansrekening op de LOSVD.
 
 $$
 \bar v_{\mathrm{los}}=\int F(v_{\mathrm{los}})v_{\mathrm{los}}\,dv_{\mathrm{los}}
@@ -670,6 +675,8 @@ $$
 $$
 \sigma^2_{\mathrm{los}}=\int F(v_{\mathrm{los}})(v_{\mathrm{los}}-\bar v_{\mathrm{los}})^2\,dv_{\mathrm{los}}
 $$
+
+Gaussische verdelingsfunctie:
 
 $$
 F(v_{\mathrm{los}})=\frac{1}{\sqrt{2\pi}\sigma_{\mathrm{los}}}\exp\left[-\frac{(v_{\mathrm{los}}-\bar v_{\mathrm{los}})^2}{2\sigma^2_{\mathrm{los}}}\right]
@@ -685,9 +692,6 @@ $$
 
 ### Vanwaar komen deze formules?
 
-- Dopplerformules volgen uit golfkinematica in de limiet $v\ll c$.
-- De convolutie $G=F\otimes S$ zegt: waargenomen spectrum = templatespectrum “verbreed” door snelheidsverdeling.
-- Momenten ($\bar v_{\mathrm{los}}$, $\sigma_{\mathrm{los}}$) komen uit kansrekening op de LOSVD.
 - Oort-relaties zijn lokale linearisaties van de galactische rotatie rond de positie van de zon.
 
 ### Symbolen in dit hoofdstuk
