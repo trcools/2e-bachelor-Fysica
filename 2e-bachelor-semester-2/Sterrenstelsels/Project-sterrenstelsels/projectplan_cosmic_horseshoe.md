@@ -14,6 +14,18 @@
 
 **Wat leren de geometrie en modellering van de Cosmic Horseshoe over de massa-opbouw van de lensgalaxie en over de centrale superzware zwarte gatmassa?**
 
+## Randvoorwaarden (zoals nu bevestigd)
+
+- Je dient enkel de slides in (PDF of PowerPoint).
+- Deadline upload: **17/05/2026 om 23:59 (CEST)**.
+- Presentatie: **10 minuten + 2 minuten vragen**.
+- Bestandsnaam: **achternaam_voornaam_APOD.pdf** of **achternaam_voornaam_APOD.pptx**.
+- Beoordeling op kernassen:
+	- wetenschappelijke juistheid
+	- context van de cursus
+	- variatie in bronnen
+	- presentatiekwaliteit (taal, structuur, layout)
+
 ## 10-minuten opbouw (met timing)
 
 1. **0:00–0:45** — APOD-foto tonen + context + kernvraag.
@@ -50,12 +62,16 @@
 ### Slide 5 — Lensmodel en massa
 
 - Uit literatuur: hoe men totale massa en profiel afleidt.
-- Benoem modelafhankelijkheden (aanname over profiel, anisotropie, etc.).
+- Benoem modelafhankelijkheden (profielvorm, anisotropie, externe shear, degeneraties).
+- Concreet vergelijken: SIE, power-law, NFW (Dye 2008) en perturbatieve aanpak (Almeida 2017).
 
 ### Slide 6 — Centraal zwart gat
 
 - Recente paper met schatting van extreem grote SMBH-massa.
 - Leg kort uit: combinatie van lensing + dynamische informatie.
+- Geef waarde met onzekerheid:
+	- $\log_{10}(M_{BH}/M_\odot)=10.56^{+0.07}_{-0.08}\pm(0.12)_{sys}$
+	- orde: $\sim 3.6\times10^{10}\ M_\odot$
 
 ### Slide 7 — Wat weten we nog niet?
 
@@ -78,6 +94,27 @@
 
 - Volledige referenties met auteur, titel, journal, jaar en klikbare ADS/DOI-link.
 
+## Rubric-naar-slide mapping (expliciet scoren)
+
+| Rubriccriterium | Minimaal afdekken op slides | Hoe je het zichtbaar maakt |
+|---|---|---|
+| Wetenschappelijke juistheid | 2, 5, 6, 7 | definities correct, claims met onzekerheid, geen overselling |
+| Cursuscontext | 2, 3, 5, 6, 7, 9 | onderaan: [Cursus §..] per relevante fysische stap |
+| Variatie in bronnen | 4, 5, 6, 8, 10 | observaties + modellering + methodiek + recente dynamische analyse |
+| Presentatiekwaliteit | alle slides | 1 kernidee per slide, consistente notatie, leesbare figuren |
+
+## Wetenschappelijke guardrails (belangrijk)
+
+- Formuleer het BH-resultaat als: "schatting" of "analyse suggereert", niet als absolute zekerheid.
+- Maak onderscheid tussen:
+	- robuuste conclusie: systeem is extreem massief
+	- minder robuust: exacte parameterwaarden hangen af van modelkeuzes
+- Maak bij modelresultaten expliciet onderscheid tussen:
+	- statistische onzekerheid
+	- systematische onzekerheid (modelkeuze, anisotropie, omgeving)
+- Vermijd causale claims die niet direct uit de papers volgen.
+- Zet altijd een bronlabel naast elke figuur en kwantitatieve claim.
+
 ## Link met de cursus (verplicht)
 
 Zet onderaan relevante slides telkens expliciet een verwijzing naar de overeenkomstige cursusdelen (plaats hier je eigen sectienummers), bijvoorbeeld:
@@ -95,3 +132,7 @@ Zet onderaan relevante slides telkens expliciet een verwijzing naar de overeenko
 - [ ] Eigen onderzoeksvoorstel bevat vraag + data + faciliteiten + motivatie.
 - [ ] Presentatie in het Nederlands, 10 min + klaar voor 2 min vragen.
 - [ ] Finale bestandnaam conform formaat voor upload.
+- [ ] Slide 10 bevat volledige bibliografie met DOI/ADS-links.
+- [ ] Elke inhoudsslide heeft minstens 1 zichtbaar rubric-signaal (bron, cursuslink of onzekerheid).
+- [ ] Zelfde symbolen doorheen alle slides (bv. $\theta_E$, $M_\odot$, $R_e$).
+- [ ] Deadline-check: upload vóór 17/05/2026 23:59 (CEST).

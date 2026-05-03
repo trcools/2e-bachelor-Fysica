@@ -1,0 +1,6 @@
+PWD /Users/tristancools/Documents/VSC_macbook_tristan/2e-bachelor-semester-2/Sterrenstelsels/Project-sterrenstelsels
+INPUT /Users/tristancools/Library/TinyTeX/texmf.cnf
+INPUT /Users/tristancools/Library/TinyTeX/texmf-dist/web2c/texmf.cnf
+INPUT /Users/tristancools/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT /Users/tristancools/Documents/VSC_macbook_tristan/2e-bachelor-semester-2/Sterrenstelsels/Project-sterrenstelsels/presentation.tex
+OUTPUT presentation.log

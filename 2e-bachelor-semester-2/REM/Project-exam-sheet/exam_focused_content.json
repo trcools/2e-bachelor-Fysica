@@ -1,0 +1,123 @@
+{
+  "H10": {
+    "sections": "10.1, 10.2, 10.3",
+    "priority": "HIGH - gauge, retarded potentials, wave equation",
+    "keywords": [
+      "gauge transform",
+      "Lorenz",
+      "retarded",
+      "wave equation",
+      "Lienard-Wiechert"
+    ]
+  },
+  "H11": {
+    "sections": "11.1.1, 11.1.2",
+    "priority": "MEDIUM-HIGH - dipole radiation, Larmor",
+    "keywords": [
+      "dipole radiation",
+      "far-field",
+      "Poynting",
+      "Larmor formula",
+      "approximation"
+    ]
+  },
+  "H12": {
+    "sections": "Entire chapter",
+    "priority": "VERY HIGH - relativity fundamental",
+    "keywords": [
+      "Lorentz transform",
+      "time dilation",
+      "length contraction",
+      "covariant",
+      "Maxwell"
+    ]
+  },
+  "H2": {
+    "sections": "Entire chapter (skip Capacitance 2.5.4)",
+    "priority": "VERY HIGH - all content",
+    "keywords": [
+      "Coulomb law",
+      "Electric field",
+      "Gauss law",
+      "divergence curl",
+      "potential"
+    ]
+  },
+  "H3": {
+    "sections": "3.2, 3.3.2, 3.4",
+    "priority": "HIGH - specific sections only",
+    "keywords": [
+      "boundary conditions",
+      "image method",
+      "multipl",
+      "Laplace",
+      "Poisson"
+    ]
+  },
+  "H4": {
+    "sections": "4.1.4, 4.2, 4.3, 4.4.1, 4.4.2",
+    "priority": "HIGH - focus on bound charges, D field, linear",
+    "keywords": [
+      "bound charge",
+      "polarization",
+      "D field",
+      "permittivity",
+      "linear dielectric"
+    ]
+  },
+  "H5": {
+    "sections": "Entire chapter (skip multipole 5.4.3)",
+    "priority": "VERY HIGH - all content",
+    "keywords": [
+      "Lorentz force",
+      "Biot-Savart",
+      "Ampere law",
+      "vector potential",
+      "magnetic field"
+    ]
+  },
+  "H6": {
+    "sections": "6.1.4, 6.2, 6.3, 6.4.1",
+    "priority": "HIGH - focus on bound currents, H field, linear",
+    "keywords": [
+      "bound current",
+      "magnetization",
+      "H field",
+      "permeability",
+      "linear material"
+    ]
+  },
+  "H7": {
+    "sections": "7.1.2, 7.1.3, 7.2, 7.3 (skip inductance 7.2.3)",
+    "priority": "HIGH - Faraday, Maxwell, consistency",
+    "keywords": [
+      "Faraday law",
+      "Maxwell",
+      "continuity",
+      "displacement current",
+      "induction"
+    ]
+  },
+  "H8": {
+    "sections": "8.1, 8.2.1, 8.2.2, 8.2.3 (NO stress tensor)",
+    "priority": "HIGH - charge continuity, Poynting theorem",
+    "keywords": [
+      "continuity",
+      "Poynting",
+      "energy",
+      "momentum",
+      "conservation"
+    ]
+  },
+  "H9": {
+    "sections": "9.2.3, 9.3.1 only",
+    "priority": "MEDIUM - Poynting vector, wave propagation",
+    "keywords": [
+      "wave equation",
+      "plane wave",
+      "Poynting",
+      "intensity",
+      "propagation"
+    ]
+  }
+}

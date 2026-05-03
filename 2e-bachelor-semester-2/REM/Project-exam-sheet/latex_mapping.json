@@ -1,0 +1,171 @@
+{
+  "page1": {
+    "H2": {
+      "header": "H2 Electrostatica",
+      "items": [
+        "\u2022 2.1 The electric field",
+        "\u2022 principle of superposition = interaction between any two charges is completely unaffect...",
+        "\u2022 > calculate the forces on the charges separately, then the total force F = F 1+F2+\u2026",
+        "\u2022 electrostatics = case where the source charges are stationary",
+        "\u2022 > the test charge may be moving",
+        "\u2022 2.1.2 Coulombs law",
+        "\u2022 Coulombs law",
+        "\u2022 2.1.3 the electric field",
+        "\u2022 force on a charge for a test charge Q we have a total force, due to sources q i:",
+        "\u2022 electric field = field only dependent on source charges"
+      ]
+    },
+    "H3": {
+      "header": "H3 Potentialen",
+      "items": [
+        "\u2022 charge above a conductor Consider a point charge q held a distance d above an infinite ...",
+        "\u2022 > the potential above the plate is determined by q, but also the induced charge on the ...",
+        "\u2022 > this is a hard problem to solve, but we have the boundary conditions:",
+        "\u2022 instead, consider two point charges q at (0,0,d) and -q at (0,0,-d)",
+        "\u2022 > the potential is:",
+        "\u2022 > we can use the equation to solve our first problem",
+        "\u2022 3.2.2 induced surface charge",
+        "\u2022 induced surface charge we can compute the surface charge via:",
+        "\u2022 with \u2202V/\u2202n the normal derivative of V at the surface",
+        "\u2022 > this is in the z-direction for this problem:"
+      ]
+    },
+    "H4": {
+      "header": "H4 E-velden in materie",
+      "items": [
+        "\u2022 H4: Electric fields in matter",
+        "\u2022 = contains 'unlimited' supply of charges and conduct electrical charge",
+        "\u2022 = all charges are attached to specific atoms or molecules",
+        "\u2022 > microscopic displacements aren't as dramatic, but does have a characteristic behaviour",
+        "\u2022 ionization place a neutral atom in an electric field",
+        "\u2022 polarizability tensor When the field is at some angle, we have to split into parallel a...",
+        "\u2022 however, the most general linear relation between E and p is:",
+        "\u2022 force on polar molecules in",
+        "\u2022 uniform field",
+        "\u2022 > put these molec in a uniform field"
+      ]
+    },
+    "H5": {
+      "header": "H5 Magnetostatica",
+      "items": [
+        "\u2022 5.1 the Lorentz force law",
+        "\u2022 5.1.2 magnetic forces",
+        "\u2022 Lorentz force law The magnetic force on a charge Q with velocity v in a magnetic field is:",
+        "\u2022 or thus in an E and B field:",
+        "\u2022 Work of magnetic force The magnetic force cant do work",
+        "\u2022 nl: if Q moves an amount dl = vdt, the work done is:",
+        "\u2022 current I = charge per unit time passing a given point",
+        "\u2022 > measured in Amp\u00e8re: 1A = 1C/s",
+        "\u2022 vb: for a line charge \u03bb traveling through a wire at speed v we have:",
+        "\u2022 force on a current We have:"
+      ]
+    },
+    "H6": {
+      "header": "H6 B-velden in materie",
+      "items": [
+        "\u2022 H6: Magnetic fields in matter",
+        "\u2022 > apply a magnetic field B, the domains become aligned",
+        "\u2022 types of magnetization if we apply a magnetic field B, the we have 3 types of magnetiza...",
+        "\u2022 - ferromagnet: material retains magnetization after B is removed",
+        "\u2022 >> the magnetization isn't only dependent on the current applied field B",
+        "\u2022 > it is also dependent on the magnetic 'history' of the object",
+        "\u2022 6.1.2 torques and forces on magnetic dipoles",
+        "\u2022 torque on a loop consider a rectangular current loop in a uniform field B",
+        "\u2022 > centre the loop at the origin with tilt \u03b8 from the z-axis towards the y-axis",
+        "\u2022 > forces on the two sloping sides cancel"
+      ]
+    }
+  },
+  "page2": {
+    "H7": {
+      "header": "H7 Elektrodynamica",
+      "items": [
+        "\u2022 7.1 electromotive force",
+        "\u2022 7.1.1 Ohm's law",
+        "\u2022 conductivity \u03c3  = ratio between current density J and force per unit charge f:",
+        "\u2022 resistivity \u03c1 = 1/\u03c3",
+        "\u2022 Ohm's law The force f is due to the electromagnetic force, thus we can write:",
+        "\u2022 where vxB can be ignored, since the velocity is sufficiently small:",
+        "\u2022 Ohm's law in terms of V the current flowing from one electrode to another is given by:",
+        "\u2022 > R is the resistance with unit ohm \u03a9",
+        "\u2022 Joule heating law",
+        "\u2022 7.1.2 electromotive force"
+      ]
+    },
+    "H8": {
+      "header": "H8 Conservatiewetten",
+      "items": [
+        "\u2022 H8: Conservation laws",
+        "\u2022 8.1 charge and energy",
+        "\u2022 8.1.1 the continuity equation",
+        "\u2022 continuity equation The charge in a volume V is:",
+        "\u2022 and conservation of charge says:",
+        "\u2022 8.1.2 Poynting's theorem",
+        "\u2022 Energy in E and B The work needed to assemble a static charge distribution is given by:",
+        "\u2022 And for the magnetic field:",
+        "\u2022 this suggests the total energy stored, per unit volume is given by:",
+        "\u2022 Poynting's theorem If a configuration of charges changes a bit over a time dt, then we ..."
+      ]
+    },
+    "H9": {
+      "header": "H9 EM-golven",
+      "items": [
+        "\u2022 9.2.1 the wave equation for E and B",
+        "\u2022 wave equation for E and B In regions of space with no charge or current, we have:",
+        "\u2022 which are two wave equations of waves travelling at the speed:",
+        "\u2022 with E0 and B0 the amplitude and \u03c9=kc the angular frequency",
+        "\u2022 > now Maxwell's equations put constraints on these waves:",
+        "\u2022 \u2207E=0 and \u2207B=0:",
+        "\u2022 \u2207xE=-\u2202B/\u2202t:",
+        "\u2022 \u2207xB=\u00b50\u03b50\u2202E/\u2202t doesn't imply any new constraints",
+        "\u2022 >> the E and B fields have equal contribution to the energy per unit volume",
+        "\u2022 The momentum density in the E and B fields is given by:"
+      ]
+    },
+    "H10": {
+      "header": "H10 Potentialen en velden",
+      "items": [
+        "\u2022 H10: Potentials and fields",
+        "\u2022 scalar V and vector A potentials we can still define:",
+        "\u2022 however, last time for V we relied on \u2207xE, which is disproven due to:",
+        "\u2022 thus in a changing magnetic field E != -\u2207V",
+        "\u2022 thus, we can define:",
+        "\u2022 new Poisson's equation in a non-static case we thus have to account for the new potenti...",
+        "\u2022 which reduces to Poisson's equation in static case",
+        "\u2022 we can put the relations for B and E in Maxwell's equation to find:",
+        "\u2022 using vector identity \u2207x(\u2207xA)=\u2207(\u2207.A)-\u2207\u00b2A and rearrange a bit to find:",
+        "\u2022 Gauge transformations suppose we have two potentials (V,A) and (V',A') for the same ele..."
+      ]
+    },
+    "H11": {
+      "header": "H11 Straling",
+      "items": [
+        "\u2022 11.1.1 what is radiation?",
+        "\u2022 radiation when charges accelerate their fields can transport energy irreversibly out to...",
+        "\u2022 > imagine a giant sphere of radius r around this source",
+        "\u2022 > the power passing through its surface is the integral of the Poynting vector:",
+        "\u2022 > the em wave actually left the source an earlier time t0=t-r/c, thus:",
+        "\u2022 radiation of static sources The area of a sphere is 4\u03c0r\u00b2",
+        "\u2022 > for radiation to occur the Poynting vector must decrease no faster than 1/r\u00b2",
+        "\u2022 > according to Coulomb, electrostatic fields fall of like 1/r\u00b2",
+        "\u2022 Biot-Savart, magnetostatic fields fall of like 1/r\u00b2",
+        "\u2022 >> for radiation we need to consider E and B fields that go like 1/r"
+      ]
+    },
+    "H12": {
+      "header": "H12 EM en relativiteit",
+      "items": [
+        "\u2022 principle of relativity = the laws of physics apply in any inertial reference frame",
+        "\u2022 2: universal speed of light: speed of light in a vacuum is the same for all inertial ob...",
+        "\u2022 Suppose A is on a train B going at a speed vBC with respect to the ground C",
+        "\u2022 > if i walk at a pace vAB with respect to the train, my speed with respect to the groun...",
+        "\u2022 > for the observer on the train the time it takes for the light to hit the floor is:",
+        "\u2022 also define the quantity:",
+        "\u2022 > to an observer on the train, the time it takes is:",
+        "\u2022 is the time it takes to get to the front and \u0394t2 back again:",
+        "\u2022 and the total time is thus:",
+        "\u2022 Four-vector notation Define:"
+      ]
+    }
+  }
+}
