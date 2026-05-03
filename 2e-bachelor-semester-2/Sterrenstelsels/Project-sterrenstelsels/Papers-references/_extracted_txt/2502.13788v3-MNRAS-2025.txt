@@ -1,0 +1,2328 @@
+
+
+===== PAGE 1 =====
+MNRAS000, 1–19 (2025) Preprint 15 July 2025 Compiled using MNRAS L ATEX style file v3.3
+Unveiling a 36 Billion Solar Mass Black Hole at the Centre of the Cosmic
+Horseshoe Gravitational Lens
+Carlos R. Melo-Carneiro,1,2★ Thomas E. Collett,2 Lindsay J. Oldham,2 Wolfgang Enzi,2
+Cristina Furlanetto,1 Ana L. Chies-Santos,1 and Tian Li2
+1Instituto de Física, Universidade Federal do Rio Grande do Sul, Av. Bento Gonçalves 9500, Porto Alegre-RS, 90040-060, Brazil
+2Institute of Cosmology and Gravitation, University of Portsmouth, Burnaby Rd, Portsmouth, PO1 3FX, UK
+Accepted XXX. Received YYY; in original form ZZZ
+ABSTRACT
+Supermassive black holes (SMBHs) are found at the centre of every massive galaxy, with their masses tightly connected to
+their host galaxies through a co-evolution over cosmic time. For massive ellipticals, the SMBH mass (𝑀BH) strongly correlates
+with the host central stellar velocity dispersion (𝜎𝑒), via the 𝑀BH − 𝜎𝑒 relation. However, SMBH mass measurements have
+traditionally relied on central stellar dynamics in nearby galaxies (𝑧 < 0.1), limiting our ability to explore the SMBHs across
+cosmictime.Inthiswork,wepresentaself-consistentanalysiscombining2DstellardynamicsandlensmodellingoftheCosmic
+Horseshoegravitationallenssystem( 𝑧𝑙 = 0.44),oneofthemostmassivelensgalaxieseverobserved.UsingMUSEintegral-field
+spectroscopy and high-resolution HST imaging, we simultaneously model the radial arc - sensible to the inner mass structure
+- with host stellar kinematics to constrain the galaxy’s central mass distribution and SMBH mass. Bayesian model comparison
+yields a5𝜎 detection of an ultramassive black hole (UMBH) withlog10 (𝑀BH/𝑀⊙) = 10.56+0.07
+−0.08 ± ( 0.12)sys, consistent across
+varioussystematictests.OurfindingsplacetheCosmicHorseshoe ∼1.5𝜎 abovethe 𝑀BH − 𝜎𝑒 relation,supportinganemerging
+trendobservedinbrighterclustergalaxies(BCGs)andothermassivegalaxies,whichsuggestsasteeper 𝑀BH − 𝜎𝑒 relationshipat
+thehighestmasses,potentiallydrivenbyadifferentco-evolutionofSMBHsandtheirhostgalaxies.Futuresurveyswilluncover
+more radial arcs, enabling the detection of SMBHs over a broader redshift and mass range. These discoveries will further refine
+our understanding of the𝑀BH − 𝜎𝑒 relation and its evolution across cosmic time.
+Key words: gravitational lensing: strong – galaxies: kinematics and dynamic – galaxies: evolution – quasars: supermassive
+black holes
+1 INTRODUCTION
+Mostmassivegalaxiesarebelievedtohostasupermassiveblackhole
+(SMBH) at their centre. More importantly, host galaxies and their
+SMBHs exhibit clear scaling relations, pointing to a co-evolution
+between the galaxy and the SMBH (Kormendy & Ho 2013). The
+SMBHmass( 𝑀BH)hasbeenshowntocorrelatewithvariousgalaxy
+properties,suchasthebulgeluminosity(e.g.,Magorrianetal.1998;
+Marconi & Hunt 2003; Gültekin et al. 2009), stellar bulge mass
+(e.g., Laor 2001; McLure & Dunlop 2002), dark matter (DM) halo
+mass(e.g.,Marascoetal.2021;Powelletal.2022),numberofhost’s
+globularclusters(e.g.,Burkert&Tremaine2010;Harrisetal.2014),
+and stellar velocity dispersion (e.g., Gebhardt et al. 2000; Beifiori
+etal.2009).Notably,the 𝑀BH −𝜎𝑒 relation,whichlinksSMBHmass
+to the effective stellar velocity dispersion of the host (𝜎𝑒), remains
+tight across various morphological types and SMBH masses (van
+den Bosch 2016). Nonetheless, when SMBHs accrete mass from
+their neighbourhoods, they can act as active galactic nuclei (AGNs),
+injecting energy in the surrounding gas in a form of feedback. This
+feedback can be either positive, triggering star formation (Ishibashi
+★ E-mail: carlos.melo@ufrgs.br
+&Fabian2012;Silk2013;Riffeletal.2024),ornegative,quenching
+galaxy growth (e.g., Hopkins et al. 2006; Dubois et al. 2013; Costa-
+Souza et al. 2024).
+It is expected that the most massive galaxies in the Universe,
+such as brightest cluster galaxies (BCGs), host the most mas-
+sive SMBHs. Indeed, so-called ultramassive black holes (UMBHs;
+𝑀BH ≥ 1010 𝑀⊙) have been found in such systems (e.g., Hlavacek-
+Larrondo et al. 2012). Most of these UMBHs have been measured
+through spatially-resolved dynamical modelling of stars and/or gas.
+For instance, the UMBH in Holm 15A at 𝑧 = 0.055 (𝑀BH =
+(4.0 ± 0.80) × 1010 𝑀⊙; Mehrgan et al. 2019) and the UMBH in
+NGC 4889 at𝑧 = 0.021(𝑀BH = (2.1 ± 1.6) × 1010 𝑀⊙; McConnell
+etal.2012)werebothdeterminedusingstellardynamicalmodelling.
+However, despite the success of this technique in yielding hundreds
+ofSMBHmassmeasurements,therequirementforhigh-qualityspa-
+tially resolved spectroscopy poses significant challenges for studies
+at increasing redshift (see, e.g., Kormendy & Ho 2013, Suplemental
+Material S1).
+Nonetheless,thesignificanceoftheseUMBHsliesinthefactthat
+many of them deviate from the standard linear𝑀BH − 𝜎𝑒 relation
+(e.g., Kormendy & Ho 2013; van den Bosch 2016). This suggests
+eitheradistinctevolutionarymechanismgoverningthegrowthofthe
+© 2025 The Authors
+arXiv:2502.13788v3  [astro-ph.GA]  11 Jul 2025
+
+===== PAGE 2 =====
+2 Melo-Carneiro et al.
+largest galaxies and their SMBHs (McConnell et al. 2011), leading
+to a significantly steeper relation (Bogdán et al. 2018), or a poten-
+tial decoupling between the SMBH and host galaxy co-evolution.
+Populatingthehigh-massendofthe 𝑀BH − 𝜎𝑒 relation,particularly
+through direct 𝑀BH measurements, could help resolve this ongoing
+puzzle.
+Recently, Nightingale et al. (2023), by modelling the gravitation-
+ally lensed radial image near the the Abell 1201 BCG (𝑧 = 0.169),
+was able to measure the mass of its dormant SMBH as𝑀BH =
+(3.27 ± 2.12) × 1010 𝑀⊙,thereforeanUMBH.Thisprovidesacom-
+plementary approach to other high-𝑧 probes of SMBH mass, such
+as reverberation mapping (Blandford & McKee 1982; Bentz & Katz
+2015) and AGN spectral fitting (Shen 2013). Unlike these methods,
+whichrequireactiveaccretionanddependonlocalUniversecalibra-
+tions,thelensingtechniqueoffersadirectmeasurementindependent
+of the SMBH’s accretion state.
+In this paper, we analyse the Cosmic Horseshoe gravitational lens
+system (Belokurov et al. 2007), where the lens galaxy is one of
+the most massive strong gravitational lenses known to date. The
+lens galaxy is an early-type galaxy (ETG) at redshift𝑧𝑙 = 0.44,
+possibly part of a fossil group (Ponman et al. 1994), and is notable
+forlensingoneofitssourcesintoanearlycompleteEinsteinring(the
+Horseshoe). Additionally, a second multiply imaged source forms a
+radial arc near the centre of the lens galaxy.
+Thankstotheradialimageformedveryclosetothecentre,theinner
+DMdistributionoftheCosmicHorseshoecanbestudiedindetail,as
+done by Schuldt et al. (2019). By simultaneously modelling stellar
+kinematicsfromlong-slitspectroscopyandthepositionsofthelensed
+sources, Schuldt et al. (2019) found that the DM halo is consistent
+with a Navarro-Frenk-White (NFW; Navarro et al. 1997) profile,
+withtheDMfractionwithintheeffectiveradius( 𝑅𝑒)estimatedtobe
+between 60%and 70%.Moreover,theirmodelsincludeapointmass
+at the galaxy’s centre, reaching values around∼ 1010 𝑀⊙, which
+could represent an SMBH; however, they did not pursue further
+investigations into this possibility.
+Using new integral-field spectroscopic data from the Multi Unit
+SpectroscopicExplorer(MUSE)andimagingfromtheHubbleSpace
+Telescope (HST), we conducted a systematic modelling of the Cos-
+mic Horseshoe system to reassess the evidence for an SMBH at the
+heart of the lens galaxy. We performed a self-consistent analysis of
+both strong gravitational lensing (SGL) and stellar dynamics, which
+demonstrated that the presence of an SMBH is necessary to fit both
+datasets simultaneously.
+This paper is structured as follows: In Section 2, we present the
+HST imaging data and MUSE observations, along with the kine-
+matic maps used for the dynamical modelling. Section 3 briefly
+summarisesthelensinganddynamicalmodellingtechniques,includ-
+ing the multiple-lens-plane formalism, the approximations adopted
+in this work, and the mass profile parametrisation. In Section 4, we
+present the results from our fiducial model and alternatives mod-
+els, which we use to address the systematics on the SMBH mass.
+In Section 5 we discuss our results and present other astrophysical
+implications. Finally, we summarise and conclude in Section 6.
+Unless otherwise, all parameter estimates are derived from the
+final sampling chain, with reported values representing the median
+of each parameter’s one-dimensional marginalised posterior distri-
+bution, with uncertainties corresponding to the16th and 84th per-
+centiles. Furthermore, throughout this paper, we adopt the cosmo-
+logicalparametersconsistentwithPlanckCollaborationetal.(2016):
+ΩΛ,0 = 0.6911, Ωm,0 = 0.3089, Ωb,0 = 0.0486,and 𝐻0 = 67.74km
+s−1 Mpc−1.
+Figure 1. HST/WFC3 colour composite image of the Cosmic Horseshoe,
+createdusingtheF814W,F606W,andF475Wfilters.Thesystemiscomposed
+bythemaindeflector( 𝑧𝑙 = 0.44);theeponymousEinsteinringoftheCosmic
+Horseshoe (𝑧s2 = 2.381); and the radial arc and its counter-image (𝑧𝑠1 =
+1.961),bothhighlighted.Theinsetshowstheradialarc.Thefigureisoriented
+such that north is up and east is left.
+2 DATA
+The Cosmic Horseshoe (SDSS J1148+1930) system was first iden-
+tified by Belokurov et al. (2007) as part of the Sloan Digital Sky
+Survey (SDSS). The primary lens is a massive ETG at𝑧𝑙 = 0.44,
+withanestimatedenclosedmasswithintheEinsteinradius( 𝑅Ein)of
+∼ 5×1012 𝑀⊙(Dyeetal.2008;Schuldtetal.2019).Theradialarcand
+its counter-image correspond to a source at redshift𝑧𝑠1 = 1.961(s1,
+hereafter), while the tangential arc is a star-forming galaxy (James
+etal.2018)atredshift 𝑧𝑠2 = 2.381(s2,hereafter).InFig.1,theradial
+arc and its counter-image are highlighted within white boxes, with a
+zoomed-in view of the radial image displayed in the inset.
+2.1 HST imaging
+The HST images used in this work were obtained with the Wide
+Field Camera 3 (WFC3) and downloaded from the Hubble Legacy
+Archive1 (HLA). Observations with the F475W, F606W, F814W,
+F110W, and F160W filters were conducted in May 20102, while
+the F275W filter data were taken in November 20113. The data
+reductionfollowedtheHLApipeline,whichemploystheDrizzlePac 4
+to process the images. This includes the combination of multiple
+exposures,correctionforgeometricdistortion,subtractionofthesky
+background,andremovalofcosmicrays.Thefinalscienceimagesfor
+the UVIS filters (F275W, F475W, F606W, and F814W) have a pixel
+scale of 0.04′′, while the IR filters (F110W and F160W) provide
+images with a pixel scale of0.13′′.
+1 https://hla.stsci.edu/
+2 PropID: 11602, PI: Sahar Allam
+3 PropID: 12266, PI: Anna Quider
+4 https://drizzlepac.readthedocs.io/en/latest/index.html
+MNRAS000, 1–19 (2025)
+
+===== PAGE 3 =====
+UMBH in the Cosmic Horseshoe 3
+We made use of images in the F475W and F814W filters for our
+analysis. The F475W band was selected for lens modelling, as the
+radial arc appears bluer and more distinct from the main-lens in
+this filter. Conversely, the F814W band was used to trace the light
+distribution and stellar mass of the primary deflector (see Section
+3), as the main-lens is brighter in this filter and the radial arc is
+not visible, minimising contamination from s1. Both images were
+aligned using theAstroalignsoftware (Beroiz et al. 2020).
+To construct the point spread function (PSF) for each filter, we
+identifiedtwonon-saturatedstarsfromtheGaiaDR2catalogue(Are-
+nou et al. 2018) and performed a interactive PSF modelling using
+PSFr (see, e.g., Birrer et al. 2019). We follow the same procedure
+as Birrer et al. (2019), applying a90◦ rotation symmetry based on
+the HST optical symmetry. This allows each star to be rotated four
+times, enabling PSF model estimation using a total of eight stacked
+images. The noise map for each pixel𝑖 was calculated by combin-
+ing the background noise𝜎bkgd and Poisson noise in quadrature:
+𝜎2
+rms,i = 𝜎2
+bkgd + 𝜎2
+Poisson,i. The background level was estimated as a
+constantvalue,measuredfromanemptyregionofskynearthemain
+deflector, using theastropy sigma-clipping method. The Poisson
+noise was calculated from the effective exposure map and the inten-
+sity counts for each pixel.
+2.2 MUSE observations and kinematical map
+The integral-field spectroscopic observations were conducted using
+theVLT/MUSEinstrumentacrossthreeseparatevisits 5andretrieved
+from the ESO Science Archive Facility6. The data covers a spectral
+range of4650 − 9300Å, sampled at1.25Å/px, with a mean spectral
+resolution of∼ 2.6Å at full width at half-maximum (FWHM;𝜎 ∼
+50kms −1). The spatial pixel scale is0.2′′, and the seeing during
+observations was 0.8′′. Data reduction followed the ESO Phase 3
+Data Release, utilising the MUSE pipeline (Weilbacher et al. 2016).
+The MUSE data cube was aligned with HST images by generating a
+collapsed image from the cube and usingAstroalign to register it
+with the F475W HST observation.
+To extract stellar kinematics from the MUSE data cube, we se-
+lected all pixels with a signal-to-noise ratio (SNR) greater than2.5,
+excludingregionsexhibitingemissionfroms2.Pixelscorresponding
+totheradialsourcepositionwerealsoinspected,butnocontribution
+from s1 was identified in the spectra. The remaining pixels were
+spatially binned using the Voronoi binning method of Cappellari
+& Copin (2003) to achieve a minimum SNR of15. The SNR was
+calculated as the ratio of the average signal to the average noise in
+the rest-frame spectral range5600 − 7600Å. Using the continuum
+rest-frame range6000 − 6200Å, produced negligible differences in
+the results.
+Themeanvelocity( 𝑣)andvelocitydispersion( 𝜎𝑣)ineachVoronoi
+bin were measured using the penalized pixel fitting method, as im-
+plemented in thepPXFsoftware (Cappellari & Emsellem 2004). For
+templates,weadoptedthefullX-shooterSpectralLibrarySSPmod-
+els (XLS-SSP-DR3; Verro et al. 2022), which offer a resolution of
+∼ 13kms −1 and a wavelength coverage from3500to 24800Å. The
+XLS-SSP library was selected due to its high resolution, enabling
+convolutionwiththeMUSEinstrumentalresolutionafterde-shifting
+the galaxy spectra. Each Voronoi bin was fitted over the wavelength
+range 5600 − 7600Å (galaxy-frame),withemissionlineswithinthis
+range masked.
+5 ProgID: 094.B-0771, PI: Bethan James
+6 https://archive.eso.org/scienceportal/home
+Uncertainties for𝑣 and 𝜎𝑣 were determined through Monte Carlo
+perturbations of the best-fit model, performing200 realisations and
+taking the standard deviation as the uncertainty. Template selection
+is a known source of systematic uncertainty. Recently, Knabel et al.
+(2025) highlighted that template mismatch can dominate the error
+budgetinhigh-precisionapplications,forinstanceintime-delaycos-
+mography.However,forSMBHmassmeasurements,weconsiderits
+impact to be secondary relative to other sources of uncertainty, such
+as assumptions in the dynamical modelling (e.g., anisotropy pro-
+file and intrinsic shape). A detailed investigation of template choice
+effects on SMBH mass measurements is beyond the scope of this
+work.
+We computed the velocity second moment as𝑣rms =
+√︃
+𝑣 2 + 𝜎2𝑣,
+findingthatrotationalvelocitiesarenegligible,indicatingthegalaxy
+is dominated by the velocity dispersion.
+The observed 𝑣 rms map and radial profile are shown in Fig. 2.
+The profile is nearly flat in the galaxy’s central regions (< 0.5′′)
+but increases for𝑟 > 0.75′′. This rising behaviour at larger radii
+was previously reported by Spiniello et al. (2011) using long-slit
+spectroscopy of the Cosmic Horseshoe and is a common feature
+amongBCGs(e.g.,Newmanetal.2015;Smithetal.2017b).Notably,
+the outermost bins exhibit larger error bars, reflecting the low SNR
+in these regions.
+Theeffectivevelocitydispersionofthemain-lenswasdetermined
+by co-adding all spectra within the galaxy’s effective radius (𝑅𝑒 =
+2.10′′)7 and fitting the integrated spectrum withpPXF, as outlined
+earlier. This analysis yielded𝜎𝑒 = 366 ± 6kms −1. We confirmed
+thatusingtheflux-weightedmethodpresentinEmsellemetal.(2007)
+lead to a similar result.
+3 METHODS
+We construct a fully self-consistent mass model for the main lens-
+inggalaxybyjointlymodellingitsSGLeffectandspatially-resolved
+stellar velocity dispersion. This combined approach has been suc-
+cessfully applied in previous studies to constrain the mass profiles
+of ETGs in tests of modified gravity (e.g., Collett et al. 2018; Melo-
+Carneiro et al. 2023) and to investigate the distribution of baryonic
+and DM content within galaxies (e.g., Barnabè et al. 2012; Wang
+et al. 2022). By simultaneously leveraging both methods, we miti-
+gatedegeneraciesthatarisewhenusingthemindependently,suchas
+the mass-anisotropy degeneracy (e.g., Gerhard 1993) and the mass-
+sheet degeneracy (e.g., Gorenstein et al. 1988). Furthermore, the
+Cosmic Horseshoe system is a compound lens with two sources at
+different redshifts (Schuldt et al. 2019). The joint modeling of these
+sources can also help break (or at least alleviate) these degeneracies
+present in the lens model (e.g., Enzi et al. 2025).
+3.1 Gravitational Lensing
+3.1.1 Formalism
+For a single-source plane lens configuration, the source plane po-
+sition, 𝜷, relates to the observed lensed position,𝜽, via the lens
+equation:
+𝜷 = 𝜽 − 𝜶(𝜽), (1)
+7 Theeffectiveradiuswasdeterminedusingthegalaxy’sMGEsurfacebright-
+ness model. See Section 3.3 for more details.
+MNRAS000, 1–19 (2025)
+
+===== PAGE 4 =====
+4 Melo-Carneiro et al.
+1
+ 0 1
+x [arcsec]
+1.5
+1.0
+0.5
+0.0
+0.5
+1.0
+1.5
+y [arcsec]
+Observed Vrms
+345 360 375 390[km/s]
+1
+ 0 1
+x [arcsec]
+1.5
+1.0
+0.5
+0.0
+0.5
+1.0
+1.5
+Model
+345 360 375 390[km/s]
+1
+ 0 1
+x [arcsec]
+1.5
+1.0
+0.5
+0.0
+0.5
+1.0
+1.5
+Normalised Residuals
+3.0
+ 1.5
+ 0.0 1.5 3.0
+0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75
+r [arcsec]
+300
+325
+350
+375
+400
+425
+450
+Vrms [km/s]
+Model
+Observations
+Figure2. Stellardynamicsfiducialmodel.Thetoppanelsshowtheobserved 𝑣rms kinematicmap(left),themediankinematicmodel(centre),andthenormalised
+residuals (right). The bottom panel presents the radial kinematic profile (black dots) alongside the median model and its1𝜎 credible region. The black dots in
+the top panels mark the centroids of the Voronoi bins.
+where 𝜶 is the reduced deflection angle, given by:
+𝜶(𝜽) = 1
+𝜋
+∫
+𝑑2𝜽′𝜅(𝜽′) (𝜽 − 𝜽′)
+|𝜽 − 𝜽′ |2 . (2)
+Here, the convergence𝜅 = Σ /Σcrit, represents the surface mass den-
+sity of the lens scaled by the critical surface density,Σcrit, defined
+as:
+Σcrit = 𝑐2
+4𝜋𝐺
+𝐷𝑠
+𝐷𝑙 𝐷𝑙𝑠
+, (3)
+where 𝐷𝑙𝑠, 𝐷𝑙 and 𝐷𝑠 are the angular diameter distances between
+the lens and source, lens and observer, and source and observer,
+respectively.
+Onecannoticethatchangingthesourceredshift,onlytheangular
+diameter distances are changed in the reduced deflection angle, Eq.
+2. For two light rays passing through the same point in the lens
+plane, but originating from different source planes, the relationship
+between their deflection angles can be expressed as a scaling factor,
+𝜂, determined by the ratio:
+𝜶1
+𝜶2
+= 𝐷𝑙𝑠1
+𝐷𝑠1
+𝐷𝑠2
+𝐷𝑙𝑠2
+≡ 𝜂, with 𝑧𝑠2 > 𝑧 𝑠1, (4)
+and where the subscripts𝑠1and 𝑠2refers to the sources s1 and s2.
+Incaseswheremultiplesourcesarealignedalongtheline-of-sight
+(LOS), the gravitational field of the first source lenses the light from
+the second source before it is further deflected by the main-lens.
+To account for these effects, a full multiple-lens-plane formalism is
+required(Schneideretal.1992).Thesingle-planelensequation(Eq.
+1) can then be generalised into the compound lens equation:
+𝜽 𝑘 = 𝜽1 −
+𝑘−1∑︁
+𝑗=1
+𝜂 𝑗 𝑘𝜶 𝑗
+ 𝜽 𝑗
+ , (5)
+where 𝜽 𝑘 is the angular position of a light ray in the𝑘th plane, and
+𝜶 𝑗 is the angular deflection caused by the𝑗th lens acting on rays
+originating from the furthest redshift source plane.The factor𝜂 𝑗 𝑘 is
+the scaling factor as defined in Eq. 4, i.e.,
+𝜂 𝑗 𝑘 =
+𝐷 𝑗 𝑘
+𝐷 𝑘
+𝐷𝑠
+𝐷 𝑗𝑠
+, (6)
+with 𝑠 being the most distant source. In the case of just one lens and
+onesource,Eq.5reducestoEq.1,with 𝜽2 = 𝜷, 𝜽1 = 𝜽,and 𝜂 𝑗 𝑘 = 1.
+Toreconstructtheunlensedsources,thelensmodelmust,inprin-
+ciple,accountfordeflectionsfromboththemaindeflectorandsource
+s1 on s2. However, in the Cosmic Horseshoe system, the deflection
+contribution from s1 to the total deflection angle experienced by s2
+isexpectedtobenegligibleforthreemainreasons:(i)thesourceslie
+MNRAS000, 1–19 (2025)
+
+===== PAGE 5 =====
+UMBH in the Cosmic Horseshoe 5
+atsimilarredshifts,makings1aninefficientlens;(ii)thepositionsof
+theradialimageanditscounter-imageindicatesthats1isnotclosely
+alignedwiths2,andthelensedimagesofs2donotpassnears1;and
+(iii)thelowobservedlensedsurfacebrightnessofs1,combinedwith
+its small size after reconstruction (see Section 4), suggests that it is
+a low-mass galaxy. To further support this assumption, we perform
+a compound lens model including s1’s mass contribution, which
+confirms its negligible impact.
+3.1.2 Lens modelling
+For the lens modelling, we employ the open-source software
+PyAutoLens (Nightingale et al. 2018, 2021), which implements a
+Bayesianversion(Suyuetal.2006)ofthesemi-linearinversion(SLI)
+method (Warren & Dye 2003). For a given set of non-linear param-
+eters (describing the lens mass model and/or the source), the code
+linearly ray-traces image-pixels from the image plane back to the
+source plane, reconstructing the source emission using an adaptive
+mesh grid8.
+In PyAutoLens the native likelihood is that described in Suyu
+et al. (2006, eq. 19) and Dye et al. (2008, eq. 5). This approach
+incorporates the instrumental PSF blurring alongside regularisation
+termsforthepixelisedsourcereconstruction,whichhelpstomitigate
+ill-posed solutions during the linear inversion. We refer the readers
+to these references for more details9.
+To remove over- and under-magnified solutions (Maresca et al.
+2021), we trace two image plane regions of s1 back to the source
+plane,wheretheyareexpectedtooverlap.Iftheseconjugateregions
+failtooverlapafterdelensing,wepenalisethelikelihoodofthissolu-
+tionbyafactorproportionaltothedistancebetweenthetworegionsin
+thesourceplane.Thisapproacheffectivelyremovesunphysicalsolu-
+tions resembling over/under-magnified versions of the data, without
+theneedforparameterfine-tuning.Usingregions,ratherthanpairsof
+conjugate points, also mitigates the risk of selecting incorrect pairs.
+This is particularly relevant in the case of the Cosmic Horseshoe
+system, where the radial image is very faint and embedded within
+the lens light, making it challenging to reliably identify conjugate
+pairsbetweentheradialimageanditscounter-image.Furtherdetails
+of this approach are provided in Appendix A.
+In this work, our primary goal is to constrain the inner mass
+distributionofthemaindeflectorthroughjointmodellingoftheradial
+imageofs1anditscounter-image,alongwiththehostgalaxy’sstellar
+kinematics. As a result, we do not attempt to model the full Einstein
+ring of s2 in our main analysis. Nonetheless, the lensed emission
+from s2 traces the total projected mass distribution on larger scales
+and thus provides valuable complementary constraints on the global
+mass profile of the main deflector.
+To incorporate this information, we first modeled the lensed
+emission from source s2 independently, using an elliptical power-
+law (EPL) mass profile for the main deflector implemented in
+PyAutoLens. This fit yields a mass within the Einstein radius of
+𝑀Ein = 5.46 × 1012 𝑀⊙, corresponding to an effective Einstein ra-
+diusof 𝑅Ein = 5.08′′.ThesevaluesagreewiththosereportedbyDye
+etal.(2008)andSchuldtetal.(2019).Wethenincorporatethisresult
+8 This assumes that the lens light was subtracted already.
+9 Those interested in the technical aspects and implementation
+within PyAutoLens may also check the following notebooks:
+https://github.com/Jammy2211/autolens_workspace/tree/
+main/notebooks/advanced/log_likelihood_function
+into our combined lensing+dynamics analysis by imposing a Gaus-
+sianprioron 𝑀Ein withmean 5.46 × 1012 𝑀⊙ andstandarddeviation
+of 𝜎𝑀Ein = 0.27 × 1012 𝑀⊙. Figure 3 shows the image pixels used
+for the EPL fit, the highest-likelihood model, and the reconstructed
+source. Further details of the EPL fitting procedure are provided in
+Appendix B.
+Totesttheassumptionthatcompoundlensingbythefirstsourceis
+negligible,wealsoranacompoundlensmodelwiththe HercuLens
+code(Galanetal.2022;Enzietal.2025),includingasingularisother-
+malellipsemasscomponentfors1.ForthiscompoundmodeltheEin-
+stein radius of the primary lens never changed by more than 0.6%,
+whichissubstantiallysmallerthanthewidthoftheGaussianwehave
+adoptedforthemassoftheprimarylenswithinthemainHorseshoe.
+While this prior provides an additional constraint on the large-
+scale mass distribution, we test its impact in Section 4 and find that
+excluding it from the likelihood has no effect on the inferred SMBH
+mass.
+3.2 Dynamical modelling
+We described the dynamical state of the system using the Jeans
+formalism for a steady-state axisymmetric configuration (Binney &
+Tremaine2008).Insphericalcoordinates (𝑟, 𝜃, 𝜙 ),andassumingthe
+velocityellipsoidisalignedwiththesphericalcoordinatesystem,the
+Jeans equations are (Cappellari 2020):
+𝜕 (𝜈𝑣 2𝑟 )
+𝜕𝑟 +
+2𝜈𝑣 2𝑟 − 𝜈𝑣 2
+𝜃 − 𝜈𝑣 2
+𝜙
+𝑟 = −𝜈 𝜕Φ
+𝜕𝑟 ,
+𝜕 (𝜈𝑣 2
+𝜃 )
+𝜕𝜃 +
+𝜈𝑣 2
+𝜃 − 𝜈𝑣 2
+𝜙
+tan 𝜃 = −𝜈 𝜕Φ
+𝜕𝜃 ,
+(7)
+where Φisthetotalgravitationalpotential, (𝑣 𝑟 , 𝑣 𝜃 , 𝑣 𝜙)thevelocities
+in spherical coordinates, and𝜈 is the intrinsic luminosity density.
+Defining the stellar anisotropy as
+𝛽star = 1 −
+𝑣 2
+𝜃
+𝑣 2𝑟
+≡ 1 −
+𝜎2
+𝜃
+𝜎2𝑟
+, (8)
+and applying the boundary condition𝜈𝑣 2𝑟 = 0 as 𝑟 → 0, the Jeans
+Eqs. 7 simplify to:
+𝜈𝑣 2
+𝜙 = (1 − 𝛽star)
+
+𝜈𝑣 2𝑟 +
+𝜕
+
+𝜈𝑣 2𝑟
+
+𝜕𝜃 tan 𝜃
+
++ 𝜈 𝜕Φ
+𝜕𝜃 tan 𝜃, (9)
+and
+𝜈𝑣 2𝑟 =
+∫
+𝑟
+∞  𝑟′
+𝑟
+2𝛽star
+Ψ(𝑟′, 𝜃′)𝑑𝑟 ′, (10)
+where
+𝜃′ = arcsin
+" 𝑟′
+𝑟
+ 𝛽star−1
+sin 𝜃
+#
+, and
+Ψ(𝑟, 𝜃 ) = 𝜈
+ 𝜕Φ
+𝜕𝑟 − tan 𝜃
+𝑑𝑟
+𝜕Φ
+𝜕𝜃
+
+.
+(11)
+By solving Eqs. 9 and 10, the velocity moments can be integrated
+along the LOS (see, e.g., Section 3 on Cappellari 2020) to compute
+the observables, which can be compared to the galaxy’s observed
+𝑣rms map.
+MNRAS000, 1–19 (2025)
+
+===== PAGE 6 =====
+6 Melo-Carneiro et al.
+Figure 3.Fits to the Cosmic Horseshoe in the F475W filter. From left to right, the panels display the lens-subtracted image, the highest-likelihood EPL model,
+and the reconstructed source s2 at𝑧 = 2.381. To enhance the efficiency of the lens modelling, we applied a mask around the lensed source and only modelled
+pixels within the masked region, as shown in the central panel. All images are in units of electrons per second. Additional details about the lens modelling are
+provided in Appendix B.
+For this purpose, we employed the Jeans Anisotropic Modelling
+(JAM)method(Cappellari2008,2020),asimplementedinthe Jampy
+software,toperformthestellardynamicalmodelling.Thisapproach
+assumes that the galaxy’s mass distribution can be parameterised as
+a sum of concentric elliptical Gaussians (see Section 3.3).
+For the dynamical modelling, we evaluated the goodness-of-fit
+using a 𝜒2-likelihood, which compares the observed data to the
+model predictions convolved with the MUSE PSF10. This ensures
+that the effects of seeing are properly accounted for in the analysis.
+3.3 Multi-Gaussian Expansion (MGE)
+The stellar light and mass component are modelled using the MGE
+method(Emsellemetal.1994;Cappellari2002),whichparametrises
+thestellarsurfacebrightnessasasumofconcentrictellipticalGaus-
+sians with the same orientation. If𝐼 (𝑥′, 𝑦′) represents the stellar
+surface brightness, its MGE parametrisation is given by
+𝐼 (𝑥′, 𝑦′) =
+𝑁∑︁
+𝑗=1
+𝐿 𝑗
+2𝜋𝜎 2
+𝑗 𝑞′
+𝑗
+exp
+"
+− 1
+2𝜎2
+𝑗
+ 
+𝑥′2 + 𝑦′2
+𝑞′2
+𝑗
+!#
+, (12)
+where 𝑁 is the total number of Gaussians. The𝑗th Gaussian com-
+ponent has a total luminosity𝐿 𝑗, an observed projected axial ratio
+0 ≤ 𝑞′
+𝑗 ≤ 1, and a dispersion𝜎𝑗 along the semi-major axis, aligned
+with 𝑥′-axis.
+The three-dimensional luminosity density𝜈 (and corresponding
+massdensity)isobtainedbydeprojectingEq.12,assuminganincli-
+nation angle𝑖, where𝑖 = 90◦ corresponds to an edge-on orientation.
+The luminosity density𝜈 is then converted into stellar mass density
+using a mass-to-light ratio,Υ★.
+Assuming an oblate axisymmetric model, the stellar mass density
+profile in cylindrical coordinates(𝑅, 𝜙, 𝑧) is given by (Cappellari
+2002):
+𝜌(𝑅, 𝑧) =
+𝑁∑︁
+𝑗=1
+𝑀 𝑗
+(2𝜋)3/2𝜎3
+𝑗 𝑞 𝑗
+exp
+"
+− 1
+2𝜎2
+𝑗
+ 
+𝑅2 + 𝑧2
+𝑞2
+𝑗
+!#
+. (13)
+10 Here assumed to be the observed seeing.
+Here, 𝑀 𝑗 = Υ★𝐿 𝑗 represents the mass of the𝑗th Gaussian compo-
+nent, with 𝐿 𝑗 luminosity and 𝜎𝑗 dispersion. The deprojected axial
+ratio, 𝑞 𝑗, is given by
+𝑞2
+𝑗 =
+𝑞′2
+𝑗 − cos2 𝑖
+sin2 𝑖
+. (14)
+3.4 Mass profile
+We described the mass profile of the main deflector using the MGE
+method, assuming a multicomponent mass model composed by (i)
+a stellar mass component; (ii) a DM halo component; and (iii) an
+additional central mass concentration representing an SMBH.
+The stellar component was derived by deprojecting the observed
+surfacebrightnessprofile,asbyEq.12.TheDMhalofollowsagen-
+eralised Navarro-Frank-White (gNFW; Wyithe et al. 2001) profile,
+𝜌(𝑟) = 𝜌𝑠
+ 𝑟
+𝑟𝑠
+ −𝛾DM 
+1 + 𝑟
+𝑟𝑠
+ 𝛾DM −3
+, (15)
+where 𝜌𝑠 isacharacteristicdensityatthescaleradius 𝑟𝑠,and 𝛾DM is
+theinnerdensityslopethatallowstheprofiletobecuspier( 𝛾DM > 1)
+orcored( 𝛾DM = 0).For 𝛾DM = 1,theprofilereducestotheclassical
+NFW (Navarro et al. 1997). To include this halo contribution in
+the dynamical model, we followed Cappellari et al. (2013) and also
+parametrised the DM component using the MGE method11. Finally,
+the SMBH is modelled as an additional Gaussian with a small scale
+radius (𝜎 = 0.01′′).
+The total mass distribution of the main-lens galaxy is then de-
+scribed by Eq. 13, with the summation over𝑁star + 𝑁DM + 𝑁BH
+Gaussians, where 𝑁 𝑗 represents the number of Gaussians used to
+parameterise each respective mass component.
+Wealsoincorporateanexternallensingsheartoaccountfortheper-
+turbationsofstructuresneartheLOS,besidess1.Theexternalshear
+11 This parametrisation is performed iteratively, starting with 20 Gaussian
+components and adding more if the absolute deviation from the target an-
+alytical profile exceeds 10% in any radial bin. The process continues until
+all deviations fall below the threshold or a maximum of 45 components is
+reached.Basedonourtests,20Gaussiansaretypicallysufficienttoaccurately
+represent NFW or gNFW profiles.
+MNRAS 000, 1–19 (2025)
+
+===== PAGE 7 =====
+UMBH in the Cosmic Horseshoe 7
+field is parameterised by the two elliptical components(𝜖sh
+1 , 𝜖sh
+2 ).
+From these components, the shear magnitude𝛾sh and shear angle
+𝜙sh, measured counter-clockwise from north, are obtained as:
+𝛾sh =
+√︃
+𝜖sh
+1
+2 + 𝜖sh
+2
+2, tan
+
+2𝜙sh
+
+=
+𝜖sh
+2
+𝜖sh
+1
+. (16)
+3.5 Joint modelling
+Since lensing and dynamical data are independent, the joint like-
+lihood is constructed as the product of their individual likelihood
+functions. In addition to these terms, the likelihood includes two
+additional terms: one enforcing consistency with the mass enclosed
+within the Einstein radius, as defined by the lensed image of s2
+(𝑀Ein), and the penalty term defined in Sec. 3.1.2 that punishes
+solutions where s1 is significantly over- or under-magnified.
+Webreakthemodellingprocessintothefollowingstages,soasto
+make it more tractable
+(i) Dynamical Model Fitting: We begin by fitting only the dynamical
+model, but with the addition of the prior term for𝑀Ein and the
+conjugate regions of s1 image. This provides an initial estimate of
+the mass parameters.
+(ii) Source Grid Model of s1: Using the highest-likelihood dynamical
+model, we then sample the pixelised source grid of s1. A Voronoi
+grid is used to allocate more pixels to highly magnified regions
+of the source plane, along with a constant regularisation term. In
+PyAutoLens, this is represented by anOverlay mesh grid, with
+VoronoiNN pixelisation, andConstantSplitregularisation.
+(iii) Mass Parameter Resampling: After obtaining the source grid, we
+resamplethemassparametersusingthefull(lensing+dynamics)like-
+lihood, with s1 reconstructed based on the highest-likelihood model
+fromthepreviouschain.Thisstepimprovestheestimateofthemass
+parameters.
+(iv) Source Plane Resampling: Using the highest-likelihood model of
+thepreviousstage,weresampletheparametersdescribingthesource
+plane pixelisation and regularisation. The source is now recon-
+structed in the source plane using a brightness-adaptive Voronoi
+mesh grid, with Natural Neighbour interpolation (Sibson 1981) and
+a regularisation scheme that adapts the degree of smoothing based
+on the source’s surface brightness. This ensures that brighter re-
+gions are reconstructed at higher resolution, while regions with
+lower SNR are more regularised. InPyAutoLens notation, this cor-
+responds to aKMeans mesh grid, withVoronoiNN pixelisation, and
+AdaptiveBrightnessSplitregularisation.
+(v) Final Resampling of the Lens Macro Model: Finally, using the
+sourcegridthatadaptstothesourcemorphology,wesamplethelens
+macromodeloncemore,keepingthehyper-parametersofthesource
+fixed at the highest-likelihood result of the previous step.
+Throughout all these stages, the same priors are applied across all
+chains for each given lens mass macro model. Further details are
+provided in Appendix C.
+Wesampledfortheposteriordistributionofthenon-linearparam-
+eters using the nested samplerdynesty (Speagle 2020), a Python
+implementation of the nested sampling algorithm (Skilling 2006)
+designed for estimating Bayesian posteriors and evidences. The
+Bayesian evidence,Z, which is the integral of the likelihood times
+the prior over the entire multidimensional parameter space, can be
+used to rank different models for the same dataset, providing an
+objective way to compare models (e.g., Liddle et al. 2006).
+Table 1.MGE components of the HST/F814W image. The columns, from
+left to right, show the surface brightness of each Gaussian component, the
+MGE width, and the observed axis ratio. The MGE units were converted
+from counts to physical values following Trick et al. (2016), accounting for
+theredshiftdimmingeffectandassumingasolarSpaceTelescopemagnitude
+(STmag) of𝑀⊙,F814W = 5.35from Willmer (2018).
+𝐼
+[L⊙/pc2 ]
+𝜎
+[arcsec] 𝑞′
+2416.68 0.0198 0.825
+5883.51 0.1379 0.650
+351.98 0.2026 1.000
+1630.70 0.2161 0.650
+770.51 0.3609 0.673
+425.76 0.5039 1.000
+171.75 1.1015 1.000
+70.03 3.2367 1.000
+The Bayesian evidence naturally incorporates a penalty for in-
+creased model complexity – penalising models with additional free
+parameters-, and provides an objective basis for the principle of Oc-
+cam’srazor.Typically,whencomparingmodelsusingthedifference
+in their log-evidences,Δ ln Z, a difference inΔ ln Z > 1 is consid-
+ered significant,> 2.5 strong, and > 5 is decisive, in favour of the
+model with the highest evidence (e.g. Jeffreys 1961).
+4 RESULTS
+Todisentanglethebaryonicmatter fromtheDMcontributionandto
+reveal the radial arc, a model for the lens light distribution is essen-
+tial. We fitted the lens light in both HST/WFC3 filters, F814W and
+F475W,usingtheMGEmethoddescribedinSection3.3.Duringthe
+fitting process, the radial and tangential lensed images were masked
+to minimise contamination from the source planes. The PSF effects
+wereincorporatedbymodellingthe PSFrmodelasasumofcircular
+Gaussians.TheF814Wlenslightmodelwasusedtotracethestellar
+distribution, as it is a better tracer of the stellar mass budged and
+has less contamination from the radial arc. For the lens modelling,
+we utilised the F475W image after the lens light subtraction, as the
+radial source is better seem in this band. The left panel of Fig. 3
+shows the F475W lens-subtracted image, and Table 1 presents the
+MGE decomposition for the F814W band.
+In the following sections, we discuss our fiducial model and ex-
+plore various mass models to assess potential systematic effects on
+the SMBH mass inference. Table 3 summarises these models and
+their resulting 𝑀BH values. Unless otherwise, all parameter esti-
+mates are derived from the final sampling chain, with reported val-
+ues representing the median of each parameter’s one-dimensional
+marginalised posterior distribution, with uncertainties correspond-
+ing to the16th and 84th percentiles.
+4.1 Fiducial model
+The fiducial model (M1) is composed by a stellar mass component,
+an elliptical NFW12 halo, and a central SMBH.
+Weassumethatthestellarcomponentfollowstheobservedsurface
+brightnessdistributionofthemain-lens,scaledbyaconstant Υ★.The
+DMcomponentisassumedtobeconcentricwiththebaryonicmatter
+andhavethesamealignment.Additionally,thescaleradius 𝑟𝑠 isfixed
+12 This is obtained by taking𝛾DM = 1in Eq. 15.
+MNRAS000, 1–19 (2025)
+
+===== PAGE 8 =====
+8 Melo-Carneiro et al.
+Table2. Inferredmedianand 1𝜎 credibleintervalsfortheparametersofour
+fiducial model.
+Parameter Posterior
+(median with1𝜎 uncertainties)
+𝑖 [◦ ] 65+15
+−11
+𝛽star 0.07+0.06
+−0.10
+Υ★
+
+𝑀⊙ /𝐿⊙
+
+3.13+0.25
+−0.26
+log10
+ 𝜌𝑠
+𝑀⊙pc−3
+
+−2.38+0.01
+−0.01
+𝑞DM 0.98+0.01
+−0.02
+log10 ( 𝑀BH/𝑀⊙ ) 10.56+0.07
+−0.08
+𝜖sh
+1 −0.01+0.01
+−0.01
+𝜖sh
+2 −0.05+0.01
+−0.01
+𝑀Ein
+
+𝑀⊙ /1012
+5.45+0.02
+−0.03
+at 10 times the stellar effective radius, as seen in simulations (e.g.,
+Kravtsov2013)andusedinotherSGLstudies(e.g.,Sonnenfeldetal.
+2015).
+Beyond the mass parameters, the fiducial model includes four
+additional parameters: two elliptical components(𝜖sh
+1 , 𝜖sh
+2 ) that de-
+scribe the external lensing shear; a constant stellar anisotropy pa-
+rameter, 𝛽star; and the inclination angle, 𝑖, of the lens relative
+to the LOS. Therefore, the fiducial model has eight parameters:
+𝑖, 𝛽star, Υ★, log10 𝜌𝑠, 𝑞DM, log10 𝑀BH, 𝜖sh
+1 , 𝜖sh
+2
+
+.
+The median of the one-dimensional marginalised posterior of the
+fiducialmodelandtheiruncertaintiesaresummarisedinTable2.Fig.
+4presentsthetwo-dimensionalposteriordistributionsfortheSMBH
+massand otherparametersthatexhibit significantdegeneracieswith
+it.
+OurfiducialmodelfavoursanSMBHmassof log10 (𝑀BH/𝑀⊙) =
+10.56+0.07
+−0.08, therefore an UMBH. The SMBH mass shows a notable
+degeneracy with the mass-to-light ratio and the DM characteristic
+density, as shown in Fig. 4. However, no significant degeneracy was
+observed between the SMBH mass and the anisotropy parameter.
+Similarly, the Einstein mass within the Cosmic Horseshoe,𝑀Ein,
+does not exhibit a strong degeneracy with𝑀BH - top-right inset plot
+in Fig. 4.
+The median stellar mass-to-light ratio,Υ★ = 3.13+0.25
+−0.26 𝑀⊙/𝐿⊙,
+isinagreementwithvaluesinferredfromstellarpopulationsynthesis
+models of other ETGs (e.g., Conroy & van Dokkum 2012; Gu et al.
+2022). This is a reasonable value for a massive elliptical galaxy: the
+expectedvalueis ∼ 4𝑀⊙/𝐿⊙ forasimplestellarpopulationwithan
+ageof10Gyrandsolarmetallicity(Vazdekisetal.2012;Ricciardelli
+et al. 2012; Verro et al. 2022).
+We recovered a total projected mass within 𝑅Ein of 𝑀Ein =
+5.45+0.02
+−0.03 × 1012 𝑀⊙, consistent with our prior and the EPL model,
+albeit slightly higher than the value reported by Dye et al. (2008)
+and Schuldt et al. (2019). The DM fraction within𝑅𝑒 was found
+to be 𝑓DM (≤ 𝑅𝑒) = 0.72+0.02
+−0.02, which is also higher than Schuldt
+etal.(2019)andSpinielloetal.(2011),thoughitremainsconsistent
+within the1𝜎 range.
+Fig.5showsthehighest-likelihoodlensmodel,alongsidethenor-
+malisedresidualsandthesourceplanereconstructionofsources1at
+𝑧𝑠1 = 1.961.Ourmodelsuccessfullyreproducestheradialarcandits
+counter-image, while reconstructing the source’s surface brightness,
+which exhibits an irregular morphology.
+In Fig. 2, we present the results of the dynamical modelling. The
+top row displays the observed Voronoi-binned kinematic map, the
+2.4
+3.0
+3.6
+[M /L ]
+2.385
+2.370
+log10 (
+s
+M pc 3 )
+0.96
+0.99
+qDM
+0.2
+ 0.0 0.2
+z
+10.4
+10.6
+10.8
+log10 (MBH/M )
+2.4 3.0 3.6
+[M /L ]
+2.385
+ 2.370
+log10 (
+s
+M pc 3 )
+0.96 0.99
+qDM
+10.4 10.6 10.8
+log10 (MBH/M )
+10.4 10.6 10.8
+log10 (MBH/M )
+5.4
+5.5MEin[M /1012]
+Figure 4.Two-dimensional posterior distributions for the parameters of the
+fiducial model. Only parameters that show a strong degeneracy with the
+SMBH mass are displayed. The inset plot on the top-right present the co-
+variance between the SMBH mass and Einstein mass within the Cosmic
+Horseshoe ring. Contours are the1 and 2𝜎 credible intervals, respectively.
+median dynamical model, and the normalised residuals. Although
+themodelexhibitsasmallsquashingofthekinematicmapalongthe
+semi-major axis, the radial profile (bottom panel) indicates a good
+fit to the data. Furthermore, the model was able to reproduce the
+observedtrendfoundinotherBCGs(e.g.,Smithetal.2017b),where
+the kinematicprofile flattens in thecentral regions andrises towards
+the edges.
+4.2 Alternative mass models
+ToassesstherobustnessofourSMBHdetection,wenowinvestigate
+a range of alternative mass models. We first consider perturbations
+to our fiducial model and subsequently explore more flexible con-
+figurations. For each alternative model, we ran the full non-linear
+sampling again, following the steps outlined in Section 3.5. Table 3
+summarises the various mass models considered and their inferred
+SMBH masses, along with their corresponding Bayesian evidence
+relative to the fiducial model.
+Wepresentthemediansanduncertaintiesofallposteriordistribu-
+tions in Appendix D.
+4.2.1 Fiducial model perturbations
+In this section, we investigate how perturbations around the fiducial
+modelimpacttheoutcomes.All 𝑀BHfromthesemodelperturbations
+are summarised in Table 3.
+4.2.1.1 gNFW profile: In our fiducial modelM1, we considered
+an NFW halo for which the inner density slope is fixed. However,
+a steeper DM density profile, in the inner regions, could potentially
+compensatefortheSMBHmass,leadingtoamorecuspyratherthan
+cored DM distribution. To explore this possibility, we considered an
+MNRAS000, 1–19 (2025)
+
+===== PAGE 9 =====
+UMBH in the Cosmic Horseshoe 9
+0.24"-3.4"-7.1"
+3.6"-0.06"-3.7"
+F475W Image
+0.0 0.02 0.04
+0.24"-3.4"-7.1"
+3.6"-0.06"-3.7"
+F475W Normalised Residual
+-3.0 -1.5 0.0 
+ 1.5 3.0
+0.24"-3.4"-7.1"
+3.6"-0.06"-3.7"
+F475W Model
+0.0 0.02 0.04
+Figure 5.Highest-likelihood lens model under the fiducial configuration. Panels, from top left to bottom right, show the observed image, lensed source model,
+normalised residuals, and source reconstruction. All images are in units of electrons per second.
+alternative model (M2) in which the DM halo is parameterised by a
+gNFW profile, allowing the inner density slope,𝛾DM, to vary.
+Fig. 6 shows the two-dimensional posterior distributions for the
+SMBH mass, the DM density slope, and the Einstein mass, with the
+medianvaluesofthefiducialmodelindicatedbybrowndashedlines.
+We can see that𝛾DM exhibits only a modest degeneracy with𝑀BH
+and a marginal degeneracy with the Einstein mass. Furthermore,
+the DM inner density slope was found to be𝛾DM = 1.06+0.05
+−0.07, in
+agreementwithanNFWprofile.TheSMBHmassisconsistentwith
+the fiducial model within2𝜎.
+4.2.1.2 Variable anisotropy profile: Next, we explored the pos-
+sibility of a variable anisotropy profile. As shown by Thomas et al.
+(2014), massive ETGs hosting SMBHs often exhibit a radial varia-
+tionintheanisotropyparameter, 𝛽star.Inparticular,forcoregalaxies,
+stellar motions within the core radius tend to be dominated by tan-
+gential orbits (𝛽star < 0), while outside the core, the orbits become
+more radially dominated (𝛽star > 0).
+To assess the impact of stellar anisotropy on𝑀BH, we introduced
+a stellar anisotropy profile,𝛽star(𝑟), in modelM3. This profile is
+constructedusingtheluminousMGEcomponents(Cappellari2008)
+to define regions with distinct anisotropy parameters. We used the
+Gaussianwidthasaproxyfortheradiusofinfluenceoftheparameter.
+Specifically:
+• Components with𝜎 ≤ 0.1′′ are assigned an anisotropy𝛽0
+star,
+• Components with0.1 < 𝜎 ≤ 1.0′′ are assigned𝛽1
+star, and
+• Components with𝜎 ≥ 1.0′′ are assigned𝛽2
+star.
+Furthermore, we allowed each𝛽star to be independent of each other.
+The rest of the mass model inM3 remains identical to that of the
+fiducial model.
+In Fig. 7, we present the stellar anisotropy profile for modelM3,
+calculated following Cappellari (2008). Unlike other BCGs hosting
+central SMBHs, the anisotropy profile of our system near the galaxy
+centre is qualitatively distinct, showing no dominance of tangential
+orbits (e.g., Thomas et al. 2014; Mehrgan et al. 2019). It is worth
+noting, however, that we cannot resolve the galaxy core (if present),
+where tangential orbits are typically expected. Moreover, the uncer-
+tainties near the centre suggest that𝛽star could also assume negative
+valuesinthisregion.Despitethat,theradialvariationobservedinour
+profileisbroadlyconsistentwithfindingsbyGerhardetal.(2001)in
+elliptical galaxies and with simulations of massive ETGs (Wu et al.
+2014). The SMBH mass derived from this model is slightly lower
+(see Table 3) than the value obtained from the fiducial model, but
+remains within the1𝜎 confidence level.
+MNRAS000, 1–19 (2025)
+
+===== PAGE 10 =====
+10 Melo-Carneiro et al.
+Table 3.Joint fiducial and alternative mass models. The columns, from left to right, are: model name identification, mass model configuration, median of the
+SMBHmassposteriordistribution,thedifferenceinthenaturallogarithmoftheBayesianevidencesrelativetothefiducialmodel( M1),sectionwherethemodel
+is discussed, and the total number of free parameters in the mass model. Superscripts on the left side means the number of free components, i.e.,3 𝛽star implies
+three free anisotropy parameters.
+Model ID Mass model log10 ( 𝑀BH/𝑀⊙ ) Δ ln Z Section 𝑁par
+M1 Υ★ + ell. NFW (𝑟𝑠 = 10𝑅𝑒) +𝛽star + BH 10.56+0.07
+−0.08 0.00 4.1 8
+M2 Υ★ + ell. gNFW (𝑟𝑠 = 10𝑅𝑒) +𝛽star + BH 10.57+0.07
+−0.09 -0.53 4.2.1.1 9
+M3 Υ★ + ell. NFW (𝑟𝑠 = 10𝑅𝑒) +3 𝛽star + BH 10.45+0.11
+−0.14 -3.48 4.2.1.2 10
+M4 3Υ★ + ell. NFW (𝑟𝑠 = 10𝑅𝑒) +𝛽star + BH 10.53+0.10
+−0.11 2.01 4.2.1.3 10
+M5 Υ★ + ell. NFW +𝛽star + BH 10.56+0.08
+−0.08 -0.38 4.2.1.4 9
+M6 Υ★ + ell. NFW (𝑟𝑠 = 10𝑅𝑒) +𝛽star + BH
+w/ cyl. velocity ellipsoids 10.55+0.08
+−0.09 -0.36 4.2.1.5 8
+M7 Υ★ + ell. NFW (𝑟𝑠 = 10𝑅𝑒) +𝛽star + BH
+w/ Delaunay pixelisation 10.55+0.08
+−0.08 -2.27 4.2.1.5 8
+M8 Υ★ + ell. NFW (𝑟𝑠 = 10𝑅𝑒) +𝛽star + BH
+w/o Horseshoe 10.51+0.07
+−0.09 0.38 4.2.1.5 8
+M9 3Υ★ + ell. gNFW (𝑟𝑠 = 10𝑅𝑒) +3 𝛽star + BH 10.50+0.10
+−0.32 8.29 4.2.2 13
+M10 Gaussian Υ★ + sph. NFW (𝑟𝑠 = 10𝑅𝑒) +8 𝛽star + BH 10.55+0.10
+−0.07 1.17 4.2.2 16
+M11 3Υ★ + ell. gNFW w/ main𝑐 ( 𝑀 , 𝑧) + 3 𝛽star + BH 10.15+0.17
+−0.30 2.92 4.2.2 13
+M12 3Υ★ + ell. gNFW w/1𝜎 below 𝑐 ( 𝑀, 𝑧 ) + 3 𝛽star + BH 10.33+0.07
+−0.13 10.73 4.2.2 13
+M13 3Υ★ + ell. gNFW w/1𝜎 above 𝑐 ( 𝑀, 𝑧 ) + 3 𝛽star + BH 10.59+0.04
+−0.10 11.48 4.2.2 13
+M14 Υ★ + ell. NFW (𝑟𝑠 = 10𝑅𝑒) +𝛽star - 16.31 4.3 7
+M15 3Υ★ + ell. NFW (𝑟𝑠 = 10𝑅𝑒) +𝛽star - 11.17 4.3 9
+4.2.1.3 Varying mass-to-light ratio: Another way to account for
+the SMBH mass is by increasing the stellar mass at the galaxy’s
+centre,representinganexcessmasslinkedtoagradientinthestellar
+mass-to-light ratio (e.g., Smith et al. 2017a). To test this hypothesis,
+in modelM4, we allowed the mass-to-light ratio to vary across dif-
+ferentsetsofGaussiancomponents.Asinmodel M3,wedefinedthe
+mass-to-light ratio for each luminous Gaussian component based on
+the Gaussian width, applying the same width constraints. This setup
+resulted in three distinct mass-to-light ratios (Υ0
+★, Υ1
+★, Υ2
+★), which
+wereconstrainedduringthenon-linearsamplingtofollowadecreas-
+ing gradient with radius.
+In Fig. 8, we present the two-dimensional posterior distributions
+for 𝑀BH and the three mass-to-light ratios in modelM4. The top-
+right inset plot compares the mass-to-light ratio profiles ofM1 and
+M4. The gradient profile of modelM4 is shown in black, while the
+constant profile of the fiducial model is shown in brown. Although
+model M4 suggests a radial gradient, the large uncertainties make it
+consistentwiththeconstantvaluerecoveredbythefiducialmodel.By
+thisfigure,itisclearthestrongdegeneracybetweentheseparameters.
+Despitethat,therecoveredvalueof log10 (𝑀BH/𝑀⊙) = 10.53+0.10
+−0.11,
+is consistent with the fiducial model within1𝜎.
+4.2.1.4 DM scale radius: In the fiducial model, we assume a DM
+scale radius fixed at ten times the galaxy’s effective radius, and al-
+though motivated by simulations, such rigid constraints could bias
+the results. To evaluate the impact of this assumption, in modelM5
+we allowed the scale radius to vary. This model recovered a scale
+radius of 𝑟𝑠 = 19.16+2.30
+−0.97 arcsec, interestingly consistent with the
+fiducial model’s assumption (𝑟𝑠 = 21 arcsec). Moreover, the SMBH
+mass (see Table 3) remains consistent with the fiducial value within
+1𝜎.
+4.2.1.5 Modelling choices: There are three other sources of sys-
+tematics linked to the fiducial model. First, the alignment of the
+velocity ellipsoid, which is assumed to align with the spherical co-
+ordinatesystem.Second,thesourceplanepixelisationgrid,whichis
+basedonaVoronoitessellation.Andthird,theuseoftheprioronthe
+total projected mass within the Cosmic Horseshoe Einstein ring.
+Inmodel M6,wetesttheeffectofacylindricalalignment(Cappel-
+lari 2008) for the velocity ellipsoid, while in modelM7, we change
+the source plane pixelisation from a Voronoi to a Delaunay tessel-
+lation. In both cases, we recover SMBH masses that agree with the
+fiducial model within the1𝜎 level.
+Finally, we assess the impact of the prior on the total projected
+mass within the Einstein radius of s2 by removing this constraint
+in modelM8. This model leads tolog10 (𝑀BH/𝑀⊙) = 10.51+0.07
+−0.09,
+showing that the prior has a minimum impact on the determination
+of the SMBH mass.
+4.2.2 More flexible mass models
+We now explore more flexible mass models to assess whether in-
+creased freedom in the mass distribution can account for the high
+SMBH mass inferred in our fiducial model.
+In modelM9 we assumed a gradient mass-to-light ratio, defined
+the same way as in model M4. Additionally, we considered an
+anisotropy profile with three independents anisotropy parameters,
+as in modelM3. We also considered an gNFW profile for the halo
+mass, and as before we kept the scale radius fixed at ten times𝑅𝑒.
+For modelM9, we foundlog10 (𝑀BH/𝑀⊙) = 10.50+0.10
+−0.32. For this
+model, we also recovered a DM inner slope of𝛾DM = 1.08+0.06
+−0.07,
+which still consistent with a NFW profile.
+In modelM10, we introduced a more flexible mass-to-light ratio
+MNRAS000, 1–19 (2025)
+
+===== PAGE 11 =====
+UMBH in the Cosmic Horseshoe 11
+10.4
+10.6
+10.8
+log10 (MBH/M )
+0.90 1.05 1.20
+DM
+5.36
+5.44
+5.52
+MEin[M /1012]
+10.4 10.6 10.8
+log10 (MBH/M )
+5.36 5.44 5.52
+MEin[M /1012]
+Figure6. Two-dimensionalposteriordistributionsfortheparametersofmodel
+M2,whichdiffersfromthefiducialmodelbyassumingagNFWhalo.Onlythe
+innerDMdensityslope,theSMBHmass,andtheEinsteinmassaredisplayed.
+The brown dashed lines shows the posterior median of the fiducial model for
+comparison. Contours are the1 and 2𝜎 credible intervals, respectively.
+0.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5
+R  [arcsec]
+0.3
+0.2
+0.1
+0.0
+0.1
+0.2
+0.3
+0.4
+star(R)
+Re
+M1 (Fiducial Model)
+M3
+Figure 7. M3anisotropy profile. The solid line shows the orbital anisotropy
+profile of the stars, and the grey band represents the1𝜎 credible band. The
+brown point is the constant anisotropy inferred by the fiducial modelM1,
+with its associated error bar. The horizontal dashed line corresponds to the
+isotropic case.
+profile by parametrising it as a Gaussian-modulated function:
+Υ 𝑗
+★ = Υ0
+h
+𝜐0 + ( 1 − 𝜐0)𝑒−0.5( 𝜎 𝑗 𝛿 ) 2i
+, (17)
+where Υ0 is the central stellar mass-to-light ratio,𝛿 is a gradient
+parameterdescribingtheprofile’ssmoothness,𝜐0istheratiobetween
+the central and outermost values, and𝜎𝑗 represents the dispersion
+of the 𝑗th MGE component. This approach enables each luminous
+Gaussian to have its uniqueΥ 𝑗
+★, while maintaining a small number
+1.5
+3.0
+4.5
+1[M /L ]
+1.5
+3.0
+4.5
+2[M /L ]
+10.4
+10.6
+10.8
+log10 (MBH/M )
+4 8
+0[M /L ]
+5.36
+5.44
+5.52
+MEin[M /1012]
+1.5 3.0 4.5
+1[M /L ]
+1.5 3.0 4.5
+2[M /L ]
+10.4 10.6 10.8
+log10 (MBH/M )
+5.36 5.44 5.52
+MEin[M /1012]
+2 4
+R [arcsec]
+2.0
+2.5
+3.0(R) [M /L ]
+Fiducial Model
+Figure8. Two-dimensionalposteriordistributionsfortheparametersofmodel
+M4, which differs from the fiducial model by a gradient mass-to-light ratio.
+Only the three mass-to-light ratios, the SMBH mass, and the Einstein mass
+are displayed. The brown dashed lines shows the posterior median of the
+fiducialmodelforcomparison.Contoursarethe 1and 2𝜎 credibleintervals,
+respectively. The top-right inset shows the projected radial stellar mass-to-
+light profiles for the fiducial model (brown) and modelM4 in black. The
+shaded regions are the1𝜎 level.
+of free parameters (Υ0, 𝜐0, 𝛿) and ensuring a naturally decreasing
+profile.
+Further,model M10incorporatesadditionalfreedombyassigning
+eachluminousGaussianitsownanisotropyparameter.TheDMhalo
+is modelled as a spherical NFW profile with the scale radius fixed
+to the fiducial model. With this configuration, we recover an SMBH
+mass oflog10 (𝑀BH/𝑀⊙) = 10.55+0.10
+−0.07.
+The final set of models explores the impact of adopting the mass-
+concentration relation from Ludlow et al. (2016) to define the DM
+scale radius of a gNFW profile. In these models, the DM character-
+istic density is parameterised by the mass at200 times the critical
+density of the Universe,𝑀DM
+200, which is treated as a free parame-
+ter. Using𝑀DM
+200, the DM scale radius is derived based on the main
+relation from Ludlow et al. (2016), as well as the1𝜎 scatter above
+and below it. The anisotropy profile is set as in modelM3, while
+the mass-to-light ratio is parameterised as in modelM4. For these
+models, we found that:
+• ModelM11assumingthemainmass-concentrationrelation,yields
+an SMBH mass oflog10 (𝑀BH/𝑀⊙) = 10.15+0.17
+−0.30.
+• Model M12 applies the 1𝜎 below the mean relation, resulting in
+log10 (𝑀BH/𝑀⊙) = 10.33+0.07
+−0.13.
+• Model M13 adopts the 1𝜎 above the mean relation, recovering
+log10 (𝑀BH/𝑀⊙) = 10.59+0.04
+−0.10.
+These results, once more, highlight the robustness of the fiducial
+model,astheyagreewiththefiducialmodelwithintheuncertainties.
+MNRAS000, 1–19 (2025)
+
+===== PAGE 12 =====
+12 Melo-Carneiro et al.
+4.3 Is an SMBH necessary?
+So far, we only fit models with a presence of an SMBH, and de-
+spite the many variations of the mass profile, our results are fairly
+consistentbetweeneachother.However,onemightquestionwhether
+an SMBH is necessary to explain the observed data. To answer this
+question, we fitted modelM14 using the same fiducial mass model,
+but without including the SMBH component.
+Fig.9showsthehighest-likelihoodlensmodelintheupperpanels,
+andthedynamicalmodelinthebottompanelsformodel M14.Qual-
+itatively, the fiducial lens model and theM14 lens model are very
+similar. Both are able to reproduce the observed data with similar
+residuals,andtoreconstructthesourcewithclosemorphologies.On
+the other hand, the dynamical model fit the data poorly, especially
+at the central regions, where the SMBH presence is expected to be
+more relevant.
+We can also use the Bayesian evidence of the models to quan-
+titatively assess the need of an SMBH. The third column of Table
+3 summarises the relative Bayesian evidence (Δ ln Z) for all mod-
+els considered in this work, calculated with respect to the fiducial
+model. Comparing the fiducial modelM1 and modelM14, which
+excludestheSMBH,wefindadifferenceintheBayesianevidenceof
+Δ ln Z = 16.31. This corresponds to a statistical preference exceed-
+ing 5𝜎 in favour of the SMBH13.
+We also attempt to fit modelM4 without the inclusion of an
+SMBH (M15) to evaluate whether the central mass-to-light compo-
+nent could replicate the SMBH’s contribution. In this configuration,
+the central Gaussian component is assigned its ownΥ★, potentially
+steepening the stellar mass density profile near the galaxy’s centre
+and compensating for the absence of the SMBH. However, as with
+model M14, this approach failed to reproduce the observed kine-
+matical data accurately. A comparison of the Bayesian evidence for
+thismodelagainstthefiducialmodelyields Δ ln Z = 11.17,strongly
+favouring the fiducial model. This difference corresponds to a5𝜎
+detection of the SMBH.
+4.4 The SMBH mass
+In Table 3, we present the SMBH masses and relative (in respect to
+thefiducialmodel)Bayesianevidencesforallthemassmodelsinthis
+work. The highest Bayesian evidence is associated with modelM3,
+which incorporates a variable anisotropy profile. A comparison be-
+tween the fiducial modelM1 and modelM3 yields Δ ln Z = −3.48,
+corresponding to a0.9𝜎 preference toM3. This evidence difference
+is not decisive, and we do not have sufficient prior knowledge to say
+ifonemodelshouldbeastrophysicallypreferredovertheother.Addi-
+tionally, measuring the anisotropy profile is notoriously challenging
+due to its degeneracies with other parameters and sensitivity to data
+quality,whichiswhyweadoptedthefiducialmodelforitssimplicity
+and robustness.
+Giventhisresult,weadopttheSMBHmassinferredbythefiducial
+model as our final value, and we take the scatter between the alter-
+native mass as an estimate of the systematic uncertainty. Using the
+standard deviation across all SMBH mass measurements, our final
+inference islog10 (𝑀BH/𝑀⊙) = 10.56+0.07
+−0.08 ± ( 0.12)sys at 1𝜎 level,
+confirming the detection of an UMBH in the Cosmic Horseshoe
+main-lens galaxy.
+13 This assumes equal prior model probabilities.
+Table 4.Dynamical models only SMBH results. Values are the median and
+1𝜎 uncertainties. ModelsM7and M8are not applicable.
+Model ID log10 ( 𝑀BH/𝑀⊙ ) Model ID log10 ( 𝑀BH/𝑀⊙ )
+M1 10.72+0.10
+−0.13 M9 10.19+0.50
+−1.69
+M2 10.70+0.13
+−0.17 M10 9.78+0.65
+−1.16
+M3 10.41+0.16
+−0.62 M11 10.30+0.35
+−0.99
+M4 10.69+0.10
+−0.15 M12 10.59+0.19
+−0.69
+M5 10.77+0.08
+−0.11 M13 10.35+0.25
+−1.30
+M6 10.79+0.09
+−0.12
+4.5 The role of the radial image
+Aswesawwhencomparingmodels M1andM14,theabsenceofthe
+SMBH has a relatively modest effect on the lens model, but signif-
+icantly impacts the fit to the kinematical data. This naturally raises
+thequestionoftherolethatlensinginformationplaysindetermining
+the SMBH mass in this case.
+To explore this, we performed dynamical-only modelling for all
+the mass models listed in Table 3, and we show the resulting SMBH
+mass measurements in Table 4.
+Comparing the jointly results with those obtained through
+dynamical-only modelling, we find that the latter, in general, yields
+more massive SMBH estimates. Additionally, the error bars for the
+dynamical-only models are larger, which is expected due to the
+smallernumberofdatapointsinthekinematicmap.Usingthesame
+criteriaasbeforetodeterminethefinalSMBHmass,thedynamical-
+only SMBH mass islog10 (𝑀BH/𝑀⊙) = 10.72+0.10
+−0.13 ± ( 0.30)sys at
+1𝜎 level.
+Thesefindingshighlighttheimportantroleoflensinginformation
+in constraining the SMBH mass, particularly by limiting how mas-
+sivetheSMBHcanbe.Thisisespeciallysignificantinthecontextof
+directSMBHmassdeterminationsinintermediateandhigh-redshift
+systems, where IFU data often suffers from suboptimal spatial res-
+olution and SNR. When the radial image is well-resolved and has
+sufficient SNR, the lensing effect is sufficient to effectively con-
+strain 𝑀BH, as demonstrated by Nightingale et al. (2023). On the
+other hand, when image quality is less favourable — reflecting the
+challenges of observing more distant systems — the integration of
+dynamical and lensing data becomes essential for reliable SMBH
+mass measurements.
+5 DISCUSSION
+5.1 SMBHs and the𝑀BH − 𝜎𝑒 relation
+In Fig. 10, we put the SMBH of the main deflector in the Cosmic
+Horseshoe lens system in the context of the𝑀BH − 𝜎𝑒 relation
+from van den Bosch (2016). The SMBH reported here is among the
+mostmassiveSMBHseverdetected,soisthegalaxythathostsit:the
+measuredeffectivevelocitydispersionof 𝜎𝑒 = 366±6kms −1.Other
+SMBHsexceeding 1010 𝑀⊙ —andthusalsoclassifiedasUMBHs—
+with comparable𝜎𝑒 have been found in Holm 15A (Mehrgan et al.
+2019) and NGC 4889 (McConnell et al. 2011), both of which are
+nearby BCGs. The lensing galaxy of the Cosmic Horseshoe system
+is unique in that it lies at𝑧𝑙 = 0.44 and lacks comparably massive
+companion galaxies — it is possibly the central member of a fossil
+group or loose cluster (Ponman et al. 1994; Dye et al. 2008).
+Consideringthe 𝑀BH−𝜎𝑒relationshipfromvandenBosch(2016),
+MNRAS000, 1–19 (2025)
+
+===== PAGE 13 =====
+UMBH in the Cosmic Horseshoe 13
+0.24"-3.4"-7.1"
+3.6"-0.06"-3.7"
+F475W Model
+0.0 0.02 0.04
+0.24"-3.4"-7.1"
+3.6"-0.06"-3.7"
+Normalised Residual
+-3.0 -1.5 0.0 
+ 1.5 3.0
+1
+ 0 1
+x [arcsec]
+1.5
+1.0
+0.5
+0.0
+0.5
+1.0
+1.5
+Model
+345 360 375 390[km/s]
+1
+ 0 1
+x [arcsec]
+1.5
+1.0
+0.5
+0.0
+0.5
+1.0
+1.5
+Normalised Residuals
+3.0
+ 1.5
+ 0.0 1.5 3.0
+0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75
+r [arcsec]
+300
+325
+350
+375
+400
+425
+450
+Vrms [km/s]
+Model
+Observations
+Figure 9.Model results of mass configurationM14, which differs from the fiducial model by not including an SMBH. The upper panels display, left to right,
+the highest-likelihood lens model, the normalised residuals, and the source reconstruction. The bottom panels are, left to right, the median dynamical model,
+the normalised residuals, and the radial kinematic profile with the median model. All top images are in units of electrons per second.
+the SMBH we measured is an∼1.5𝜎 outlier, appearing overly mas-
+sive for the host galaxy’s effective velocity dispersion. In fact, the
+very high-mass end of the𝑀BH − 𝜎𝑒, predominantly populated by
+BCGs, shows this distinct trend, with SMBH masses systematically
+exceeding the mean relation (Bogdán et al. 2018). This deviation at
+themassiveendlikelyreflectsdistinctevolutionarypathwaysduring
+the formation and assembly of these galaxies.
+One possible scenario involves binary SMBH scouring, a process
+that can occur during the merger of massive galaxies and is more
+likely in the central galaxy of a group or cluster. In this process, the
+binary SMBHs dynamically expel stars from the central regions of
+themergedgalaxy,effectivelyreducingthestellarvelocitydispersion
+whileleavingtheSMBHmasslargelyunchanged(e.g.,Thomasetal.
+2014, 2016; Dullo 2019). Another possible scenario involves AGN
+feedback processes, where powerful outflows and jets may quench
+star formation and alter the galaxy’s central structure, decoupling
+the growth of the SMBH from the host galaxy’s stellar kinematics.
+Strong AGN feedback can also transfer energy to the DM and stel-
+larcomponents,modifyingthecentralsurfacebrightnessprofileand
+mimicking the presence of a core (see discussion in Mehrgan et al.
+2019). A third scenario posits that such UMBHs could be remnants
+of extremely luminous quasars, which experienced rapid SMBH ac-
+cretion episodes in the early Universe (McConnell et al. 2011; Wu
+et al. 2015).
+Thesedistinctmechanismshighlightthecomplexityofgalaxyand
+SMBH co-evolution, particularly for the most massive galaxies, and
+underscore the need for tailored models (and further observations)
+to explain the scatter in the𝑀BH − 𝜎𝑒 relation at its upper end.
+5.2 Other astrophysical implications
+Beyond the determination of the SMBH mass, we can infer other
+physical properties of the main deflector.
+Asdiscussed,whilemodel M4suggestsagradientinthemass-to-
+light ratio, the constant value inferred by the fiducial model remains
+consistent with it within the uncertainties. The fiducial model pre-
+dicts a projected stellar mass fraction within the Einstein radius of
+𝑓★ (≤ 𝑅Ein) = 0.13+0.01
+−0.01, which agrees with the value reported by
+Spiniello et al. (2011), supporting a Salpeter initial mass function.
+Similarly, modelM4 gives 𝑓★ (≤ 𝑅Ein) = 0.11+0.02
+−0.02, also consistent
+with the previous findings. Even under the more flexible assump-
+tions of modelM10, where the mass-to-light ratio is modulated by
+a Gaussian function, the projected stellar mass fraction remains in
+agreement with the fiducial result, at𝑓★ (≤ 𝑅Ein) = 0.10+0.01
+−0.01.
+The inner DM density slope is another noteworthy quantity, as it
+provides critical insights into the interaction between baryons and
+DM (e.g., Gnedin et al. 2004; Petit et al. 2023). Early N-body DM-
+onlysimulationssuggestedthathaloesarewelldescribedbytheNFW
+profile(Navarroetal.1997).However,theinclusionofbaryoniccom-
+ponents, especially feedback processes (e.g., Di Cintio et al. 2014;
+Jackson et al. 2024), has been shown to alter the DM distribution
+within galaxies. These modifications may be linked to longstanding
+MNRAS000, 1–19 (2025)
+
+===== PAGE 14 =====
+14 Melo-Carneiro et al.
+Figure 10.Relationship between 𝑀BH mass and the host effective veloc-
+ity dispersion. The black solid line represents the relation from van den
+Bosch (2016), with dashed and dotted lines showing the1𝜎 and 3𝜎 scat-
+ter, respectively. The UMBH at the centre of the Cosmic Horseshoe’s main
+lens is marked by a star, with a measured mass oflog10 ( 𝑀BH/𝑀⊙ ) =
+10.56+0.07
+−0.08 ± ( 0.12)sys. Other UMBHs that deviate significantly from the
+𝑀BH − 𝜎𝑒 relation are also shown: NGC 4889 and NGC 3842 (McConnell
+et al. 2011), NGC 1601 (Thomas et al. 2016), Holm 15A (Mehrgan et al.
+2019), and Abell 1201 (Nightingale et al. 2023). These systems are typically
+BCGs, and except Abell 1201 at𝑧 = 0.169, they are all nearby systems. The
+CosmicHorseshoe,at 𝑧𝑙 = 0.44,representsoneofthemostmassiveSMBHs
+measured and is an∼1.5𝜎 outlier from the main𝑀BH − 𝜎𝑒 relation.
+issuessuchasthe“cusp-core”problem(seeDelPopolo&LeDelliou
+2021, for a review).
+In our analysis, while the fiducial model assumes an NFW halo,
+weintroducedmoreflexibilityintheinnerDMdensityslopethrough
+modelsM2andM9,bothofwhichassumeagNFWhalo.Formodel
+M2, we obtained an inner DM slope of𝛾DM = 1.06+0.05
+−0.07, and for
+model M9, 𝛾DM = 1.08+0.06
+−0.07. Both results are consistent with an
+NFW-like halo.
+Fig.11comparesthesurfacemassdensityprofilesalongthesemi-
+major axis for these three models. All models exhibit strong agree-
+ment, particularly in the inner regions. The most notable deviation
+occursintheoutermostregionofthestellardensityprofileformodel
+M9,butthisremainswithinthe 1𝜎uncertainty.Thelargeruncertain-
+tiesinmodel M9canbeexplainedbythegreaterfreedominitsmass
+profile, which allows for simultaneous variations in the stellar mass-
+to-light ratio, stellar anisotropy, and DM inner slope. Additionally,
+the galaxy is already DM dominated before reaching the effective
+radius.
+We also employed a gNFW halo in modelsM11-M13, but in-
+corporating a mass-concentration relation to determine the scale
+radius. The recovered inner DM slopes for these models were
+𝛾DM = 1.29+0.05
+−0.04, 𝛾DM = 1.34+0.07
+−0.07, and 𝛾DM = 1.12+0.03
+−0.04 re-
+spectively. These slopes are steeper than an NFW-like profile. How-
+ever, it is important to note that these steeper slopes do not result
+in better fits or higher Bayesian evidences. On the contrary, models
+M11-M13 exhibit lower evidences (see Table 3) compared to the
+108
+109
+1010
+1011
+surface density [M /kpc2]
+M1 (Fiducial Model)
+Stellar
+Dark Matter
+T otal
+Stellar
+Dark Matter
+T otal
+108
+109
+1010
+1011
+surface density [M /kpc2]
+M2
+100 101
+semi-major axis [kpc]
+107
+108
+109
+1010
+1011
+surface density [M /kpc2]
+REin
+Re
+M9
+10 1
+ 100
+[arcsec]
+Figure 11.Surface mass density profile for three models — fiducial (upper)
+and other two that uses an gNFW profile:M2 (middle) andM9 (lower). The
+M2 model resembles the fiducial model but with the DM inner slope as a
+free parameter, whileM9 incorporates both a variable mass-to-light ratio
+and a variable anisotropy profile. Blue lines represent the stellar component,
+purple lines represents the DM component, and in black we show the total
+(DM+stellar+BH) surface density. The shaded regions indicate the1𝜎 cred-
+ibleintervalsforeachcomponent.Thehorizontaldashedlinesrepresentsthe
+effective radius and the Einstein radius.
+othergNFWmodelsthatrecoveredanNFW-likeslope.Additionally,
+when comparing these models with the fiducial model, the fiducial
+model remains slightly preferred.
+This topic was also investigated by Schuldt et al. (2019) in their
+analysis of the Cosmic Horseshoe system. They reached a similar
+conclusion,findingthatallowingmoreflexibilityintheinnerdensity
+MNRAS000, 1–19 (2025)
+
+===== PAGE 15 =====
+UMBH in the Cosmic Horseshoe 15
+slopeoftheDMhalodidnotleadtoasignificantimprovementinthe
+fit. Their results, like ours, suggest that the halo is either NFW-like
+or deviates only slightly from this profile, indicating that baryonic
+processeseitherdonotsignificantlyaltertheinnerDMhalostructure
+in this galaxy, or cancel each other out.
+6 CONCLUSIONS
+Inthiswork,weinvestigatedtheinnerstructureoftheCosmicHorse-
+shoe lensing galaxy by applying a self-consistent model to both
+the radial arc and the stellar dynamics of the main deflector, us-
+ing the mass of the main ring as a prior. Our fiducial model con-
+strained the mass of the SMBH at the centre of the main-lens to
+be log10 (𝑀BH/𝑀⊙) = 10.56+0.07
+−0.08 ± ( 0.12)sys, thus an UMBH. We
+rigorously tested a variety of systematics, including uncertainties in
+the mass profile and modeling choices, but all models consistently
+converged to the fiducial value. A Bayesian model comparison re-
+vealed a5𝜎 detection of the SMBH relative to a model without a its
+contribution, reinforcing our results.
+This mass places the Cosmic Horseshoe∼1.5𝜎 above the𝑀BH −
+𝜎𝑒 relation (Fig. 10), may suggesting a unique evolutionary history
+for the Cosmic Horseshoe, which is likely part of a fossil group at
+𝑧𝑙 = 0.44. The central galaxies of fossil groups, as remnants of early
+galaxymergers,mayfollowdistinctevolutionarypathwayscompared
+to local galaxies, potentially explaining the high SMBH mass.
+Nonetheless, our analysis found that the stellar mass-to-light ratio
+and the DM halo of the system are consistent with previous studies
+of ETGs. The inner DM slope,𝛾DM, remained consistent with the
+NFW profile (𝛾DM = 1) across most models. Even when incorpo-
+rating a mass-concentration relation, which yielded slightly steeper
+DMslopes( 𝛾DM > 1),theimprovementsinfitqualityweremarginal.
+This support the conclusion that the DM halo of the Cosmic Horse-
+shoe is well-described by an NFW-like profile.
+Suchanalysispresentherewasonlypossibleduetotheobservation
+of a radial arc. Radial arcs, like the one studied here, are expected
+to become increasingly common. The Euclid mission is expected to
+discover hundreds of thousands of lenses over the next five years
+(Collett2015;EuclidCollaborationetal.2025),whiletheExtremely
+Large Telescope (ELT) will revolutionize our ability to conduct de-
+tailed dynamical studies. The combination of lensing and dynamics
+will soon provide an unprecedented sample of galaxies, offering ex-
+citinginsightsintostellarpopulations,DMhalos,andSMBHsacross
+a broader redshift range than ever before. This new era of discovery
+promises to deepen our understanding of galaxy evolution and the
+interplay between baryonic and DM components.
+ACKNOWLEDGEMENTS
+We thank the anonymous referee for the detailed feedback. This
+workhasbeensupportedbyConselhoNacionaldeDesenvolvimento
+Científico e Tecnológico (CNPq). This research was supported by
+the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior
+(CAPES) through grant 88887.936450/2024-00. This work has re-
+ceived funding from the European Research Council (ERC) under
+the European Union’s Horizon 2020 research and innovation pro-
+gramme (LensEra: grant agreement No 945536). TEC is funded by
+the Royal Society through a University Research Fellowship. CF
+ackwoledges funding from CNPq and the Rio Grande do Sul Re-
+searchFoundation(FAPERGS)throughgrantsCNPq-315421/2023-
+1 and FAPERGS-21/2551-0002025-3. ACS acknowledges funding
+fromCNPqandFAPERGSthroughgrantsCNPq-314301/2021-6and
+FAPERGS/CAPES 19/2551-0000696-9. The authors acknowledge
+the National Laboratory for Scientific Computing (LNCC/MCTI,
+Brazil)forprovidingHPCresourcesoftheSDumontsupercomputer,
+whichhavecontributedtotheresearchresultsreportedwithinthispa-
+per. URL:http://sdumont.lncc.br. This work made use of the
+CHEcluster,managedandfundedbyCOSMO/CBPF/MCTI,withfi-
+nancialsupportfromFINEPandFAPERJ,andoperatingattheJavier
+MagninComputingCenter/CBPF.Basedonobservationsmadewith
+the NASA/ESA Hubble Space Telescope, and obtained from the
+HubbleLegacyArchive,whichisacollaborationbetweentheSpace
+TelescopeScienceInstitute(STScI/NASA),theSpaceTelescopeEu-
+ropean Coordinating Facility (ST-ECF/ESA) and the Canadian As-
+tronomy Data Centre (CADC/NRC/CSA). Based on observations
+collected at the European Southern Observatory under ESO pro-
+gramme094.B-0771obtainedfromtheESOScienceArchiveFacility
+with DOIhttps://doi.eso.org/10.18727/archive/42.
+SOFTWARE CITATIONS
+This work uses the following software packages:
+Astroalign (Beroiz et al.
+2020)
+Astropy(AstropyCollabora-
+tion et al. 2018)
+CMasher (van der Velden
+2020)
+dynesty(Speagle 2020)
+HercuLens (Galan et al.
+2022; Enzi et al. 2025)
+JAM (Cappellari 2008, 2020)
+Jupyter(Kluyveretal.2016)
+Matplotlib(Hunter 2007)
+MgeFit (Cappellari 2002)
+MPDAF(Piqueras et al. 2017)
+Numba(Lam et al. 2015)
+NumPy(Harris et al. 2020)
+pPXF(Cappellari&Emsellem
+2004)
+PSFr(Birrer et al. 2022)
+PyAutoLens (Nightingale
+et al. 2018)
+SciPy(Virtanen et al. 2020)
+Shapely(Gillies et al. 2024)
+VorBin (Cappellari & Copin
+2003)
+DATA AVAILABILITY
+The HST imaging data are publicly available at the Hub-
+ble Legacy Archive (https://hla.stsci.edu/) under the pro-
+grams 11602 (PI: Sahar Allam) and 12266 (PI: Anna Quider).
+The MUSE data are available at ESO Science Archive Fa-
+cility (http://archive.eso.org/scienceportal/) under the
+program-ID 094.B-0771 (PI: Bethan James). Data relative to
+Fig. 10 are available at https://github.com/remco-space/
+Black-Hole-Mass-compilation. Additional data generated in
+this research will be available upon request to Carlos Melo: car-
+los.melo@ufrgs.br.
+REFERENCES
+Arenou F., et al., 2018, A&A, 616, A17
+Astropy Collaboration et al., 2018, AJ, 156, 123
+Barnabè M., et al., 2012, MNRAS, 423, 1073
+Beifiori A., Sarzi M., Corsini E. M., Dalla Bontà E., Pizzella A., Coccato L.,
+Bertola F., 2009, ApJ, 692, 856
+Belokurov V., et al., 2007, ApJ, 671, L9
+Bentz M. C., Katz S., 2015, PASP, 127, 67
+Beroiz M., Cabral J., Sanchez B., 2020, Astronomy and Computing, 32,
+100384
+MNRAS 000, 1–19 (2025)
+
+===== PAGE 16 =====
+16 Melo-Carneiro et al.
+Binney J., Tremaine S., 2008, Galactic Dynamics: Second Edition
+Birrer S., et al., 2019, MNRAS, 484, 4726
+BirrerS.,BhamreV.,NierenbergA.,YangL.,VandeVyvereL.,2022,PSFr:
+PointSpreadFunctionreconstruction,AstrophysicsSourceCodeLibrary,
+record ascl:2210.005
+Blandford R. D., McKee C. F., 1982, ApJ, 255, 419
+Bogdán Á., Lovisari L., Volonteri M., Dubois Y., 2018, ApJ, 852, 131
+Burkert A., Tremaine S., 2010, ApJ, 720, 516
+Cappellari M., 2002, MNRAS, 333, 400
+Cappellari M., 2008, MNRAS, 390, 71
+Cappellari M., 2020, MNRAS, 494, 4819
+Cappellari M., Copin Y., 2003, MNRAS, 342, 345
+Cappellari M., Emsellem E., 2004, PASP, 116, 138
+Cappellari M., et al., 2013, MNRAS, 432, 1709
+Collett T. E., 2015, ApJ, 811, 20
+Collett T. E., et al., 2018, Science, 360, 1342
+Conroy C., van Dokkum P. G., 2012, ApJ, 760, 71
+Costa-Souza J. H., Riffel R. A., Souza-Oliveira G. L., Zakamska N. L.,
+Bianchin M., Storchi-Bergmann T., Riffel R., 2024, ApJ, 974, 127
+Del Popolo A., Le Delliou M., 2021, Galaxies, 9, 123
+Di Cintio A., Brook C. B., Macciò A. V., Stinson G. S., Knebe A., Dutton
+A. A., Wadsley J., 2014, MNRAS, 437, 415
+Dubois Y., Gavazzi R., Peirani S., Silk J., 2013, MNRAS, 433, 3297
+Dullo B. T., 2019, ApJ, 886, 80
+Dye S., Evans N. W., Belokurov V., Warren S. J., Hewett P., 2008, MNRAS,
+388, 384
+Emsellem E., Monnet G., Bacon R., 1994, A&A, 285, 723
+Emsellem E., et al., 2007, MNRAS, 379, 401
+Enzi W. J. R., Krawczyk C. M., Ballard D. J., Collett T. E., 2025, MNRAS,
+540, 247
+Etherington A., et al., 2022, MNRAS, 517, 3275
+Euclid Collaboration et al., 2025, arXiv e-prints, p. arXiv:2503.15324
+Galan A., Vernardos G., Peel A., Courbin F., Starck J. L., 2022, A&A, 668,
+A155
+Gebhardt K., et al., 2000, ApJ, 543, L5
+Gerhard O. E., 1993, MNRAS, 265, 213
+Gerhard O., Kronawitter A., Saglia R. P., Bender R., 2001, AJ, 121, 1936
+Gillies S., van der Wel C., Van den Bossche J., Taves M. W., Arnott J.,
+WardB.C.,etal.,2024,Shapely,doi:10.5281/zenodo.13345370, https:
+//doi.org/10.5281/zenodo.13345370
+Gnedin O. Y., Kravtsov A. V., Klypin A. A., Nagai D., 2004, ApJ, 616, 16
+Gorenstein M. V., Falco E. E., Shapiro I. I., 1988, ApJ, 327, 693
+GuM.,GreeneJ.E.,NewmanA.B.,KreischC.,QuennevilleM.E.,MaC.-P.,
+Blakeslee J. P., 2022, ApJ, 932, 103
+Gültekin K., et al., 2009, ApJ, 698, 198
+Harris G. L. H., Poole G. B., Harris W. E., 2014, MNRAS, 438, 2117
+Harris C. R., et al., 2020, Nature, 585, 357
+Hlavacek-LarrondoJ.,FabianA.C.,EdgeA.C.,HoganM.T.,2012,MNRAS,
+424, 224
+Hopkins P. F., Somerville R. S., Hernquist L., Cox T. J., Robertson B., Li Y.,
+2006, ApJ, 652, 864
+Hunter J. D., 2007, Computing in Science & Engineering, 9, 90
+Ishibashi W., Fabian A. C., 2012, MNRAS, 427, 2998
+Jackson R. A., et al., 2024, MNRAS, 528, 1655
+James B. L., Auger M., Pettini M., Stark D. P., Belokurov V., Carniani S.,
+2018, MNRAS, 476, 1726
+Jeffreys H., 1961, Theory of Probability, 3rd edn. Oxford Classics series
+(reprinted 1998), Oxford University Press, Oxford, UK
+Kluyver T., et al., 2016, in Loizides F., Scmidt B., eds, Positioning and
+PowerinAcademicPublishing:Players,AgentsandAgendas.IOSPress,
+Netherlands, pp 87–90,https://eprints.soton.ac.uk/403913/
+Knabel S., Mozumdar P., Shajib A. J., Treu T., Cappellari M., Spiniello C.,
+Birrer S., 2025, arXiv e-prints, p. arXiv:2502.16034
+Kormendy J., Ho L. C., 2013, ARA&A, 51, 511
+Kravtsov A. V., 2013, ApJ, 764, L31
+Lam S. K., Pitrou A., Seibert S., 2015, in Proceedings of the Sec-
+ond Workshop on the LLVM Compiler Infrastructure in HPC.
+LLVM ’15. Association for Computing Machinery, New York, NY,
+USA, doi:10.1145/2833157.2833162, https://doi.org/10.1145/
+2833157.2833162
+Laor A., 2001, ApJ, 553, 677
+Liddle A. R., Mukherjee P., Parkinson D., Wang Y., 2006, Phys. Rev. D, 74,
+123506
+Ludlow A. D., Bose S., Angulo R. E., Wang L., Hellwing W. A., Navarro
+J. F., Cole S., Frenk C. S., 2016, MNRAS, 460, 1214
+Magorrian J., et al., 1998, AJ, 115, 2285
+Marasco A., Cresci G., Posti L., Fraternali F., Mannucci F., Marconi A.,
+Belfiore F., Fall S. M., 2021, MNRAS, 507, 4274
+Marconi A., Hunt L. K., 2003, ApJ, 589, L21
+Maresca J., Dye S., Li N., 2021, MNRAS, 503, 2229
+McConnell N. J., Ma C.-P., Gebhardt K., Wright S. A., Murphy J. D., Lauer
+T. R., Graham J. R., Richstone D. O., 2011, Nature, 480, 215
+McConnell N. J., Ma C.-P., Murphy J. D., Gebhardt K., Lauer T. R., Graham
+J. R., Wright S. A., Richstone D. O., 2012, ApJ, 756, 179
+McLure R. J., Dunlop J. S., 2002, MNRAS, 331, 795
+Mehrgan K., Thomas J., Saglia R., Mazzalay X., Erwin P., Bender R., Kluge
+M., Fabricius M., 2019, ApJ, 887, 195
+Melo-CarneiroC.R.,FurlanettoC.,Chies-SantosA.L.,2023,MNRAS,520,
+1613
+Meneghetti M., Bartelmann M., Dahle H., Limousin M., 2013, Space Sci.
+Rev., 177, 31
+Navarro J. F., Frenk C. S., White S. D. M., 1997, ApJ, 490, 493
+Newman A. B., Ellis R. S., Treu T., 2015, ApJ, 814, 26
+Nightingale J. W., Dye S., Massey R. J., 2018, MNRAS, 478, 4738
+Nightingale J., et al., 2021, The Journal of Open Source Software, 6, 2825
+Nightingale J. W., et al., 2023, MNRAS, 521, 3298
+PetitQ.,DucourantC.,SlezakE.,SluseD.,DelchambreL.,2023,A&A,669,
+A132
+PiquerasL.,ConseilS.,ShepherdM.,BaconR.,LeclercqF.,RichardJ.,2017,
+arXiv e-prints, p. arXiv:1710.03554
+Planck Collaboration et al., 2016, A&A, 594, A13
+Ponman T. J., Allan D. J., Jones L. R., Merrifield M., McHardy I. M., Lehto
+H. J., Luppino G. A., 1994, Nature, 369, 462
+Powell M. C., et al., 2022, ApJ, 938, 77
+RicciardelliE.,VazdekisA.,CenarroA.J.,Falcón-BarrosoJ.,2012,MNRAS,
+424, 172
+Riffel R., et al., 2024, MNRAS, 531, 554
+Schneider P., Ehlers J., Falco E. E., 1992, Gravitational Lenses,
+doi:10.1007/978-3-662-03758-4.
+Schuldt S., Chirivì G., Suyu S. H., Yıldırım A., Sonnenfeld A., Halkola A.,
+Lewis G. F., 2019, A&A, 631, A40
+Shen Y., 2013, Bulletin of the Astronomical Society of India, 41, 61
+Sibson R., 1981, in Barnett V., ed., , Interpreting Multivariate Data. John
+Wiley & Sons, New York, pp 21–36
+Silk J., 2013, ApJ, 772, 112
+Skilling J., 2006, Bayesian Analysis, 1, 833
+Smith R. J., Lucey J. R., Edge A. C., 2017a, MNRAS, 467, 836
+Smith R. J., Lucey J. R., Edge A. C., 2017b, MNRAS, 471, 383
+Sonnenfeld A., Treu T., Marshall P. J., Suyu S. H., Gavazzi R., Auger M. W.,
+Nipoti C., 2015, ApJ, 800, 94
+Speagle J. S., 2020, MNRAS, 493, 3132
+Spiniello C., Koopmans L. V. E., Trager S. C., Czoske O., Treu T., 2011,
+MNRAS, 417, 3000
+Suyu S. H., Marshall P. J., Hobson M. P., Blandford R. D., 2006, MNRAS,
+371, 983
+Tessore N., Metcalf R. B., 2015, A&A, 580, A79
+Thomas J., Saglia R. P., Bender R., Erwin P., Fabricius M., 2014, ApJ, 782,
+39
+Thomas J., Ma C.-P., McConnell N. J., Greene J. E., Blakeslee J. P., Janish
+R., 2016, Nature, 532, 340
+Trick W. H., van de Ven G., Dutton A. A., 2016, MNRAS, 463, 3151
+Vazdekis A., Ricciardelli E., Cenarro A. J., Rivero-González J. G., Díaz-
+García L. A., Falcón-Barroso J., 2012, MNRAS, 424, 157
+Verro K., et al., 2022, A&A, 661, A50
+Virtanen P., et al., 2020, Nature Methods, 17, 261–272
+Wang H., et al., 2022, A&A, 668, A162
+MNRAS000, 1–19 (2025)
+
+===== PAGE 17 =====
+UMBH in the Cosmic Horseshoe 17
+Warren S. J., Dye S., 2003, ApJ, 590, 673
+Weilbacher P. M., Streicher O., Palsa R., 2016, MUSE-DRP: MUSE
+Data Reduction Pipeline, Astrophysics Source Code Library, record
+ascl:1610.004
+Willmer C. N. A., 2018, ApJS, 236, 47
+WuX.,GerhardO.,NaabT.,OserL.,Martinez-ValpuestaI.,HilzM.,Chura-
+zov E., Lyskova N., 2014, MNRAS, 438, 2701
+Wu X.-B., et al., 2015, Nature, 518, 512
+Wyithe J. S. B., Turner E. L., Spergel D. N., 2001, ApJ, 555, 504
+van den Bosch R. C. E., 2016, ApJ, 831, 134
+van der Velden E., 2020, The Journal of Open Source Software, 5, 2004
+APPENDIX A: CONJUGATED REGIONS
+Instead of selecting pairs of conjugated points in the lens plane
+that are expected to map to the same location in the source plane,
+we selected pairs of conjugated regions in the lens plane that are
+expected to overlap when mapped back to the source plane. This
+approach is particularly suitable when identifying conjugated points
+isunclear,suchasinthecaseoffaintcounter-images.Themethodis
+implemented as follows:
+First, we select two regions in the image plane that are expected
+to overlap in the source plane after being delensed. For a given lens
+macro model, we ray-trace the pixels from the image plane to the
+source plane. Once mapped to the source plane, we generate convex
+hull polygons for the individual regions, ensuring all image pixels
+from the corresponding regions are contained within the delensed
+regions in the source plane.
+We then assess whether the two source plane regions intersect.
+If they do, the lens macro model is accepted. Otherwise, the log-
+likelihoodispenalisedbyafactorof 108𝑑 𝑝,where 𝑑 𝑝 representsthe
+minimum distance between the two convex hull polygons.
+In Fig. A1, we illustrate the method. The left panel shows a pair
+ofconjugatedregionsintheimageplane,whicharepresumablypart
+of the lensed source. The central panel displays the corresponding
+regions in the source plane after being delensed. In this scenario,
+since the regions do not overlap in the source plane, the lens macro
+model will be penalised. The right panel shows the case where the
+regionsoverlapinthesourceplaneafterbeingdelensed,andthelens
+macro model is accepted.
+We used theConvexHull routine from scipy.spatial to cre-
+ate the convex hull polygons in the source plane, and theshapely
+packagetocalculatetheintersectionanddistancebetweenthesource
+plane polygons.
+APPENDIX B: ELLIPTICAL POWER-LAW (EPL) MASS
+MODEL
+The EPL density profile (Tessore & Metcalf 2015) is widely em-
+ployed in SGL studies to characterise the total mass distribution of
+the lens. The convergence for this profile is expressed as:
+𝜅(𝜉) =
+
+3 − 𝛾lens
+
+1 + 𝑞lens
+ 
+𝜃lens
+Ein
+𝜉
+! 𝛾lens −1
+, (B1)
+where 𝑞lenstheaxisratio(minor-to-majoraxis),and 𝜉 istheelliptical
+coordinate given by𝜉 =
+√︁
+𝑥2 + ( 𝑦/𝑞lens)2. The parameter 𝜃lens
+Ein is
+Einsteinradiusinunitsofarcsec,and 𝛾lens isthemassdensityslope,
+which reduces to a singular isothermal ellipsoid (SIE) for𝛾lens = 2.
+Table B1.Inferred median and1𝜎 credible intervals for the parameters of
+the EPL mass model.
+Parameter Posterior
+(median with1𝜎 uncertainties)
+𝜖1 0.097+0.001
+−0.001
+𝜖2 0.013+0.01
+−0.001
+𝜃lens
+Ein [′′ ] 5.002+0.009
+−0.005
+𝛾lens 1.82+0.02
+−0.01
+𝜖sh
+1 0.026+0.001
+−0.001
+𝜖sh
+2 0.008+0.001
+−0.001
+Additionally, the mass position angle,𝜙lens, measured counter-
+clockwisefromthepositive 𝑥-axis,canbeincorporatedbyintroduc-
+ing the elliptical components:
+𝜖1 = 1 − 𝑞lens
+1 + 𝑞lens sin 2𝜙lens, 𝜖 2 = 1 − 𝑞lens
+1 + 𝑞lens cos 2𝜙lens, (B2)
+whichpreventssamplingissuesrelatedtotheperiodicityof 𝜙lens and
+the discontinuity at𝑞lens = 0 (e.g., Galan et al. 2022; Etherington
+et al. 2022).
+It is essential to distinguish between the Einstein radius𝜃lens
+Ein
+used in this equation and theeffectiveEinstein radius, as defined in
+Meneghetti et al. (2013). Theeffective Einstein radius corresponds
+to the radius of a circle with the same area as the region enclosed by
+the tangential critical curve. The Einstein radius reported in Section
+3.1 refers to the effective definition.
+We modelled the lensed source s2 in the Cosmic Horseshoe us-
+ing the EPL mass profile to describe the total mass distribution of
+the main deflector. We also added an external shear contribution.
+For the source reconstruction, we utilised aKMeans mesh grid with
+VoronoiNN pixelisation and aAdaptiveBrightnessSplit regu-
+larisation,whichadaptsthesmoothingbasedonthesource’ssurface
+brightness. Aditionally, during the lens modelling, we only included
+pixels within the mask encompassing the arc, as illustrated in the
+middle panel of Fig. 3.
+Thehighest-likelihoodimagemodelandsourcereconstructionare
+presentedinFig.3.Themedianvaluesandassociated 1𝜎 uncertain-
+tiesoftheparameter’sone-dimensionalmarginalisedposteriorofthe
+EPL model are summarised in Table B1.
+APPENDIX C: PRIORS
+In Table C1 we describe the parameters and the priors applied in
+the models presented in this work, and discussed in Section 4. We
+adopted the following notation:𝑈 [𝑎, 𝑏] for a uniform prior between
+the lower value𝑎 and the upper value𝑏; 𝑁 [𝑎, 𝑏] for a normal Gaus-
+sian prior with mean𝑎 and dispersion 𝑏; and log10 𝑈 [𝑎, 𝑏] for a
+log-uniform prior between the lower value𝑎 and the upper value𝑏.
+APPENDIX D: ALTERNATIVE MASS MODELS RESULTS
+The median and uncertainties of the parameters in the pertubation
+modelsaresummarisedinTableD1.Unitsandpriorscanbechecked
+in Table C1.
+The median and uncertainties of the parameters in the alternative
+MNRAS000, 1–19 (2025)
+
+===== PAGE 18 =====
+18 Melo-Carneiro et al.
+4 5 6 7 8
+x [arcsec]
+1.5
+1.0
+0.5
+0.0
+0.5
+1.0
+y [arcsec]
+Image Plane
+9.2
+ 9.0
+ 8.8
+ 8.6
+ 8.4
+ 8.2
+x [arcsec]
+3
+2
+1
+0
+1
+2
+3
+4
+y [arcsec]
+Source Plane - Penalised Solution
+dp - Minimum Distance
+10.0
+ 9.8
+ 9.6
+ 9.4
+ 9.2
+x [arcsec]
+3
+2
+1
+0
+1
+2
+3
+y [arcsec]
+Source Plane - Accepted Solution
+Figure A1.Schematic representation of the conjugated region method. The left panel shows the pair of conjugated regions in the image plane. The central
+panel illustrates a scenario where the lens macro model is rejected because the delensed regions do not overlap in the source plane. In this case, the likelihood
+is penalised by a factor proportional to the minimum distance between the polygons, represented by the dashed line. The right panel depicts the case where the
+regions overlap in the source plane after inversion, leading to the acceptance of the lens macro model.
+Table C1.Parameters and priors used in this work. From left to right, the columns are: parameter, prior, parameter description, and physical unit.† Minimum
+value is determined by the minimum axial ratio allowed by Eq. 14.‡ Relative to the mass-to-light ratio profile described by Eq. 17.
+Parameter Prior Description Physical Unit
+𝑖 𝑈 [49.55, 90]† inclination along
+the line-of-sight degree
+𝛽star 𝑈 [ −0.5, 0.5] stellar anisotropy -
+Υ★ 𝑈 [0.1, 10] stellar mass-to-light
+ratio 𝑀⊙ /𝐿⊙
+log10 𝜌𝑠 𝑈 [ −6, 0] dark matter
+characteristic density
+𝜌𝑠
+𝑀⊙pc−3
+𝑀DM
+200 log10 𝑈 [1010, 1015 ] mass at200 times the critical
+density of the Universe 1013 𝑀⊙
+𝑟𝑠 𝑈 [10, 30] dark matter
+scale radius arcsec
+𝑞DM 𝑈 [0.65, 1] dark matter
+axial ratio -
+𝛾DM 𝑈 [0, 2] dark matter
+density slope -
+log10 𝑀BH log10 𝑈 [8, 12] mass of the SMBH 𝑀BH
+𝑀⊙
+Υ0 𝑈 [0.1, 10] central stellar
+mass-to-light ratio‡ 𝑀⊙ /𝐿⊙
+𝜐0 𝑈 [0, 10]
+ratio between the central
+and outermost stellar
+mass-to-light ratio‡
+-
+𝛿 𝑈 [0.1, 1] smoothness of the stellar
+mass-to-light ratio‡ arcsec−1
+𝜖sh
+1 𝑈 [ −0.2, 0.2] elliptical shear component -
+𝜖sh
+2 𝑈 [ −0.2, 0.2] elliptical shear component -
+𝑀Ein 𝑁 [5.46, 0.27] Einstein mass within the tangential ring 1012 𝑀⊙
+MNRAS000, 1–19 (2025)
+
+===== PAGE 19 =====
+UMBH in the Cosmic Horseshoe 19
+Table D1.Posterior median and1𝜎 uncertainties for the parameters in the fiducial and perturbation models. Parameter units are given in Table C1.
+Parameter M1 M2 M3 M4 M5 M6 M7 M8
+𝑖 65+15
+−11 66+14
+−10 61+11
+−7 67+15
+−12 59+5
+−5 64+17
+−11 66+14
+−11 69+13
+−12
+𝛽0
+star 0.07+0.06
+−0.10 −0.14+0.20
+−0.20 0.04+0.34
+−0.34 0.09+0.12
+−0.15 −0.14+0.16
+−0.14 0.03+0.05
+−0.05 −0.01+0.10
+−0.16 −0.17+0.14
+−0.16
+𝛽1
+star - - 0.35+0.10
+−0.18 - - - - -
+𝛽2
+star - - −0.01+0.08
+−0.08 - - - - -
+Υ0
+★ 3.13+0.25
+−0.26 3.24+0.28
+−0.29 3.54+0.27
+−0.35 6.94+1.97
+−1.70 3.35+0.30
+−0.35 3.24+0.29
+−0.33 3.25+0.35
+−0.33 3.65+0.33
+−0.28
+Υ1
+★ - - - 3.09+0.30
+−0.26 - - - -
+Υ2
+★ - - - 2.52+0.49
+−0.65 - - - -
+log10 𝜌𝑠 −2.38+0.01
+−0.01 −2.43+0.05
+−0.04 −2.38+0.01
+−0.01 −2.36+0.01
+−0.01 −2.32+0.04
+−0.07 −2.38+0.01
+−0.01 −2.38+0.01
+−0.01 −2.39+0.01
+−0.01
+𝑟𝑠 - - - - 19.16+2.30
+−0.97 - - -
+𝑞DM 0.98+0.01
+−0.02 0.98+0.01
+−0.01 0.96+0.01
+−0.01 0.96+0.02
+−0.01 0.97+0.02
+−0.02 0.98+0.01
+−0.02 0.97+0.01
+−0.01 0.93+0.05
+−0.06
+𝛾DM - 1.06+0.05
+−0.07 - - - - - -
+log10 𝑀BH 10.56+0.07
+−0.08 10.57+0.07
+−0.09 10.45+0.11
+−0.14 10.53+0.10
+−0.11 10.56+0.08
+−0.08 10.55+0.08
+−0.09 10.55+0.08
+−0.08 10.51+0.07
+−0.09
+𝜖sh
+1 −0.01+0.01
+−0.01 −0.02+0.01
+−0.01 −0.03+0.01
+−0.01 −0.03+0.01
+−0.01 −0.03+0.01
+−0.01 −0.02+0.01
+−0.01 −0.03+0.01
+−0.01 −0.02+0.02
+−0.01
+𝜖sh
+2 −0.05+0.01
+−0.01 −0.05+0.01
+−0.01 −0.06+0.01
+−0.01 −0.05+0.01
+−0.01 −0.06+0.01
+−0.01 −0.05+0.01
+−0.01 −0.05+0.02
+−0.01 −0.05+0.01
+−0.01
+𝑀Ein 5.45+0.02
+−0.03 5.45+0.03
+−0.03 5.45+0.02
+−0.02 5.45+0.02
+−0.02 5.45+0.02
+−0.02 5.46+0.02
+−0.03 5.45+0.02
+−0.02 -
+modelsaresummarisedinTableD2.Unitsandpriorscanbechecked
+in Table C1.
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+MNRAS000, 1–19 (2025)
+
+===== PAGE 20 =====
+20 Melo-Carneiro et al.
+Table D2.Inferred median and1𝜎 credible intervals for the parameters of alternative modelsM9-M13, and for the models without the SMBH contribution
+(M14 andM15). Parameter units are given in Table C1.
+Parameter M9 M10 M11 M12 M13 M14 M15
+𝑖 71+10
+−8 75+10
+−8 75+8
+−10 76+9
+−12 65+20
+−11 79+7
+−9 79+7
+−10
+𝛽0
+star −0.21+0.17
+−0.13 −0.07+0.21
+−0.62 −0.01+0.24
+−0.24 −0.02+0.24
+−0.28 0.08+0.25
+−0.15 0.28+0.04
+−0.04 0.42+0.05
+−0.08
+𝛽1
+star −0.05+0.41
+−0.15 −0.51+0.87
+−0.40 0.42+0.06
+−0.11 0.34+0.09
+−0.10 −0.39+0.22
+−0.07 - -
+𝛽2
+star −0.02+0.16
+−0.17 −0.34+0.36
+−0.39 −0.29+0.19
+−0.14 −0.10+0.24
+−0.23 −0.26+0.16
+−0.11 - -
+𝛽3
+star - 0.12+0.18
+−0.32 - - - - -
+𝛽4
+star - 0.37+0.16
+−0.42 - - - - -
+𝛽5
+star - 0.05+0.21
+−0.27 - - - - -
+𝛽6
+star - −0.43+0.13
+−0.17 - - - - -
+𝛽7
+star - 0.13+0.09
+−0.05 - - - - -
+Υ0
+★ 5.17+1.19
+−0.84 - 5.39+1.81
+−1.33 5.79+2.40
+−1.64 4.51+1.24
+−0.89 4.14+0.08
+−0.07 7.57+1.71
+−2.26
+Υ1
+★ 3.21+0.79
+−0.48 - 3.63+0.32
+−0.35 3.14+0.16
+−0.22 3.16+0.34
+−0.20 - 3.90+0.19
+−0.13
+Υ2
+★ 1.66+1.87
+−0.83 - 2.75+0.61
+−1.04 1.55+0.70
+−0.77 2.69+0.48
+−0.62 - 1.29+0.90
+−0.70
+Υ0 - 4.38+0.57
+−1.31 - - - - -
+𝜐0 - 0.53+0.08
+−0.08 - - - - -
+𝛿 - 7.77+1.72
+−7.20 - - - - -
+log10 𝜌𝑠 −2.41+0.04
+−0.05 −2.38+0.01
+−0.01 - - - −2.40+0.01
+−0.01 −2.36+0.01
+−0.02
+𝑀DM
+200 - - 8.36+1.48
+−1.22 11.1+4.36
+−2.84 9.52+1.28
+−7.92 - -
+𝑞DM 0.97+0.03
+−0.02 - 0.99+0.01
+−0.01 0.99+0.01
+−0.01 0.99+0.01
+−0.01 0.99+0.01
+−0.01 0.98+0.01
+−0.01
+𝑟𝑠 - - 27.96+2.10
+−1.90 44.89+7.14
+−5.51 20.97+1.21
+−0.80 - -
+𝛾DM 1.08+0.06
+−0.07 - 1.29+0.05
+−0.04 1.34+0.07
+−0.07 1.12+0.03
+−0.04 - -
+log10 𝑀BH 10.50+0.10
+−0.32 10.55+0.10
+−0.07 10.15+0.17
+−0.30 10.33+0.07
+−0.13 10.59+0.04
+−0.10 - -
+𝜖sh
+1 −0.03+0.01
+−0.01 0.00+0.01
+−0.01 −0.03+0.01
+−0.01 −0.03+0.01
+−0.01 −0.01+0.01
+−0.01 −0.02+0.02
+−0.01 −0.02+0.01
+−0.01
+𝜖sh
+2 −0.06+0.01
+−0.01 −0.05+0.01
+−0.01 −0.06+0.01
+−0.01 −0.06+0.01
+−0.01 −0.06+0.01
+−0.01 −0.05+0.01
+−0.01 −0.05+0.02
+−0.01
+𝑀Ein 5.45+0.02
+−0.03 5.45+0.02
+−0.02 5.44+0.02
+−0.02 5.43+0.02
+−0.02 5.43+0.02
+−0.02 5.46+0.02
+−0.03 5.45+0.03
+−0.03
+MNRAS000, 1–19 (2025)

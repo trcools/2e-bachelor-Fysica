@@ -33,3 +33,18 @@
 - Zet bij figuren/claims kort: **Auteur et al., jaartal**.
 - Plaats volledige details op je laatste bibliografieslide.
 - Gebruik bij voorkeur peer-reviewed artikels als kern, en combineer meerdere bronnen i.p.v. één paper te samenvatten.
+
+## Bronvariatie (expliciet voor evaluatiecriterium)
+
+| Paper | Type bron | Waar gebruiken in je deck |
+|---|---|---|
+| Belokurov et al. (2007) | Ontdekking + observatie | slides 1, 3, 4 |
+| Dye et al. (2008) | Lensmodellering (parametrisch) | slides 5, 7 |
+| Almeida et al. (2017) | Alternatieve modellering (perturbatief) | slides 5, 7 |
+| Melo-Carneiro et al. (2025) | Lensing + dynamica (SMBH-focus) | slides 6, 7, 9 |
+
+## Korte claim-template op slides
+
+- Feitelijk: "De analyse suggereert ..." (Auteur et al., jaar)
+- Voorzichtig: "Binnen model X en aannames Y volgt ..." (Auteur et al., jaar)
+- Vergelijkend: "Resultaat verschilt t.o.v. ... door modelkeuze" (Auteur et al., jaar)

@@ -1,0 +1,125 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\usepackage[utf8]{inputenc}
+\usepackage[dutch]{babel}
+\usepackage{amsmath,siunitx,graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\newcommand{\blfootnote}[1]{%
+  \begingroup\renewcommand{\thefootnote}{}\footnotetext{#1}\endgroup
+}
+
+\title{A Horseshoe Einstein Ring from Hubble}
+\author{T. Cools}
+\institute{Vak: Sterrenstelsels — Cursus \S9}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Introductie}
+  \begin{columns}
+    \begin{column}{0.55\textwidth}
+      \begin{itemize}
+        \item Object: LRG 3-757 + gelensde achtergrondgalaxie
+        \item Kernvraag: wat leren we over massa en het centrale zwarte gat?
+      \end{itemize}
+      \blfootnote{Cursus: \S9.2.2 / \S9.3.2. Image credit onder figuur.}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \centering
+      \includegraphics[width=\linewidth,keepaspectratio]{Foto's/EINstein-ring-intro.jpg}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Wat is een Einstein ring?}
+  \begin{itemize}
+    \item Massieve voorgrond buigt licht; bijna perfecte uitlijning $\Rightarrow$ ring.
+    \item Einstein-radius meet ingesloten massa: $\theta_E \propto \sqrt{M(<\theta_E)}$.
+  \end{itemize}
+  \vspace{6pt}
+  \centering
+  \includegraphics[width=0.55\linewidth]{Foto's/Einstein_ring_explained_pillars.jpg}
+\end{frame}
+
+\begin{frame}{Formules — korte recap}
+  Lensvergelijking:
+  \[
+    \boldsymbol{\beta}=\boldsymbol{\theta}-\boldsymbol{\alpha}(\boldsymbol{\theta})
+  \]
+  Kritische dichtheid:
+  \[
+    \Sigma_{\mathrm{cr}}=\frac{c^2}{4\pi G}\,\frac{D_s}{D_l D_{ls}}
+  \]
+  Einstein-hoek:
+  \[
+    \theta_E=\sqrt{\frac{4G\,M(\theta_E)}{c^2}\,\frac{D_{ls}}{D_l D_s}}.
+  \]
+  (Leg de symbolen kort mondeling uit.)
+\end{frame}
+
+\begin{frame}{Data \& instrumenten}
+  \begin{itemize}
+    \item Ontdekt in SDSS; hoge-res follow-up: HST (imaging), MUSE (kinematica).
+    \item Belangrijk: resolutie + kinematica reduceren systematiek.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Key numbers (kort)}
+  \begin{itemize}
+    \item Massa binnen Einstein-radius: $M_{Ein}\sim5\times10^{12}\,M_\odot$ (Dye~2008).
+    \item Best-fit slope dicht bij isotherm: $\rho(r)\propto r^{-1.96}$.
+    \item SMBH: $\log_{10}(M_{BH}/M_\odot)=10.56^{+0.07}_{-0.08}\pm0.12_{\rm sys}$ ($\sim3.6\times10^{10}\,M_\odot$).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Lensmodellen — wat vergelijken we?}
+  \begin{itemize}
+    \item Parametrisch: SIE, elliptical power-law, NFW.
+    \item Niet-parametrisch / perturbatief: Alard (2017) alternatief.
+    \item Let op: aannames (anisotropie, mass-to-light gradient, externe shear).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Onzekerheden \& degeneraties}
+  \begin{itemize}
+    \item Profielkeuze en anisotropie domineren systematiek.
+    \item Externe shear en omgeving kunnen $M_{BH}$ beïnvloeden.
+    \item Oplossing: hogere-res centrale kinematica + meerdere modelklassen.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Eigen onderzoeksvoorstel (kort)}
+  \begin{itemize}
+    \item Vraag: welke modelkeuzes domineren de fout op $M_{BH}$?
+    \item Data: VLT/MUSE (hogere-res), diepe HST/JWST-imaging.
+    \item Verwachte winst: significant kleinere systematische onzekerheid.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusie}
+  \begin{itemize}
+    \item Cosmic Horseshoe = uitstekende case voor lensing-massa metingen.
+    \item Recente analyses suggereren extreem massief SMBH, maar: model-afhankelijk.
+    \item Toon cijfers altijd met statistische \& systematische fouten.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Bibliografie}
+  \begin{thebibliography}{9}
+    \bibitem{belokurov2007} Belokurov et al. 2007, ApJ.
+    \bibitem{dye2008} Dye et al. 2008, MNRAS.
+    \bibitem{almeida2017} Almeida et al. 2017, MNRAS.
+    \bibitem{melocarneiro2025} Melo-Carneiro et al. 2025, MNRAS.
+  \end{thebibliography}
+\end{frame}
+
+\end{document}

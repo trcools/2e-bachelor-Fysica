@@ -1,0 +1,635 @@
+
+
+===== PAGE 1 =====
+arXiv:1607.01370v1  [astro-ph.CO]  5 Jul 2016
+MNRAS 000, 1–?? (2016) Preprint 5 October 2018 Compiled using MNRAS L ATEX style ﬁle v3.0
+Reconstructing the cosmic Horseshoe gravitational
+lens using the singular perturbative approach.
+Alard, C.,
+IAP, 98bis Boulevard Arago, Paris
+July 5th 2016
+ABSTRACT
+The cosmic horseshoe gravitational lens is analyzed using the pertu rbative
+approach. The two ﬁrst order perturbative ﬁelds are expanded in Fourier
+series. The source is reconstructed using a ﬁne adaptive grid. The expansion
+of the ﬁelds at order 2 produces a higher value of the chi-square. E xpanding at
+order 3 provides a very signiﬁcant improvement, while order 4 does n ot bring
+a signiﬁcant improvement over order 3. The presence of the order 3 terms is
+not a consequence of limiting the perturbative expansion to the ﬁrs t order.
+The amplitude and signs of the third order terms are recovered by in cluding
+the contribution of the other group members. This analysis demons trates that
+the ﬁne details of the potential of the lens could be recovered indep endently
+of any assumptions by using the perturbative approach.
+Key words: gravitational lensing: strong - methods: numerical
+1 INTRODUCTION
+Strong gravitational lensing oﬀers a unique opportunity to probe t he dark halos potential
+in the vicinity of the Einstein circle. The lensing potential relates direc tly to the projected
+matter distribution and as a consequence is a direct measurement o f the matter distribution
+in the lens. However deriving a precise relation between the observa tions of a gravitational
+lens and the lensing potential is generally diﬃcult. There are basically t wo main problems.
+First the lens may show some degree of complexity and may not be pro perly described
+with simple analytical models. And secondly some degree of degenera cy in the modeling of
+the lens is generally present see for instance,
+Saha & Williams (2006), Wucknitz (2002),
+c⃝ 2016 The Authors
+
+===== PAGE 2 =====
+2 Alard, C.
+Chiba & Takahashi (2002). A solution to the ﬁrst point is to use a non parametric method
+for the reconstruction of the potential. For instance potential r econstruction on a grid oﬀers a
+general model free solution, but the obvious drawback is a dramat ic increase in the number of
+parameters, which in turn aggravates the degeneracy issue. The only solution is to developp
+a method that oﬀers a direct relation between the arc morphology a nd the potential. This
+is precisely what the perturbative approach ( Alard (2007)) achieves. At ﬁrst order the
+potential is expanded using two angular functionals, the ﬁelds f1 and d f0
+dθ . Each of these
+ﬁelds relates directly to the arc morphology, f1 is related to the mean radial position of
+the arc, while d f0
+dθ is related to width of the arc in the radial dimension. This direct relatio n
+oﬀers a simple solution to the degeneracy problem. Another aspect is that the reconstruction
+of the potential is general and does not require any speciﬁc assum ptions. Some speciﬁc
+examples of reconstruction of arcs systems using the perturbat ive approach are presented in
+Alard (2009) and Alard (2010). In particular the reconstruction the lens in Alard (2009)
+shows that very complex systems can be handled in this approach. T he application of the
+perturbative method to the cosmic horseshoe gravitational lens o ﬀers the possibility to push
+the reconstruction to a high level of accuracy. The HST data availa ble for this lens oﬀer an
+excellent resolution and a wealth of details allowing to probe the ﬁne de tails of the halo dark
+matter distribution. Let’s recall the basic equations of the order o ne theory by starting from
+the lens equation, Eq. ( 1).
+rS = r − ∇φ (1)
+Using the equations relating the ﬁelds f0 and f1 to the potential,
+
+
+φ (r,θ ) = φ0(r) +εψ (r,θ )
+ψ(r,θ ) = f0(θ ) + f1(θ )(r − 1)
+(2)
+The lens equation Eq. ( 1) is expanded to order one in ε ( Alard (2007)):
+rS = (κ2 dr − f1)ur − d f0
+dθ uθ (3)
+With:
+f1 =
+[ dψ
+dr
+]
+r=1
+; f0 = ψ(1,θ ) ; κ2 = 1 − d2φ0
+dr2 (4)
+It is useful to introduce the impact parameter of the source, nam ely rS = ˜rS + r0 leading to:
+˜rS =
+(
+κ2 dr − ˜f1
+)
+ur − d ˜f0
+dθ uθ (5)
+With:
+˜fi = fi + x0 cos(θ ) +y0 sin(θ ) ,i = 0,1
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 3 =====
+Cosmic Horseshoe gravitational lens 3
+And the impact paremeter vector r0
+r0 = (x0,y0)
+2 BUILDING THE PERTURBATIVE SOLUTION.
+In the perturbative approach (Alard 2007, Alard 2010, 2011) the construction of the solution
+requires the evaluation of the two ﬁelds f1(
+θ ) and d f0
+dθ . These two quantities are functions of
+the angular variable in the lens plane θ . We recall that these two ﬁelds have simple inter-
+pretations for a strong gravitational lens. For a circular source w ith radius r0 the positions
+of the images contours are given by Alard (2007):
+κ2dr = f1 ±
+√
+r2
+0 − d f0
+dθ
+2
+(6)
+For convenience the Einstein radius is ﬁxed to unity by using a proper choice of radial units,
+as a consequence, r = 1 + εdr with ε ≪ 1. It is straightforward to deduce from Eq. 6 that
+f1 corresponds to the mean position of the two image contours and th at image are formed
+in the angluar domain deﬁned by: d f0
+dθ < r0. It is also clear from Eq. 6 that the maximum
+image width is obtained when d f0
+dθ = 0.
+2.1 Initial approximation
+The circular source model is used as a ﬁrst guess in order to estimat e the parameters of
+a piecewise polynomial model of the ﬁelds . The reconstruction of f1 is direct, while d f0
+dθ is
+estimated using the following constraints: the ﬁeld is near zero in the central region of each
+images, and the the ﬁeld is above a threshold value in the dark areas. In this particular
+lens the nature of the ﬁrst guess is simpliﬁed since the structure of the images reveal a fold
+conﬁguration. The initial estimation of f1 is done by taking the mean position of the bright
+spots in the image. An estimation of f1 can also be done by estimating the closest fold
+conﬁguration. These two estimates gives quite similar results and ar e both appropriate as
+a ﬁrst guess. A similar approach is used for d f0
+dθ one can reconstruct the ﬁeld by estimating
+its local behavior near the nodes and make an interpolation with the c onstraint that the
+ﬁeld must be above a certain threshold in the dark areas. As for f1 taking the closest fold
+conﬁguration give quite similar results. This initial guess is consistent with the topological
+properties of the solution and is an approximate description of its ge neral shape. To reach
+the optimal level of accuracy this solution needs to be reﬁned nume rically. The numerical
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 4 =====
+4 Alard, C.
+reﬁnement could be performed directly on the polynomial piecewise e lements, but since the
+Fourier expansion of the ﬁelds is related to the multipole expansion of the potential, it is
+more eﬃcient to expand the ﬁelds using Fourier series.
+
+
+
+
+
+
+f1 = ∑
+n
+α1,n cos(nθ ) +β1,n sin(nθ )
+d f0
+dθ = ∑
+n
+α0,n cos(nθ ) +β0,n sin(nθ )
+(7)
+2.2 Source and Image reconstruction.
+The ﬁrst step in the construction of the reﬁned numerical model is to make an initial es-
+timation of the Fourier series coeﬃcients. This is easily accomplished b y computing the
+scalar product of the Fourier basis function with the piecewise polyn omial model. Once the
+Fourier coeﬃcient are initiated the optimal value of the coeﬃcient is c omputed by minimiz-
+ing the chi-square between the re-constructed image of the sour ce and the HST data. The
+reconstruction of the source and its associated images are comple x processes which we now
+describe in details. The reconstruction of the source and of its ass ociated images requires
+the use of ﬁner grids. A ﬁner grid in the image plane is formed by sub-d ividing the pixels.
+The typical resolution is of a factor of 10 in each direction. The value s of the image on the
+sub-grid is obtained by B-spline interpolation. This sub-grid in the lens plane is transported
+in the source plane using the perturbative lens equation at order on e (Eq.
+3). The size of the
+grid in the source plane is adapted to the resolution of the grid in the le ns plane. The grid
+size in the source plane has to be small enough to allow the reconstru ction of all the image
+details. Basically two image structures should not merge in the same p ixel. Experiment are
+made to obtain a suitable minimal value of the grid size. In some areas t he grid size has
+to be adapted by extending the size in order to have at least a few po ints from the image
+plane falling into the bin in the source plane. When several values fall in the same cell of the
+source plane (which is by deﬁnition the case when several images are formed) the diﬀerent
+values are averaged. Once a source model is constructed the cor responding image is formed
+by estimating the values of the pixels on the ﬁner grid in the lens plane. The ﬁner grid image
+is integrated to produce an image at the initial resolution.
+2.3 Image deconvolution.
+The source and image reconstruction procedure we described igno res the problem of the
+convolution of the image with the PSF. A numerical model of the PSF is reconstructed using
+MNRAS 000,
+1–?? (2016)
+
+===== PAGE 5 =====
+Cosmic Horseshoe gravitational lens 5
+the Tiny Tim software ( Krist etal. (2011)). To correct for the eﬀect of the PSF convolution
+on the image an iterative procedure is implemented. The diﬀerence ima ge between the actual
+HST image and the image of the source is sent back to the source plan e. This correction
+is added to the initial source reconstruction and a new image is compu ted. Once again the
+diﬀerence with the actual image is taken and the procedure is iterat ed. The convergence of
+this method is fast and after a few iterations a convergence is achie ved. Too many steps of
+this iterative add only noise and as a consequence it is optimal to stop the iteration after a
+proper number of steps. Experiments shows that the optimal num ber of steps is between 5
+and 10. Finally a number of 8 steps was adopted, however changing t his number and taking
+any number between 5 an 10 does not produce signiﬁcant changes.
+2.4 Accurate numerical estimation of the ﬁelds.
+The numerical ﬁt of the data is performed on a selected area. First the area occupied by
+the arc is identiﬁed by applying a threshold and then extending the ar ea by performing a
+convolution with the pixels above the threshold. This convolution pro cedure ensure that the
+outliers of the arc are properly included. Additionally a number of con trol points (one third
+of the former points) are included by randomly selecting points in pur e noise area in a large
+ring around the arc. These control points are used to identify pos sible additional images
+that could be formed by the model in dark areas. These additional p oints are also useful to
+control the statistics of errors in pure noise areas during the num erical minimization process.
+In the ﬁrst step of the numerical reﬁnement the ﬁelds are modeled by order 2 Fourier series.
+Given a model of the ﬁelds a reconstruction of the source and image s of the source are
+performed using the method described is Sec.
+2.2 and 2.3. Using the diﬀerence between
+the reconstructed images and the actual images a weighted chi-sq uare is estimated. The
+weights applied in the chi-square estimation are computed using the n oise expectation (see
+Sec. 2.5). The reconstruction is applied ﬁrst to the blue (F475W) HST WFC3 c alibrated
+image (see Fig. 1). The main asset of the blue band is that the residual contribution o f
+the central deﬂector to the ﬂux of the arc is very faint. Despite t he weakness of the out-
+layers from the main galaxy, a Sersic model was ﬁtted to the deﬂect or and the contribution
+around the arc was subtracted. The typical amplitude of the subt raction is at the noise level.
+The reﬁnement process is performed on this processed image of th e arc by using the Simplex
+method Nelder & Mead (1965). The approximate guess for the coeﬃcients is used to initialize
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 6 =====
+6 Alard, C.
+the Simplex, and start the minimization process of the chi-square. I t is important to note
+that the result of this minimization process does not produce signiﬁc antly diﬀerent results
+if the initial guess is changed. Experiments were conducted by chan ging the parameters of
+the initial guess by an amplitude which is of the order of the reﬁnemen t. The results of
+these experiments indicates a general convergence to the same s olution. The stability of the
+solution is due to the perturbative approach. This method provides a fundamental reduction
+of the degeneracy problem encountered in the modeling of gravitat ional lenses. The result of
+the Simplex minimization are presented in Fig. 2. In the next step the expansion in Fourier
+series of the numerical solution is extended to higher order. First it is extended to order 3,
+the initial guess is the second order solution with zeros for the third order terms. Similarly
+the solution is extended to order 4. An important point is the discuss ion of the noise and
+statistical properties of the solutions at diﬀerent orders.
+2.5 Noise and statistical properties of the solutions.
+The statistical expectation of the noise in the image
+σ0 corresponds to the photon noise
+derived from the photon counts. Using this statistical expectatio n for the noise the chi-
+square and χ2/dof are estimated for the diﬀerent models (see Table 1). The corresponding
+histogram of the normalized deviations for each model is presented in Fig. 4. For comparison
+the χ2/dof for the two other ﬁlters available in the HST archive are also pre sented in Table
+1. There is a very marked diﬀerence between the χ2/dof obtained at order 2 and order 3.
+The gain in χ2 obtained by going to order 4 is much less spectacular. This suggests that
+the order 3 terms are important and signiﬁcant. To test this hypot hesis it is essential to
+estimate the amplitude of the noise ﬂuctuation for the Fourier coeﬃ cients. The least-square
+minimization is non-linear, but can always be linearized near the optimal solution. Let’s
+deﬁne the optimal solution
+P = [α0,i,β0,i,α1,i,β1,i]{i=1..4}
+We linearize the lens model M(P) near P:
+M(P + dP) = M(P) +∑
+n
+∂M
+∂ pn
+d pn (8)
+Where pn and d pn are the components of the vectors P and dP respectively. The model
+in Eq. ( 8) is formally equivalent to a linear least-square with basis vectors, ∂M
+∂ pn
+. As a
+consequence the errors on the parameters are directly the diago nal elements of the inverse
+of the corresponding normal least-square matrix. Explicitly, the n ormal least-square matrix
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 7 =====
+Cosmic Horseshoe gravitational lens 7
+elements are,
+Ai j = ∑
+Image
+1
+σ 2
+0
+∂M
+∂ pi
+∂M
+∂ p j
+Deﬁning C = A− 1 the variance associated with parameter pn is, σn = Cnn. A numerical es-
+timation of the matrix elements Ai j shows that the associated variance elements σn are
+almost constant and equal to 0.510− 3 in units of the Einstein radius RE. The calculation of
+the variance of the Fourier components allows a direct estimation of the signiﬁcance of the
+components at diﬀerent orders (see Fig. 5). It is clear in Fig. 5 that components of order
+n ≥ 3 are well above the 4σ limit. This is a direct conﬁrmation that the order 3 components
+are very signiﬁcant and essential to the modeling of this lens. The am plitude of the order
+4 component is not signiﬁcant for the d f0
+dθ ﬁeld and is only marginally signiﬁcant for the f1
+ﬁeld.
+3 ANALYZING THE SOLUTION.
+The structure of the fourth order solution is now explored in details . The reconstruction for
+the F475w ﬁlter in the lens plane is presented in Fig.
+6. A comparison of the ﬁne details of
+the solution and the original HST image in the F475W band is presented in Fig. 7. A general
+appreciation of the quality of the reconstruction is also provided by the diﬀerence image with
+the original image (see Fig. 8). The reconstruction in the source plane is presented in Fig.
+9. For a more detailed view of the source see Fig. 10.
+3.1 Eﬀect of degeneracy induced by higher order perturbativ e terms.
+The ﬁrst order perturbative expansion neglect the eﬀect of highe r order terms in the expan-
+sion. For most gravitational arcs it is possible to reduce the higher o rder expansion to a ﬁrst
+order expansion. Which means that some small degeneracy problem is present. The ampli-
+tude of the correction due to higher order terms is evaluated using realistic (NFW) models
+for the halo of the deﬂector. Let’s consider a purely elliptical NFW ha lo which by deﬁnition
+has no third order distortion of its isophotes. We consider the pert urbative expansion of
+this elliptical NFW model to perturbative order 2. The forced reduc tion of this expansion
+to order 1 introduces additional degenerate terms in the expansio n. Could these terms be
+responsible for the order 3 terms that we observe in the lens model ? The expansion at order
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 8 =====
+8 Alard, C.
+2 reads ( Alard (2016)):
+rS =
+(
+κ2 dr − κ3
+dr2
+2 − ˜f1 − f2dr
+)
+ur −
+( d ˜f0
+dθ +
+( d f1
+dθ − d f0
+dθ
+)
+dr
+)
+uθ (9)
+κ3 =
+[ d3ψ0
+dr3
+]
+r=1
+And
+f2 = ∂ 2ψ
+∂r2
+Assuming a thin arc model,
+dr =
+˜f1
+κ2
++ εdr2 (10)
+The arc presents in this lens present a thickness in the radial direct ion which is small with
+respect to the general displacement ﬁelds. Thus Eq. 10 is certainly appropriate for an
+evaluation of the amplitude of the third order terms. Introducing E q. 10 in Eq. 9 leads to
+( Alard (2016)):
+˜rS =
+(
+κ2dr2 − κ3
+˜f 2
+1
+2κ2
+2
+−
+˜f1 f2
+κ2
+)
+ur −
+( d ˜f0
+dθ +
+( d f1
+dθ − d f0
+dθ
+) ˜f1
+κ2
+)
+uθ (11)
+Eq. 11 is equivalent to Eq. 5 provided that the following subsitutions are performed:
+
+
+
+
+
+
+
+
+˜f1 → ˜f1 +
+κ3
+˜f 2
+1
+2κ2
+2
++
+˜f1 f2
+κ2
+d ˜f0
+dθ → d ˜f0
+dθ +
+( d f1
+dθ − d f0
+dθ
+) ˜f1
+κ2
+(12)
+To evaluate the amplitude of the additional terms in Eq. 12 we use the NFW halo model.
+The potential for a NFW halo reads ( Meneghetti etal. (2003)):
+
+
+
+
+
+φ (u) = 1
+1 − ln(2)g(u)
+u =
+√
+((1 − η)x2 + (1 + η)y2)
+(13)
+The parameter η is related to the ellipticity of the halo. The potential normalization implie s
+that the associated Einstein radius is equal to the typical halo size, which is a common
+situation for gravitational lenses. The deﬁnition of the function g(u) reads:
+g(u) = 1
+2 ln
+( u
+2
+) 2
++
+
+
+
+
+
+
+
+
+
+
+
+2arctan2
+( √
+u − 1
+u + 1
+)
+u ≥ 1
+− 2arctanh2
+( √
+1 − u
+u + 1
+)
+u < 1
+(14)
+Using the NFW potential (see Meneghetti etal. (2003) ) deﬁned in Eq. 13 the functionals,
+f0, f1, and f2 are calculated. The result is introduced in Eq. 12 to evaluate the correction due
+to the order 2 terms. For the f1 ﬁeld the correction is respectively ≃ 0.2x0η and ≃ 0.2y0η
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 9 =====
+Cosmic Horseshoe gravitational lens 9
+for the cos(3θ ) and sin(3θ ) terms. Where ( x0,y0) are the source impact parameters.The
+correction for f0 is of smaller amplitude. For this lens, x0 ≃ 0.03, y0 ≃ 0.13, and η ≃ 0.07.
+As a consequence the largest third order term is only of ≃ 2 10− 3 which is similar to the 4σ
+noise limit. Thus it is clear from this analysis that the observed third or der terms in this
+lens are not the consequence of neglected higher order terms in th e perturbative expansion.
+4 INTERPRETATION OF THE LENS MODEL.
+The reconstruction of the lens is directly related to the geometry o f the potential. The
+potential iso-contours equation dr = − f0 (
+Alard (2009)) is represented in Fig. 11. By relating
+the perturbative expansion to the multipole expansion ( Alard (2009)) one can reconstruct
+the potential generated by the distribution of matter inside the Ein stein circle (inner) and
+outside the Einstein circle (outer). The iso-countour for the oute r potential represented in
+Fig. 11 is close to the potential iso-contour. As a consequence most of th e potential is
+generated outside the Einstein circle, and even more for the third o rder terms where more
+than 90 % of the potential originates in the outer distribution. The o uter distribution includes
+a number of a galaxies belonging to a small group of galaxies where the central deﬂector is
+the main element ( Belokurov etal. (2007), Spiniello (2011), Agnello etal. (2013)). Thus it
+is interesting to evaluate the perturbating contribution of the acc ompanying galaxies in the
+group. The ﬁrst step is to identify the galaxies around the lens. A ge neral search for galaxies
+in a radius corresponding to the size of the group ( ≃ 1 arc minute Belokurov etal. (2007))
+was performed. Objects were identiﬁed by looking for local maxima’s in a moving mesh with
+a size of 25 pixels. Punctual objects with corresponding width not s igniﬁcantly larger than
+the PSF were eliminated. The Petrosian magnitude ( Petrosian (1976)) is evaluated for the
+remaining objects in the diﬀerent photometric bands. The contribu tion of each galaxy to the
+lensing ﬁelds is estimated by assuming a proportionality relation betwe en the red (F875W)
+ﬂux and the total mass. The potential of the perturbator is evalu ated by considering the
+three following models (I) a spherical isothermal sphere, (II) a po int mass, (III) a spherical
+NFW proﬁle. For each model the lensing ﬁelds f1 and d f0
+dθ are evaluated using Eq. ( 4). It
+is clear that the assumption of a proportionality between the mass a nd the red magnitude
+is crude. However it is essential to note that about 90% of the contribution to the lensing
+perturbation is due to elliptical galaxies with color similar to the centra l galaxy. Thus at
+least for this dominant sub-set all galaxies are quite similar and thus it is reasonable to
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 10 =====
+10 Alard, C.
+assume a proportionality relation between ﬂux and mass. The ﬂux no rmalization factor is
+applied by dividing ﬂuxes by the ﬂux of the main galaxy. As a result all ma sses are expressed
+in units of the main galaxy mass. In this reconstruction another sou rce of error come from
+the ellipticity of the potential. For an axis ratio of the ellipse equal to 1 + η the typical
+percentage in error induced by the ellipticity on the ﬁelds f1 and d f0
+dθ is of the order of η.
+For dark matter halos a typical value for η is η ≃ 0.2. The uncertainty on mass is at least of
+about 10 % since the ﬂux to mass proportionality relation applies only t o elliptical galaxies.
+As a consequence an error of about 25 % at least is expected for th is kind of model. An
+estimation of the ﬁelds for the diﬀerent models is presented in Table 2. The point mass
+and NFW models prediction for the third order coeﬃcients is in genera l agreement with the
+values reconstructed from the lens model. As shown by the relative errors presented in Table
+3 the isothermal model exceeds the error expectation, while the er rors for two other models
+are consistent with the 20 to 30 % relative error expectation. It is in teresting to compare
+these results with Dye etal. (2008) who could not ﬁnd any contribution coming from the
+other group members. However Dye etal. (2008) used low resolution images taken from the
+ground and could not reach the level of accuracy obtained with HST images. A more recent
+analysis of the cosmic horseshoe lens was performed by Brewer etal. (2016) who could not
+ﬁnd substantial evidence for substructures in the lens. However the problem of evaluating
+the contribution of substructures in the lens is not equivalent to th e evaluation of the group
+members contributions. The elements of the group are more massiv e than substructures and
+on average are situated at larger distances than substructures . Thus it is not surprising that
+the Brewer etal. (2016) analysis fails to identify the contribution of the group members.
+5 CONCLUSION.
+The perturbative method allowed the reconstruction of the cosmic horseshoe lens without
+making any particular assumptions. The inclusion of third order term s was dictated only by
+the necessity to optimize the chi-square. These third order terms were related to the group
+contribution later in the analysis, but it was not necessary to make a ny hypothesis about
+the group contribution when reconstructing the lens. In this case the group is made of quite
+a large number of galaxies and trying to make an extensive model inclu ding each object
+would require too many parameters. Such models including many para meters are generally
+plagued with degeneracies issues which is a constant re-occuring pr oblem in conventional
+MNRAS 000,
+1–?? (2016)
+
+===== PAGE 11 =====
+Cosmic Horseshoe gravitational lens 11
+T able 1. The χ2/dof as a function of the order of the Fourier series expansio n of the ﬁelds for the three diﬀerent ﬁlters.
+Order 2 3 4
+χ2/dof (F475W) 2.29 1.38 1.28
+χ2/dof (F675W) 1.88 1.32 1.22
+χ2/dof (F875W) 2.14 1.52 1.47
+T able 2. Models of the perturbation due to the group members.
+Model d f0
+dθ ;cos (3θ ) d f0
+dθ ;sin (3θ ) f1;cos (3θ ) f1;sin (3θ )
+Isothermal 0.002 -0.0073 0.0071 0.00175
+Point mass 0.01 -0.0123 0.0126 0.01
+NFW 0.0094 -0.011 0.011 0.0096
+Reconstruction 0.011 -0.0078 0.0089 0.014
+T able 3. Relative deviation from reconstructed coeﬃcients for diﬀe rent model of perturbator potential.
+Model d f0
+dθ f1
+Isothermal 0.68 0.75
+Point mass 0.36 0.32
+NFW 0.26 0.3
+gravitational lens analysis. This analysis does not have to include all t heses parameters but
+reduces the lens to a number of fundamental parameters. It is cle ar that this minimal set of
+parameters (basically the expansion of the ﬁelds to order 3) corre sponds to the expectation
+of many models when the model include more parameters that the fu ndamental parameters
+(which would be the case here when modeling all the group). As a cons equence it is clear
+that the perturbative approach is a method of choice for complex s ystems. The perturbative
+approach allows a model free, non-degenerate, fast and simple an alysis of any gravitational
+lens system. It is important to note that even in the case of an a prio ri simple lens system
+it is useful to apply the perturbative method since this method could reveal unexpected
+complex contributions. Essentially in the same way that the contribu tion of the group was
+discovered without making any initial hypothesis about the presenc e of the group.
+ACKNOWLEDGEMENTS
+This work is based on observations made with the NASA/ESA Hubble Sp ace Telescope,
+obtained from the data archive at the Space Telescope Science Ins titute. STScI is operated
+by the Association of Universities for Research in Astronomy, Inc. under NASA contract
+NAS 5-26555.
+REFERENCES
+Alard, C., 2007, MNRAS Letters, 382, 58
+Alard, C., 2009, A&A, 506, 609
+MNRAS 000,
+1–?? (2016)
+
+===== PAGE 12 =====
+12 Alard, C.
+Figure 1. The HST WFC3 image of the cosmic horseshoe lens taken using th e F475W ﬁlter.
+Alard, C., 2010, A&A, 513, 39
+Alard, C., 2016, in preparation
+Agnello, A., Auger, M. W., Evans, N. W., 2013, MNRAS, 429L, 35
+Belokurov, V., etal., 2007, ApJ, 671L, 9
+Brewer, Brendon J.; Huijser, David; Lewis, Geraint F., 2016 , MNRAS, 455, 1819
+Chiba, T., Takahashi, R., 2002, PThPh, 107, 625
+Dye, S.; Evans, N. W.; Belokurov, V.; W arren, S. J.; Hewett, P ., 2008, MNRAS, 388, 384
+Krist, J., Hook, R., Stoehr, F., 2011, SPIE, 8127
+Meneghetti, M., Bartelmann, M., Moscardini, L., 2003, MNRA S, 340, 105
+Nelder, J., Mead, R., 1965, Computer Journal, 7, 308
+Petrosian, V. 1976, ApJ, 209, L1
+Saha, P., Williams, L., 2006, ApJ, 653, 936
+MNRAS 000,
+1–?? (2016)
+
+===== PAGE 13 =====
+Cosmic Horseshoe gravitational lens 13
+Figure 2. The initial guess (dark color) superimposed with the reﬁned solution at Fourier order 2. The ﬁeld d f0
+dθ is represented
+by a continuous line while f1 is represented with a dotted line.
+Spiniello, C., Koopmans, L., Trager, S., Czoske, O., Treu, T ., 2011, MNRAS, 417, 3000
+W ucknitz, O., 2002, MNRAS, 332, 951
+MNRAS 000,
+1–?? (2016)
+
+===== PAGE 14 =====
+14 Alard, C.
+Figure 3. The solution for the ﬁelds at order 2 (dark color) superimpos ed with the reﬁned solution at Fourier order 4. The
+ﬁeld d f0
+dθ is represented by a continuous line while f1 is represented with a dotted line.
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 15 =====
+Cosmic Horseshoe gravitational lens 15
+Figure 4. Histograms of the normalized deviations for the order 2 (gre en), order 3 (blue) and order 4 (red). The dashed line
+corresponds to the theoretical Gaussian expectation.
+MNRAS 000,
+1–?? (2016)
+
+===== PAGE 16 =====
+16 Alard, C.
+Figure 5. The amplitude of the Fourier components as a function of the o rder of the component. The red line represents the
+4σ limit. The asterisks represents the components of d f0
+dθ , while the diamonds represents the components of f1.
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 17 =====
+Cosmic Horseshoe gravitational lens 17
+Figure 6. The reconstructed image in the F475W band.
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 18 =====
+18 Alard, C.
+Figure 7. Details of the HST image in the F475W band (left) compared wit h the corresponding area in the reconstructed
+image (right).
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 19 =====
+Cosmic Horseshoe gravitational lens 19
+Figure 8. The absolute value of the diﬀerence between the HST image and the reconstructed image normalized by the noise
+expectation (F475w band). Note that additional points were added in pure noise area as control points (one third of total
+points).
+MNRAS 000,
+1–?? (2016)
+
+===== PAGE 20 =====
+20 Alard, C.
+Figure 9. The reconstruction of the source superimposed with the caus tic system of the lens.
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 21 =====
+Cosmic Horseshoe gravitational lens 21
+Figure 10. A detailed view of the source main component.
+MNRAS 000, 1–?? (2016)
+
+===== PAGE 22 =====
+22 Alard, C.
+Figure 11. The potential iso-contours (red line) super-imposed with t he iso-contours corresponding to the outer distribution
+(black line). A circle with radius unity is plotted for refer ence (blue line).
+MNRAS 000, 1–?? (2016)
