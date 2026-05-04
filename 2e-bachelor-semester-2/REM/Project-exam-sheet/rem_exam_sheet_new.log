@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.26)  25 APR 2026 20:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.26)  3 MAY 2026 12:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -227,35 +227,30 @@ Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
 \colbreak@box=\box99
 \mc@col@check@num=\count294
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 21.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 28.
  (/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count295
 \l__pdf_internal_box=\box100
-)
-
-LaTeX Warning: Unused global option(s):
-    [8pt].
-
-(./rem_exam_sheet_new.aux)
+) (./rem_exam_sheet_new.aux)
 \openout1 = `rem_exam_sheet_new.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -265,22 +260,22 @@ LaTeX Font Info:    ... okay on input line 21.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: landscape 
-* h-part:(L,W,R)=(14.22636pt, 816.59412pt, 14.22636pt)
-* v-part:(T,H,B)=(14.22636pt, 569.05515pt, 14.22636pt)
+* h-part:(L,W,R)=(6.82881pt, 831.38922pt, 6.82881pt)
+* v-part:(T,H,B)=(6.82881pt, 583.85025pt, 6.82881pt)
 * \paperwidth=845.04684pt
 * \paperheight=597.50787pt
-* \textwidth=816.59412pt
-* \textheight=569.05515pt
-* \oddsidemargin=-58.04362pt
-* \evensidemargin=-58.04362pt
-* \topmargin=-95.04362pt
+* \textwidth=831.38922pt
+* \textheight=583.85025pt
+* \oddsidemargin=-65.44118pt
+* \evensidemargin=-65.44118pt
+* \topmargin=-102.44118pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
 * \footskip=30.0pt
 * \marginparwidth=57.0pt
 * \marginparsep=11.0pt
-* \columnsep=10.0pt
+* \columnsep=3.41418pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
@@ -291,311 +286,121 @@ LaTeX Font Info:    ... okay on input line 21.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 28.
+LaTeX Font Info:    Calculating math sizes for size <4.7> on input line 36.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 36.
 (/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 28.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 36.
  (/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 28.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 36.
  (/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 28.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 36.
  (/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 28.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+(Font)              <4.7> on input line 36.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <3.28998> on input line 36.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <2.34999> on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
  (/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
  (/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 27--29
-
- []
-
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 32.
-(/Users/tristancools/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [1
-
-{/Users/tristancools/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [2]
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 95--96
-
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.101 â€¢ conductivity \$\sigma
-                               \$  = ratio between current density J and for...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 102.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 102.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 103.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 103.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 104.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 104.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 105.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 105.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 106.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 106.
-
-
-! LaTeX Error: Unicode character Î© (U+03A9)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.106 â€¢ > R is the resistance with unit ohm Î©
-                                                \\
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.108 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (48.34721pt too wide) in paragraph at lines 98--108
-\TS1/lmr/m/n/5 ˆ \T1/lmr/m/n/5 con-duc-tiv-ity $$\OML/lmm/m/it/5 ^^[\OT1/lmr/m/n/5 $ = \OML/lmm/m/it/5 ratiobetweencurrentdensityJandforceperunitchargef \OT1/lmr/m/n/5 :
+Overfull \hbox (33.3386pt too wide) in paragraph at lines 42--42
+[]$[]\OML/lmm/m/it/4.7 ^^Z[]V\OMS/lmsy/m/n/4.7 j[][]\OML/lmm/m/it/4.7 @[]V\OMS/lmsy/m/n/4.7 j[][]$ 
  []
 
 
-Overfull \hbox (38.92624pt too wide) in paragraph at lines 98--108
-\OT1/lmr/m/n/5 ˆ\OML/lmm/m/it/5 Ohm[]slawTheforcefisduetotheelectromagneticforce; thuswecanwrite \OT1/lmr/m/n/5 :
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+[]$[][] \OML/lmm/m/it/4.7 P[]P[]\OT1/lmr/m/n/4.7 d\OML/lmm/m/it/4.7 x \OT1/lmr/m/n/4.7 = []\OML/lmm/m/it/4.7 ^^N[];  A[] \OT1/lmr/m/n/4.7 =
  []
 
 
-Overfull \hbox (9.08707pt too wide) in paragraph at lines 98--108
-\OT1/lmr/m/n/5 ˆ\OML/lmm/m/it/5 wherevxBcanbeignored; sincethevelocityissufficientlysmall \OT1/lmr/m/n/5 :
+Underfull \hbox (badness 6625) in paragraph at lines 51--51
+[]$\OML/lmm/m/it/4.7 V[] \OT1/lmr/m/n/4.7 = [] [] \OML/lmm/m/it/4.7 ;  ^^[[]\OT1/lmr/m/n/4.7 (\OML/lmm/m/it/4.7 ^^Z\OT1/lmr/m/n/4.7 ) =
+ []
+
+[1
+
+{/Users/tristancools/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+Underfull \hbox (badness 5331) in paragraph at lines 111--111
+[]$\OMS/lmsy/m/n/4.7 h\OML/lmm/m/it/4.7 S\OMS/lmsy/m/n/4.7 i \OT1/lmr/m/n/4.7 = []\OML/lmm/m/it/4.7 v"E[] \OT1/lmr/m/n/4.7 = []\OML/lmm/m/it/4.7 E[]B[]=^^V;  \OMS/lmsy/m/n/4.7 h\OML/lmm/m/it/4.7 u\OMS/lmsy/m/n/4.7 i \OT1/lmr/m/n/4.7 =
  []
 
 
-Overfull \hbox (66.25902pt too wide) in paragraph at lines 98--108
-\OT1/lmr/m/n/5 ˆ\OML/lmm/m/it/5 Ohm[]slawintermsofVthecurrentflowingfromoneelectrodetoanotherisgivenby \OT1/lmr/m/n/5 :
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.124 ...with E0 and B0 the amplitude and \$\omega
-                                                  \$=kc the angular frequency\\
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 125.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 125.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 126.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 126.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 127.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 127.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 128.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 128.
-
-
-LaTeX Warning: Command \textmu invalid in math mode on input line 128.
-
-
-LaTeX Warning: Command \textmu invalid in math mode on input line 128.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.130 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 120--130
-\TS1/lmr/m/n/5 ˆ \T1/lmr/m/n/5 with E0 and B0 the am-pli-tude and $$\OML/lmm/m/it/5 !\OT1/lmr/m/n/5 $ =
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.134 ...er, last time for V we relied on \$\nabla
-                                                  \$xE, which is disproven d...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 135.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 135.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 136.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 136.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 137.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 137.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 138.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 138.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 139.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 139.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.141 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 131--141
-\TS1/lmr/m/n/5 ˆ \T1/lmr/m/n/5 how-ever, last time for V we re-lied on
+Underfull \hbox (badness 7888) in paragraph at lines 123--123
+[]$\OML/lmm/m/it/4.7 V\OT1/lmr/m/n/4.7 (\OT1/lmr/bx/n/4.7 r\OML/lmm/m/it/4.7 ; t\OT1/lmr/m/n/4.7 ) = [] [] []d\OML/lmm/m/it/4.7 ^^\[];  \OT1/lmr/bx/n/4.7 A\OT1/lmr/m/n/4.7 (\OT1/lmr/bx/n/4.7 r\OML/lmm/m/it/4.7 ; t\OT1/lmr/m/n/4.7 ) =
  []
 
 
-Overfull \hbox (110.72292pt too wide) in paragraph at lines 131--141
-\OT1/lmr/m/n/5 ˆ\OML/lmm/m/it/5 newPoisson[]sequationinanon \OMS/lmsy/m/n/5 ^^@ \OML/lmm/m/it/5 staticcasewethushavetoaccountforthenewpotentialformula:::[] 
+Underfull \hbox (badness 10000) in paragraph at lines 136--136
+[]$[] \OT1/lmr/m/n/4.7 = [] [][] \OML/lmm/m/it/4.7 ^^R;  P \OT1/lmr/m/n/4.7 =
  []
 
 
-Overfull \hbox (7.19246pt too wide) in paragraph at lines 131--141
-\OT1/lmr/m/n/5 ˆ\OML/lmm/m/it/5 wecanputtherelationsforBandEinMaxwell[]sequationtofind \OT1/lmr/m/n/5 :
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.148 ...ic sources The area of a sphere is 4\$\pi
-                                                  \$r\$^2\$\\
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 149.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 149.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 150.
-
-
-LaTeX Warning: Command \textbullet invalid in math mode on input line 150.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.152 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (54.23792pt too wide) in paragraph at lines 142--152
-\OT1/lmr/m/n/5 ˆ \OML/lmm/m/it/5 > forradiationtooccurthePoyntingvectormustdecreasenofasterthan\OT1/lmr/m/n/5 1\OML/lmm/m/it/5 =r\OT1/lmr/m/n/5 $[]$[] 
+Underfull \hbox (badness 10000) in paragraph at lines 138--138
+[]$\OML/lmm/m/it/4.7 P[] \OT1/lmr/m/n/4.7 = []\OML/lmm/m/it/4.7 ;  P[] \OT1/lmr/m/n/4.7 =
  []
 
 
-Overfull \hbox (1.44064pt too wide) in paragraph at lines 142--152
-\OT1/lmr/m/n/5 ˆ \OML/lmm/m/it/5 > accordingtoCoulomb; electrostaticfieldsfalloflike\OT1/lmr/m/n/5 1\OML/lmm/m/it/5 =r\OT1/lmr/m/n/5 $[]$[] 
+Underfull \hbox (badness 10000) in paragraph at lines 139--139
+[]$[]\OML/lmm/m/it/4.7 d \OMS/lmsy/m/n/4.7 ^^\ \OML/lmm/m/it/4.7 ^^U;  r \OMS/lmsy/m/n/4.7 ^^]
  []
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.161 ...it takes to get to the front and \$\Delta
-                                                  \$t2 back again:\\
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.163 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+Underfull \hbox (badness 10000) in paragraph at lines 166--166
+[]$\OMS/lmsy/m/n/4.7 I[] \OT1/lmr/m/n/4.7 = \OML/lmm/m/it/4.7 B[] \OMS/lmsy/m/n/4.7 ^^@ \OML/lmm/m/it/4.7 E[]=c[];  \OMS/lmsy/m/n/4.7 I[] \OT1/lmr/m/n/4.7 = \OT1/lmr/bx/n/4.7 E \OMS/lmsy/m/n/4.7 ^^A
+ []
 
-[4{/Users/tristancools/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [5] (./rem_exam_sheet_new.aux)
+
+Overfull \hbox (21.78772pt too wide) in paragraph at lines 166--166
+\OT1/lmr/bx/n/4.7 B\OML/lmm/m/it/4.7 ;  []$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--170
+[]$\OT1/lmr/m/n/4.7 (1) \OMS/lmsy/m/n/4.7 r ^^B \OT1/lmr/bx/n/4.7 E \OT1/lmr/m/n/4.7 = 0 \OMS/lmsy/m/n/4.7 )
+ []
+
+
+Overfull \hbox (130.9883pt too wide) in paragraph at lines 173--173
+[]$\OT1/lmr/m/n/4.7 (3) [];  (4) [];  (5) []$ 
+ []
+
+
+Overfull \hbox (220.37624pt too wide) in paragraph at lines 178--178
+[]$\OT1/lmr/m/n/4.7 (6) [];  (7) [];  (8) [];  (9) \OML/lmm/m/it/4.7 ^^Z[]; ^^[[]\OT1/lmr/m/n/4.7 ;  (10) []$ 
+ []
+
+[2] (./rem_exam_sheet_new.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 2838 strings out of 475172
- 42779 string characters out of 5765189
- 434863 words of memory out of 5000000
- 25822 multiletter control sequences out of 15000+600000
- 576140 words of font info for 48 fonts, out of 8000000 for 9000
+ 2833 strings out of 475172
+ 42349 string characters out of 5765189
+ 451905 words of memory out of 5000000
+ 25818 multiletter control sequences out of 15000+600000
+ 601765 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 57i,5n,65p,235b,251s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx5.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb>
-Output written on rem_exam_sheet_new.pdf (5 pages, 114421 bytes).
+ 57i,8n,65p,301b,246s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx5.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmib5.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></Users/tristancools/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb>
+Output written on rem_exam_sheet_new.pdf (2 pages, 126573 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
+ 57 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
