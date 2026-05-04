@@ -3,11 +3,24 @@
 Extract comprehensive content from summary PDFs and expand the exam sheet.
 This script systematically extracts formulas, proofs, and key definitions
 from each chapter PDF and populates the exam sheet LaTeX file.
+
+Dependencies
+------------
+This script requires the external package ``pypdf``.
+Install it with:
+
+    pip install pypdf
 """
 
 import re
-from pypdf import PdfReader
 from pathlib import Path
+
+try:
+    from pypdf import PdfReader
+except ModuleNotFoundError as exc:
+    raise ModuleNotFoundError(
+        "Missing dependency 'pypdf'. Install it with: pip install pypdf"
+    ) from exc
 
 # Base directory
 BASE_DIR = Path(__file__).parent.parent / "Samenvatting-REM"
