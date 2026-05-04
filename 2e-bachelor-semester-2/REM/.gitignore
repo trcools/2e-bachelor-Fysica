@@ -1,2 +1,4 @@
 *.pdf
 *.ipynb
+/Samenvatting-REM/*.md
+/Samenvatting-REM/*_assets/

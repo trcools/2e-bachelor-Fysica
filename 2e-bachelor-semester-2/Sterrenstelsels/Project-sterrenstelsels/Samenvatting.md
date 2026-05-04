@@ -1,33 +1,63 @@
-# **A Horseshoe Einstein Ring from Hubble**
+# Samenvatting — Cosmic Horseshoe (up-to-date met papers)
 
-Horseshoe --> de vorm van de Einstein ring ($\approx$ 300°)
+## Systeem in 1 zin
+De Cosmic Horseshoe is een bijna volledige Einstein-ring ($\sim 300^\circ$) rond een zeer massieve voorgrondgalaxie, en is daardoor een sterke case om massamodellen en centrale massa-componenten te testen.
 
-## Eerste paper (2007): The Cosmic Horseshoe Discovery of an Einstein Ring Around a Giant Luminous Red Galaxy
+## Paper 1 (Belokurov et al., 2007, ApJ)
+**Kernbijdrage:** ontdekking en eerste fysische karakterisatie.
 
-Deze Paper gaat over de eerste ontdekking van de einstein ring in 2007. De straal van ~5'' en de compleetheid van ~300° maakt deze einstein ring de grootste en één van de meest complete optische ringen ontdekt (let op, dit is in 2007).
+- Bijna volledige ring met diameter $\sim 10''$.
+- Lens op $z_l = 0.444$, bron op $z_s = 2.379$.
+- Lijn-van-zicht snelheidsdispersie groter dan $400\ \mathrm{km\ s^{-1}}$.
+- Eerste massaschatting binnen de Einstein-ring: orde $\sim 5.4 \times 10^{12}\ M_\odot$ (ruw model), met alternatieve modelwaarden in dezelfde orde.
 
-Het verschil tussen Ly$\alpha$ emissie en interstellaire absorptie roodverschuivingen die in de resultaten gevonden werden duiden op een **hoge roodverschuiving ster-vorming galaxie**! (Link hoofdstuk 6 cursus.)
+**Wat dit betekent voor de presentatie:** dit is je observatie- en ontdekkinganker, niet je definitieve massamodel.
 
-Alle metingen bevestigen het idee dat de lenzende galaxy een zeer groot object is.
+## Paper 2 (Dye et al., 2008, MNRAS)
+**Kernbijdrage:** eerste systematische vergelijking van parametrische lensmodellen.
 
-De straal van de ring is op een afstand van ~30kpc van het center van de LGR gelegen. De cylindrische massa ingesloten in de einstein ring is ~5.4 $\times$ $10^{12} M_\odot$.
+- Drie modelfamilies vergeleken: SIE, power-law ellipsoid, en NFW.
+- Modelvergelijking via Bayesiaanse evidentie.
+- Best scorend model: power-law met volumedichtheid
+	$$
+	\rho \propto r^{-1.96 \pm 0.02}
+	$$
+- Massa binnen Einstein-ring:
+	$$
+	M(<R_\mathrm{Ein}) = (5.02 \pm 0.09) \times 10^{12}\ M_\odot
+	$$
+- Externe shear is klein (bijna nul) in het voorkeursmodel.
 
-## Tweede paper (2008)
+**Wat dit betekent voor de presentatie:** slide 5 moet expliciet tonen dat modelkeuze ($\text{SIE}$ vs power-law vs $\text{NFW}$) de interpretatie bepaalt.
 
-Beetje een vervolg op de eerste, met een paar mensen die de eerste paper uit 2007 ook geschreven hebben.
+## Paper 3 (Alard, 2016, MNRAS)
+**Kernbijdrage:** alternatieve reconstructie met singular perturbative approach.
 
-## Derde paper (2016)
+- Niet klassiek “1 profiel fitten”, maar perturbatieve reconstructie met Fourier-termen.
+- Verbetering in fitkwaliteit bij uitbreiding tot derde orde (orde 4 levert weinig extra winst).
+- Derde-orde termen zijn fysisch relevant en gelinkt aan omgeving/group-perturbaties, niet louter numerieke artefacten.
 
-Yap over nieuwe beter methode met fourier reeksen/transformatie van eerste tweede en ... orde
+**Wat dit betekent voor de presentatie:** dit is je methodologische contrast met Dye 2008 en ondersteunt je punt “resultaten zijn modelafhankelijk”.
 
---> Gebruik van een bayesiaans model (met kansberekening, de meest plausibele/waarschijnlijke waarde neemt... Ik dacht dat dit een soort Monte Carlo methode was. - zie vak _Python For Scientists_ -)
+## Paper 4 (Melo-Carneiro et al., 2025, MNRAS)
+**Kernbijdrage:** gecombineerde lensing + 2D stellar dynamics met duidelijke SMBH-detectie.
 
-## Vierde paper (2025): Unveiling a 36 Billion Solar mass black Hole at the Centre of the Cosmic Horseshoe Gravitational Lens
+- Data-combinatie: HST imaging + MUSE integral-field spectroscopie.
+- Rapporteren een $5\sigma$ detectie van een ultramassief zwart gat:
+	$$
+	\log_{10}(M_{\mathrm{BH}}/M_\odot)=10.56^{+0.07}_{-0.08}\ \pm\ (0.12)_{\mathrm{sys}}
+	$$
+- Komt neer op orde $\sim 3.6 \times 10^{10}\ M_\odot$.
+- Discussie in paper: positie licht boven de standaard $M_{\mathrm{BH}}-\sigma_e$-relatie voor deze massaschaal.
 
-**Vragen op voorhand:** Dus is de LGR nu toch niet de grootste ooit ontdekt, maar gewoon een zwart gat? Of is er beiden een elliptische galaxie en een zwart gat?
+**Belangrijk voor formulering op slides:** schrijf “analyse suggereert / vindt met modelaannames”, niet “bewijst definitief”.
 
-Antwoord: Turns out dat het Supermassive black hole (SMBH) in het centrum van het elliptische galaxie zit. Sterker nog, de meeste supermassieve galaxies hosten zo een SMBH. De meest massieve galaxies hosten zelf een Ultramassive black hole (UMBH) - $M_{BH} \geq 10^{10}  M_\odot$ -.
+## Eén duidelijke interpretatie (voor je eigen begrip)
+- De lensgalaxie en het centrale zwarte gat zijn **geen alternatief voor elkaar**; het zwarte gat zit in het centrum van die massieve elliptische lensgalaxie.
+- “Extreem massieve lens” en “ultramassief centraal zwart gat” kunnen dus tegelijk waar zijn.
 
-Het abstract zegt dat de Cosmic Horseshoe gravitational lens system een van de meest massieve galaxie is dat ooit werd waargenomen.
-
-De fractie aan donkere materie (DM) binnen de effectieve straal ($R_e$) wordt tussen (60-70)% geschat.
+## Gebruik dit direct in je slide-structuur
+- Slide 4: observaties (SDSS $\rightarrow$ HST, plus spectroscopie-context).
+- Slide 5: modelvergelijking (SIE, power-law, NFW; plus perturbatieve aanpak).
+- Slide 6: recente SMBH-claim met numerieke waarde en onzekerheidskader.
+- Slide 7: systematische onzekerheden (modelkeuze, anisotropie, degeneraties, omgeving).

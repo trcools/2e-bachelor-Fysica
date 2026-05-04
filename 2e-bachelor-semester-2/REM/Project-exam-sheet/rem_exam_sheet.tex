@@ -1,0 +1,167 @@
+\documentclass[8pt,a4paper]{article}
+\usepackage[a4paper,landscape,margin=0.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5pt}
+\setlength{\baselineskip}{9pt}
+\pagestyle{empty}
+\renewcommand{\arraystretch}{0.8}
+
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\Hf}{\mathbf{H}}
+\newcommand{\J}{\mathbf{J}}
+\newcommand{\A}{\mathbf{A}}
+
+\begin{document}
+\tiny
+
+% PAGE 1: H2-H6
+\begin{multicols*}{4}
+
+\textbf{\footnotesize REM Exam Sheet -- Comprehensive Reference (H2-H6)}\\
+{\tiny Constants: $c,\epsilon_0,\mu_0,k=1/(4\pi\epsilon_0)$}\\[2pt]
+
+
+\textbf{H2 Electrostatica}\\
+• 2.1 The electric field\\
+• principle of superposition = interaction between any two charges is completely unaffected by the ...\\
+• > calculate the forces on the charges separately, then the total force F = F 1+F2+...\\
+• electrostatics = case where the source charges are stationary\\
+• > the test charge may be moving\\
+• 2.1.2 Coulombs law\\
+• Coulombs law\\
+• 2.1.3 the electric field\\
+\columnbreak
+
+\textbf{H3 Potentialen}\\
+• charge above a conductor Consider a point charge q held a distance d above an infinite grounded c...\\
+• > the potential above the plate is determined by q, but also the induced charge on the plate\\
+• > this is a hard problem to solve, but we have the boundary conditions:\\
+• instead, consider two point charges q at (0,0,d) and -q at (0,0,-d)\\
+• > the potential is:\\
+• > we can use the equation to solve our first problem\\
+• 3.2.2 induced surface charge\\
+• induced surface charge we can compute the surface charge via:\\
+\columnbreak
+
+\textbf{H4 E-velden in materie}\\
+• H4: Electric fields in matter\\
+• = contains 'unlimited' supply of charges and conduct electrical charge\\
+• = all charges are attached to specific atoms or molecules\\
+• > microscopic displacements aren't as dramatic, but does have a characteristic behaviour\\
+• ionization place a neutral atom in an electric field\\
+• polarizability tensor When the field is at some angle, we have to split into parallel and perpend...\\
+• however, the most general linear relation between E and p is:\\
+• force on polar molecules in\\
+\columnbreak
+
+\textbf{H5 Magnetostatica}\\
+• 5.1 the Lorentz force law\\
+• 5.1.2 magnetic forces\\
+• Lorentz force law The magnetic force on a charge Q with velocity v in a magnetic field is:\\
+• or thus in an E and B field:\\
+• Work of magnetic force The magnetic force cant do work\\
+• nl: if Q moves an amount dl = vdt, the work done is:\\
+• current I = charge per unit time passing a given point\\
+• > measured in Ampère: 1A = 1C/s\\
+\columnbreak
+
+\textbf{H6 B-velden in materie}\\
+• H6: Magnetic fields in matter\\
+• > apply a magnetic field B, the domains become aligned\\
+• types of magnetization if we apply a magnetic field B, the we have 3 types of magnetization\\
+• - ferromagnet: material retains magnetization after B is removed\\
+• >> the magnetization isn't only dependent on the current applied field B\\
+• > it is also dependent on the magnetic 'history' of the object\\
+• 6.1.2 torques and forces on magnetic dipoles\\
+• torque on a loop consider a rectangular current loop in a uniform field B\\
+\columnbreak
+
+
+\end{multicols*}
+
+\vspace*{-10pt}
+\newpage
+
+% PAGE 2: H7-H12
+\begin{multicols*}{4}
+
+\textbf{\footnotesize REM Exam Sheet -- Comprehensive Reference (H7-H12)}\\[2pt]
+
+
+\textbf{H7 Elektrodynamica}\\
+• 7.1 electromotive force\\
+• 7.1.1 Ohm's law\\
+• conductivity \$\sigma\$  = ratio between current density J and force per unit charge f:\\
+• resistivity \$\rho\$ = 1/\$\sigma\$\\
+• Ohm's law The force f is due to the electromagnetic force, thus we can write:\\
+• where vxB can be ignored, since the velocity is sufficiently small:\\
+• Ohm's law in terms of V the current flowing from one electrode to another is given by:\\
+• > R is the resistance with unit ohm $\Omega$\\
+\columnbreak
+
+\textbf{H8 Conservatiewetten}\\
+• H8: Conservation laws\\
+• 8.1 charge and energy\\
+• 8.1.1 the continuity equation\\
+• continuity equation The charge in a volume V is:\\
+• and conservation of charge says:\\
+• 8.1.2 Poynting's theorem\\
+• Energy in E and B The work needed to assemble a static charge distribution is given by:\\
+• And for the magnetic field:\\
+\columnbreak
+
+\textbf{H9 EM-golven}\\
+• 9.2.1 the wave equation for E and B\\
+• wave equation for E and B In regions of space with no charge or current, we have:\\
+• which are two wave equations of waves travelling at the speed:\\
+• with E0 and B0 the amplitude and \$\omega\$=kc the angular frequency\\
+• > now Maxwell's equations put constraints on these waves:\\
+• \$\nabla\$E=0 and \$\nabla\$B=0:\\
+• \$\nabla\$xE=-\$\partial\$B/\$\partial\$t:\\
+• $\nabla \times B = \mu_0 \epsilon_0 \frac{\partial E}{\partial t}$ doesn't imply any new constraints\\
+\columnbreak
+
+\textbf{H10 Potentialen en velden}\\
+• H10: Potentials and fields\\
+• scalar V and vector A potentials we can still define:\\
+• however, last time for V we relied on \$\nabla\$xE, which is disproven due to:\\
+• thus in a changing magnetic field E != -\$\nabla\$V\\
+• thus, we can define:\\
+• new Poisson's equation in a non-static case we thus have to account for the new potential formula...\\
+• which reduces to Poisson's equation in static case\\
+• we can put the relations for B and E in Maxwell's equation to find:\\
+\columnbreak
+
+\textbf{H11 Straling}\\
+• 11.1.1 what is radiation?\\
+• radiation when charges accelerate their fields can transport energy irreversibly out to infinity\\
+• > imagine a giant sphere of radius r around this source\\
+• > the power passing through its surface is the integral of the Poynting vector:\\
+• > the em wave actually left the source an earlier time t0=t-r/c, thus:\\
+• radiation of static sources The area of a sphere is 4\$\pi\$r\$^2\$\\
+• > for radiation to occur the Poynting vector must decrease no faster than 1/r\$^2\$\\
+• > according to Coulomb, electrostatic fields fall of like 1/r\$^2\$\\
+\columnbreak
+
+\textbf{H12 EM en relativiteit}\\
+• principle of relativity = the laws of physics apply in any inertial reference frame\\
+• 2: universal speed of light: speed of light in a vacuum is the same for all inertial observers\\
+• Suppose A is on a train B going at a speed vBC with respect to the ground C\\
+• > if i walk at a pace vAB with respect to the train, my speed with respect to the ground is:\\
+• > for the observer on the train the time it takes for the light to hit the floor is:\\
+• also define the quantity:\\
+• > to an observer on the train, the time it takes is:\\
+• is the time it takes to get to the front and \$\Delta\$t2 back again:\\
+\columnbreak
+
+
+\end{multicols*}
+
+\end{document}

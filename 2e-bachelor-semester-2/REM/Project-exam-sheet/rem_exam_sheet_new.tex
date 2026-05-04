@@ -1,0 +1,181 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,landscape,margin=0.24cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.08ex}
+\setlength{\columnsep}{0.12cm}
+\linespread{0.8}
+\pagestyle{empty}
+
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\HH}{\mathbf{H}}
+\newcommand{\J}{\mathbf{J}}
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\p}{\mathbf{p}}
+\newcommand{\n}{\hat{\mathbf{n}}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\wt}{\widetilde}
+\newcommand{\secblock}[1]{\vspace{0.08ex}\textbf{#1}\par}
+\newcommand{\eqline}[1]{\(#1\)\par}
+
+\begin{document}
+\fontsize{4.7}{4.95}\selectfont
+\textbf{REM Formula Sheet, maximal density}\hfill\textit{Griffiths-based, derivation-focused}\par
+\vspace{0.08ex}\hrule\vspace{0.08ex}
+
+\begin{multicols*}{6}
+
+\secblock{H2 Electrostatics}
+\eqline{\E(\mathbf r)=\frac{1}{4\pi\ep_0}\frac{q}{r^2}\hat{\mathbf r},\quad \mathbf F_{12}=\frac{1}{4\pi\ep_0}\frac{q_1q_2}{r^2}\hat{\mathbf r}}
+\eqline{\oint\E\cdot\dd\mathbf a=Q_{\rm enc}/\ep_0,\quad \nabla\cdot\E=\rho/\ep_0,\quad \nabla\times\E=0}
+\eqline{\E=-\nabla V,\quad V=\frac{1}{4\pi\ep_0}\int\frac{\rho(\mathbf r')}{R}\,\dd\tau',\quad \nabla^2V=-\rho/\ep_0}
+\eqline{\rho=0\Rightarrow\nabla^2V=0,\quad W=\tfrac12\int\rho V\,\dd\tau=\tfrac{\ep_0}{2}\int E^2\,\dd\tau}
+\eqline{E_{\parallel}=0\text{ in conductor},\;E_{\perp}^{\rm out}=\sigma/\ep_0,\;V={\rm const}}
+\eqline{\text{BC: }V_1=V_2,\quad E_{2\perp}-E_{1\perp}=\sigma/\ep_0,\quad \partial_nV_2-\partial_nV_1=-\sigma/\ep_0}
+\eqline{\text{Uniqueness: given }\rho\text{ and }V|_S\text{ (or }\partial_nV|_S\text{), solution is unique}}
+
+\secblock{H3 Potentials}
+\eqline{V(r,\theta)=\sum_{\ell\ge0}(A_\ell r^\ell+B_\ell r^{-\ell-1})P_\ell(\cos\theta)}
+\eqline{P_0=1,\;P_1=x,\;P_2=(3x^2-1)/2,\;P_3=(5x^3-3x)/2}
+\eqline{\int_{-1}^{1}P_\ell P_{\ell'}\dd x=\frac{2}{2\ell+1}\delta_{\ell\ell'},\quad A_\ell=\frac{2\ell+1}{2}\int_{-1}^{1}f(x)P_\ell(x)\dd x}
+\eqline{V_{\rm far}=\frac{1}{4\pi\ep_0}\left(\frac{Q}{r}+\frac{\p\cdot\hat{\mathbf r}}{r^2}+\frac{Q_{ij}\hat r_i\hat r_j}{2r^3}+\cdots\right)}
+\eqline{Q=\int\rho\dd\tau,\quad \p=\int\mathbf r'\rho\dd\tau',\quad Q_{ij}=\frac12\int(3r'_ir'_j-r'^2\delta_{ij})\rho\dd\tau'}
+\eqline{V_{\rm dip}=\frac{1}{4\pi\ep_0}\frac{\p\cdot\hat{\mathbf r}}{r^2},\quad \E_{\rm dip}=\frac{1}{4\pi\ep_0r^3}\big(3(\p\cdot\hat{\mathbf r})\hat{\mathbf r}-\p\big)}
+\eqline{V_{\rm plane}=\frac{1}{4\pi\ep_0}\left(\frac{q}{R_+}-\frac{q}{R_-}\right),\quad \sigma_{\rm plane}(\rho)=-\frac{qd}{2\pi(\rho^2+d^2)^{3/2}},\;Q_{\rm ind}=-q}
+\eqline{\text{sep vars: }V=R\Theta\Rightarrow\frac{1}{\sin\theta}\frac{\dd}{\dd\theta}(\sin\theta\Theta')+\ell(\ell+1)\Theta=0}
+
+\secblock{H4 Fields in matter}
+\eqline{\mathbf P=\ep_0\chi_e\E,\quad \ep=\ep_0(1+\chi_e),\quad \D=\ep_0\E+\mathbf P=\ep\E}
+\eqline{\rho_b=-\nabla\cdot\mathbf P,\quad \sigma_b=\mathbf P\cdot\n,\quad \mathbf f_{\rm dip}=(\p\cdot\nabla)\E,\quad \boldsymbol\tau=\p\times\E}
+\eqline{\nabla\cdot\D=\rho_f,\quad D_{2\perp}-D_{1\perp}=\sigma_f,\quad E_{2\parallel}-E_{1\parallel}=0}
+\eqline{V_{\rm pol}(\mathbf r)=\frac{1}{4\pi\ep_0}\int\frac{\rho_b}{R}\dd\tau'+\frac{1}{4\pi\ep_0}\oint\frac{\sigma_b}{R}\dd a'}
+\eqline{\text{slab: }E=\sigma_f/\ep,\quad P=\ep_0\chi_eE,\quad \sigma_b=P\cdot n}
+
+\secblock{H5 Magnetostatics}
+\eqline{\mathbf F=q(\E+\mathbf v\times\B),\quad \dd\mathbf F=I\dd\mathbf l\times\B}
+\eqline{\B(\mathbf r)=\frac{\mu_0}{4\pi}\int\frac{\J(\mathbf r')\times\mathbf R}{R^3}\dd\tau'=\frac{\mu_0}{4\pi}\int I\dd\mathbf l'\times\frac{\hat{\mathbf R}}{R^2}}
+\eqline{\oint\B\cdot\dd\mathbf l=\mu_0I_{\rm enc},\quad B_{\rm wire}=\mu_0I/(2\pi s),\quad B_{\rm sol}\approx\mu_0nI}
+\eqline{\A(\mathbf r)=\frac{\mu_0}{4\pi}\int\frac{\J(\mathbf r')}{R}\dd\tau',\quad \B=\nabla\times\A,\quad \nabla^2\A=-\mu_0\J}
+\eqline{\mathbf m=I\mathbf a,\quad \boldsymbol\tau=\mathbf m\times\B,\quad U=-\mathbf m\cdot\B}
+\eqline{\A_{\rm dip}=\frac{\mu_0}{4\pi}\frac{\mathbf m\times\hat{\mathbf r}}{r^2},\quad \B_{\rm dip}=\frac{\mu_0}{4\pi r^3}(3(\mathbf m\cdot\hat{\mathbf r})\hat{\mathbf r}-\mathbf m)}
+
+\secblock{H6 Magnetic matter}
+\eqline{\mathbf M=\text{dipole moment density},\quad \J_b=\nabla\times\mathbf M,\quad \mathbf K_b=\mathbf M\times\n}
+\eqline{\B=\mu_0(\HH+\mathbf M),\quad \HH=\B/\mu_0-\mathbf M,\quad \nabla\times\HH=\J_f}
+\eqline{\mathbf M=\chi_m\HH\Rightarrow\B=\mu\HH,\;\mu=\mu_0(1+\chi_m)}
+\eqline{B_{2\perp}-B_{1\perp}=0,\quad H_{2\parallel}-H_{1\parallel}=K_f,\quad \oint\HH\cdot\dd\mathbf l=I_{f,\rm enc}}
+\eqline{\A_{\rm mag}(\mathbf r)=\frac{\mu_0}{4\pi}\int\frac{\J_b}{R}\dd\tau'+\frac{\mu_0}{4\pi}\oint\frac{\mathbf K_b}{R}\dd a'}
+
+\secblock{H7 Electrodynamics}
+\eqline{\mathcal E=\oint\E\cdot\dd\mathbf l=-\dd\Phi_B/\dd t,\quad \mathcal E_{\rm mot}=\oint(\mathbf v\times\B)\cdot\dd\mathbf l}
+\eqline{\J=\sigma(\E+\mathbf v\times\B),\quad \rho_{\rm res}=1/\sigma,\quad P=I\mathcal E=I^2R}
+\eqline{\nabla\cdot\J=-\partial_t\rho,\quad \nabla\times\B=\mu_0\J+\mu_0\ep_0\partial_t\E,\quad I_d=\ep_0\dd\Phi_E/\dd t}
+\eqline{L=\Phi_B/I,\quad U_B=\tfrac12LI^2,\quad \mathcal E_{\rm self}=-L\dd I/\dd t}
+\eqline{\nabla\cdot(\nabla\times\B)=0\Rightarrow \mu_0\nabla\cdot\J+\mu_0\ep_0\partial_t(\nabla\cdot\E)=0\Rightarrow \partial_t\rho+\nabla\cdot\J=0}
+\eqline{\nabla^2\E-\mu_0\ep_0\partial_t^2\E=\frac{1}{\ep_0}\nabla\rho+\mu_0\partial_t\J,
+ \quad \nabla^2\B-\mu_0\ep_0\partial_t^2\B=-\mu_0\nabla\times\J}
+
+\end{multicols*}
+
+\newpage
+
+\begin{multicols*}{6}
+\textbf{Page 2: H8--H12 + key derivations}\par
+
+\secblock{H8 Conservation laws}
+\eqline{\partial_t\rho+\nabla\cdot\J=0,
+ \quad \frac{\dd}{\dd t}\int_V\rho\dd\tau=-\oint_S\J\cdot\dd\mathbf a}
+\eqline{\nabla\cdot(\E\times\B)=\B\cdot(\nabla\times\E)-\E\cdot(\nabla\times\B)}
+\eqline{u=\tfrac12(\ep_0E^2+B^2/\mu_0),\quad \mathbf S=\E\times\B/\mu_0}
+\eqline{\partial_tu+\nabla\cdot\mathbf S=-\J\cdot\E,
+ \quad \frac{\dd}{\dd t}\int_Vu\dd\tau=-\oint_S\mathbf S\cdot\dd\mathbf a-\int_V\J\cdot\E\dd\tau}
+\eqline{\mathbf g_{\rm em}=\ep_0\E\times\B=\mathbf S/c^2,
+ \quad W_{\rm field}=\tfrac12\int\rho V\dd\tau=\tfrac12\int\J\cdot\A\dd\tau}
+
+\secblock{H9 EM waves}
+\eqline{\nabla\times(\nabla\times\E)=\nabla(\nabla\cdot\E)-\nabla^2\E=-\partial_t(\nabla\times\B)}
+\eqline{\Rightarrow\nabla^2\E=\mu_0\ep_0\partial_t^2\E,
+ \quad \nabla^2\B=\mu_0\ep_0\partial_t^2\B\;(\rho=J=0)}
+\eqline{\E=\E_0\cos(\mathbf k\cdot\mathbf r-\omega t),\quad \B=\frac{1}{\omega}\mathbf k\times\E,
+ \quad \E\perp\B\perp\mathbf k}
+\eqline{v=1/\sqrt{\mu\ep},\quad n=c/v=\sqrt{\mu\ep/(\mu_0\ep_0)},\quad B_0=E_0/v}
+\eqline{\langle S\rangle=\tfrac12v\ep E_0^2=\tfrac12E_0B_0/\mu,
+ \quad \langle u\rangle=\tfrac12\ep E_0^2,
+ \quad \eta=\sqrt{\mu/\ep},\;I=\langle S\rangle}
+
+\secblock{H10 Potentials and fields}
+\eqline{\E=-\nabla V-\partial_t\A,\quad \B=\nabla\times\A,
+ \quad \A'=\A+\nabla\lambda,
+ \quad V'=V-\partial_t\lambda}
+\eqline{\nabla\cdot\A+\frac{1}{c^2}\partial_tV=0
+ \Rightarrow
+ \nabla^2V-\frac{1}{c^2}\partial_t^2V=-\rho/\ep_0,
+ \;\nabla^2\A-\frac{1}{c^2}\partial_t^2\A=-\mu_0\J}
+\eqline{V(\mathbf r,t)=\frac{1}{4\pi\ep_0}\int\frac{\rho(\mathbf r',t_r)}{R}\dd\tau',
+ \quad \A(\mathbf r,t)=\frac{\mu_0}{4\pi}\int\frac{\J(\mathbf r',t_r)}{R}\dd\tau',
+ \quad t_r=t-R/c}
+\eqline{\mathbf E=\frac{1}{4\pi\ep_0}\int\left[\frac{\rho\hat{\mathbf R}}{R^2}+\frac{\dot\rho\hat{\mathbf R}}{cR}-\frac{\dot\J}{c^2R}\right]_{\rm ret}\dd\tau'}
+\eqline{\mathbf B=\frac{\mu_0}{4\pi}\int\left[\frac{\J\times\hat{\mathbf R}}{R^2}+\frac{\dot\J\times\hat{\mathbf R}}{cR}\right]_{\rm ret}\dd\tau'}
+\eqline{V_{\rm LW}=\frac{1}{4\pi\ep_0}\left[\frac{q}{(1-\mathbf n\cdot\boldsymbol\beta)R}\right]_{\rm ret},\quad \A=\frac{\boldsymbol\beta}{c}V}
+
+\secblock{H11 Radiation}
+\eqline{r\gg\lambda:\;E_{\rm rad},B_{\rm rad}\propto1/r,
+ \quad \mathbf p(t)=p_0\cos\omega t\,\hat{\mathbf z},
+ \quad \ddot\p=-\omega^2\p}
+\eqline{\B_{\rm rad}=\frac{\mu_0}{4\pi c}\frac{\ddot\p(t_r)\times\hat{\mathbf r}}{r},
+ \quad \E_{\rm rad}=c\,\B_{\rm rad}\times\hat{\mathbf r}}
+\eqline{\frac{\dd P}{\dd\Omega}=\frac{\mu_0\omega^4p_0^2}{32\pi^2c}\sin^2\theta,
+ \quad P=\frac{\mu_0\omega^4p_0^2}{12\pi c},
+ \quad \int\sin^2\theta\,\dd\Omega=\frac{8\pi}{3}}
+\eqline{P_{\rm Larmor}=\frac{q^2a^2}{6\pi\ep_0c^3},
+ \quad P_{\rm Lienard}=\frac{q^2\gamma^6}{6\pi\ep_0c^3}\left(a^2-\frac{|\mathbf v\times\mathbf a|^2}{c^2}\right)}
+\eqline{\text{approx chain: }d\ll\lambda,\;r\gg\lambda,\;\text{keep }1/r\text{ terms only}}
+
+\secblock{H12 Relativity}
+\eqline{\Delta x'^\mu=\Lambda^\mu{}_{\nu}\Delta x^\nu,
+ \quad s^2=c^2t^2-r^2=\text{inv.},
+ \quad \gamma=(1-v^2/c^2)^{-1/2}}
+\eqline{x'=\gamma(x-vt),\quad t'=\gamma\left(t-\frac{vx}{c^2}\right),
+ \quad \Delta t=\gamma\Delta\tau,
+ \quad L=L_0/\gamma}
+\eqline{u'_x=\frac{u_x-v}{1-u_xv/c^2},
+ \quad u'_y=\frac{u_y}{\gamma(1-u_xv/c^2)},
+ \quad u'_z=\frac{u_z}{\gamma(1-u_xv/c^2)}}
+\eqline{x^\mu=(ct,\mathbf r),\quad J^\mu=(c\rho,\J),
+ \quad \partial_\mu J^\mu=0,
+ \quad p^\mu=(\gamma mc,\gamma m\mathbf v),
+ \quad E^2=p^2c^2+m^2c^4}
+\eqline{F^{0i}=E_i/c,\;F^{ij}=\epsilon^{ijk}B_k,
+ \quad \partial_\nu F^{\mu\nu}=\mu_0J^\mu,
+ \quad \partial_\nu\wt F^{\mu\nu}=0,
+ \quad K^\mu=qF^{\mu\nu}u_\nu}
+\eqline{E'_x=E_x,\;B'_x=B_x,
+ \;E'_y=\gamma(E_y-vB_z),
+ \;E'_z=\gamma(E_z+vB_y),
+ \;B'_y=\gamma(B_y+vE_z/c^2),
+ \;B'_z=\gamma(B_z-vE_y/c^2)}
+\eqline{\mathcal I_1=B^2-E^2/c^2,
+ \quad \mathcal I_2=\E\cdot\B,
+ \quad \text{field tensor form reproduces all Maxwell equations}}
+
+\secblock{Theory prompt checklist}
+\eqline{(1)\;\nabla\times\E=0\Rightarrow V\text{ exists};
+ \quad (2)\;\text{Ampere-Maxwell }\Rightarrow\text{continuity}}
+\eqline{(3)\;\text{Poynting theorem proof};
+ \quad (4)\;\text{Gauge invariance};
+ \quad (5)\;\text{Retarded potentials satisfy wave eq.}}
+\eqline{(6)\;\text{L-W interpretation};
+ \quad (7)\;\text{Lorentz kinematics};
+ \quad (8)\;\text{covariant Maxwell};
+ \quad (9)\;\rho_b,\sigma_b;
+ \quad (10)\;\text{dipole-radiation approximations}}
+
+\end{multicols*}
+\end{document}

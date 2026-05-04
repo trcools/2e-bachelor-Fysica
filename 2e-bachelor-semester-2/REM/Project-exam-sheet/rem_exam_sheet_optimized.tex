@@ -1,0 +1,383 @@
+\documentclass[7pt,a4paper]{article}
+\usepackage[a4paper,landscape,margin=0.4cm,top=0.3cm,bottom=0.3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{xcolor}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\baselineskip}{8pt}
+\pagestyle{empty}
+\linespread{0.9}
+
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\D}{\mathbf{D}}
+\renewcommand{\H}{\mathbf{H}}
+
+\begin{document}
+\scriptsize
+
+% COVER PAGE WITH EXAM GUIDELINES
+\begin{multicols*}{2}
+
+{\Large \textbf{REM Exam Sheet -- Examen Referentie}}\\
+{\small \textit{Gebasseerd op officiële examen-richtlijnen}}\\[3pt]
+
+\textbf{10 Mandatory Proof Topics (LEREN!):}\\
+\fbox{\begin{minipage}{0.48\textwidth}
+\tiny
+1. $\nabla \times \E = 0$ admits electric potential (H2.3.1)\\
+2. Ampère-Maxwell consistency + continuity (H7-H8)\\
+3. Poynting's theorem proof (H8.1.2)\\
+4. Gauge transformations preserve fields (H10.1.2)\\
+5. Retarded potentials satisfy wave eq. (H10.2.1)\\
+6. Liénard-Wiechert: steps + interpretation\\
+7. Time dilation, length contraction, velocity add. (H12)\\
+8. Covariant Maxwell from tensor notation (H12)\\
+9. Bound charges from polarization (H4.2.1)\\
+10. Dipole radiation + approximations (H11.1.2)
+\end{minipage}}\\[3pt]
+
+\columnbreak
+
+\textbf{Examen-Gestuurde Secties:}\\
+\textbf{\textcolor{red}{ZEER BELANGRIJK (100\%):}} H2, H5, H12\\
+\textbf{\textcolor{orange}{BELANGRIJK (80\%):}} H3, H4, H6, H7, H8, H10\\
+\textbf{\textcolor{blue}{MEDIUM (60\%):}} H9, H11\\
+\\
+\textbf{SKIP:} Capacitance (2.5.4), Multipole (5.4.3), \\
+Inductance (7.2.3), Stress tensor (8.2), \\
+Ferromagnetism (6.4.2)\\
+
+\end{multicols*}
+
+\vspace*{-3pt}
+\hrule
+\vspace*{2pt}
+
+% PAGE 1: H2-H6 DETAILED CONTENT
+\begin{multicols*}{5}
+
+
+\textbf{H2: Electrostatica}\\\textcolor{gray}{{Sect: Entire chapter}}\\\vspace{0.5pt}
+$\bullet$ H2: Electrostatics 
+2.1 The electric field 
+2.1.1 introduction\\
+$\bullet$ > the test charge may be moving 
+2.1.2 Coulombs law 
+Coulombs law\\
+$\bullet$ 2.1.2 Coulombs law 
+Coulombs law\\
+$\bullet$ with $\epsilon$0 the permittivity of free space and r:    the relative position 
+2.1.3 the electric field 
+...\\
+$\bullet$ electric field = field only dependent on source charges 
+> tells us how a test charge of Q=1 will move thro...\\
+$\bullet$ defined via: 
+properties of the electric field 1: E is a vector field dependent on r the position in space ...\\
+$\bullet$ -     >> Coulomb's law\\
+$\bullet$ 2.2 divergence and curl of electrostatic fields 
+2.2.1 field lines, flux and Gauss's law\\
+$\bullet$ 2.2 divergence and curl of electrostatic fields 
+2.2.1 field lines, flux and Gauss's law 
+flux of E the flu...\\
+$\bullet$ Gauss's law for one charge at the origin we have, through a sphere of radius r:\\
+\columnbreak
+
+\textbf{H3: Potentialen}\\\textcolor{gray}{{Sect: 3.2, 3.3.2, 3.4}}\\\vspace{0.5pt}
+$\bullet$ H3: Potentials 
+3.2 the method of images 
+charge above a conductor Consider a point charge q held a distanc...\\
+$\bullet$ > the potential above the plate is determined by q, but also the induced charge on the plate  
+ > this is a...\\
+$\bullet$ with boundary conditions\\
+$\bullet$ now we look at the boundary conditions 
+> (iv) requires A=0\\
+$\bullet$ they will still satisfy Laplace's equation:\\
+$\bullet$ to determine Cn we use the (iii) boundary condition 
+> this requires:\\
+$\bullet$ symmetry  
+Consider the Laplace equation in spherical coordinates:\\
+$\bullet$ 3.4.1 approximate potentials at large distances 
+electric dipole consider two opposite charges +-q separate...\\
+\columnbreak
+
+\textbf{H4: E-velden in materie}\\\textcolor{gray}{{Sect: 4.1.4, 4.2, 4.3, 4.4.1, 4.4.2}}\\\vspace{0.5pt}
+$\bullet$ H4: Electric fields in matter 
+4.1 polarization 
+4.1.1 dielectrics\\
+$\bullet$ 4.1.4 polarization 
+polarization P place a material in a uniform field\\
+$\bullet$ 4.1.4 polarization 
+polarization P place a material in a uniform field 
+> if the material is neutral, there...\\
+$\bullet$ > either way, there will be a lot of dipoles pointing along the direction of the field  
+  > the material b...\\
+$\bullet$ 4.2 the field of a polarized object 
+4.2.1 bound charges 
+potential of a polarized object Consider a polari...\\
+$\bullet$ 4.2.2 physical interpretation of bound charges 
+interpretation of bound\\
+$\bullet$ >> the net charge is the bound charge, because it cannot be removed 
+    > in a dielectric, every e- is bou...\\
+$\bullet$ > in a dielectric, every e- is bound to an atom 
+bound charge mathematically to calculate the amount of bou...\\
+$\bullet$ > we can rewrite this as qd 
+  > the bound charge that piles up at the righthand of the tube is therefore:\\
+$\bullet$ >> the effect of polarization is to paint a bound charge $\sigma$=Pn over the surface\\
+\columnbreak
+
+\textbf{H5: Magnetostatica}\\\textcolor{gray}{{Sect: Entire chapter}}\\\vspace{0.5pt}
+$\bullet$ H5: Magnetostatics 
+5.1 the Lorentz force law 
+5.1.2 magnetic forces\\
+$\bullet$ 5.1.2 magnetic forces 
+Lorentz force law The magnetic force on a charge Q with velocity v in a magnetic fie...\\
+$\bullet$ 5.2 the Biot-Savart law 
+5.2.1 steady currents\\
+$\bullet$ 5.2.2 the magnetic field of a steady current 
+Biot-Savart law\\
+$\bullet$ units: Tesla: 1T = 1N/(A.m) 
+Surface and volume Biot-Savart for a surface:\\
+$\bullet$ 5.3.2 the divergence and curl of B 
+divergence of B  Biot-Savart:\\
+$\bullet$ divergence of B apply the curl to Biot-Savart:\\
+$\bullet$ but we are integrating over the volume that appears in the Biot-Savart law 
+> this is large enough to fit a...\\
+$\bullet$ we also have: F = Q(E + vxB) 
+5.4 the magnetic vector potential 
+5.4.1 the vector potential\\
+$\bullet$ 5.4 the magnetic vector potential 
+5.4.1 the vector potential 
+vector potential A Since $\nabla$B=0, we can...\\
+\columnbreak
+
+\textbf{H6: B-velden in materie}\\\textcolor{gray}{{Sect: 6.1.4, 6.2, 6.3, 6.4.1}}\\\vspace{0.5pt}
+$\bullet$ H6: Magnetic fields in matter 
+6.1 magnetization 
+6.1.1 diamagnets, paramagnets, ferromagnets\\
+$\bullet$ > these are magnetic dipoles 
+magnetization normally the atomic magnetic dipoles are randomly orientated  
+...\\
+$\bullet$ > medium becomes magnetically polarized 
+types of magnetization if we apply a magnetic field B, the we have...\\
+$\bullet$ - diamagnets: material magnetizes opposite to B 
+ - ferromagnet: material retains magnetization after B is ...\\
+$\bullet$ >> the magnetization isn't only dependent on the current applied field B 
+    > it is also dependent on the...\\
+$\bullet$ 6.1.4 magnetization 
+magnetization M = magnetic dipole moment per unit volume\\
+$\bullet$ 6.1.4 magnetization 
+magnetization M = magnetic dipole moment per unit volume 
+6.2 the field of a magnetize...\\
+$\bullet$ 6.2 the field of a magnetized object 
+6.2.1 bound currents 
+potential of magnetized\\
+$\bullet$ object 
+consider a piece of magnetized material with magnetization M 
+> the vector potential of a single di...\\
+$\bullet$ define the bound currents: 
+    and\\
+\columnbreak
+
+
+\end{multicols*}
+
+\newpage
+
+% PAGE 2: H7-H12 DETAILED CONTENT  
+\begin{multicols*}{5}
+
+
+\textbf{H7: Elektrodynamica}\\\textcolor{gray}{{Sect: 7.1.2, 7.1.3, 7.2, 7.3}}\\\vspace{0.5pt}
+$\bullet$ 7.2 electromagnetic induction 
+7.2.1 Faraday's law 
+Faraday's law a changing magnetic field induces an elec...\\
+$\bullet$ 7.2.1 Faraday's law 
+Faraday's law a changing magnetic field induces an electric field 
+> now we have, for ...\\
+$\bullet$ 7.2.2 the induced electric field 
+Biot-Savart for E If we have E in a pure Faraday field, ie E purely due t...\\
+$\bullet$ 7.3 Maxwell's equations 
+7.3.1 electrodynamics before Maxwell\\
+$\bullet$ 7.3 Maxwell's equations 
+7.3.1 electrodynamics before Maxwell 
+problem with Ampère's law for the equation:\\
+$\bullet$ > Ienc = 0 which we cant find on the lefthand side 
+7.3.2 how Maxwell fixed Ampère's law 
+Maxwell's equatio...\\
+$\bullet$ 7.3.2 how Maxwell fixed Ampère's law 
+Maxwell's equation We can make the righthand side of the equation zer...\\
+$\bullet$ 7.3.3 Maxwell's equations 
+Maxwell's equations\\
+$\bullet$ 7.3.3 Maxwell's equations 
+Maxwell's equations\\
+$\bullet$ continuity equation\\
+\columnbreak
+
+\textbf{H8: Conservatiewetten}\\\textcolor{gray}{{Sect: 8.1, 8.2.1, 8.2.2, 8.2.3}}\\\vspace{0.5pt}
+$\bullet$ 8.1 charge and energy 
+8.1.1 the continuity equation 
+continuity equation The charge in a volume V is:\\
+$\bullet$ 8.1.1 the continuity equation 
+continuity equation The charge in a volume V is:\\
+$\bullet$ 8.1.2 Poynting's theorem 
+Energy in E and B The work needed to assemble a static charge distribution is giv...\\
+$\bullet$ Poynting's theorem If a configuration of charges changes a bit over a time dt, then we have: 
+  dW =\\
+$\bullet$ energy remaining in the fields, less the energy that flowed out through the surface 
+Poynting vector Define...\\
+$\bullet$ then Poynting's theorem becomes:\\
+$\bullet$ continuity equation for energy if there is no work done, thus dW/dt=0, we find that:\\
+$\bullet$ 8.2 momentum 
+8.2.1 newton's third law in electrodynamics\\
+\columnbreak
+
+\textbf{H9: EM-golven}\\\textcolor{gray}{{Sect: 9.2.3, 9.3.1 only}}\\\vspace{0.5pt}
+$\bullet$ 9.2 electromagnetic waves in a vacuum 
+9.2.1 the wave equation for E and B 
+wave equation for E and B In re...\\
+$\bullet$ 9.2.1 the wave equation for E and B 
+wave equation for E and B In regions of space with no charge or curren...\\
+$\bullet$ which are two wave equations of waves travelling at the speed:\\
+$\bullet$ 9.2.2 monochromatic plane waves 
+plane waves in E and B suppose we have two plane waves travelling in z-dir...\\
+$\bullet$ 9.2.2 monochromatic plane waves 
+plane waves in E and B suppose we have two plane waves travelling in z-dir...\\
+$\bullet$ >> the E and B are transverse waves, 
+        ie: their amplitudes are perpendicular to the direction of pr...\\
+$\bullet$ with k the vector of magnitude k pointing in the direction of propagation 
+         n the polarization vector\\
+$\bullet$ waves 
+If we have plane waves for E and B, we also know: 
+     with\\
+$\bullet$ 9.3 electromagnetic waves in matter 
+9.3.1 propagation in linear media 
+Maxwell eqn in linear media inside ...\\
+$\bullet$ energy density,  
+Poynting vector and intensity 
+if we just replace µ0>µ and $\epsilon$0>$\epsilon$ then:\\
+\columnbreak
+
+\textbf{H10: Potentialen & velden}\\\textcolor{gray}{{Sect: 10.1, 10.2, 10.3}}\\\vspace{0.5pt}
+$\bullet$ 10.1.2 Gauge transformations 
+Gauge transformations suppose we have two potentials (V,A) and (V',A') for th...\\
+$\bullet$ 10.1.2 Gauge transformations 
+Gauge transformations suppose we have two potentials (V,A) and (V',A') for th...\\
+$\bullet$ where we can absorb k(t) inside $\lambda$, which wont affect the gradient of $\lambda$ 
+> we therefore find...\\
+$\bullet$ 10.1.3 Coulomb gauge and Lorentz gauge 
+Coulomb gauge The defining choice for this gauge is:\\
+$\bullet$ 10.1.3 Coulomb gauge and Lorentz gauge 
+Coulomb gauge The defining choice for this gauge is:\\
+$\bullet$ > -$\nabla$V-$\partial$A/$\partial$t doesn't change instantly 
+Lorenz gauge the defining choice for this ga...\\
+$\bullet$ >> this forms an inhomogeneous wave equation 
+10.1.4 Lorentz force law in potential form\\
+$\bullet$ 10.2 continuous distributions 
+10.2.1 retarded potentials 
+retarded time For a moving charge, its not the s...\\
+$\bullet$ 10.2.1 retarded potentials 
+retarded time For a moving charge, its not the status of the source right now t...\\
+$\bullet$ retarded potentials We have to account for the retarded time in nonstatic sources:\\
+\columnbreak
+
+\textbf{H11: Straling}\\\textcolor{gray}{{Sect: 11.1.1, 11.1.2}}\\\vspace{0.5pt}
+$\bullet$ H11: Radiation 
+11.1 dipole radiation\\
+$\bullet$ H11: Radiation 
+11.1 dipole radiation 
+11.1.1 what is radiation?\\
+$\bullet$ 11.1 dipole radiation 
+11.1.1 what is radiation? 
+radiation when charges accelerate their fields can transp...\\
+$\bullet$ 11.1.1 what is radiation? 
+radiation when charges accelerate their fields can transport energy irreversibly...\\
+$\bullet$ > imagine a giant sphere of radius r around this source 
+ > the power passing through its surface is the in...\\
+$\bullet$ radiation of static sources The area of a sphere is 4$\pi$r$^2$ 
+> for radiation to occur the Poynting vect...\\
+$\bullet$ radiation of static sources The area of a sphere is 4$\pi$r$^2$ 
+> for radiation to occur the Poynting vect...\\
+$\bullet$ >> for radiation we need to consider E and B fields that go like 1/r 
+11.1.2 electric dipole radiation\\
+$\bullet$ >> for radiation we need to consider E and B fields that go like 1/r 
+11.1.2 electric dipole radiation 
+osc...\\
+$\bullet$ 11.1.2 electric dipole radiation 
+oscillating dipole consider a dipole spinning around its axis at a angula...\\
+\columnbreak
+
+\textbf{H12: Relativiteit}\\\textcolor{gray}{{Sect: Entire chapter}}\\\vspace{0.5pt}
+$\bullet$ time dilation time goes slower in moving objects\\
+$\bullet$ Lorentz contraction Moving object are shortened only in the direction of travel\\
+$\bullet$ 12.1.3 the Lorentz transformations 
+Galilean transformations In classical mechanics, events are simultaneou...\\
+$\bullet$ Lorentz transformations When we take c as the maximum velocity, we get the transformations:\\
+$\bullet$ then the Lorentz-transformations read:\\
+$\bullet$ with Λ the Lorentz transformation matrix 
+4D scalar product Define a 4-vector as any set of four components...\\
+$\bullet$ 4D scalar product Define a 4-vector as any set of four components that transform same as (x 0,x1,x2,x3) und...\\
+$\bullet$ > its invariant under Lorentz transformations 
+covariant vector aµ = same as the contravariant aµ only with...\\
+$\bullet$ > its invariant under Lorentz transformations 
+covariant vector aµ = same as the contravariant aµ only with...\\
+$\bullet$ - displacement is lightlike: slope is 1 
+hyperbola and Lorentz  
+transformations\\
+\columnbreak
+
+
+\end{multicols*}
+
+\vspace*{-3pt}
+\hrule
+\vspace*{2pt}
+
+% PAGE 3: KEY FORMULAS & PROOFS SUMMARY
+\begin{multicols*}{3}
+
+\textbf{KEY MAXWELL EQUATIONS:}\\
+$\nabla \cdot \E = \rho/\epsilon_0$\\
+$\nabla \cdot \B = 0$\\
+$\nabla \times \E = -\partial_t \B$\\
+$\nabla \times \B = \mu_0 \J + \mu_0\epsilon_0 \partial_t \E$\\
+
+\textbf{DEFINITIONS:}\\
+$\D = \epsilon_0 \E + \mathbf{P}$\\
+$\H = \B/\mu_0 - \M$\\
+$\mathbf{S} = \E \times \B / \mu_0$ (Poynting)\\
+$u = (\epsilon_0 E^2 + B^2/\mu_0)/2$ (energy)\\
+
+\columnbreak
+
+\textbf{POTENTIALS:}\\
+$\E = -\nabla V - \partial_t \A$\\
+$\B = \nabla \times \A$\\
+Lorenz gauge: $\nabla \cdot \A + \frac{1}{c^2}\partial_t V = 0$\\
+
+\textbf{BOUNDARY CONDITIONS:}\\
+$\hat{n} \cdot (\E_2 - \E_1) = \sigma/\epsilon_0$\\
+$\hat{n} \times (\E_2 - \E_1) = 0$\\
+$\hat{n} \cdot (\B_2 - \B_1) = 0$\\
+$\hat{n} \times (\H_2 - \H_1) = \K_f$\\
+
+\columnbreak
+
+\textbf{RELATIVITY:}\\
+$\gamma = (1-v^2/c^2)^{-1/2}$\\
+Time dilation: $\Delta t = \gamma \Delta \tau$\\
+Length contraction: $L = L_0/\gamma$\\
+Velocity add: $v = (u+v')/(1+uv'/c^2)$\\
+
+\textbf{RADIATION (Far-field):}\\
+$\E_{rad} \propto \ddot{\mathbf{p}}/r$\\
+Larmor: $P \propto a^2$\\
+Dipole moment: $\mathbf{p} = q\mathbf{d}$\\
+
+\end{multicols*}
+
+\end{document}

@@ -1,0 +1,804 @@
+
+
+===== PAGE 1 =====
+arXiv:0804.4002v2  [astro-ph]  6 Jun 2008
+Mon. Not. R. Astron. Soc. 000, 1–9 (2008) Printed 15 November 2021 (MN L ATEX style ﬁle v2.2)
+Models of the Cosmic Horseshoe Gravitational Lens
+J1004+4112
+S. Dye 1⋆, N. W. Evans 2, V. Belokurov 2, S. J. Warren 3, P. Hewett 2
+1School of Physics and Astronomy, Cardiﬀ University, Queens Buildings, The Parade, Cardiﬀ, CF24 3AA, UK
+2Institute of Astronomy, University of Cambridge, Madingle y Road, Cambridge CB3 0HA, UK
+3Astrophysics Group, Imperial College London, Blackett Lab oratory, Prince Consort Road, London, SW7 2AZ, UK
+ABSTRACT
+We model the extremely massive and luminous lens galaxy in the Cosmic H orseshoe
+Einstein ring system J1004+4112, recently discovered in the Sloan D igital Sky Survey.
+We use the semi-linear method of Warren & Dye (2003), which pixelises the source
+surface brightness distribution, to invert the Einstein ring for set s of parameterised
+lens models. Here, the method is reﬁned by exploiting Bayesian infere nce to optimise
+adaptive pixelisation of the source plane and to choose between thr ee diﬀerently pa-
+rameterised models: a singular isothermal ellipsoid, a power law model and a NFW
+proﬁle. The most probable lens model is the power law with a volume mas s density
+ρ ∝ r− 1.96± 0.02 and an axis ratio of ∼ 0. 8. The mass within the Einstein ring (i.e.,
+within a cylinder with projected distance of ∼ 30 kpc from the centre of the lens
+galaxy) is (5 . 02 ± 0. 09) × 1012 M⊙ , and the mass-to-light ratio is ∼ 30. Even though
+the lens lies in a group of galaxies, the preferred value of the extern al shear is almost
+zero. This makes the Cosmic Horseshoe unique amongst large separ ation lenses, as
+almost all the deﬂection comes from a single, very massive galaxy with little boost
+from the environment.
+Key words: gravitational lensing - galaxies: structure
+1 INTRODUCTION
+The measurement of galaxy mass distributions using strong
+gravitational lensing is now a well-established process, h av-
+ing found application to several tens of systems to date (for
+example, see Dye & Warren 2007, and references therein).
+The main attraction of strong lensing over other methods
+is its insensitivity to the dynamical state of the deﬂecting
+mass.The main disadvantage is that some features of the lens
+mass distribution, such as the ellipticity, are much more ro -
+bustly constrained by the modelling than others, such as the
+radial proﬁle (Saha & Williams 2003).
+Multiple images of a background source can con-
+strain the radial proﬁle of the lens projected mass
+density only weakly (for example, see the review by
+Schneider, Kochanek & Wambsganss 2006). However, some
+of the degeneracy is lifted by the incorporation of extra con -
+straints from the observed velocity dispersion proﬁle of th e
+lens, a technique ﬁrst applied by Sand, Treu & Ellis (2002)
+to the cluster MS 2137 −23 and by Treu & Koopmans
+(2002) to the early type galaxy MG 2016+112 and subse-
+⋆ E-mail:s.dye@astro.cf.ac.uk
+quently to a number of systems since (Koopmans & Treu
+2003; Sand et al. 2004).
+Dye & Warren (2005) showed how Einstein ring sys-
+tems, i.e., strong lens systems where an extended source is
+imaged into a complete or near-complete ring, can constrain
+the mass proﬁle of the lens more strongly than systems
+with multiple point-like images. This work used the semi-
+linear method of Warren & Dye (2003), so called because
+the problem of ﬁnding the best ﬁt lens model and source
+surface brightness distribution is split into a linear inve r-
+sion of the source for a given non-linearly parameterised
+lens model. The technique has been used by several other
+studies to date (Treu & Koopmans 2004; Treu et al. 2006;
+Koopmans et al. 2006). Koopmans (2005) presented an en-
+hanced version of the method which also reconstructs the
+lens gravitational potential non-parametrically. In addi tion,
+a Bayesian version of the semi-linear method was developed
+by Suyu et al. (2006).
+In this paper, we apply the semi-linear method to re-
+construct the lens mass proﬁle and source surface bright-
+ness image of the Cosmic Horseshoe Einstein ring system
+J1004+4112, recently discovered in the Sloan Digital Sky
+Survey by Belokurov et al. (2007). This is one of the largest
+and most complete Einstein rings thus far discovered, with a
+c⃝ 2008 RAS
+
+===== PAGE 2 =====
+2 S. Dye et al.
+diameter 10 ′′ and subtending an angle of ∼ 300◦ . The lens is
+an exceptionally massive Luminous Red Galaxy (LRG) with
+a redshift of 0.44 and a velocity dispersion of ∼ 430 kms − 1,
+estimated from a mediocre signal-to-noise spectrum. The
+source is a star-forming galaxy of BX type, using the nomen-
+clature of Steidel et al. (2004), with a redshift of 2.379.
+Belokurov et al. (2007) already provided some sim-
+ple analysis, by picking out four density knots or max-
+ima in the ring and using techniques from the modelling
+of quadruply-imaged point sources to reconstruct the lens-
+ing mass (Evans & Witt 2003). This modelling threw up a
+number of unresolved questions. First, there are more than
+four density maxima in the ring, hence Belokurov et al.
+(2007) provided a number of possibilities for the mass re-
+construction. Their models were restricted to scale-free,
+isothermal-like mass proﬁles, though with rather general a z-
+imuthal variations. The origin of the additional density ma x-
+ima in the ring was unclear – they were thought to arise
+from the lensing of more than one source or from higher or-
+der (sextuple) imaging. Second, although the LRG lies in a
+galaxy group, the group’s contribution to the lensing deﬂec -
+tion via external shear was found to be modest. Apparently,
+almost all of the lensing eﬀect is provided by the LRG it-
+self. This is surprising because almost all the known lenses
+with image separations greater than ∼ 3′′ are produced
+by over-dense environments, with a signiﬁcant lensing en-
+hancement provided by the group or cluster. Third, although
+the visible light distribution of the LRG is nearly circular ,
+the mass reconstructions were more ﬂattened and irregular.
+Fourth, although Belokurov et al. (2007) provided models
+that matched the image location, they did not successfully
+reproduce the image magniﬁcations. All this motivates a re-
+turn to the Cosmic Horseshoe, but with a more sophisticated
+ring modelling technique.
+Here, we determine the most probable mass proﬁle for
+the Cosmic Horseshoe lens from three popular models. This
+is done by using a reﬁnement of the semi-linear method of
+Warren & Dye (2003). To compare between models, we fol-
+low the technique of maximising the Bayesian evidence as
+derived by Suyu et al. (2006). The layout of this paper is
+as follows. In Section 2, we brieﬂy describe the data. Our
+method of analysis is outlined in Section 3 and applied in
+Section 4. We summarise the ﬁndings of this work in Sec-
+tion 5. Throughout this paper, we assume the following cos-
+mological parameters; H 0 = 70 km s − 1 Mpc− 1, Ω m = 0 . 3,
+ΩΛ = 0. 7.
+2 DATA
+The Cosmic Horseshoe was discovered by Belokurov et al.
+(2007) by searching the Sloan Digital Sky Survey (SDSS)
+for luminous red galaxies with multiple, faint, blue
+companions. The centre of the lens galaxy lies at
+(11h48m33. 15s, 19◦ 30′3. 5′′). We refer the reader to this dis-
+covery paper for full details of the data and reduction which
+we brieﬂy outline here.
+Follow-up imaging of the lens system was carried out in
+May 2007 at the 2.5m Isaac Newton Telescope (INT) in La
+Palma. Images were acquired in the wavebands U , g and i
+with the Wide Field Camera. Each image was integrated for
+a total of 600s and reduced with the Cambridge Astronom-
+Parameter U g i
+L1/ 2 1. 20 ± 0. 32 6 . 9 ± 0. 3 61 . 2 ± 0. 4
+n 4. 24 ± 0. 4 4 . 71 ± 0. 12 5 . 40 ± 0. 04
+r0 (′′) 1 . 5 ± 2. 0 6 . 1 ± 0. 6 3 . 9 ± 0. 1
+θs (◦ ) 85 ± 20 91 ± 4 91 ± 1
+qs 0. 92 ± 0. 12 0 . 83 ± 0. 03 0 . 88 ± 0. 01
+T able 1. Sersic proﬁle parameters ﬁt to the U , g and i band
+data. The normalisation L 1/ 2 has units of image counts matching
+the observed images in Figure 1. The orientation θs is in degrees
+counter-clockwise with respect to the positive y-axis.
+ical Survey Unit INT pipeline (Irwin & Lewis 2001). The
+data in each band are shown in the ﬁrst row of Figure 1.
+Long-slit spectroscopy of the lens galaxy and arc was
+also carried out in May 2007 at the 6m BTA telescope
+of the Special Astrophysical Observatory (SAO), Nizhnij
+Arkhyz, Russia. Absorption by Ca, H and K in the lens
+spectrum places the lens galaxy at a redshift of z = 0 . 44.
+Belokurov et al. (2007) estimate a velocity dispersion of th e
+lens of 430 ± 50 kms − 1 by Gaussian proﬁle ﬁtting to the ab-
+sorption lines. The slit was placed ∼ 1′′ from the centre of
+the lens which, given the seeing of 1 . 7′′ and eﬀective radius
+of ∼ 2′′, means that the spectrum is dominated by ﬂux from
+within the half light radius. Ly α emission and absorption
+features in the spectrum of the arc indicate that the source
+lies at a redshift of z = 2. 38.
+To remove possible contamination of the ring by ﬂux
+from the lens galaxy, we ﬁtted an elliptical Sersic proﬁle to
+the lens galaxy in each waveband. The ﬁtted proﬁles were
+subtracted prior to our analysis. The second row in Figure
+1 shows the lens removed ring image for each waveband.
+Table 1 lists the U , g and i best ﬁt parameters of the
+Sersic proﬁle which has the form
+L = L 1/ 2 exp{−B(n)[(r/r 0)1/n − 1]} . (1)
+The parameters L 1/ 2, n and r0 were allowed to vary in the ﬁt
+as well as the axis ratio, qs, (i.e., minor axis divided by major
+axis), orientation, θs, and the centroid. We use the expres-
+sion for B(n) given by Ciotti & Bertin (1999). In the ﬁt-
+ting, we convolved each trial surface brightness proﬁle wit h
+a Gaussian point spread function (PSF) that matched the
+image seeing determined from stars in the ﬁeld. All three
+ﬁts gave acceptable χ 2 values. Note that the ellipticity and
+position angle of the major axis are in good agreement with
+the results in Table 1 of Belokurov et al. (2007), who ﬁtted
+a PSF-convolved de Vaucouleurs proﬁle to the light distri-
+bution.
+3 METHODOLOGY
+3.1 Bayesian Semi-linear Inversion
+The original semi-linear method was derived by
+Warren & Dye (2003), ﬁrst applied by Dye & Warren
+(2005) and placed within a Bayesian framework by
+Suyu et al. (2006). We give an outline of the method in
+this section but refer the reader to these publications for
+more comprehensive details.
+The technique assumes a pixelised image and source
+c⃝ 2008 RAS, MNRAS 000, 1–9
+
+===== PAGE 3 =====
+The Cosmic Horseshoe Lens 3
+plane. The term ‘semi-linear’ refers to the fact that the in-
+version problem can be divided into a set of linear param-
+eters – the surface brightnesses of the source plane pixels
+– and a set of non-linear parameters that deﬁne the lens
+model. Generally, the source surface brightness distribut ion
+must be regularised to ensure that the linear inversion step
+is not mathematically ill-posed (see below). This gives ris e
+to an extra non-linear parameter called the regularisation
+weight.
+Warren & Dye (2003) noted that heavy regularisation
+biases the reconstructed source, in turn biasing the best ﬁt
+lens model. Therefore, instead of applying regularisation ,
+Dye & Warren (2005) ensured a well posed linear inversion
+through use of an adaptively gridded source plane. In this
+way, regions of the source plane that are not well constraine d
+by the observed ring, i.e., areas of low magniﬁcation, are
+gridded with large pixels whilst strongly constrained ar-
+eas of the source plane are more ﬁnely gridded. The degree
+to which source pixel sizes depend on the magniﬁcation is
+controlled through another non-linear parameter called th e
+splitting factor (see below). In addition to ensuring a well
+posed problem, an adaptive grid has the appealing charac-
+teristic that the reconstructed source has a more uniform
+error map.
+A more serious problem with regularisation is that it
+smoothes the reconstructed source, eﬀectively increasing the
+number of degrees of freedom by an amount that cannot
+be satisfactorily quantiﬁed. This is especially problemat ic
+when comparing diﬀerent lens models, as a ﬁxed regularisa-
+tion weight for one model generally does not give the same
+increase in number of degrees of freedom for another. There-
+fore, when comparing diﬀerent regularised models, χ 2 is not
+a useful statistic.
+In the Bayesian version of the semi-linear method de-
+rived by Suyu et al. (2006), the regularisation weight is set
+automatically by the data. Crucially, the problem of compar -
+ing diﬀerent lens models is solved by the Bayesian evidence
+which allows models to be objectively ranked as we describe
+below.
+In the present work, we combine the advantages of both
+the Bayesian approach and an adaptive source grid. As well
+as allowing model ranking and regularisation, the Bayesian
+evidence lets the data select the optimal source pixelisati on
+by ﬁnding the most probable splitting factor.
+In the analysis outlined in the next section, it is helpful
+to keep the regularisation weight and splitting factor seg-
+regated from the linear source surface brightnesses and the
+non-linear lens model parameters. Following the terminolo gy
+of Barnab` e & Koopmans (2007), we will refer to these extra
+two non-linear parameters as ’hyperparameters’ by virtue o f
+their indirect inﬂuence on the lens and source.
+3.2 Implementation of the Inversion Method
+The process of establishing the most probable lens parame-
+terisation is split into three levels of inference. In the in ner-
+most level, the best ﬁt source surface brightness distribut ion
+for a given set of lens model parameters and hyperparame-
+ters is determined with a linear inversion step. This procee ds
+as follows: A PSF-smeared image is computed for every
+source pixel. All images are created using unit surface brig ht-
+ness source pixels. The linear problem of ﬁnding the factor
+required to scale each image such that their co-addition bes t
+ﬁts the observed image gives the best ﬁt source pixel surface
+brightnesses, which as a vector is (Warren & Dye 2003)
+s = (F + λ H)− 1c . (2)
+The square matrix F and the vector c have the elements
+Fik =
+∑
+j
+fijfkj /σ 2
+j , c i =
+∑
+j
+fijdj/σ 2
+j (3)
+and s is a vector containing the best ﬁt source pixel surface
+brightnesses. Here, dj is the observed ﬂux in image pixel j,
+σ j its error and fij is the ﬂux in pixel j of the image of source
+pixel i for the current lens model. The solution is regularised
+by the square regularisation matrix H, scaled by the regular-
+isation weight λ (see Press et al. 2001, and Warren & Dye
+2003). The standard errors of the reconstructed source pix-
+els are given by the diagonal terms of the covariance matrix
+C which is just
+C = (F + λ H)− 1 . (4)
+In Bayesian terminology, computing the solution for s
+using equation (2) amounts to ﬁnding the most likely source
+surface brightness distribution by maximising the posteri or
+probability for a given lens model and a given source pixeli-
+sation and regularisation.
+In the second level of inference, the most probable set
+of hyperparameters for a given lens model is determined by
+maximising the Bayesian evidence. The evidence is a prob-
+ability distribution in the lens parameters and hyperparam -
+eters that normalises the Bayesian expression for the pos-
+terior probability. It allows diﬀerent models to be ranked
+to ﬁnd the most probable model (see below). Suyu et al.
+(2006) derived the evidence, ǫ, for this problem, which in
+our case can be expressed as
+− 2 ln ǫ =
+∑
+j
+[ ∑
+i sifij − dj
+σ j
+]2
++ ln [det( F + λ H)]
+−ln [det( λ H)] + λ sT H s +
+∑
+j
+ln(2πσ 2
+j ) (5)
+where the summations in j act over all image pixels and the
+summation in i acts over all source pixels. Here, we have as-
+sumed zero covariance between all image pixel pairs. In this
+expression, the ﬁrst term corresponds to χ 2 and the fourth
+term regularises the solution (the term denoted λG L in the
+work of Warren & Dye 2003). In this second level, equation
+(2) must be evaluated for every trial set of hyperparameters
+to allow calculation of the evidence via equation (5).
+Finally, in the third and outermost level of inference, the
+most probable lens parameters are determined by maximis-
+ing the evidence obtained from the second level. Formally, t o
+rank models, the evidence should ﬁrst be marginalised over
+the hyperparameters. However, Suyu et al. (2006) noted
+that a reasonable simpliﬁcation is to approximate the distr i-
+bution function of the hyperparameters as a delta function
+so that the maximum of the evidence obtained in the sec-
+ond level can be directly compared between models. We have
+adopted this approximation in the present study.
+In practical terms, the three-level procedure can be sim-
+pliﬁed. As Barnab` e & Koopmans (2007) point out, the hy-
+perparameters that maximise the evidence in the second
+level of inference vary only slightly with diﬀerent trial le ns
+c⃝ 2008 RAS, MNRAS 000, 1–9
+
+===== PAGE 4 =====
+4 S. Dye et al.
+model parameters in the third level. This means that it is
+not necessary to maximise the hyperparameters with every
+trial lens parameter set. Instead, we alternate between var y-
+ing the lens parameters whilst keeping the hyperparameters
+ﬁxed and varying the hyperparameters whilst keeping the
+lens parameters ﬁxed. We start this process by holding the
+hyperparameters (i.e., the regularisation weight and spli t-
+ting factor) at a large value and varying the lens model.
+This reduces local maxima resulting in a smoother evidence
+surface so that an initial set of lens parameters lying close
+to the global maximum can be eﬃciently found (see also
+Warren & Dye 2003).
+We note two further practicalities. First, when comput-
+ing χ 2, i.e., the ﬁrst term in equation (5), we carry out the
+sum over pixels contained within an annular mask that sur-
+rounds the ring. The mask is designed to include the image
+of the entire source plane, with minimal extraneous sky. Thi s
+means that only signiﬁcant image pixels are used, making
+the evidence more sensitive to the model parameters. Sec-
+ond, we use a simulated annealing downhill simplex minimi-
+sation algorithm to minimise −ln ǫ given by equation (5).
+We ﬁnd that a slow exponentially cooled temperature with
+a half-life of ∼ 30 iterations works extremely well in ﬁnding
+the desired minimum.
+3.3 Adaptive Source Plane Grid
+We adaptively grid the source plane according to the pre-
+scription given in Dye & Warren (2005) and Dye et al.
+(2007). In this scheme, smaller pixels are concentrated in
+higher magniﬁcation regions where there are stronger con-
+straints per unit area of the source plane.
+The adaptive gridding algorithm starts with a regular
+mesh of large pixels. The average magniﬁcation µ i of every
+source pixel i is then computed. Those pixels that meet the
+criterion µ i ri ⩾ s are then split into quarters, where ri is
+the ratio of the area of pixel i to the area of an image pixel
+and s is the ‘splitting factor’. Having ﬁnished the initial loop
+through all pixels, the process is repeated for the sub-pixe ls,
+then for the sub-sub-pixels and so on until all pixels satisf y
+the splitting criterion.
+The procedure is carried out every time the splitting
+factor is varied in the evidence maximisation. Although the
+adaptive grid is dependent on the lens model, we ﬁnd that
+it does not vary signiﬁcantly when varying the lens parame-
+ters. Therefore, as we discussed in the previous section, si m-
+ilar to the regularisation weight, we hold the splitting fac -
+tor ﬁxed whilst varying the lens parameters and vice versa,
+alternating until convergence is achieved. Convergence ty p-
+ically occurs after only a few alternate loops.
+Suyu et al. (2006) advocate second order regularisa-
+tion, whereby source surface brightness distributions tha t
+exhibit strongly varying gradients are penalised more heav -
+ily than those with more gradual gradient changes. Al-
+though this is simple to implement with a regular source
+pixel grid, it is ill-deﬁned on an adaptive grid (one can’t
+deﬁne a set of co-linear pixel triplets). Instead, we apply
+a form of ﬁrst order regularisation where strongly varying
+pixel-to-pixel surface brightnesses are penalised. We con -
+struct a matrix that takes the diﬀerence between a given
+pixel k and the sum of all neighbouring pixels l weighted by
+wkl = ( al/a k) N exp(−y2
+kl/ 2σ 2). Here, a is the source pixel
+area, ykl is the separation of the centres of pixels k and l and
+N is a normalisation constant set such that
+∑
+l,l ̸=k wkl = 1
+and N = 1 when k = l. We set σ = 0 . 2′′. The matrix w
+here relates to the regularisation matrix H via H = wT w.
+By construction, H is non-singular so that the third term in
+equation (5) is always calculable.
+In Section 4, we show how each lens model prefers a
+diﬀerent value of the splitting factor, and how this couples
+to the regularisation weight.
+3.4 Lens models
+We consider three popular mass proﬁles to model the distri-
+bution of the total (baryonic and dark) projected lens mass:
+• Singular isothermal ellipsoid (SIE) – This model
+has been widely used in gravitational lensing (see e.g.,
+Kassiola & Kovner 1993; Schneider, Ehlers & Falco 1992)
+motivated by a wealth of stellar dynamical evidence favour-
+ing the idea that galaxies are nearly isothermal. The pro-
+jected surface mass density follows κ = κ 0(˜r/ 1kpc)− 1, where
+˜r is the elliptical radius deﬁned by ˜ r2 = x′2 + q2y′2. The co-
+ordinates x′ and y′ are deﬁned on axes aligned with the
+semi–major and semi–minor axes of the ellipse and q is the
+ratio of the minor to the major axis. There are a total of
+ﬁve parameters for the SIE model: the normalisation κ 0,
+the orientation θ, the axis ratio q , and the lens centroid in
+the image plane, ( xc, y c).
+• Navarro, Frenk & White (NFW) proﬁle – This pro-
+ﬁle was introduced by Navarro, Frenk & White (1996) as
+a ﬁt to dark matter halos created in cosmological N-
+body simulations. The lensing properties have been dis-
+cussed by a number of authors (see e.g., Bartelmann 1996;
+Evans & Wilkinson 1998; Keeton 2002). It has a projected
+surface mass density given by
+κ = κ 0
+1 − F (x)
+x2 − 1 (6)
+where x = ˜r/r s and
+F (x) =
+
+
+
+
+
+1
+√
+x2− 1
+tan− 1√
+x2 − 1 ( x > 1)
+1√
+1− x2 tanh− 1√
+1 − x2 (x < 1)
+1 ( x = 1)
+(7)
+The model is described by six parameters, but we vary ﬁve
+in the evidence maximisation, keeping the scale radius rs
+ﬁxed at the value of 110kpc ( ≡ 20′′ at z = 0. 44). This is in
+accordance with the prediction by Bullock et al. (2001) for
+a galaxy of similar mass and redshift to the cosmic horseshoe
+lens. As has been shown elsewhere (Dye et al. 2007), the
+lensing properties of the NFW proﬁle depend only weakly on
+the value of rs assumed, with a 10% change in rs giving rise
+to only a ∼ 1% change in the best ﬁt model parameters. The
+ﬁve parameters varied in the maximisation are therefore:
+lens normalisation κ 0, orientation θ, axis ratio q, and lens
+centroid in the image plane ( xc, y c).
+• Power law (PL) – This family of models was intro-
+duced by Kassiola & Kovner (1993). The projected surface
+mass density is stratiﬁed on concentric ellipses following the
+power-law form κ = κ 0 (˜r/ 1kpc)1− α . The SIE is the special
+case α = 2. The model has six parameters: lens normalisa-
+tion κ 0, orientation θ, axis ratio q, power-law slope α and
+lens centroid in the image plane ( xc, y c).
+c⃝ 2008 RAS, MNRAS 000, 1–9
+
+===== PAGE 5 =====
+The Cosmic Horseshoe Lens 5
+For each model, we maximise the evidence with and
+without an external shear component. The external shear
+adds a further two parameters to each model, a magnitude
+γ and an orientation θγ . The deﬂection angle required in
+the ray tracing has an analytic form for the SIE model, but
+must be numerically evaluated for the NFW and PL models,
+using the prescription given by Keeton (2002).
+We note at this point a common misconcep-
+tion regarding the mass sheet degeneracy (e.g.,
+Gorenstein, Falco & Shapiro 1988). The degeneracy is
+such that image structures are invariant under the trans-
+formation κ → 1 − a + a κ where a is a constant. The
+degeneracy is only applicable to lens models that remain
+self-similar under the transformation. None of the three
+models applied in this paper falls into this category. For
+instance, applying the transformation to the power-law
+model does not produce a new power-law. Inverting the
+argument, this means that no combination of power-law
+parameters can give a model with a homogeneous sheet
+of matter and in this sense, the mass sheet degeneracy is
+eliminated.
+4 RESULTS
+Table 2 shows the maximised parameters for the three lens
+models with and without external shear using the g band
+data. The most probable model is the power law with a slope
+of 1 . 96 ± 0. 02. The evidence ranks the SIE as the next most
+probable model, being only 10% as probable as the power
+law. Finally, the NFW is strongly rejected, being ranked
+> 10− 10 times less probable than the power law. This is
+perhaps not surprising given that the NFW is derived from
+simulations that neglect the eﬀect of baryons.
+Figure 2 shows the signiﬁcance of the residuals that re-
+main after subtracting the lensed image of the reconstructe d
+source from the observed g band ring for the SIE, PL and
+NFW. The NFW clearly leaves the strongest residuals as one
+would expect from the evidence. The diﬀerence between the
+PL and SIE residuals is not obvious upon visual inspection,
+however they diﬀer with an RMS of ∼ 5%.
+For the best-ﬁtting PL model, the mass within the
+Einstein ring (i.e., within a cylinder with projected dis-
+tance of ∼ 30 kpc from the centre of the lens galaxy) is
+(5. 02 ± 0. 09) × 1012 M⊙ , as much as the entire Local Group.
+Using the absolute magnitude in the r band of −23. 45 com-
+puted by Belokurov et al. (2007), the mass-to-light ratio is
+∼ 30.
+Figure 3 shows the conﬁdence regions on the hyper-
+parameters (the regularisation weight and splitting facto r).
+Each model has its own preferred combination of splitting
+factor and regularisation weight, although they are strong ly
+degenerate. Larger splitting factors prefer smaller regul ari-
+sation weights because increasing the splitting factor res ults
+in larger source plane pixels on average which eﬀectively
+regularises the solution more heavily.
+The source reconstructions for the PL model for each
+of the three wavebands are shown in Figure 1. For the i and
+U band reconstructions, we ﬁxed the lens model parameters
+at their most probable values established from the g band
+data, but varied the hyperparameters to maximise the evi-
+dence. In this way, the lens model parameters are set by the
+Param. SIE NFW PL
+κ 0 2. 50 ± 0. 03 0 . 118 ± 0. 002 2 . 30 ± 0. 03
+θ 46. 5 ± 2. 7 55 . 5 ± 3. 1 49 . 2 ± 3. 0
+q 0. 76 ± 0. 03 0 . 89 ± 0. 02 0 . 78 ± 0. 03
+xc − 0. 12′′± 0. 04′′ − 0. 10′′± 0. 04′′ − 0. 11′′ ± 0. 04′′
+yc 0. 05′′ ± 0. 03′′ 0. 04′′ ± 0. 03′′ 0. 02′′ ± 0. 03′′
+α – – 1 . 96 ± 0. 02
+ln ǫ − 4237. 7 − 4262. 7 − 4235. 4
+Param. SIE+ γ NFW+γ PL+γ
+κ 0 2. 58 ± 0. 03 0 . 116 ± 0. 002 2 . 37 ± 0. 03
+θ 49. 8 ± 2. 7 47 . 9 ± 3. 1 50 . 8 ± 3. 1
+q 0. 81 ± 0. 02 0 . 86 ± 0. 02 0 . 83 ± 0. 02
+xc − 0. 10′′± 0. 04′′ − 0. 09′′± 0. 04′′ − 0. 11′′ ± 0. 04′′
+yc 0. 03′′ ± 0. 03′′ 0. 04′′ ± 0. 03′′ 0. 04′′ ± 0. 03′′
+α – – 1 . 95 ± 0. 02
+γ 0. 017 ± 0. 005 0 . 011 ± 0. 006 0 . 020 ± 0. 005
+θγ 38. 2 ± 9. 4 46 . 1 ± 12. 4 37 . 7 ± 8. 6
+ln ǫ − 4239. 0 − 4272. 0 − 4240. 2
+T able 2. Most probable parameters obtained by maximising the
+evidence, ǫ for each model. Parameters are: total mass normal-
+isation κ 0 (in 10 10 M⊙ kpc− 2), orientation in degrees counter-
+clockwise with respect to the positive y-axis θ, the axis ratio q
+(minor axis divided by major axis), lens centroid in the imag e
+plane in arcseconds oﬀset from the observed light centroid ( xc, y c)
+and the slope for the PL model α . The top and bottom halves of
+the table respectively correspond to the models without and with
+external shear of magnitude γ and direction θγ .
+higher signal-to-noise g band data, but the i and U band
+data are allowed to select the splitting factor and regulari -
+sation weight most appropriate to their information conten t.
+The velocity dispersion, σ , implied by the SIE model is
+given by
+σ 2 = Σ CR rE G (8)
+where Σ CR is the critical surface mass density (see
+Schneider, Ehlers & Falco 1992, for example) and rE is the
+Einstein radius which relates to the SIE model parameters
+via
+(rE/ 1kpc) = 2 κ 0Σ− 1
+CRq− 1/ 2 . (9)
+This gives rE = 28. 4 kpc corresponding to a velocity disper-
+sion of 496 ± 5 kms − 1, which would make the lens one of the
+the most massive galaxies so far known! Nonetheless, this
+is consistent with the result of Gaussian ﬁtting to absorp-
+tion lines in the SAO spectrum by Belokurov et al. (2007),
+which yielded an estimate of 430 ±50 kms− 1. Although the
+spectrum is modest, there is little doubt that the lens is an
+extreme object – colour and luminosity correlate with veloc -
+ity dispersion and mass, and the lens is in the brightest and
+reddest bins for LRGs. We emphasise that the modelling
+both in this paper and in Belokurov et al. (2007) does not
+explicitly include a velocity dispersion constraint. Henc e, it
+is reassuring that both investigations have come to similar
+conclusions as regards the velocity dispersion of the lens-
+ing galaxy. Furthermore, the consistency between the two
+measurements implies that the stellar orbits in the LRG are
+nearly isotropic.
+The results listed in Table 2 show that the presence
+of external shear is very minor. Furthermore, the evidence
+c⃝ 2008 RAS, MNRAS 000, 1–9
+
+===== PAGE 6 =====
+6 S. Dye et al.
+Figure 1. Image data and source reconstructions. Reading from left to right, the columns correspond to the g, i then U band data.
+Top row gives observed image. Second row shows the lens subtr acted image. Third row is the image of the reconstructed sour ce lensed
+by the most probable lens model (the ‘model image’). The annu lus shows the masked area over which the χ 2 term is evaluated when
+computing the evidence. Fourth row shows the signiﬁcance of the residuals left after subtracting the model image from th e observed ring
+image shown in the second row. Fifth and sixth rows respectiv ely show the reconstructed source and the source divided by t he standard
+errors given by the diagonal terms in the covariance matrix C (see Section 3.2). The northern source referred to in the tex t is that at
+(0. 7′′, 1. 4′′). Reconstructions for all three bands use the most probable PL lens model established by the g band data.
+c⃝ 2008 RAS, MNRAS 000, 1–9
+
+===== PAGE 7 =====
+The Cosmic Horseshoe Lens 7
+Figure 2. Signiﬁcance of the residuals left after subtracting the len sed image of the reconstructed source from the observed g band ring
+for the SIE, PL and NFW.
+Figure 3. 68%, 95% and 99.7% conﬁdence regions on the splitting factor and regularisation weight, λ , for each of the three lens models
+using the g band data. The contours are based on the Bayesian evidence an d show the strong degeneracy between both parameters. Each
+plot is normalised to the maximum evidence for that lens mode l, indicated by the heavy point. The regularisation weight i s scaled such
+that a value λ = 1 weights the traces of the matrices F and H in equation (2) equally.
+ranks all models incorporating shear with a lower probabil-
+ity than their non-sheared equivalent models. The sheared
+models are penalised by introducing an extra two parame-
+ters that do not bring about a signiﬁcant improvement in
+the ﬁt to the data.
+At ﬁrst, this seems surprising, as the lens is located
+within a group or loose cluster. With such an enormous im-
+age separation (10 ′′) required, it is natural to expect a sig-
+niﬁcant contribution from the environment. Even so, there i s
+another telling indication that the environment plays only
+a minor role in the lensing. It was already established by
+Kochanek, Keeton & McLeod (2001) that the ellipticity of
+an Einstein ring is proportional to the external shear. The
+Cosmic Horseshoe ring is very nearly a perfect circle. This
+suggests that any perturbation from the cluster is minimal,
+as the mismatch between the orientation of the cluster and
+the lensing galaxy would generate shear and hence elliptic-
+ity in the ring. The same point is made in Saha & Williams
+(2003) – a narrow spread in images’ galactocentric distance s
+indicates a small or zero external shear and moderate galaxy
+ellipticity. We conclude that almost all the deﬂection is in -
+deed provided by one very massive galaxy, with the group
+environment playing a very minor role.
+One curiosity is that, for the best-ﬁtting SIE and PL
+models, the axis ratio of the baryonic and dark matter in
+Table 2 is smaller than the axis ratio of the light distri-
+bution in Table 1. There seem to be two possible resolu-
+tions of this diﬃculty. First, there is a well-known degener -
+acy between ﬂattening and external shear. In fact, the very
+minor contribution from external shear, as in the models
+in the lower panel of Table 2, is already enough to restore
+the axis ratios to good agreement. Second, it is quite likely
+that the ellipticity of the LRG varies with radius. Although
+much deeper imaging is required to conﬁrm this suggestion,
+there are nonetheless many local examples of giant ellipti-
+cals whose central regions are rather round, but whose outer
+parts are much more elongated. A good example is the nom-
+inally E0 galaxy M87, for which the ellipticity rises to 0.4
+in the outer regions (Weil, Bland-Hawthorn & Malin 1997).
+If a similar situation applies to the Cosmic Horseshoe lens
+galaxy, then the photometry of the inner parts may not be
+a good guide to the true shape. This may also provide an
+explanation as to why the position angle of the major axis of
+the best ﬁt light proﬁle is diﬀerent from the angle preferred
+by lens models.
+Finally, we note from the source reconstructions using
+the g and i band data in the bottom-most panels of Figure 1
+that there is evidence for two peaks. However, the secondary
+northern source does not appear to be visible in the recon-
+struction from the noisier U band data. This manifests itself
+in the colour composite source shown in Figure 4. The red,
+green and blue channels of this plot are respectively the U , g
+c⃝ 2008 RAS, MNRAS 000, 1–9
+
+===== PAGE 8 =====
+8 S. Dye et al.
+0 0.5 2 1.51
+0.5 1.5 20 1
+Y (arcsec)
+X (arcsec)
+Figure 4. Colour composite of the reconstructed source. The red,
+green and blue channels in this image are formed respectivel y from
+the i, g and U band reconstructed sources plotted in the ﬁfth row
+of Figure 1.
+and i source surface brightness maps plotted in the ﬁfth row
+of Figure 1. The northern source has a yellowish-green colou r
+owing to the lack of U band ﬂux. Unfortunately, it is impos-
+sible to say whether this is an intrinsic colour variation or
+due to the lower sensitivity of the U band data. Similarly,
+the diﬀering source resolutions between bands prevents a
+clear interpretation of the colour of visible structures.
+The two peaks in the reconstructed source may be
+evidence for substructure or may indicate two sources at
+diﬀerent redshifts. Figure 5 shows the contributions to
+the ring of the Cosmic Horseshoe made by each source.
+(Belokurov et al. 2007) already noted that there were ﬁve
+knots or maxima in the ﬂux density along the ring, which
+they labelled A, B, C 1, C2 and D. The southern source is
+mainly responsible for A, C 1, C 2 and D, whilst the eﬀect of
+the northern source is to provide the additional maximum
+at B. As the maximum at B is barely discernible in the U
+band image, it is no surprise that the reconstructed source
+in U does not show any bimodality.
+5 SUMMAR Y
+This paper has provided the ﬁrst models of the Einstein
+ring in the newly discovered Cosmic Horseshoe gravitationa l
+lens. The semi-linear method of Warren & Dye (2003), in
+which the source distribution is pixelised, remains the tec h-
+nique of choice. For a given parametric model of the lens,
+the inversion of the source is linear. Here, we have ex-
+ploited the reﬁnement of adaptive gridding introduced by
+Dye & Warren (2005) and used the Bayesian evidence for-
+mulation of Suyu et al. (2006) to discriminate between dif-
+ferent parametric models on an equal basis.
+The lens in the Cosmic Horseshoe is a luminous red
+galaxy (LRG) lying in a group or loose cluster. Three diﬀer-
+ent mass distributions were used to model the total luminous
+and dark matter in the lens – namely, an isothermal ellip-
+soid, a Navarro-Frenk-White proﬁle and a power-law ellip-
+B
+D
+A
+C1 C2
+Figure 5. Images of the northern (top) and southern (bottom)
+reconstructed g band source. The northern ring is formed by imag-
+ing all pixels northwards of the line y = 1. 2′′ in the reconstructed
+g band source shown in Figure 1 and the southern ring from all
+pixels to the south of this line. The ring maxima A to D follow
+the labelling of Belokurov et al. (2007).
+soid. The eﬀects of the cluster were represented by external
+shear. At least as judged by Bayesian evidence, a power-law
+ellipsoid without shear provides the best ﬁt. Speciﬁcally, the
+mass density falls oﬀ like ρ ∝ ˜r− 1. 96± 0. 02, where ˜r deﬁnes
+similar concentric ellipses with axis ratio q ∼ 0. 8.
+Remarkably, the contribution of the group to the lens-
+ing deﬂection is minimal, despite the huge image separation
+(10′′) in the Cosmic Horseshoe. This result is consistent with
+the almost circular nature of the Einstein ring. However, it
+means that almost all the lensing eﬀect is produced by an
+enormous LRG – the velocity dispersion estimated from the
+modelling is ∼ 500 kms − 1. This mildly exceeds the velocity
+dispersion of 430 ±50 kms− 1 already estimated from a low
+signal-to-noise spectrum by Belokurov et al. (2007). The
+lens galaxy appears to be the most massive LRG ever de-
+tected. The source reconstructions using the g and the i band
+data is double-peaked, although that built from the noisier
+U band data is not. Although the nature of the double-peak
+c⃝ 2008 RAS, MNRAS 000, 1–9
+
+===== PAGE 9 =====
+The Cosmic Horseshoe Lens 9
+remains unclear, this result is consistent with the pattern of
+density maxima seen along the ring.
+Large separation lenses are now being routinely discov-
+ered by searches through data from the Sloan Digital Sky
+Survey. These probe a very diﬀerent regime to the smaller
+separation lenses. Tools such as the ring inversion algorit hm
+employed here can play a substantial role in understand-
+ing the distribution of matter to large radii in very massive
+galaxies.
+ACKNOWLEDGEMENTS
+SD and VB acknowledge ﬁnancial support from the Science
+and Technology Funding Council (STFC).
+REFERENCES
+Barnab` e, M. & Koopmans, L. V. E., 2007, ApJ submitted,
+astro-ph/0701372
+Bartelmann M., 1996, AA, 313, 697
+Belokurov, V., et al., 2007, ApJ, 671, 9
+Bullock, J. S., Kollat, T. S., Sigad, Y., Somerville, R. S.,
+Kravtsov, A. V., Klypin, A. A., Primack, J. R., Deckel,
+A., 2001, MNRAS, 321, 598
+Ciotti, L. & Bertin, G., 1999, A&A, 352, 447
+Dye, S. & Warren, S. J., 2005, ApJ, 623, 31
+Dye, S., Smail, I., Swinbank, A. M., Ebeling, H., Edge, A.
+C., 2007, MNRAS, 379, 308
+Dye, S. & Warren, S. J., 2007, IAUS, 244, 33
+Evans, N. W., & Wilkinson M. I. 1998, MNRAS, 296, 800
+Evans, N. W., & Witt, H. J. 2003, MNRAS, 345, 1351
+Gorenstein, M. V., Falco, E. E. & Shapiro, I. I., 1988, ApJ,
+327, 693
+Irwin, M. J. & Lewis, J. R., 2001, New Ast Rev, 45, 105
+Kassiola A., Kovner I., 1993, ApJ, 417, 450
+Keeton, C. R., 2002, astro-ph/0102341
+Kochanek, C.S, Keeton, C., & McLeod, B.A., 2001, ApJ,
+547, 50
+Koopmans, L. V. E. & Treu, T., 2003, ApJ, 583, 606
+Koopmans, L. V. E., 2005, MNRAS, 363, 1136
+Koopmans, L. V. E., Treu, T., Bolton, A. S., Burles, S.,
+Moustakas, L. A., 2006, ApJ, 640, 662
+Navarro, J. F., Frenk, C. S. & White S. D. M., 1996, ApJ,
+462, 563
+Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flan-
+nery, B. P., 2001, ’Numerical Recipes in Fortran 77, 2nd
+Edition’, Cambridge University Press
+Saha, P., Williams, L.L.R., 2003, AJ, 125, 2769
+Sand, D. J., Treu, T., Smith, G. P., Ellis, R. S., 2004, ApJ,
+604, 88
+Sand, D. J., Treu, T., & Ellis, R. S., 2002, ApJ, 574, L129
+Schneider P., Ehlers J., Falco E.E., 1992, Gravitational
+Lenses (Springer-Verlag, New York)
+Schneider, P., Kochanek, C. S. & Wambsganss, J., 2004,
+Part 2 of Gravitational Lensing: Strong, Weak & Micro,
+Proceedings of the 33rd Saas-Fee Advanced Course, (eds.
+G. Meylan, P. Jetzer & P. North)
+Steidel, C. C., Shapley, A. E., Pettini, M., Adelberger, K.
+L., Erb, D. K., Reddy, N. A., & Hunt, M. P. 2004, ApJ,
+604, 534
+Suyu, S. H., Marshall, P. J., Hobson, M. P., Blandford, R.
+D., 2006, MNRAS, 371, 983
+Treu, T. & Koopmans, L. V. E., 2002, ApJ, 575, 87
+Treu, T. & Koopmans, L. V. E., 2004, ApJ, 611, 739
+Treu, T., Koopmans, L.V.E., Bolton, A. S., Burles, S.,
+Moustakas, L. A., 2006, ApJ, 640, 662
+Warren, S. J. & Dye, S., 2003, ApJ, 590, 673
+Weil, M. L. Bland-Hawthorn, J., & Malin D. F., 1997, ApJ,
+490, 664 ,
+c⃝ 2008 RAS, MNRAS 000, 1–9

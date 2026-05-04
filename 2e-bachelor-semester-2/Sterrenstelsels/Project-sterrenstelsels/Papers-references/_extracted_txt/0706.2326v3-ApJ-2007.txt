@@ -1,0 +1,484 @@
+
+
+===== PAGE 1 =====
+arXiv:0706.2326v3  [astro-ph]  1 Nov 2007
+submitted to the Astrophysical Journal
+Preprint typeset using L ATEX style emulateapj v. 08/22/09
+THE COSMIC HORSESHOE: DISCOVERY OF AN EINSTEIN RING AROUND A GIANT LUMINOUS RED
+GALAXY
+V. Belokurov 1, N. W. Evans 1, A. Moiseev 2, L. J. King 1, P. C. Hewett 1, M. Pettini 1, L. Wyrzykowski 1,4,
+R. G. McMahon 1, M. C. Smith 1, G. Gilmore 1, S. F. Sanchez 3, A. Udalski 4, S. Koposov 5, D. B. Zucker 1,
+C. J. W alcher6
+submitted to the Astrophysical Journal
+ABSTRACT
+We report the discovery of an almost complete ( ∼ 300◦) Einstein ring of diameter 10 ′′ in Sloan
+Digital Sky Survey (SDSS) Data Release 5 (DR5). Spectroscopic da ta from the 6m telescope of
+the Special Astrophysical Observatory reveals that the deﬂect ing galaxy has a line-of-sight velocity
+dispersion in excess of 400 kms − 1 and a redshift of 0.444, whilst the source is a star-forming galaxy
+with a redshift of 2.379. From its color, luminosity and velocity dispers ion, we argue that this is the
+most massive galaxy lens hitherto discovered.
+Subject headings: gravitational lensing – galaxies: structure – galaxies: evolution
+1. INTRODUCTION
+There have been many optical giant arcs discovered,
+caused by the lensing eﬀects of massive galaxy clus-
+ters and their central galaxies. But, few optical rings
+have ever been found, despite theoretical predictions
+that they should be abundant (Miralda-Escude & Lehar
+1992). Warren et al. (1996) found 0047-2808, which is
+a high redshift star-forming galaxy lensed by a mas-
+sive early-type galaxy into a partial ( ∼ 170◦) Einstein
+ring of 2 .′′70 diameter, while King et al. (1998) discov-
+ered a complete Einstein ring in the near-infrared around
+B1938+666. Cabanac et al. (2005) found a nearly com-
+plete ( ∼ 260◦) Einstein ring of diameter 2 .′′96 produced
+by the lensing of a starburst galaxy by a massive and
+isolated elliptical galaxy. The Sloan Lens ACS Sur-
+vey (SLACS, Bolton et al. 2006) has also identiﬁed a
+number of partial optical rings, based on the identiﬁca-
+tion of anomalous emission lines in Sloan Digital Sky Sur-
+vey (SDSS) spectra together with conﬁrmatory follow-up
+from the Advanced Camera for Surveys. Here, we report
+the discovery of the Cosmic Horseshoe – an almost com-
+plete ( ∼ 300◦), giant Einstein ring, with a diameter of
+∼ 10′′ in SDSS data. Throughout the paper, we use the
+standard cosmology Ω m = 0 .3, Ω Λ = 0 .7, H0 = 70 km
+s− 1 Mpc− 1.
+2. DISCOVERY AND FOLLOW-UP
+Previous search strategies with SDSS data can be di-
+vided into three kinds. The ﬁrst discovery was made by
+Inada et al. (2003a), who searched around spectroscop-
+ically identiﬁed quasars looking for stellar-like objects
+with a similar color to provide candidates for follow-up,
+and found the spectacular 14 .′′62 separation lens SDSS
+1 Institute of Astronomy, University of Cambridge, Madingle y
+Road, Cambridge CB3 0HA, UK; vasily,nwe@ast.cam.ac.uk
+2 Special Astrophysical Observatory, Nizhniy Arkhyz,
+Karachaevo-Cherkessiya, Russia;moisav@sao.ru
+3 CAHA de Calar Alto (CSIC-MPIA), E4004 Almera, Spain
+4 W arsaw University Observatory, Al. Ujazdowskie 4, 00-479,
+Poland
+5 MPIA, K¨ onigstuhl 17, 69117 Heidelberg, Germany
+6 CNRS-Universit´ e de Provence, BP8, 13376 Marseille Cedex
+12, France
+Fig. 1.— Left: SDSS view of the sky composed from g, r, i images
+around the Cosmic Horseshoe. Most of the objects in the ﬁeld a re
+faint galaxies. The inset shows 16 ′′ × 16′′ cut-out centered on
+the lens. Note the bluish color of the ring. Top right: SDSS g, r, i
+composite with objects detected by the SDSS pipeline marked with
+circles. W e also show the slit position for SAO follow-up. Bo ttom
+right: INT u, g, i composite from follow-up data.
+J1004+4112. The remaining two methods target smaller
+separation lenses, in which the images are unresolved by
+SDSS. Inada et al. (2003b) and Johnston et al. (2003)
+searched through spectroscopically identiﬁed quasars,
+looking for evidence of extended sources correspond-
+ing to unresolved, multiple images. The most widely-
+used strategy is to search through the spectroscopic
+database looking for emission lines of high redshift ob-
+jects within the spectrum of lower redshift early-type
+galaxies (Willis et al. 2005; Bolton et al. 2006). Here,
+we introduce a new method, inspired by the recent,
+serendipitous discovery of the 8 O’clock Arc, which is
+a Lyman Break galaxy lensed into three images merg-
+ing into an extended arc (Allam et al. 2006). The SDSS
+pipeline resolved the arc into three objects. This suggests
+searching for multiple, blue, faint companions around lu-
+minous red galaxies (LRGs) in the SDSS object cata-
+logue. The search is fast, so it is easy to experiment with
+
+===== PAGE 2 =====
+2 Belokurov et al.
+Fig. 2.— Left: g band INT images of a 18 ′′ × 18′′ ﬁeld of view
+centered on the Cosmic Horseshoe. Dotted lines mark the majo r
+axis of the LRG and contours show isophotes at 1,2,3,4,5 Reﬀ along
+the major axis. The best ﬁt circle through the ring is shown as a
+solid line. Right: Decomposition of the light into the ring a fter
+subtraction of the luminosity model for the LRG. Also shown i s
+the proﬁle along the ring in the inset. The locations of the fo ur
+maxima are marked.
+diﬀerent magnitude and color cuts, as well as search radii.
+For example, selecting lenses in DR5 to be brighter than
+r = 19.5 and g− r > 0.6, together with sources within 6 ′′
+that are fainter than r = 19.5 and bluer than g− r = 0.5
+yields 3 very strong candidates. One of the three candi-
+dates is the 8 O’clock arc – another is the subject of this
+Letter, the Cosmic Horseshoe.
+The left panel of Fig. 1 shows a g, r, i composite image.
+Most of the faint objects in the ﬁeld of view are galaxies,
+but the environment is clearly not that of a rich cluster.
+The inset shows a 16 ′′× 16′′cut-out, in which the central
+lens galaxy is surrounded by a ∼ 300◦ ring of radius ∼ 5′′.
+This makes it the largest, and one of the most complete,
+optical rings ever discovered.
+We obtained imaging follow-up data at the 2.5m Isaac
+Newton Telescope (INT), La Palma and spectroscopy at
+the 6m BTA telescope of the Special Astrophysical Ob-
+servatory (SAO), Nizhnij Arkhyz, Russia. Observations
+were carried on the INT on the night (UT) of 2007 May
+12 with the Wide Field Camera (WFC). The exposure
+times were 600 s in each of the three wavebands u, g
+and i – which are similar to the SDSS ﬁlters. The mea-
+sured seeing (FWHM) on the images (0 .33′′ pixels) was
+1.30′′, 1.26′′and 1.21′′in u, g and i respectively. The INT
+data are roughly a magnitude deeper than the SDSS data
+and were reduced using the CASU INT WFC pipeline
+toolkit (Irwin & Lewis 2001). The bottom right panel of
+Fig. 1 shows the u, g, i composite ﬁeld of view of 24 ′′× 24′′
+centered on the lens galaxy. The Cosmic Horseshoe is
+shown with great clarity in the panels of Fig 2. We can
+extract the properties of the LRG, such as magnitude, ef-
+fective radius, ellipticity and orientation, by masking out
+the ring emission and ﬁtting a PSF-convolved de Vau-
+couleurs proﬁle as listed in Table 1. Our INT magnitudes
+agree with the SDSS magnitudes reported in the Table,
+although SDSS overestimates the g band eﬀective radius
+because of contamination from the ring. The shape of
+the isophotes of the LRG is shown in dotted lines. In the
+right panel, the light from the lens galaxy is subtracted
+to leave a clearer picture of the ring in the g band. The
+surface brightness proﬁle along the ring in magnitudes
+arcsec− 2 is shown in the inset. There are four maxima,
+A, B, C and D, whose right ascension and declination
+oﬀsets from the LRG are: A : (3 .′′0, 4.′′6), B : ( − 1.′′1, 5.′′2),
+C : ( − 4.′′7, 2.′′2) and D : (2 .′′0, − 4.′′0) together with er-
+rors of ≲ 0.′′4. There is some evidence that C may even
+be considered as two merging images at C 1 (− 4.′′7, 2.′′2)
+and C 2 (− 4.′′8, − 1.′′7). Fig 3 shows the number density
+of galaxies with photometric redshifts provided by SDSS
+in the range 0 .35 < z < 0.55. In the left panel, a large-
+scale ﬁlamentary structure can be discerned. The middle
+panel shows that the Cosmic Horseshoe lies in a group of
+galaxies – the enhancement in number density over the
+background is ∼ 6. The lens is the brightest object in the
+group of ∼ 26 members, as is clear from the cumulative
+luminosity function in the right panel.
+Long-slit spectral observations were performed on 2007
+May 15/16 with the multi-mode focal reducer SCOR-
+PIO (Afanasiev & Moiseev 2005) installed at the prime
+focus of the BTA 6-m telescope at the SAO. The see-
+ing was 1 .′′7. A 1 .′′0 wide slit was placed to intercept
+the two brighter arcs in the ring (C and D in Fig. 2)
+and to include some of the light from the lens galaxy,
+as shown in the top right panel of Fig. 1. We used the
+VPHG550G grism which covers the wavelength interval
+3650–7550 ˚
+A with a spectral resolution 8-10 ˚
+A FWHM.
+With a CCD EEV 42-40 2k × 2k detector, the recipro-
+cal dispersion was 1 .9 ˚
+A per pixel. The total exposure
+time was 3600 s, divided into six 10-minute exposures.
+The target was moved along the slit between exposures
+to ease background subtraction and CCD fringes removal
+in the data processing. The bias subtraction, geometrical
+corrections, ﬂat ﬁelding, sky subtraction, and calibration
+to ﬂux units ( Fλ) was performed by means of IDL-based
+software.
+The top panel of Fig. 4 shows a cut-out of the two-
+dimensional spectrum with position along the slit plot-
+ted against the dispersion. The slit also passes through
+a nearby star, which causes the spectrum in the topmost
+pixels. In the lower part, the blue spectrum is dominated
+by two images of the source, whilst the red spectrum by
+the lensing galaxy. The lower panels show extracted one-
+dimensional spectra. The middle one is the sum of the
+two source images; there is a strong narrow line which is
+Ly α emission, together with accompanying Ly α forest
+bluewards and multiple absorption lines redwards. This
+yields a measurement of the source redshift as z = 2.379.
+The lower panel is the lens galaxy spectrum, which shows
+the characteristic features of a LRG. The lens redshift is
+z = 0.444. Although Ca H and K absorption is detected
+in the lensing galaxy spectrum, the signal-to-noise (S/N)
+ratio is modest, ∼ 10, and the resolution relatively low.
+However, the inset in the lower panel shows the instru-
+mental resolution and the Ca H and K lines, which are
+clearly resolved. Performing ﬁts of Gaussian line proﬁles
+to the absorption produces a velocity dispersion estimate
+of 430 ± 50 kms− 1, where the principal uncertainty arises
+from the placement of the ‘continuum’. The spectro-
+graph slit was not aligned across the centre of the galaxy
+but, given the relatively poor seeing, the spectrum is
+dominated by light from within the half-light radius of
+the galaxy.
+
+===== PAGE 3 =====
+The Cosmic Horseshoe 3
+Fig. 3.— Density of galaxies in the vicinity of the object with SDSS ph otometric redshifts in the range 0 .35 < z < 0.55. Left: Large scale
+structure. Middle: Zoom-in on the lens marked by white ring, shown to scale. The lens belongs to the group of ∼ 26 galaxies, marked
+by dashed circle of 1 ′ radius. Right: Redshift distribution (upper panel) for all galaxies in the 9 ′ × 9′ box. For galaxies in the range
+0.35 < z < 0.55 (dashed lines), we build the r-band cumulative LF of the group members (lower panel). The l ens is the brightest galaxy
+in the group, most of the other members are fainter than 21 .m5.
+Fig. 4.— Top: Cutout of the SCORPIO 2D spectrum, the horizontal coord inate is the dispersion, the vertical coordinate is the loca tion
+on the slit. In the lower part, 2 ring images are clearly visib le at short wavelength (note the bright Ly α blobs) with the lens appearing at
+longer wavelengths. Middle: Sum of two extracted 1D image sp ectra with absorption lines from Table 1 of Shapley et al. (20 03). Bottom:
+1D lens spectrum with Ca H and K lines marked. As a demonstrati on that the lines are resolved, we show in the inset a zoom of th e H and
+K lines (lower) and the instrumental resolution (upper). No te the prominent atmospheric absorption marked by ⊕ symbols. The spectra
+are shown in ﬂux units of 10 − 18 erg s− 1 cm− 2 ˚
+A− 1.
+-6 -4 -2 0 2 4 6
+-6
+-4
+-2
+0
+2
+4
+6
+-6 -4 -2 0 2 4 6
+-6
+-4
+-2
+0
+2
+4
+6
+Fig. 5.— Contours of the Fermat time delay surface for two possible le ns models of Cosmic Horseshoe, together with the locations o f
+the stationary points which mark the predicted image positi ons. The critical curve of the lens model, which is also a cont our of constant
+convergence, is shown in red, together with the observed ima ge locations. Left: The model uses eqn. (5) of Evans & Witt (20 03) with the
+Fourier coeﬃcients ( a0 = 9 .89, a2 = 0 .090, b2 = −0.11, a3 = 0 .02, b3 = −0.04) to reproduce image locations A,B, C and D. Right: A
+similar model, but with Fourier coeﬃcients ( a0 = 10.07, a2 = 0.066, b2 = −0.22, a3 = −0.03, b3 = −0.01) to reproduce image locations A,
+C1, C 2 and D.
+
+===== PAGE 4 =====
+4 Belokurov et al.
+3. DISCUSSION
+3.1. Source
+The spectrum in Fig. 4 shows the source is a star-
+forming galaxy at z = 2 .379. From the observed wave-
+lengths of the ten labelled absorption lines, we deduce a
+mean redshift ⟨zabs⟩ = 2 .3767 ± 0.0006, while the peak
+of the Ly α emission line gives zem ≃ 2.3824. The over-
+all character of the spectrum is typical of BX galaxies in
+the surveys by Steidel et al. (2004). These are galax-
+ies at a mean redshift ⟨z⟩ ≃ 2.2 selected from their
+blue rest-frame UV colours. In ﬁner detail, the spec-
+trum resembles most closely the subset of these galaxies
+which are relatively young, with assembled stellar masses
+⟨M ∗ ⟩ ≃ 5 × 109M⊙ and metallicities of about 1/3 solar.
+The composite spectrum of galaxies with these charac-
+teristics has been discussed by Erb et al. (2006a) and
+has typical rest-frame equivalent widths of the interstel-
+lar lines WIS ≃ 1.5 − 2 ˚
+A, and a similar strength of the
+Ly α emission line. The closest local analogue is the
+ﬁeld spectrum of nearby starburst galaxies (Chandar et
+al. 2005). The diﬀerence between Ly α emission and
+interstellar absorption redshifts found here is typical of
+high redshift star-forming galaxies and is generally inter-
+preted as resulting from large-scale outﬂows of the inter-
+stellar medium in galaxies with high rates of star forma-
+tion, driven by kinetic energy deposited by massive star
+winds and supernovae. Adopting the median blueshift
+of 165 km s − 1 of the interstellar absorption lines relative
+to the H ii regions producing H α emission (Steidel et al.
+2007, in preparation), we deduce a systemic redshift of
+zsys = 2.379.
+The galaxy appears to be of ﬁducial luminosity. In-
+terpolating between the measured g and i magnitudes
+in Table 1, we deduce an absolute magnitude at 1700 ˚
+A
+AB1700 = − 25.4 in the standard cosmology. If the
+magniﬁcation factor is ∼ 35 (see next Section), or 3.9
+mag, this corresponds to an intrinsic AB 1700 = − 21.5,
+or L ≃ 1.6L∗, according to the recent determination
+of the luminosity function of BX galaxies by Reddy et
+al. (2007). The colours of the lensed galaxy are typi-
+cal of those of most BX galaxies. The u − g and g − i
+colours indicated by the photometry in Table 1 imply a
+UV spectral slope redder than the essentially ﬂat spec-
+trum (Fν ∝ ν0) expected for an unobscured star-forming
+galaxy (e.g. Leitherer et al. 1999). Assuming that the
+Calzetti et al. (2000) obscuration law applies, we deduce
+E(B− V ) = 0 .2, close to the median of the distribution of
+the values reported by Erb et al. (2006b) for BX galax-
+ies. The corresponding attenuation at 1700 ˚
+A is a factor
+of ∼ 6.
+3.2. Lens
+Bernardi et al. (2006) found 70 galaxies with disper-
+sions > 350 kms − 1 that were not superpositions in the
+spectroscopic part of the SDSS DR1. These are the
+galaxies with largest velocity dispersions and might har-
+bour the most massive black holes. The fact that the
+PSF-convolved de Vaucouleurs model gives an excellent
+ﬁt to the light distribution of the lens galaxy minimises
+the chance that the high velocity dispersion is a product
+of superposition in our case. The lens is detected in the
+NVSS and FIRST surveys with an integrated ﬂux den-
+sity at 20cm of 4.8 and 5.4mJy respectively. Assuming
+a radio spectrum of the form Sν ∝ να (α = − 0.7) the
+monochromatic radio power is 3 .2 × 1024 W Hz − 1 similar
+to the radio galaxies studied at z ∼ 0.7 in the 2SLAQ lu-
+minous red galaxy survey (Sadler et al. 2006). Of course,
+we have assumed that all of the radio ﬂux comes from
+the lens. In the nearby Universe such powerful radio
+sources are associated with active galactic nuclei rather
+than star-forming galaxies.
+The r-band absolute magnitude of the lens is -23.45 at
+z = 0. This assumes the SDSS r-band model magnitude
+of r=19.00, together with the standard cosmology, a k
+correction of − 0.m87, and the passive evolution model
+of +0 .m38 (Bernardi et al. 2003). This puts the lens in
+the brightest bin for LRGs. The high luminosity is also
+indicated by the red color ( g− i > 2.6) of the galaxy. Color
+and luminosity also correlate with velocity dispersion and
+mass (Figures 4 and 7 of Bernardi et al. 2003). All these
+measurements support the idea that the lensing galaxy
+is a very massive object.
+Let us model the lens as a singular isothermal sphere
+galaxy with a velocity dispersion σv = 430 km s − 1. For
+a lens redshift of 0 .44 and a source redshift of 2 .38, the
+deﬂection due to an isothermal sphere is ∼ 3.7′′. As
+the LRG is so massive, it provides most of the deﬂection
+needed. In physical units, the ring radius is at a pro-
+jected distance of ∼ 30 kpc from the center of the LRG.
+The (cylindrical) mass enclosed within the Einstein ring
+is ∼ 5.4 × 1012 M⊙ . The magniﬁcation can be estimated
+assuming that the source size is ∼ 0.′′4 (Law et al. 2007).
+The ratio of the area subtended by the ring to that sub-
+tended by the source is ∼ 4R/δr, where R is the ring
+radius and δr is the source size which is roughly same as
+the ring thickness. This gives a magniﬁcation of ∼ 50.
+Though the lens galaxy provides most of the deﬂection,
+there is probably a modest contribution from the envi-
+ronment. Kochanek et al. (2001) showed that the ellip-
+ticity of an Einstein ring is proportional to the external
+shear. The Cosmic Horseshoe is nearly a perfect circle.
+Any contribution from the galaxy group must therefore
+be modest. This is surprising, as all other large sep-
+aration lenses have a signiﬁcant contribution from the
+environment.
+The ring has at least four density knots, whose lo-
+cations are noted in Section 2. A more sophisticated
+algorithm that ﬁts to the image locations and relative
+brightnesses is provided by the method of Evans & Witt
+(2003). Here, the lens density has an isothermal proﬁle
+in radius, but the angular shape of the isodensity con-
+tours is given by a Fourier series. Fermat surfaces and
+critical curves are presented for two possible models in
+Figure 5. In the left panel, the positive parity images are
+A and C, whilst the negative parity images correspond-
+ing to saddle-points on the Fermat surface and are B and
+D. In the right panel, C is regarded as a merging pair (C 1
+and C 2), whilst A and D are retained as images and B is
+discarded. In both cases, the mass enclosed within the
+Einstein ring is ∼ 6 × 1012 M⊙ , similar to our crude es-
+timates, while the magniﬁcation is in the range 25 − 35.
+Also possible is that the Cosmic Horseshoe is a sextuplet
+system, with C a conglomeration of three merging im-
+ages in addition to A,B and D (see e.g., Evans & Witt
+2001).
+
+===== PAGE 5 =====
+The Cosmic Horseshoe 5
+The combination of high absolute luminosity and large
+magniﬁcation factor makes the Cosmic Horseshoe the
+brightest galaxy known at z > 2. The lens galaxy is
+one of the most massive LRGs ever detected. Detailed
+studies of this remarkable system at a variety of wave-
+lengths, from optical to sub-mm will help us probe the
+physical nature of star formation in the young universe,
+whilst detailed modeling will enable us to study the in-
+terplay between baryons and dark matter in very massive
+galaxies.
+The authors acknowledge with gratitude the support
+of the EC 6th Framework Marie Curie RTN Programme
+MRTN-CT-2004-505183 (”ANGLES”). The paper was
+partly based on observations collected with the 6m tele-
+scope of the Special Astrophysical Observatory (SAO) of
+the Russian Academy of Sciences (RAS) which is op-
+erated under the ﬁnancial support of Science Depart-
+ment of Russia (registration number 01-43). A.V.M.
+also acknowledges a grant from the President of Rus-
+sian Federation (MK1310.2007.2). Funding for the SDSS
+and SDSS-II has been provided by the Alfred P. Sloan
+Foundation, the Participating Institutions, the National
+Science Foundation, the U.S. Department of Energy,
+the National Aeronautics and Space Administration,
+the Japanese Monbukagakusho, the Max Planck Soci-
+ety, and the Higher Education Funding Council for Eng-
+land. The SDSS Web Site is http://www.sdss.org/. The
+SDSS is managed by the Astrophysical Research Con-
+sortium for the Participating Institutions. The Partic-
+ipating Institutions are the American Museum of Nat-
+ural History, Astrophysical Institute Potsdam, Univer-
+sity of Basel, Cambridge University, Case Western Re-
+serve University, University of Chicago, Drexel Univer-
+sity, Fermilab, the Institute for Advanced Study, the
+Japan Participation Group, Johns Hopkins University,
+the Joint Institute for Nuclear Astrophysics, the Kavli
+Institute for Particle Astrophysics and Cosmology, the
+Korean Scientist Group, the Chinese Academy of Sci-
+ences (LAMOST), Los Alamos National Laboratory, the
+Max-Planck-Institute for Astronomy (MPIA), the Max-
+Planck-Institute for Astrophysics (MPA), New Mexico
+State University, Ohio State University, University of
+Pittsburgh, University of Portsmouth, Princeton Uni-
+versity, the United States Naval Observatory, and the
+University of Washington.
+REFERENCES
+Afanasiev V. L., Moiseev A. V., 2005, AstL, 31, 194
+(astro-ph/0502095)
+Allam, S. S., Tucker, D. L., Lin, H., Diehl, H. T., Annis, J.,
+Buckley-Geer, E. J., & Frieman, J. A. 2007, ApJ, 662, L51
+Bernardi, M., et al. 2003, AJ, 125, 1849
+Bernardi, M., et al. 2006, AJ, 131, 2018
+Bolton, A. S., Burles, S., Koopmans, L. V. E., Treu, T., &
+Moustakas, L. A. 2006, ApJ, 638, 703
+Cabanac, R. A., Valls-Gabaud, D., Jaunsen, A. O., Lidman, C. , &
+Jerjen, H. 2005, A&A, 436, L21
+Calzetti, D., Armus, L., Bohlin, R. C., Kinney, A. L., Koorne ef,
+J., & Storchi-Bergmann, T. 2000, ApJ, 533, 682
+Chandar, R., Leitherer, C., Tremonti, C. A., Calzetti, D., A loisi,
+A., Meurer, G. R., & de Mello, D. 2005, ApJ, 628, 210
+Erb, D. K., Shapley, A. E., Pettini, M., Steidel, C. C., Reddy ,
+N. A., & Adelberger, K. L. 2006a, ApJ, 644, 813.
+Erb, D. K., Steidel, C. C., Shapley, A. E., Pettini, M., Reddy ,
+N. A., & Adelberger, K. L. 2006b, ApJ, 646, 107.
+Evans, N. W., & Witt, H. J. 2001, MNRAS, 327, 1260
+Evans, N. W., & Witt, H. J. 2003, MNRAS, 345, 1351
+Inada, N., et al. 2003, Nature, 426, 810
+Inada, N., et al. 2003, AJ, 126, 666
+Irwin, M.J., Lewis, J.R., 2001, New Ast Rev, 45, 105
+Johnston, D. E., et al. 2003, AJ, 126, 2281
+King, L. J., et al. 1998, MNRAS, 295, L41
+Kochanek, C. S., Keeton, C. R., & McLeod, B. A. 2001, ApJ,
+547, 50
+Law, D. R., Steidel, C. C., Erb, D. K., Pettini, M., Reddy, N. A .,
+Shapley, A. E., Adelberger, K. L., & Simenc, D. J. 2007, ApJ,
+656, 1
+Leitherer, C. et al. 1999, ApJS, 123, 3
+Miralda-Escude, J., & Lehar, J. 1992, MNRAS, 259, 31P
+Morgan, N. D., Snyder, J. A., & Reens, L. H. 2003, AJ, 126, 2145
+Oguri, M. 2006, MNRAS, 367, 1241
+Reddy, N. A., Steidel, C. C., Pettini, M., Adelberger, K. L.,
+Shapley, A. E., Erb, D. K., & Dickinson, M. 2007, ApJ, in
+press.
+Sadler, E. et al. 2006, MNRAS, in press (astro-ph/0612019)
+Shapley A. E., Steidel C. C., Pettini M., Adelberger K. L., 20 03,
+ApJ, 588, 65
+Steidel, C. C., Shapley, A. E., Pettini, M., Adelberger, K. L ., Erb,
+D. K., Reddy, N. A., & Hunt, M. P. 2004, ApJ, 604, 534
+W arren, S. J., Hewett, P. C., Lewis, G. F., Moller, P., Iovino , A.,
+& Shaver, P. A. 1996, MNRAS, 278, 139
+Willis, J. P., Hewett, P. C., & W arren, S. J. 2005, MNRAS, 363,
+1369
+
+===== PAGE 6 =====
+6 Belokurov et al.
+TABLE 1
+Properties of the Cosmic Horseshoe
+Component Parameter
+Lens Right ascension 11:48:33.15
+Declination 19:30:03.5
+Redshift, zL 0.444
+Magnitudes (SDSS), gL, rL, iL 20.m8, 19 .m0, 18 .m2
+Eﬀective radii (INT), Reﬀ,g, Reﬀ,i 2.2′′, 1 .7′′
+Axis ratio (INT, in g, i) 0.8, 0.9
+Position angle (INT, in g, i) 99 ◦ , 95 ◦
+Radio Flux (FIRST,NVSS) 5 .4 mJy, 4 .8 mJy
+Source Redshift, zS 2.379
+Ring Diameter 10 .′′2
+Length 300 ◦
+Total magnitudes (INT) u, g, i 21.m6, 20 .m1, 19 .m7
+Mass Enclosed 5 .4 × 1012 M⊙
