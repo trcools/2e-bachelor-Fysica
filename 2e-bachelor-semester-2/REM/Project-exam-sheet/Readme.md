@@ -8,13 +8,23 @@ Het doel van dit project is om zo een A4 blad te maken omzetbaar naar  een pdf-b
 
 # Te kennen leerstof
 
-De te kennen leerstof staat [hier](https://github.com/trcools/2e-bachelor-Fysica/blob/sub-branch/2e-bachelor-semester-2/REM/REM_2024_chapter-summary.pdf). REM/REM_2024_chapter-summary.pdf
+De te kennen leerstof staat niet als PDF in deze repo, omdat PDF-bestanden hier niet standaard mee geversioneerd worden.
+Plaats het document daarom lokaal, bijvoorbeeld als:
+
+- `_lokaal/REM_2024_chapter-summary.pdf`
+
+Als je dit bestand nog niet hebt, haal het dan via het officiële cursusmateriaal, Toledo of via de docent.
 
 # Hulplijn
 
-Dit is het [handboek](https://github.com/trcools/2e-bachelor-Fysica/blob/sub-branch/2e-bachelor-semester-2/REM/David%20J.%20Griffiths-Introduction%20to%20Electrodynamics-Addison-Wesley%20(2012).pdf) die we hebben gevolgd tijdens de les. Natuurlijk is niet alles van het handboek te kennen. REM/David J. Griffiths-Introduction to Electrodynamics-Addison-Wesley (2012).pdf
+Het handboek dat in de les gevolgd werd is *Introduction to Electrodynamics* van David J. Griffiths.
+Gebruik hiervoor een legale bron, bijvoorbeeld de universiteitsbibliotheek, het officiële cursusplatform of een persoonlijke legale kopie.
 
-Dit is een [fomuleblaadje](https://github.com/trcools/2e-bachelor-Fysica/blob/sub-branch/2e-bachelor-semester-2/REM/RelEM-2026_formula_sheet.pdf) die we tijdens de oefeningen hebbeen gekregen, ik ben niet zeker of we die ook oop het examen krijigen. REM/RelEM-2026_formula_sheet.pdf
+Het formuleblaadje staat ook niet in deze repo. Plaats het lokaal, bijvoorbeeld als:
+
+- `_lokaal/RelEM-2026_formula_sheet.pdf`
+
+Als je dit document niet hebt, vraag het na bij medestudenten, de docent of controleer het cursusplatform.
 
 # Samenvatting
 
