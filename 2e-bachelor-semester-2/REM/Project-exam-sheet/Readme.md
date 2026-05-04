@@ -1,10 +1,10 @@
 # Inleiding
 
-Voor het examen relativiteit en electromagnetisme mogen we een A4 blad meenemen met daarop voor en achterkant aan formules, bijwijzen en definities.
+Voor het examen relativiteit en elektromagnetisme mogen we een A4-blad meenemen met daarop op de voor- en achterkant formules, bewijzen en definities.
 
 # Doel
 
-Het doel van dit project is om zo een A4 blad te maken omzetbaar naar  een pdf-bestand, waar er op de voor en achterkant alles op staat van definities, bewijzen en formules die te kennen zijn voor het examen.
+Het doel van dit project is om zo'n A4-blad te maken, omzetbaar naar een pdf-bestand, waarop op de voor- en achterkant alle definities, bewijzen en formules staan die gekend moeten zijn voor het examen.
 
 # Te kennen leerstof
 
