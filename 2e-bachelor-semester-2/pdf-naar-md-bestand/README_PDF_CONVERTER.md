@@ -16,21 +16,25 @@ Het script zet PDF's om naar markdown met:
 
 ## Installatie (eenmalig)
 
+Navigeer naar de map `2e-bachelor-semester-2` in de repo en maak een venv aan (of gebruik een bestaande):
+
 ```bash
-cd /Users/tristancools/Documents/VSC_macbook_tristan/2e-bachelor-semester-2
-source Sterrenstelsels/.venv/bin/activate
+cd <repo-root>/2e-bachelor-semester-2
+python -m venv .venv
+source .venv/bin/activate        # macOS/Linux
+# .venv\Scripts\activate         # Windows
 pip install pymupdf rapidocr_onnxruntime
 ```
 
-Je mag een andere venv gebruiken. Belangrijk is enkel dat die twee packages daarin (`Sterrenstelsels`) geinstalleerd zijn.
+Je mag een bestaande venv gebruiken. Belangrijk is enkel dat de twee packages (`pymupdf` en `rapidocr_onnxruntime`) daarin geïnstalleerd zijn.
 
 ## Gebruik:
 
 ### Basis
 
 ```bash
-cd /Users/tristancools/Documents/VSC_macbook_tristan/2e-bachelor-semester-2
-source Sterrenstelsels/.venv/bin/activate
+cd <repo-root>/2e-bachelor-semester-2
+source .venv/bin/activate        # macOS/Linux
 python pdf-naar-md-bestand/pdf_naar_md.py --input-dir REM/Samenvatting-REM
 ```
 
