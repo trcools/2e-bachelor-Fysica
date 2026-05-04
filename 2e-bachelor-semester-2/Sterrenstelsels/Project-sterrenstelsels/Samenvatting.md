@@ -30,7 +30,7 @@ De Cosmic Horseshoe is een bijna volledige Einstein-ring ($\sim 300^\circ$) rond
 
 **Wat dit betekent voor de presentatie:** slide 5 moet expliciet tonen dat modelkeuze ($\text{SIE}$ vs power-law vs $\text{NFW}$) de interpretatie bepaalt.
 
-## Paper 3 (Almeida et al., 2017, MNRAS)
+## Paper 3 (Alard, 2016, MNRAS)
 **Kernbijdrage:** alternatieve reconstructie met singular perturbative approach.
 
 - Niet klassiek “1 profiel fitten”, maar perturbatieve reconstructie met Fourier-termen.

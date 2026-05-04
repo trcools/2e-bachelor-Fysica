@@ -95,7 +95,7 @@ Notitie: je dient enkel de slides in, dus de dia's moeten op zichzelf coherent z
 - Totale massa binnen ringstraal
 - Vorm van massaprofiel
 - Vergelijk expliciet: SIE, power-law, NFW (Dye 2008)
-- Alternatieve methode: singular perturbative approach (Almeida 2017)
+- Alternatieve methode: singular perturbative approach (Alard 2016)
 - Resultaten zijn modelafhankelijk
 - Voeg een klein kader toe: "Aannames die ertoe doen: profielvorm, anisotropie"
 - Rubric-tag: Wetenschappelijke juistheid
@@ -104,7 +104,7 @@ Notitie: je dient enkel de slides in, dus de dia's moeten op zichzelf coherent z
 - Figuur uit een modelpaper: best-fit reconstructie + residuen
 
 **Zeg dit (≈50 s)**
-- "Dye et al. vergelijken drie parametrische modellen: SIE, power-law en NFW. In die vergelijking scoort een bijna isotherm power-law profiel het best, met een helling dicht bij $\rho\propto r^{-1.96}$ en een massa binnen de Einstein-ring van ongeveer $5\times10^{12}\,M_\odot$. Almeida et al. tonen met een perturbatieve reconstructie dat ook methodekeuze details in de inferentie beïnvloedt. De kern is dus: het globale beeld is robuust, maar exacte waarden zijn modelafhankelijk."
+- "Dye et al. vergelijken drie parametrische modellen: SIE, power-law en NFW. In die vergelijking scoort een bijna isotherm power-law profiel het best, met een helling dicht bij $\rho\propto r^{-1.96}$ en een massa binnen de Einstein-ring van ongeveer $5\times10^{12}\,M_\odot$. Alard (2016) toont met een perturbatieve reconstructie dat ook methodekeuze details in de inferentie beïnvloedt. De kern is dus: het globale beeld is robuust, maar exacte waarden zijn modelafhankelijk."
 
 **Cursuslink onderaan slide**
 - [Cursus §... ] Massaprofielen en dynamische interpretatie
@@ -228,5 +228,5 @@ Als je meer nadruk wilt op "variatie in bronnen", kan slide 7 een tabel zijn:
 |---|---|---|---|
 | Belokurov 2007 | Observatie/ontdekking | Einstein ring karakterisatie | beperkte resolutie t.o.v. latere data |
 | Dye 2008 | Parametrische modellering | eerste massamodelvergelijkingen | modelafhankelijkheid |
-| Almeida 2017 | Perturbatieve reconstructie | alternatieve methodiek | aannames over perturbatieve orde |
+| Alard 2016 | Perturbatieve reconstructie | alternatieve methodiek | aannames over perturbatieve orde |
 | Melo-Carneiro 2025 | Lensing + dynamica | zeer hoge $M_{BH}$-schatting | gevoeligheid aan systeemkeuzes |

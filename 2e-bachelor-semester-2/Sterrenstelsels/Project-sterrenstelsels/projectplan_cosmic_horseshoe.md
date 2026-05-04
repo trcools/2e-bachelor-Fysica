@@ -63,7 +63,7 @@
 
 - Uit literatuur: hoe men totale massa en profiel afleidt.
 - Benoem modelafhankelijkheden (profielvorm, anisotropie, externe shear, degeneraties).
-- Concreet vergelijken: SIE, power-law, NFW (Dye 2008) en perturbatieve aanpak (Almeida 2017).
+- Concreet vergelijken: SIE, power-law, NFW (Dye 2008) en perturbatieve aanpak (Alard 2016).
 
 ### Slide 6 — Centraal zwart gat
 
