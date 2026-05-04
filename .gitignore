@@ -21,6 +21,20 @@ venv/
 *.docx
 *.pptx
 
+# LaTeX build artifacts
+*.fls
+*.aux
+*.log
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.toc
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
 # Local-only private files
 # Put any files you want to keep ONLY on your own computer in the _lokaal/ folder.
 # Git will never track or push anything inside it (except _lokaal/README.md).
