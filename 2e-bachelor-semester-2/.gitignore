@@ -1,0 +1,33 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex
+*.synctex.gz
+*.synctex(busy)
+*.fdb_latexmk
+*.fls
+*.pdf
+
+# iCloud files
+*.icloud
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+__pycache__/
+
+# Python
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+
+# IDE
+.vscode/settings.json
