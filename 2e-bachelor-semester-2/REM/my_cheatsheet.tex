@@ -1,0 +1,269 @@
+\documentclass[8pt,a4paper,twoside]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[hidelinks]{hyperref} % geen kaders om linken
+\usepackage{parskip}
+\usepackage{bm} % For bolt symbols eg \bm{\nabla}
+\usepackage{amsmath, amssymb, amsfonts} % For nicer math format
+\usepackage{esint} % For bolletje in integrals
+\usepackage{mathrsfs} % For curly arrr
+\usepackage{subcaption}
+\usepackage[english]{babel}
+\usepackage{dsfont}
+\usepackage[a4paper, margin=0.24cm, landscape]{geometry} 
+% Verander 1.5cm naar bijvoorbeeld 1cm voor een extreem vol blad.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{multicol}
+
+%Tikz packages
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes, babel} % for pic (angle labels)
+\usetikzlibrary{arrows.meta,decorations.markings,calc, decorations.pathmorphing, decorations.pathreplacing, positioning, shapes, shadings, patterns}
+\usepackage{xcolor}
+\usepackage{tikz-3dplot}
+\usepackage[siunitx]{circuitikz}
+
+
+\usepackage{etoolbox} % ifthen
+\usepackage[outline]{contour} % glow around text
+\usepackage{xfp} % higher precision (16 digits?)
+\contourlength{1.1pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.08ex}
+\setlength{\columnsep}{0.12cm}
+%\linespread{0.8} 
+%\pagestyle{empty}
+
+\newcommand{\secblock}[1]{\vspace{0.08ex}\textbf{#1}\par}
+\newcommand{\eqline}[1]{\(#1\)\par}
+
+
+%\usepackage{geometry} %size regulating
+%\geometry{
+ %a4paper,
+ %left=20mm,
+ %right=20mm,
+ %top=10mm,
+ %bottom=20mm,
+%}
+
+% Source - https://tex.stackexchange.com/a/506180
+% Posted by Henri Menke, modified by community. See post 'Timeline' for change history
+% Retrieved 2026-05-07, License - CC BY-SA 4.0
+
+%vptovf griffm.vpl
+%vptovf griffb.vpl
+
+%\DeclareFontFamily{U}{griff}{}
+%\DeclareFontShape{U}{griff}{m}{n}{<-> s*[2.2] griffm}{}
+%\DeclareFontShape{U}{griff}{b}{n}{<-> s*[2.2] griffb}{}
+%\DeclareSymbolFont{griff}{U}{griff}{m}{n}
+%\SetSymbolFont{griff}{bold}{U}{griff}{b}{n}
+%\DeclareMathSymbol{\rcurs}{\mathalpha}{griff}{"72}
+%\DeclareBoldMathCommand{\brcurs}{\rcurs}
+%\newcommand*\hrcurs{\hat{\brcurs}}
+
+
+\begin{document}
+
+
+%\fontsize{4.7}{4.95}\selectfont Om alles heel kleini te maken
+
+\begin{multicols*}{4}
+\secblock{H1 Vector Analysis}
+%Meeste staat op formularium
+\secblock{H2 Electrostatics}
+
+Coulomb Force: 
+\(\bm F = \frac{1}{4\pi \epsilon_0}\frac{qQ}{r^2}\hat{r}\)
+
+Electric field:
+\(
+\bm E (\bm r) = \frac{1}{4\pi \epsilon _0} \int \frac{\rho(\bm r ')}{r^2}\hat{\bm r} d\tau'
+\)
+
+Electric flux: 
+\(
+\Phi_E = \int_S \bm E \cdot d\bm a
+\)
+
+Closed path:
+\(
+\oint \bm E \cdot d \bm l = 0 \implies \bm\nabla
+ \times \bm E = \bm 0
+\)
+
+Electric potential:
+\(V(\bm r) =-\int_0^r \bm E \cdot d \bm l \implies \bm E = - \nabla V \)
+
+% Poison/Laplace equation???
+
+Work: 
+\[
+W = \int _a^b \bm F \cdot d \bm l = -Q \int _a^b \bm E \cdot d \bm l  \implies W = QV(\bm r)
+\]
+or:
+\[
+W = \frac{\epsilon_0}{2}\int E^2d\tau
+\]
+
+%Electrostatic pressure ? (2.51)
+
+Capacitance:
+\[
+C = \frac{Q}{V} \implies W = \frac{1}{2}CV^2
+\]
+
+
+
+\secblock{H3 Potentials}
+
+%Laplace again (maar 3.1 niet te kennen?) (3.1)
+
+% Method of imagees (3.2) 
+
+% Separation oof variables (3.3)
+
+% Afleiding Legendre polynomials?
+
+%Rodrigues formula:
+%\[
+%\bm P_l(x) = \frac{1}{2^l l! }(\frac{d}{dx})^l (x^2-1)^l
+%\]
+Curly r:
+\[
+\frac{1}{r_{curly}} = \frac{1}{r}\sum^\infty_{n=0} (\frac{r'}{r})^n P_n (\cos \alpha)
+\]
+Dipole contribution to potential:
+\[
+V_{\text{dip}} (\bm r) = \frac{1}{4 \pi \epsilon_0} \frac{\bm p \cdot \hat{\bm r}}{r^2}
+\]
+\[
+\bm E_{dip}(r,\theta)=\frac{p}{4\pi \epsilon_0 r^3}(2\cos \theta \hat{\bm r} + \sin \theta \hat{\bm \theta})
+\]
+
+
+
+\secblock{H4 Electric Fields in Matter}
+
+Atomic polarizability:
+\[
+\bm p = \alpha\bm E
+\]
+
+Torque:
+\[
+\bm N = q \bm d \times \bm E = \bm p \times \bm E
+\]
+\[
+\bm F = (\bm p \cdot \bm \nabla)\bm E
+\]
+Bounded surface charge density:
+\[ \bm P \cdot \hat{\bm n}\]
+Bounded volume charge density:
+\[
+\rho_b = - \bm \nabla \cdot \bm P
+\]
+Potential Macroscopic field:
+\[
+V (\bm r) = \frac{1}{4 \pi \epsilon_0} \int \frac{\bm P(\bm r') \cdot \hat{\bm r_{c}}}{r^2_c} d\tau'
+\]
+
+Electric displacement integral form:
+\[
+\oint \bm D \cdot d\bm a = Q_{f_{enc}}
+\]
+
+Electric field in a homogeneous linear dielectric media:
+\[
+\bm E = \frac{1}{4\pi \epsilon _0} \frac{q}{r^2}\hat{\bm r}
+\]
+Bound charge in homogeneous isotropic linear dielectric:
+\[
+\rho _b = - \frac{\chi_e}{1+\chi_e} \rho_f
+\]
+
+Work:
+\[
+\frac{1}{2} \int \bm D \cdot \bm E d\tau
+\]
+
+% Capacitance????
+
+
+
+
+
+
+\secblock{H5 Magnetostatics}
+Magnetic forces do no work!\\
+\(
+\bm F_{mag} = I \int d \bm l \times \bm B
+\)
+
+Surface current:
+\(
+\bm K = \frac{d \bm I}{dl_\perp} = \sigma \bm v
+\)
+
+Magnetic force on the surface current
+\(
+\bm F_{mag} =  \int ( \bm v \times \bm B)\sigma da =  \int ( \bm K \times \bm B)da
+\)
+
+Volume current density:
+\(
+\bm J = \frac{d \bm I}{dl_\perp} = \rho \bm v
+\)
+
+Magnetic force on the volume current
+\(
+\bm F_{mag} =  \int ( \bm v \times \bm B)\rho d\tau =  \int ( \bm J \times \bm B)d\tau
+\)
+
+Continuity equation:
+\(
+\bm \nabla \cdot \bm J = \frac{\partial \rho}{\partial t}
+\)
+
+Biot-Savart law:
+\(
+\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{I\times\hat{\bm{r}}_c}{r_c^2}d\bm l'
+=\frac{\mu_0 I}{4\pi}\int\frac{dl'\times\hat{\bm{r}}_c}{r^2_c}
+\)
+
+For surface currents:
+\(
+\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm K(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d a'
+\)
+
+For volume currents:
+\(
+\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d \tau '
+\)
+
+Vector potential in magnetostatics:
+\(\bm B = \bm \nabla \times \bm A\)
+
+\secblock{H6 Magnetic Fields in Matter}
+
+
+\secblock{H7 Electrodynamics}
+
+
+\secblock{H8 Conservation Laws}
+
+\secblock{H9 Electromagnetic Waves}
+
+\secblock{H10 Potentials and Fields}
+
+\secblock{H11 Radiation}
+
+\secblock{H12 Electrodynamics and Relativity}
+
+\secblock{Handige rekenregels}
+
+\end{multicols*}
+\end{document}
