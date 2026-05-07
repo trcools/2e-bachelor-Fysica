@@ -1,4 +1,4 @@
-\documentclass[8pt,a4paper,twoside]{article}
+\documentclass[a4paper,twoside]{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage[hidelinks]{hyperref} % geen kaders om linken
 \usepackage{parskip}
@@ -101,9 +101,8 @@ Electric potential:
 % Poison/Laplace equation???
 
 Work: 
-\[
-W = \int _a^b \bm F \cdot d \bm l = -Q \int _a^b \bm E \cdot d \bm l  \implies W = QV(\bm r)
-\]
+\(W = \int _a^b \bm F \cdot d \bm l = -Q \int _a^b \bm E \cdot d \bm l  \implies W = QV(\bm r)\)
+
 or:
 \[
 W = \frac{\epsilon_0}{2}\int E^2d\tau
@@ -235,19 +234,43 @@ Biot-Savart law:
 \)
 
 For surface currents:
-\(
-\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm K(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d a'
-\)
+\(\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm K(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d a'\)
 
 For volume currents:
-\(
-\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d \tau '
-\)
+\(\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d \tau '\)
 
 Vector potential in magnetostatics:
-\(\bm B = \bm \nabla \times \bm A\)
+\(\bm A = \frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')}{r_c}d \tau '\).
 
+\(A_{dip}(\bm r) = \frac{\mu_0}{4\pi}\frac{\bm m \times \hat{\bm r}}{r^2}\)
+
+magnetic dipole moment:
+\(\bm m = I \bm a\)
+
+\(\bm A_{dip} (\bm r) = \frac{\mu_0}{4\pi} \frac{m \sin \theta}{r^2}\hat{\bm \phi}\)
+
+\(\bm B_{dip} (\bm r) = \bm \nabla \times \bm A_{dip} (\bm r) = \frac{\mu_0 m}{4\pi r^3}(2\cos \theta \hat{\bm r} + \sin \theta \hat{\bm \theta})\)
 \secblock{H6 Magnetic Fields in Matter}
+Torque:
+\(\bm N = \bm m \times \bm B\)
+Force nonuniform field "fringing":
+\(\bm F = 2\pi \bm I \bm R \bm B \cos\theta\)
+Force nonuniform field: 
+\(\bm F = \bm \nabla (\bm m \cdot \bm B)\)
+
+% Effect of a Magnetic field on atomic orbits?
+
+Vector potential of a single magnetic dipole:
+\(\bm A (\bm r) = \frac{\mu_0}{4\pi} \frac{\bm m \times \hat{\bm r}_c}{r^2_c} = \frac{\mu_0}{4\pi} \int \frac{\bm M (\bm r) \times \hat{\bm r}_c}{r^2_c} d\tau'\)
+
+The potential of a volume current:
+\(J_b = \bm \nabla \times \bm M\)
+
+The potential of a surface current:
+\(\bm K_b = \bm M \times \hat{\bm n}\)  
+
+
+
 
 
 \secblock{H7 Electrodynamics}
