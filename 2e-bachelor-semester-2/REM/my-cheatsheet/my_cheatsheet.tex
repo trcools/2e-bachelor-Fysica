@@ -131,17 +131,15 @@ C = \frac{Q}{V} \implies W = \frac{1}{2}CV^2
 %\[
 %\bm P_l(x) = \frac{1}{2^l l! }(\frac{d}{dx})^l (x^2-1)^l
 %\]
+
 Curly r:
-\[
-\frac{1}{r_{curly}} = \frac{1}{r}\sum^\infty_{n=0} (\frac{r'}{r})^n P_n (\cos \alpha)
-\]
+
+\(\frac{1}{r_{curly}} = \frac{1}{r}\sum^\infty_{n=0} (\frac{r'}{r})^n P_n (\cos \alpha)\)
 Dipole contribution to potential:
-\[
-V_{\text{dip}} (\bm r) = \frac{1}{4 \pi \epsilon_0} \frac{\bm p \cdot \hat{\bm r}}{r^2}
-\]
-\[
-\bm E_{dip}(r,\theta)=\frac{p}{4\pi \epsilon_0 r^3}(2\cos \theta \hat{\bm r} + \sin \theta \hat{\bm \theta})
-\]
+
+\(V_{\text{dip}} (\bm r) = \frac{1}{4 \pi \epsilon_0} \frac{\bm p \cdot \hat{\bm r}}{r^2}\)
+
+\(\bm E_{dip}(r,\theta)=\frac{p}{4\pi \epsilon_0 r^3}(2\cos \theta \hat{\bm r} + \sin \theta \hat{\bm \theta})\)
 
 
 
@@ -273,8 +271,127 @@ The potential of a surface current:
 
 \secblock{H7 Electrodynamics}
 
+Current density (Ohm's law):
+\(\bm J = \sigma \bm f = \sigma (\bm E + \bm v \times \bm B) \approx \sigma \bm E\)
+
+Resistivity:
+\(\rho = \frac{1}{\sigma}\)
+
+Perfect conductor:
+\(\sigma = \infty\) or/and \(\bm E = \frac{\bm J}{\sigma}=0\)
+
+Perfect isolator:
+\(\sigma = 0\)
+
+\(V = IR\)
+
+For steady currents and uniform conductivity:
+\(\bm \nabla \cdot \bm E = \frac{1}{\sigma} \bm \nabla \cdot \bm J = 0\)
+
+% Rare formule (7.6)??
+
+Joule heating law:
+\(P = VI = I^2R\)
+
+Electromotive force (emf):
+\(\epsilon_{emf} = \oint\bm f \cdot d \bm l\)
+
+Flux rule:
+\(\epsilon_{emf} = -\frac{d \phi}{dt}\)
+
+Analog to Biot-Savart law:
+\(\bm{E}(\bm{r})=-\frac{1}{4\pi}\frac{\partial}{\partial t}\int\frac{\bm B\times\hat{\bm{r}}_c}{r_c^2}d\bm \tau'\)
+
+Inductance:
+\(\bm B_1 = \frac{\mu_0 I_1}{4\pi} \oint \frac{dl_1 \times \hat{\bm{r}}_c}{r_c^2}\)
+
+Mutual inductance:
+\(\Phi_{21} = \int \bm B_1 \cdot d\bm a_2 = M_{21} I_1\)
+
+Neuman's law:
+\(M_{21} = M_{12}\)
+
+\(M_{21} = \frac{\mu_0}{4\pi} \oint \oint \frac{d\bm l_1 \cdot d\bm l_2}{r_c}\)
+
+Self inductance:
+\(\Phi_{11} = \int \bm B_1 \cdot d\bm a_1 = L I_1 \implies \Phi = LI\)
+
+emf of self inductance:
+\(\epsilon_{emf} = -L \frac{dI}{dt}\)
+
+Power:
+\(\frac{dW}{dt} = -\epsilon_{emf} I = LI \frac{dI}{dt}\)
+
+Work done:
+\(W = \frac{1}{2} L I^2\)
+
+\(W = \frac{1}{2\mu_0} \int_{all \, space} B^2 d\tau\)
+
+\(W_{elec} = \frac{1}{2} \int  (V \rho) d\tau = \frac{\epsilon_0}{2} \int  E^2 d\tau\)
+
+\(W_{mag} = \frac{1}{2} \int (\bm A \cdot \bm J) d\tau = \frac{1}{2\mu_0} \int B^2 d\tau\)
+
+Displacement current (in medium):
+\(\bm J_d = \epsilon_0 \frac{\partial \bm D}{\partial t}\)
+
+Polarization current (in medium):
+\(\bm J_p = \frac{\partial \bm P}{\partial t}\)
+
+
 
 \secblock{H8 Conservation Laws}
+
+Local charge conservation:
+\(\bm \nabla \cdot \bm J + \frac{\partial \rho}{\partial t} = 0\)
+
+%Extra
+%momentum density:
+%\(\bm g = \epsilon_0 \bm E \times \bm B\)
+
+Total energy stored in the electromagnetic field:
+\(u = \frac{1}{2} (\epsilon_0 E^2 + \frac{1}{\mu_0} B^2)\)
+
+Work done on charge q:
+\(dW = q \bm E \cdot \bm v dt\)
+
+Poynting theorem:
+\(\frac{\partial u}{\partial t} + \bm \nabla \cdot \bm S = -\bm J \cdot \bm E\)
+
+Poynting vector:
+\(\bm S = \frac{1}{\mu_0} \bm E \times \bm B\)
+
+Continuity equation for energy:
+\(\frac{\partial u}{\partial t} + \bm \nabla \cdot \bm S = 0\)
+
+
+%Afleiding momentum density en Maxwell stress tensor H8.2.2 nog inzetten??
+
+Maxwell stress tensor:
+\(T_{ij} = \epsilon_0 (E_iE_j-\delta_{ij}E^2) +\frac{1}{\mu_0} (B_iB_j-\delta_{ij}B^2)\)
+
+Force per unit volume:
+\(\bm f = \bm\nabla \cdot \overleftrightarrow{T} - \epsilon_0 \mu_0 \frac{\partial \bm S}{\partial t}\)
+
+Total electromagnetic force on a charge distribution:
+\(\bm F = \int \bm f d\tau = \oint_S \overleftrightarrow{T} \cdot d\bm a - \epsilon_0 \mu_0 \frac{d}{dt} \int_V \bm S d\tau\)   
+
+At the boundary:
+\(\bm F = \oint _S \overleftrightarrow{T} \cdot d\bm a\) (static case)
+
+%Niet te kennen deel 8.2.3 en verder??
+
+%Momentum stored in the EM field:
+%\(\bm p = \frac{1}{c^2} \int \bm S d\tau = \mu_0 \epsilon_0 \int \bm S d\tau  \)
+
+%Conservation of momentum:
+%\(\frac{d\bm p}{dt} + \oint_S \overleftrightarrow{T} \cdot d\bm a = 0\)
+
+%Momentum density:   
+%\(\bm g = \frac{1}{c^2} \bm S = \mu_0 \epsilon_0 \bm S\)
+
+%Continuity equation for momentum:
+%\(\frac{\partial \bm g}{\partial t} + \bm \nabla \cdot \overleftrightarrow{T} = 0\)
+
 
 \secblock{H9 Electromagnetic Waves}
 
@@ -314,7 +431,7 @@ Cylindrical:
 
 \(\hat{\bm \phi} = -\sin \phi \hat{\bm x} + \cos \phi \hat{\bm y}\)
 
-Goniomeetric identities:
+Goniometric identities:
 
 
 \end{multicols*}
