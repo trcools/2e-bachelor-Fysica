@@ -1,0 +1,73 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[hidelinks]{hyperref} % geen kaders om linken
+\usepackage{parskip}
+\usepackage{bm} % For bold symbols eg \bm{\nabla}
+\usepackage{amsmath, amssymb, amsfonts, amsthm} % For nicer math format
+\usepackage{esint} % For bolletje in integrals
+\usepackage{mathrsfs} % For curly arrr
+\usepackage{subcaption}
+%\usepackage[dutch]{babel}
+\usepackage{dsfont}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{multicol}
+
+%Tikz packages
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes, babel} % for pic (angle labels)
+\usetikzlibrary{arrows.meta,decorations.markings,calc, decorations.pathmorphing, decorations.pathreplacing, positioning, shapes, shadings, patterns}
+\usepackage{xcolor}
+\usepackage{tikz-3dplot}
+\usepackage[siunitx]{circuitikz}
+
+\usepackage{etoolbox} % ifthen
+\usepackage[outline]{contour} % glow around text
+\usepackage{xfp} % higher precision (16 digits?)
+\contourlength{1.1pt}
+
+
+
+\usepackage{geometry} %size regulating
+\geometry{
+ a4paper,
+ left=20mm,
+ right=20mm,
+ top=10mm,
+ bottom=20mm,
+ }
+
+\theoremstyle{definition}
+\newtheorem{postulate}{Postulaat}
+\newtheorem{definition}{Definitie}
+
+
+\begin{document}
+
+\begin{center}
+\hrule
+\vspace{.2cm}
+\textbf{\Huge Samenvatting Thermische Fysica}
+\vspace{.2cm}
+\end{center}
+
+\textbf{ T. Cools}
+
+\textbf{ Tweede Bachelor Fysica en Sterrenkunde}
+
+\textbf{ 2025-2026 }
+
+
+\hrule
+
+\begin{abstract}
+    In deze samenvatting zal per hoofdstuk een overzicht worden gegeven van de belangrijkste concepten, definities, formules, afleidingen en bewijzen die in het vak Thermische Fysica aan bod zijn gekomen.
+    De samenvatting is bedoeld voor educatieve doeleinden.
+\end{abstract}
+
+\input{Thermische-H1.tex}
+\input{Thermische-H2.tex}
+
+
+\end{document}
