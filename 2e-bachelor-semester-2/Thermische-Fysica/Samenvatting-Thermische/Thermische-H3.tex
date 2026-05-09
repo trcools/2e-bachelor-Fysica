@@ -162,4 +162,63 @@ waarbij \(\Delta Z\) het verschil in elektrische lading is die door de cel stroo
 De drie coordinaten zijn hier de temperatuur \(T\) (intensief), de elektrische potentiaal \(V_\epsilon\) (intensief) en de lading \(Z\) (extensief).
 
 De toestandsvergelijking van een verzadigde reeversibele cel is:
-\[V_\epsilon = V_{\epsilon,25} + \alpha (T'-25^\circ C) + \beta (T'-25^\circ C)\]
+\[V_\epsilon = V_{\epsilon,25} + \alpha (T'-25^\circ C) + \beta (T'-25^\circ C) + \gamma (T' - 25^\circ C)^3\]
+
+waarbij \(V_{\epsilon,25}\) de elektrische potentiaal is bij 25 °C, en \(\alpha\), \(\beta\) en \(\gamma\) empirische constanten zijn, dus niet de coëfficienten van eerder.
+
+\subsubsection{Diëlektricum}
+
+De theorie van diëlektrica zou gekend moeten zijn van elektriciteit een magnetisme en relativeit \& elektromagnetisme.
+De diëlektrische verplaatsing \(D\):
+\[D = \epsilon_0 E  + P = \epsilon_0 E + \frac{\Pi}{V}\]
+waarbij \(\epsilon_0\) de permittiviteit van het vacuüm is, \(E\) het elektrische veld is, \(P\) de polarisatie is, \(\epsilon_0\) de permittiviteit van het vacuüm is, en \(\Pi\) de totale dipoolmoment is.
+
+De drie grootheden zijn hier de temperatuur \(T\) (intensief), het elektrische veld \(E\) (intensief) en de totale dipoolmoment \(\Pi\) (extensief).
+
+Met een toestandsvergelijking van de vorm:
+\[\frac{\Pi}{V} = \left(a + \frac{b}{T} \right)\]
+met a en b constanten die afhangen van het diëlektricum.
+
+\subsubsection{Paramagnetische staaf}
+
+De drie grootheden zijn hier de temperatuur \(T\) (intensief), het magnetisch veld \(H\) (intensief) en de magnetische moment \(M\) (extensief).
+\footnote{Let op, in andere cursussen heten \(H\) of \(B\) het magnetisch veld wegens historische verwarring}
+
+De magnetische inductie \(B\) is gerelateerd aan het magnetisch veld \(H\) en de magnetisatie \(M\) door de relatie:
+\[B = \mu_0 (H + \frac{M}{V})\]
+waarbij \(\mu_0\) de permeabiliteit van het vacuüm is.
+
+We hebben de toestandsvergelijking:
+\[M = \frac{C_c}{T} H\]
+waarbij \(C_c\) de Curie-constante is, die afhangt van het materiaal van de paramagnetische staaf.
+
+\subsubsection{Toestandsvergelijking van een gas }
+
+\textbf{Viriaalontwikkeling}:
+\[\frac{PV}{nRT} = 1 + \frac{B(T)}{V} + \frac{C(T)}{V^2} + \ldots = Z\]
+waarbij \(B(T)\) en \(C(T)\) de viriale coëfficiënten zijn, die afhangen van de temperatuur en de specifieke eigenschappen van het gas. Deze coëfficiënten corrigeren voor de interacties tussen de gasmoleculen, waardoor de vergelijking nauwkeuriger wordt voor reële gassen bij hogere drukken en lagere temperaturen.
+\(Z\) is de compressiefactor, die aangeeft hoe ver het gas afwijkt van het ideale gasgedrag. Voor een ideaal gas is \(Z = 1\).
+
+Voor ideale gassen bij constante deeltjes gelden de volgende drie wetten:
+\begin{itemize}
+    \item \textbf{Boyle's wet}: Bij constante temperatuur (isotherm): \(PV = cst\).
+    \item \textbf{Charles' wet}: Bij constant volume (isochoor): \(\frac{P}{T} = cst\).
+    \item \textbf{Gay-Lussac's wet}: Bij constante druk: \(\frac{V}{T} = cst\).
+\end{itemize}
+Dit is leerstof 4e middelbaar! 
+Samen vormen deze drie wetten de ideale gaswet \(PV = nRT\).
+
+De wet van Dalton zegt dat de totale druk van een niet reagerend gasmengsel gelijk is aan de som van de partiële drukken van de individuele gassen in het mengsel:
+\[P_{totaal} = \sum_{i=1}^n P_i\]
+waarbij \(P_i\) de partiële druk is van het i-de gas in het mengsel en belangrijk \(P,T = cst\).
+
+De wet van Leduc is zeer abstract, maar ik zal hem toch proberen uit te leggen. Stel de druk en het volume zijn constant, dan:
+\[V = \sum_i V_i\]
+
+Nu zullen we eens kijken naar de luchtvochtigheid. Dit hangt meestal naast de temperatuur in de sauna.
+De relatieve vochtigheid \(v_r \) is gedefinieerd als:
+\[v_r = 100\%\frac{P_{i,H_2O}}{P_{d,H_2O}}\]
+waarbij \(P_{i,H_2O}\) de partiële druk van waterdamp in de lucht is, en \(P_{d,H_2O}\) de verzadigingsdruk van waterdamp bij de gegeven temperatuur is.
+De relatieve vochtigheid geeft aan hoeveel waterdamp er in de lucht aanwezig is in vergelijking met de maximale hoeveelheid die de lucht kan bevatten bij die temperatuur.
+
+Als \(P_{i,H_2O} = P_{d,H_2O}\), dan is de lucht verzadigd met waterdamp en staat je systeem op het punt om water te vormen. Dit heet verassend genoeg het \textbf{dauwpunt} of als \(T<0^\circ\) het \textbf{rijmpunt}.
