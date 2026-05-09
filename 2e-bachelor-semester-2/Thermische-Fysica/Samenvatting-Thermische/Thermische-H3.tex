@@ -30,20 +30,136 @@
 \end{definition}
 \medskip
 \begin{definition}
-    \textbf{dampverzadigingslijn}: De lijn in een PV-diagram waarbij damp en vloeistof in evenwicht zijn. Deze lijn scheidt het gebied van de damp-toestanden van het gebied van de vloeistoftoestanden.
+    \textbf{Dampverzadigingslijn}: De lijn in een PV-diagram waarbij damp en vloeistof in evenwicht zijn. Deze lijn scheidt het gebied van de damp-toestanden van het gebied van de vloeistoftoestanden.
 \end{definition}
 \medskip
 De dampverzadigingslijn en de vloeistofverzadigingslijn ontmoeten elkaar bij het kritische punt K, waar de eigenschappen van de vloeistof en de damp identiek zijn.
 
 \begin{definition}
-    \textbf{Tripellijn}: De lijn in een PV-diagram waarbij de vloeistof-damp en vaste-stof-damp in evenwicht zijn.
+    \textbf{Tripellijn}: De lijn in een PV-diagram waarbij de vloeistof-damp en vaste-stof-damp in evenwicht zijn. (Dus nog niet perse de vloeibare fase inbegrepen)
+\end{definition}
+\subsection{PT-diagrammen (zuivere stof)}
+\begin{definition}
+    \textbf{Tripelpunt}: Het punt in een PV(T)-diagram waar de drie fasen van een stof in evenwicht zijn. Op dit punt kunnen alle drie de fasen tegelijkertijd bestaan. Dit punt ligt op de tripellijn van het Pv-diagram.
 \end{definition}
 \medskip
 \begin{definition}
-    \textbf{Tripelpunt}: Het punt in een PV-diagram waar de drie fasen van een stof (vloeistof, damp, en vaste stof) in evenwicht zijn. Op dit punt kunnen alle drie de fasen tegelijkertijd bestaan.
+    \textbf{Sublimatielijn}: De lijn in een PT-diagram waarbij de vaste stof en de damp in evenwicht zijn. Deze lijn scheidt het gebied van de vaste-stof-toestanden van het gebied van de damp-toestanden.
 \end{definition}
 \medskip
 \begin{definition}
-    \textbf{Sublimatielijn}: De lijn in een PV-diagram waarbij de vaste stof en de damp in evenwicht zijn. Deze lijn scheidt het gebied van de vaste-stof-toestanden van het gebied van de damp-toestanden.
+    \textbf{Verdampingslijn}: De lijn in een PT-diagram waarbij de vloeistof en de damp in evenwicht zijn. Deze lijn scheidt het gebied van de vloeistoftoestanden van het gebied van de damp-toestanden.
 \end{definition}
 \medskip
+\begin{definition}
+    \textbf{Stollingslijn}: De lijn in een PT-diagram waarbij de vaste stof en de vloeistof in evenwicht zijn. Deze lijn scheidt het gebied van de vaste-stof-toestanden van het gebied van de vloeistoftoestanden.
+\end{definition}
+
+De drie scheidingslijnen (sublimatielijn, verdampingslijn en stollingslijn) ontmoeten elkaar bij het tripelpunt, waar alle drie de fasen in evenwicht zijn.
+De helling van de sublimatielijn en verdampingslijn is altijd positief, terwijl de helling van de stollingslijn kan variëren afhankelijk van de stof.
+Voor water heeft de stollingslijn een negatieve helling, wat betekent dat de smelttemperatuur van water afneemt met toenemende druk.
+Voor de meeste andere stoffen heeft de stollingslijn een positieve helling, wat betekent dat de smelttemperatuur toeneemt met toenemende druk.
+
+\subsection{Het PVT-opprevlak}
+Het is belangrijk dat je deze 3D diagrammen goed kan interpreteren, en dat je weet wat de verschillende lijnen en vlakken betekenen en ze kan uitleggeen aan de hand van voorgaande definities.
+
+\subsection{Toestandsvergelijkingen}
+
+De toestandsvergelijking:
+\[ f(P,V,T) = 0 \]
+is een vergelijking die de relatie tussen druk, volume en temperatuur van een stof beschrijft.
+Voor een ideaal gas is deze vergelijking \(PV = nRT\), maar voor reële gassen kunnen er afwijkingen zijn van deze eenvoudige relatie, en kunnen er meer complexe toestandsvergelijkingen worden gebruikt, zoals de van der Waals vergelijking \footnote{Deze  is gebaseerd op de kinetische gastheorie in hoofdstuk 10.}.
+
+Het bijzondere aan deze toestandsfuncties is dat wanneer we twee coordniiaten vast nemen, de derde coordinaat automatisch ook vast ligt. Er zijin dus slechts twee coordinaten onafhankelijk!
+
+\subsection{Differentiële toestandsvergelijkingen}
+
+\begin{postulate}
+    Iedere infinitesimale verandering in de thermodynamica moet aan de voorwaarde voldoen dat deee verandering van grootheid die zodanig klein is tegenover de grootheid zelf, dat we kunnen zeggen dat de verandering van grootheid oneindig klein is.
+\end{postulate}
+
+Dit is een continuïteitsvoorwaarde die ervoor zorgt dat we kunnen werken met differentiaalvergelijkingen in plaats van discrete veranderingen.
+
+Hierdoor kan V geschreven worden als \(V = V(T,P)\) en kunnen we de totale differentiaal van V schrijven als:
+\[dV = \left( \frac{\partial V}{\partial T} \right)_P dT + \left( \frac{\partial V}{\partial P} \right)_T dP\]
+
+Bij constante druk \(dP = 0\), definieren we de \textbf{volume-uitzettingscoëfficiënt}:
+\[\beta = \frac{1}{V} \left( \frac{\partial V}{\partial T} \right)_P\]
+Waarbij de \(\frac{1}{V}\) de normering voor het volume is. (Als V verdubbelt, verdubbelt ook de uitzetting, dus we moeten dit normeren.)
+
+Bij constante temperatuur \(dT = 0\), definieren we de \textbf{isothermische drukbaarheid}:
+\[\kappa = -\frac{1}{V} \left( \frac{\partial V}{\partial P} \right)_T\]
+Waarbij het minteken zorgt voor een positieve waarde voor \(\kappa\), aangezien het volume afneemt met toenemende druk. De \(\frac{1}{V}\) term is opnieuw de normering voor het volume.
+Deze waarde is vooral belangrijk voor gasssen, omdat gassen veel samendrukbaar zijn, terwijl vloeistoffen en vaste stoffen veel minder samendrukbaar zijn.
+
+We kunnen hetzelfde doen voor de totale differentialen van\(P(V,T)\) en \(T(P,V)\):
+\[dP = \left( \frac{\partial P}{\partial V} \right)_T dV + \left( \frac{\partial P}{\partial T} \right)_V dT\]
+\[dT = \left( \frac{\partial T}{\partial P} \right)_V dP + \left( \frac{\partial T}{\partial V} \right)_P dV\]
+
+We kunnen \(dP\) ook uitdrukken in termen van \(\beta\) en \(\kappa\) door de totale differentiaal van \(V(T,P)\) te gebruiken:
+\[dV = V \beta dT - V \kappa dP\]
+\[dP = \frac{\beta}{\kappa} dT - \frac{1}{V \kappa} dV\]
+
+\subsection{Thermodynamische systemen}
+De methodiek van deze systemen is dat we steeds een extensieve grootheid hebben en twee intensieve grootheden waarvan 1 steeds de temparatuur is en de andere een kracht of veldsterekte.
+We kunnen dan toestandsfuncties schrijven in termen van deze grootheden, en we kunnen ook differentiaalvergelijkingen schrijven voor deze toestandsfuncties. 
+\subsubsection{Gespannen snaar}
+Onze drie coordinaten zijn hier de temperatuur \(T\), de kracht \(F\) en de lengte \(L\). De extensieve grootheid is hier de lengte \(L\), en de intensieve grootheden zijn de temperatuur \(T\) en de kracht \(F\).
+
+De wet van hook zegt:
+\[F = k \Delta L\]
+waarbij \(k\) de veerconstante is, en \(\Delta L\) de verandering in lengte is ten opzichte van de onbelaste lengte \(L_0\).
+
+De totale differentiaal van \(L=L(T,F)\) is:
+\[dL = \left( \frac{\partial L}{\partial T} \right)_F dT + \left( \frac{\partial L}{\partial F} \right)_T dF\]
+We kunnen de lengte-uitzettingscoëfficiënt, definiëren:
+\[\alpha = \frac{1}{L} \left( \frac{\partial L}{\partial T} \right)_F\]
+en de elasticiteitsmodulus \(Y\):
+\[Y =  \frac{L}{A}\left( \frac{\partial F}{\partial L} \right)_T\]
+met A de doorsnede. De voorfactoren zorgen ervoor dat deze grootheden genormaliseerd zijn, zodat ze niet afhankelijk zijn van de grootte van het systeem.
+
+In deze situatie wordt de volume-uitzettingscoëfficiënt \(\beta\) herschreven als:
+\[\beta = \frac{1}{V} \left( \frac{\partial V}{\partial T} \right)_F = \frac{1}{L_1L_2L_3} \left( L_2L_3\frac{\partial L_1}{\partial T} + L_1L_3\frac{\partial L_2}{\partial T} + L_1L_2\frac{\partial L_3}{\partial T} \right)_F \]
+Doordat we naar 1 dezelfde materiaal kijken is de lineaire-uitzettingscoëfficiënt voor alle lengtes hetzelfde, dus kunnen we dit herschrijven als:
+\[\beta =  \frac{1}{L_1}\left(\frac{\partial L_1}{\partial T}\right)_F + \frac{1}{L_2}\left(\frac{\partial L_2}{\partial T}\right)_F + \frac{1}{L_3}\left(\frac{\partial L_3}{\partial T}\right)_F  = 3 \alpha\]
+
+\subsubsection{Oppervlaktefilms}
+
+3 categorieën van oppervlaktefilms:
+\begin{itemize}
+    \item Vloeistofoppervlakte: De oppervlakte van een vloeistof in contact met een gas. 
+    \item Vloeistof-vloeistofoppervlakte: De oppervlakte van een vloeistof in contact met een andere vloeistof.
+    \item De oppervlakte van eeen zeepbel die in contact is met een gas aan beide kanten.
+\end{itemize}   
+
+De grootheden zijn hier de temperatuur \(T\) (intensief), de oppervlakte \(A\) (extensief) en de oppervlaktespanning \(\gamma\) (intensief).
+
+\textbf{oppervlaktespanning} \(\gamma\):
+\[\gamma = \frac{F}{l}\]
+Als het oppervlak aan 2 kanten is, dan is de oppervlaktespanning (voor bv een zeepbel):
+\[\gamma = \frac{F}{2l}\]
+
+Zuivere vloeistof in evenwicht met damp:
+\[\gamma = \gamma_0 \left(1 - \frac{T}{T'_c}\right)^{n}\]
+waarbij \(\gamma_0\) de oppervlaktespanning bij 0 K is, \(T'_c\) de bijna kritische temperatuur is, en \(n\) een exponent is die afhangt van de specifieke vloeistof (meestal tussen 1 en 2).
+Deze formule geeft aan dat de oppervlaktespanning afneemt naarmate de temperatuur stijgt, en dat ze nul wordt bij de kritische temperatuur, waar er geen onderscheid meer is tussen vloeistof en damp.
+
+Voor een monomoleculaire oppervlaktefilm op water binnen bepaalde grenzen van oppervlakte \(A\):
+\[(\gamma-\gamma_w)A = cst T\]
+waarbij \(\gamma_w\) de oppervlaktespanning van het water is, en \(cst\) een constante die afhangt van de specifieke film`
+
+\textbf{Oppervlaktedruk}: \(\gamma-\gamma_w\)
+
+\subsubsection{Elektrolytische cel}
+
+De elektrolytische cel is een elektrochemische cel die reversibel is. Voor verdere details verwijs ik jullie naar de cursus van chemie.
+
+De wet van Faraday zegt:
+\[\Delta Z = \Delta n j N_F\]
+waarbij \(\Delta Z\) het verschil in elektrische lading is die door de cel stroomt,\(\Delta n\) het verschil aantal mol elektronen is dat wordt overgedragen in de redoxreactie, j de valentie elekronen per reactie zijn, en \(N_F\) de Faraday-constante is, die gelijk is aan de lading van één mol elektronen (ongeveer 96485 coulomb per mol).
+
+
+De drie coordinaten zijn hier de temperatuur \(T\) (intensief), de elektrische potentiaal \(V_\epsilon\) (intensief) en de lading \(Z\) (extensief).
+
+De toestandsvergelijking van een verzadigde reeversibele cel is:
+\[V_\epsilon = V_{\epsilon,25} + \alpha (T'-25^\circ C) + \beta (T'-25^\circ C)\]
