@@ -1,1 +1,70 @@
-\section{}
+\section{Temperatuur en Thermisch evenwicht}
+
+\subsection{Temperatuur en Thermometers}
+
+Dit stuk is vooral een kwalitatieve beschrijving, maar ook te kennen!
+
+De eerste thermometer was een bimetalen strip waarbij het ene metaal meer uitzet dan het andere bij verwarming, waardoor de strip kromt. De kromming van de strip kan worden gebruikt om de temperatuur te meten. (toepassingen in ovens of als uitschakelaars voor bv een koffiezetapparaat)
+Later werden ook thermokoppels gebruikt, waarbij twee verschillende metalen aan elkaar worden verbonden. Wanneer er een temperatuurverschil is tussen de twee metalen, ontstaat er een elektrische spanning (ems) die kan worden gemeten en omgezet in een temperatuurwaarde. Wel is er een referentiepunt nodig zoals vloeibare stikstof in evenwicht met damp.
+
+We hebben ook nog weerstandstermometers, waarbij de elektrische weerstand van een materiaal verandert met de temperatuur. Door de weerstand te meten, kan de temperatuur worden bepaald. Vaak wordt platina als dunne metaaldraad gebruikt die tot een spoel wordt gewikkeld.
+
+Voor hoge temperaturen worden pyrometersof optische thermometers gebruikt, die de stralingsintensiteit van een object meten \footnote{stralingswet van planck zie vb H12 voor afleiding}. De intensiteit van de straling is gerelateerd aan de temperatuur van het object volgens de wet van Planck.
+De werking van een pyrometer is gebaseerd op de vergeelijking van de helderheid van een object en van een gloeidraad. De temperatuur van het object kan worden bepaald door de helderheid van het object te vergelijken met die van een gloeidraad waarvan de temperatuur bekend is. De gloeidraad wordt verwarmd totdat de helderheid overeenkomt met die van het object, en de temperatuur van de gloeidraad wordt dan als de temperatuur van het object beschouwd.  
+
+Nadeel: Het bereik is beperkt door gebruikte kleurenfilters en de maximale temperatuur van de gloeidraad.
+
+\subsection{Nulde wet Thermodynamica}
+
+Wanneer twee systemeen in thermisch contact worden gebracht, dan streven ze naar dezelfde temperatuur. Als deze temperatuur is bereikt, zijn de systemen in \textbf{Thermisch evenwicht}. 
+Twee systemen zijn in thermisch evenwicht als er geen netto warmteoverdracht plaatsvindt tussen de systemen.
+
+\begin{postulate}
+\textbf{Nulde wet van de thermodynamica}: Als twee systemen in thermisch evenwicht zijn met een derde systeem, dan zijn ze ook in thermisch evenwicht met elkaar.
+\end{postulate}
+
+Stel, systeem A is in thermisch evenwicht met systeem C, en systeem B is ook in thermisch evenwicht met systeem C. Volgens de nulde wet van de thermodynamica, zijn systemen A en B ook in thermisch evenwicht met elkaar. 
+
+\begin{definition}
+    \textbf{Een isotherm}: De verzameling van punten die alle toestanden waarvoor een systeem in thermisch evenwicht is met een bepaald referentiesysteem voorstellen.
+\end{definition}
+
+\begin{definition}
+    \textbf{Temperatuur}: De temperatuur van een systeem is een grootheid die bepaald of het systeem al dan niet in thermisch evenwicht is met andere systemen.
+\end{definition}
+
+\begin{definition}
+    \textbf{Emperishe temperaturen}: Temperatuurmetingen gebaseerd op evenwichtstoestanden van een thermodynamisch systeem.
+    De temperaturen worden gedefinieerd via een meetbare eigenschap die monotoon veranderd met hoe warm/koud een systeem is zonder dat je al een absolute energiemaatstaf of kelvinschaal nodig hebt.
+\end{definition}
+
+\subsection{Temperatuurschalen}
+
+De Belangrijkste schaal is de absolute temperatuurschaal of de \textbf{Kelvinschaal}, waarbij het absolute nulpunt (0 K) overeenkomt met de laagst mogelijke temperatuur.
+
+Van Celcius naar Fahrenheit: 
+
+tussen 0 en 100 gradeen zijn er 100 intervallen voor celcius een 180 inntervallen voor fahrenheit, dus 1 graad celcius komt overeen met $\frac{180}{100} = \frac{9}{5}$ graden fahrenheit. Daarnaast is er een verschil van 32 graden tussen de twee schalen bij het nulpunt van celcius, dus de formule voor het omrekenen van Celcius naar Fahrenheit is:
+
+\(T(^\circ C) = \frac{5}{9}T(^\circ F) - 32\)
+
+Van Celcius naar Kelvin: \(T(K) = T(^\circ C) + 273.15\) wat triviaal is.
+
+De waarschijnlijk bekendste thermometer is de kwikthermometer, waarbij de uitzetting van kwik wordt gebruikt om de temperatuur te meten. De schaalverdeling op de thermometer is gebaseerd op het vriespunt (0 °C) en het kookpunt (100 °C) van water bij standaarddruk.
+
+Er zijn 2 vaste punten nodig om de schaal in te stellen. We nemen voor de eerste \(P=0\) bij \(T=0\), voor het tweede vast punt wordt het \textbf{tripelpunt} \footnote{Punt waar de 3 weelgekende fases samen in evenwicht bestaan} van water genomen. Dit gebeurd bij \(T = 273.16 K\) en \(P=611.73\)Pa.
+We kunnen nu de schaal instellen door deze twee punten te verbinden met een rechte lijn, waarbij we de temperatuur van het tweede punt op 273,16 K zetten. 
+
+De absolute temperatuur wordt:
+\[
+T = (273,16 K)\left( \frac{P}{P_{tp}} \right)
+\]
+waarbij \(P_{tp}\) de druk is bij het tripelpunt van water, en \(P\) de druk op het moment van tempertatuur \(T\).
+
+Absolute temperatuurschaal:
+\[
+T =(273,16 K) \lim_{P \to P_{tp}} \left( \frac{P}{P_{tp}} \right)
+\]
+
+Hier moeten we de bijzondere eigenschap onthouden dat voor deze extrapolatie van deze metingen voor verschillende gassen naar een verdwijnende druk \(P_{tp}\) altijd dezelfde waarde van \(T\) oplevert, namelijk 273,16 K.
+Ik dacht dat dit de limiet was waar het gedrag van een algemeen gas steeds meer op dat van een ideaal gas lijkt, maar dit ben ik niet zeker.
