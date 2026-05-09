@@ -3,14 +3,12 @@
 \usepackage[hidelinks]{hyperref} % geen kaders om linken
 \usepackage{parskip}
 \usepackage{bm} % For bolt symbols eg \bm{\nabla}
-\usepackage{amsmath, amssymb, amsfonts} % For nicer math format
+\usepackage{amsmath, amssymb, amsfonts, amsthm} % For nicer math format
 \usepackage{esint} % For bolletje in integrals
 \usepackage{mathrsfs} % For curly arrr
 \usepackage{subcaption}
-\usepackage[english]{babel}
+%\usepackage[dutch]{babel}
 \usepackage{dsfont}
-\usepackage[a4paper, margin=0.24cm, landscape]{geometry} 
-% Verander 1.5cm naar bijvoorbeeld 1cm voor een extreem vol blad.
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -40,17 +38,27 @@
  bottom=20mm,
  }
 
+\theoremstyle{definition}
+\newtheorem{postulate}{Postulaat}
+\newtheorem{definition}{Definitie}
+
+
 \begin{document}
 
 \begin{center}
 \hrule
 \vspace{.2cm}
-{\bf {\Huge Samenvatting Thermische Fysica}} \\
+\textbf{\Huge Samenvatting Thermische Fysica}
 \vspace{.2cm}
 \end{center}
-{\bf T. Cools}  \\
-{\bf Tweede Bachelor Fysica en Sterrenkunde}\\
-{\bf 2025-2026 }  \\
+
+\textbf{ T. Cools}
+
+\textbf{ Tweede Bachelor Fysica en Sterrenkunde}
+
+\textbf{ 2025-2026 }
+
+
 \hrule
 
 \begin{abstract}
@@ -59,5 +67,7 @@
 \end{abstract}
 
 \input{Thermische-H1.tex}
+\input{Thermische-H2.tex}
+
 
 \end{document}
