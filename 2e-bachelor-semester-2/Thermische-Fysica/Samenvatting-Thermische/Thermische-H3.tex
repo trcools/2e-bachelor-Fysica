@@ -3,20 +3,20 @@
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.5\textwidth]{Foto's-Figuren/Fig.-2-8_T-v_diagram_for_a_liquid_vapor-copy.svg_.png}
-    \caption{VT-diagram van een zuivere stof. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan. \tiny \copyright{Olivier Cleynen is licensed under a CC0 (Creative Commons Zero) license}}
+    \caption{VT-diagram van een zuivere stof. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan. \footnotesize \copyright{Olivier Cleynen is licensed under a CC0 (Creative Commons Zero) license}}
     \label{fig:VT-diagram}
 \end{figure}
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{Foto's-Figuren/P-T-diagram-Supercritical-fluid-region-and-various-supercritical-injection-types.ppm.png}
-    \caption{PT-diagram van een zuivere stof. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan \tiny \textcopyright{SUPERCRITICAL AND TRANSCRITICAL TURBULENT INJECTION PROCESSES: CONSISTENCY OF NUMERICAL MODELING - Scientific Figure on ResearchGate. Available from: \url{https://www.researchgate.net/figure/P-T-diagram-Supercritical-fluid-region-and-various-supercritical-injection-types_fig1_349274264} [accessed 10 May 2026]}}
+    \caption{PT-diagram van een zuivere stof. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan \footnotesize \textcopyright{SUPERCRITICAL AND TRANSCRITICAL TURBULENT INJECTION PROCESSES: CONSISTENCY OF NUMERICAL MODELING - Scientific Figure on ResearchGate. Available from: \url{https://www.researchgate.net/figure/P-T-diagram-Supercritical-fluid-region-and-various-supercritical-injection-types_fig1_349274264} [accessed 10 May 2026]}}
     \label{fig:PT-diagram}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{Foto's-Figuren/Fig-2-9_P-v_diagram_for_a_liquid-vapor.svg_.png}
-    \caption{PV-diagram van water. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan. \tiny \copyright{Olivier Cleynen is licensed under a CC0 (Creative Commons Zero) license}}
+    \caption{PV-diagram van water. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan. \footnotesize \copyright{Olivier Cleynen is licensed under a CC0 (Creative Commons Zero) license}}
     \label{fig:PV-diagram}
 \end{figure}
 
@@ -85,7 +85,7 @@ Het is belangrijk dat je deze 3D diagrammen goed kan interpreteren, en dat je we
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Foto's-Figuren/Fig.-2-6-1.png}
-    \caption{PVT-diagram van een zuivere stof. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan.\tiny\copyright{ vectorization is licensed under a CC0 (Creative Commons Zero) license.}}
+    \caption{PVT-diagram van een zuivere stof. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan.\footnotesize \copyright{ vectorization is licensed under a CC0 (Creative Commons Zero) license.}}
     \label{fig:PVT-diagram}
 \end{figure}
 
@@ -111,11 +111,17 @@ Hierdoor kan V geschreven worden als \(V = V(T,P)\) en kunnen we de totale diffe
 \[dV = \left( \frac{\partial V}{\partial T} \right)_P dT + \left( \frac{\partial V}{\partial P} \right)_T dP\]
 
 Bij constante druk \(dP = 0\), definieren we de \textbf{volume-uitzettingscoëfficiënt}:
-\[\beta = \frac{1}{V} \left( \frac{\partial V}{\partial T} \right)_P\]
+\begin{equation}
+    \label{eq: volume-uitzettingscoefficient}
+    \beta = \frac{1}{V} \left( \frac{\partial V}{\partial T} \right)_P
+\end{equation}
 Waarbij de \(\frac{1}{V}\) de normering voor het volume is. (Als V verdubbelt, verdubbelt ook de uitzetting, dus we moeten dit normeren.)
 
 Bij constante temperatuur \(dT = 0\), definieren we de \textbf{isothermische drukbaarheid}:
-\[\kappa = -\frac{1}{V} \left( \frac{\partial V}{\partial P} \right)_T\]
+\begin{equation}
+    \label{eq: isothermische-drukbaarheid}
+    \kappa = -\frac{1}{V} \left( \frac{\partial V}{\partial P} \right)_T
+\end{equation}
 Waarbij het minteken zorgt voor een positieve waarde voor \(\kappa\), aangezien het volume afneemt met toenemende druk. De \(\frac{1}{V}\) term is opnieuw de normering voor het volume.
 Deze waarde is vooral belangrijk voor gasssen, omdat gassen veel samendrukbaar zijn, terwijl vloeistoffen en vaste stoffen veel minder samendrukbaar zijn.
 
@@ -140,9 +146,15 @@ waarbij \(k\) de veerconstante is, en \(\Delta L\) de verandering in lengte is t
 De totale differentiaal van \(L=L(T,F)\) is:
 \[dL = \left( \frac{\partial L}{\partial T} \right)_F dT + \left( \frac{\partial L}{\partial F} \right)_T dF\]
 We kunnen de lengte-uitzettingscoëfficiënt, definiëren:
-\[\alpha = \frac{1}{L} \left( \frac{\partial L}{\partial T} \right)_F\]
+\begin{equation}
+    \label{eq: lengte-uitzettingscoefficient}
+    \alpha = \frac{1}{L} \left( \frac{\partial L}{\partial T} \right)_F
+\end{equation}
 en de elasticiteitsmodulus \(Y\):
-\[Y =  \frac{L}{A}\left( \frac{\partial F}{\partial L} \right)_T\]
+\begin{equation}
+    \label{eq: elasticiteitsmodulus}
+    Y =  \frac{L}{A}\left( \frac{\partial F}{\partial L} \right)_T
+\end{equation}
 met A de doorsnede. De voorfactoren zorgen ervoor dat deze grootheden genormaliseerd zijn, zodat ze niet afhankelijk zijn van de grootte van het systeem.
 
 In deze situatie wordt de volume-uitzettingscoëfficiënt \(\beta\) herschreven als:
