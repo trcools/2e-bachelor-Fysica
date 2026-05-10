@@ -9,7 +9,8 @@
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{Foto's-Figuren/P-T-diagram-Supercritical-fluid-region-and-various-supercritical-injection-types.ppm.png}
-    \caption{PT-diagram van een zuivere stof. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan \footnotesize \textcopyright{SUPERCRITICAL AND TRANSCRITICAL TURBULENT INJECTION PROCESSES: CONSISTENCY OF NUMERICAL MODELING - Scientific Figure on ResearchGate. Available from: \url{https://www.researchgate.net/figure/P-T-diagram-Supercritical-fluid-region-and-various-supercritical-injection-types_fig1_349274264} [accessed 10 May 2026]}}
+    \caption{PT-diagram van een zuivere stof. De verschillende lijnen en gebieden geven de verschillende fasen en evenwichten aan 
+        \footnotesize \textcopyright{SUPERCRITICAL AND TRANSCRITICAL TURBULENT INJECTION PROCESSES: CONSISTENCY OF NUMERICAL MODELING - Scientific Figure on ResearchGate. Available from: \url{https://www.researchgate.net/figure/P-T-diagram-Supercritical-fluid-region-and-various-supercritical-injection-types_fig1_349274264} [accessed 10 May 2026]}}
     \label{fig:PT-diagram}
 \end{figure}
 
@@ -73,7 +74,6 @@ De dampverzadigingslijn en de vloeistofverzadigingslijn ontmoeten elkaar bij het
 \begin{definition}
     \textbf{Stollingslijn}: De lijn in een PT-diagram waarbij de vaste stof en de vloeistof in evenwicht zijn. Deze lijn scheidt het gebied van de vaste-stof-toestanden van het gebied van de vloeistoftoestanden.
 \end{definition}
-
 De drie scheidingslijnen (sublimatielijn, verdampingslijn en stollingslijn) ontmoeten elkaar bij het tripelpunt, waar alle drie de fasen in evenwicht zijn.
 De helling van de sublimatielijn en verdampingslijn is altijd positief, terwijl de helling van de stollingslijn kan variëren afhankelijk van de stof.
 Voor water heeft de stollingslijn een negatieve helling, wat betekent dat de smelttemperatuur van water afneemt met toenemende druk.
@@ -119,7 +119,7 @@ Waarbij de \(\frac{1}{V}\) de normering voor het volume is. (Als V verdubbelt, v
 
 Bij constante temperatuur \(dT = 0\), definieren we de \textbf{isothermische drukbaarheid}:
 \begin{equation}
-    \label{eq: isothermische-drukbaarheid}
+    \label{eq:isothermische-drukbaarheid}
     \kappa = -\frac{1}{V} \left( \frac{\partial V}{\partial P} \right)_T
 \end{equation}
 Waarbij het minteken zorgt voor een positieve waarde voor \(\kappa\), aangezien het volume afneemt met toenemende druk. De \(\frac{1}{V}\) term is opnieuw de normering voor het volume.
@@ -168,7 +168,7 @@ Doordat we naar 1 dezelfde materiaal kijken is de lineaire-uitzettingscoëffici�
 \begin{itemize}
     \item Vloeistofoppervlakte: De oppervlakte van een vloeistof in contact met een gas. 
     \item Vloeistof-vloeistofoppervlakte: De oppervlakte van een vloeistof in contact met een andere vloeistof.
-    \item De oppervlakte van eeen zeepbel die in contact is met een gas aan beide kanten.
+    \item De oppervlakte van een zeepbel die in contact is met een gas aan beide kanten.
 \end{itemize}   
 
 De grootheden zijn hier de temperatuur \(T\) (intensief), de oppervlakte \(A\) (extensief) en de oppervlaktespanning \(\gamma\) (intensief).
@@ -185,7 +185,7 @@ Deze formule geeft aan dat de oppervlaktespanning afneemt naarmate de temperatuu
 
 Voor een monomoleculaire oppervlaktefilm op water binnen bepaalde grenzen van oppervlakte \(A\):
 \[(\gamma-\gamma_w)A = cst T\]
-waarbij \(\gamma_w\) de oppervlaktespanning van het water is, en \(cst\) een constante die afhangt van de specifieke film`
+waarbij \(\gamma_w\) de oppervlaktespanning van het water is, en \(cst\) een constante die afhangt van de specifieke film.
 
 \textbf{Oppervlaktedruk}: \(\gamma-\gamma_w\)
 
@@ -200,8 +200,8 @@ waarbij \(\Delta Z\) het verschil in elektrische lading is die door de cel stroo
 
 De drie coordinaten zijn hier de temperatuur \(T\) (intensief), de elektrische potentiaal \(V_\epsilon\) (intensief) en de lading \(Z\) (extensief).
 
-De toestandsvergelijking van een verzadigde reeversibele cel is:
-\[V_\epsilon = V_{\epsilon,25} + \alpha (T'-25^\circ C) + \beta (T'-25^\circ C) + \gamma (T' - 25^\circ C)^3\]
+De toestandsvergelijking van een verzadigde reversibele cel is:
+\[V_\epsilon = V_{\epsilon,25} + \alpha (T'-25^\circ C) + \beta (T'-25^\circ C)^2 + \gamma (T' - 25^\circ C)^3\]
 
 waarbij \(V_{\epsilon,25}\) de elektrische potentiaal is bij 25 °C, en \(\alpha\), \(\beta\) en \(\gamma\) empirische constanten zijn, dus niet de coëfficienten van eerder.
 
