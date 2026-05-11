@@ -288,8 +288,20 @@ Om \(C_V \) van gassen te bepalen wordt vaak dezelfde methode toegepast, maar va
     De druk wanneer wrijving verwaarloosd wordt is:
     \[ P = P_{atm} + \frac{mg}{A} \]
     Waarbij \(A\) de oppervlakte van de kogel is. Deze oscilleert rond zijn evenwichtspositie,
-    waarbijg een klein volumeveranderin.
+    waarbij zich een klein volumeverandering plaatsvindt:
+    \[\Delta V = Ay\]
+    We kunnen de druk/kracht relatie \(F = A\Delta P\) gebruiken:
+    \[\Delta P = \frac{F}{A}\]
 
+    Als de kogel snel genoeg oscilleerd worden \(P\) en \(V\) als adiabatisch beschouwd een geldt \(PV^\gamma = cst\)
+    of:
+    \[P_\gamma V^{\gamma -1} \Delta V + V^\gamma \Delta P = 0\]
+    Substitutie van \(\Delta V = Ay\) en \(\Delta P = \frac{F}{A}\) geeft:
+    \[F = -\frac{\gamma PA^2 }{V}y \]
 
+    De periode \(\tau\) wordt berekend door:
+    \[\tau  = 2\pi \sqrt{\frac{m}{F}} = 2\pi \sqrt{\frac{mV}{\gamma PA^2}}\]
+    Waaruit:
+    \[\gamma = \frac{4\pi^2 mV}{\tau^2 PA^2}\]
     \qed
 \end{derivation}
