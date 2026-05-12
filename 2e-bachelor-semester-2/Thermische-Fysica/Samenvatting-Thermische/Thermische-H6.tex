@@ -1,0 +1,232 @@
+\section{Thermische Machines en de Tweede Hoofdwet}
+\subsection{Van Warmte naar Arbeid}
+
+\begin{definition}
+    \textbf{Thermische Arbeidsmachines}: machines die warmte omzetten in arbeid, of omgekeerd.
+\end{definition}
+\begin{definition}
+    \textbf{Warmtepomp}: machine die arbeid gebruikt om warmte van een koud reservoir naar een warm reservoir te transporteren.
+\end{definition}
+
+\subsection{Thermische Machines}
+
+De eerste wet zegt ons dat \(|Q_H| - |Q_K| = |W|\).
+
+\begin{definition}
+    \textbf{Thermisch Rendement}: \(\eta = \frac{|W|}{|Q_H|} = \frac{|Q_H| - |Q_K|}{|Q_H|} = 1 - \frac{|Q_K|}{|Q_H|}\)
+\end{definition}
+
+Twee types machines:
+\begin{itemize}
+    \item \textbf{Uitwendige verbrandingsmachines}: machines waarbij de verbranding buiten de machine plaatsvindt, zoals stoommachines.
+    \item \textbf{Inwendige verbrandingsmachines}: machines waarbij de verbranding binnen de machine plaatsvindt, zoals benzinemotoren.
+\end{itemize}
+
+\subsubsection{De Stoommachine}
+
+\begin{definition}
+    \textbf{Stoommachine}: een uitwendige verbrandingsmachine die gebruik maakt van de expansie van stoom om arbeid te verrichten.
+\end{definition}    
+
+Onze benaderende cyclus is de \textbf{Rankine-cyclus}, bestaande uit volgende zes processen:
+\begin{itemize}
+    \item 1\(\to\)2: Adiabatische compressie
+    \item 2\(\to\)3: Isobare verwarming van water tot kookpunt.
+    \item 3\(\to\)4: Isobare en isotherme verdamping.
+    \item 4\(\to\)5: Isobare oververhitting van stoom.
+    \item 5\(\to\)6: Adiabatische expansie van stoom.
+    \item 6\(\to\)1: Isobare en isotherme condensatie van stoom.
+\end{itemize}
+
+\subsubsection{De Stirlingmotor}
+
+De geïdealiseerde cyclus van een Stirlingmotor bestaat uit volgende vier processen:
+\begin{itemize}
+    \item 1\(\to\)2: Isotherme compressie van het gas bij lage temperatuur \(T_K\).
+    \item 2\(\to\)3: Isochore warmteopname waarbij het gas wordt opgewarmd van \(T_K\) naar \(T_H\).
+    \item 3\(\to\)4: Isotherme expansie van het gas bij hoge temperatuur \(T_H\).
+    \item 4\(\to\)1: Isochore warmteafvoer waarbij het gas wordt gekoeld van \(T_H\) naar \(T_K\).
+\end{itemize}
+
+Dee geïdealiseerde cyclus steunt op vijf veronderstellingen:
+\begin{itemize}
+    \item Het werkmedium is een ideaal gas.
+    \item Er zijn geen lekken.
+    \item De warmte gaat niet verloren aan de omgeving door de wanden.
+    \item De regenator is een perfecte thermische isolator.
+    \item Er is geen wrijving.
+\end{itemize}
+
+
+\subsubsection{De Benzinemotor}
+
+Het viertaktproces van een benzinemotor bestaat uit vier bewegingen. Voor de volledigheid worden zes processen beschreven:
+\begin{itemize}
+    \item Inlaat (1e bewegin): het inlaatventiel opent en het mengsel van lucht en brandstof wordt aangezogen.
+    \item Compressie (2e beweging): het mengsel wordt samengeperst, waardoor de temperatuur en druk stijgen.
+    \item Ontsteking: het mengsel wordt ontstoken, meestal door een vonk, wat leidt tot een snelle verbranding en expansie van gassen.
+    \item Expansie (3e beweging): de hete gassen duwen de zuiger naar beneden, waardoor arbeid wordt verricht.
+    \item Eerste uitlaat: het uitlaatventiel opent en de verbrande gassen worden afgevoerd.
+    \item Tweede uitlaat (4e beweging): de zuiger beweegt omhoog om de laatste restanten van de verbrande gassen uit te duwen.
+\end{itemize}
+
+De bekendste cyclus hiervan is de \textbf{Otto-cyclus}, genaamd achter een vriend van Miel, bestaande uit volgende vier processen:
+\begin{itemize}
+    \item 1\(\to\)2: Quasistatische adiabatische compressie van het gas.
+    \item 2\(\to\)3: Quasistatisch isochore temperatuur en druktoename waarbij het gas wordt verbrand en opgewarmd.
+    \item 3\(\to\)4: Quasistatische adiabatische expansie van het gas.
+    \item 4\(\to\)1: Quasistatisch isochore temperatuur en drukafname waarbij de verbrande gassen worden afgevoerd.
+    \item 5\(\to\)1: Quasistatische isobare inlaat van het lucht-brandstofmengsel.
+    \item 1 \(\to\)5: Quasistatische isobare uitlaat van de verbrande gassen bij atmosferische druk.
+\end{itemize}
+
+Hier zijn we opnieuw uitgegaan van een aantal veronderstellingen:
+\begin{itemize}
+    \item Het werkmedium is een ideaal gas.
+    \item Alle processen zijn quasistatisch.
+    \item Er is geen wrijving.
+\end{itemize}
+
+Processen 1 \(\to\) 5 en 5 \(\to \) 1 compenseren elkaar en wordt niet meer in rekening gebracht bij de berekening van het rendement.
+Er zijn namelijk nog twee processen waar er warmte wordt uitgewisseld, namelijk 2 \(\to\) 3 en 4 \(\to\) 1. 
+We kunnen schrijven:
+\[Q_H = C_V (T_3-T_2) = |Q_H|\]
+en 
+\[Q_K = C_V (T_1-T_4) = -|Q_K|\]
+Hieruit volgt dat het rendement van de Otto-cyclus gelijk is aan: 
+\[\eta = 1 - \frac{|Q_K|}{|Q_H|} = 1 - \frac{T_4-T_1}{T_3-T_2}\]
+
+Maar we willen een uitdrukking in functie van het volume in plaats van de temperatuur, want het volume is makkelijker te beheersen.
+We kunnen hiervoor gebruik maken van de adiabatische relaties van de processen 1\(\to\)2 en 3\(\to\)4:
+\[T_1 V_1^{\gamma - 1} = T_2 V_2^{\gamma - 1} \quad \text{en} \quad T_4 V_1^{\gamma - 1} = T_3 V_2^{\gamma - 1}\]
+Hieruit volgt dat:
+\[(T_4-T_1)V_1^{\gamma - 1} = (T_3-T_2)V_2^{\gamma - 1}\]
+\[\implies \frac{T_4-T_1}{T_3-T_2} = \left(\frac{V_2}{V_1}\right)^{\gamma - 1}\]
+Met \(r = \frac{V_1}{V_2}\) als compressieverhouding, kunnen we het rendement van de Otto-cyclus schrijven als:
+\[\eta = 1 - \frac{|Q_K|}{|Q_H|} = 1 - \left(\frac{V_2}{V_1}\right)^{\gamma - 1} = 1 - \frac{1}{r^{\gamma - 1}}\]
+
+\subsection{De Dieselmotor}
+
+Er zijn opnieuw zes processen waarvan er vier nodig zijn voor de cyclus waar we geïnteresseerd in zijn:
+Waar we de volgende effecten genegeren: chemische reacties, warmteverlies, wrijving, niet-ideale gassen, niet-quasistatische processen, enzovoort.   
+
+Onze cyclus is nu de \textbf{lucht-gestandardiseerde dieselcyclus}, bestaande uit volgende vier processen:
+\begin{itemize}
+    \item 1\(\to\)2: Quasistatische adiabatische compressie van het gas.
+    \item 2\(\to\)3: Quasistatisch isobare temperatuur en volume toename waarbij het gas wordt verbrand en opgewarmd.
+    \item 3\(\to\)4: Quasistatische adiabatische expansie van het gas.
+    \item 4\(\to\)1: Quasistatisch isochore temperatuur en drukafname waarbij de verbrande gassen worden afgevoerd.
+    \item 5\(\to\)1: Quasistatische isobare inlaat van lucht.
+    \item 1 \(\to\)5: Quasistatische isobare uitlaat van de verbrande gassen bij atmosferische druk.
+\end{itemize}
+
+Het grote verschil met de Otto-cyclus is dat het verbrandingsproces (2\(\to\)3) nu isobaar is in plaats van isochore. In deze stap zal 
+\[Q_H = C_P(T_3 -T_2) = |Q_H|\]
+waardoor het rendement van de dieselcyclus gelijk is aan:
+\[\eta = 1 - \frac{|Q_K|}{|Q_H|} = 1 - \frac{C_V(T_4-T_1)}{C_P(T_3 - T_2)} = 1 - \frac{T_4-T_1}{\gamma (T_3 - T_2)}\]
+We kunnen ook hier een uitdrukking in functie van het volume bekomen door gebruik te maken van de adiabatische relaties van de processen 1\(\to\)2 en 3\(\to\)4:
+\[T_1 V_1^{\gamma - 1} = T_2 V_2^{\gamma - 1} \quad \text{en} \quad T_4 V_1^{\gamma - 1} = T_3 V_3^{\gamma - 1}\]
+Hieruit volgt dat:
+\[(T_4-T_1)V_1^{\gamma - 1} = T_3V_3^{\gamma - 1}-T_2V_2^{\gamma - 1}\]
+\[\implies T_4-T_1 = \frac{T_3V_3^{\gamma - 1}-T_2V_2^{\gamma - 1}}{V_1^{\gamma - 1}}\]
+Omdat we een isobaar hebben van 2\(\to\)3, kunnen we schrijven dat \(T_3/T_2 = V_3/V_2 \implies T_2 = T_3 \frac{V_2}{V_3}\). Hieruit volgt dat:
+\[\eta = 1 - \frac{\frac{V_3^{\gamma-1}}{V_1^{\gamma-1} }- \frac{V_2^{\gamma-1}}{V_3V_1^{\gamma-1}}}{1 - \frac{V_2}{V_3}} 
+= 1 - \frac{\left(\frac{V_3}{V_1}\right)^\gamma-\left(\frac{V_2}{V_1}\right)^{\gamma}}{\frac{V_3}{V_1}- \frac{V_2}{V_1}}\]
+Als we de \textbf{expansieverhouding}:
+\[r_E = \frac{V_1}{V_3} \]
+en de \textbf{compressieverhouding}:
+\[r_C = \frac{V_1}{V_2}\]
+definiëren, kunnen we het rendement van de dieselcyclus schrijven als:
+\[
+\eta = 1 - \frac{1}{\gamma} \frac{(\frac{1}{r_E})^{\gamma} - (\frac{1}{r_C})^{\gamma}}{\frac{1}{r_E} - \frac{1}{r_C}} 
+= 1 - \frac{1}{\gamma} \frac{r_E^{-\gamma} - r_C^{-\gamma}}{r_E^{-1} - r_C^{-1}}
+\]
+
+\subsection{Tweede Wet: Kelvin-Planck Formulering}
+
+\begin{definition}
+    \textbf{warme bron}: een systeem dat in staat is om warmte af te geven zonder zelf van toestand te veranderen.
+\end{definition}
+\begin{definition}
+    \textbf{koude bron}: een systeem dat in staat is om warmte op te nemen zonder zelf van toestand te veranderen.
+\end{definition}
+\begin{postulate}
+    Het is onmogelijk om een cyclus te hebben waarvan het enige resultaat is dat er warmte wordt onttrokken aan een warme bron en volledig wordt omgezet in arbeid. 
+\end{postulate}
+\begin{postulate}
+    \textbf{Kelvin formulering}: "Het is onmogelijk door tussenkomst vn niet-levende materie, mechanische effecten te bekomen uit een deel van deze materie, door ze af te koelen beneden de temperatuur van het koudste object in de omgeving."
+\end{postulate}
+\begin{postulate}
+    \textbf{Planck foormulering}: "Het is onmogelijk een cyclus te construeren waarvan het enige resultaat is dat er warmte wordt onttrokken aan een warme bron (warmtereservoir) en volledig wordt omgezet in arbeid."
+\end{postulate}
+
+\begin{postulate}
+    \textbf{Tweede hoofdwet van de thermodynamica}: Er is geen enkel proces mogelijk waarvan het enige resultaat is dat er warmte wordt onttrokken aan een warme bron en volledig wordt omgezet in arbeid.
+\end{postulate}
+
+Een machine die de eerste hooofdwet overtreedt is een \textbf{perpituum mobile van de eerste soort}. Een machine die de tweede hoofdwet overtreedt is een \textbf{perpetuum mobile van de tweede soort}.
+
+\subsection{Warmtepompen}
+
+\begin{definition}
+    \textbf{Prestatiecoëfficiënt}: \(\omega= \frac{|Q_K|}{|W|} = \frac{|Q_K|}{|Q_H| - |Q_K|} = \frac{|Q_H|}{|W|} - 1\)
+\end{definition}
+
+\subsubsection{De Stirlingwarmtepomp}
+
+De cyclus van de Stirlingmotor is reversibel, dus kunnen we deze ook gebruiken als warmtepomp.
+De vier processen zijn nu:
+\begin{itemize}
+    \item 1\(\to\)2: Isotherme compressie van het gas bij hoge temperatuur \(T_H\).
+    \item 2\(\to\)3: Isochore warmteafvoer waarbij het gas wordt gekoeld van \(T_H\) naar \(T_K\).
+    \item 3\(\to\)4: Isotherme expansie van het gas bij lage temperatuur \(T_K\).
+    \item 4\(\to\)1: Isochore warmteopname waarbij het gas wordt opgewarmd van \(T_K\) naar \(T_H\).
+\end{itemize}
+
+\subsubsection{De Frigo (Koelkast)}
+De meeste koelmachines steunen op het \textbf{Joule-Kelvin-smoorproces}, waar men op de eigenschap van gestureerde vloeistoffen steunt.
+Het proces van de geïdealiseerde koelmachine, dus wanneer wrijving, warmteverliesn, turbulentie, enzovoort worden genegeerd, bestaat uit volgende stappen:
+\begin{itemize}
+    \item 1\(\to\)2: Smoorprooces met druk en temperatuurafname van het vloeibare koelmiddel. (Kan hier niet met thermodynamische coordinaten beschreven worden.) 
+    \item 2\(\to\)3: Isotherme en isobare verdamping waarbijeen hoeveelheid warmte \(Q_K\) onttrokken wordt.
+    \item 3\(\to\)4: Adiabatische compressie waarbij het gasvormige koelmiddel wordt samengeperst tot een hoge druk en temperatuur.
+    \item 4\(\to\)1: Isobare afkoeling waarbij het koelmiddel condenseert en warmte \(Q_H\) afgeeft aan de omgeving.
+\end{itemize}
+
+\subsection{De formuleriing van  Clausius voor de Tweede Hoofdwet}
+
+\begin{postulate}
+    \textbf{Clausius formulering}: "Geen enkel proces is mogelijk waarvan het enige resultaat is dat er warmte van een koud reservoir naar een warm reservoir wordt getransporteerd."
+\end{postulate} 
+
+\subsection{Gelijkwaardigheid Kelvin-Planck (K) en Clausiusformulering (C) van de Tweede Hoofdwet}
+
+\begin{derivation}
+    \textbf{Bewijs van de gelijkwaardigheid van de Kelvin-Planck en Clausius formulering van de tweede hoofdwet.}
+\begin{itemize}
+    \item \textbf{K \(\implies\) C}: 
+    
+    Stel dat een, arbeidsmachine niet voldoet aan de Kelvin-Planck formulering, dan moeten we bewijzen dat ze ook niet voldoet aan de Clausius formulering.
+
+    Stel dat er een proces is waarbij warmte van een koud reservoir naar een warm reservoir wordt getransporteerd zonder arbeid te verrichten. 
+    Er wordt dus alleen een hoeeveelheid warmte \(Q_1\) onttrokken van de warme bron en een arbeid \(W\) op de omgeving verricht.
+
+        \(|Q_1| =  |W|\) 
+    
+    Deze arbeid wordt nu gebruit om een warmtepomp die een hoeveelheid warmte \(Q_2\) onttrekt van een koud reservoir en een hoeveelheid warmte afgeeft aan een warm reservoir te laten werken.
+    We kunnen volgens de eerste wetschrijven dat:
+    \[|Q'_H | = |Q_2| + |W| = |Q_1| + |Q_2|\]
+    Er is dus een netto warmteoverdracht van \(Q_2\) van het koude reservoir naar het warme reservoir, wat in strijd is met de Clausius formulering van de tweede hoofdwet.
+    
+    \item \textbf{C \(\implies\) K}: 
+    
+    Stel dat een machine niet voldoet aan de Clausius formulering, dan moeten we bewijzen dat ze ook niet voldoet aan de Kelvin-Planck formulering.
+
+    Stel dat er een machine is die de Kelvin-Planck formulering overtreedt, dus een machine die warmte volledig omzet in arbeid. 
+    Veronderstel dat de arbeidsmachine een hoeveelheid warmte \(Q_1\) onttrekt van een warme bron en een hoeveelheid arbeid \(W\) verricht, waarbij ze een hoeveelheid warmte \(|Q_2|\) afstaat aan de kooude bron.
+    Dan zegt de eerste hoofdwet dat:
+    \[|Q_1| = |W| + |Q_2| \implies |W| = |Q_1| - |Q_2|\]
+    Het netto resultaat van deze machine is dat er een hoeveelheid warmte \(|Q_1|-|Q_2|\) onttrokken wordt van een warme bron en volledig wordt omgezet in arbeid, wat in strijd is met de Kelvin-Planck formulering van de tweede hoofdwet.
+\end{itemize}
+\qed
+\end{derivation}
