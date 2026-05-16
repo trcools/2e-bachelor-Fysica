@@ -135,6 +135,7 @@ C = \frac{Q}{V} \implies W = \frac{1}{2}CV^2
 Curly r:
 
 \(\frac{1}{r_{curly}} = \frac{1}{r}\sum^\infty_{n=0} (\frac{r'}{r})^n P_n (\cos \alpha)\)
+
 Dipole contribution to potential:
 
 \(V_{\text{dip}} (\bm r) = \frac{1}{4 \pi \epsilon_0} \frac{\bm p \cdot \hat{\bm r}}{r^2}\)
@@ -201,48 +202,58 @@ Magnetic forces do no work!\\
 \)
 
 Surface current:
+
 \(
 \bm K = \frac{d \bm I}{dl_\perp} = \sigma \bm v
 \)
 
 Magnetic force on the surface current
+
 \(
 \bm F_{mag} =  \int ( \bm v \times \bm B)\sigma da =  \int ( \bm K \times \bm B)da
 \)
 
 Volume current density:
+
 \(
 \bm J = \frac{d \bm I}{dl_\perp} = \rho \bm v
 \)
 
-Magnetic force on the volume current
+Magnetic force on the volume current:
+
 \(
 \bm F_{mag} =  \int ( \bm v \times \bm B)\rho d\tau =  \int ( \bm J \times \bm B)d\tau
 \)
 
 Continuity equation:
+
 \(
 \bm \nabla \cdot \bm J = \frac{\partial \rho}{\partial t}
 \)
 
 Biot-Savart law:
+
 \(
 \bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{I\times\hat{\bm{r}}_c}{r_c^2}d\bm l'
 =\frac{\mu_0 I}{4\pi}\int\frac{dl'\times\hat{\bm{r}}_c}{r^2_c}
 \)
 
 For surface currents:
+
 \(\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm K(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d a'\)
 
 For volume currents:
+
 \(\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d \tau '\)
 
 Vector potential in magnetostatics:
+
 \(\bm A = \frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')}{r_c}d \tau '\).
 
 \(A_{dip}(\bm r) = \frac{\mu_0}{4\pi}\frac{\bm m \times \hat{\bm r}}{r^2}\)
 
 magnetic dipole moment:
+
 \(\bm m = I \bm a\)
 
 \(\bm A_{dip} (\bm r) = \frac{\mu_0}{4\pi} \frac{m \sin \theta}{r^2}\hat{\bm \phi}\)
@@ -259,12 +270,15 @@ Force nonuniform field:
 % Effect of a Magnetic field on atomic orbits?
 
 Vector potential of a single magnetic dipole:
+
 \(\bm A (\bm r) = \frac{\mu_0}{4\pi} \frac{\bm m \times \hat{\bm r}_c}{r^2_c} = \frac{\mu_0}{4\pi} \int \frac{\bm M (\bm r) \times \hat{\bm r}_c}{r^2_c} d\tau'\)
 
 The potential of a volume current:
+
 \(J_b = \bm \nabla \times \bm M\)
 
 The potential of a surface current:
+
 \(\bm K_b = \bm M \times \hat{\bm n}\)  
 
 
@@ -272,12 +286,15 @@ The potential of a surface current:
 \secblock{H7 Electrodynamics}
 
 Current density (Ohm's law):
+
 \(\bm J = \sigma \bm f = \sigma (\bm E + \bm v \times \bm B) \approx \sigma \bm E\)
 
 Resistivity:
+
 \(\rho = \frac{1}{\sigma}\)
 
 Perfect conductor:
+
 \(\sigma = \infty\) or/and \(\bm E = \frac{\bm J}{\sigma}=0\)
 
 Perfect isolator:
@@ -286,6 +303,7 @@ Perfect isolator:
 \(V = IR\)
 
 For steady currents and uniform conductivity:
+
 \(\bm \nabla \cdot \bm E = \frac{1}{\sigma} \bm \nabla \cdot \bm J = 0\)
 
 % Rare formule (7.6)??
@@ -294,18 +312,22 @@ Joule heating law:
 \(P = VI = I^2R\)
 
 Electromotive force (emf):
+
 \(\epsilon_{emf} = \oint\bm f \cdot d \bm l\)
 
 Flux rule:
 \(\epsilon_{emf} = -\frac{d \phi}{dt}\)
 
 Analog to Biot-Savart law:
+
 \(\bm{E}(\bm{r})=-\frac{1}{4\pi}\frac{\partial}{\partial t}\int\frac{\bm B\times\hat{\bm{r}}_c}{r_c^2}d\bm \tau'\)
 
 Inductance:
+
 \(\bm B_1 = \frac{\mu_0 I_1}{4\pi} \oint \frac{dl_1 \times \hat{\bm{r}}_c}{r_c^2}\)
 
 Mutual inductance:
+
 \(\Phi_{21} = \int \bm B_1 \cdot d\bm a_2 = M_{21} I_1\)
 
 Neuman's law:
@@ -314,12 +336,15 @@ Neuman's law:
 \(M_{21} = \frac{\mu_0}{4\pi} \oint \oint \frac{d\bm l_1 \cdot d\bm l_2}{r_c}\)
 
 Self inductance:
+
 \(\Phi_{11} = \int \bm B_1 \cdot d\bm a_1 = L I_1 \implies \Phi = LI\)
 
 emf of self inductance:
+
 \(\epsilon_{emf} = -L \frac{dI}{dt}\)
 
 Power:
+
 \(\frac{dW}{dt} = -\epsilon_{emf} I = LI \frac{dI}{dt}\)
 
 Work done:
@@ -332,9 +357,11 @@ Work done:
 \(W_{mag} = \frac{1}{2} \int (\bm A \cdot \bm J) d\tau = \frac{1}{2\mu_0} \int B^2 d\tau\)
 
 Displacement current (in medium):
+
 \(\bm J_d = \epsilon_0 \frac{\partial \bm D}{\partial t}\)
 
 Polarization current (in medium):
+
 \(\bm J_p = \frac{\partial \bm P}{\partial t}\)
 
 
@@ -342,6 +369,7 @@ Polarization current (in medium):
 \secblock{H8 Conservation Laws}
 
 Local charge conservation:
+
 \(\bm \nabla \cdot \bm J + \frac{\partial \rho}{\partial t} = 0\)
 
 %Extra
@@ -349,33 +377,42 @@ Local charge conservation:
 %\(\bm g = \epsilon_0 \bm E \times \bm B\)
 
 Total energy stored in the electromagnetic field:
+
 \(u = \frac{1}{2} (\epsilon_0 E^2 + \frac{1}{\mu_0} B^2)\)
 
 Work done on charge q:
+
 \(dW = q \bm E \cdot \bm v dt\)
 
 Poynting theorem:
+
 \(\frac{\partial u}{\partial t} + \bm \nabla \cdot \bm S = -\bm J \cdot \bm E\)
 
 Poynting vector:
+
 \(\bm S = \frac{1}{\mu_0} \bm E \times \bm B\)
 
 Continuity equation for energy:
+
 \(\frac{\partial u}{\partial t} + \bm \nabla \cdot \bm S = 0\)
 
 
 %Afleiding momentum density en Maxwell stress tensor H8.2.2 nog inzetten??
 
 Maxwell stress tensor:
+
 \(T_{ij} = \epsilon_0 (E_iE_j-\delta_{ij}E^2) +\frac{1}{\mu_0} (B_iB_j-\delta_{ij}B^2)\)
 
 Force per unit volume:
+
 \(\bm f = \bm\nabla \cdot \overleftrightarrow{T} - \epsilon_0 \mu_0 \frac{\partial \bm S}{\partial t}\)
 
 Total electromagnetic force on a charge distribution:
+
 \(\bm F = \int \bm f d\tau = \oint_S \overleftrightarrow{T} \cdot d\bm a - \epsilon_0 \mu_0 \frac{d}{dt} \int_V \bm S d\tau\)   
 
 At the boundary:
+
 \(\bm F = \oint _S \overleftrightarrow{T} \cdot d\bm a\) (static case)
 
 %Niet te kennen deel 8.2.3 en verder??
@@ -395,7 +432,132 @@ At the boundary:
 
 \secblock{H9 Electromagnetic Waves}
 
+Energy per unit volume:
+
+\(u = \frac{1}{2} (\epsilon_0 E^2 + \frac{1}{\mu_0} B^2)\)
+
+Case monochromatic plane wave:
+
+\(B^2 = \frac{1}{c^2} E^2 = \epsilon_0 \mu_0 E^2\)
+
+Electric and magnetic contributions to energy density are equal:
+
+\(u = \epsilon_0 E^2 = \epsilon_0 E_0^2 \cos^2(k z - \omega t + \delta)\)
+
+Poynting vector becomes:
+
+\(\bm S = c \epsilon_0 E^2 \cos^2(k z - \omega t + \delta) \hat{\bm z} = c u \hat{\bm z}\)
+
+Momentum density stored in field:
+
+\(\bm g = \frac{1}{c^2} \bm S = \frac{1}{c} u \hat{\bm z}\)
+
+Averages: 
+
+\(\langle u \rangle = \frac{1}{2} \epsilon_0 E_0^2\)
+
+\(\langle \bm S \rangle = \frac{1}{2} c \epsilon_0 E_0^2 \hat{\bm z}\)
+
+\(\langle \bm g \rangle = \frac{1}{2} \frac{u}{c} \hat{\bm z}\)
+
+Intensity: \(\bm I \equiv \langle  S \rangle = \frac{1}{2} c \epsilon_0 E_0^2 \)
+
+Radiation pressure:
+
+\(P = \frac{1}{A}\frac{\Delta p}{\Delta t} = \frac{1}{2}\epsilon_0 E_0^2 =\frac{I}{c}\)
+
+Speed of light in medium:
+\(v = \frac{c}{n}\)
+
+Where: \(n \equiv \sqrt{\frac{\epsilon \mu}{\epsilon_0 \mu_0}} \approx \sqrt{\epsilon_r}\)
+
+The energy density in a medium:
+
+\(u = \frac{1}{2} (\epsilon E^2 + \frac{1}{\mu} B^2)\)
+
+Intensity in a medium:
+\(I = \frac{1}{2} v \epsilon E_0^2 \)
+
+boundary conditions:
+
+\(\epsilon_1 E_1^{\perp} = \epsilon_2 E_2^{\perp}\)
+
+\(\frac{1}{\mu_1} B_1^{\perp} = \frac{1}{\mu_2} B_2^{\perp}\)
+
 \secblock{H10 Potentials and Fields}
+\(\bm B\) is divergenceless, so:
+\(\bm B = \bm \nabla \times \bm A\)
+
+and: \(\bm E = - \bm \nabla V - \frac{\partial \bm A}{\partial t}\)
+
+\(\nabla^2 V + \frac{\partial }{\partial t}(\bm \nabla \cdot \bm A) = -\frac{\rho}{\epsilon_0}\)
+
+\(\nabla \times (\nabla \times \bm A)= \mu_0 \bm J - \mu_0 \epsilon_0 \bm \nabla \left(\frac{\partial V }{\partial t}\right) - \mu_0 \epsilon_0 \frac{\partial^2 \bm A}{\partial t^2}\)
+
+\( \left( \nabla^2 \bm A - \mu_0 \epsilon_0 \frac{\partial^2 \bm A}{\partial t^2} \right) 
+- \bm \nabla \left(\bm \nabla \cdot \bm A + \mu_0 \epsilon_0 \frac{\partial V}{\partial t} \right)
+= -\mu_0 \bm J\)
+
+Gauge transformation:
+\(\bm A' = \bm A + \bm \alpha\) and \(V' = V + \beta\) 
+
+\(\bm \nabla \times \bm\alpha = 0\)
+
+\(\bm \alpha = \bm \nabla \lambda\)
+
+\(\bm \nabla \beta + \frac{\partial \bm \alpha}{\partial t} = 0\)
+
+\(\bm \nabla (\beta + \frac{\partial \lambda}{\partial t})=0\)
+
+\(\bm A' = \bm A + \bm \nabla \lambda\) and \(V' = V - \frac{\partial \lambda}{\partial t}\)
+
+For any function \(\lambda(\bm r, t)\).
+
+Coulomb gauge: \(\bm \nabla \cdot \bm A = 0\)
+
+Lorenz gauge: \(\bm \nabla \cdot \bm A - \mu_0 \epsilon_0 \frac{\partial V}{\partial t} = 0\)
+
+then: \(\nabla^2 -\mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} \equiv \Box^2\)
+
+d'Alembertian operator: 
+
+\(\Box^2 V = -\frac{\rho}{\epsilon_0}\) and \(\Box^2 \bm A = -\mu_0 \bm J\)
+
+Lorentz force in terms of potentials:
+
+\(\bm F = q \left[ -\bm \nabla V - \frac{\partial \bm A}{\partial t} + \bm v \times (\bm \nabla \times \bm A) \right]\)
+\(= -q[\frac{\partial \bm A}{\partial t} + (\bm v \cdot \bm \nabla) \bm A + \bm \nabla (V-\bm v \cdot \bm A)]\)
+
+gives us:
+
+\( \frac{d \bm A}{dt} = \frac{\partial \bm A}{\partial t} + (\bm v \cdot \bm \nabla) \bm A \)
+
+\(\frac{d\bm p}{dt} = - \bm \nabla U\)
+
+Canonical momentum:
+\(\bm p_{can} = \bm p + q \bm A\)
+
+\(U_{vel} = q(V-\bm v \cdot \bm A)\)
+
+Static case:
+\(\nabla^2 V = -\frac{\rho}{\epsilon_0}\) and \(\nabla^2 \bm A = -\mu_0 \bm J\)
+
+retarded time:
+\(t_r = t - \frac{r_c}{c}\)
+
+retarded potentials:
+
+\(V(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(\bm r', t_r)}{r_c} d\tau'\)
+and
+
+\(\bm A(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_r)}{r_c} d\tau'\)
+
+
+
+
+
+
+
 
 \secblock{H11 Radiation}
 
@@ -432,6 +594,9 @@ Cylindrical:
 \(\hat{\bm \phi} = -\sin \phi \hat{\bm x} + \cos \phi \hat{\bm y}\)
 
 Goniometric identities:
+
+
+
 
 
 \end{multicols*}
