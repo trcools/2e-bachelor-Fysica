@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 ## Bijdragen
 
-Het bijdragen aan deze repository is altijd welkom, **Commit** alleen bestanden die veilig gedeeld kunnen worden en **Gebruik** duidelijke commit messages.
+Bijdragen aan deze repository zijn altijd welkom. **Commit** alleen bestanden die veilig gedeeld kunnen worden en **Gebruik** duidelijke commit messages.
 
 Deze repository is bedoeld voor:
 - Persoonlijke studie en notities
