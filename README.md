@@ -1,21 +1,15 @@
 # Bachelor Fysica - Studiemateriaal
 
-Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor de bachelor Fysica.
+Deze repo bevat studiemateriaal, samenvattingen, code en opdrachten voor de bachelor Fysica. Het is educatief materiaal georganiseerd per semester en vak.
 
-- **Markdown samenvattingen** 
-- **Jupyter notebooks**
-- **Python code** 
-- **Opdrachten en examens**
-
-**Dit is GEEN software project** — het is educatief materiaal georganiseerd per semester en vak.
-
-## 📂 Structuur
+## Structuur
 
 ### 2e Bachelor - Semester 1
 - **`Biophysics/`** - Biofysica 
 - **`Kwantum/`** - Kwantummechanica 
 - **`Py4sci/`** - Python for Scientists
 - **`VFR/`** - Vector en Functieruimten
+- **`Statistiek/`** - Statistiek (Nog leeg atm)
 
 ### 2e Bachelor - Semester 2
 - **`Groepen-en-Representaties/`** - Groepen en representaties
@@ -27,19 +21,15 @@ Deze repository bevat studiemateriaal, samenvattingen, code en opdrachten voor d
 
 ### Andere Folders
 - **`1e-bachelor-semester-1/`** - Vakken uit 1e bachelor
-- **`Cursussen:boeken/`** - Cursussen en (studie)boeken
 
 
-## ⚠️ Beveiliging & Privacy
+## Beveiliging & Privacy
 
 **Lees de [SECURITY.md](SECURITY.md) voor uitgebreide beveiligingsrichtlijnen.**
 
-### Quick Reference:
-- ✅ **Commit**: samenvattingen, code, notebooks, opdrachten
-- ✅ **Gebruik pre-commit hooks** voor automatische controles
-- 🔒 **Privé bestanden** (slides, syllabi, leerboeken): bewaar ze in de `_lokaal/` map — Git negeert die automatisch
-- ❌ **Geen auteursrechtelijk materiaal** committen (professorslides, leerboeken, cursusboeken)
-- ❌ **Geen persoonlijke informatie** of gevoelige data committen (mag op eigen risico)
+- **Privé bestanden** (slides, syllabi, leerboeken): bewaar ze in de `_lokaal/` map — Git negeert die automatisch
+- **Geen auteursrechtelijk materiaal** committen (professorslides, leerboeken, cursusboeken)
+- **Geen persoonlijke informatie** of gevoelige data committen (eigen info mag op eigen risico)
 
 ### Pre-commit Hooks Installeren
 
@@ -54,7 +44,7 @@ Dit controleert automatisch op:
 - Merge conflicts
 - YAML/JSON syntax
 
-## 🚀 Setup
+## Setup
 
 ### Python Dependencies
 
@@ -62,17 +52,10 @@ Dit controleert automatisch op:
 pip install -r requirements.txt
 ```
 
-### Jupyter Notebook
 
-Start Jupyter vanuit de repository root:
-```bash
-jupyter notebook
-```
+## Bijdragen
 
-
-## 📝 Bijdragen
-
-Bij het bijdragen aan deze repository is altijd welkom, maar **Check** wat je gaat committen: `git status`, **Review** je wijzigingen: `git diff`, **Commit** alleen bestanden die veilig gedeeld kunnen worden en **Gebruik** duidelijke commit messages.
+Het bijdragen aan deze repository is altijd welkom, **Commit** alleen bestanden die veilig gedeeld kunnen worden en **Gebruik** duidelijke commit messages.
 
 Deze repository is bedoeld voor:
 - Persoonlijke studie en notities
