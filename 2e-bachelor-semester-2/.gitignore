@@ -31,3 +31,6 @@ venv/
 
 # IDE
 .vscode/settings.json
+
+# Local private files (not committed)
+_lokaal/
