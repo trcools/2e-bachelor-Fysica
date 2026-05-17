@@ -5,11 +5,11 @@ Deze repo bevat studiemateriaal, samenvattingen, code en opdrachten voor de bach
 ## Structuur
 
 ### 2e Bachelor - Semester 1
-- **`Biophysics/`** - Biofysica 
-- **`Kwantum/`** - Kwantummechanica 
-- **`Py4sci/`** - Python for Scientists
-- **`VFR/`** - Vector en Functieruimten
-- **`Statistiek/`** - Statistiek (Nog leeg atm)
+- **`2e-bachelor-semester-1/Biophysics/`** - Biofysica 
+- **`2e-bachelor-semester-1/Kwantum/`** - Kwantummechanica 
+- **`2e-bachelor-semester-1/Py4sci/`** - Python for Scientists
+- **`2e-bachelor-semester-1/VFR/`** - Vector en Functieruimten
+- **`2e-bachelor-semester-1/Statistiek/`** - Statistiek (Nog leeg atm)
 
 ### 2e Bachelor - Semester 2
 - **`Groepen-en-Representaties/`** - Groepen en representaties
