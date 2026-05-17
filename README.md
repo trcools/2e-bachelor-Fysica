@@ -29,7 +29,7 @@ Deze repo bevat studiemateriaal, samenvattingen, code en opdrachten voor de bach
 
 - **Privé bestanden** (slides, syllabi, leerboeken): bewaar ze in de `_lokaal/` map — Git negeert die automatisch
 - **Geen auteursrechtelijk materiaal** committen (professorslides, leerboeken, cursusboeken)
-- **Geen persoonlijke informatie** of gevoelige data committen (eigen info mag op eigen risico)
+- **Geen persoonlijke informatie** of gevoelige data committen, ook geen eigen gegevens
 
 ### Pre-commit Hooks Installeren
 
