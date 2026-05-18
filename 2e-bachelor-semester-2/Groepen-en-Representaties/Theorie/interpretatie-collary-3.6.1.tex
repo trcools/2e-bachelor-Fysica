@@ -1,0 +1,164 @@
+\documentclass[a4paper,twoside]{article}
+
+
+% --- RUIMTE EN LAYOUT ---
+\usepackage{setspace}
+\setstretch{1.15}
+
+\usepackage{geometry} %size regulating
+\geometry{
+ a4paper,
+ left=25mm,
+ right=25mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\usepackage{parskip} % for better spacing between paragraphs
+
+
+% --- WISKUNDE ENSYMBOLEN ---
+\usepackage{amsmath, amssymb, amsfonts, amsthm} % For nicer math format
+\usepackage{mathrsfs} % For curly arrr
+\usepackage{bm} % For bold symbols eg \bm{\nabla}
+\usepackage{esint} % For bolletje in integrals
+\usepackage{dsfont}
+\usepackage{siunitx} % Voeg deze expliciet toe voor die graden en eenheden!
+
+
+% --- OVERIGE ---
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage[hidelinks]{hyperref} % geen kaders om linken
+\usepackage{subcaption}
+%\usepackage[dutch]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{multicol}
+
+% --- Tikz packages ---
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes, babel} % for pic (angle labels)
+\usetikzlibrary{arrows.meta,decorations.markings,calc, decorations.pathmorphing, decorations.pathreplacing, positioning, shapes, shadings, patterns}
+\usepackage{xcolor}
+\usepackage{tikz-3dplot}
+\usepackage[siunitx]{circuitikz}
+
+\usepackage{etoolbox} % ifthen
+\usepackage[outline]{contour} % glow around text
+\usepackage{xfp} % higher precision (16 digits?)
+\contourlength{1.1pt}
+
+
+
+% --- THEOREM STIJLEN MET EXTRA RUIMTE ---
+
+\theoremstyle{definition}
+\newtheorem{postulate}{Postulaat}
+\newtheorem{definition}{Definitie}
+\newtheorem{derivation}{Afleiding}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+
+
+% --- EXTRA COMMANDO'S ---
+
+\newcommand{\dbar}{{\mkern+3mu\mathchar'26\mkern-12mu d}}
+
+% --- Titel en Introductie --- 
+
+\title{Interpretatie Corollary 3.6.1}
+\author{T. Cools}
+\date{Groepen en Representaties, 2025-2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    Ik ben een abstract.
+\end{abstract}
+
+De great orthogonality theorem zegt:
+\[
+\frac{1}{\#G}\sum_{x} D_{ij}^{\alpha}(x) \bar{D}_{kl}^{\beta}(x) = \frac{1}{d_\alpha} \delta_{\alpha\beta} \delta_{ik} \delta_{jl}
+\]
+
+In \textbf{Corollary 3.6.1} is 
+\[Q = \sum_{x} D^\alpha (x) B D^{\beta \dagger} (x)\]
+
+
+Volgens schurs lemma:  \[Q = \delta_{\alpha, \beta} \cdot c_\alpha \cdot \mathds{1}_{d_\alpha}\]
+
+
+
+
+
+Geval \(\alpha = \beta\) zegt:
+
+\[
+Q =  c_\alpha \cdot \mathds{1}_{d_\alpha}
+\]
+
+En als we het spoor nemen: 
+\[tr(Q) = c_\alpha d_\alpha\]
+
+en 
+
+\[tr(Q) = \sum_{x} tr(D^\alpha(x)BD^{\alpha, \dagger}) \]
+
+Frank zei dat \(tr(ABC) = tr(BCA)\), een even permutatie dus:
+
+\[tr(Q) = \sum_{x} tr(BD^{\alpha, \dagger} D^\alpha(x)) = \sum_{x} tr(B) = \#Gtr(B) \]
+
+want er zijn \(\#G\) elementen.
+
+Cominbineren we wat we hebben gevonden voor \(tr(Q)\):
+
+\[c_\alpha d_\alpha = \#G tr(B) \]
+
+\[\implies c_\alpha = \frac{tr(B) \# G}{ d_\alpha}\]
+
+
+Tot hier zijn we al geraakt \(\dots\)
+
+\textbf{Moeilijkheid}: we nemen \(B = |j \rangle \langle l|\)
+
+Dan is:
+
+ \[Q = \sum_{x} D^\alpha (x) |j \rangle \langle l| D^{\alpha \dagger} (x)\]
+
+\[\implies Q_{ik} = \sum_{x} D^\alpha_{ij}(x) \bar{D}^\alpha_{kl}(x)\]
+
+Via orthogonaliteit:
+\[
+Q_{ik}
+ = 
+\frac{\#G}{d_\alpha} \delta_{\alpha \alpha} \delta_{ik} \delta_{jl} 
+=
+ \frac{\#G}{d_\alpha} \delta_{ik} \delta_{jl} 
+\]
+
+
+
+Nemen we het spoor opnieuw:
+
+\[tr(Q) 
+=
+ \sum_{i=1}^{d_\alpha}Q_{ii} 
+ = \sum_{i=1}^{d_\alpha}\frac{\#G}{d_\alpha} \delta_{ii} \delta_{jl}
+ = \sum_{i=1}^{d_\alpha}\frac{\#G}{d_\alpha} \delta_{jl}
+ = \#G \delta_{jl}
+\]
+
+En we hadden al \(tr(Q) = c_\alpha d_\alpha\), dit gecombineerd geeft:
+
+\[c_\alpha d_\alpha^2 = \#G \delta_{lk} \]
+
+
+
+
+
+
+\end{document}
