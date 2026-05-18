@@ -1,0 +1,336 @@
+\section{Thermodynamische functies en vergelijkingen}
+
+\subsection{Het Smoorproces en Enthalpie}
+
+Het smoorproces, Joule-Kelvin-proces of Joule-Thomson-proces
+is een irreversibel proces waarbij een gas van toestand \(i \to j\) gaat.
+De verandering in temperatuur tijdens dit proces wordt beschreven door de Joule-Kelvin-coëfficiënt $\mu = \left(\frac{\partial T}{\partial P}\right)_H$.
+
+De eerste hoofdwet:
+
+\[
+Q = U_f - U_i - W
+\]
+
+met \(Q = 0\)
+
+en
+\[
+W = - \int_{0}^{V_f} P_fdV - \int_{V_i}^{0} P_i dV
+\]
+
+Als de druk constant blijft: \(W = -(P_fV_f - P_iV_i)\)
+
+Dan wordt de eerste hoofdwet:
+\[
+0 = U_f - U_i + P_fV_f-P_iV_i
+\]
+\[
+\implies U_f + P_fV_f = U_i + P_iV_i
+\]
+\[
+\implies H_f = H_i
+\]
+
+De enthalpie.
+
+In het TP-diagram ligt \(\mu\) op het inversiepunt.
+
+\begin{equation}
+    \label{eq:enthalpie}
+    H = U + PV
+\end{equation}
+
+\begin{align*}
+dH &= dU + PdV + VdP \\
+&= TdS - PdV  + PdV + VdP\\
+&= TdS + VdP
+\end{align*}
+
+of met \(dU + PdV = dQ\):
+
+\begin{align*}
+dH &= dQ + VdP \\
+\implies \frac{dH}{dT} &= \frac{dQ}{dT} + V\frac{dP}{dT} \\
+\implies \left(\frac{\partial H}{\partial T}\right)_P &= \left(\frac{\partial Q}{\partial T}\right)_P= C_P \\
+\end{align*}
+
+\[H_f-H_i = \int_{T_i}^{T_f} C_P dT = Q \qquad (\text{Isobaar})\]
+
+Uit \(dH = TdS + VdP\) volgt:
+
+\[\left(\frac{\partial H}{\partial S}\right)_P = T  \qquad\text{en}\qquad   \left(\frac{\partial H}{\partial P}\right)_S = V\]
+
+
+Bij een isochoor proces grijpen naar de interne energie \(U\), bij een isobaar proces naar de enthalpie \(H\).
+
+\subsection{De Helmholtzfuncties en Gibbsfuncties}
+
+\begin{definition}
+\textbf{Helmholtzfunctie} \(F\) is gedefinieerd als:
+\[
+F = U - TS
+\]
+\end{definition}
+
+\begin{align*}
+dF &= dU - TdS - SdT \\
+&= dQ -PdV - TdS - SdT \\
+&= -PdV-SdT \\
+\end{align*}
+
+Waaruit:
+\[P =-\left(\frac{\partial F}{\partial V}\right)_T \qquad\text{en}\qquad S = -\left(\frac{\partial F}{\partial T}\right)_V \]
+
+Voor een reversibel isotherm proces is \(dQ = TdS\) en dus \(dF = -PdV\).
+
+Voor een reversibel isoterm en isochoor proces is \(dF = 0 \implies F = cst\).
+
+
+\begin{definition}
+\textbf{Gibbsfunctie} \(G\) is gedefinieerd als:
+\[
+G = H - TS
+\]
+\end{definition}
+
+\begin{align*}
+dG &= dH - TdS - SdT \\
+&= TdS + VdP - TdS - SdT \\
+&= VdP - SdT \\
+\end{align*}
+
+Reversibel isotherm en isobaar proces: \(dG = 0 \implies G = cst\)
+
+Belangrijk resultaat van de gibbs vrije energie:
+
+Op de smeltkromme:
+\[G_{\text{vast}} = G_{\text{vloeibaar}} \]
+Op de verdampingskromme:
+\[G_{\text{vloeibaar}} = G_{\text{damp}} \]
+Op de sublimatiekromme:
+\[G_{\text{vast}} = G_{\text{damp}} \]
+\subsection{De Maxwellbetrekkingen}
+\begin{derivation}
+\textbf{Maxwellbetrekkingen} zijn afgeleid uit de differentiaalvormen van de thermodynamische functies \(U, H, F, G\) en de eigenschappen van partiële afgeleiden. De vier Maxwellbetrekkingen zijn:
+\begin{align*}
+\left(\frac{\partial T}{\partial V}\right)_S &= -\left(\frac{\partial P}{\partial S}\right)_V \\
+\left(\frac{\partial T}{\partial P}\right)_S &= \left(\frac{\partial V}{\partial S}\right)_P \\
+\left(\frac{\partial S}{\partial V}\right)_T &= \left(\frac{\partial P}{\partial T}\right)_V \\
+\left(\frac{\partial S}{\partial P}\right)_T &= -\left(\frac{\partial V}{\partial T}\right)_P \\
+\end{align*}
+\end{derivation}   
+Als we totale differentiaalen hebben van de vorm:
+\[df = Mdx + Ndy\]
+Dan geldt dat:
+\[\left(\frac{\partial M}{\partial y}\right)_x = \left(\frac{\partial N}{\partial x}\right)_y\]
+\begin{derivation}
+\textbf{Afleiding van de Maxwellbetrekkingen} begint met de differentiaalvormen van de thermodynamische functies. Bijvoorbeeld, voor de interne energie \(U\):
+\[
+dU = TdS - PdV
+\]
+Hieruit kunnen we de partiële afgeleiden van \(T\) en \(P\) ten opzichte van \(S\) en \(V\) bepalen. Door de symmetrie van de tweede afgeleiden van \(U\) (of een andere thermodynamische functie) te gebruiken, kunnen we de Maxwellbetrekkingen afleiden. Bijvoorbeeld, door de tweede afgeleiden van \(U\) te vergelijken, krijgen we:
+\[\left(\frac{\partial T}{\partial V}\right)_S = -\left(\frac{\partial P}{\partial S}\right)_V\]
+Op dezelfde manier kunnen we de andere Maxwellbetrekkingen afleiden door de differentiaalvormen van \(H, F, G\) te gebruiken.
+\end{derivation}    
+\subsection{De TdS-vergelijkingen}
+
+
+De entropie \(S\) kan worden uitgedrukt als een functie van temperatuur \(T\) en volume \(V\), of als een functie van temperatuur \(T\) en druk \(P\). (of als functie van \(P\) en \(V\) maar dat is minder gebruikelijk)
+
+Dus \(S\) van de volgende vormen aannemen:
+\[S = S(T,V)\]
+\[S = S(T,P)\]
+\[S = S(P,V)\]
+
+Nu kunnen we de TdS vormen afleiden:
+
+\begin{align*}
+    S &= S(T,V) \\
+    dS &= \left(\frac{\partial S}{\partial T}\right)_V dT + \left(\frac{\partial S}{\partial V}\right)_T dV \\
+\end{align*}
+Voor een reversibel proces geldt \(dQ = TdS\):
+\begin{align*}
+    dS &= \frac{dQ}{T} \\
+    \implies \dbar Q &= TdS \\
+    \dbar Q &= T\left(\frac{\partial S}{\partial T}\right)_V dT + T\left(\frac{\partial S}{\partial V}\right)_T dV \\
+\end{align*}
+Als V = cst (isochoor proces):
+\[\dbar Q = T\left(\frac{\partial S}{\partial T}\right)_V dT \implies C_V = T\left(\frac{\partial S}{\partial T}\right)_V\]
+
+\begin{align*}
+    TdS &= T\left(\frac{\partial S}{\partial T}\right)_V dT + T\left(\frac{\partial S}{\partial V}\right)_T dV \\ 
+    &= C_V dT + T\left(\frac{\partial S}{\partial V}\right)_T   dV \\
+\end{align*}
+
+Met maxwellbetrekking \(\left(\frac{\partial S}{\partial V}\right)_T = \left(\frac{\partial P}{\partial T}\right)_V\) vinden we:
+
+\[\boxed{TdS = C_V dT + T\left(\frac{\partial P}{\partial T}\right)_V dV}\]
+
+Op dezelfde manier kunnen we de TdS-vergelijking voor \(S(T,P)\) en \(S(P,V)\) afleiden.
+
+\begin{align*}
+    S &= S(T,P) \\
+    dS &= \left(\frac{\partial S}{\partial T}\right)_P dT + \left(\frac{\partial S}{\partial P}\right)_T dP \\
+    TdS &= T\left(\frac{\partial S}{\partial T}\right)_P dT + T\left(\frac{\partial S}{\partial P}\right)_T dP \\
+\end{align*}
+
+Als \(P = cst\) (isobaar proces):
+\[\dbar Q = T\left(\frac{\partial S}{\partial T}\right)_P dT \implies C_P = T\left(\frac{\partial S}{\partial T}\right)_P\]
+
+\[
+\boxed{TdS = C_PdT + T\left(\frac{\partial S}{\partial P}\right)_T dP} 
+\]
+
+Maxwellbetrekking \(\left(\frac{\partial S}{\partial P}\right)_T = -\left(\frac{\partial V}{\partial T}\right)_P\) geeft:
+
+\[\boxed{TdS = C_PdT - T\left(\frac{\partial V}{\partial T}\right)_P dP}\]
+
+
+
+En voor \(S(P,V)\):
+\begin{align*}
+    S &= S(P,V) \\
+    dS &= \left(\frac{\partial S}{\partial P}\right)_V dP + \left(\frac{\partial S}{\partial V}\right)_P dV \\
+    TdS &= T\left(\frac{\partial S}{\partial P}\right)_V dP + T\left(\frac{\partial S}{\partial V}\right)_P dV \\
+    &= T\left(\frac{\partial S}{\partial T}\right)_V\left(\frac{\partial T}{\partial P}\right)_V dP + T\left(\frac{\partial S}{\partial T}\right)_P \left(\frac{\partial T}{\partial V}\right)_P dV \\
+    &= C_V\left(\frac{\partial T}{\partial P}\right)_V dP + C_P \left(\frac{\partial T}{\partial V}\right)_P dV \\
+\end{align*}
+
+\subsubsection{Reversibele isotherme drukverandering}
+
+\[TdS = \dbar Q= -T \left(\frac{\partial V}{\partial P}\right)_P dP\]
+
+\[\implies Q= -T \int \left(\frac{\partial V}{\partial P}\right)_P dP\]
+
+Herinner \(\beta = \frac{1}{V}\left(\frac{\partial V}{\partial T}\right)_P\).
+
+Dan:
+\[Q = -T \int V \beta dP\]
+
+\[Q = -T \bar{V \beta} (P_f - P_i)\]
+
+\subsubsection{Reversibele adiabatische drukverandering}
+
+Hieronder blijft de entropie constant, dus \(dS = 0\):
+\[0 = C_P dT - T \left(\frac{\partial V}{\partial T}\right)_P dP\]
+
+\[\implies  = \frac{T}{C_P}\left(\frac{\partial V}{\partial T}\right)_P d = \frac{TV \beta}{C_P}dP\]
+
+Uit \(dH = TdS + VdP\):
+
+\[
+dH = C_P dT - \left[ T\left(\frac{\partial V}{\partial T}\right)_P - V \right] dP
+\]
+\[
+\implies dT = \frac{1}{C_P}\left[ T\left(\frac{\partial V}{\partial T}\right)_P - V \right] dP + \frac{1}{C_P}dH
+\]
+
+De Joule-Kelvin-coëfficiënt \(\mu = \left(\frac{\partial T}{\partial P}\right)_H\)
+
+\[\mu = \frac{1}{C_P}\left[ T\left(\frac{\partial V}{\partial T}\right)_P - V \right]\]
+
+Voor een ideaal gas:
+
+\[\mu = \frac{1}{C_P} \left( T\frac{nR}{P} - V \right) = 0\]
+
+\subsubsection{Energievergelijkingen}
+
+\begin{align*}
+    dU &= TdS - PdV \\
+    \frac{dU}{dV} &= T \frac{d S}{d V}- P \\
+\end{align*}
+
+De eerste energievergelijking:
+\[
+\boxed{\left(\frac{\partial U}{\partial V}\right)_T = T \left(\frac{\partial P}{\partial T}\right)_V - P}
+\]
+waar we een maxwellbetrekking hebben gebruikt.
+
+\begin{align*}
+    dU &= TdS - PdV \\
+    \frac{dU}{dP} &= T \frac{d S}{d P}- P \frac{dV}{dP} \\
+    \left(\frac{\partial U}{\partial P}\right)_T &= T \left(\frac{\partial S}{\partial P}\right)_T - P \left(\frac{\partial V}{\partial P}\right)_T
+\end{align*}
+
+De tweede energievergelijking:
+\[
+\boxed{\left(\frac{\partial U}{\partial P}\right)_T = -P \left(\frac{\partial V}{\partial P}\right)_T}
+\]
+
+\subsubsection{Enthalpievergelijkingen}
+
+\begin{align*}
+dH &= TdS + VdP \\
+\frac{dH}{dP} &= T \frac{d S}{d P}+ V  \\
+\left(\frac{\partial H}{\partial P}\right)_T &= T \left(\frac{\partial S}{\partial P}\right)_T + V 
+\end{align*}
+De eerste enthalpievergelijking:
+\[\boxed{\left(\frac{\partial H}{\partial P}\right)_T = T \left(\frac{\partial S}{\partial P}\right)_T + V}\]
+
+\begin{align*}
+    dH &= TdS + VdP \\
+    \frac{dH}{dV} &= T \frac{d S}{d V}+ V \frac{dP}{dV} \\
+    \left(\frac{\partial H}{\partial V}\right)_T &= T \left(\frac{\partial S}{\partial V}\right)_T + V \left(\frac{\partial P}{\partial V}\right)_T
+\end{align*}
+De tweede enthalpievergelijking:
+\[\boxed{\left(\frac{\partial H}{\partial V}\right)_T = T \left(\frac{\partial S}{\partial V}\right)_T + V \left(\frac{\partial P}{\partial V}\right)_T}\]
+
+
+\subsection{De Vergelijkingen van de Warmtecapaciteiten}
+
+We stellen de eerste twee TdS-vergelijkingen gelijk aan elkaar:
+\[C_V dT + T\left(\frac{\partial P}{\partial T}\right)_V dV = C_PdT - T\left(\frac{\partial V}{\partial T}\right)_P dP\]    
+Oplossen naar \(dT\):
+\[dT = \frac{T\left(\frac{\partial V}{\partial T}\right)_P }{C_P - C_V}dP + \frac{T\left(\frac{\partial P}{\partial T}\right)_V }{C_P - C_V}dV\]  
+
+Maar \(T=T(P,V)\), dus:
+\[dT = \left(\frac{\partial T}{\partial P}\right)_V dP + \left(\frac{\partial T}{\partial V}\right)_P dV\]
+
+We vinden:
+\[
+\left(\frac{\partial T}{\partial P}\right)_V = \frac{T\left(\frac{\partial V}{\partial T}\right)_P }{C_P - C_V}
+\qquad\text{en}\qquad
+\left(\frac{\partial T}{\partial V}\right)_P = \frac{T\left(\frac{\partial P}{\partial T}\right)_V }{C_P - C_V}
+\]
+
+Beiden geven:
+\[
+C_P - C_V = T \left(\frac{\partial P}{\partial T}\right)_V \left(\frac{\partial V}{\partial T}\right)_P
+\]
+
+Met de eigenschap van de determinant van de Jacobiaan:
+\[\left(\frac{\partial P}{\partial T}\right)_V \left(\frac{\partial T}{\partial V}\right)_P \left(\frac{\partial V}{\partial P}\right)_T = -1\] 
+vinden we:
+\[\boxed{C_P - C_V = -T \left(\frac{\partial P}{\partial T}\right)_V^2 \left(\frac{\partial V}{\partial P}\right)_T}\]  
+Dit is blijkbaar één van de belangrijkste vergelijkingen in de thermodynamica, omdat het een relatie geeft tussen de warmtecapaciteiten \(C_P\) en \(C_V\) en de eigenschappen van het systeem zoals uitgedrukt door de partiële afgeleiden van \(P\) en \(V\) ten opzichte van \(T\).
+
+Deze toont aan dat als \(T \to 0 \implies C_P \to C_V\).
+
+Als \(\left(\frac{\partial V}{\partial T}\right)_P = 0 \implies C_P = C_V\). 
+
+En doordat \(\left(\frac{\partial P}{\partial V}\right)_T\) altijd negatief is en \(\left(\frac{\partial V}{\partial T}\right)^2_P\) positief is, volgt dat \(C_P > C_V\) voor alle systemen.
+
+
+met:
+\[\beta = \frac{1}{V} \left(\frac{\partial V}{\partial T}\right)_P\]
+en
+\[\kappa = -\frac{1}{V} \left(\frac{\partial V}{\partial P}\right)_T\]
+vinden we de eerste vorm van de vergelijking van de warmtecapaciteiten:
+\[\boxed{C_P - C_V = \frac{TV\beta^2}{\kappa}}\]
+
+De tweede vorm vinden we door de \(TdS\)-vgl te gebruiken bij \(dS = 0\)
+\[C_V dT = - T\left(\frac{\partial P}{\partial T}\right)_V dV_S\]
+en 
+\[C_PdT = T \left(\frac{\partial V}{\partial T}\right)_P dP_S\]
+
+\[\frac{C_P}{C_V} = \frac{T \left(\frac{\partial V}{\partial T}\right)_P}{- T\left(\frac{\partial P}{\partial T}\right)_V} \left(\frac{\partial P}{\partial V}\right)_S = -\frac{\left(\frac{\partial P}{\partial V}\right)_S}{\left(\frac{\partial P}{\partial V}\right)_T}\]
+
+\[\boxed{\frac{C_P}{C_V} = -\frac{\left(\frac{\partial P}{\partial V}\right)_S}{\left(\frac{\partial P}{\partial V}\right)_T}}\]
+
+We definiëren de adiabatische samendrukbaarheid als:
+\[\kappa_S = -\frac{1}{V} \left(\frac{\partial V}{\partial P}\right)_T\].
+\[\implies \frac{C_P}{C_V} = \frac{\kappa}{\kappa_S}\]
+
+\subsection{Eerste-orde fase-overgang en de vgl van Clapeyron}
+
