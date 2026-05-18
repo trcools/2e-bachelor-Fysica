@@ -148,5 +148,60 @@ Niet zo een belangrijk voorbeeld denk ik \(\dots\)
 
 \subsection{Entropietoename Universum}
 
-Entropie in het universum neemt steeds toe (tot het concept tijd niet meer bestaat \(\dots\)).
+Entropie in het universum neemt steeds toe (tot het concept tijd niet meer bestaat \(\dots\))
 
+\begin{proof}[Entropieprincipe]
+    Het is voldoende ons te beperken tot adiabatische processen.
+
+    We starten in ons systeem met coördinaten \(T, X\) en \(X'\) op punt \(i\) en eindigen op punt \(f\). 
+    We kunnen nu een irreversibel pad vinden van \(i \to f\): 
+    \[
+    \Delta S = S_f - S_i 
+    \]
+    en een irreversibel adiabatisch proces van \(f \to k\) zodat de temperatuur \(T'\) wordt van een willekeurig gekozen reservoir.
+
+    Het systeem wordt nu in contact gebracht met dit reservoir, er wordt een reviersibel isotherm proces van \(k \to j\) tot ze dezelfde entropie hebben als in punt \(i\).
+
+    Nu gaan we van dit punt terug \(j\) terug naar \(i\) via een reversibel adiabatisch proces.
+
+    De twee processen \(i \to f\) en \(j \to k\) brengen een entropoieverandering met zich mee, en de nette entropieverandering van een cyclus is \(0\), dus:
+
+    \[
+    (S_f-S_i) + (S_j- S_k) = \Delta S + S_j - S_k = 0
+     \implies \Delta S = S_k - S_j
+    \]
+    De enige warmte-overdracht gebeurt tussen \(k\) en \(j\), en aangezien \(T' > T\) (omdat \(T'\) van een reservoir is), zal er warmte van \(k \to j\) stromen:
+
+    \[
+    Q_R = T' (S_j-S_k)
+    \]
+
+    De hoeveelheid arbeid verricht is:
+
+    \[
+    W_{net} = Q_R
+    \]
+
+    Volgens de tweede wet kan kan er geen warmte in het systeem gebracht zijn.
+    \footnote{Anders zouden we een machine hebben die werkt tussen een reservoir en een systeem, en die alleen warmte onttrekt aan het reservoir en arbeid levert, wat onmogelijk is volgens de tweede wet.}
+
+    Dus \(Q_R<0\):
+
+    \[
+    T' = (S_j-S_k) \leq 0 
+    \]
+    \[
+    \implies \Delta S = S_k - S_j \geq 0
+    \]
+
+    We kunnen nu veronderstellen dat ons eerste irreversibel adiabatisch proces van \(i \to f\) zou verlopen zonder dat er een entropieverandering zou optreden, dus \(\Delta S = 0\).
+    Doordat \(\implies \Delta Q = 0 \), dan zal ook \(W_{net} = 0\) en is er geen toestandsverandering (systeem is terug in punt \(i\)).
+    Maar dit betekend dat het proces reversibel is, wat in tegenspraak is met onze aanname dat het proces irreversibel is.
+
+    Dus de entropieverandering kan niet nul zijn, en moet dus positief zijn.
+
+    \qed
+\end{proof}
+
+\begin{postulate}
+    De entropieverandeiring van een systeem en zijn omgeving is altijd positief en nadert slechts naar 0 als de processen naar reversibiliteit naderen.
