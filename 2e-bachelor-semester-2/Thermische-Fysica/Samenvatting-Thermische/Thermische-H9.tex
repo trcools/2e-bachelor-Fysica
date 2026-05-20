@@ -334,3 +334,94 @@ We definiëren de adiabatische samendrukbaarheid als:
 
 \subsection{Eerste-orde fase-overgang en de vgl van Clapeyron}
 
+Bij veel fase-overgangen blijven de temperatuur en druk constant, maar veranderen de entropie en het volume. Dit is een eerste-orde fase-overgang.
+
+De fractie van een stof \(x\) kan getransoformeerd worden als:
+\[S = n_0(1-x)s_i + n_0 x s_f\]
+\[V = n_0(1-x)v_i + n_0 x v_f\]
+(\(S\) en \(V\) zijn lineaire functies van \(s_i, s_f\) en \(v_i, v_f\))
+
+Bij reversibile fase-overgangen is de latente warmte \(L\) gedefinieerd als:
+\[L = T(s_f - s_i)\] 
+de overgedragen warmte bij de fase-overgang.
+
+Uit 
+\[dG = VdP-SdT\]
+volgt:
+\[\left(\frac{\partial G}{\partial P}\right)_T = V \qquad\text{en}\qquad -\left(\frac{\partial G}{\partial T}\right)_P = S\]
+
+Omdat \(G\) continu is tijdens een fase-overgang, zijn ook de partiële afgeleiden van \(G\) continu.
+
+De entropie en/of het volume veranderen, of de eerste afgeleiden van de Gibbsfuncties zijn discontinu.
+
+De warmtecapaciteit tijdens een fase-overgang is oneindig groot, omdat er warmte wordt toegevoegd zonder dat de temperatuur verandert.
+
+\(dT=dP=0\):
+\[C_P = T\left(\frac{\partial S}{\partial T}\right)_P \to \infty\]
+\[\beta = \frac{1}{V} \left(\frac{\partial V}{\partial T}\right)_P \to \infty\]
+\[\kappa = -\frac{1}{V} \left(\frac{\partial V}{\partial P}\right)_T \to \infty\]
+
+Als we de tweede TdS-vlg herschrijven:
+\[TdS = C_PdT - TV\beta dP\]
+en \(dT = 0 = dP\) en \( C_P = \infty \) nemen is deze vergelijking onbepaald.
+
+Als een toestand \(i \to f\) met een reversibel, isobaar en isotherm proces gaat, dan is de eerste TdS-vlg:
+\[TdS = C_V dT + T\left(\frac{\partial P}{\partial T}\right)_V dV\]
+\[TdS = T\left(\frac{\partial P}{\partial T}\right)_V dV\]
+
+De druk en temperatuur waarbij de overgang gebeurt, voldoen aan \(P = P(T) \neq P(V,T)\) zodat:
+\[\left(\frac{\partial P}{\partial T}\right)_V = \frac{dP}{dT}\]
+dan:
+\[T(S_f-S_i) = T \frac{dP}{dT}(V_f-V_i)\]
+\[\implies \frac{dP}{dT} = \frac{L}{T(V_f - V_i)}\]
+Dit is de vergelijking van Clapeyron, die de helling van de fase-overgangskromme in het \(P\)-\(T\) diagram beschrijft.
+
+\begin{proof}
+    Bij een overgang op het PV-diagram is \(G_i = G_f\)
+    zodat bij een kleine verandering in temperatuur en druk ook \(G_i + dG_i = G_f + dG_f\) geldt.
+    Bijgevolg is \(dG_i = dG_f\) en dus \(V_idP - S_idT = V_fdP - S_fdT\).
+    Oplossen naar \(\frac{dP}{dT}\) geeft de vergelijking van Clapeyron:
+    \[\frac{dP}{dT} = \frac{S_f - S_i}{V_f - V_i} = \frac{L}{T(V_f - V_i)}\]
+\end{proof}
+
+Het teken van de helling hangt af van of de stof uitzet of krimpt bij de overgang.
+Bij een overgang waarbij de stof uitzet, is \(V_f > V_i\) en is de helling positief. Bij een overgang waarbij de stof krimpt, is \(V_f < V_i\) en is de helling negatief.
+
+
+\subsection{2e-orde Fase-overgangen en de Vergelijking van Ehrenfest}
+
+De eerste afgeleiden naar \(P\) en \(T\) van de Gibbsfunctie zijn continu tijdens een 2e-orde fase-overgang, maar de tweede afgeleiden zijn discontinu.
+\[\left(\frac{\partial S}{\partial T}\right)_P ,\qquad \left(\frac{\partial V}{\partial T}\right)_P, \qquad \left(\frac{\partial S}{\partial P}\right)_T, \qquad \left(\frac{\partial V}{\partial P}\right)_T \]
+zijn discontinu.
+
+Doordat:
+\[C_P = T \left(\frac{\partial S}{\partial T}\right)_P, \qquad \beta = \frac{1}{V} \left(\frac{\partial V}{\partial T}\right)_P \qquad\text{en}\qquad \kappa = -\frac{1}{V} \left(\frac{\partial V}{\partial P}\right)_T \]
+zijn ook \(C_P, \beta\) en \(\kappa\) discontinu.
+
+De overgang van supergeleiding naar normaal geleidend is een voorbeeld van een 2e-orde fase-overgang.
+
+De helling is niet meer gegeven door de vergelijking van Clapeyron, maar door de vergelijking van Ehrenfest:
+\[TdS = C_P dT - TV\beta dP\]
+\[C_{P,i}dT - TV\beta _{i}dP = C_{P,f}dT - TV\beta _{f}dP\]
+\[\implies \frac{dP}{dT} = \frac{C_{P,f} - C_{P,i}}{TV(\beta_f - \beta_i)}\]
+Dit is de eerste vergelijking van Ehrenfest.
+
+Er is ook een tweede vergelijking van Ehrenfest.
+We gebruiken behoud van volume \(V_i = V_f\)
+Op een nabijgelegen punt op de overgangskromme geldt:
+\[V_i + dV_i = V_f + dV_f\]
+\[\implies dV_i = dV_f\]
+
+\[\left(\frac{\partial V_i}{\partial T}\right)_P + \left(\frac{\partial V_{i}}{\partial P}\right)_T 
+= 
+\left(\frac{\partial V_f}{\partial T}\right)_P + \left(\frac{\partial V_f}{\partial P}\right)_T dP\]
+en:
+\[\beta_i V_i dT - \kappa_i V_i dP = \beta_f V_f dT - \kappa_f V_f dP\]
+\[\implies \frac{dP}{dT} = \frac{\beta_f - \beta_i}{\kappa_f - \kappa_i}\]
+Dit is de tweede vergelijking van Ehrenfest.
+
+\begin{definition}[Lambda-transities]
+    Een lambda-transitie is een 2e-orde fase-overgang waarbij de warmtecapaciteit \(C_P\) divergeert, maar \(\beta\) en \(\kappa\) niet. De vergelijking van Ehrenfest is dan niet meer geldig, omdat de teller oneindig wordt. 
+    \(T, P, G, S \) en \(V\) zijn constant, maar \(C_P, \beta\) en \(\kappa\) zijn oneindig groot.
+\end{definition}
+
