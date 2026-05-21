@@ -1,0 +1,38 @@
+\begin{theorem}
+    \textbf{Crystallographic restriction}:
+
+    Als een kristal invariant is onder \(\frac{2\pi }{n}\) rotaties rond een as, dan moet \(n\) gelijk zijn aan \(1, 2, 3, 4\) of \(6\).
+    
+\end{theorem}
+
+
+\begin{proof}
+   
+    Ruimtegroepen hebben een extra voorwaarde nog eens op de groepen \(SO_3\) en \(O_3\) die we al hebben gezien,
+    namelijk dat de elementen \(O_g\) equivalent moeten zijn aan integer matrices in een geschikte basis.
+    Waar de matrix van de basisvectoren \(E^{-1}O_gE = N_g\) is.
+     
+
+    De eigenwaarden van een integer matrix corresponderend aan een element met orde \(n\) zijn \(\pm 1, \pm e^{\frac{i2\pi}{n}}, \pm e^{-\frac{i2\pi}{n}} \).
+    
+    Doordat de matrix \(O_g\) equivalent is aan een integer matrix \((N_g)\), moet de trace van \(O_g\) een geheel getal zijn.
+    
+    De matrix \(O_g\) is:
+    \[
+        O_g = \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & \cos(\frac{2\pi}{n}) & -\sin(\frac{2\pi}{n}) \\
+            0 & \sin(\frac{2\pi}{n}) & \cos(\frac{2\pi}{n})
+        \end{pmatrix}
+    \]
+    De trace van \(O_g\) is gelijk aan \(1 + 2\cos(\frac{2\pi}{n})\).
+
+    Deze gehele getallen die ervoor zorgen dat de trace een geheel getal is, zijn \(3, 1, 0, -1\) of \(-2\), wat overeenkomt met \(n = 1, 2, 3, 4\) of \(6\).
+    \begin{itemize}
+        \item \(1 + 2\cos(\frac{2\pi}{1}) = 3\)
+        \item \(1 + 2\cos(\frac{2\pi}{2}) = 1\)
+        \item \(1 + 2\cos(\frac{2\pi}{3}) = 0\)
+        \item \(1 + 2\cos(\frac{2\pi}{4}) = -1\)
+        \item \(1 + 2\cos(\frac{2\pi}{6}) = -2\)
+    \end{itemize}
+\end{proof}
