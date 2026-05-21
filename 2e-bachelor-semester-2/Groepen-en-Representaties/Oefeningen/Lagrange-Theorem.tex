@@ -1,0 +1,132 @@
+\documentclass[a4paper,twoside]{article}
+
+
+% --- RUIMTE EN LAYOUT ---
+\usepackage{setspace}
+\setstretch{1.15}
+
+\usepackage{geometry} %size regulating
+\geometry{
+ a4paper,
+ left=25mm,
+ right=25mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\usepackage{parskip} % for better spacing between paragraphs
+
+
+% --- WISKUNDE ENSYMBOLEN ---
+\usepackage{amsmath, amssymb, amsfonts, amsthm} % For nicer math format
+\usepackage{mathrsfs} % For curly arrr
+\usepackage{bm} % For bold symbols eg \bm{\nabla}
+\usepackage{esint} % For bolletje in integrals
+\usepackage{dsfont}
+\usepackage{siunitx} % Voeg deze expliciet toe voor die graden en eenheden!
+
+
+% --- OVERIGE ---
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage[hidelinks]{hyperref} % geen kaders om linken
+\usepackage{subcaption}
+%\usepackage[dutch]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{multicol}
+
+% --- Tikz packages ---
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes, babel} % for pic (angle labels)
+\usetikzlibrary{arrows.meta,decorations.markings,calc, decorations.pathmorphing, decorations.pathreplacing, positioning, shapes, shadings, patterns}
+\usepackage{xcolor}
+\usepackage{tikz-3dplot}
+\usepackage[siunitx]{circuitikz}
+
+\usepackage{etoolbox} % ifthen
+\usepackage[outline]{contour} % glow around text
+\usepackage{xfp} % higher precision (16 digits?)
+\contourlength{1.1pt}
+
+
+
+% --- THEOREM STIJLEN MET EXTRA RUIMTE ---
+
+\theoremstyle{definition}
+\newtheorem{postulate}{Postulaat}
+\newtheorem{definition}{Definitie}
+\newtheorem{derivation}{Afleiding}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+
+
+% --- EXTRA COMMANDO'S ---
+
+\newcommand{\dbar}{{\mkern+3mu\mathchar'26\mkern-12mu d}}
+
+% --- Titel en Introductie --- 
+
+\title{Lagrange Theorem}
+\author{T. Cools}
+\date{Groepen en Representaties, 2025-2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.3\textwidth]{../Figuren/proof-for-reader.jpeg}        
+    \end{figure}
+    
+\end{abstract}
+
+\begin{theorem}[Lagrange Theorem]
+    Als \(H\) een deelgroep is van een eindige groep \(G\), m.a.w. \(H \leq G\); dan is de orde van \(H\) een deler van de orde van \(G\), m.a.w. \(\frac{|G|}{|H|} \in \mathbb{N}\).
+    En de elementen van \(G\backslashH\) zijn disjunte subsets van \(G\) waarbij elke coset hetzelfde aantal elementen bevat als \(H\).
+
+    \textbf{Proof:}
+
+    Stel de deelgroep \(H\) heeft \(n = |H|\) elementen: \(H = \{h_1, h_2, \ldots, h_n\}\).
+    Dan kunnen we een element \(g_1 \in G\) nemen \textbf{dat niet in \(H\) zit}, en de rechter coset \(Hg_1\) bekijken. 
+
+    We verkrijgen een subset \(H' = \{h_1g_1, h_2g_1, \ldots, h_n g_1 \}\) met \(|H|\) elementen.
+
+    Deze subset is geen deelgroep van \(G\) of een groep op zich, want de set bevat geen identiteitselement \(e\), zit in wel in \(H\) en \(G\). 
+    Dit valt makkelijk aan te tonen, stel \(e \in H'\), dan zou er een element \(h_ig_1 = e\) moeten zijn. Dit kan alleen als \(g_1 = h_i^{-1}\), dit is in contradictie met onze keuze van \(g_1\).
+
+    Een belangrijk aspect is dat geen enkel element van \(H'\) in \(H\) zit.
+    Stel dat dit wel zo was, dan zou er een element \(h_ig_1\) moeten zijn dat gelijk is aan een element \(h_j\) in \(H\).
+    Maar \(h_ig_1 = h_j \implies g_1 = h_i^{-1}h_j \in H\), wat opnieuw in contradictie is met onze keuze van \(g_1\).
+
+    We kunnen dit opnieuw doen voor een set \(H''=Hg_2\) met \(g_2 \in G\) , \(g_2 \notin H\) en \(g_2 \notin H'\).
+
+    Deze set heeft opnieuw evenveel elementen als \(H\).
+    We kunnen de vorige eigenschappen op analoge wijze bewijzen.
+
+    We moeten nog aantonen dat \(H''\) ook disjunct is van \(H\) en \(H'\): \(|Hg_i \cap Hg_j| = \emptyset\)
+
+    Dit kan opnieuw bewezen worden aan de hand van contradictie. Stel dat \(h_1g_1 = h_2g_2 \) dan is \(|Hg_i \cap Hg_j| \neq \emptyset\).
+    Maar dan zou \(h_2^{-1}h_1g_1 = g_2\), maar \(h_2^{-1}h_1 \equiv h_3 \in H\) dus \(g_2 = h_3g_1 \).
+
+    Dit is in contradictie met onze keuze van \(g_2 \notin H'\).
+
+    Bijgevolg is:
+    \[
+    |H' \cap H''| = \emptyset
+    \]
+    Dit kan analoog aangetoond worden voor alle gevonden cosets.
+
+    Op deze manier kunnen we blijven cosets van \(G\) vinden tot er geen elementen meer over zijn die niet in een van de cosets bevat zit. We zitten nu met een \(k \in \mathbb{N}\) aantal cosets van \(G\)
+    elk met \(|H|\) elementen, dus \(|G| = k|H|\).
+
+    Dan wordt het gevraagde \(\frac{|G|}{|H|} = \frac{k |H| }{|H|} = k \in \mathbb{N}\).
+
+    \qed
+\end{theorem}
+
+\end{document}
