@@ -47,9 +47,6 @@ plt.ylim(0, 1.2)
 plt.legend()
 plt.grid(True, alpha=0.3)
 
-<<<<<<< HEAD
-plt.show()
-=======
 output_path = Path(__file__).with_name("fermi_dirac_plot.png")
 plt.savefig(output_path, dpi=200, bbox_inches="tight")
 
@@ -57,4 +54,3 @@ if os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY"):
     plt.show()
 else:
     print(f"Geen grafische display gevonden. Plot opgeslagen in: {output_path}")
->>>>>>> 50f6ba938b069c6ea4763f257ebb313122aaf100
