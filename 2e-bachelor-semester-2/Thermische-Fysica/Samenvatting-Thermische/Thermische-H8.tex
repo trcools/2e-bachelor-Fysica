@@ -148,5 +148,160 @@ Niet zo een belangrijk voorbeeld denk ik \(\dots\)
 
 \subsection{Entropietoename Universum}
 
-Entropie in het universum neemt steeds toe (tot het concept tijd niet meer bestaat \(\dots\)).
+Entropie in het universum neemt steeds toe (tot het concept tijd niet meer bestaat \(\dots\))
 
+\begin{proof}[Entropieprincipe]
+    Het is voldoende ons te beperken tot adiabatische processen.
+
+    We starten in ons systeem met coördinaten \(T, X\) en \(X'\) op punt \(i\) en eindigen op punt \(f\). 
+    We kunnen nu een irreversibel pad vinden van \(i \to f\): 
+    \[
+    \Delta S = S_f - S_i 
+    \]
+    en een irreversibel adiabatisch proces van \(f \to k\) zodat de temperatuur \(T'\) wordt van een willekeurig gekozen reservoir.
+
+    Het systeem wordt nu in contact gebracht met dit reservoir, er wordt een reviersibel isotherm proces van \(k \to j\) tot ze dezelfde entropie hebben als in punt \(i\).
+
+    Nu gaan we van dit punt terug \(j\) terug naar \(i\) via een reversibel adiabatisch proces.
+
+    De twee processen \(i \to f\) en \(j \to k\) brengen een entropoieverandering met zich mee, en de nette entropieverandering van een cyclus is \(0\), dus:
+
+    \[
+    (S_f-S_i) + (S_j- S_k) = \Delta S + S_j - S_k = 0
+     \implies \Delta S = S_k - S_j
+    \]
+    De enige warmte-overdracht gebeurt tussen \(k\) en \(j\), en aangezien \(T' > T\) (omdat \(T'\) van een reservoir is), zal er warmte van \(k \to j\) stromen:
+
+    \[
+    Q_R = T' (S_j-S_k)
+    \]
+
+    De hoeveelheid arbeid verricht is:
+
+    \[
+    W_{net} = Q_R
+    \]
+
+    Volgens de tweede wet kan kan er geen warmte in het systeem gebracht zijn.
+    \footnote{Anders zouden we een machine hebben die werkt tussen een reservoir en een systeem, en die alleen warmte onttrekt aan het reservoir en arbeid levert, wat onmogelijk is volgens de tweede wet.}
+
+    Dus \(Q_R<0\):
+
+    \[
+    T' = (S_j-S_k) \leq 0 
+    \]
+    \[
+    \implies \Delta S = S_k - S_j \geq 0
+    \]
+
+    We kunnen nu veronderstellen dat ons eerste irreversibel adiabatisch proces van \(i \to f\) zou verlopen zonder dat er een entropieverandering zou optreden, dus \(\Delta S = 0\).
+    Doordat \(\implies \Delta Q = 0 \), dan zal ook \(W_{net} = 0\) en is er geen toestandsverandering (systeem is terug in punt \(i\)).
+    Maar dit betekend dat het proces reversibel is, wat in tegenspraak is met onze aanname dat het proces irreversibel is.
+
+    Dus de entropieverandering kan niet nul zijn, en moet dus positief zijn.
+\end{proof}
+
+\begin{postulate}
+    De entropieverandeiring van een systeem en zijn omgeving is altijd positief en nadert slechts naar 0 als de processen naar reversibiliteit naderen.
+\end{postulate} 
+
+\subsection{Entropieprincipe voor Thermische Machines}
+
+Stel we hebben een machine met een arbitraire cyclus die een hoeveelheid warmte \(Q_H\) onttrekt aan een warmtereservoir bij temperatuur \(T_H\) en een hoeveelheid warmte \(Q_K\) afgeeft aan een koudreservoir bij temperatuur \(T_K\).
+
+De netto entropieverandering van het universum is:
+\[\Delta S_{\text{univ}} = \frac{Q_K}{T_K} - \frac{Q_H}{T_H} \geq 0\]
+
+Na het leveren van arbeid \(W\) aan de omgeving, zal er een hoeveelheid warmte \(Q_H - W\) onttrokken worden aan het warmtereservoir, en een hoeveelheid warmte \(Q_K = Q_H - W\) afgegeven worden aan het koudreservoir:
+\[\Delta S_{\text{univ}} = \frac{Q_H - W}{T_K} - \frac{Q_H}{T_H} \geq 0\] 
+
+\[\implies W \leq Q_H \left(1 - \frac{T_K}{T_H}\right)\]
+
+Ofwel:
+\begin{equation}
+\label{eq:W_max}
+W_{\text{max}} = Q_H \left(1 - \frac{T_K}{T_H}\right)
+\end{equation}  
+
+Het rendement van een machine is gedefinieerd als: 
+\[\eta = \frac{W_{\text{max}}}{Q_H} = 1 - \frac{T_K}{T_H}\]
+
+\begin{postulate}
+    Het rendement van een machine die werkt tussen twee warmtereservoirs is altijd kleiner dan of gelijk aan het rendement van een Carnot-machine die werkt tussen dezelfde reservoirs.
+\end{postulate}
+
+Doen we nu hetzelfde voor een koelmachine:
+
+\[\Delta S_{\text{lichaam}} = S_2 - S_1\]
+\[\Delta S_{\text{koelstof}} = 0\]
+\[\Delta S_{\text{reservoir}} = \frac{Q}{T_K} - \frac{Q}{T_H}\]
+
+Er volgt:
+
+\[
+S_2-S_1 + \frac{Q + W }{T_1} \geq 0
+\]
+
+waaruit:
+
+\[
+W \geq (S_1-S_2)T_K - Q
+\] 
+
+\begin{equation}
+\label{eq:W_min}
+\implies W_{\text{min}} = (S_1-S_2)T_K - Q
+\end{equation}
+
+\subsection{Niet Beschikbare Energie}
+
+Stel je voor we onttrekken een hoeveelheid warmte \(Q\) aan een warmtereservoir bij temperatuur \(T\).
+De maximale arbeid gegeven door \eqref{eq:W_max}, dus voor een hoeveelheid warmte \(Q\) onttrokken aan een reservoir,
+kan slechts een hoeveelheid arbeid \(W_{\text{max}} = Q \left(1 - \frac{T_0}{T}\right)\) geleverd worden, waarbij \(T_0\) de temperatuur van de omgeving is.
+
+Vb: Irriversibele warmte-overdracht \(Q\) van een reservoir bij \(T_1\) naar een reservoir bij \(T_2\). 
+De maximale arbeid die geleverd kan worden is:
+\[
+W_{\text{max}} 
+= 
+Q \left(1 - \frac{T_0}{T_1}\right) - Q \left(1 - \frac{T_0}{T_2}\right) 
+=
+Q \left(\frac{T_0}{T_2} - \frac{T_0}{T_1}\right) 
+= 
+Q T_0 \left(\frac{1}{T_2} - \frac{1}{T_1}\right)
+\]  
+
+\[E = T_0 \Delta S\]
+
+\begin{proof}
+    We zullen dit algemener bewijzen voor irriversibele processen. 
+
+    We veronderstellen een systeem dat in contact staat met een warmtereservoir bij temperatuur \(T\) en er een irreversibel proces plaatsvindt van \(i \to j\),
+    waardoor de inwendige energie van het systeem verandert van \(U_i\) naar \(U_f\) verhoogt, en er een hoeveelheid warmte \(Q\) onttrokken wordt van systeem naar het reservoir.
+    
+    Dan zegt de eerste wet:
+    \[Q = U_f - U_i - W\]
+    en de tweede wet:
+    \[0 < (S_f-S_i)_{\text{systeem + directe omgeving}}\]
+
+    Beschouw dat het systeem na het irreversibele proces met een reversibel proces wordt teruggebracht
+    naar dezelfde toestand door contact met een reservoir bij temperatuur $T_0$.
+    De warmte die bij dit reversibele herstel maximaal uit het systeem kan worden afgevoerd is
+    \[Q_{\mathrm{rev}} = T_0\,(S_f - S_i).\]
+    Deze energie is niet in arbeid om te zetten. Dit noemen we de niet-beschikbare energie $E$. Dus
+    \[E = T_0\,(S_f - S_i).\]
+\end{proof}
+
+\begin{postulate}
+   Telkens een irreversibel proces plaatsvindt, neemt de niet-beschikbare energie van het systeem toe.
+   Deze energie is \(E = T_0 \Delta S\).
+\end{postulate}
+
+\begin{postulate}
+    De maximale arbeid wordt verkregen wanneer een proces reversibel verloopt.
+\end{postulate}
+
+\begin{postulate}[Principe van energiedegradatie]
+    Energie heeft een kwaliteit, en deze kwaliteit neemt af bij elke overdracht of conversie.
+    De energie gaat niet verloren, maar wordt minder beschikbaar om arbeid te leveren. (nuttige arbeid)
+\end{postulate}
