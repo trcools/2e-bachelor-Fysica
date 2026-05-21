@@ -1,0 +1,23 @@
+\begin{proof}
+We zullen aantonen dat de volgende gelijkheid geldt:
+\[
+\sum_{i=1}^{k} \left(1 - \frac{1}{n_i}\right) = 2(1-\frac{1}{n})
+\]
+met \(n = \#G\)
+
+We beginnen met een set 
+\[
+P = \{(|\alpha\rangle, A), |A\rangle \in S, A \in G, A \neq I, A|\alpha\rangle = |\alpha\rangle\}
+\]
+Er zijn twee manieren om de grootte van deze set te berekenen. 
+\begin{itemize}
+    \item[1.] Voor elk element \(A \in G\) zijn er twee geassocieerdee rotatie-assen \(\pm |\alpha\rangle\),
+    doordat we de eenheidsmatrix \(I \) moeten uitsluiten, zijn er \(n-1\) elementen in \(G\) die een rotatie-as hebben. Dus is er een totaal van \(2(n-1)\) elementen in \(P\).
+    \item[2.] Voor elk element van een orbitaal \(O_i\) kunnen we \(n_i -1\) groepselementen in \(P\) associeren, 
+    dus \(\# P = \sum_{i=1}^{k} (n_i - 1) = \#G \sum_{i}(1-\frac{1}{n_i})\).
+\end{itemize}
+Hieruit volgt dat
+\[2(n-1) = n \sum_{i=1}^{k} (1-\frac{1}{n_i})\]
+en dus
+\[\sum_{i=1}^{k} (1-\frac{1}{n_i}) = 2(1-\frac{1}{n})\] 
+\end{proof}
