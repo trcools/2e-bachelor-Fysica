@@ -1,10 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-<<<<<<< HEAD
-=======
 from pathlib import Path
 import os
->>>>>>> 50f6ba938b069c6ea4763f257ebb313122aaf100
 
 def fermi_dirac_velocity_distribution(v_norm, T_norm):
     """
@@ -21,12 +18,8 @@ def fermi_dirac_velocity_distribution(v_norm, T_norm):
     
     # De Fermi-Dirac kansfunctie, vertaald naar snelheid
     # (v^2 - 1) komt van (E - E_F) / E_F
-<<<<<<< HEAD
-    probability = 1 / (np.exp((v_norm**2 - 1) / T_norm) + 1)
-=======
     x = np.clip((v_norm**2 - 1) / T_norm, -700, 700)
     probability = 1 / (np.exp(x) + 1)
->>>>>>> 50f6ba938b069c6ea4763f257ebb313122aaf100
     
     return density_of_states * probability
 
