@@ -1,5 +1,11 @@
 # Examenrooster
 
+Scripts en data gerelateerd aan examenroosters.
+
+- Doel: code en CSV's voor het genereren en analyseren van examenroosters.
+- Voorbeelden: `examenrooster.csv`, `generate_examenrooster.py`.
+# Examenrooster
+
 This folder contains a small generator and the first CSV roster for the exam period.
 
 ## Files
