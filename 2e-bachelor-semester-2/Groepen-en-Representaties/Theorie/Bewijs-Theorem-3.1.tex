@@ -1,0 +1,35 @@
+\begin{theorem}
+    Elke matrix representatie \(\{U(g)|g\in G\}\) is altijd equivalent aan een unitaire representatie.
+\end{theorem}
+\begin{proof}
+    Stel de matrix A als:
+    \[A = \sum_{g\in G} U(g) U(g)^{\dagger}\]
+    A is de som van positief definiete matrices inclusief de identiteitsmatrix,
+    dus A is zelf een positieve matrix.
+
+    Dus er bestaat een hermitische en positief definiete matrix \(\sqrt{A} = \sqrt{A}^\dagger\).
+
+    We kunnen nu een nieuwe equivalente representatie \(V(g)\) definiëren als: 
+    \[
+    V(g) = \sqrt{A}^{-1} U(g) \sqrt{A}
+    \]  
+    We zullen nu aantonen dat \(V(g)\) een unitaire representatie is:
+    \begin{align*}
+    V(g)V(g)^{\dagger} &= (\sqrt{A}^{-1} U(g) \sqrt{A}) (\sqrt{A}^{-1} U(g) \sqrt{A})^{\dagger} \\
+    &= \sqrt{A}^{-1} U(g) \sqrt{A} (\sqrt{A}^{-1} U(g) \sqrt{A})^{\dagger} \\
+    &= \sqrt{A}^{-1} U(g) \sqrt{A}  (\sqrt{A})^{\dagger} U(g)^{\dagger} (\sqrt{A}^{-1})^{\dagger} \\
+    &= \sqrt{A}^{-1} U(g) \sqrt{A}  \sqrt{A}  U(g)^{\dagger}  \sqrt{A}^{-1} \\
+    &= \sqrt{A}^{-1} U(g) A U(g)^{\dagger} \sqrt{A}^{-1} \\
+    &= \sqrt{A}^{-1} U(g) \left(\sum_{x\in G} U(x) U(x)^{\dagger}\right) U(g)^{\dagger} \sqrt{A}^{-1} \\
+    &= \sqrt{A}^{-1} \left(\sum_{x\in G} U(g)U(x)U(x)^{\dagger} U(g)^{\dagger}\right) \sqrt{A}^{-1} \\
+    &= \sqrt{A}^{-1} \left(\sum_{g\in G} U(gx) U(gx)^{\dagger}\right) \sqrt{A}^{-1} \\
+    \end{align*}
+    Doordat we sommeren over alle elementen van de groep, kunnen we \(gx\) vervangen door \(x\)\footnote{Zie cayley tabel, elk element komt precies één keer voor per rij/kolom} en krijgen we:
+    \begin{align*}
+    V(g)V(g)^{\dagger} &= \sqrt{A}^{-1} \left(\sum_{x\in G} U(x) U(x)^{\dagger}\right) \sqrt{A}^{-1} \\
+    &= \sqrt{A}^{-1} A \sqrt{A}^{-1} \\
+    &= \sqrt{A}^{-1} \sqrt{A}\sqrt{A} \sqrt{A}^{-1} \\
+    &= I
+    \end{align*}
+    Dus \(V(g)\) is een unitaire representatie en is equivalent aan \(U(g)\).
+\end{proof}

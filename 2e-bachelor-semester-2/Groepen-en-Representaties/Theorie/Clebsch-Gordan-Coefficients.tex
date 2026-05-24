@@ -1,0 +1,28 @@
+\subsection{Clebsch-Gordan Coefficients}
+
+De volgende eigenschappen kunnen worden aangetoond:
+
+Orthonormaliteit:
+\[
+\sum_{i_1, i_2} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3' s'}^{\alpha \beta \gamma'} = \delta_{\gamma, \gamma'} \delta_{s, s'} \delta_{i_3, i_3'}
+\]
+Compleetheid:
+\[
+\sum_{\gamma, s, i_3} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3 s}^{\alpha \beta \gamma} = \delta_{i_1, i_1'} \delta_{i_2, i_2'}   
+\]
+\begin{proof}
+We starten met de orthonormaliteitseigenschap,
+we kunnen deze eigenschap bewijzen door gebruik te maken van de orthogonaliteit van de matrixelementen van de irreducibele representaties:
+\[
+\frac{1}{\#G} \sum_{g \in G} D_{i_1 i_1'}^{\alpha}(g) D_{i_2 i_2'}^{\beta}(g) \bar{D}_{i_3 i_3'}^{\gamma}(g) = \frac{1}{d_\gamma} C_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} \bar{C}_{i_1' i_2' i_3' s}^{\alpha \beta \gamma}
+\]
+We sommeren over alle elementen van de groep \(G\) en gebruiken de orthogonaliteitsrelaties van de matrixelementen van de irreducibele representaties, en we krijgen:      
+\[\frac{1}{\#G} \sum_{g \in G} D_{i_1 i_1'}^{\alpha}(g) D_{i_2 i_2'}^{\beta}(g) \bar{D}_{i_3 i_3'}^{\gamma}(g) = \frac{1}{d_\gamma} C_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} \bar{C}_{i_1' i_2' i_3' s}^{\alpha \beta \gamma}\]
+\[
+\implies \sum_{i_1, i_2} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3' s'}^{\alpha \beta \gamma'} = \delta_{\gamma, \gamma'} \delta_{s, s'} \delta_{i_3, i_3'}
+\]  
+
+We kunnen een analoge redenering volgen om de compleetheidseigenschap te bewijzen, we sommeren over alle irreducibele representaties \(\gamma\) en hun bijbehorende multipliciteiten \(s\):
+\[\sum_{\gamma, s, i_3} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3 s}^{\alpha \beta \gamma} = \delta_{i_1, i_1'} \delta_{i_2, i_2'}\]
+\[\implies \sum_{\gamma, s, i_3} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3 s}^{\alpha \beta \gamma} = \delta_{i_1, i_1'} \delta_{i_2, i_2'}\]  
+\end{proof}

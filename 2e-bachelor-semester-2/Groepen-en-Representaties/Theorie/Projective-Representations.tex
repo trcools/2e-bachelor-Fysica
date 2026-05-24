@@ -1,0 +1,30 @@
+\subsection{Projectieve representaties}
+De \(U(g)\)'s vermenigvuldigen elkaar slechts tot op een fase, en vormen dus een projectieve representatie van de groep \(G\).
+ Dit betekent dat voor twee groepselementen \(g\) en \(h\) de operatoren \(U(g)\) en \(U(h)\) vermenigvuldigen volgens:
+    \[
+        U(g)U(h) = e^{i\omega(g,h)}U(gh)
+    \]
+
+Een nodige conditie is \textbf{associativiteit}, wat inhoudt dat:
+    \[
+        \omega(g,h) + \omega(gh,k) = \omega(h,k) + \omega(g,hk)
+    \]
+
+\begin{derivation}
+    \[(U(g)U(h))U(k) = U(g)(U(h)U(k)) \]
+
+\begin{align*}
+   (U(g)U(h))U(k) &= e^{i\omega(g,h)}U(gh)U(k) \\
+    &= e^{i\omega(g,h)}e^{i\omega(gh,k)}U(ghk) \\
+\end{align*}
+\begin{align*}
+    U(g)(U(h)U(k)) &= U(g)e^{i\omega(h,k)}U(hk) \\
+    &= e^{i\omega(h,k)}e^{i\omega(g,hk)}U(ghk)
+\end{align*}
+\[
+\implies e^{i\omega(g,h)}e^{i\omega(gh,k)} = e^{i\omega(h,k)}e^{i\omega(g,hk)}
+\]
+\[
+    \implies \omega(g,h) + \omega(gh,k) = \omega(h,k) + \omega(g,hk)
+\]
+\end{derivation}
