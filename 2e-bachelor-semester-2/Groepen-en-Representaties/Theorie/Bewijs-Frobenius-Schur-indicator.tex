@@ -1,0 +1,79 @@
+\subsection{Frobenius Schur Indicator}
+
+Stel we hebben een zelf conjugerende representatie, per definitie bestaat er een unitaire matrix \(X\) zodat \(\bar{U}(g) = X U(g) X^{-1} = XU(g)X^{\dagger} \) voor alle \(g \in G\).
+Als we de geconjugeerde van deze vergelijking nemen, krijgen we 
+\[U(g) = \bar{X} \bar{U}(g) \bar{X}^{-1} = \bar{X} X U(g) X^{-1} \bar{X}^{-1}\]
+
+Hieruit volgt dat \(\bar{X} X\) een matrix is die commuteert met alle \(U(g)\) voor \(g \in G\).
+
+
+Aangezien de representatie irreducibel is, volgt uit Schur's lemma dat \(\bar{X} X = c \mathds{1}\) voor een zekere constante \(c\).
+\(c\) is reëel omdat \(\bar{X} X\) een hermitische matrix is en een reël spoor heeft.
+We hebben:
+\[\bar{X} X = c \mathds{1} \qquad ; \qquad X^{\dagger} = X^{-1} \implies \bar{X} = (X^{-1})^{\dagger}\]
+
+\[\implies (X^{-1})^{T} X = c \mathds{1} \]
+\[
+\implies
+\begin{cases}
+    (X^{-1})^{T} =cX^{-1} \implies X^T = cX \\
+     X = ((X^{-1})^T)^{-1}c \implies X = X^T c= c X^T\\
+\end{cases}
+\]
+Deze twee vergelijkingen geecombineerd geven \(c^2 X = X \implies c^2 = 1\).
+Omdat \(c\) een reëel getal is, volgt hieruit dat \(c\) gelijk is aan \(\pm 1\).
+
+Nu zullen we bewijzen dat \(c=1 \implies\) dat we de irrep steeds real kunnen maken, en dat \(c=-1 \implies\) dat we irrep in de volgende vorm kunnen schrijven:
+
+\[\bar{U}(g) = (\epsilon \otimes\mathds{1}) U(g) (\epsilon^{\dagger} \otimes\mathds{1})\]
+
+met \(\epsilon = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} = i \sigma_Y\).
+\begin{proof}
+    We splitsen op in 2 gevallen, afhankelijk van de waarde van \(c\).  
+\begin{itemize}
+    \item[\(c=+1\)] 
+    In dit geval is \(X = X^T\) een symmetrische matrix,
+    en we kunnen een \textbf{Takagi decompositie} toepassen \footnote{Singular Value decompositie (SVD) voor complexe symmetrische matrices.}
+    op \(X\), zodat we \(X\) kunnen schrijven als \(X = QQ^T\) voor een unitaire matrix \(Q\). 
+    
+    Nu willlen we een gelijkvormige matrix \(Y\) vinden voor een gelijkvormigheidstransformatie zodat 
+    \[\overline{YU(g)Y^{-1}} = Y U(g) Y^{-1} \qquad \text{of} \qquad \bar{Y}XU(g)X^{-1}\bar{Y}^{-1} = YU(g)Y^{-1}\]
+    
+    Dit kan door \(Y\) te kiezen als \(\boxed{Y = Q^{T}}\). Merk op dat \(\bar{Y}=Q^{\dagger}\), dus
+
+    \[\bar{Y}XU(g)X^{-1}\bar{Y}^{-1} = Q^{\dagger}(QQ^{T})U(g)(QQ^{T})^{-1}Q^{\dagger}
+    = (Q^{\dagger}Q)Q^{T}U(g)(Q^{T})^{-1}(Q^{\dagger}Q) = Q^{T}U(g)(Q^{T})^{-1} = YU(g)Y^{-1}\]
+    
+    In dit geval kunnen we de irreducibele representatie altijd reëel maken.
+
+    \item[\(c=-1\)]
+    In dit geval is \(X = -X^T\) een antisymmetrische matrix, en de diagonaal elementen moeten verdwijnen.
+    We kunnen dit doen meet een \textbf{Householder transformatie} van de vorm \(WXW^T\).
+    Zo een matrix is alleen unitair als de tweede matrix verdwijnt, dus \(W\) is een orthogonale matrix. 
+    We kunnen schrijven dat:
+    \[ X = W (\epsilon \otimes D)W^T \]
+    met \(D\) een diagonaal matrix.  We kunnen de wortels van de diagonaal elementen van \(D\) nemen en deze opnemen in \(W\), zodat we \(X\) kunnen schrijven als
+    \[X = W(\epsilon \otimes \mathds{1})W^T\] 
+    Of, meer expliciet:
+    \[X = W \begin{pmatrix}
+            0 & 1 & 0 & 0 & \cdots \\
+            -1 & 0 & 0 & 0 & \cdots \\
+            0 & 0 & 0 & 1 & \cdots \\
+            0 & 0 & -1 & 0 & \cdots \\
+            \vdots & \vdots & \vdots & \vdots & \ddots
+            \end{pmatrix} W^T\]
+    Zoals eerder vermeld kan deze matrix worden geschreven als \(X = W (\epsilon \otimes \mathds{1}) W^T\), waarbij \(\epsilon = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\) de antisymmetrische blokmatrix is. 
+
+    Kies nu \(\boxed{Y = W^{T}}\). Omdat \(X = W(\epsilon\otimes\mathds{1})W^{T}\) en \(\bar{Y}=W\), geldt:
+
+    \begin{align*}
+        \overline{W^TU(g)\bar{W}}  
+        &= \bar{Y}XU(g)X^{-1}\bar{Y}^{-1} \\
+        &= W\,W(\epsilon\otimes\mathds{1})W^{T}U(g)W(\epsilon\otimes\mathds{1})^{-1}W^{T}W^{-1}\\
+        &= (\epsilon\otimes\mathds{1})W^TU(g)\bar{W}(-\epsilon \otimes\mathds{1})
+    \end{align*}
+    Dus in het geval \(c=-1\) bestaat er een unitaire gelijkvormigheidstransformatie \(Y\) zodat
+    \[\overline{YU(g)Y^{-1}} = (\epsilon\otimes\mathds{1})\,YU(g)Y^{-1}\,(\epsilon^{\dagger}\otimes\mathds{1}),\]
+    wat betekent dat de irreducibele representatie pseudoreëel (quaternionisch) is.
+\end{itemize}
+\end{proof}
