@@ -77,3 +77,50 @@ met \(\epsilon = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} = i \sigma_Y\).
     wat betekent dat de irreducibele representatie pseudoreëel (quaternionisch) is.
 \end{itemize}
 \end{proof}
+
+\begin{theorem}[Second Schur Indicator]
+    Als \(\chi (g)\) het karakter is van een irrep \(U\), dan:
+\[\frac{1}{|G|} \sum_{g \in G} \chi(g^2) = \begin{cases}
+    1 &  U \text{ reëel } \\
+    0 &  U \text{ complex} \\
+    -1 & U \text{ quaternionisch }
+\end{cases}\]
+\end{theorem}
+\begin{proof}
+    We zullen het orthogonaliteitstheorema toepassen.
+    \[
+        \frac{1}{|G|} \sum_{g \in G} \chi(g^2) = \frac{1}{|G|} \sum_{ijg}U_{ij}(g)U_{ji}(g) = \frac{1}{|G|} \sum_{ijg}U_{ij}(g)\bar{\bar{U}}_{ji}(g)
+    \]
+
+    Stel U is \textbf{reëel}, dan kunnen we \(U(g)\) kiezen zodat \(U(g) = \bar{U}(g)\) voor alle \(g\), dus dan reduceerde bovenstaande vergelijking tot:
+    \[
+        \frac{1}{|G|} \sum_{g \in G} \chi(g^2) =  \frac{1}{|G|} \sum_{ijg}U_{ij}(g){U}_{ji}(g) = \frac{1}{d_i} \delta_{ii} = 1
+    \]
+    waar we het orthogonaliteitstheorema gebruikt hebben en \(d_i\) de dimensie van de irrep is.
+
+    Stel \(U\) is \textbf{complex}, dan is \(\bar{U}\) niet equivalent met \(U\). Met de orthogonaliteitsrelatie voor matrixelementen van niet-equivalente irreps volgt dan:
+    \[
+            \frac{1}{|G|} \sum_{g \in G} \chi(g^2)
+            = \frac{1}{|G|} \sum_{i,j}\sum_{g\in G} U_{ij}(g)\,\overline{\bar{U}_{ji}(g)}
+            = 0.
+    \]
+    Stel \(U\) is \textbf{quaternionisch}, dan hebben we \(U = X^\dagger \bar{U}X  \) met \(\bar{X}X = - I\). we vinden dan:
+    \[
+    \frac{1}{|G|} \sum_{g \in G} Tr(X^\dagger \bar{U}(g) X \bar{\bar{U}}(g)) = \frac{1}{d_\alpha} \sum_{i,j}\bar{X}_{ij}X_{ji} = \frac{1}{d_\alpha}  Tr(\bar{X}X) = -1
+    \]
+\end{proof}
+
+\begin{derivation}
+    Wanneer is de eerste Schur indicator niet gelijk aan nul? 
+
+    \[
+    \frac{1}{|G|} \sum_{g \in G} \chi(g) \neq 0
+    \]
+
+    Dit is het geval als en slechts als de irrep de triviale representatie bevat,
+    wat betekent dat er een vector \(\bm v\) bestaat zodat \(U(g)\bm v = \bm v\) voor alle \(g \in G\).
+
+    Stel dat \(U\) de triviale representatie bevat, dan is er een vector \(\bm v\) zodat \(U(g)\bm v = \bm v\) voor alle \(g \in G\). We kunnen deze vector normaliseren zodat \(\langle \bm v | \bm v \rangle = 1\). Dan is het karakter van \(U\) gelijk aan de dimensie van de irrep, dus \(\chi(g) = d\) voor alle \(g \in G\). Daarom is de eerste Schur indicator gelijk aan 1.   
+    Stel nu dat de eerste Schur indicator niet gelijk is aan nul, dan is er een vector \(\bm v\) zodat \(\langle \bm v | U(g) | \bm v \rangle = 1\) voor alle \(g \in G\). Dit betekent dat \(U(g)\bm v = \bm v\) voor alle \(g \in G\), dus de irrep bevat de triviale representatie.
+\end{derivation}
+
