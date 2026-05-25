@@ -34,3 +34,4 @@ venv/
 
 # Local private files (not committed)
 _lokaal/
+/pdf_output/
