@@ -1,0 +1,75 @@
+\subsubsection{Matrix Reprensentaties van \(\mathfrak{sl}(2)\)}
+
+Voor we beginnen, moeten we eerst een paar zaken definiëren.
+
+We hebben de matrices \(L_1, L_2, L_3\) die voldoen aan de commutator relaties:
+\[[L_i,L_j] = i \sum_k \epsilon_{ijk}L_k\]
+
+We definiëren de volgende operators:
+\[L_\pm = L_1 \pm i L_2\]
+\[L_0 = 2L_3\]
+
+Met de commutator relaties:
+\[[L_0, L_\pm] = \pm 2 L_\pm\]
+\[[L_+, L_-] = L_0\]
+En de eigenschap \(L_\pm^\dagger = L_\mp\).
+
+En 
+\[\vec{L}^2 = \hat{L}_x \hat{L}_x + \hat{L}_y \hat{L}_y + \hat{L}_z \hat{L}_z = \frac{1}{2}(L_+ L_- + L_- L_+) + \frac{L_0^2}{4}\]
+\footnote{Ik denk dat we overal de hoedjes moeten gebruiken om aan te geven dat het operators zijn, maar ze worden vaak weggelaten voor de leesbaarheid.}
+We hebben een basis staat \(|l,m \rangle\), die orthonormaal is:
+\[\langle l',m' | l,m \rangle = \delta_{l,l'} \delta_{m,m'}\]
+
+Omdat de operators \(L_3\) en \(\vec{L}^2\) commuteren, kunnen we ze gelijktijdig diagonalizeren in een specifieke basis \(\{|l,m \rangle\})\),
+waarbij \(l\) en \(m\) de eigenwaarden zijn van \(\vec{L}^2\) en \(L_3\) respectievelijk:
+\[
+\begin{cases}
+\vec{L}^2 |l,m \rangle = l(l+1) |l,m \rangle \\
+L_3 |l,m \rangle = m |l,m \rangle
+\end{cases}
+\]
+
+De acties van de operators \(L_3\) en \(\vec{L}^2\) op de basis staten zijn:
+\[
+\begin{cases}
+\langle l',m'| L_3 |l,m \rangle = m \delta_{l,l'} \delta_{m,m'} \\
+\langle l',m'| \vec{L}^2 |l,m \rangle = l(l+1) \delta_{l,l'} \delta_{m,m'}
+\end{cases}
+\]
+
+Verder hebben we nog de eigenschappen van de ladder operators \(L_\pm\), deze anhileren de hoogste en laagste gewicht staten:
+\[
+\begin{cases}
+L_+ |l,M \rangle = 0 \\
+L_- |l,M' \rangle = 0
+\end{cases}
+\]
+waarbij \(M\) en \(M'\) de hoogste en laagste waarden van \(m\) zijn, respectievelijk.
+Als ze niet anhileren, dan verhogen of verlagen ze \(m\) met 1, en veranderen ze de waarde van \(l\) niet.
+\[L_\pm |l,m \rangle = N_\pm | l , m \pm 1 \rangle\]
+We hebben dat:
+\begin{align*}
+    |N_\mp|^2
+    &= N_\mp^\dagger N_\mp 
+    = \langle l,m | L_\mp^\dagger L_\mp | l,m \rangle 
+    = \langle l,m | L_\pm L_\mp | l,m \rangle \\
+    &= \langle l,m | \vec{L}^2 - L_3^2 \pm L_3 | l,m \rangle 
+    = l(l+1) - m^2 \pm m \\
+    &= l(l+1) - m(m \mp 1)
+\end{align*}
+Dus 
+\[ N_\pm = \sqrt{l(l+1) - m(m \pm 1)} \]
+
+Waar we gebruik hebben gemaakt van:
+\begin{align*}
+    L_\pm L_\mp
+    &= \left(L_1 \pm i L_2\right) \left(L_1 \mp i L_2\right)\\
+    &= L_1^2 + L_2^2 \pm i [L_1, L_2] \\
+    &= L_1^2 + L_2^2 (L_3^2 - L_3^2) \pm L_3 \\
+    &= \vec{L}^2 - L_3^2 \pm L_3
+\end{align*}
+De actie van de ladder operators op de basis staten is als volgt:
+\[\langle l',m'| L_\pm |l,m \rangle = \sqrt{l(l+1) - m(m \pm 1)} \delta_{l,l'} \delta_{m\pm 1,m'}\]
+
+
+

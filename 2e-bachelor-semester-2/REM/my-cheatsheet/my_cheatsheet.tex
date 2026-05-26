@@ -385,26 +385,30 @@ Maxwell stress tensor:
 
 \(T_{ij} = \epsilon_0 (E_iE_j-\delta_{ij}E^2) +\frac{1}{\mu_0} (B_iB_j-\delta_{ij}B^2)\)
 
+\((\bm a \cdot \overleftrightarrow{T})_j = \sum_i a_i T_{ij}\)
+
 Force per unit volume:
 \(\bm f = \bm\nabla \cdot \overleftrightarrow{T} - \epsilon_0 \mu_0 \frac{\partial \bm S}{\partial t}\)
 
-Total em force on a charge distribution:
+Total em force on charge distribution:
 
 \(\bm F = \int \bm f d\tau = \oint_S \overleftrightarrow{T} \cdot d\bm a - \epsilon_0 \mu_0 \frac{d}{dt} \int_V \bm S d\tau\)   
 
-At the boundary:
+At boundary:
 \(\bm F = \oint _S \overleftrightarrow{T} \cdot d\bm a\) (static case)
 
 %Niet te kennen deel 8.2.3 en verder??
 
-%Momentum stored in the EM field:
-%\(\bm p = \frac{1}{c^2} \int \bm S d\tau = \mu_0 \epsilon_0 \int \bm S d\tau  \)
+Momentum stored in EM field:
 
-%Conservation of momentum:
-%\(\frac{d\bm p}{dt} + \oint_S \overleftrightarrow{T} \cdot d\bm a = 0\)
+\(\bm p = \frac{1}{c^2} \int \bm S d\tau = \mu_0 \epsilon_0 \int \bm S d\tau  \)
 
-%Momentum density:   
-%\(\bm g = \frac{1}{c^2} \bm S = \mu_0 \epsilon_0 \bm S\)
+Conservation of momentum:
+\(\frac{d\bm p}{dt} + \oint_S \overleftrightarrow{T} \cdot d\bm a = 0\)
+
+Momentum density: 
+
+\(\bm g = \frac{1}{c^2} \bm S = \mu_0 \epsilon_0 \bm S = \epsilon_0 (\bm E \times \bm B)\)
 
 %Continuity equation for momentum:
 %\(\frac{\partial \bm g}{\partial t} + \bm \nabla \cdot \overleftrightarrow{T} = 0\)
@@ -418,11 +422,11 @@ Energy per unit volume:
 Monochr plane wave:
 \(B^2 = \frac{1}{c^2} E^2 = \epsilon_0 \mu_0 E^2\)
 
-ElMag contributions to energy density equal:
+EM contributions are equal:
 
 \(u = \epsilon_0 E^2 = \epsilon_0 E_0^2 \cos^2(k z - \omega t + \delta)\)
 
-Poynting vector becomes:
+Poynting vector:
 
 \(\bm S = c \epsilon_0 E^2 \cos^2(k z - \omega t + \delta) \hat{\bm z} = c u \hat{\bm z}\)
 
@@ -459,9 +463,12 @@ Bound. cond.
 \(\bm B\) is divergenceless, so:
 \(\bm B = \bm \nabla \times \bm A\)
 
-and: \(\bm E = - \bm \nabla V - \frac{\partial \bm A}{\partial t}\)
+and (D.3): \(\bm E = - \bm \nabla V - \frac{\partial \bm A}{\partial t}\) 
 
+(\(\bm E\) in D.1):
 \(\nabla^2 V + \frac{\partial }{\partial t}(\bm \nabla \cdot \bm A) = -\frac{\rho}{\epsilon_0}\)
+
+(\(\bm B\) en \(\bm E\) in D.4; then A.11):
 
 \(\nabla \times (\nabla \times \bm A)= \mu_0 \bm J - \mu_0 \epsilon_0 \bm \nabla \left(\frac{\partial V }{\partial t}\right) - \mu_0 \epsilon_0 \frac{\partial^2 \bm A}{\partial t^2}\)
 
@@ -471,15 +478,13 @@ and: \(\bm E = - \bm \nabla V - \frac{\partial \bm A}{\partial t}\)
 
 Gauge transformation:
 
-\(\bm A' = \bm A + \bm \alpha\) and \(V' = V + \beta\) 
+\(\bm A \to \bm A + \bm \alpha\) and \(V \to V + \beta\) 
 
-\(\bm \nabla \times \bm\alpha = 0\);
-\(\bm \alpha = \bm \nabla \lambda\)
+\(\bm \nabla \times \bm\alpha = 0 \implies \bm \alpha = \bm \nabla \lambda\)
 
-\(\bm \nabla \beta + \frac{\partial \bm \alpha}{\partial t} = 0\);
-\(\bm \nabla (\beta + \frac{\partial \lambda}{\partial t})=0\)
+\(\bm \nabla \beta + \frac{\partial \bm \alpha}{\partial t} = 0 \implies\bm \nabla (\beta + \frac{\partial \lambda}{\partial t})=0\)
 
-\(\bm A' = \bm A + \bm \nabla \lambda\) and \(V' = V - \frac{\partial \lambda}{\partial t}\)
+\(\bm A \to \bm A + \bm \nabla \lambda\) and \(V \to V - \frac{\partial \lambda}{\partial t}\)
 
 For any function \(\lambda(\bm r, t)\).
 
@@ -487,10 +492,9 @@ Coulomb gauge: \(\bm \nabla \cdot \bm A = 0\)
 
 Lorenz gauge: \(\bm \nabla \cdot \bm A = -\mu_0 \epsilon_0 \frac{\partial V}{\partial t} \)
 
-then: \(\nabla^2 -\mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} \equiv \Box^2\)
+d'Alembertian operator:  \(\nabla^2 -\mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} \equiv \Box^2\)
 
-d'Alembertian operator: 
-
+Then:
 \(\Box^2 V = -\frac{\rho}{\epsilon_0}\) and \(\Box^2 \bm A = -\mu_0 \bm J\)
 
 Lorentz force in terms of potentials:
@@ -502,6 +506,8 @@ Lorentz force in terms of potentials:
 gives us:
 \( \frac{d \bm A}{dt} = \frac{\partial \bm A}{\partial t} + (\bm v \cdot \bm \nabla) \bm A \);
 \(\frac{d\bm p}{dt} = - \bm \nabla U\)
+
+\(\frac{d \bm A}{dt} = \frac{\partial \bm A}{\partial t} + (\bm v \cdot \bm \nabla) \bm A \)
 
 Canonical momentum:
 \(\bm p_{can} = \bm p + q \bm A\)
@@ -520,6 +526,16 @@ Ret. Potentials:
 and
 \(\bm A(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_r)}{r_c} d\tau'\)
 
+\(\bm \nabla V = \frac{1}{4\pi \epsilon_0} \int [(\bm \nabla \rho) \frac{1}{r_c} + \rho \bm \nabla (\frac{1}{r_c})] d\tau'\)
+
+\(\bm \nabla \rho = \dot{\rho} \bm \nabla t_r = -\frac{1}{c}\dot{\rho} \bm \nabla r_c\)
+
+\(\bm \nabla r_c = \hat{\bm r}_c\); \(\bm \nabla (\frac{1}{r_c}) = -\frac{\hat{\bm r}_c}{r_c^2}\)
+
+\(\bm \nabla \dot{\rho} = - \frac{1}{c} \ddot{\rho} \bm \nabla r_c = -\frac{1}{c}\ddot{\rho} \hat{\bm r}_c\)
+
+
+
 Advanced time:
 \(t_a = t + \frac{r_c}{c}\)
 
@@ -529,6 +545,11 @@ Adv. Potentials:
 and
 \(\bm A_a(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_a)}{r_c} d\tau'\)
 
+
+\(\bm \nabla (\frac{\bm J}{r_c}) = \frac{1}{r_c}(\bm \nabla \cdot \bm J) + \frac{1}{r_c}(\bm \nabla ' \cdot \bm J ) - \bm \nabla ' \cdot (\frac{\bm J}{r_c}) \)
+
+\(\bm \nabla \times \bm J = \frac{1}{c}\dot{\bm J} \times \hat{\bm r}_c\); \(\qquad\)
+\(\frac{\partial \bm A}{\partial t} = \frac{\mu_0}{4\pi}\int \frac{\dot{\bm J}}{r_c}d\tau'\)
 
 Jefimenko's equations:
 \(\bm E(\bm r, t) = \frac{1}{4\pi \epsilon_0} \int [ \frac{\rho(\bm r', t_r)}{r_c^2} \hat{\bm r}_c + \frac{\dot{\rho}(\bm r', t_r)}{c r_c} \hat{\bm r}_c - \frac{\dot{\bm J}(\bm r', t_r)}{c^2 r_c} ] d\tau'\)   
@@ -579,13 +600,23 @@ Fields of moving point charge in non-relativistic limit:
 
 
 \secblock{H11 Radiation}
+Approximations: \(d \ll r\); \(d \ll \frac{c}{\omega}\) ; \(r \gg \frac{c}{\omega}\)
 
 Power:
 
 \(P(r,t) = \oint \bm S \cdot d\bm a = \frac{1}{\mu_0} \oint (\bm E \times \bm B) \cdot d\bm a\)
 
 Osc el dip:
-\(\bm p(t) = \bm p_0 \cos(\omega t) \hat{\bm z}\) and \(p_0 = q_0d\)
+\(\bm p(t) =  p_0 \cos(\omega t) \hat{\bm z}\) and \(p_0 = q_0d\)
+
+wavelength:
+\(\lambda = \frac{2\pi c}{\omega}\)
+
+Current: \(\bm I(t)= \frac{d q}{dt} \hat{\bm z} = -q_0 \omega \sin(\omega t) \hat{\bm z}\)
+
+\(\bm A (\bm r,t) = \frac{\mu_0}{4\pi} \int_{-d/2}^{d/2} \frac{-q_0 \omega \sin(\omega (t - \frac{r_c}{c})) \hat{\bm z}}{r_c} dz\)
+
+\(\bm \nabla V = \frac{\partial V}{\partial r}\hat{\bm r} + \frac{1}{r}\frac{\partial V}{\partial \theta} \hat{\bm \theta}\)
 
 Potential:
 
@@ -671,10 +702,14 @@ Length contraction:
 Lorentz factor:
 \(\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}\)
 
+\(\gamma = \cosh\theta\); \(\gamma\beta = \sinh\theta\)
+
+\(\cosh^2\theta - \sinh^2\theta = 1\); \(\theta = \tanh^{-1} \beta\)
+
 Lorentz transformation:
 
 \(\begin{cases}
-    t' = \gamma (t - \gamma \frac{v x}{c^2}) \\
+    t' = \gamma (t -  \frac{v x}{c^2}) \\
     x' = \gamma (x - vt) \\
     y' = y \\
     z' = z
@@ -693,7 +728,7 @@ Einstein summation convention:
 \(\sum_{\mu=0}^3 a^\mu b_\mu = a^\mu b_\mu\)
 
 Proper time:
-\(d\tau = \sqrt{1 - \frac{u^2}{c^2}}dt\)
+\(d\tau = \sqrt{1 - \beta_u^2}dt\)
 
 Proper velocity:
 \(\bm \eta = \frac{d\bm l}{d\tau} = \gamma \bm u\) 
@@ -702,19 +737,25 @@ Ordinary velocity:
 \(\bm u = \frac{d\bm l}{dt}\)
 
 \(\eta_0 = \frac{dx^0}{d\tau} = c \frac{dt}{d\tau}\);
-\(\eta' = \Lambda_\nu^\mu \eta^\nu\)
+\(\eta'^\mu = \Lambda_\nu^\mu \eta^\nu\)
 
 \(\bm u'_\parallel = \frac{\bm u_\parallel-\bm v}{1 - u_\parallel v/c^2}\) ; \(\bm u'_\perp = \frac{\bm u_\perp}{\gamma (1 - u_\parallel v/c^2)}\)
 
 Relativistic momentum:
-\(\bm p \equiv = m \eta =  \gamma m \bm u\)
+\(\bm p \equiv  m \eta =  \gamma m \bm u\)
+
 \(p^0 = m\eta^0 = \gamma mc\)
+
+\(\eta_\mu \eta^\mu = - \gamma^2 c^2 + \gamma^2 u^2 = -c^2\gamma^2(1-\beta_u^2) = -c^2\)
+
+\(p^\mu p_\mu = -(p^0)^2+ (\bm p \cdot \bm p) = -m^2c^2\)
+
+
 
 Relativistic energy:
 \(E \equiv \gamma mc^2\) ;
 \(E_{rest}=mc^2\)
 
-\(p^\mu p_\mu = -(p^0)^2+ (\bm p \cdot \bm p) = -m^2c^2\)
 
 
 Comton wavelength shift:
@@ -724,7 +765,8 @@ Relativistic dynamics:
 \(\bm F = \frac{d\bm p}{dt} = m \frac{d\eta}{dt}\)
 
 Work-energy theorem:
-\(W = \Delta E = E_f - E_i\) ; \(\frac{d\bm p}{dt} \cdot \bm u = \frac{dE}{dt}\)
+\(W = \Delta E = E_f - E_i\) ; \(\frac{d\bm p}{dt} \cdot \bm u = \frac{dE}{dt}\);
+\(\frac{d(\gamma \bm u)}{dt}\bm u = c^2\frac{d\gamma}{dt}\)
 
 \(\bm F'_{\perp} = \frac{1}{\gamma} \bm F_{\perp}\) ; \(\bm F'_{\parallel} = \bm F_{\parallel}\)
 
@@ -746,6 +788,8 @@ Ordinary acceleration:
 
 Proper acceleration:
 \(\bm \alpha^\mu \equiv \frac{d\eta^\mu}{d \tau} = \frac{d^2 x^\mu}{d \tau^2}\)
+
+\(\gamma_{tot} = \gamma_1 \gamma_2 (1 + \beta_1 \beta_2)\)
 
 \(v_\pm = \frac{v \mp u}{1 \mp vu/c^2}\) ; \(\gamma_\pm = \frac{1}{\sqrt{1 - v_\pm^2/c^2}}\)
 
@@ -783,6 +827,14 @@ Gauge invariance:
 
 D'Alembertian op:
 \(\Box^2 = \frac{\partial^2}{\partial x_\mu \partial x^\mu} = \nabla^2 -\frac{1}{c^2} \frac{\partial^2}{\partial t^2} \)    
+
+Field tensor:
+\(F^{\nu\mu} = - F^{\mu\nu}\)
+
+\(F'^{\mu\nu} = \Lambda^\mu_\alpha \Lambda^\nu_\beta F^{\alpha\beta}\)
+
+\(T^\alpha_\beta \to T'^\mu_\nu = \Lambda^\mu_\alpha \bar{\Lambda}_\nu^\beta T^{\alpha}_{\beta}\)
+
 
 
 

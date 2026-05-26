@@ -42,11 +42,28 @@ def ocr_formula_block(
     render_scale: int,
 ) -> str | None:
     clip = fitz.Rect(*bbox)
-    pixmap = page.get_pixmap(matrix=fitz.Matrix(render_scale, render_scale), clip=clip, alpha=False)
+    try:
+        pixmap = page.get_pixmap(matrix=fitz.Matrix(render_scale, render_scale), clip=clip, alpha=False)
+    except Exception:
+        return None
 
     with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp_file:
-        tmp_file.write(pixmap.tobytes("png"))
         temp_path = Path(tmp_file.name)
+        try:
+            try:
+                png_bytes = pixmap.tobytes("png")
+                tmp_file.write(png_bytes)
+            except Exception:
+                # Some pixmap formats raise when writing PNG bytes directly.
+                # Fall back to saving via pixmap.save() and read the file.
+                pixmap.save(str(temp_path))
+                tmp_file.flush()
+                tmp_file.close()
+                png_bytes = temp_path.read_bytes()
+        except Exception:
+            # If anything goes wrong writing the png, clean up and skip OCR for this block.
+            temp_path.unlink(missing_ok=True)
+            return None
 
     try:
         result, _elapsed = ocr(str(temp_path))
@@ -92,6 +109,51 @@ def ocr_formula_block(
     return best
 
 
+def ocr_full_page(ocr: RapidOCR, page: fitz.Page, render_scale: int) -> str | None:
+    """OCR the entire page and return cleaned text or None."""
+    try:
+        pixmap = page.get_pixmap(matrix=fitz.Matrix(render_scale, render_scale), alpha=False)
+    except Exception:
+        return None
+
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp_file:
+        temp_path = Path(tmp_file.name)
+        try:
+            try:
+                png_bytes = pixmap.tobytes("png")
+                tmp_file.write(png_bytes)
+            except Exception:
+                pixmap.save(str(temp_path))
+                tmp_file.flush()
+                tmp_file.close()
+                png_bytes = temp_path.read_bytes()
+        except Exception:
+            temp_path.unlink(missing_ok=True)
+            return None
+
+    try:
+        result, _elapsed = ocr(str(temp_path))
+    finally:
+        temp_path.unlink(missing_ok=True)
+
+    if not result:
+        return None
+
+    # Concatenate fragments into a single cleaned paragraph-like text
+    texts = []
+    for _box, text, _conf in result:
+        cleaned = clean_formula_text(text)
+        if cleaned:
+            texts.append(cleaned)
+
+    if not texts:
+        return None
+
+    joined = " ".join(texts)
+    joined = re.sub(r"\s+", " ", joined).strip()
+    return joined if joined else None
+
+
 def write_markdown(
     pdf_path: Path,
     output_dir: Path,
@@ -100,10 +162,14 @@ def write_markdown(
     render_scale: int,
     assets_suffix: str,
     ocr: RapidOCR,
+    no_images: bool = False,
+    page_ocr: bool = False,
 ) -> tuple[int, int]:
+    output_dir.mkdir(parents=True, exist_ok=True)
     out_path = output_dir / f"{pdf_path.stem}.md"
     assets_dir = output_dir / f"{pdf_path.stem.replace(' ', '_')}{assets_suffix}"
-    assets_dir.mkdir(parents=True, exist_ok=True)
+    if not no_images:
+        assets_dir.mkdir(parents=True, exist_ok=True)
 
     doc = fitz.open(pdf_path)
     chunks = [f"# {pdf_path.stem}", "", f"_Source: {pdf_path.name}_", ""]
@@ -136,11 +202,38 @@ def write_markdown(
                         chunks.append("")
                         continue
 
-                image_count += 1
-                extension = block.get("ext", "png")
-                image_name = f"page{page_number:02d}_img{image_count:03d}.{extension}"
-                (assets_dir / image_name).write_bytes(block["image"])
-                chunks.append(f"![]({assets_dir.name}/{image_name})")
+                # If the block isn't recognized as a formula, either save it
+                # as an image (normal mode) or skip it (no_images mode).
+                formula_text = None
+                if width <= formula_max_width and height <= formula_max_height:
+                    # small blocks were already attempted above; fallthrough
+                    pass
+
+                if not no_images:
+                    image_count += 1
+                    extension = block.get("ext", "png")
+                    image_name = f"page{page_number:02d}_img{image_count:03d}.{extension}"
+                    (assets_dir / image_name).write_bytes(block["image"])
+                    chunks.append(f"![]({assets_dir.name}/{image_name})")
+                    chunks.append("")
+                else:
+                    # skipping image block in no_images mode
+                    continue
+
+        # If page produced no textual content (only header), optionally OCR whole page
+        # and append the OCR result when requested.
+        page_body_only_header = True
+        for i in range(len(chunks)-1, -1, -1):
+            if chunks[i].startswith("## Page "):
+                # reached the page header; if no other content found, page is empty
+                break
+            if chunks[i] and not chunks[i].startswith("---"):
+                page_body_only_header = False
+                break
+        if page_body_only_header and page_ocr:
+            full_text = ocr_full_page(ocr, page, render_scale)
+            if full_text:
+                chunks.append(full_text)
                 chunks.append("")
 
         chunks.append("---")
@@ -162,7 +255,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Convert PDFs to markdown with OCR for formula-like image blocks."
     )
-    parser.add_argument("--input-dir", required=True, help="Folder containing PDF files.")
+    parser.add_argument("--input-dir", help="Folder containing PDF files.")
     parser.add_argument(
         "--output-dir",
         help="Output folder for .md and asset folders. Defaults to input-dir.",
@@ -195,21 +288,46 @@ def parse_args() -> argparse.Namespace:
         default="_assets",
         help="Suffix used for generated image asset folders.",
     )
+    parser.add_argument(
+        "--no-images",
+        action="store_true",
+        help="Do not save non-formula image blocks; keep only text and OCR'd formulas.",
+    )
+    parser.add_argument(
+        "--input-file",
+        help="Optional: path to a single PDF file to process instead of a directory.",
+    )
+    parser.add_argument(
+        "--page-ocr",
+        action="store_true",
+        help="When a page has no extractable text, OCR the whole page and include the text.",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    input_dir = Path(args.input_dir).expanduser().resolve()
-    output_dir = Path(args.output_dir).expanduser().resolve() if args.output_dir else input_dir
-    output_dir.mkdir(parents=True, exist_ok=True)
+    # Determine input(s) and output directory.
+    if args.input_file:
+        single = Path(args.input_file).expanduser().resolve()
+        if not single.exists() or not single.is_file():
+            raise SystemExit(f"Input file does not exist: {single}")
+        pdf_files = [single]
+        output_dir = Path(args.output_dir).expanduser().resolve() if args.output_dir else single.parent
+        output_dir.mkdir(parents=True, exist_ok=True)
+    else:
+        if not args.input_dir:
+            raise SystemExit("--input-dir is required when --input-file is not provided")
+        input_dir = Path(args.input_dir).expanduser().resolve()
+        output_dir = Path(args.output_dir).expanduser().resolve() if args.output_dir else input_dir
+        output_dir.mkdir(parents=True, exist_ok=True)
 
-    if not input_dir.exists() or not input_dir.is_dir():
-        raise SystemExit(f"Input directory does not exist: {input_dir}")
+        if not input_dir.exists() or not input_dir.is_dir():
+            raise SystemExit(f"Input directory does not exist: {input_dir}")
 
-    pdf_files = collect_pdfs(input_dir, args.recursive)
-    if not pdf_files:
-        raise SystemExit(f"No PDF files found in: {input_dir}")
+        pdf_files = collect_pdfs(input_dir, args.recursive)
+        if not pdf_files:
+            raise SystemExit(f"No PDF files found in: {input_dir}")
 
     ocr = RapidOCR()
 
@@ -224,6 +342,8 @@ def main() -> None:
             render_scale=args.render_scale,
             assets_suffix=args.assets_suffix,
             ocr=ocr,
+            no_images=args.no_images,
+            page_ocr=args.page_ocr,
         )
         total_formulas += formulas
         total_images += images

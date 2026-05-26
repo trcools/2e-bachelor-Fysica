@@ -1,0 +1,65 @@
+\subsection{Voorbeeld/methodiek}
+
+We zullen in dit voorbeeld twee spinoren koppelen.
+Een spinor heeft spin \(l = \frac{1}{2}\).
+Dus \(l_1 = l_2 = \frac{1}{2}\). 
+
+\[m = l, l-1, \dots, -l\]
+
+In ons geval: \(m_1, \, m_2 \in \{\frac{1}{2} , \, -\frac{1}{2}\}  \).
+
+Onze ontkoppelde basissen \(| l_1,m_1\rangle | l_2,m_2 \rangle\) zijn:
+\[\begin{aligned}
+&\left| \frac{1}{2}, \frac{1}{2} \right\rangle \left| \frac{1}{2}, \frac{1}{2} \right\rangle = \left|\uparrow\uparrow\right\rangle \\
+&\left| \frac{1}{2}, \frac{1}{2} \right\rangle \left| \frac{1}{2}, -\frac{1}{2} \right\rangle = \left|\uparrow\downarrow\right\rangle \\
+&\left| \frac{1}{2}, -\frac{1}{2} \right\rangle \left| \frac{1}{2}, \frac{1}{2} \right\rangle = \left|\downarrow\uparrow\right\rangle \\
+&\left| \frac{1}{2}, -\frac{1}{2} \right\rangle \left| \frac{1}{2}, -\frac{1}{2} \right\rangle =
+\end{aligned}\]
+Waar we een veel gebruikte notatie hebben toegepast.
+
+
+\[l \in \{l_1 + l_2, l_1 + l_2 - 1, \dots, |l_1 - l_2|\} \]
+
+\(l \in \{1, 0\}\) in ons geval.
+
+Met
+\[ m = m_1 + m_2\]
+kunnen we de volgende koppelingen maken:
+
+Voor \(l=1\) is \(m \in \{1, 0, -1\}\).
+Dan hebben we de gekoppelde basissen:
+
+\[\begin{aligned}
+&\left| 1, 1 \right\rangle 
+,\,
+\left| 1, 0 \right\rangle 
+,\,
+\left| 1, -1 \right\rangle 
+\end{aligned}\]
+
+Voor \(l=0\) is \(m = 0\):
+\[\left| 0, 0 \right\rangle  \]    
+
+
+\( m = m_1 + m_2\) zegt ons dat \(\left| 1, 1 \right\rangle = \left|\uparrow\uparrow\right\rangle = \left|\frac{1}{2}, \frac{1}{2} \right\rangle \left|\frac{1}{2}, \frac{1}{2} \right\rangle\) en \(\left| 1, -1 \right\rangle = \left|\downarrow\downarrow\right\rangle = \left|\frac{1}{2}, -\frac{1}{2} \right\rangle \left|\frac{1}{2}, -\frac{1}{2} \right\rangle\).
+
+Want \(\left| 1, 1 \right\rangle = \sum_{m_1, m_2} \langle l_1, m_1; l_2, m_2 | l, m \rangle \left| l_1, m_1 \right\rangle \left| l_2, m_2 \right\rangle\) en de enige mogelijkheid om \(m=1\) te krijgen is \(m_1 = m_2 = \frac{1}{2}\).
+Analoog voor \(m=-1 \implies m_1 = m_2 = -\frac{1}{2}\).
+
+
+Uit \(\langle l',m' | L_{-} | l, m \rangle = \sqrt{l(l+1) - m(m+1)} \delta_{l',l} \delta_{m',m-1}\) kunnen we de overgangscoëfficiënten berekenen:
+
+
+\begin{align*}
+    \langle 1, 1 | L_{-} | 1,1 \rangle &= \sqrt{1(1+1)-1(1-1)}|1,0\rangle \\
+    &=  \sqrt{2} |1,0\rangle 
+\end{align*}
+
+Doordat \(L_{-} = L_{1-} + L_{2-}\) kunnen we ook schrijven:
+\begin{align*}
+    L_{-} \left| 1,1 \right\rangle &= (L_{1-} + L_{2-}) \left| \uparrow \uparrow \right\rangle \\
+    &= (L_{1-} \left| \uparrow \right\rangle)\left| \uparrow \right\rangle + \left|\uparrow \right\rangle (L_{2-} \left| \uparrow \right\rangle) \\
+    &= \left| \downarrow\uparrow \right\rangle +  \left|\uparrow \downarrow \right\rangle 
+\end{align*}    
+
+Ik zal hier stoppen om niet teveel tijd te besteden aan latex.
