@@ -1,46 +1,45 @@
-# Bachelor Fysica - Studiemateriaal
+# Bachelor Physics - Study Materials
 
-Deze repo bevat studiemateriaal, samenvattingen, code en opdrachten voor de bachelor Fysica. Het is educatief materiaal georganiseerd per semester en vak.
+This repo contains study material, summaries, code, and assignments for the bachelor of Physics. It is educational material organized per semester and course.
 
-## Structuur
+## Structure
 
-### 2e Bachelor - Semester 1
-- **`2e-bachelor-semester-1/Biophysics/`** - Biofysica 
-- **`2e-bachelor-semester-1/Kwantum/`** - Kwantummechanica 
+### 2nd Bachelor - Semester 1
+- **`2e-bachelor-semester-1/Biophysics/`** - Biophysics
+- **`2e-bachelor-semester-1/Kwantum/`** - Quantum Mechanics
 - **`2e-bachelor-semester-1/Py4sci/`** - Python for Scientists
-- **`2e-bachelor-semester-1/VFR/`** - Vector en Functieruimten
-- **`2e-bachelor-semester-1/Statistiek/`** - Statistiek (Nog leeg atm)
+- **`2e-bachelor-semester-1/VFR/`** - Vector and Function Spaces
+- **`2e-bachelor-semester-1/Statistiek/`** - Statistics (currently empty)
 
-### 2e Bachelor - Semester 2
-- **`Groepen-en-Representaties/`** - Groepen en representaties
-- **`Materiaal-Fysica/`** - Materiaal Fysica
-- **`REM/`** - Relativiteit en Elektromagnetisme
-- **`Sterrenstelsels/`** - Sterrenstelsels
-- **`Thermische-Fysica/`** - Thermische Fysica
-- **`exp2/`** - Experimenteren in de fysica 2
+### 2nd Bachelor - Semester 2
+- **`Groepen-en-Representaties/`** - Groups and representations
+- **`Materiaal-Fysica/`** - Materials Physics
+- **`REM/`** - Relativity and Electromagnetism
+- **`Sterrenstelsels/`** - Galaxies
+- **`Thermische-Fysica/`** - Thermal Physics
+- **`exp2/`** - Experimental Physics 2
 
-### Andere Folders
-- **`1e-bachelor-semester-1/`** - Vakken uit 1e bachelor
+### Other Folders
+- **`1e-bachelor-semester-1/`** - Courses from 1st bachelor
 
+## Security & Privacy
 
-## Beveiliging & Privacy
+**Read [SECURITY.md](SECURITY.md) for detailed security guidelines.**
 
-**Lees de [SECURITY.md](SECURITY.md) voor uitgebreide beveiligingsrichtlijnen.**
+- **Private files** (slides, syllabi, textbooks): keep them in the `_lokaal/` folder — Git ignores it automatically
+- **Do not commit copyrighted material** (professor slides, textbooks, course books)
+- **Do not commit personal information** or sensitive data, including your own
 
-- **Privé bestanden** (slides, syllabi, leerboeken): bewaar ze in de `_lokaal/` map — Git negeert die automatisch
-- **Geen auteursrechtelijk materiaal** committen (professorslides, leerboeken, cursusboeken)
-- **Geen persoonlijke informatie** of gevoelige data committen, ook geen eigen gegevens
-
-### Pre-commit Hooks Installeren
+### Installing pre-commit hooks
 
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
-Dit controleert automatisch op:
-- Grote bestanden (>5MB)
-- Private keys of credentials
+This automatically checks for:
+- Large files (>5MB)
+- Private keys or credentials
 - Merge conflicts
 - YAML/JSON syntax
 
@@ -52,13 +51,34 @@ Dit controleert automatisch op:
 pip install -r requirements.txt
 ```
 
+## Getting Started
 
-## Bijdragen
+```bash
+# 1. (Optional) create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
 
-Bijdragen aan deze repository zijn altijd welkom. **Commit** alleen bestanden die veilig gedeeld kunnen worden en **Gebruik** duidelijke commit messages.
+# 2. Install dependencies
+pip install -r requirements.txt
+```
 
-Deze repository is bedoeld voor:
-- Persoonlijke studie en notities
-- Samenwerking tussen studenten
-- Referentiemateriaal voor toekomstige studenten
+To work with the notebooks, open them in VS Code or Jupyter (for example, `jupyter lab`).
 
+## Gitignore note
+
+Private files belong in `_lokaal/`. The `.gitignore` also blocks `*.pdf`, `*.docx`, and `*.pptx` by default.
+
+## Tests
+
+```bash
+pytest
+```
+
+## Contributing
+
+Contributions to this repository are always welcome. **Commit** only files that are safe to share and **Use** clear commit messages.
+
+This repository is intended for:
+- Personal study and notes
+- Collaboration between students
+- Reference material for future students
