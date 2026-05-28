@@ -45,7 +45,7 @@ equations sharp and readable):
  
 ```bash
 mkdir -p /tmp/pdf_pages
-pdftoppm -jpeg -r 200 -f 1 -l LAST_PAGE INPUT_PDF /tmp/pdf_pages/page
+pdftoppm -jpeg -r 200 -f 1 -l <last_page> <input.pdf> /tmp/pdf_pages/page
 ls /tmp/pdf_pages/
 ```
  
