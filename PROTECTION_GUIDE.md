@@ -1,8 +1,4 @@
-# Quick Reference: Repository Bescherming
-
-## Dagelijkse Workflow
-
-### Voor je iets commit:
+### Comitten
 
 ```bash
 # 1. Check wat er veranderd is
@@ -16,11 +12,13 @@ git add <bestand>
 
 # 4. Commit met duidelijke message
 git commit -m "Beschrijving van wijziging"
+
+
 ```
 
-## Privé bestanden bewaren (slides, PDFs, leerboeken)
+### Privé bestanden
 
-### Gebruik de `_lokaal/` map
+__Gebruik de `_lokaal/` map__
 
 Zet bestanden die je privé wilt houden in de `_lokaal/` map.
 Git negeert deze map volledig — niets daarin wordt ooit gepusht naar GitHub.
@@ -35,9 +33,9 @@ git status   # _lokaal/*.pdf staat er NIET bij
 
 Zie [`_lokaal/README.md`](_lokaal/README.md) voor een aanbevolen mapstructuur.
 
-## Veelgebruikte Commando's
+### Veelgebruikte Commando's
 
-### Een bestand uit tracking verwijderen (maar lokaal bewaren):
+__Een bestand uit tracking verwijderen (maar lokaal bewaren):__
 
 ```bash
 git rm --cached bestand.pdf
@@ -45,32 +43,19 @@ echo "bestand.pdf" >> .gitignore
 git commit -m "Stop tracking bestand.pdf"
 ```
 
-### Pre-commit hooks installeren:
+__Pre-commit hooks installeren:__
 
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
-### Pre-commit hooks testen:
+__Pre-commit hooks testen:__
 
 ```bash
 pre-commit run --all-files
 ```
 
-## Checklist voor Nieuwe Bestanden
-
-Voordat je een nieuw bestand commit, vraag jezelf af:
-
-- [ ] Is dit mijn eigen werk?
-- [ ] Bevat het geen copyrighted materiaal van docenten?
-- [ ] Bevat het geen persoonlijke/gevoelige informatie?
-- [ ] Is het bestand niet te groot (<1MB)?
-- [ ] Zou ik dit publiek willen delen?
-
-Als je bij één van deze vragen twijfelt, commit het bestand **niet**.
-Zet het in `_lokaal/` als je het toch wilt bewaren.
-
-## Hulp Nodig?
+__Nog hulp Nodig?__
 
 Zie [SECURITY.md](SECURITY.md) voor uitgebreide richtlijnen.
