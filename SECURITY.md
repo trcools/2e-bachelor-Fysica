@@ -1,119 +1,140 @@
-# Beveiligingsrichtlijnen / Security Guidelines
+# Security Guidelines
 
-## Nederlands
+This repository contains study material for the 2nd-year bachelor in Physics. To keep things safe, respectful, and academically clean, please follow these guidelines. Thanks for helping keep the repo healthy for everyone.
 
-### Bescherming van Cursusmateriaal
+## What NOT to commit
 
-Deze repository bevat studiemateriaal voor de 2e bachelor Fysica. Om de repository goed te beschermen en academische integriteit te waarborgen, volg deze richtlijnen:
+1. **Personal or sensitive information**
+   - Student IDs
+   - Private notes with sensitive info
+   - API keys or passwords
+2. **Copyrighted material**
+   - Professor lecture slides
+   - Instructor syllabi or course books
+   - Commercially published textbooks
+   - Current-year exam questions
+3. **Large binary files**
+   - Lecture videos
+   - Large datasets (use external hosting)
 
-#### Wat NIET te committen:
+## What IS OK to commit
 
-1. **Persoonlijke/Gevoelige informatie**
-
-   - Studentnummers
-   - Persoonlijke notities met gevoelige informatie
-   - API keys of wachtwoorden
-2. **Auteursrechtelijk beschermd materiaal**
-
-   - Professorslides (hoorcolleges)
-   - Cursusboeken en syllabi van docenten
-   - Commercieel gepubliceerde leerboeken
-   - Examenopgaven van het lopende academiejaar
-3. **Grote binaire bestanden**
-
-   - Video's van colleges
-   - Grote datasets (gebruik externe hosting)
-
-#### Wat WEL te committen:
-
-1. **Eigen werk**
-
-   - Zelfgemaakte samenvattingen
-   - Eigen code en scripts
-   - Eigen notities en uitwerkingen
-2. **Open source materiaal**
-
-   - Jupyter notebooks met eigen analyses
-   - Python scripts voor berekeningen
-   - Documentatie en README bestanden
+1. **Your own work**
+   - Self-made summaries
+   - Your own code and scripts
+   - Your own notes and worked solutions
+2. **Open-source material**
+   - Jupyter notebooks with your analyses
+   - Python scripts for calculations
+   - Documentation and README files
 
 ---
 
-### PDFs en documenten privé bewaren
-
-Wil je PDFs (slides, syllabi, leerboeken) bewaren zonder ze publiek te maken?
-Je hebt drie opties:
-
-#### Optie 1 — `_lokaal/` map (aanbevolen voor lokaal gebruik)
-
-Er is een speciale map `_lokaal/` aangemaakt in deze repository. Alles wat je daarin plaatst wordt **nooit** door Git bijgehouden.
+## Quick commit checklist
 
 ```bash
-# Kopieer een PDF naar de lokale privémap:
-cp ~/Downloads/cursusthermische.pdf _lokaal/Thermische-Fysica/
+# 1. See what changed
+git status
 
-# Git zal dit bestand negeren:
-git status  # _lokaal/*.pdf verschijnt NIET in de output
+# 2. Review the diff
+git diff
+
+# 3. Add only safe files
+git add <file>
+
+# 4. Commit with a clear message
+git commit -m "Short description of the change"
 ```
 
-Zie [`_lokaal/README.md`](_lokaal/README.md) voor een aanbevolen mappenstructuur.
+## Common commands
 
-#### Optie 2 — Maak de repository privé
+**Remove a file from tracking (keep it locally):**
 
-Ga naar **GitHub → Settings → Danger Zone → Change visibility → Make private**.
-Dan kun je alles in de repository bewaren en zijn je bestanden alleen zichtbaar voor jou (en uitgenodigde medewerkers).
+```bash
+git rm --cached file.pdf
+echo "file.pdf" >> .gitignore
+git commit -m "Stop tracking file.pdf"
+```
 
-#### Optie 3 — Aparte privérepository
+**Run pre-commit on everything:**
 
-Maak een tweede, privé GitHub-repository aan (bijv. `2e-bachelor-Fysica-lokaal`) en bewaar de privébestanden daarin. De publieke repository blijft dan publiek voor je eigen werk.
+```bash
+pre-commit run --all-files
+```
 
 ---
 
-### .gitignore Configuratie
+## Keep PDFs and documents private
 
-De `.gitignore` blokkeert automatisch:
+Want to store PDFs (slides, syllabi, textbooks) without making them public? You have three options:
 
-- `*.pdf`, `*.docx`, `*.pptx` — documentbestanden
-- `_lokaal/**` — alles in de privémap
+### Option 1 — `_lokaal/` folder (recommended for local use)
 
-Om één specifieke PDF toch te committen (bijv. een eigen samenvatting):
+There is a special `_lokaal/` folder in this repository. Anything placed there is **never** tracked by Git.
+
+```bash
+# Copy a PDF into the local private folder:
+cp ~/Downloads/cursusthermische.pdf _lokaal/Thermische-Fysica/
+
+# Git will ignore this file:
+git status  # _lokaal/*.pdf will NOT appear in the output
+```
+
+See [`_lokaal/README.md`](_lokaal/README.md) for a recommended folder structure.
+
+### Option 2 — Make the repository private
+
+Go to **GitHub → Settings → Danger Zone → Change visibility → Make private**.  
+Then you can store everything in the repository and only you (and invited collaborators) can see it.
+
+### Option 3 — Separate private repository
+
+Create a second, private GitHub repository (for example `2e-bachelor-Fysica-lokaal`) and keep private files there. The public repository stays clean for your own work.
+
+---
+
+## .gitignore configuration
+
+The `.gitignore` automatically blocks:
+
+- `*.pdf`, `*.docx`, `*.pptx` — document files
+- `_lokaal/**` — everything in the private folder
+
+To commit one specific PDF anyway (for example, your own summary):
 
 ```bash
 git add -f mijn_samenvatting.pdf
 ```
 
-### Pre-commit Hooks
+## Pre-commit hooks
 
-De repository gebruikt pre-commit hooks die automatisch controleren op:
+This repository uses pre-commit hooks that automatically check for:
 
-- Grote bestanden (>500KB wordt gewaarschuwd)
+- Large files (warnings for >500KB)
 - Private keys
-- Merge conflicten
+- Merge conflicts
 - Python syntax errors
 
-Installeer ze met:
+Install them with:
 
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
-### Wat te doen als je per ongeluk gevoelig materiaal hebt gecommit:
+## If you accidentally committed sensitive material
 
-1. **Verwijder het bestand uit de tracking (maar bewaar het lokaal):**
-
+1. **Remove the file from tracking (keep it locally):**
    ```bash
    git rm --cached bestand.pdf
    ```
-2. **Voeg het toe aan .gitignore:**
-
+2. **Add it to .gitignore:**
    ```bash
    echo "bestand.pdf" >> .gitignore
    ```
-3. **Commit de wijziging:**
-
+3. **Commit the change:**
    ```bash
    git add .gitignore
    git commit -m "Remove sensitive file from tracking"
    ```
-4. **Voor reeds gepushte gevoelige data:** Neem contact op met de repository eigenaar of gebruik `git filter-branch` of BFG Repo-Cleaner.
+4. **If it was already pushed:** Contact the repository owner or use `git filter-branch` or BFG Repo-Cleaner.
