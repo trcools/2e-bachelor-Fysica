@@ -155,6 +155,6 @@ If any issues are found, fix them before presenting the output to the user.
 Copy the final `.md` file to `/mnt/user-data/outputs/` and present it with
 `present_files`. Give the user a brief summary:
 - Number of pages converted
-- Number of figures placeholdered
+- Number of figure placeholders inserted
 - Any caveats (e.g. pages that were ambiguous, multi-column layouts that may
   need manual review, handwritten annotations that were skipped)
