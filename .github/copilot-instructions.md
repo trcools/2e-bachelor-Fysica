@@ -245,3 +245,9 @@ Use Biophysics pattern:
 **Math rendering**: Use `$...$` for inline, `$$...$$` for block equations
 **Figures**: Always use named figures with `plt.close("name")` first
 **SciPy methods**: After custom implementation, show production equivalent
+
+
+
+
+
+Some of the above content may be a bit outdated or not perfectly aligned with the current state of the repository, but it should give you a solid understanding of the overall structure, patterns, and conventions used in this workspace. If you have any specific questions about certain files or need clarification on any part of the codebase, feel free to ask!
