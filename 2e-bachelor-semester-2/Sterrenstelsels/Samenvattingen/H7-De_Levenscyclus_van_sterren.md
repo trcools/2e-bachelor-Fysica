@@ -204,8 +204,8 @@ Afhankelijk van massa doorlopen massieve sterren:
 
 **Type I supernovae:** Geen waterstoflijnen (buitenste lagen al afgestript)
 
-- **Type Ia**: uit witte dwerg + metgezel
-- **Type Ib/Ic**: onderscheiden op basis van Si II- resp. He-lijnen
+- **Type Ia**: uit witte dwerg + metgezel; herkenbaar aan sterke Si II-lijnen
+- **Type Ib/Ic**: onderscheiden op basis van heliumlijnen — Type Ib heeft He, Type Ic heeft geen He
 
 **Type II supernovae:** Met waterstoflijnen
 
@@ -237,11 +237,11 @@ Afhankelijk van massa doorlopen massieve sterren:
 
 ### Neutronenster vs. zwart gat
 
-**Kermmassa berekening:**
+**Kernmassa berekening:**
 
 - Viriaalstelsel: **$E = -\frac{3GM^2}{10R}$**
 - Typische SN-energie: ~$10^{46}$ J
-- → Kermmassa ~$2.5 M_{\odot}$ (consistent met ijzerkern)
+- → Kernmassa ~$2.5 M_{\odot}$ (consistent met ijzerkern)
 
 **Instorting stopt bij dichtheid:** ~$8 \times 10^{17}$ kg/m³ (Pauli-uitsluitingsprincipe)
 
@@ -310,7 +310,7 @@ Afhankelijk van massa doorlopen massieve sterren:
 
 ### Frequentie
 
-Statistisch verwachting: **nieuwe supernova in Melkweg elke 25–100 jaar**
+Statistische verwachting: **nieuwe supernova in de Melkweg elke 25–100 jaar**
 
 ---
 

@@ -3,6 +3,7 @@
 ## Project Overview
 
 This is an **academic physics and computational science workspace** containing:
+
 - **Py4sci/**: Python for Scientific Computing course materials (primary computational content)
 - **Biophysics/**: Biophysics assignments with modular code structure
 - **Kwantum/**, **Chemie/**: Quantum mechanics and chemistry course materials
@@ -14,6 +15,7 @@ This is NOT a software project—it's educational material combining theory (mar
 ## Architecture & Organization
 
 ### Py4sci Structure (Primary Computational Content)
+
 The Py4sci folder follows a pedagogical structure organized by topics in numerical methods:
 
 ```
@@ -37,12 +39,14 @@ Py4sci/
 ```
 
 **Key Pattern**: Notebooks in `Py4sci/notebooks/` are **self-contained teaching documents** that combine:
+
 - Theory with LaTeX math (KaTeX rendering)
 - Illustrative code examples with inline function definitions
 - Matplotlib visualizations (often with `plt.close("figurename")` to manage figure windows)
 - Direct algorithm implementations showing pedagogical steps
 
 ### Biophysics Modular Code Pattern
+
 Biophysics assignments (e.g., `Assignment-2/`) demonstrate a **modular separation** pattern:
 
 ```python
@@ -55,6 +59,7 @@ figures.py      # All plotting functions
 ```
 
 **Pattern Example** (from `Assignment-2/`):
+
 ```python
 # figures.py imports from parameters.py and data.py
 from parameters import get_parameters
@@ -69,7 +74,9 @@ from figures import plot_bifuractions, show_3Dfigure_plot
 ## Python & Scientific Computing Conventions
 
 ### Standard Import Pattern
+
 Notebooks consistently use this import block:
+
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -77,6 +84,7 @@ from scipy import optimize, integrate  # or other scipy modules
 ```
 
 Additional common imports:
+
 - `matplotlib.animation.FuncAnimation` for animations
 - `scipy.optimize.root`, `.root_scalar`, `.brentq` for root finding
 - `ipywidgets.interact` for interactive demonstrations
@@ -84,6 +92,7 @@ Additional common imports:
 ### Matplotlib Visualization Conventions
 
 **Figure Management Pattern** (used throughout `Py4sci/notebooks/`):
+
 ```python
 def plot_function_name():
     plt.close("unique_name")  # Close any existing figure with this name
@@ -97,6 +106,7 @@ def plot_function_name():
 **Why**: The `plt.close("name")` + `num="name"` pattern prevents duplicate figures when re-running cells.
 
 **Animation Pattern**:
+
 ```python
 from matplotlib.animation import FuncAnimation
 
@@ -104,16 +114,17 @@ def plot_and_animate():
     fig, ax = plt.subplots(num="animate_name", clear=True)
     # Setup plot
     (line,) = plt.plot([], [], 'o', markersize=10)
-    
+  
     def animate(i):
         # Update data
         line.set_data([x], [y])
         return (line,)
-    
+  
     return FuncAnimation(fig, animate, frames=20, interval=1000, repeat=False)
 ```
 
 **Common styling**:
+
 - Black lines for axes: `ax.axhline(0, color="black")`
 - Default color cycle: `"blue"`, `"red"`, or `"C0"`, `"C1"` for automatic cycling
 - Marker sizes: typically `markersize=10` for scatter points
@@ -121,10 +132,11 @@ def plot_and_animate():
 ### Numerical Methods Code Style
 
 **Teaching-First Approach**: Code prioritizes **clarity over optimization**:
+
 ```python
 def newton_method(f, fp, x, niter):
     """Illustrative implementation of Newton's method.
-    
+  
     Parameters
     ----------
     f : callable
@@ -135,7 +147,7 @@ def newton_method(f, fp, x, niter):
         Initial guess.
     niter : int
         Number of iterations.
-    
+  
     Returns
     -------
     float
@@ -147,12 +159,15 @@ def newton_method(f, fp, x, niter):
 ```
 
 **Pattern Notes**:
+
 - Docstrings use NumPy-style format
 - Simple iteration loops (not vectorized) when showing algorithmic steps
 - Return intermediate values for visualization (e.g., `history` lists)
 
 ### SciPy Integration
+
 After showing educational implementations, notebooks demonstrate production tools:
+
 ```python
 # After custom implementation, show the SciPy equivalent:
 optimize.root_scalar(func_cube, method="newton", x0=25, 
@@ -172,12 +187,14 @@ optimize.root_scalar(func_cube, method="newton", x0=25,
 ## Working with Notebooks
 
 ### Cell Execution Pattern
+
 - **Setup cells**: Import statements at top
 - **Theory cells**: Markdown with LaTeX math
 - **Demo cells**: Function definition + immediate execution
 - **Visualization cells**: Often return animation objects or display figures
 
 ### Key Notebook Features
+
 - Use `interact` from `ipywidgets` for interactive parameter exploration
 - Figures often include multiple subplots: `fig, axs = plt.subplots(2, 3, figsize=(...))`
 - Cell execution creates inline outputs (matplotlib figures auto-display)
@@ -185,14 +202,16 @@ optimize.root_scalar(func_cube, method="newton", x0=25,
 ## File Naming & Structure
 
 - **Notebooks**: `snake_case.ipynb` (e.g., `nonlinear_equations.ipynb`)
-- **Python modules**: `snake_case.py` 
+- **Python modules**: `snake_case.py`
 - **Markdown summaries**: Title case with hyphens (e.g., `Algemene-samenvatting-chemie.md`)
 - **Folders**: Either `Title-Case/` or `snake_case/` depending on context
 
 ## Common Tasks
 
 ### Adding New Visualizations
+
 Follow the established pattern:
+
 ```python
 def plot_new_concept():
     plt.close("new_concept")
@@ -204,7 +223,9 @@ plot_new_concept()
 ```
 
 ### Creating Modular Assignment Code
+
 Use Biophysics pattern:
+
 1. `imports.py` - consolidate all imports
 2. `parameters.py` - define `get_parameters()` function
 3. `data.py` - core computational functions
@@ -212,12 +233,15 @@ Use Biophysics pattern:
 5. Notebook imports final functions for clean presentation
 
 ### Working with Scientific Equations
+
 - Always show the mathematical formulation first in markdown
 - Then implement clearly with matching variable names
 - Example from notebooks:
+
   ```markdown
   $$\mathbf{f}(\mathbf{x})=\mathbf{0}$$
   ```
+
   ```python
   def func_2d(x):
       return [x[0] + 2*x[1] - 2, x[0]**2 + 4*x[1]**2 - 4]
@@ -232,11 +256,11 @@ Use Biophysics pattern:
 
 ## What NOT to Do
 
-- ❌ Don't optimize teaching code—keep it pedagogically clear
-- ❌ Don't remove `plt.close()` calls—they prevent figure duplication
-- ❌ Don't consolidate notebooks—they're meant to be standalone teaching units
-- ❌ Don't expect production code patterns—this is educational material
-- ❌ Don't assume English everywhere—study notes are in Dutch
+- Don't optimize teaching code—keep it pedagogically clear
+- Don't remove `plt.close()` calls—they prevent figure duplication
+- Don't consolidate notebooks—they're meant to be standalone teaching units
+- Don't expect production code patterns—this is educational material
+- Don't assume English everywhere—study notes are in Dutch
 
 ## Quick Reference
 
@@ -245,9 +269,5 @@ Use Biophysics pattern:
 **Math rendering**: Use `$...$` for inline, `$$...$$` for block equations
 **Figures**: Always use named figures with `plt.close("name")` first
 **SciPy methods**: After custom implementation, show production equivalent
-
-
-
-
 
 Some of the above content may be a bit outdated or not perfectly aligned with the current state of the repository, but it should give you a solid understanding of the overall structure, patterns, and conventions used in this workspace. If you have any specific questions about certain files or need clarification on any part of the codebase, feel free to ask!

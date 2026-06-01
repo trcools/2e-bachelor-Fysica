@@ -2,7 +2,7 @@
 
 ## Kernidee
 
-In extragalactische sterrenkunde observeer je meestal niet individuele sterren, maar het geintegreerde licht van een volledig stelsel. Dat licht is een mengsel van sterren met verschillende leeftijden, massa's en metalliciteiten. Om een melkwegstelsel fysisch te begrijpen, moet je dus de totale waarneming ontbinden in stellare populaties en hun evolutie modelleren.
+In extragalactische sterrenkunde observeer je meestal niet individuele sterren, maar het geintegreerde licht van een volledig stelsel. Dat licht is een mengsel van sterren met verschillende leeftijden, massa's en metalliciteiten. Om een melkwegstelsel fysisch te begrijpen, moet je dus de totale waarneming ontbinden in stellaire populaties en hun evolutie modelleren.
 
 Het belangrijkste inzicht is dat het spectrum van een stelsel niet enkel afhangt van hoeveel sterren er zijn, maar vooral van welke sterren domineren in lichtbijdrage. Jonge, massieve sterren zijn extreem helder maar kortlevend; oude populaties bevatten veel meer sterren, maar zijn per ster doorgaans veel zwakker. Daardoor wordt het geintegreerde licht sterk gewogen naar de meest lichtkrachtige componenten.
 
@@ -110,4 +110,4 @@ $$
 
 ## Samenvatting in een zin
 
-Hoofdstuk 8 leert dat een melkwegstelsel moet worden begrepen als een samengestelde verzameling van stellare populaties, waarvan leeftijd, IMF en metalliciteit samen het geobserveerde licht en de evolutie van het stelsel bepalen.
+Hoofdstuk 8 leert dat een melkwegstelsel moet worden begrepen als een samengestelde verzameling van stellaire populaties, waarvan leeftijd, IMF en metalliciteit samen het geobserveerde licht en de evolutie van het stelsel bepalen.
