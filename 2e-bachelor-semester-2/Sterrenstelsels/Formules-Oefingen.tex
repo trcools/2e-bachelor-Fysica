@@ -86,6 +86,11 @@ Deze worden dan ook gedacht te kennen te zijn als ze niet in het formulrium staa
 
 \section{Oefenset 1}
 
+Uit sterren en planeten:
+\[
+m = m_0 -2.5\log\left(F\right) = -2.5\log\left(\frac{F}{F_{0}}\right)
+\]
+
 Schijnbare magnitude:
 \begin{equation}
     m_X (d) = -2.5 \log \left( \frac{F_X (d)}{F_{X,0}} \right)
@@ -107,6 +112,13 @@ Merk op dat:
     &= - 5 \left[\log \left( d \right) - 1\right]  \\
 \end{align*}
 
+In mijn notities heb ik staan:
+\begin{itemize}
+    \item De schijnbare magnitude \(m_X\) is equivalent aan de flux \(F_X\).
+    \item De absolute magnitude \(M_X\) is equivalent aan de lichtkracht \(L_X\).
+\end{itemize}
+
+
 
 Herinner van sterren en planeten dat:
 \begin{align*}
@@ -118,7 +130,7 @@ Herinner van sterren en planeten dat:
 Waarbij $\tau$ de optische diepte is. Soms ook \(\tau_X\) om de band aan te duiden.
 
 
-FLux-Lichtkracht relatie:
+Flux-Lichtkracht relatie:
 \begin{equation}
     F_X = \frac{L_X}{4 \pi d^2}
 \end{equation}
@@ -147,15 +159,32 @@ Of soms:
 
 De lineaire oppervlaktehelderheid \(S_X [mag/arcsec^2]\):
 \begin{equation}
-    S_X = \frac{F_X}{\Omega} = \frac{L_X}{4 \pi d^2 \Omega} = \frac{L_X}{4 \pi^2 r_e^2}
+    S_X = \frac{F_X}{\Omega} = \frac{L_X}{4 \pi d^2 \Omega}
 \end{equation}
 
 Relatie tussen \(\mu_X\) en \(S_X\):
 \begin{equation}
-    \mu_X = -2.5 \log \left( \frac{S_X}{F_{X,0}} \right) = -2.5 \log \left( \frac{F_X/\Omega}{F_{X,0}} \right)   
+    \mu_X = -2.5 \log \left( \frac{S_X}{F_{X,0}} \right) = -2.5 \log \left( \frac{F_X/\Omega}{F_{X,0}} \right) 
 \end{equation}  
 
+Uit mijn notities:
+\[
+\mu = -2.5\log\left(\frac{\frac{F}{F_0}}{area}\right) \neq\left(\frac{m}{area}\right)
+\]
+maar:
+\[
+\mu = m + 2.5 \log (area)
+\]
+Maak ervan wat je wilt, maar ik heb dit zo overgenomen uit de les.
 
+Het handige hiervan is dat we deze kunnen vergelijken met de absolute magnitude van de zon \(M_{X,\odot}\) (of iets anders waarvan we de waarde kennen):
+\begin{equation}
+    \mu_X (0) - M_X = -2.5 \log \left( \frac{\frac{L_X}{d^2\Omega}}{\frac{L_{X,\odot}}{10pc^2}} \right) = -2.5 \log \left( \frac{L_X}{L_{X,\odot}} \right) - 2.5 \log \left( \frac{10^2}{d^2\Omega} \right)
+\end{equation}
+
+
+
+De openingshoek staat in dimensie [arcsec\(^2\)], om deze te kunnen gebruiken in de formules moeten we deze omzetten naar [sterad]:
 \[
 \Omega[arcsec^2] = \Omega [sterad] \left(\frac{3600 \cdot 180}{\pi}\right)^2  
 \]
@@ -174,7 +203,16 @@ De intensiteit \(I_X\):
     I_X = \frac{L_X}{A} = \frac{L_X}{d^2 \Omega [sterad]}
 \end{equation}
 
-Schaallengte \(h\):
+Schaallengte \(h\) (zie \textbf{formularium} Eq. 5):
+\begin{equation}
+    I_X (R) = I_X (0) e^{-R/h}
+\end{equation}
+
+met 
+\[
+dL_X = I_X dA 
+\]
+wordt de totale lichtkracht \(L_X\) van het object:
 \begin{align*}
     \int_0^{L_X} d L_X &= \int_0^{R_{max}} I_X (R) 2 \pi R dR\\
     & = 2\pi I_X(0) \int_0^{R_{max}} e^{-R/h}  R dR \\
@@ -187,47 +225,98 @@ De \(R_{25}\)-isofoot is de straal waarbij de oppervlaktehelderheid 25 mag/arcse
 \end{equation}
 
 2 handige vergelijkingen die niet in het formularium staan:
+\begin{equation}
+    \label{eq:handig1}
+    L_\lambda = \int_{0}^{\infty} I(R) 2 \pi R dR
+\end{equation}
 
-\[
-L_\lambda = \int_{0}^{\infty} I(R) 2 \pi R dR
-\]
-en 
-\[
-L(R_e) = \frac{1}{2} L_\lambda
-\]
+\begin{equation}
+    \label{eq:handig2}
+   L(R_e) = \frac{1}{2} L_\lambda
+\end{equation}
+
 
 \section{Oefenset 3}
 
+Formules in de opgaves, waarvan ik niet weet ze gegeven zullen zijn of niiet op het examen:
+
+Energiedichtheid beschreven met een zwarte straler:
+\[
+\rho_\nu = \frac{4 \pi}{c} B_\nu(T_{rad})
+\]
+Thermisch evenwicht als de verhouding tussen twee elektronenniveaus:
+\[
+\frac{\nu_u}{\nu_l} = \frac{g_u}{g_l} e^{-\frac{E_l - E_u}{k T}}
+\]
+\(g_u\) en \(g_l\) zijn de degeneratie van respectievelijk het hogere en lagere niveau,
+\(E_u\) en \(E_l\) zijn de energieën van deze niveaus.
+
+Nodige vgl om de oef op te lossen:
+
+Absorptie:
+\[
+\left(\frac{dn_u}{dt}\right)_{l \to u} = B_{lu} \rho_\nu n_l
+\]
+Emissie:
+\[
+\left(\frac{dn_l}{dt}\right)_{u \to l} = A_{ul} n_u + B_{ul} \rho_\nu n_u
+\]
+
+Waarbij \(A_{ul}\) de spontane emissiecoëfficiënt is, \(B_{ul}\) de gestimuleerde emissiecoëfficiënt en \(B_{lu}\) de absorptiecoëfficiënt.
+
+\[
+\kappa_\lambda = \kappa_0 \left(\frac{\lambda_0}{\lambda}\right)^\beta
+\]
+met \(\beta = 2\) voor de emissie en \(\beta = 0\) voor de absorptie term. \(\lambda_0\) was genormaliseerd op 1 \(\mu \)m in datgeval.
 
 
 Interstellair stralingsveld \(J_\nu\):
 \begin{equation}
     J_\nu 4 \pi = \int I_\nu d\Omega
 \end{equation}  
+(Denk ik, laat me weten als je hier meer info over hebt.)
 
+
+Interstellair stralingsveld als som van twee gedempte zwarte stralers:
 \[
-4 \pi J_{em} = \int I_{em} d\Omega = \int I_{em} \frac{dA}{r^2} = \int \frac{L_{em}}{4 \pi r^2} \frac{dA}{r^2} = \int \frac{L_{em}}{4 \pi r^4} dA
+4\pi J_\lambda = \sum_i^2 c_i B_\lambda (T_i)
 \]
+Dit kan uiteraard naar meerderde uitgebreid worden.
+De coefficiënten \(c_i\) zijn de gewichtsfactoren voor de relatieve bijdragen van de verschillende componenten aan het totale stralingsveld. 
 
 
-Deze hadden we random nodig:
+Intermezzo:
 
+Een korte triviale uitwerking waar de jacobiaan bij nodig is:
+\begin{align*}
+    B_\lambda(T)d\lambda &= B_\nu(T) d\nu \\
+    B_\lambda(T) &= B_\nu(T) \left| \frac{d\nu}{d\lambda} \right| 
+    = B_\nu(T) \left| \frac{d \left( \frac{c}{\lambda} \right) }{d\lambda} \right| 
+    = B_\nu(T) \frac{c}{\lambda^2}  
+\end{align*}
+De rest vind je zelf wel met Eq. 11 vh formularium.
+
+
+
+
+Deze hadden we random nodig om \(J^{em}\) en \(J^{abs}\) uit te rekenen:
 \[
 \int_{0}^{\infty}\kappa_\lambda B_\lambda d \lambda 
 \]
+Gebruik het vierde gegeven (de derde integraal) van het formularium om deze integraal op te lossen.
 
 
-\section{Oefenset 4}
-
-\[
-\kappa_\lambda = \kappa_0 \left(\frac{\lambda_0}{\lambda}\right)^\beta
-\]
-met \(\beta = 2\) voor de emissie en \(\beta = 0\) voor de absorptie term.
 
 Conditie voor thermisch evenwicht:
 \begin{equation}
     J^\text{abs} = J^\text{em}
 \end{equation}  
+
+\section{Oefenset 4}
+
+Formules idem voor oefenset 3, maar dan met een andere context.
+Ook \eqref{eq:handig1} en \eqref{eq:handig2} van oefenset 2 waren hier handig.
+
 
 \section{Oefenset 5}
 
@@ -241,7 +330,28 @@ Bijbehorende massa:
 \begin{equation}
     M_s = \frac{4}{3} \pi R_S^3 n_H m_H = \frac{m_H Q_0}{n_H \alpha_B (T)}
 \end{equation}
+waarbij we massadichtheid \(\rho = n_H m_H\) hebben gebruikt.
 
+De rest van de gegevens waren gegeven of terug te vinden in de gegeven tabel.
+
+We moesten ook random weten welke stellaire type een bepaalde ster was.
+Er was daar niet echt een besluit, alleen uitsluitingen!
+
+Er was een Kroupa Initiele Massafunctie gegeven:
+\[
+\zeta (M) = \frac{M^\alpha}{M_i}
+\]
+met \(M_i\) in 3 opgesplitst per sectie van Eq. 17 vh formularium, analoog voor \(\alpha \in \{-1.2, -2.2, -4.5\}\).
+
+Zoals in kwantummechanica moeten we de 2 randvoorwaarden aan de twee grenzen aan elkaar lijmen.
+
+Uiteindelijk hadden we een integraal van de vorm:
+\[
+M_{tot} = \int_{M_{min}}^{M_{max}}  M \zeta (M) dM
+\]
+opgesplitst in 3 delen, analoog aan de 3 secties van de Kroupa IMF.
+Nu hebben we genoeg afhankelijke variabelenom de 3 \(M_i\) te bepalen en dus ook \(M_{tot}\).
+Dit komt neer op een stelsel oplossen.
 \section{Oefenset 6}
 
 Weten dat de golflengte van de H\(\alpha\)-lijn 656 nm is en weten dat als we werken met warm geïoniseerd gas, dat de temperatuur daar dan ongeveer \(10^4\) K is.
