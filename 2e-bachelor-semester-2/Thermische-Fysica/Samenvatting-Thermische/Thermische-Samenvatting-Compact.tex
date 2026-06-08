@@ -1,0 +1,598 @@
+\documentclass[a4paper,twoside,10pt]{article}
+
+% --- LAYOUT ---
+\usepackage{geometry}
+\geometry{a4paper, left=22mm, right=22mm, top=18mm, bottom=18mm}
+\usepackage{parskip}
+\setlength{\parskip}{4pt}
+\usepackage{setspace}
+\setstretch{1.1}
+
+% --- WISKUNDE ---
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{esint}
+\usepackage{siunitx}
+
+% --- TABELLEN ---
+\usepackage{booktabs}
+\usepackage{array}
+
+% --- OVERIGE ---
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+
+% --- THEOREM STIJLEN ---
+\theoremstyle{definition}
+\newtheorem{postulate}{Postulaat}[section]
+\newtheorem{derivation}{Afleiding}[section]
+
+% --- COMMANDO'S ---
+\newcommand{\dbar}{{\mkern+3mu\mathchar'26\mkern-12mu d}}
+% \pd[const]{teller}{noemer}  =>  (\partial teller / \partial noemer)_const
+\newcommand{\pd}[3][]{\left(\dfrac{\partial #2}{\partial #3}\right)_{\!#1}}
+
+% --- TITEL ---
+\title{\Large\bfseries Samenvatting Thermische Fysica}
+\author{T. Cools}
+\date{Prof.\ dr.\ N. Jachowicz (2025--2026)}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip\hrule\bigskip
+
+%%=============================================================
+\section{Grondbeginselen (H1--H3)}
+%%=============================================================
+
+\subsection{Systemen, Processen en Wanden}
+
+\textbf{Extensief}: evenredig met massa ($V, U, S, \ldots$).\quad
+\textbf{Intensief}: onafhankelijk van massa ($P, T, \ldots$).
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Concept & Definitie \\
+\midrule
+Geïsoleerd systeem  & geen energie- of stofuitwisseling met omgeving \\
+Gesloten systeem    & energie-uitwisseling, geen stofuitwisseling \\
+Diathermische wand  & doorlaatbaar voor warmte \\
+Adiabatische wand   & niet doorlaatbaar voor warmte \\
+Therm.\ evenwicht   & mechanisch + thermisch + chemisch evenwicht simultaan \\
+Quasistatisch proc. & verloopt zo traag dat systeem steeds in evenwicht is \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Nulde Wet en Temperatuurschalen}
+
+\begin{postulate}[Nulde wet]
+Als A in thermisch evenwicht is met C, en B ook met C,
+dan zijn A en B in thermisch evenwicht met elkaar.
+\end{postulate}
+
+Kelvinschaal via tripelpunt van water
+($T_{tp}=273{,}16\,\mathrm{K}$, $P_{tp}=611{,}73\,\mathrm{Pa}$):
+\[
+  T = (273{,}16\,\mathrm{K})\,\frac{P}{P_{tp}},
+  \qquad
+  T(\mathrm{K}) = T({}^{\circ}\mathrm{C}) + 273{,}15
+\]
+
+\subsection{Toestandsvergelijkingen en Sleutelgrootheden}
+
+Toestandsvergelijking: $f(P,V,T)=0$ — slechts 2 van de 3 variabelen zijn onafhankelijk.
+
+\[
+  \beta = \frac{1}{V}\pd[P]{V}{T}
+  \quad\text{(vol.-uitzettingscoëff.)},
+  \qquad
+  \kappa = -\frac{1}{V}\pd[T]{V}{P}
+  \quad\text{(isoth.\ drukbaarheid)}
+\]
+\[
+  dV = V\beta\,dT - V\kappa\,dP, \qquad dP = \frac{\beta}{\kappa}\,dT - \frac{1}{V\kappa}\,dV
+\]
+
+\textbf{Ideaal gas}: $PV = nRT$.\quad
+Viriaalontwikkeling: $Z = PV/nRT = 1 + B(T)/V + C(T)/V^2 + \cdots$
+
+\textbf{Overzicht veralgemeende systemen:}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Systeem & Ext.\ coord.\ $X$ & Int.\ kracht $Y$ & $\dbar W$ & Toestandsvgl. \\
+\midrule
+Hydrostatisch   & $V$   & $-P$      & $-P\,dV$        & $PV = nRT$ \\
+Gespannen snaar & $L$   & $F$       & $F\,dL$         & $F=k(L-L_0)$;\; $\beta=3\alpha$ \\
+Oppervlaktefilm & $A$   & $\gamma$  & $\gamma\,dA$    & $(\gamma-\gamma_w)A = cT$ \\
+Diëlektricum    & $\Pi$ & $E$       & $E\,d\Pi$       & $\Pi/V = a + b/T$ \\
+Paramagneticum  & $M$   & $\mu_0 H$ & $-\mu_0 H\,dM$ & $M = (C_c/T)\,H$ (Curie) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%=============================================================
+\section{Arbeid, Warmte en Eerste Wet (H4--H5)}
+%%=============================================================
+
+\subsection{Arbeid}
+
+Arbeid is \textbf{padafhankelijk} ($\dbar W \neq dW_{\text{exact}}$).\quad
+Algemeen: $\dbar W = \sum_i Y_i\,dX_i$.
+
+Quasistatisch hydrostatisch: $W = -\displaystyle\int_{V_i}^{V_f} P\,dV$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Proces & Formule & Opmerking \\
+\midrule
+Isobaar              & $W = -P(V_f-V_i)$                        & \\
+Isochoor             & $W = 0$                                   & \\
+Isotherm, ideaal gas & $W = -nRT\ln(V_f/V_i)$                   & \\
+Isotherm, vaste stof & $W \approx \frac{\kappa V}{2}(P_f^2-P_i^2)$ & $V,\kappa\approx\mathrm{cst}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{derivation}[Padafhankelijkheid van arbeid]
+Beschouw twee paden $A$ en $C$ van punt 1 naar punt 2. De cyclus $1\xrightarrow{C}2\xrightarrow{A}1$ geeft:
+\[
+  W_{\text{cyclus}} = W_{21}(C) + W_{12}(A)
+\]
+Omdat de oppervlaktes onder de twee curves in het $PV$-diagram verschillen, volgt
+$|W_{21}(C)| \neq |W_{21}(A)|$ voor twee willekeurige paden, dus arbeid is padafhankelijk.
+\end{derivation}
+
+\subsection{Eerste Wet en Warmtecapaciteiten}
+
+\begin{postulate}[Eerste Wet]
+\[
+  \Delta U = Q + W, \qquad dU = \dbar Q + \dbar W
+\]
+\end{postulate}
+
+$U$ is een toestandsfunctie; $\dbar Q$ en $\dbar W$ zijn padafhankelijk.
+Hydrostatisch: $dU = \dbar Q - P\,dV$. Overige systemen: zie tabel §1.3.
+
+\[
+  C_V = \pd[V]{\dbar Q}{T} = \pd[V]{U}{T} = T\pd[V]{S}{T},
+  \qquad
+  C_P = \pd[P]{\dbar Q}{T} = \pd[P]{U}{T} + P\pd[P]{V}{T} = T\pd[P]{S}{T}
+\]
+
+\subsection{Ideaal Gas}
+
+Vrije expansie $\Rightarrow$ $(\partial U/\partial V)_T = 0$, dus $U = U(T)$ alleen en $C_V = dU/dT$.
+
+\[
+  \dbar Q = C_V\,dT + P\,dV = C_P\,dT - V\,dP
+\]
+
+\begin{derivation}[$C_P = C_V + nR$]
+Differentieer $PV=nRT$: $P\,dV + V\,dP = nR\,dT$. Substitueer $P\,dV = nR\,dT - V\,dP$
+in $\dbar Q = C_V\,dT + P\,dV$:
+\[
+  \dbar Q = (C_V + nR)\,dT - V\,dP
+  \implies \pd[P]{\dbar Q}{T} = C_P = C_V + nR
+\]
+\end{derivation}
+
+Monoatomisch: $\gamma=5/3$;\quad diatomisch: $\gamma\approx7/5$.
+
+\begin{derivation}[Adiabatisch quasistatisch: $PV^\gamma = \mathrm{cst}$]
+$\dbar Q=0$ toegepast op de twee vormen van $\dbar Q$:
+\[
+  0 = C_V\,dT + P\,dV \quad\text{en}\quad 0 = C_P\,dT - V\,dP
+  \implies \frac{dP}{P} = -\gamma\,\frac{dV}{V}
+\]
+Integreren: $\ln P = -\gamma\ln V + \mathrm{cst}$, dus $\boxed{PV^\gamma = \mathrm{cst}}$.
+Combineren met $PV = nRT$ geeft ook $TV^{\gamma-1}=\mathrm{cst}$ en $TP^{(1-\gamma)/\gamma}=\mathrm{cst}$.\\
+Arbeid: $W = \dfrac{P_fV_f - P_iV_i}{\gamma-1} = C_V(T_f-T_i)$.
+\end{derivation}
+
+Methode van Rüchardt: $\gamma = 4\pi^2 mV/(\tau^2 P A^2)$.
+
+%%=============================================================
+\section{Tweede Wet en Thermische Machines (H6)}
+%%=============================================================
+
+\subsection{Rendement en Prestatiecoëfficiënt}
+
+Eerste wet voor machines: $|Q_H| = |Q_K| + |W|$.
+\[
+  \eta = \frac{|W|}{|Q_H|} = 1 - \frac{|Q_K|}{|Q_H|},
+  \qquad
+  \omega_{\text{koel}} = \frac{|Q_K|}{|W|}
+\]
+\[
+  \boxed{\eta_{\mathrm{Carnot}} = 1 - \frac{T_K}{T_H}}
+  \qquad\text{(bovengrens voor alle machines)}
+\]
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Cyclus   & Processen                           & Rendement             & Nota \\
+\midrule
+Carnot   & 2 isoth.\ + 2 adiab.                & $1 - T_K/T_H$         & reversibel \\
+Stirling & 2 isoth.\ + 2 isoch.                & $= \eta_{\mathrm{Carnot}}$ & met regenerator \\
+Otto     & 2 adiab.\ + 2 isoch.                & $1 - r^{1-\gamma}$    & $r=V_1/V_2$ \\
+Diesel   & 2 adiab.\ + 1 isobaar + 1 isoch.    & zie afleiding         & $r_C=V_1/V_2$, $r_E=V_1/V_3$ \\
+Rankine  & 6 proc.\ (stoom)                    & ---                   & zie cursus \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{derivation}[Otto-rendement]
+Warmte-uitwisseling enkel bij $2\to3$ (isochoor) en $4\to1$ (isochoor):
+\[
+  |Q_H| = C_V(T_3-T_2), \quad |Q_K| = C_V(T_4-T_1)
+  \implies \eta = 1 - \frac{T_4-T_1}{T_3-T_2}
+\]
+Adiabatische relaties $1\to2$ en $3\to4$:
+$T_1V_1^{\gamma-1}=T_2V_2^{\gamma-1}$ en $T_4V_1^{\gamma-1}=T_3V_2^{\gamma-1}$,
+zodat $(T_4-T_1)/(T_3-T_2) = (V_2/V_1)^{\gamma-1} = r^{1-\gamma}$. Dus:
+\[
+  \boxed{\eta_{\mathrm{Otto}} = 1 - r^{1-\gamma}}
+\]
+\end{derivation}
+
+\begin{derivation}[Diesel-rendement]
+Warmte bij $2\to3$ (isobaar): $|Q_H|=C_P(T_3-T_2)$; bij $4\to1$ (isochoor): $|Q_K|=C_V(T_4-T_1)$.
+\[
+  \eta = 1 - \frac{T_4-T_1}{\gamma(T_3-T_2)}
+\]
+Adiabatische relaties en isobare relatie $T_3/T_2 = V_3/V_2$
+elimineren de temperaturen ten voordele van $r_C, r_E$:
+\[
+  \boxed{\eta_{\mathrm{Diesel}} = 1 - \frac{1}{\gamma}\,\frac{r_E^{-\gamma}-r_C^{-\gamma}}{r_E^{-1}-r_C^{-1}}}
+\]
+\end{derivation}
+
+\subsection{Tweede Wet: Formuleringen en Equivalentie}
+
+\begin{postulate}[Kelvin-Planck]
+Het enige resultaat van een cyclus kan niet zijn dat warmte van één warme bron
+volledig in arbeid wordt omgezet.
+\end{postulate}
+\begin{postulate}[Clausius]
+Het enige resultaat van een cyclus kan niet zijn dat warmte van koud naar warm stroomt.
+\end{postulate}
+
+\begin{derivation}[Equivalentie K-P $\Leftrightarrow$ Clausius]
+\textbf{K $\Rightarrow$ C}: Stel een machine schendt Clausius: ze transporteert $Q_2$ van koud naar warm
+zonder arbeid. Koppel er een Kelvin-Planck-machine aan die $W = Q_1$ omzet in arbeid en $Q_2$
+afgeeft aan het koude reservoir. Netto: $Q_1 + Q_2$ onttrokken aan warm, $Q_2$ naar koud, netto arbeid $Q_1$. Dit schendt K-P. \\[2pt]
+\textbf{C $\Rightarrow$ K}: Stel een machine schendt K-P: ze zet $Q_1$ volledig om in arbeid. Gebruik die arbeid voor een warmtepomp die $Q_2$ van koud naar warm pompt.
+Netto: $Q_2$ stroomt van koud naar warm, wat Clausius schendt. \hfill$\square$
+\end{derivation}
+
+%%=============================================================
+\section{Reversibiliteit, Entropie en Derde Wet (H7--H8)}
+%%=============================================================
+
+\subsection{Reversibiliteit en RA-oppervlakken}
+
+\textbf{Reversibel} $\Leftrightarrow$ quasistatisch én geen dissipatieve effecten.
+
+\begin{postulate}[Carathéodory]
+In de buurt van elke evenwichtstoestand zijn er toestanden die via een adiabatisch
+proces niet bereikbaar zijn.
+\end{postulate}
+
+Algemeen systeem met veralgemeende kracht $Y$ en verplaatsing $X$:
+$\dbar Q = dU - Y\,dX$. Bij $\dbar Q=0$:
+\[
+  \frac{dT_e}{dX} = \frac{Y - (\partial U/\partial X)_{T_e}}{(\partial U/\partial T_e)_X}
+  \implies \sigma(T_e, X) = \mathrm{cst}
+  \quad\text{(RA-oppervlak)}
+\]
+RA-oppervlakken snijden elkaar nooit; dimensie = toestandsruimte $-1$.
+
+\subsection{Integreerbaarheid van $\dbar Q$ en Kelvinschaal}
+
+\begin{derivation}[Integrerende factor en entropie]
+Schrijf $U = U(\sigma, X, X')$. Vergelijk $dU$ met $\dbar Q = dU - Y\,dX - Y'\,dX'$:
+\[
+  \dbar Q = \pd[\sigma,X']{U}{\sigma}\,d\sigma
+  + \Bigl[\pd[\sigma,X']{U}{X}-Y\Bigr]dX
+  + \Bigl[\pd[\sigma,X]{U}{X'}-Y'\Bigr]dX' = 0
+\]
+Doordat $X, X'$ onafhankelijk zijn: $(\partial U/\partial X)_{\sigma,X'}=Y$ en
+$(\partial U/\partial X')_{\sigma,X}=Y'$, zodat $\dbar Q = \lambda(\sigma)\,d\sigma$
+met $\lambda(\sigma) = (\partial U/\partial\sigma)_{X,X'}$.\\[4pt]
+Via analyse van twee gekoppelde systemen volgt dat de integrerende factor de vorm
+$1/\phi(T_e)$ heeft met $\phi$ uitsluitend afhankelijk van $T_e$:
+\[
+  \dbar Q = \phi(T_e)\,f(\sigma)\,d\sigma
+\]
+\end{derivation}
+
+\begin{derivation}[Kelvinschaal = ideale gastemperatuur]
+Carnot-cyclus op ideaal gas: isotherm $1\to2$ bij $T$ en $3\to4$ bij $T'$:
+\[
+  Q = nRT\ln\!\tfrac{V_2}{V_1}, \quad Q' = nRT'\ln\!\tfrac{V_4}{V_3}
+\]
+Adiabaten $2\to3$ en $4\to1$: $C_V\,dT = -(nRT/V)\,dV$ $\Rightarrow$
+$\ln(V_2/V_3) = \ln(V_1/V_4)$ $\Rightarrow$ $V_2/V_1 = V_4/V_3$. Dus:
+\[
+  \frac{Q}{Q'} = \frac{T}{T'} = \frac{T_k}{T_k'}
+\]
+De Kelvintemperatuur $T_k$ is stof-onafhankelijk en gelijk aan de ideale gastemperatuur. \hfill$\square$
+\end{derivation}
+
+\begin{postulate}[Derde Wet (Nernst)]
+Het absolute nulpunt $T=0$ is met een eindig aantal stappen onbereikbaar.
+\end{postulate}
+
+\subsection{Entropie: definitie en eigenschappen}
+
+\[
+  \boxed{dS = \frac{\dbar Q_{\mathrm{rev}}}{T}},
+  \qquad
+  \Delta S = \int_{i,\,\mathrm{rev}}^{f}\frac{\dbar Q}{T}
+\]
+
+Enkel $\Delta S$ is gedefinieerd.
+Reversibele cyclus: $\oint \dbar Q_{\mathrm{rev}}/T = 0$ (Clausius-theorema).
+
+\begin{derivation}[Entropie ideaal gas]
+Uit $\dbar Q = C_V\,dT + P\,dV$ en $P/T = nR/V$:
+\[
+  \frac{\dbar Q}{T} = \frac{C_V}{T}\,dT + \frac{nR}{V}\,dV
+  \implies \boxed{S = C_V\ln T + nR\ln V + S_0} \quad (C_V=\mathrm{cst})
+\]
+Analoog via $\dbar Q = C_P\,dT - V\,dP$ en ideale gaswet:
+$S = C_P\ln T - nR\ln V + S_0$.
+\end{derivation}
+
+Isentroop $\equiv$ reversibel adiabatisch ($dS=0$).
+TS-diagram: $Q_R = \int T\,dS$ (oppervlakte onder curve).
+
+\subsection{Entropieprincipe}
+
+\begin{derivation}[$\Delta S_{\mathrm{univ}} \geq 0$]
+Beschouw een irreversibel adiabatisch proces $i\to f$ ($\Delta S = S_f - S_i$),
+gevolgd door een irreversibel adiabatisch proc. $f\to k$ en een reversibel
+isotherm proc. $k\to j$ bij $T'$, en tenslotte een reversibel adiabatisch proc.
+$j\to i$. Netto entropie van de cyclus = 0:
+\[
+  \Delta S + (S_j - S_k) = 0 \implies \Delta S = S_k - S_j
+\]
+De enige warmtestroom is $Q_R = T'(S_j - S_k)$ bij $k\to j$.
+Tweede wet: $Q_R \leq 0$, dus $T'(S_j-S_k)\leq 0$, dus $\Delta S = S_k - S_j \geq 0$.
+Zou $\Delta S = 0$, dan zou het proces reversibel zijn: tegenspraak. Dus $\Delta S > 0$. \hfill$\square$
+\end{derivation}
+
+\begin{postulate}[Entropieprincipe]
+$\Delta S_{\mathrm{univ}} \geq 0$, met gelijkheid enkel voor reversibele processen.
+\end{postulate}
+
+Bijzondere entropieveranderingen:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Irreversibel proces & $\Delta S$ \\
+\midrule
+Uitw.\ mechanisch (isobaar vervanging)   & $C_P\ln(T_f/T_i)$ \\
+Int.\ mech.\ (isotherm ideaal gas)       & $nR\ln(V_f/V_i)$ \\
+Externe thermische                        & $\Delta S_{\mathrm{univ}} = Q/T_K - Q/T_H$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Machineprestaties en Niet-beschikbare Energie}
+
+\begin{derivation}[$W_{\max}$ en $E = T_0\,\Delta S$]
+$\Delta S_{\mathrm{univ}} = (Q_H-W)/T_K - Q_H/T_H \geq 0$
+$\Rightarrow$ $W \leq Q_H(1 - T_K/T_H)$, zodat:
+\[
+  W_{\max} = Q_H\!\left(1 - \frac{T_K}{T_H}\right)
+\]
+Na een irreversibel proces $i\to j$ in contact met reservoir $T_0$:
+reversibel herstelproces voert warmte $Q_{\mathrm{rev}} = T_0(S_f-S_i)$ af.
+Die energie is niet in arbeid om te zetten:
+\[
+  \boxed{E = T_0\,\Delta S} \quad\text{(niet-beschikbare energie)}
+\]
+\end{derivation}
+
+\[
+  W_{\mathrm{min,koel}} = (S_1-S_2)T_K - Q
+\]
+
+%%=============================================================
+\section{Thermodynamische Potentialen en Relaties (H9)}
+%%=============================================================
+
+\subsection{De Vier Thermodynamische Potentialen}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Potentiaal       & Definitie & Differentiaalvorm     & Nat.\ var. & Gebruik \\
+\midrule
+$U$ (intern)     & ---       & $dU = T\,dS - P\,dV$  & $S,V$      & algemeen \\
+$H = U+PV$       & enthalpie & $dH = T\,dS + V\,dP$  & $S,P$      & isobaar; $Q=\Delta H$ \\
+$F = U-TS$       & Helmholtz & $dF = -S\,dT - P\,dV$ & $T,V$      & isoth.--isoch.; $F=\mathrm{cst}$ \\
+$G = H-TS$       & Gibbs     & $dG = -S\,dT + V\,dP$ & $T,P$      & isoth.--isobaar; $G=\mathrm{cst}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Partiële afgeleiden:
+\[
+  \pd[P]{H}{S}=T,\quad\pd[S]{H}{P}=V;\qquad
+  \pd[V]{F}{T}=-S,\quad\pd[T]{F}{V}=-P;\qquad
+  \pd[P]{G}{T}=-S,\quad\pd[T]{G}{P}=V
+\]
+
+\textbf{Enthalpie}: bij isobaar reversibel proc.: $H_f - H_i = \int C_P\,dT = Q$.\\
+\textbf{Smoorproces} (Joule-Kelvin, irreversibel, $H_i = H_f$):
+\[
+  \mu = \pd[H]{T}{P} = \frac{1}{C_P}\!\left[T\pd[P]{V}{T} - V\right] = \frac{V(T\beta-1)}{C_P}
+  \qquad (\mu=0 \text{ voor ideaal gas})
+\]
+
+\textbf{Gibbsfunctie bij fase-evenwichten}:
+$G_{\text{vast}} = G_{\text{vl.}}$ (smelt),\;
+$G_{\text{vl.}} = G_{\text{damp}}$ (verdamp.),\;
+$G_{\text{vast}} = G_{\text{damp}}$ (sublim.)
+
+\subsection{Maxwell-betrekkingen}
+
+Totale differentiaal $df = M\,dx + N\,dy$ $\Rightarrow$ $(\partial M/\partial y)_x = (\partial N/\partial x)_y$.
+
+\begin{derivation}[Maxwell-betrekkingen]
+Pas de symmetrie van gemengde tweede afgeleiden toe op elk potentiaal:
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Uit $dU = T\,dS - P\,dV$  & $\pd[S]{T}{V} = -\pd[V]{P}{S}$ \\
+Uit $dH = T\,dS + V\,dP$  & $\pd[S]{T}{P} = \pd[P]{V}{S}$ \\
+Uit $dF = -S\,dT - P\,dV$ & $\pd[T]{S}{V} = \pd[V]{P}{T}$ \\
+Uit $dG = -S\,dT + V\,dP$ & $\pd[T]{S}{P} = -\pd[P]{V}{T}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{derivation}
+
+\subsection{TdS-vergelijkingen}
+
+\begin{derivation}[TdS-vergelijkingen]
+Schrijf $S = S(T,V)$:\;
+$dS = (\partial S/\partial T)_V\,dT + (\partial S/\partial V)_T\,dV$.
+Isochoor: $C_V = T(\partial S/\partial T)_V$.
+Maxwell $dF$: $(\partial S/\partial V)_T = (\partial P/\partial T)_V$:
+\[
+  \boxed{TdS = C_V\,dT + T\pd[V]{P}{T}\,dV} \tag{TdS-1}
+\]
+Schrijf $S = S(T,P)$:\;
+isotherm: $C_P = T(\partial S/\partial T)_P$.
+Maxwell $dG$: $(\partial S/\partial P)_T = -(\partial V/\partial T)_P$:
+\[
+  \boxed{TdS = C_P\,dT - T\pd[P]{V}{T}\,dP} \tag{TdS-2}
+\]
+Schrijf $S = S(P,V)$ en gebruik kettingregel + $C_V$ en $C_P$:
+\[
+  \boxed{TdS = C_V\pd[V]{T}{P}\,dP + C_P\pd[P]{T}{V}\,dV} \tag{TdS-3}
+\]
+\end{derivation}
+
+Toepassingen TdS-vergelijkingen:
+\begin{itemize}
+  \item \textbf{Rev.\ isotherm}: $Q = -T\!\int V\beta\,dP \approx -T\,\overline{V\beta}(P_f-P_i)$
+  \item \textbf{Rev.\ adiabatisch}: $dT = (TV\beta/C_P)\,dP$
+\end{itemize}
+
+\subsection{Energie- en Enthalpievergelijkingen}
+
+\begin{derivation}[Energie- en enthalpievergelijkingen]
+Uit $dU = T\,dS - P\,dV$, deel door $dV$ (bij $T=\mathrm{cst}$) en gebruik
+Maxwell $(\partial S/\partial V)_T = (\partial P/\partial T)_V$:
+\[
+  \pd[T]{U}{V} = T\pd[V]{P}{T} - P \quad\text{(1e energievgl.)}
+\]
+Deel $dU$ door $dP$ (bij $T=\mathrm{cst}$) en gebruik Maxwell $(\partial S/\partial P)_T = -(\partial V/\partial T)_P$:
+\[
+  \pd[T]{U}{P} = -P\pd[T]{V}{P} \quad\text{(2e energievgl.)}
+\]
+Analoog voor $dH = T\,dS + V\,dP$:
+\[
+  \pd[T]{H}{P} = T\pd[T]{S}{P} + V \quad\text{(1e enthalpievgl.)}
+\]
+\[
+  \pd[T]{H}{V} = T\pd[T]{S}{V} + V\pd[T]{P}{V} \quad\text{(2e enthalpievgl.)}
+\]
+\end{derivation}
+
+\subsection{Warmtecapaciteitsvergelijkingen}
+
+\begin{derivation}[$C_P - C_V$]
+Stel TdS-1 = TdS-2 en los op naar $dT$ (met $T=T(P,V)$):
+\[
+  dT = \frac{T\pd[P]{V}{T}}{C_P-C_V}\,dP + \frac{T\pd[V]{P}{T}}{C_P-C_V}\,dV
+  = \pd[V]{T}{P}\,dP + \pd[P]{T}{V}\,dV
+\]
+Vergelijken geeft $C_P - C_V = T(\partial P/\partial T)_V(\partial V/\partial T)_P$.
+Met de Jacobiaan-identiteit $(\partial P/\partial T)_V(\partial T/\partial V)_P(\partial V/\partial P)_T = -1$:
+\[
+  \boxed{C_P - C_V = -T\!\left(\pd[V]{P}{T}\right)^{\!2}\!\pd[T]{V}{P} = \frac{TV\beta^2}{\kappa}}
+\]
+\end{derivation}
+
+Gevolgen: $C_P > C_V$ altijd; $C_P \to C_V$ als $T\to 0$ of $(\partial V/\partial T)_P = 0$.
+
+\begin{derivation}[$C_P/C_V = \kappa/\kappa_S$]
+Gebruik TdS-1 en TdS-2 bij $dS=0$:
+\[
+  C_V\,dT = -T\pd[V]{P}{T}\,dV_S, \quad C_P\,dT = T\pd[P]{V}{T}\,dP_S
+\]
+\[
+  \frac{C_P}{C_V}
+  = \frac{T(\partial V/\partial T)_P}{-T(\partial P/\partial T)_V}\,\pd[S]{P}{V}
+  = -\frac{(\partial P/\partial V)_S}{(\partial P/\partial V)_T}
+  = \boxed{\frac{\kappa}{\kappa_S}}
+  \quad\text{met}\quad \kappa_S = -\frac{1}{V}\pd[S]{V}{P}
+\]
+\end{derivation}
+
+\subsection{Fase-overgangen}
+
+\subsubsection*{Eerste-orde (Clapeyron)}
+
+$T$ en $P$ constant; $S$ en $V$ springen. Latente warmte: $L = T(s_f-s_i)$.
+$C_P,\,\beta,\,\kappa \to \infty$ tijdens de overgang.
+
+\begin{derivation}[Vergelijking van Clapeyron]
+Langs de overgangskromme: $G_i = G_f$, dus bij een kleine stap $dG_i = dG_f$:
+\[
+  V_i\,dP - S_i\,dT = V_f\,dP - S_f\,dT
+  \implies
+  \boxed{\frac{dP}{dT} = \frac{S_f-S_i}{V_f-V_i} = \frac{L}{T(V_f-V_i)}}
+\]
+Alternatief via TdS-1 met $(\partial P/\partial T)_V = dP/dT$ (want $P=P(T)$ langs de kromme):
+$TdS = T(dP/dT)(V_f-V_i) = L$. \hfill$\square$
+\end{derivation}
+
+Teken: positief als $V_f > V_i$ (expansie); negatief voor water bij smelting.
+
+\subsubsection*{Tweede-orde (Ehrenfest)}
+
+$G$, $S$, $V$ continu; $C_P$, $\beta$, $\kappa$ discontinu.
+Voorbeeld: supergeleider $\to$ normaal geleidend.
+
+\begin{derivation}[Vergelijkingen van Ehrenfest]
+\textbf{1e vgl.:} Behoud van entropie ($S_i = S_f$) langs de overgangskromme,
+dus $dS_i = dS_f$. Gebruik TdS-2 (bij $dS=0$ en isotherme variatie $dT,dP$ langs de kromme):
+\[
+  C_{P,i}\,dT - TV\beta_i\,dP = C_{P,f}\,dT - TV\beta_f\,dP
+  \implies \boxed{\frac{dP}{dT} = \frac{\Delta C_P}{TV\,\Delta\beta}}
+\]
+\textbf{2e vgl.:} Behoud van volume ($V_i = V_f$), dus $dV_i = dV_f$:
+\[
+  \pd[P]{V}{T}\,dT + \pd[T]{V}{P}\,dP = \text{idem voor }f
+  \implies \beta_i\,dT - \kappa_i\,dP = \beta_f\,dT - \kappa_f\,dP
+  \implies \boxed{\frac{dP}{dT} = \frac{\Delta\beta}{\Delta\kappa}}
+\]
+\end{derivation}
+
+\textbf{Lambda-transitie}: $C_P\to\infty$ maar $\beta,\kappa$ eindig $\Rightarrow$
+Ehrenfest niet geldig ($T,P,G,S,V$ constant; $C_P,\beta,\kappa\to\infty$).
+
+\end{document}
