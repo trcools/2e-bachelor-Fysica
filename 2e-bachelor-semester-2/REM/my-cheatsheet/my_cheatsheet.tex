@@ -41,6 +41,8 @@
 
 \newcommand{\secblock}[1]{\vspace{0.08ex}\textbf{#1}\par}
 \newcommand{\eqline}[1]{\(#1\)\par}
+\newcommand{\rcurs}{\mbox{$\resizebox{.08in}{.07in}{\includegraphics[trim=1em 0 14em 0,clip]{ScriptR}}$}}
+\newcommand{\brcurs}{\mbox{$\resizebox{.08in}{.07in}{\includegraphics[trim=1em 0 14em 0,clip]{BoldR}}$}}
 
 
 %\usepackage{geometry} %size regulating
@@ -163,7 +165,7 @@ Bounded volume charge density:
 
 Pot. Macr. field:
 \(
-V (\bm r) = \frac{1}{4 \pi \epsilon_0} \int \frac{\bm P(\bm r') \cdot \hat{\bm r_{c}}}{r^2_c} d\tau'
+V (\bm r) = \frac{1}{4 \pi \epsilon_0} \int \frac{\bm P(\bm r') \cdot \hat{\bm r_{c}}}{\rcurs^2} d\tau'
 \)
 
 Electric displacement:
@@ -231,21 +233,21 @@ Continuity equation:
 Biot-Savart law:
 
 \(
-\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{I\times\hat{\bm{r}}_c}{r_c^2}d\bm l'
-=\frac{\mu_0 I}{4\pi}\int\frac{dl'\times\hat{\bm{r}}_c}{r^2_c}
+\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{I\times\hat{\brcurs}}{\brcurs^2}d\bm l'
+=\frac{\mu_0 I}{4\pi}\int\frac{dl'\times\hat{\brcurs}}{\rcurs^2}
 \)
 
 For surface currents:
 
-\(\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm K(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d a'\)
+\(\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm K(\bm r')\times\hat{\brcurs}}{\brcurs^2}d a'\)
 
 For volume currents:
 
-\(\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')\times\hat{\bm{r}}_c}{r_c^2}d \tau '\)
+\(\bm{B}(\bm{r})=\frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')\times\hat{\brcurs}}{\brcurs^2}d \tau '\)
 
 Vector potential in magnetostatics:
 
-\(\bm A = \frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')}{r_c}d \tau '\);
+\(\bm A = \frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')}{\brcurs}d \tau '\);
 \(A_{dip}(\bm r) = \frac{\mu_0}{4\pi}\frac{\bm m \times \hat{\bm r}}{r^2}\)
 
 Magnetic dipole moment:
@@ -269,7 +271,7 @@ Force nonuniform field:
 
 Vector potential of a single magnetic dipole:
 
-\(\bm A (\bm r) = \frac{\mu_0}{4\pi} \frac{\bm m \times \hat{\bm r}_c}{r^2_c} = \frac{\mu_0}{4\pi} \int \frac{\bm M (\bm r) \times \hat{\bm r}_c}{r^2_c} d\tau'\)
+\(\bm A (\bm r) = \frac{\mu_0}{4\pi} \frac{\bm m \times \hat{\brcurs}}{\rcurs^2} = \frac{\mu_0}{4\pi} \int \frac{\bm M (\bm r) \times \hat{\brcurs}}{\rcurs^2} d\tau'\)
 
 Potential volume current:
 \(\bm J_b = \bm \nabla \times \bm M\)
@@ -315,16 +317,16 @@ Flux rule:
 \(\epsilon_{emf} = -\frac{d \phi}{dt}\)
 
 Analog Biot-Savart:
-\(\bm{E}(\bm{r})=-\frac{1}{4\pi}\frac{\partial}{\partial t}\int\frac{\bm B\times\hat{\bm{r}}_c}{r_c^2}d\bm \tau'\)
+\(\bm{E}(\bm{r})=-\frac{1}{4\pi}\frac{\partial}{\partial t}\int\frac{\bm B\times\hat{\brcurs}}{\brcurs^2}d\bm \tau'\)
 
 Inductance:
-\(\bm B_1 = \frac{\mu_0 I_1}{4\pi} \oint \frac{dl_1 \times \hat{\bm{r}}_c}{r_c^2}\)
+\(\bm B_1 = \frac{\mu_0 I_1}{4\pi} \oint \frac{dl_1 \times \hat{\brcurs}}{\brcurs^2}\)
 
 Mutual inductance:
 \(\Phi_{21} = \int \bm B_1 \cdot d\bm a_2 = M_{21} I_1\)
 
 Neuman's law:
-\(M_{21} = M_{12} = \frac{\mu_0}{4\pi} \oint \oint \frac{d\bm l_1 \cdot d\bm l_2}{r_c}\)
+\(M_{21} = M_{12} = \frac{\mu_0}{4\pi} \oint \oint \frac{d\bm l_1 \cdot d\bm l_2}{\brcurs}\)
 
 Self inductance:
 
@@ -368,6 +370,9 @@ Total energy stored in the electromagnetic field:
 
 Work done on charge q:
 \(dW = q \bm E \cdot \bm v dt\)
+
+rate of work done:
+\(\frac{dW}{dt} = \int_{V} (\bm J \cdot \bm E) d\tau\)
 
 Poynting theorem:
 \(\frac{\partial u}{\partial t} + \bm \nabla \cdot \bm S = -\bm J \cdot \bm E\)
@@ -470,7 +475,7 @@ and (D.3): \(\bm E = - \bm \nabla V - \frac{\partial \bm A}{\partial t}\)
 
 (\(\bm B\) en \(\bm E\) in D.4; then A.11):
 
-\(\nabla \times (\nabla \times \bm A)= \mu_0 \bm J - \mu_0 \epsilon_0 \bm \nabla \left(\frac{\partial V }{\partial t}\right) - \mu_0 \epsilon_0 \frac{\partial^2 \bm A}{\partial t^2}\)
+\(\bm \nabla \times (\bm \nabla \times \bm A)= \mu_0 \bm J - \mu_0 \epsilon_0 \bm \nabla \left(\frac{\partial V }{\partial t}\right) - \mu_0 \epsilon_0 \frac{\partial^2 \bm A}{\partial t^2}\)
 
 \( ( \nabla^2 \bm A - \mu_0 \epsilon_0 \frac{\partial^2 \bm A}{\partial t^2} ) 
 - \bm \nabla (\bm \nabla \cdot \bm A + \mu_0 \epsilon_0 \frac{\partial V}{\partial t} )
@@ -518,67 +523,67 @@ Static case:
 \(\nabla^2 V = -\frac{\rho}{\epsilon_0}\) and \(\nabla^2 \bm A = -\mu_0 \bm J\)
 
 Retarded time:
-\(t_r = t - \frac{r_c}{c}\)
+\(t_r = t - \frac{\brcurs}{c}\)
 
 Ret. Potentials:
-\(V(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(\bm r', t_r)}{r_c} d\tau'\)
+\(V(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(\bm r', t_r)}{\brcurs} d\tau'\)
 
 and
-\(\bm A(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_r)}{r_c} d\tau'\)
+\(\bm A(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_r)}{\brcurs} d\tau'\)
 
-\(\bm \nabla V = \frac{1}{4\pi \epsilon_0} \int [(\bm \nabla \rho) \frac{1}{r_c} + \rho \bm \nabla (\frac{1}{r_c})] d\tau'\)
+\(\bm \nabla V = \frac{1}{4\pi \epsilon_0} \int [(\bm \nabla \rho) \frac{1}{\brcurs} + \rho \bm \nabla (\frac{1}{\brcurs})] d\tau'\)
 
-\(\bm \nabla \rho = \dot{\rho} \bm \nabla t_r = -\frac{1}{c}\dot{\rho} \bm \nabla r_c\)
+\(\bm \nabla \rho = \dot{\rho} \bm \nabla t_r = -\frac{1}{c}\dot{\rho} \bm \nabla \brcurs\)
 
-\(\bm \nabla r_c = \hat{\bm r}_c\); \(\bm \nabla (\frac{1}{r_c}) = -\frac{\hat{\bm r}_c}{r_c^2}\)
+\(\bm \nabla \brcurs = \hat{\brcurs}\); \(\bm \nabla (\frac{1}{\brcurs}) = -\frac{\hat{\brcurs}}{\brcurs^2}\)
 
-\(\bm \nabla \dot{\rho} = - \frac{1}{c} \ddot{\rho} \bm \nabla r_c = -\frac{1}{c}\ddot{\rho} \hat{\bm r}_c\)
+\(\bm \nabla \dot{\rho} = - \frac{1}{c} \ddot{\rho} \bm \nabla \brcurs = -\frac{1}{c}\ddot{\rho} \hat{\brcurs}\)
 
 
 
 Advanced time:
-\(t_a = t + \frac{r_c}{c}\)
+\(t_a = t + \frac{\brcurs}{c}\)
 
 Adv. Potentials:
-\(V_a(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(\bm r', t_a)}{r_c} d\tau'\)
+\(V_a(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(\bm r', t_a)}{\brcurs} d\tau'\)
 
 and
-\(\bm A_a(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_a)}{r_c} d\tau'\)
+\(\bm A_a(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_a)}{\brcurs} d\tau'\)
 
 
-\(\bm \nabla (\frac{\bm J}{r_c}) = \frac{1}{r_c}(\bm \nabla \cdot \bm J) + \frac{1}{r_c}(\bm \nabla ' \cdot \bm J ) - \bm \nabla ' \cdot (\frac{\bm J}{r_c}) \)
+\(\bm \nabla (\frac{\bm J}{\brcurs}) = \frac{1}{\brcurs}(\bm \nabla \cdot \bm J) + \frac{1}{\brcurs}(\bm \nabla ' \cdot \bm J ) - \bm \nabla ' \cdot (\frac{\bm J}{\brcurs}) \)
 
-\(\bm \nabla \times \bm J = \frac{1}{c}\dot{\bm J} \times \hat{\bm r}_c\); \(\qquad\)
-\(\frac{\partial \bm A}{\partial t} = \frac{\mu_0}{4\pi}\int \frac{\dot{\bm J}}{r_c}d\tau'\)
+\(\bm \nabla \times \bm J = \frac{1}{c}\dot{\bm J} \times \hat{\brcurs}\); \(\qquad\)
+\(\frac{\partial \bm A}{\partial t} = \frac{\mu_0}{4\pi}\int \frac{\dot{\bm J}}{\brcurs}d\tau'\)
 
 Jefimenko's equations:
-\(\bm E(\bm r, t) = \frac{1}{4\pi \epsilon_0} \int [ \frac{\rho(\bm r', t_r)}{r_c^2} \hat{\bm r}_c + \frac{\dot{\rho}(\bm r', t_r)}{c r_c} \hat{\bm r}_c - \frac{\dot{\bm J}(\bm r', t_r)}{c^2 r_c} ] d\tau'\)   
+\(\bm E(\bm r, t) = \frac{1}{4\pi \epsilon_0} \int [ \frac{\rho(\bm r', t_r)}{\brcurs^2} \hat{\brcurs} + \frac{\dot{\rho}(\bm r', t_r)}{c \brcurs} \hat{\brcurs} - \frac{\dot{\bm J}(\bm r', t_r)}{c^2 \brcurs} ] d\tau'\)   
 
-\(\bm B(\bm r, t) = \frac{\mu_0}{4\pi} \int [ \frac{\bm J(\bm r', t_r)}{r_c^2} + \frac{\dot{\bm J}(\bm r', t_r)}{c r_c} ] \times \hat{\bm r}_c d\tau'\)  
+\(\bm B(\bm r, t) = \frac{\mu_0}{4\pi} \int [ \frac{\bm J(\bm r', t_r)}{\brcurs^2} + \frac{\dot{\bm J}(\bm r', t_r)}{c \brcurs} ] \times \hat{\brcurs} d\tau'\)  
 
 
 Liénard-Wiechert potentials:
 
-\(\bm A(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_r)}{r_c} d\tau'\)
+\(\bm A(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_r)}{\brcurs} d\tau'\)
 
-\(V(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(\bm r', t_r)}{r_c} d\tau'\)  
+\(V(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(\bm r', t_r)}{\brcurs} d\tau'\)  
 
 Vel. charge ret. time:
-\(\int \rho(\bm r', t_r)d\tau ' = \frac{q}{1-\hat{\bm r}_c \cdot \frac{\bm v}{c}}\)
+\(\int \rho(\bm r', t_r)d\tau ' = \frac{q}{1-\hat{\brcurs} \cdot \frac{\bm v}{c}}\)
 
 Apparant vol \(\tau '\) and actual vol \(\tau\):
-\(\tau' = \frac{\tau}{1-\hat{\bm r}_c \cdot \frac{\bm v}{c}}\)
+\(\tau' = \frac{\tau}{1-\hat{\brcurs} \cdot \frac{\bm v}{c}}\)
 
 Fields for a moving point charge:
-\(\bm u \equiv c \hat{\bm r}_c - \bm v\)
+\(\bm u \equiv c \hat{\brcurs} - \bm v\)
 
-\(\bm E(\bm r, t) = \frac{q}{4\pi \epsilon_0} \frac{r_c}{(\hat{\bm r}_c \cdot \bm u)^3 r_c^2} [(c^2-v^2)\bm u + \bm r_c \times (\bm u \times \bm a)]\)  
+\(\bm E(\bm r, t) = \frac{q}{4\pi \epsilon_0} \frac{\brcurs}{(\hat{\brcurs} \cdot \bm u)^3 \brcurs^2} [(c^2-v^2)\bm u + \brcurs \times (\bm u \times \bm a)]\)  
 
-\(\bm B(\bm r, t) = \frac{1}{c}\hat{\bm r}_c \times \bm E(\bm r, t)\)
+\(\bm B(\bm r, t) = \frac{1}{c}\hat{\brcurs} \times \bm E(\bm r, t)\)
 
 Resulting force:
 
-\(\bm F = \frac{qQ}{4\pi \epsilon_0}\frac{r_c}{(\hat{\bm r}_c \cdot \bm u)^3}\{[(c^2-v^2)\bm u + \bm r_c \times (\bm u \times \bm a)] + \frac{\bm V}{c}\times[\hat{\bm r}_c \times [(c^2-v^2) \bm u + \bm r_c \times (\bm u \times \bm a)]]\}\)
+\(\bm F = \frac{qQ}{4\pi \epsilon_0}\frac{\brcurs}{(\hat{\brcurs} \cdot \bm u)^3}\{[(c^2-v^2)\bm u + \brcurs \times (\bm u \times \bm a)] + \frac{\bm V}{c}\times[\hat{\brcurs} \times [(c^2-v^2) \bm u + \brcurs\times (\bm u \times \bm a)]]\}\)
 
 Fields of moving point charge in non-relativistic limit: 
 \(\bm R \equiv \bm r - \bm v t\)
@@ -588,12 +593,11 @@ Fields of moving point charge in non-relativistic limit:
 
 \(\bm B (\bm r, t) = \frac{\mu_0}{4\pi} \frac{1- \frac{v^2}{c^2}}{(1 - \frac{v^2 \sin^2\theta}{c^2})^{3/2}} \frac{\hat{\bm R} \times \bm v}{R^2} \approx \frac{\mu_0}{4\pi} \frac{q}{R^2}(\bm v \times\hat{\bm R})\)
 
-\(\hat{\bm r}_c = \frac{\bm r - \bm v t_r}{r_c} = \frac{(\bm r - \bm v t) + (t - t_r) \bm v}{r_c} = \frac{\bm R}{r_c} + \frac{\bm v}{c}\)
+\(\hat{\brcurs} = \frac{\bm r - \bm v t_r}{\brcurs} = \frac{(\bm r - \bm v t) + (t - t_r) \bm v}{\brcurs} = \frac{\bm R}{\brcurs} + \frac{\bm v}{c}\)
 
 
-\(\bm B = \frac{1}{c}(\bm r_c \times \bm E) = \frac{1}{c^2}(\bm v \times \bm E)\);
-\(\frac{\partial t_r}{\partial t} = \frac{cr_c }{\bm r_c \cdot \bm u}\)
-
+\(\bm B = \frac{1}{c}(\brcurs \times \bm E) = \frac{1}{c^2}(\bm v \times \bm E)\);
+\(\frac{\partial t_r}{\partial t} = \frac{c\brcurs }{\brcurs \cdot \bm u}\)
 
 
 
@@ -614,7 +618,7 @@ wavelength:
 
 Current: \(\bm I(t)= \frac{d q}{dt} \hat{\bm z} = -q_0 \omega \sin(\omega t) \hat{\bm z}\)
 
-\(\bm A (\bm r,t) = \frac{\mu_0}{4\pi} \int_{-d/2}^{d/2} \frac{-q_0 \omega \sin(\omega (t - \frac{r_c}{c})) \hat{\bm z}}{r_c} dz\)
+\(\bm A (\bm r,t) = \frac{\mu_0}{4\pi} \int_{-d/2}^{d/2} \frac{-q_0 \omega \sin(\omega (t - \frac{\brcurs}{c})) \hat{\bm z}}{\brcurs} dz\)
 
 \(\bm \nabla V = \frac{\partial V}{\partial r}\hat{\bm r} + \frac{1}{r}\frac{\partial V}{\partial \theta} \hat{\bm \theta}\)
 
@@ -840,7 +844,7 @@ Field tensor:
 
 \secblock{Handige rekenregels}
 
-Coordinate transoformation:
+Coordinate transformation:
 
 Spherical:
 
@@ -856,6 +860,8 @@ Spherical:
 
 \(\hat{\bm \phi} = -\sin\phi \hat{\bm x} + \cos\phi \hat{\bm y}\)
 
+\(d \bm a = r^2 d \Omega \hat{r} = r^2 \sin \theta d\theta d\phi \hat{r}\)
+
 Cylindrical:
 
 \(\hat{\bm x} = \cos \phi \hat{\bm s} - \sin \phi \hat{\bm \phi}\)
@@ -869,6 +875,8 @@ Cylindrical:
 \(\hat{\bm \phi} = -\sin \phi \hat{\bm x} + \cos \phi \hat{\bm y}\)
 
 Goniometric identities:
+
+
 
 \end{multicols*}
 \end{document}
