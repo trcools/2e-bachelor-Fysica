@@ -1,3 +1,5 @@
+\subsection{Maschke's Theorem}
+
 \begin{theorem}[Maschke's Theorem]
     Elke representatie van een eindige groep \(G\) is equivalent aan de directe som van irreps zonder triviale deelruimtes.
 \end{theorem}
@@ -9,7 +11,7 @@
         D(r) & C(r)
     \end{pmatrix}
     \]
-    met de eigenschap dat \(D(ab) = D(a)D(b) + C(a)D(b)\), nu willen we een gelijksvormigheidstransformatie vinden van de vorm:
+    met de eigenschap dat \(D(ab) = D(a)B(b) + C(a)D(b)\), nu willen we een gelijksvormigheidstransformatie vinden van de vorm:
     \[
     \begin{pmatrix}
         \mathds{1} & 0 \\
@@ -34,11 +36,14 @@
     We kunnen \(F\) vinden door te sommeren over alle elementen van de groep:
     \[F = \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1}\]
     We zullen nu aantonen dat deze \(F\) voldoet aan de vergelijking \(D(r) = F B(r) - C(r) F\):
+
     \begin{align*}
-    F B(r) - C(r) F &= \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1} B(r) - \frac{1}{|G|} \sum_{g\in G} C(r) D(g) B(g)^{-1} \\
-    &= \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1} B(r) - \frac{1}{|G|} \sum_{g\in G} D(rg) B(g)^{-1} \\
-    &= \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1} B(r) - \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1} B(r) \\
-    &= 0
+        F B(r) - C(r) F &= \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1} B(r) - \frac{1}{|G|} \sum_{g\in G} C(r) D(g) B(g)^{-1} \\
+        &= \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1} B(r) - \frac{1}{|G|} \sum_{g\in G} \left(D(rg)-D(r)B(g)\right) B(g)^{-1} \\
+        &= \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1} B(r) - \frac{1}{|G|} \sum_{g\in G} D(rg) B(g)^{-1} + \frac{1}{|G|} \sum_{g\in G} D(r) B(g)B(g)^{-1} \\
+        &= \frac{1}{|G|} \sum_{g\in G} D(g) B(g)^{-1} B(r) - \frac{1}{|G|} \sum_{h\in G} D(h) B(h)^{-1} B(r) + D(r) \\
+        &= D(r)
     \end{align*}
+
     Dus \(F\) voldoet aan de vergelijking \(D(r) = F B(r) - C(r) F\), en we kunnen de representatie diagonalizeren zonder dat er triviale deelruimtes ontstaan.
 \end{proof}

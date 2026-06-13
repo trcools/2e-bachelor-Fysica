@@ -1,0 +1,632 @@
+% ============================================================
+%  Weetjes & Formules – Hoofdstuk 2: Sferische Sterrenkunde
+%  C004206A – Sterren en Planeten  |  AJ 2025-26
+% ============================================================
+\documentclass[11pt, a4paper]{article}
+
+% --- taal & codering ---
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% --- wiskunde ---
+\usepackage{amsmath, amssymb, mathtools}
+
+% --- opmaak ---
+\usepackage[margin=2.2cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{booktabs, array, multirow}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+
+% --- gekleurde kaders (tcolorbox) ---
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+
+% Kleurenpalet
+\definecolor{blauw}{RGB}{0,70,140}
+\definecolor{groen}{RGB}{0,110,60}
+\definecolor{rood}{RGB}{180,30,30}
+\definecolor{oranje}{RGB}{200,100,0}
+\definecolor{lichtblauw}{RGB}{230,240,255}
+\definecolor{lichtgroen}{RGB}{230,248,238}
+\definecolor{lichtrood}{RGB}{255,235,235}
+\definecolor{lichtoranje}{RGB}{255,245,225}
+\definecolor{grijs}{RGB}{100,100,100}
+
+% --- kader-stijlen ---
+\newtcolorbox{formule}[1][]{
+  enhanced, breakable,
+  colback=lichtblauw, colframe=blauw,
+  fonttitle=\bfseries\color{white},
+  coltitle=white, attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=blauw, sharp corners},
+  sharp corners=south,
+  title={#1}
+}
+
+\newtcolorbox{weetje}[1][]{
+  enhanced, breakable,
+  colback=lichtgroen, colframe=groen,
+  fonttitle=\bfseries\color{white},
+  coltitle=white, attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=groen, sharp corners},
+  sharp corners=south,
+  title={#1}
+}
+
+\newtcolorbox{opgelet}[1][]{
+  enhanced, breakable,
+  colback=lichtrood, colframe=rood,
+  fonttitle=\bfseries\color{white},
+  coltitle=white, attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=rood, sharp corners},
+  sharp corners=south,
+  title={#1}
+}
+
+\newtcolorbox{tip}[1][]{
+  enhanced, breakable,
+  colback=lichtoranje, colframe=oranje,
+  fonttitle=\bfseries\color{white},
+  coltitle=white, attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=oranje, sharp corners},
+  sharp corners=south,
+  title={#1}
+}
+
+% --- sectietitels ---
+\titleformat{\section}{\large\bfseries\color{blauw}}{}{0em}{}[\color{blauw}\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{groen}}{}{0em}{}
+
+% --- kop- en voettekst ---
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{grijs}{\small C004206A – Sterren en Planeten}}
+\rhead{\textcolor{grijs}{\small H2: Sferische Sterrenkunde}}
+\cfoot{\textcolor{grijs}{\small \thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- handige macro's ---
+\newcommand{\graden}{^{\circ}}
+\newcommand{\boogmin}{'}
+\newcommand{\boogsec}{''}
+\newcommand{\AstrE}{\mathrm{AE}}
+\newcommand{\zon}{\odot}
+\newcommand{\aarde}{\oplus}
+\newcommand{\hoekenheid}{^\mathrm{h}}  % uurhoek in uren
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+\begin{center}
+  {\LARGE\bfseries\color{blauw} Weetjes \& Formules}\\[4pt]
+  {\large Hoofdstuk 2 – Sferische Sterrenkunde}\\[2pt]
+  {\normalsize C004206A – Sterren en Planeten \quad|\quad AJ 2025--26}
+\end{center}
+\vspace{0.3cm}
+\hrule height 2pt \vspace{0.5cm}
+
+\tableofcontents
+
+\newpage
+
+% ============================================================
+\section{Algemeen: eenheden en rekenregels}
+% ============================================================
+
+\begin{weetje}[Werkmethode]
+\begin{enumerate}[leftmargin=1.5em]
+  \item Maak \textbf{eerst een tekening}, dan wiskunde (formules).
+  \item Werk \textbf{wiskunde} (symbolisch) uit, dan pas \textbf{rekenen} (getallen).
+  \item De \textbf{methode} is belangrijker dan het numerieke resultaat.
+  \item Reken onderweg in \textbf{radialen}; geef het eindresultaat in de gevraagde eenheid.
+  \item Om van radialen naar $\graden$, $\boogmin$, $\boogsec$ om te rekenen, heb je \textbf{minstens 6 decimalen} nodig.
+\end{enumerate}
+\end{weetje}
+
+\begin{formule}[Eenheidsomrekeningen]
+\[
+  1\graden = 60\boogmin = 3600\boogsec \qquad
+  1\,\mathrm{h} = 60\,\mathrm{m} = 3600\,\mathrm{s}
+\]
+\[
+  180\graden = \pi\,\text{rad} \implies 1\graden = \frac{\pi}{180}\,\text{rad}
+\]
+\[
+  180\graden = 12\,\mathrm{h} \implies 1\graden = \frac{1}{15}\,\mathrm{h} = 4\,\mathrm{m}
+  \qquad 1\,\mathrm{h} = 15\graden
+\]
+\end{formule}
+
+\begin{tip}[Nuttige goniometrische identiteiten]
+\[
+  \cos(a+b) = \cos a\cos b - \sin a\sin b
+\]
+\[
+  \sin(a+b) = \sin a\cos b + \cos a\sin b 
+\]
+\[
+  \sin^2 x + \cos^2 x = 1 \qquad \tan x = \frac{\sin x}{\cos x}
+\]
+Tekens bij $\arctan$: gebruik \texttt{atan2}$(y,x)$ om het juiste kwadrant te bepalen.
+\end{tip}
+
+% ============================================================
+\section{Sferische Meetkunde}
+% ============================================================
+
+\subsection{De boldriehoek}
+
+Een \textbf{boldriehoek} $ABC$ op een eenheidssfeer heeft hoeken $A$, $B$, $C$ (bij de vertices) en \textbf{centrale hoeken} (boogzijden) $a$, $b$, $c$, waarbij $a$ tegenover vertex $A$ ligt, enz.
+
+Voor een sfeer met straal $r$: booglengte van zijde met centrale hoek $c$ is $\ell = rc$.
+
+\begin{formule}[Cosinusregel (drie versies)]
+\begin{align*}
+  \cos a &= \cos A\,\sin b\,\sin c + \cos b\,\cos c \\
+  \cos b &= \cos B\,\sin a\,\sin c + \cos a\,\cos c \\
+  \cos c &= \cos C\,\sin a\,\sin b + \cos a\,\cos b
+\end{align*}
+\end{formule}
+
+\begin{formule}[Sinusregel]
+\[
+  \frac{\sin a}{\sin A} = \frac{\sin b}{\sin B} = \frac{\sin c}{\sin C}
+\]
+\end{formule}
+
+\begin{weetje}[Vlakke limiet]
+Voor kleine hoeken ($\sin\alpha \approx \alpha$, $\cos\alpha \approx 1$) gaat de sferische cosinusregel over in de \textbf{vlakke} cosinusregel:
+\[
+  a^2 = b^2 + c^2 - 2bc\cos A
+\]
+en voor $A = 90\graden$: stelling van Pythagoras $a^2 = b^2 + c^2$.
+\end{weetje}
+
+% ============================================================
+\section{Coördinatenstelsels -- overzicht}
+% ============================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{3.2cm} p{3.5cm} p{3.5cm} p{4cm}}
+\toprule
+\textbf{Stelsel} & \textbf{Referentievlak} & \textbf{Coördinaten} & \textbf{Gebruik} \\
+\midrule
+\textbf{Horizontaal} & Horizonvlak (lokaal) & Hoogte $a$, azimuth $A$ & Waarnemen ``nu''; plaatsafhankelijk en tijdsafhankelijk \\[4pt]
+\textbf{Equatoriaal} & Equatorvlak & Declinatie $\delta$, rechte klimming $\alpha$ of uurhoek $h$ & Catalogen; $(\alpha,\delta)$ zijn tijdsonafhankelijk \\[4pt]
+\textbf{Ecliptisch} & Eclipticavlak & Ecl.\ breedte $\beta$, ecl.\ lengte $\lambda_\mathrm{ecl}$ & Objecten in het zonnestelsel \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Alle drie stelsels gebruiken het \textbf{lentepunt} $\gamma$ als nulrichting in hun referentievlak.
+
+% ============================================================
+\section{Horizontale coördinaten $(A, a)$}
+% ============================================================
+
+\begin{formule}[Definities]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Hoogte} $a$: hoek tussen kijkrichting en horizon, gemeten langs de verticaal.
+    \quad $a \in [-90\graden, +90\graden]$
+  \item \textbf{Azimuth} $A$: hoek tussen de verticaal door de kijkrichting en het snijpunt van horizon en bovenmeridiaan.
+    \quad $A \in [-180\graden, +180\graden]$
+\end{itemize}
+Richtingsvector:
+\[
+  \hat{n} = -\sin A\cos a\;\hat{e}_\mathrm{oost}
+           + \cos A\cos a\;\hat{e}_\mathrm{noen}
+           + \sin a\;\hat{e}_\mathrm{zenith}
+\]
+\end{formule}
+
+\begin{weetje}[Teken-conventie azimuth]
+\begin{itemize}[leftmargin=1.5em]
+  \item $A < 0$: object staat ten \emph{oosten} van de bovenmeridiaan (staat nog te \emph{rijzen})
+  \item $A = 0$: object staat \emph{op} de bovenmeridiaan (\textbf{culminatie})
+  \item $A > 0$: object staat ten \emph{westen} van de bovenmeridiaan (is al aan \emph{dalen})
+\end{itemize}
+Deze conventie is hetzelfde op beide halfronden: geldig voor de zon buiten de keerkringen.
+\end{weetje}
+
+% ============================================================
+\section{Equatoriale coördinaten}
+% ============================================================
+
+\subsection{Declinatie $\delta$, rechte klimming $\alpha$, uurhoek $h$}
+
+\begin{formule}[Definities]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Declinatie} $\delta$: hoek t.o.v.\ equator, \emph{positief} naar de noordelijke hemelpool.
+    \quad $\delta \in [-90\graden, +90\graden]$
+  \item \textbf{Rechte klimming} $\alpha$: gemeten \emph{oostwaarts} langs de equator vanaf het lentepunt $\gamma$.
+    \quad $\alpha \in [0^\mathrm{h}, 24^\mathrm{h})$ of $[0\graden, 360\graden)$
+  \item \textbf{Uurhoek} $h$: gemeten \emph{westwaarts} vanaf de bovenmeridiaan; neemt toe door aardrotatie.
+    \quad $h \in [0^\mathrm{h}, 24^\mathrm{h})$
+\end{itemize}
+\end{formule}
+
+\begin{formule}[Siderische tijd]
+\[
+  \boxed{\Theta = h + \alpha}
+\]
+$\Theta$ = siderische tijd = uurhoek van het lentepunt. \\
+Lokaal: $\Theta_\mathrm{lokaal} = \mathrm{GMST} + \lambda$ \quad (met $\lambda$ de geografische lengtegraad, oost positief).
+\end{formule}
+
+\begin{weetje}[Speciale uurhoeken -- onthoud deze!]
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ll}
+  $h = 0^\mathrm{h}$ & object op \textbf{bovenmeridiaan} $\to$ \textbf{bovenculminatie} \\
+  $h = 12^\mathrm{h}$ & object op \textbf{benedenmeridiaan} $\to$ \textbf{benedenculminatie} \\
+  $h < 0$ (of $h > 12^\mathrm{h}$ vanaf 24h systeem) & object \emph{ten oosten}, nog niet geculmineerd \\
+  $h > 0$ (positief, $< 12^\mathrm{h}$) & object \emph{ten westen}, al geculmineerd \\
+\end{tabular}
+
+Bij bovenculminatie: $\sin h = 0$, $\cos h = 1$.\\
+Bij benedenculminatie: $\sin h = 0$, $\cos h = -1$.
+\end{weetje}
+
+% ============================================================
+\section{Conversie horizontaal $\leftrightarrow$ equatoriaal}
+% ============================================================
+
+\begin{opgelet}[Tekenkeuze halfrond]
+Gebruik het \textbf{bovenste} teken ($+$ of $-$) voor een waarnemer op het \textbf{noordelijk} halfrond ($\varphi > 0$) en het \textbf{onderste} teken voor het \textbf{zuidelijk} halfrond ($\varphi < 0$).
+\end{opgelet}
+
+\begin{formule}[Van equatoriaal $(h, \delta)$ naar horizontaal $(A, a)$]
+\begin{align}
+  \sin a &= \cos h\cos\delta\cos\varphi + \sin\delta\sin\varphi \label{eq:sina} \\
+  \cos A\cos a &= \pm\bigl(\cos h\cos\delta\sin\varphi - \cos\varphi\sin\delta\bigr) \label{eq:cosA} \\
+  \sin A\cos a &= \sin h\cos\delta \label{eq:sinA}
+\end{align}
+\end{formule}
+
+\begin{formule}[Van horizontaal $(A, a)$ naar equatoriaal $(h, \delta)$]
+\begin{align}
+  \sin\delta &= \mp\cos A\cos a\cos\varphi + \sin a\sin\varphi \label{eq:sindelta} \\
+  \cos h\cos\delta &= \pm\cos A\cos a\sin\varphi + \cos\varphi\sin a \label{eq:cosh} \\
+  \sin h\cos\delta &= \sin A\cos a \label{eq:sinh}
+\end{align}
+\end{formule}
+
+\begin{weetje}[Handige afleiding via de sinusregel]
+Uit vergelijkingen \eqref{eq:sinA} en \eqref{eq:sinh} volgt direct:
+\[
+  \frac{\cos\delta}{\sin A} = \frac{\cos a}{\sin h}
+\]
+Dit is eigenlijk de sinusregel toegepast op de boldriehoek pool–zenith–ster.
+\end{weetje}
+
+\begin{tip}[``3 hoeken in, 2 hoeken uit'']
+De conversie horizontaal $\leftrightarrow$ equatoriaal vraagt steeds \textbf{3 ingangen} en geeft \textbf{2 uitgangen}:
+\begin{center}
+  $(h,\,\delta,\,\varphi) \;\longrightarrow\; (A,\,a)$
+  \qquad of \qquad
+  $(A,\,a,\,\varphi) \;\longrightarrow\; (h,\,\delta)$
+\end{center}
+Let op: je berekent $A$ en $h$ uit twee vergelijkingen (één met sinus, één met cosinus): \textbf{gebruik beide} om het juiste kwadrant te bepalen!
+\end{tip}
+
+% ============================================================
+\section{Ecliptische coördinaten en zonsformules}
+% ============================================================
+
+\begin{formule}[Definities]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Obliquiteit} van de ecliptica: $\varepsilon = 23\graden 26\boogmin 21\boogsec$ (J2000.0)
+  \item \textbf{Ecliptische breedte} $\beta$: hoek t.o.v.\ ecliptica, positief naar de noordelijke ecliptische pool.
+  \item \textbf{Ecliptische lengte} $\lambda_\mathrm{ecl}$: gemeten \emph{oostwaarts} langs de ecliptica vanaf $\gamma$.
+\end{itemize}
+\end{formule}
+
+\begin{formule}[Conversie equatoriaal $\to$ ecliptisch]
+\begin{align}
+  \cos\beta\,\cos\lambda_\mathrm{ecl} &= \cos\delta\,\cos\alpha \\
+  \cos\beta\,\sin\lambda_\mathrm{ecl} &= \sin\delta\,\sin\varepsilon + \cos\delta\,\sin\alpha\,\cos\varepsilon \\
+  \sin\beta &= \sin\delta\,\cos\varepsilon - \cos\delta\,\sin\alpha\,\sin\varepsilon
+\end{align}
+\end{formule}
+
+\begin{formule}[Zonsformules ($\beta_\zon = 0\graden$ exact)]
+\begin{align}
+  \sin\delta_\zon &= \sin\lambda_\zon\,\sin\varepsilon \\
+  \tan\alpha_\zon &= \tan\lambda_\zon\,\cos\varepsilon \\
+  \tan\delta_\zon &= \sin\alpha_\zon\,\tan\varepsilon
+\end{align}
+De derde formule volgt uit de eerste twee en is handig als controle.
+\end{formule}
+
+\begin{formule}[Ecliptische lengte van de zon (benadering)]
+\[
+  \lambda_\zon(t) \approx \lambda_\zon(t_\mathrm{ref}) + \frac{360\graden}{365.2422\,\mathrm{d}}\,(t - t_\mathrm{ref})
+\]
+\end{formule}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Tijdstip (noordelijk)} & \textbf{Datum 2026} & $\alpha_\zon$ & $\delta_\zon$ & $\lambda_\zon$ \\
+\midrule
+Lente-equinox    & 20 maart      & $0^\mathrm{h}$  & $0\graden$    & $0\graden$ \\
+Zomerzonnewende  & 21 juni       & $6^\mathrm{h}$  & $+\varepsilon$ & $90\graden$ \\
+Herfst-equinox   & 23 september  & $12^\mathrm{h}$ & $0\graden$    & $180\graden$ \\
+Winterzonnewende & 21 december   & $18^\mathrm{h}$ & $-\varepsilon$ & $270\graden$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{weetje}[Keerkringen en poolcirkels]
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{Kreeftskeerkring}: $\varphi = +\varepsilon \approx +23.44\graden$
+    (zon in zenith op zomerzonnewende)
+  \item \textbf{Steenbokskeerkring}: $\varphi = -\varepsilon \approx -23.44\graden$
+    (zon in zenith op winterzonnewende)
+  \item \textbf{Noordelijke poolcirkel}: $\varphi = 90\graden - \varepsilon \approx +66.56\graden$
+    (pooldag/poolnacht grens)
+  \item \textbf{Zuidelijke poolcirkel}: $\varphi = -(90\graden - \varepsilon) \approx -66.56\graden$
+\end{itemize}
+\textbf{Buiten de keerkringen}: de zon culmineert \emph{altijd} aan dezelfde kant van het zenith.\\
+\textbf{Tussen de keerkringen}: de zijde van culminatie wisselt doorheen het jaar.
+\end{weetje}
+
+% ============================================================
+\section{Culminatie, opkomst en ondergang}
+% ============================================================
+
+\subsection{Bovenculminatie ($h = 0^\mathrm{h}$)}
+
+\begin{formule}[Maximale hoogte]
+\[
+  a_\mathrm{max} =
+  \begin{cases}
+    90\graden - \varphi + \delta & \text{culminatie \emph{ten zuiden} van zenith} \\
+    90\graden + \varphi - \delta & \text{culminatie \emph{ten noorden} van zenith}
+  \end{cases}
+\]
+Kies de formule zodat $|a_\mathrm{max}| \leq 90\graden$.
+\end{formule}
+
+\begin{weetje}[Wanneer culmineert een ster ten noorden of ten zuiden? (noordelijk halfrond)]
+\begin{itemize}[leftmargin=1.5em]
+  \item $\delta < \varphi$: ster culmineert \textbf{ten zuiden} van het zenith
+    $\to$ gebruik $a_\mathrm{max} = 90\graden - \varphi + \delta$
+  \item $\delta > \varphi$: ster culmineert \textbf{ten noorden} van het zenith
+    $\to$ gebruik $a_\mathrm{max} = 90\graden + \varphi - \delta$
+  \item $\delta = \varphi$: ster passeert door het \textbf{zenith} ($a_\mathrm{max} = 90\graden$)
+\end{itemize}
+\textbf{Vuistregel:} een ster culmineert aan dezelfde kant van het zenith als de hemelpool als $|\delta| > |\varphi|$.
+\end{weetje}
+
+\subsection{Benedenculminatie ($h = 12^\mathrm{h}$)}
+
+\begin{formule}[Minimale hoogte]
+\[
+  a_\mathrm{min} = |\varphi + \delta| - 90\graden
+  \quad \text{(kies teken zodat uitdrukking klopt voor N/Z-halfrond)}
+\]
+\end{formule}
+
+\subsection{Circumpolaire sterren en nooit-zichtbare sterren}
+
+\begin{formule}[Voorwaarden zichtbaarheid (noordelijk halfrond, $\varphi > 0$)]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{ll}
+  \textbf{Altijd zichtbaar (circumpolair):} & $\delta > 90\graden - \varphi$ \\
+  \textbf{Soms zichtbaar:}                  & $\varphi - 90\graden < \delta < 90\graden - \varphi$ \\
+  \textbf{Nooit zichtbaar:}                 & $\delta < \varphi - 90\graden$ \\
+\end{tabular}
+
+\medskip
+\textbf{Voorbeeld -- België ($\varphi \approx 50\graden$):}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
+  \item Circumpolair: $\delta \gtrsim 40\graden$
+  \item Nooit zichtbaar: $\delta \lesssim -40\graden$
+\end{itemize}
+\end{formule}
+
+\subsection{Observationeel declinatie en breedte bepalen (circumpolair object)}
+
+\begin{formule}[Uit culminatiehoogtes]
+\[
+  \delta = \tfrac{1}{2}(a_\mathrm{min} + a_\mathrm{max})
+  \qquad
+  \varphi = 90\graden - \tfrac{1}{2}(a_\mathrm{max} - a_\mathrm{min})
+\]
+\end{formule}
+
+\subsection{Opkomst en ondergang ($a = 0\graden$)}
+
+\begin{formule}[Uurhoek bij opkomst/ondergang]
+\[
+  \cos h = -\tan\delta\,\tan\varphi
+\]
+$h < 0$ (of equivalent $h > 12^\mathrm{h}$): opkomst \quad|\quad $h > 0$: ondergang.
+\end{formule}
+
+\begin{opgelet}[Correcties voor zon en maan]
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ll}
+  \textbf{Zon} op en onder: & middelpunt op $a = -50\boogmin = -16\boogmin\text{(straal)} - 34\boogmin\text{(refractie)}$ \\
+  \textbf{Maan} op en onder: & middelpunt op $a = +7\boogmin = -16\boogmin - 34\boogmin + 57\boogmin\text{(parallax)}$ \\
+\end{tabular}
+\end{opgelet}
+
+% ============================================================
+\section{Tijdsmeting}
+% ============================================================
+
+\subsection{Siderische dag vs.\ synodische (zonse) dag}
+
+\begin{formule}[Relatie siderische en synodische dag (prograde rotatie)]
+\[
+  \frac{1}{\tau} = \frac{1}{\tau_\star} - \frac{1}{P}
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $\tau = 24\,\mathrm{h}$: synodische (gemiddelde zonse) dag
+  \item $\tau_\star = 23^\mathrm{h}56^\mathrm{m}4.1^\mathrm{s}$: siderische dag ($\approx 4\,\mathrm{min}$ korter)
+  \item $P = 365.2564\,\mathrm{d}$: siderisch jaar
+\end{itemize}
+Voor \emph{retrograde} rotatie: $1/\tau = 1/\tau_\star + 1/P$.
+\end{formule}
+
+\begin{weetje}[Soorten jaren]
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ll}
+  \textbf{Tropisch jaar}      & 365.24219 d \quad (lente-equinox tot lente-equinox; basis kalender) \\
+  \textbf{Siderisch jaar}     & 365.25636 d \quad (zon keert terug t.o.v.\ sterren) \\
+  \textbf{Anomalistisch jaar} & 365.25964 d \quad (perihelium tot perihelium) \\
+\end{tabular}
+\end{weetje}
+
+\subsection{Tijdsvereffening (Equation of Time, ET)}
+
+\begin{formule}[Zonetijd uit de uurhoek van de zon]
+\[
+  \boxed{T_\mathrm{zone} = h_\zon + 12\,\mathrm{h} - \mathrm{ET} - \lambda + \Delta T_Z}
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $h_\zon$: uurhoek van de echte zon (meetbaar)
+  \item $\mathrm{ET} = \lambda_F - \alpha_\zon$: tijdsvereffening (max.\ $\approx 16\,\mathrm{min}$)
+  \item $\lambda$: geografische lengtegraad waarnemer (oost positief)
+  \item $\Delta T_Z$: tijdzoneverschil t.o.v.\ UTC (bv.\ CET: $+1\,\mathrm{h}$; CEST: $+2\,\mathrm{h}$)
+\end{itemize}
+\end{formule}
+
+\begin{weetje}[``2 hoeken in, 1 hoek uit'' bij tijdsrekening]
+\begin{center}
+$(\alpha_\zon,\,\delta_\zon,\,\lambda_\zon)$ = datum \quad|\quad
+$(h_\zon,\,\lambda,\,\mathrm{ET},\,\Delta T_Z)$ = zonetijd \quad|\quad
+$(\alpha,\,h) \xrightarrow{\,\Theta = \alpha + h\,}$ siderische tijd
+\end{center}
+\end{weetje}
+
+% ============================================================
+\section{Complicaties}
+% ============================================================
+
+\subsection{Precessie van de aardas}
+
+\begin{weetje}[Precessie -- kernpunten]
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item Oorzaak: zwaartekrachtskoppel van zon + maan op de afgevlakte aarde.
+  \item De aardas precesseert \emph{retrograad} (tegen de baanrotatie in) rondom de ecliptische pool.
+  \item Snelheid: $\dot\psi \approx 50.4\boogsec/\mathrm{jaar}$
+    \quad(zon: $16\boogsec/\mathrm{j}$, maan: $35\boogsec/\mathrm{j}$)
+  \item Periode: $\approx 25\,700$ jaar
+  \item Het lentepunt $\gamma$ schuift westwaarts langs de ecliptica.
+  \item Gevolg: equatoriale coördinaten $(\alpha, \delta)$ veranderen langzaam \\ $\Rightarrow$ catalogen vermelden een \textbf{epoch} (huidig standaard: \textbf{J2000.0}).
+\end{itemize}
+\end{weetje}
+
+\subsection{Atmosferische refractie}
+
+\begin{formule}[Refractiehoek $R$ (voor $z \lesssim 75\graden$)]
+\[
+  R = 16.27\boogsec \cdot \frac{P}{273 + T} \cdot \tan\zeta
+\]
+$P$: luchtdruk (hPa), $T$: temperatuur (°C), $\zeta$: \emph{schijnbare} zenith-afstand.
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $R > 0$: hemellichamen worden \emph{hoger} waargenomen dan ze echt staan.
+  \item Op de horizon ($\zeta \approx 90\graden$): $R \approx 34\boogmin$ (volgt uit nauwkeuriger berekening).
+  \item In het zenith: $R = 0$ (geen afbuiging).
+\end{itemize}
+\end{formule}
+
+\subsection{Aberratie}
+
+\begin{formule}[Aberratiehoek]
+\[
+  \alpha_\mathrm{aber} \approx \frac{v}{c}\sin\theta
+\]
+$v$ = snelheid waarnemer, $\theta$ = hoek tussen snelheidsrichting en kijkrichting.
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
+  \item Baanbeweging aarde ($v \approx 30\,\mathrm{km/s}$): $\alpha_\mathrm{max} \approx 20.6\boogsec$
+  \item Aardrotatie ($v \approx 0.5\,\mathrm{km/s}$): $\alpha_\mathrm{max} \approx 0.3\boogsec$
+\end{itemize}
+\end{formule}
+
+\subsection{Dagelijkse parallax}
+
+\begin{weetje}[Grootte-ordes dagelijkse parallax]
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+  Maan:  & $\pi \approx 57\boogmin$ \quad \textbf{niet te verwaarlozen!} \\
+  Zon:   & $\pi \approx 8.79\boogsec$ \quad verwaarloosbaar voor meeste toepassingen \\
+  Sterren: & volledig verwaarloosbaar \\
+\end{tabular}
+\end{weetje}
+
+% ============================================================
+\section{Positionele sterrenkunde}
+% ============================================================
+
+\begin{formule}[Jaarlijkse (trigonometrische) parallax en afstandsmaten]
+\[
+  r = \frac{1\,\AstrE}{\tan\pi} \approx \frac{1\,\AstrE}{\pi''}\,\mathrm{pc}
+\]
+\[
+  1\,\mathrm{pc} = \frac{1\,\AstrE}{\tan 1\boogsec} = 206\,264.806\,\AstrE
+               = 3.086\times10^{16}\,\mathrm{m} = 3.26\,\mathrm{lichtjaar}
+\]
+\end{formule}
+
+\begin{formule}[Dopplereffect -- radiële snelheid]
+\[
+  \frac{\Delta\lambda}{\lambda} = \frac{v_r}{c}
+\]
+$v_r > 0$: bron beweegt weg (roodverschuiving); $v_r < 0$: bron nadert (blauwverschuiving).
+\end{formule}
+
+% ============================================================
+\section{Snelle-referentietabel: speciale gevallen}
+% ============================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{p{5.5cm} p{8cm}}
+\toprule
+\textbf{Situatie} & \textbf{Formule / waarde} \\
+\midrule
+Bovenculminatie           & $h = 0^\mathrm{h}$;\; $\cos h = 1$;\; $\sin h = 0$ \\
+Benedenculminatie         & $h = 12^\mathrm{h}$;\; $\cos h = -1$;\; $\sin h = 0$ \\
+Opkomst / ondergang       & $a = 0\graden$;\; $\cos h = -\tan\delta\tan\varphi$ \\
+Ster passeert door zenith & $\delta = \varphi$;\; $a_\mathrm{max} = 90\graden$ \\
+Circumpolair (N-halfrond) & $\delta > 90\graden - \varphi$ \\
+Nooit zichtbaar (N-halfrond) & $\delta < \varphi - 90\graden$ \\
+\midrule
+Lentepunt $\gamma$  & $\alpha = 0^\mathrm{h}$,\; $\delta = 0\graden$,\; $\lambda_\mathrm{ecl} = 0\graden$ \\
+Herfstpunt          & $\alpha = 12^\mathrm{h}$,\; $\delta = 0\graden$,\; $\lambda_\mathrm{ecl} = 180\graden$ \\
+Zon op equinox      & $\delta_\zon = 0\graden$,\; $a_\zon^\mathrm{max} = 90\graden - \varphi$ (N-halfrond, culminatie Z) \\
+Zon op zomerzonnewende & $\delta_\zon = +\varepsilon$,\; $\lambda_\zon = 90\graden$ \\
+\midrule
+Siderische dag           & $\tau_\star = 23^\mathrm{h}56^\mathrm{m}4.1^\mathrm{s}$ \\
+Precessiesnelheid        & $50.4\boogsec/\mathrm{jaar}$;\; periode $\approx 25\,700$ jaar \\
+Obliquiteit $\varepsilon$ & $23\graden26\boogmin21\boogsec$ (J2000.0) \\
+Aardstraal               & $R_\oplus \approx 6371\,\mathrm{km}$ \\
+$1\,\mathrm{AE}$         & $149\,597\,870.700\,\mathrm{km}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+\begin{tip}[Stappenplan voor een typische oefening]
+\begin{enumerate}[leftmargin=1.5em, itemsep=3pt]
+  \item \textbf{Stel vast} welke coördinaten gegeven zijn en welke gevraagd worden.
+  \item \textbf{Kies} het juiste coördinatensysteem en de juiste conversieformules.
+  \item \textbf{Bepaal} de siderische tijd $\Theta$ indien nodig via $\Theta = h + \alpha$.
+  \item \textbf{Gebruik altijd twee vergelijkingen} (sin én cos) om $h$ of $A$ te berekenen: zo bepaal je het correcte kwadrant.
+  \item \textbf{Controleer}: klopt het teken? Is de hoogte positief (object boven horizon)?
+  \item \textbf{Corrigeer} indien gevraagd voor refractie, parallax of aberratie.
+\end{enumerate}
+\end{tip}
+
+\end{document}

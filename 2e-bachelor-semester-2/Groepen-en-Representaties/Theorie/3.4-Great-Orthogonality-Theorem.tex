@@ -1,0 +1,77 @@
+\subsection{Great Orthogonality Theorem}
+
+\begin{theorem}[Great Orthogonality Theorem]
+    Als \(\hat{N}\) alle inequivalente irreps van een eindige groep \(G\) zijn, dan geldt:
+    \[
+    \frac{1}{|G|}\sum_{x \in G} D^{(\alpha)}_{ij}(x) \bar{D}^{(\beta)}_{kl}(x) = \frac{1}{d_\alpha} \delta_{\alpha\beta} \delta_{ik} \delta_{jl}
+    \]
+    met \(d_\alpha\) de dimensie van de irrep \(\alpha\).
+
+    Dit betekent dat alle irreps samen een \(\sum_{\alpha=1}^{\hat{N}} d_\alpha^2\)-dimensionale orthogonale basis opspannen in een \(|G|\)-dimensionale vectorruimte.
+\end{theorem}
+
+\begin{proof}
+    Neem een arbitraire \(d_\alpha \times d_\beta\) matrix \(B\) en definieer
+    \[
+    Q = \sum_{x\in G} D^\alpha(x)\, B\, D^{\beta\dagger}(x).
+    \]
+
+    \textbf{Schur's lemma.}
+    Voor elke \(y \in G\) geldt:
+    \begin{align*}
+        D^\alpha(y)\, Q
+        &= \sum_x D^\alpha(yx)\, B\, D^{\beta\dagger}(x) \\
+        &= \sum_{x'} D^\alpha(x')\, B\, D^{\beta\dagger}(y^{-1}x') \\
+        &= \sum_{x'} D^\alpha(x')\, B\, \left(D^\beta(y^{-1})D^\beta(x')\right)^\dagger \\
+        &= \sum_{x'} D^\alpha(x')\, B\, D^{\beta\dagger}(x')\, D^{\beta\dagger}(y^{-1}) \\
+        &= \sum_{x'} D^\alpha(x')\, B\, D^{\beta\dagger}(x')\, D^{\beta}(y) \\
+        &= Q\, D^\beta(y),
+    \end{align*}
+    waarbij we de substitutie \(x' = yx\) en unitariteit \(D^{\beta\dagger}(y^{-1}) = D^\beta(y)\) hebben gebruikt.
+
+    Dit is precies de voorwaarde van Schur's lemma, dus
+    \[
+    Q = \delta_{\alpha\beta} \cdot c_\alpha \cdot \mathds{1}_{d_\alpha}
+    \]
+    voor een constante \(c_\alpha\) (en \(Q=0\) als \(\alpha \neq \beta\), want dan zijn de domein- en beelddimensies verschillend of de representaties inequivalent).
+
+    \medskip
+    \textbf{Bepaal \(c_\alpha\) via het spoor (geval \(\alpha = \beta\)).}
+
+    Aan de ene kant, omdat \(Q = c_\alpha \mathds{1}_{d_\alpha}\):
+    \[
+    \text{Tr}(Q) = c_\alpha\, d_\alpha.
+    \]
+
+    Aan de andere kant, met behulp van de \emph{cykliciteit} van het spoor en unitariteit van \(D^\alpha\) (zodat \(D^{\alpha\dagger}(x)D^\alpha(x) = \mathds{1}\)):
+    \begin{align*}
+        \text{Tr}(Q) 
+        &= \sum_{x \in G} \text{Tr}\left(D^\alpha(x)\, B\, D^{\alpha\dagger}(x)\right) \\
+        &= \sum_{x \in G} \text{Tr}\left(D^{\alpha\dagger}(x)\, D^\alpha(x)\, B\right) \\
+        &= \sum_{x \in G} \text{Tr}(B) \\
+        &= |G| \cdot \text{Tr}(B).
+    \end{align*}
+
+    Gelijkstellen geeft:
+    \[
+    c_\alpha = \frac{|G|\, \text{Tr}(B)}{d_\alpha}.
+    \]
+
+    Samengevat:
+    \[
+    Q_{ik} = \sum_{x \in G} \sum_{k,l} D^\alpha_{ik}(x)\, B_{jl}\, \bar{D}^\beta_{jl}(x)
+    = \delta_{\alpha\beta}\,\frac{|G|\,\text{Tr}(B)}{d_\alpha}\,\delta_{ik}.
+    \]
+    Deze relatie geldt voor \emph{elke} matrix \(B\). Kies nu specifiek \(B =  \ket{l}\bra{j}\),
+    dit is de matrix met \((\ket{l}\bra{j})_{ik} = \delta_{ij} \delta_{lk}\):
+    \begin{align*}
+    Q_{ik} &= \delta_{\alpha\beta} \delta_{lj}\frac{|G|}{d_\alpha} \delta_{ik} \\
+    &= \sum_{x \in G} D^\alpha(x)B \bar{D}^\beta(x)_{ik} \\
+    &= \sum_{x \in G} \sum_{r,s} (D^\alpha_{ir}(x) B_{rs} \bar{D}^\beta(x))_{ks} \\
+    \end{align*}
+    \[
+    \implies
+    \frac{1}{|G|}\sum_{x \in G} D^{(\alpha)}_{ij}(x)\, \bar{D}^{(\beta)}_{kl}(x) = \frac{1}{d_\alpha}\,\delta_{\alpha\beta}\,\delta_{ik}\,\delta_{jl}.
+    \]
+
+\end{proof}

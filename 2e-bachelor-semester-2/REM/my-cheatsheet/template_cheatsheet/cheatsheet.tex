@@ -1,0 +1,35 @@
+\documentclass[a4paper,landscape]{article}
+\usepackage[a4paper,landscape,margin=3mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[scaled=0.85]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{multicol}
+\usepackage{graphicx}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\makeatletter
+\renewcommand\normalsize{\@setfontsize\normalsize{6.0pt}{7.0pt}}
+\makeatother
+\linespread{0.88}
+\setlength{\columnsep}{3mm}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\newcommand{\rcurs}{\mbox{$\resizebox{.08in}{.07in}{\includegraphics[trim=1em 0 14em 0,clip]{ScriptR}}$}}
+\newcommand{\brcurs}{\mbox{$\resizebox{.08in}{.07in}{\includegraphics[trim=1em 0 14em 0,clip]{BoldR}}$}}
+\newcommand{\hrcurs}{\mbox{$\hat{\brcurs}$}}
+\newcommand{\sectionline}{\vspace{1pt}\hrule\vspace{1pt}}
+\newcommand{\csec}[1]{\sectionline\textbf{#1}\sectionline}
+
+\begin{document}
+\begin{multicols}{4}
+
+\rcurs \hrcurs \brcurs
+
+
+\end{multicols}
+\end{document}
