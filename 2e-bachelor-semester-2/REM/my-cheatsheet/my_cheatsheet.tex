@@ -82,11 +82,13 @@
 \secblock{H2 Electrostatics}
 
     Coulomb Force: 
-    \(\bm F = \frac{1}{4\pi \epsilon_0}\frac{qQ}{r^2}\hat{r}\)
+    \(\bm F = \frac{1}{4\pi \epsilon_0}\frac{qQ}{r^2}\hat{\brcurs}\)
 
-    Electric field:
+    Force on Q: \(\bm F = Q \bm E\)
+    
+    Coulomb's law:
     \(
-    \bm E (\bm r) = \frac{1}{4\pi \epsilon _0} \int \frac{\rho(\bm r ')}{r^2}\hat{\bm r} d\tau'
+    \bm E (\bm r) = \frac{1}{4\pi \epsilon _0} \int \frac{\rho(\bm r ')}{\rcurs^2}\hat{\brcurs} d\tau'
     \)
 
     Electric flux: 
@@ -102,9 +104,17 @@
 
     Electric potential:
 
-    \(V(\bm r) =-\int_0^r \bm E \cdot d \bm l \implies \bm E = - \nabla V \)
+    \(V(\bm r) =-\int_O^r \bm E \cdot d \bm l \implies \bm E = - \bm\nabla V \)
 
     % Poison/Laplace equation???
+    \(V (\bm r) = \frac{1}{4\pi \epsilon_0} \int \frac{\rho(\bm r')}{\rcurs} d\tau'\)
+
+
+    Boundary conditions:
+    \(E_1^{\parallel} = E_2^{\parallel}\); \(E_1^{\perp} - E_2^{\perp} = \frac{\sigma}{\epsilon_0}\)
+
+
+    \( \frac{\partial V_{above}}{\partial n} - \frac{\partial V_{below}}{\partial n} = -\frac{\sigma}{\epsilon_0} \); \(\frac{\partial V }{\partial n } = \bm \nabla \cdot \hat{\bm n}\)
 
     Work: 
 
@@ -112,7 +122,11 @@
 
     or: \(W = \frac{\epsilon_0}{2}\int E^2d\tau\)
 
-    %Electrostatic pressure ? (2.51)
+    \(W = \frac{1}{8 \pi \epsilon_0} \sum_{i=1}^n \sum_{j\neq i}^n \frac{q_i q_j}{\rcurs_{ij}}\)
+
+    Electrostatic pressure:
+    \(\bm f = \frac{1}{2 \epsilon_0}  \sigma^2 \hat{\bm n}\);
+    \(P = \frac{\epsilon_0}{2} E^2\)
 
     Capacitance:
     \(
@@ -122,6 +136,8 @@
 
 
     \secblock{H3 Potentials}
+
+    \(\sigma = - \epsilon_0 \frac{\partial V}{\partial n}\)
 
     %Laplace again (maar 3.1 niet te kennen?) (3.1)
 
@@ -135,8 +151,12 @@
     %\[
     %\bm P_l(x) = \frac{1}{2^l l! }(\frac{d}{dx})^l (x^2-1)^l
     %\]
+    \(\epsilon \equiv (\frac{r'}{r})(\frac{r'}{r}-2\cos \alpha)\)
 
-    \(\frac{1}{r_{c}} = \frac{1}{r}\sum^\infty_{n=0} (\frac{r'}{r})^n P_n (\cos \alpha)\)
+    \(\frac{1}{\brcurs} = \frac{1}{r}(1 + \epsilon)^{-\frac{1}{2}} = \frac{1}{r}(1 - \frac{1}{2}\epsilon + \frac{3}{8}\epsilon^2 - \frac{5}{16}\epsilon^3 + ...)\)
+
+
+    \(\frac{1}{\rcurs} = \frac{1}{r}\sum^\infty_{n=0} (\frac{r'}{r})^n P_n (\cos \alpha)\)
 
     Dipole contribution to potential:
 

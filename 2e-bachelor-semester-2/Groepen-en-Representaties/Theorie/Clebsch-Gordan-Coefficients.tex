@@ -1,28 +1,65 @@
+
 \subsection{Clebsch-Gordan Coefficients}
 
 De volgende eigenschappen kunnen worden aangetoond:
 
-Orthonormaliteit:
+\textbf{Orthonormaliteit:}
 \[
-\sum_{i_1, i_2} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3' s'}^{\alpha \beta \gamma'} = \delta_{\gamma, \gamma'} \delta_{s, s'} \delta_{i_3, i_3'}
+\sum_{i_1, i_2} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} \, C_{i_1 i_2 i_3' s'}^{\alpha \beta \gamma'} = \delta_{\gamma, \gamma'} \, \delta_{s, s'} \, \delta_{i_3, i_3'}
 \]
-Compleetheid:
-\[
-\sum_{\gamma, s, i_3} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3 s}^{\alpha \beta \gamma} = \delta_{i_1, i_1'} \delta_{i_2, i_2'}   
-\]
-\begin{proof}
-We starten met de orthonormaliteitseigenschap,
-we kunnen deze eigenschap bewijzen door gebruik te maken van de orthogonaliteit van de matrixelementen van de irreducibele representaties:
-\[
-\frac{1}{\#G} \sum_{g \in G} D_{i_1 i_1'}^{\alpha}(g) D_{i_2 i_2'}^{\beta}(g) \bar{D}_{i_3 i_3'}^{\gamma}(g) = \frac{1}{d_\gamma} C_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} \bar{C}_{i_1' i_2' i_3' s}^{\alpha \beta \gamma}
-\]
-We sommeren over alle elementen van de groep \(G\) en gebruiken de orthogonaliteitsrelaties van de matrixelementen van de irreducibele representaties, en we krijgen:      
-\[\frac{1}{\#G} \sum_{g \in G} D_{i_1 i_1'}^{\alpha}(g) D_{i_2 i_2'}^{\beta}(g) \bar{D}_{i_3 i_3'}^{\gamma}(g) = \frac{1}{d_\gamma} C_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} \bar{C}_{i_1' i_2' i_3' s}^{\alpha \beta \gamma}\]
-\[
-\implies \sum_{i_1, i_2} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3' s'}^{\alpha \beta \gamma'} = \delta_{\gamma, \gamma'} \delta_{s, s'} \delta_{i_3, i_3'}
-\]  
 
-We kunnen een analoge redenering volgen om de compleetheidseigenschap te bewijzen, we sommeren over alle irreducibele representaties \(\gamma\) en hun bijbehorende multipliciteiten \(s\):
-\[\sum_{\gamma, s, i_3} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3 s}^{\alpha \beta \gamma} = \delta_{i_1, i_1'} \delta_{i_2, i_2'}\]
-\[\implies \sum_{\gamma, s, i_3} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} C_{i_1' i_2' i_3 s}^{\alpha \beta \gamma} = \delta_{i_1, i_1'} \delta_{i_2, i_2'}\]  
+\textbf{Compleetheid:}
+\[
+\sum_{\gamma, s, i_3} \bar{C}_{i_1 i_2 i_3 s}^{\alpha \beta \gamma} \, C_{i_1' i_2' i_3 s}^{\alpha \beta \gamma} = \delta_{i_1, i_1'} \, \delta_{i_2, i_2'}
+\]
+
+\begin{proof}
+De Clebsch-Gordan coëfficiënten zijn per definitie de matrixelementen van de unitaire transformatie die de productbasis $\{\langle{i_1 i_2}\}$ van $V_\alpha \otimes V_\beta$ koppelt aan de irreducibele basis $\{\ket{\gamma s i_3}\}$, waarin de productrepresentatie blokdiagonaal ontbonden is:
+\[
+\ket{\gamma s i_3} = \sum_{i_1,i_2} C^{\alpha\beta\gamma}_{i_1 i_2 i_3 s} \ket{i_1 i_2},
+\qquad
+\ket{i_1 i_2} = \sum_{\gamma,s,i_3} \bar{C}^{\alpha\beta\gamma}_{i_1 i_2 i_3 s} \ket{\gamma s i_3}.
+\]
+
+Omdat beide bases orthonormaal zijn, is $C$ een \emph{unitaire} matrix:
+\[
+C^\dagger C = \mathds{1}, \qquad C C^\dagger = \mathds{1}.
+\]
+
+\textbf{Orthonormaliteit.}
+Schrijf de eerste relatie ($C^\dagger C = \mathds{1}$) uit in indices. De rij-index van $C$ is $(i_1,i_2)$, de kolom-index is $(\gamma,s,i_3)$. Dus
+\[
+(C^\dagger C)_{(\gamma s i_3),(\gamma' s' i_3')}
+= \sum_{i_1,i_2} \bar{C}^{\alpha\beta\gamma}_{i_1 i_2 i_3 s} \, C^{\alpha\beta\gamma'}_{i_1 i_2 i_3' s'}
+= \delta_{(\gamma s i_3),(\gamma' s' i_3')}
+= \delta_{\gamma\gamma'}\,\delta_{ss'}\,\delta_{i_3 i_3'}.
+\]
+Dit is precies de orthonormaliteitsrelatie. Equivalent: het is de uitspraak $\braket{\gamma s i_3 | \gamma' s' i_3'} = \delta_{\gamma\gamma'}\delta_{ss'}\delta_{i_3i_3'}$, geschreven in de productbasis.
+
+\textbf{Compleetheid.}
+Schrijf nu de tweede relatie ($CC^\dagger = \mathds{1}$) uit:
+\[
+(C C^\dagger)_{(i_1 i_2),(i_1' i_2')}
+= \sum_{\gamma,s,i_3} C^{\alpha\beta\gamma}_{i_1 i_2 i_3 s} \, \bar{C}^{\alpha\beta\gamma}_{i_1' i_2' i_3 s}
+= \delta_{(i_1 i_2),(i_1' i_2')}
+= \delta_{i_1 i_1'}\,\delta_{i_2 i_2'}.
+\]
+Equivalent: $\braket{i_1 i_2 | i_1' i_2'} = \delta_{i_1i_1'}\delta_{i_2i_2'}$, uitgedrukt in de irreducibele basis.
+
+De eigenschappen zijn dus de twee kanten van de unitariteit van de basistransformatie $C$ uitwerken.
 \end{proof}
+
+
+
+\subsubsection{Relaties met Representaties}
+Een gerelateerde, vaak gebruikte identiteit is de volgende decompositie van de productrepresentatie, die ook uit unitariteit van $C$ volgt:
+\[
+D^\alpha_{i_1 i_1'}(g)\, D^\beta_{i_2 i_2'}(g)
+= \sum_{\gamma,s,i_3,i_3'} C^{\alpha\beta\gamma}_{i_1 i_2 i_3 s}\, D^\gamma_{i_3 i_3'}(g)\, \bar{C}^{\alpha\beta\gamma}_{i_1' i_2' i_3' s}.
+\]
+Combineren met Schur levert
+\[
+\frac{1}{\#G}\sum_{g\in G} D^\alpha_{i_1 i_1'}(g)\, D^\beta_{i_2 i_2'}(g)\, \bar{D}^\gamma_{i_3 i_3'}(g)
+= \frac{1}{d_\gamma}\sum_{s} C^{\alpha\beta\gamma}_{i_1 i_2 i_3 s}\, \bar{C}^{\alpha\beta\gamma}_{i_1' i_2' i_3' s}.
+\]
+Deze relatie is interessant.
