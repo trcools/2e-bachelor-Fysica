@@ -1,0 +1,53 @@
+\subsection{Homomorphisms}
+
+Eerst zullen we aantonen dat \(\varphi(1) = 1\):
+
+Voor een homomorfisme \(\varphi: G_1 \to G_2\) geldt \(\varphi(gh) = \varphi(g)\varphi(h)\).
+
+Nu is \(\varphi(1) = \varphi(1 \cdot 1) = \varphi(1)\varphi(1)\). Vermenigvuldig links met \(\varphi(1)^{-1}\):
+
+\(\varphi(1)^{-1}\varphi(1) = \varphi(1)^{-1}\varphi(1)\varphi(1)\)
+
+\(\implies \varphi(1) = 1\)
+\qed
+
+\subsubsection{Proposition 2.1}
+
+\begin{proposition}
+    The image of a group homomorphism $\varphi: G_1 \to G_2$ is a subgroup of its codomain $G_2$.
+
+    We have \(\varphi(G_1) \leq G_2\).
+\end{proposition}
+
+\begin{proof}
+    We tonen aan dat $\varphi(G_1) \leq G_2$ via het deelgroepcriterium: identiteit, geslotenheid, en inverses.
+
+    \textbf{Identiteit:} Er geldt
+    \[
+        \varphi(e_1)\varphi(e_1) = \varphi(e_1 e_1) = \varphi(e_1).
+    \]
+    Vermenigvuldig links met $\varphi(e_1)^{-1} \in G_2$:
+    \[
+        \varphi(e_1) = e_2.
+    \]
+    Dus $e_2 \in \varphi(G_1)$.
+
+    \textbf{Geslotenheid:} Ask a toddler on the street. (Dit is gewoon toepassen van de definitie van een homomorfisme.)
+    
+    Neem $a, b \in \varphi(G_1)$, dan bestaan er $g, h \in G_1$ met $a = \varphi(g)$ en $b = \varphi(h)$. Dan
+    \[
+        ab = \varphi(g)\varphi(h) = \varphi(gh) \in \varphi(G_1),
+    \]
+    want $gh \in G_1$.
+
+    \textbf{Inverses:} Neem $a \in \varphi(G_1)$, dan bestaat er $g \in G_1$ met $a = \varphi(g)$. Omdat $g^{-1} \in G_1$, geldt
+    \[
+        \varphi(g)\varphi(g^{-1}) = \varphi(gg^{-1}) = \varphi(e_1) = e_2,
+    \]
+    dus $\varphi(g^{-1}) = \varphi(g)^{-1} = a^{-1}$. Bijgevolg
+    \[
+        a^{-1} = \varphi(g^{-1}) \in \varphi(G_1).
+    \]
+
+    Aangezien $\varphi(G_1)$ het neutraal element bevat, gesloten is onder de bewerking, en gesloten is onder inverteren, volgt $\varphi(G_1) \leq G_2$.
+\end{proof}
