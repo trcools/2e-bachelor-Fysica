@@ -1,0 +1,174 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\title{Maxwell-stresstensor in indexnotatie}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent
+Gebruik de \textbf{Einstein-somconventie} (herhaalde indices worden gesommeerd)
+en $\varepsilon_{ijk}$ voor het Levi-Civita-symbool.
+
+% ---------------------------------------------------------------
+\section*{Stap 1 — Vertrekpunt (vgl.\ 8.14)}
+
+\begin{equation}
+    f_i = \rho E_i + \varepsilon_{ijk}\, J_j B_k
+\end{equation}
+
+% ---------------------------------------------------------------
+\section*{Stap 2 — Maxwell elimineren $\rho$ en $\mathbf{J}$}
+
+Uit Maxwell (i) en (iv):
+\begin{align}
+    \rho &= \varepsilon_0\,\partial_j E_j,\\[4pt]
+    J_j  &= \frac{1}{\mu_0}\,\varepsilon_{jmn}\,\partial_m B_n
+            - \varepsilon_0\,\partial_t E_j.
+\end{align}
+
+Invullen geeft:
+\begin{equation}\label{eq:star}
+    f_i = \varepsilon_0(\partial_j E_j)E_i
+        + \frac{1}{\mu_0}\,\varepsilon_{ijk}\varepsilon_{jmn}(\partial_m B_n)B_k
+        - \varepsilon_0\,\varepsilon_{ijk}(\partial_t E_j)B_k.
+    \tag{$*$}
+\end{equation}
+
+% ---------------------------------------------------------------
+\section*{Stap 3 — $\varepsilon$-tensor contractie (sleutelalgebra)}
+
+Cyclische eigenschap: $\varepsilon_{ijk} = \varepsilon_{jki}$, dus:
+\begin{equation}
+    \varepsilon_{ijk}\varepsilon_{jmn}
+    = \varepsilon_{jki}\varepsilon_{jmn}
+    = \delta_{km}\delta_{in} - \delta_{kn}\delta_{im}.
+\end{equation}
+
+Toegepast op de magnetische term:
+\begin{align}
+    \varepsilon_{ijk}\varepsilon_{jmn}(\partial_m B_n)B_k
+    &= \bigl(\delta_{km}\delta_{in} - \delta_{kn}\delta_{im}\bigr)
+       (\partial_m B_n)B_k \notag\\
+    &= \underbrace{(\partial_k B_i)B_k}_{m\to k,\;n\to i}
+     - \underbrace{(\partial_i B_k)B_k}_{n\to k,\;m\to i} \notag\\
+    &= B_j\,\partial_j B_i - \tfrac{1}{2}\,\partial_i(B_k B_k).
+\end{align}
+
+% ---------------------------------------------------------------
+\section*{Stap 4 — Tijdsafgeleide term via Faraday}
+
+Productregel:
+\begin{equation}
+    \varepsilon_{ijk}(\partial_t E_j)B_k
+    = \partial_t\!\bigl(\varepsilon_{ijk}E_j B_k\bigr)
+    - \varepsilon_{ijk}E_j(\partial_t B_k).
+\end{equation}
+
+Met Faraday $\partial_t B_k = -\varepsilon_{klm}\,\partial_l E_m$:
+\begin{equation}
+    \varepsilon_{ijk}E_j(\partial_t B_k)
+    = -\varepsilon_{ijk}\varepsilon_{klm}\,E_j\,\partial_l E_m
+    = -\varepsilon_{kij}\varepsilon_{klm}\,E_j\,\partial_l E_m.
+\end{equation}
+
+Contractie op $k$ (eerste index van beide $\varepsilon$'s):
+\begin{equation}
+    \varepsilon_{kij}\varepsilon_{klm} = \delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}.
+\end{equation}
+
+Dus:
+\begin{align}
+    \varepsilon_{ijk}E_j(\partial_t B_k)
+    &= -\bigl(\delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}\bigr)E_j\,\partial_l E_m
+    \notag\\
+    &= -\underbrace{E_j\,\partial_i E_j}_{=\,\frac{1}{2}\partial_i(E^2)}
+     + \underbrace{E_j\,\partial_j E_i}_{=\,(E\cdot\nabla)E_i}.
+\end{align}
+
+Zodat de tijdsterm wordt:
+\begin{equation}
+    -\varepsilon_0\,\varepsilon_{ijk}(\partial_t E_j)B_k
+    = -\varepsilon_0\,\partial_t\!\bigl(\varepsilon_{ijk}E_j B_k\bigr)
+      + \varepsilon_0\Bigl[E_j\,\partial_j E_i - \tfrac{1}{2}\,\partial_i(E_j E_j)\Bigr].
+\end{equation}
+
+% ---------------------------------------------------------------
+\section*{Stap 5 — Vergelijking (8.16) in indexnotatie}
+
+Alles samenvoegen uit \eqref{eq:star}, en $(\partial_j B_j)B_i = 0$ voor symmetrie toegevoegd:
+
+\begin{equation}\label{eq:816}
+\boxed{
+    f_i = \varepsilon_0\!\left[(\partial_j E_j)E_i + E_j\,\partial_j E_i\right]
+        + \frac{1}{\mu_0}\!\left[(\partial_j B_j)B_i + B_j\,\partial_j B_i\right]
+        - \frac{1}{2}\,\partial_i\!\left(\varepsilon_0 E_j E_j + \frac{B_j B_j}{\mu_0}\right)
+        - \varepsilon_0\,\partial_t\!\bigl(\varepsilon_{ijk}E_j B_k\bigr).
+}
+\end{equation}
+
+% ---------------------------------------------------------------
+\section*{Stap 6 — Definitie Maxwell-stresstensor (vgl.\ 8.17)}
+
+\begin{equation}
+    T_{ij} \equiv \varepsilon_0\!\left(E_i E_j - \tfrac{1}{2}\,\delta_{ij}\,E_k E_k\right)
+                + \frac{1}{\mu_0}\!\left(B_i B_j - \tfrac{1}{2}\,\delta_{ij}\,B_k B_k\right).
+\end{equation}
+
+Divergentie berekenen via productregel:
+\begin{align}
+    \partial_j T_{ij}
+    &= \varepsilon_0\!\left[
+            \underbrace{E_j\,\partial_j E_i}_{(E\cdot\nabla)E_i}
+          + \underbrace{E_i(\partial_j E_j)}_{(\nabla\cdot E)E_i}
+          - \tfrac{1}{2}\,\partial_i(E_k E_k)
+       \right] \notag\\
+    &\quad + \frac{1}{\mu_0}\!\left[
+            B_j\,\partial_j B_i
+          + \underbrace{B_i(\partial_j B_j)}_{=\,0}
+          - \tfrac{1}{2}\,\partial_i(B_k B_k)
+       \right].
+\end{align}
+
+Met $\varepsilon_0(\partial_j E_j) = \rho$ en $\partial_j B_j = 0$:
+\begin{equation}
+    \partial_j T_{ij}
+    = \rho E_i
+    + \varepsilon_0\,E_j\,\partial_j E_i
+    + \frac{1}{\mu_0}\,B_j\,\partial_j B_i
+    - \frac{\varepsilon_0}{2}\,\partial_i(E^2)
+    - \frac{1}{2\mu_0}\,\partial_i(B^2).
+\end{equation}
+
+Vergelijk met \eqref{eq:816}: dit is precies de rechterkant van (8.16) min de tijdsterm,
+zodat:
+\begin{equation}
+    f_i = \partial_j T_{ij} - \varepsilon_0\,\partial_t\!\bigl(\varepsilon_{ijk}E_j B_k\bigr).
+\end{equation}
+
+% ---------------------------------------------------------------
+\section*{Stap 7 — Vergelijking (8.19)}
+
+Met de Poynting-vector $S_i = \dfrac{1}{\mu_0}\,\varepsilon_{ijk}E_j B_k$:
+
+\begin{equation}
+    \varepsilon_0\,\partial_t\!\bigl(\varepsilon_{ijk}E_j B_k\bigr)
+    = \varepsilon_0\mu_0\,\partial_t S_i,
+\end{equation}
+
+zodat:
+
+\begin{equation}
+\boxed{
+    f_i = \partial_j T_{ij} - \varepsilon_0\mu_0\,\partial_t S_i,
+}
+\end{equation}
+
+de indexvorm van $\,\mathbf{f} = \nabla\cdot\overset{\leftrightarrow}{T}
+- \varepsilon_0\mu_0\,\dfrac{\partial\mathbf{S}}{\partial t}$.
+
+\end{document}

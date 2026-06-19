@@ -1,0 +1,294 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{parskip}
+\usepackage{bm}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{esint}
+\usepackage{mathrsfs,calligra}
+\usepackage{subcaption}
+\usepackage[english]{babel}
+\usepackage{dsfont}
+\usepackage[a4paper, margin=0.25cm, landscape]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{multicol}
+\usepackage{upgreek}
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.05ex}
+\setlength{\columnsep}{0.15cm}
+\setlength{\columnseprule}{0.2pt}
+\linespread{0.78}
+\pagestyle{empty}
+
+\newcommand{\rcurs}{\mbox{$\resizebox{.08in}{.07in}{\includegraphics[trim=1em 0 14em 0,clip]{ScriptR}}$}}
+\newcommand{\brcurs}{\mbox{$\resizebox{.08in}{.07in}{\includegraphics[trim=1em 0 14em 0,clip]{BoldR}}$}}
+
+\definecolor{hdrcol}{HTML}{1F4E79}
+\newcommand{\secblock}[1]{%
+\par\vspace{1.5pt}%
+\noindent\colorbox{hdrcol}{\parbox[c][0.95em][c]{0.99\linewidth}{\color{white}\bfseries\scriptsize \ #1}}\par
+\vspace{0.8pt}%
+}
+
+\begin{document}
+\scriptsize
+\begin{multicols*}{4}
+
+\secblock{H2 Electrostatics}
+Coulomb Force on $Q$: \(\bm F = \frac{1}{4\pi \epsilon_0}\frac{qQ}{\rcurs^2}\hat{\brcurs} = Q \bm E\) \\
+Coulomb's law: \(\bm E (\bm r) = \frac{1}{4\pi \epsilon _0} \int \frac{\rho(\bm r ')}{\rcurs^2}\hat{\brcurs} d\uptau'\) \\
+Electric flux: \(\Upphi_E = \int_S \bm E \cdot d\bm a\) \\
+Conservative field: \(\oint \bm E \cdot d \bm l = 0 \implies \bm\nabla \times \bm E = \bm 0\) \\
+Electric potential: \(V(\bm r) =-\int_O^r \bm E \cdot d \bm l \implies \bm E = - \bm\nabla V\) \\
+Integral potential: \(V (\bm r) = \frac{1}{4\pi \epsilon_0} \int \frac{\rho(\bm r')}{\rcurs} d\uptau'\) \\
+Poisson's eq: \(\nabla^2 V = -\frac{\rho}{\epsilon_0}\); Laplace's eq: \(\nabla^2 V = 0\) \\
+Boundary conditions: \(E_1^{\parallel} = E_2^{\parallel}\); \quad \(E_1^{\perp} - E_2^{\perp} = \frac{\sigma}{\epsilon_0}\) \\
+\(\frac{\partial V_{\text{above}}}{\partial n} - \frac{\partial V_{\text{below}}}{\partial n} = -\frac{\sigma}{\epsilon_0}\); \quad \(\frac{\partial V}{\partial n} = \bm \nabla V \cdot \hat{\bm n}\) \\
+Work: \(W = \int _a^b \bm F \cdot d \bm l = -Q \int _a^b \bm E \cdot d \bm l \implies W = QV(\bm r)\) \\
+Discrete energy: \(W = \frac{1}{8 \pi \epsilon_0} \sum_{i=1}^n \sum_{j\neq i}^n \frac{q_i q_j}{\rcurs_{ij}}\) \\
+Continuous energy: \(W = \frac{\epsilon_0}{2}\int_{\text{space}} E^2 d\uptau = \frac{1}{2}\int V\rho d\uptau\) \\
+Electrostatic pressure: \(\bm f = \frac{1}{2 \epsilon_0} \sigma^2 \hat{\bm n}\); \quad \(P = \frac{\epsilon_0}{2} E^2\) \\
+Capacitance: \(C = \frac{Q}{V}\); \quad Energy: \(W = \frac{1}{2}CV^2 = \frac{Q^2}{2C}\) \\
+Uniform sphere field: $E_{\text{out}} = \frac{q}{4\pi\epsilon_0 r^2}\hat{\bm r}$, $E_{\text{in}} = \frac{q r}{4\pi\epsilon_0 R^3}\hat{\bm r}$ \\
+Line charge potential ($s$): $V(s) = -\frac{\lambda}{2\pi\epsilon_0}\ln(s/a)$
+
+\secblock{H3 Potentials}
+Surface charge: \(\sigma = - \epsilon_0 \frac{\partial V}{\partial n}\) \\
+Method of Images (Grounded Plane): $V(x,y,z) = \frac{q}{4\pi\epsilon_0}\left[\frac{1}{\sqrt{x^2+y^2+(z-d)^2}} - \frac{1}{\sqrt{x^2+y^2+(z+d)^2}}\right]$ \\
+Induced charge density: $\sigma(x,y) = \frac{-qd}{2\pi(x^2+y^2+d^2)^{3/2}}$, $Q_{\text{ind}} = -q$ \\
+Image for Grounded Sphere ($R$): image $q' = -q\frac{R}{a}$ at distance $b = \frac{R^2}{a}$ from center ($a$ is source distance). \\
+Separation of variables (Cartesian): $V(x,y) = (A e^{kx} + B e^{-kx})(C \sin(ky) + D \cos(ky))$ \\
+Expansion factor: \(\epsilon \equiv (\frac{r'}{r})(\frac{r'}{r}-2\cos \alpha)\) \\
+\(\frac{1}{\brcurs} = \frac{1}{r}(1 + \epsilon)^{-\frac{1}{2}} = \frac{1}{r}(1 - \frac{1}{2}\epsilon + \frac{3}{8}\epsilon^2 - \frac{5}{16}\epsilon^3 + \dots)\) \\
+\(\frac{1}{\rcurs} = \frac{1}{r}\sum^\infty_{n=0} (\frac{r'}{r})^n P_n (\cos \alpha)\) \\
+Dipole potential: \(V_{\text{dip}} (\bm r) = \frac{1}{4 \pi \epsilon_0} \frac{\bm p \cdot \hat{\bm r}}{r^2}\) \\
+Dipole field: \(\bm E_{\text{dip}}(r,\theta)=\frac{p}{4\pi \epsilon_0 r^3}(2\cos \theta \hat{\bm r} + \sin \theta \hat{\bm \theta})\) \\
+Sphere expansion: \(\frac{\sigma_0 (\theta)}{\epsilon_0} = \sum_{l=0}^\infty (2l+1) A_l R^{l-1} P_l(\cos \theta)\)
+
+\secblock{H4 Electric Fields in Matter}
+Atomic polarizability: \(\bm p = \alpha\bm E\) \\
+Dipole torque: \(\bm N = \bm p \times \bm E\); \quad Force: \(\bm F = (\bm p \cdot \bm \nabla)\bm E\) \\
+Bound charges: \(\sigma_b = \bm P \cdot \hat{\bm n}\); \quad \(\rho_b = - \bm \nabla \cdot \bm P\) \\
+Macroscopic potential: \(V (\bm r) = \frac{1}{4 \pi \epsilon_0} \int \frac{\bm P(\bm r') \cdot \hat{\bm r}_{c}}{\rcurs^2} d\uptau'\) \\
+Uniformly polarized sphere: \(\bm p = \frac{4\pi R^3}{3}\bm P\); \quad \(\bm E_{\text{in}} = -\frac{1}{3\epsilon_0}\bm P\) \\
+Displacement: \(\bm D = \epsilon_0 \bm E + \bm P\); \quad \(\oint \bm D \cdot d\bm a = Q_{f_{\text{enc}}}\) \\
+Curl of $\bm D$: \(\bm \nabla \times \bm D = \bm \nabla \times \bm P = -\epsilon_0 \bm E (\nabla \chi_e)\) \\
+Linear dielectric: \(\bm P = \epsilon_0\chi_e\bm E\); \quad \(\bm D = \epsilon \bm E\); \quad \(\epsilon = \epsilon_0(1+\chi_e) = \epsilon_0 \epsilon_r\) \\
+Point charge in dielectric: \(\bm E = \frac{1}{4\pi \epsilon} \frac{q}{r^2}\hat{\bm r}\); \quad \(\rho _b = - \frac{\chi_e}{1+\chi_e} \rho_f\) \\
+Energy in dielectric: \(W = \frac{1}{2} \int \bm D \cdot \bm E d\uptau = \frac{1}{2}\int \epsilon E^2 d\uptau\) \\
+Boundary conds: \(\epsilon_1 \frac{\partial V_1}{\partial n} - \epsilon_2 \frac{\partial V_2}{\partial n} = -\sigma_f\); \quad \(V_1 = V_2\) \\
+Clausius-Mossotti relation: $\alpha = \frac{3\epsilon_0}{N}\frac{\epsilon_r-1}{\epsilon_r+2}$
+
+\secblock{H5 Magnetostatics}
+Magnetic forces: \(dW_{\text{mag}} = \bm F_{\text{mag}} \cdot d \bm l = Q(\bm v \times \bm B) \cdot \bm v dt = 0\) \\
+Lorentz force: \(\bm F_{\text{mag}} = I \int d \bm l \times \bm B\); \quad \(\bm I = \lambda \bm v\) \\
+Current distributions: \(\bm K = \frac{d \bm I}{dl_\perp} = \sigma \bm v\); \quad \(\bm J = \frac{d \bm I}{da_\perp} = \rho \bm v\) \\
+Force on currents: \(\bm F_{\text{mag}} = \int ( \bm K \times \bm B)da = \int ( \bm J \times \bm B)d\uptau\) \\
+Continuity equation: 
+
+\(\bm \nabla \cdot \bm J = -\frac{\partial \rho}{\partial t}\); \quad $\int_V (\bm \nabla \cdot \bm J ) d \uptau = - \frac{\partial}{\partial t}\int_V \rho d\uptau$ \\
+Biot-Savart Law: 
+
+\(\bm{B}(\bm{r})=\frac{\mu_0 I}{4\pi}\int\frac{d \bm l'\times\hat{\brcurs}}{\rcurs^2} = \frac{\mu_0}{4\pi}\int\frac{\bm K\times\hat{\brcurs}}{\rcurs^2}d a' = \frac{\mu_0}{4\pi}\int\frac{\bm J\times\hat{\brcurs}}{\rcurs^2}d \uptau '\) \\
+Straight wire field: $B = \frac{\mu_0 I}{2\pi s}$; \quad Solenoid field: $B = \mu_0 n I$ \\
+Vector potential: \(\bm A = \frac{\mu_0}{4\pi}\int\frac{\bm J(\bm r')}{\brcurs}d \uptau '\); \quad \(\bm B = \bm \nabla \times \bm A\) \\
+Coulomb gauge: $\bm \nabla \cdot \bm A = 0 \implies \nabla^2 \bm A = -\mu_0 \bm J$ \\
+Dipole expansion potential: \(A_{\text{dip}}(\bm r) = \frac{\mu_0}{4\pi}\frac{\bm m \times \hat{\bm r}}{r^2} = \frac{\mu_0}{4\pi} \frac{m \sin \theta}{r^2}\hat{\bm \phi}\) \\
+Magnetic dipole moment: \(\bm m = I \bm a = I \int d\bm a\) \\
+Rotating shell ($R, \sigma, \omega$): \(\bm B_{\text{in}} = \frac{2}{3} \mu_0 \sigma \omega R \hat{\bm z}\) \\
+Dipole field: \(\bm B_{\text{dip}} (\bm r) = \frac{\mu_0 m}{4\pi r^3}(2\cos \theta \hat{\bm r} + \sin \theta \hat{\bm \theta})\) \\
+Boundary conditions: \(\bm B_1^{\parallel} - \bm B_2^{\parallel} = \mu_0(\bm K \times \hat{\bm n})\); \quad \(\bm A_1 = \bm A_2\)
+
+\secblock{H6 Magnetic Fields in Matter}
+Dipole torque: \(\bm N = \bm m \times \bm B\) \\
+Force on dipole: \(\bm F = 2\pi I R B \cos\theta = \bm \nabla (\bm m \cdot \bm B)\) \\
+Dipole potential: \(\bm A (\bm r) = \frac{\mu_0}{4\pi} \int \frac{\bm M (\bm r') \times \hat{\brcurs}}{\rcurs^2} d\uptau'\) \\
+Bound currents: \(\bm J_b = \bm \nabla \times \bm M\); \quad \(\bm K_b = \bm M \times \hat{\bm n}\)\\
+Steady currents: \(\quad \bm \nabla \cdot \bm J_b = 0\) \\
+H-field: \(\bm H = \frac{1}{\mu_0}\bm B - \bm M\); \quad \(\bm \nabla \times \bm H = \bm J_f\); \quad \(\bm \nabla \cdot \bm H = - \bm \nabla \cdot \bm M\) \\
+Ampere's law for H (if symmetry): \(\oint \bm H \cdot d\bm l = I_{f_{\text{enc}}}\) \\
+Energy of dipole: \(U = -\bm m \cdot \bm B\) \\
+Linear media: \(\bm M = \chi_m \bm H\); \quad \(\bm B = \mu \bm H\); \quad \(\mu = \mu_0(1+\chi_m)\); \quad \(\bm J_b = \chi_m \bm J_f\) \\
+Uniformly magnetized sphere ($R, \bm M$): $\bm B_{\text{in}} = \frac{2}{3}\mu_0 \bm M$, $\bm m = \frac{4}{3}\pi R^3 \bm M$
+
+\secblock{H7 Electrodynamics}
+Ohm's law: \(\bm J = \sigma \bm f = \sigma (\bm E + \bm v \times \bm B) \approx \sigma \bm E\) \\
+Resistivity: \(\rho = \frac{1}{\sigma}\); \quad Conductor: \(\sigma = \infty \implies \bm E = 0\); \quad Ohm: \(V = IR\) \\
+Steady currents: \(\bm \nabla \cdot \bm E = \frac{1}{\sigma} \bm \nabla \cdot \bm J = 0\) \\
+Joule heating law: \(P = VI = I^2R\) \\
+Electromotive force: \(\epsilon_{\text{emf}} = \oint \bm f \cdot d \bm l\) \\
+Faraday's/Flux rule: \(\epsilon_{\text{emf}} = -\frac{d \Upphi}{dt}\); \quad \(\Upphi = \int \bm B \cdot d\bm a\) \\
+Induction field: \(\bm{E}(\bm{r})=-\frac{1}{4\pi}\frac{\partial}{\partial t}\int\frac{\bm B\times\hat{\brcurs}}{\rcurs^2}d\bm \uptau'\) \\
+Mutual inductance: \(\Upphi_{21} = M_{21} I_1\); \quad Neumann: \(M_{21} = M_{12} = \frac{\mu_0}{4\pi} \oint \frac{d\bm l_1 \cdot d\bm l_2}{\rcurs}\) \\
+Self inductance: \(\Upphi = LI\); \quad \(\epsilon_{\text{emf}} = -L \frac{dI}{dt}\); \quad Power: \(\frac{dW}{dt} = LI \frac{dI}{dt}\) \\
+Work/Energy: \(W = \frac{1}{2} L I^2 = \frac{1}{2\mu_0} \int_{\text{all}} B^2 d\uptau = \frac{1}{2} \int (\bm A \cdot \bm J) d\uptau\) \\
+Electrostatic energy: \(W_{\text{elec}} = \frac{1}{2} \int (V \rho) d\uptau = \frac{\epsilon_0}{2} \int E^2 d\uptau\) \\
+Displacement current: \(\bm J_d = \epsilon_0 \frac{\partial \bm E}{\partial t} = \frac{\partial \bm D}{\partial t}\); \quad Polarization: \(\bm J_p = \frac{\partial \bm P}{\partial t}\)
+
+\secblock{H8 Conservation Laws}
+Charge conservation: \(\bm \nabla \cdot \bm J + \frac{\partial \rho}{\partial t} = 0\) \\
+EM energy density: \(u = \frac{1}{2} (\epsilon_0 E^2 + \frac{1}{\mu_0} B^2)\) \\
+Work on charge: \(dW = q \bm E \cdot \bm v dt \implies \frac{dW}{dt} = \int_{V} (\bm E \cdot \bm J) d\uptau\) \\
+Poynting Theorem: \(\frac{\partial u}{\partial t} + \bm \nabla \cdot \bm S = -\bm E \cdot \bm J\); \quad Vector: \(\bm S = \frac{1}{\mu_0} \bm E \times \bm B\) \\
+Continuity of energy (free space): \(\frac{\partial u}{\partial t} = -\bm \nabla \cdot \bm S\) \\
+EM Force: \(\bm F = \int_V (\rho \bm E + \bm J \times \bm B) d\uptau = \oint_S \overleftrightarrow{T} \cdot d\bm a - \epsilon_0 \mu_0 \frac{d}{dt} \int_V \bm S d\uptau\) \\
+Maxwell Stress Tensor: \(T_{ij} = \epsilon_0 (E_iE_j-\delta_{ij}E^2) +\frac{1}{\mu_0} (B_iB_j-\delta_{ij}B^2)\) \\
+Tensor dot product: \((\bm a \cdot \overleftrightarrow{T})_j = \sum_i a_i T_{ij}\) \\
+Force density: \(\bm f = \bm\nabla \cdot \overleftrightarrow{T} - \epsilon_0 \mu_0 \frac{\partial \bm S}{\partial t}\) \\
+Boundary force (static): \(\bm F = \oint _S \overleftrightarrow{T} \cdot d\bm a\) \\
+EM Momentum: \(\bm p = \mu_0 \epsilon_0 \int \bm S d\uptau\); \quad Density: \(\bm g = \mu_0 \epsilon_0 \bm S = \epsilon_0 (\bm E \times \bm B)\) \\
+Momentum conservation: \(\frac{\partial \bm g}{\partial t} = \bm \nabla \cdot \overleftrightarrow{T} \implies \frac{d\bm p_{\text{mech}}}{dt} + \frac{d\bm p_{\text{em}}}{dt} = \oint \overleftrightarrow{T} \cdot d\bm a\) \\
+Angular momentum density: $\bm l = \bm r \times \bm g = \epsilon_0 \bm r \times (\bm E \times \bm B)$
+
+\secblock{H9 Electromagnetic Waves}
+Wave equation: $\nabla^2 \bm E = \mu_0\epsilon_0 \frac{\partial^2 \bm E}{\partial t^2} = \frac{1}{c^2}\frac{\partial^2 \bm E}{\partial t^2}$ \\
+Monochromatic wave: \(B^2 = \frac{1}{c^2} E^2 = \epsilon_0 \mu_0 E^2\); \quad $\bm B = \frac{1}{c}(\hat{\bm k}\times \bm E)$ \\
+Energy density: \(u = \epsilon_0 E^2 = \epsilon_0 E_0^2 \cos^2(k z - \omega t + \delta)\) \\
+Poynting vector: \(\bm S = c \epsilon_0 E^2 \hat{\bm z} = c u \hat{\bm z}\); \quad \(\langle \bm S \rangle = \frac{1}{2} c \epsilon_0 E_0^2 \hat{\bm z}\) \\
+Momentum density: \(\bm g = \frac{1}{c^2} \bm S = \frac{1}{c} u \hat{\bm z}\); \quad \(\langle \bm g \rangle = \frac{1}{2} \frac{u}{c} \hat{\bm z}\); \(\quad \langle u \rangle = \frac{1}{2} \epsilon_0 E_0^2 \)\\
+Intensity: \(\bm I \equiv \langle S \rangle = \frac{1}{2} c \epsilon_0 E_0^2\) \\
+Radiation pressure: \(P_{\text{rad}} = \frac{I}{c} = \frac{1}{2}\epsilon_0 E_0^2\) (absorption); $P_{\text{rad}} = \frac{2I}{c}$ (reflection) \\
+In matter: \(v = \frac{c}{n}\); \quad \(n = \sqrt{\frac{\epsilon \mu}{\epsilon_0 \mu_0}} \approx \sqrt{\epsilon_r}\); \quad \(u = \frac{1}{2} (\epsilon E^2 + \frac{1}{\mu} B^2)\); \quad \(I = \frac{1}{2} v \epsilon E_0^2\) \\
+Bound conds: \(\epsilon_1 E_1^{\perp} = \epsilon_2 E_2^{\perp}\); \quad \(\frac{1}{\mu_1} B_1^{\perp} = \frac{1}{\mu_2} B_2^{\perp}\); \quad $E_1^{\parallel}=E_2^{\parallel}$, $H_1^{\parallel}=H_2^{\parallel}$ \\
+Normal Incidence ($n_1 \to n_2$): $R = \left(\frac{n_1-n_2}{n_1+n_2}\right)^2$, $T = \frac{4n_1 n_2}{(n_1+n_2)^2}$, $R+T=1$ \\
+Conducting medium: $\tilde{k}^2 = \mu\epsilon\omega^2 + i\mu\sigma\omega$; \quad Skin depth: $\delta = \sqrt{\frac{2}{\omega\mu\sigma}}$
+
+\secblock{H10 Potentials and Fields}
+Potentials: \(\bm B = \bm \nabla \times \bm A\); \quad \(\bm E = - \bm \nabla V - \frac{\partial \bm A}{\partial t}\) \\
+Equations: \(\nabla^2 V + \frac{\partial }{\partial t}(\bm \nabla \cdot \bm A) = -\frac{\rho}{\epsilon_0}\); \quad \(\nabla^2 \bm A - \mu_0 \epsilon_0 \frac{\partial^2 \bm A}{\partial t^2} - \bm \nabla (\bm \nabla \cdot \bm A + \mu_0 \epsilon_0 \frac{\partial V}{\partial t} ) = -\mu_0 \bm J\) \\
+Gauge change: \(\bm A \to \bm A + \bm \nabla \lambda\); \quad \(V \to V - \frac{\partial \lambda}{\partial t}\) \\
+Coulomb gauge: \(\bm \nabla \cdot \bm A = 0 \implies \nabla^2 V = -\frac{\rho}{\epsilon_0}\) \\
+Lorenz gauge: \(\bm \nabla \cdot \bm A = -\mu_0 \epsilon_0 \frac{\partial V}{\partial t} \implies \Box^2 V = -\frac{\rho}{\epsilon_0}\), \quad \(\Box^2 \bm A = -\mu_0 \bm J\) \\
+d'Alembertian: \(\Box^2 \equiv \nabla^2 -\mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} = \nabla^2 - \frac{1}{c^2}\frac{\partial^2}{\partial t^2}\) \\
+Lorentz force: \(\bm F = -q[\frac{\partial \bm A}{\partial t} + (\bm v \cdot \bm \nabla) \bm A + \bm \nabla (V-\bm v \cdot \bm A)]\) \\
+Convective deriv: \( \frac{d \bm A}{dt} = \frac{\partial \bm A}{\partial t} + (\bm v \cdot \bm \nabla) \bm A \); \quad \(\frac{d\bm p}{dt} = - \bm \nabla U_{\text{vel}}\) \\
+Canonical momentum: \(\bm p_{\text{can}} = \bm p + q \bm A\); \quad \(U_{\text{vel}} = q(V-\bm v \cdot \bm A)\) \\
+Retarded time: \(t_r = t - \frac{\rcurs}{c}\); \quad Advanced time: \(t_a = t + \frac{\rcurs}{c}\) \\
+Retarded pots: \(V(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(\bm r', t_r)}{\rcurs} d\uptau'\); \quad \(\bm A(\bm r, t) = \frac{\mu_0}{4\pi} \int \frac{\bm J(\bm r', t_r)}{\rcurs} d\uptau'\) \\
+Derivatives: \(\bm \nabla t_r = -\frac{1}{c}\hat{\brcurs}\); \quad \(\bm \nabla \rcurs = \hat{\brcurs}\); \quad \(\bm \nabla (\frac{1}{\rcurs}) = -\frac{\hat{\brcurs}}{\rcurs^2}\) \\
+\(\bm \nabla \rho = -\frac{1}{c}\dot{\rho} \hat{\brcurs}\); \quad \(\bm \nabla \times \bm J = \frac{1}{c}\dot{\bm J} \times \hat{\brcurs}\); \quad \(\bm \nabla \cdot \bm J = -\frac{1}{c}\dot{\bm J} \cdot \hat{\brcurs}\) \\
+Jefimenko equations: \\
+\(\bm E(\bm r, t) = \frac{1}{4\pi \epsilon_0} \int [ \frac{\rho}{\rcurs^2} \hat{\brcurs} + \frac{\dot{\rho}}{c \rcurs} \hat{\brcurs} - \frac{\dot{\bm J}}{c^2 \rcurs} ] d\uptau'\) \\
+\(\bm B(\bm r, t) = \frac{\mu_0}{4\pi} \int [ \frac{\bm J}{\rcurs^2} + \frac{\dot{\bm J}}{c \rcurs} ] \times \hat{\brcurs} d\uptau'\) \\
+Liénard-Wiechert potentials (moving point charge): \\
+\(V(\bm r, t) = \frac{1}{4 \pi \epsilon_0} \frac{q c}{\rcurs c - \brcurs \cdot \bm v}\); \quad \(\bm A (\bm r, t) = \frac{\bm v}{c^2} V(\bm r, t)\) \\
+Apparent volume: \(\uptau' = \frac{\uptau}{1-\hat{\brcurs} \cdot \frac{\bm v}{c}}\); \quad \(\bm w(t) \equiv\) position of $q$ \\
+\(\brcurs = \bm r - \bm w(t_r)\); \quad \(\hat{\brcurs} = \frac{\bm R}{\rcurs} + \frac{\bm v}{c}\); \quad \(\bm u \equiv c \hat{\brcurs} - \bm v\); \quad \(\frac{\partial t_r}{\partial t} = \frac{c\rcurs }{\brcurs \cdot \bm u}\) \\
+Liénard-Wiechert fields (point charge): \\
+\(\bm E(\bm r, t) = \frac{q}{4\pi \epsilon_0} \frac{\rcurs}{(\brcurs \cdot \bm u)^3} [(c^2-v^2)\bm u + \brcurs \times (\bm u \times \bm a)]\) \\
+\(\bm B(\bm r, t) = \frac{1}{c}\hat{\brcurs} \times \bm E(\bm r, t)\); \quad $\bm B = \frac{1}{c^2}(\bm v \times \bm E)$ \\
+Moving charge non-rel limit ($\bm R = \bm r - \bm v t$): \\
+\(\bm E \approx \frac{1}{4\pi \epsilon_0} \frac{q}{R^2}\hat{\bm R}\); \quad \(\bm B \approx \frac{\mu_0}{4\pi} \frac{q}{R^2}(\bm v \times\hat{\bm R})\)
+
+\secblock{H11 Radiation}
+Approximations: \(d \ll r\); \quad \(d \ll \frac{c}{\omega} = \frac{\lambda}{2\pi}\); \quad \(r \gg \frac{c}{\omega}\) (radiation zone) \\
+Power: \(P(r,t) = \oint \bm S \cdot d\bm a = \frac{1}{\mu_0} \oint (\bm E \times \bm B) \cdot d\bm a\) \\
+Oscillating electric dipole: \(\bm p(t) = p_0 \cos(\omega t) \hat{\bm z}\); \quad \(p_0 = q_0d\) \\
+Current: \(\bm I(t) = -q_0 \omega \sin(\omega t) \hat{\bm z}\); \quad \(\bm A (\bm r,t) = \frac{\mu_0}{4\pi} \int \frac{\bm I(t-\rcurs/c)}{\rcurs} dz\) \\
+Pots: \(V = - \frac{p_0 \omega}{4 \pi \epsilon_0 c} (\frac{\cos\theta}{r})\sin[\omega(t - \frac{r}{c})]\); \quad \(\bm A = - \frac{\mu_0 p_0 \omega}{4 \pi} \sin[\omega(t - \frac{r}{c})]\hat{\bm z}\) \\
+Fields: \(\bm E = -\frac{\mu_0 p_0 \omega^2}{4 \pi} (\frac{\sin\theta}{r}) \cos(\omega(t - \frac{r}{c}))\hat{\bm \theta}\) \\
+\(\bm B = - \frac{\mu_0 p_0 \omega^2}{4 \pi c} (\frac{\sin\theta}{r})\cos[\omega(t - \frac{r}{c})]\hat{\bm \phi}\) \\
+Poynting: \(\bm S = \frac{\mu_0 p_0^2 \omega^4}{16 \pi^2 c} \frac{\sin^2\theta}{r^2} \cos^2[\omega(t - \frac{r}{c})]\hat{\bm r}\) \\
+Intensity: \(I(r, \theta) = \langle \bm S \rangle = \frac{\mu_0 p_0^2 \omega^4}{32 \pi^2 c} \frac{\sin^2\theta}{r^2}\hat{\bm r}\); \quad \(\langle P \rangle = \frac{\mu_0 p_0^2 \omega^4}{12 \pi c}\) \\
+Radiation resistance (dipole): $R_{\text{rad}} = 80\pi^2 (d/\lambda)^2 \Omega$ \\
+Oscillating magnetic dipole ($\bm m(t) = m_0 \cos(\omega t) \hat{\bm z}$, $m_0 = \pi b^2 I_0$): \\
+$\bm E = \frac{\mu_0 m_0 \omega^2}{4\pi c} \left(\frac{\sin\theta}{r}\right)\cos[\omega(t-r/c)]\hat{\bm \phi}$; \quad $\bm B = -\frac{1}{c}\hat{\bm r}\times \bm E$ \\
+$\langle P \rangle = \frac{\mu_0 m_0^2 \omega^4}{12\pi c^3}$; \quad Ratio $\frac{P_{\text{mag}}}{P_{\text{elec}}} = \left(\frac{m_0}{p_0 c}\right)^2 = \left(\frac{\omega b}{c}\right)^2$ \\
+Arbitrary sources: $\bm A \approx \frac{\mu_0}{4\pi r}\dot{\bm p}(t_0)$; \quad $\bm E \approx \frac{\mu_0}{4\pi r}[\hat{\bm r}\times(\hat{\bm r}\times \ddot{\bm p})]$ \\
+\(\bm B \approx -\frac{\mu_0}{4 \pi rc} [\hat{\bm r} \times \ddot{\bm p}]\); \quad \(P(r,t) = \frac{\mu_0}{6 \pi c}[\ddot{\bm p}(t- r/c)]^2\) \\
+Larmor formula (non-rel): \(P_{\text{rad}} = \frac{\mu_0 q^2 a^2}{6 \pi c}\) \\
+Liénard's extension (relativistic): $P_{\text{rad}} = \frac{\mu_0 q^2 \gamma^6}{6\pi c}\left[a^2 - \frac{(\bm v \times \bm a)^2}{c^2}\right]$
+
+\secblock{H12 Electrodynamics and Relativity}
+Velocity addition: \(v_{ab} = \frac{v_a + v_b}{1 + v_a v_b/c^2}\); \quad $v_\pm = \frac{v \mp u}{1 \mp vu/c^2}$ \\
+Dilation: \(\Delta t = \gamma \Delta t_0\); \quad Contraction: \(\Delta x = \frac{\Delta x_0}{\gamma}\) \\
+Lorentz factors: \(\gamma = \frac{1}{\sqrt{1 - v^2/c^2}} = \cosh\theta\); \quad \(\gamma\beta = \sinh\theta\); \quad \(\beta = \frac{v}{c} = \tanh\theta\) \\
+Boosts in x-dir: \(t' = \gamma (t - \frac{v x}{c^2})\); \quad \(x' = \gamma (x - vt)\); \quad \(y'=y\); \quad \(z'=z\) \\
+Four-vectors: \(x^\mu = (ct, x, y, z)\); \quad $x_\mu = \eta_{\mu\nu}x^\nu = (-ct, x, y, z)$ \\
+Einstein sum: \(a^\mu b_\mu = \sum_{\mu=0}^3 a^\mu b_\mu = -a^0b^0 + \bm a \cdot \bm b\) \\
+Proper time: \(d\uptau = \sqrt{1 - \beta_u^2}dt = \frac{dt}{\gamma_u}\); \quad Proper velocity: \(\bm \eta = \frac{d\bm l}{d\uptau} = \gamma_u \bm u\) \\
+Components: \(\eta^0 = c\gamma_u\); \quad \(\eta^\mu = (\gamma_u c, \gamma_u \bm u)\); \quad \(\eta_\mu \eta^\mu = -c^2\) \\
+Vel transforms: \(\bm u'_\parallel = \frac{\bm u_\parallel-\bm v}{1 - u_\parallel v/c^2}\); \quad \(\bm u'_\perp = \frac{\bm u_\perp}{\gamma (1 - u_\parallel v/c^2)}\); \quad $\gamma_{\pm} = \frac{1}{\sqrt{1-v_{\pm}^2/c^2}}$ \\
+Rel momentum: \(\bm p \equiv \gamma_u m \bm u\); \quad \(p^0 = \gamma_u mc = E/c\); \quad \(p^\mu p_\mu = -m^2c^2\) \\
+Rel energy: \(E = \gamma_u mc^2\); \quad \(E_{\text{rest}} = mc^2\); \quad \(E^2 = \bm p^2 c^2 + m^2c^4\) \\
+Invariants: Mass $m$, Charge $q$, Spacetime interval $ds^2$, $\eta_\mu\eta^\mu$, $p_\mu p^\mu$. \\
+Conserved: Energy $E$, Momentum $\bm p$, Charge $q$. \\
+Compton shift: \(\lambda = \lambda_0 + \frac{h}{mc}(1-\cos \theta)\) \\
+Dynamics: \(\bm F = \frac{d\bm p}{dt}\); \quad $W = \Delta E$; \quad \(\frac{d\bm p}{dt} \cdot \bm u = \frac{dE}{dt}\); \quad \(\bm F = \frac{m}{\sqrt{1-u^2/c^2}}[\bm a + \frac{\bm u (\bm u \cdot \bm a)}{c^2-u^2}]\) \\
+Minkowski (Proper) Force: \(\bm K = \frac{d\bm p}{d\uptau} = \gamma_u \bm F\); \quad \(K^0 = \frac{1}{c}\frac{dE}{d\uptau}\); \quad $K^\mu = q \eta_\nu F^{\mu\nu}$ \\
+Transverse/Parallel force ($\bm u=0$): \(\bm F'_{\perp} = \frac{1}{\gamma} \bm F_{\perp}\); \quad \(\bm F'_{\parallel} = \bm F_{\parallel}\) \\
+Center of Energy: \(\bm P = \frac{E}{c^2}\frac{d\bm R_e}{dt}\); \quad \(\bm R_E = \frac{1}{E}\sum_i E_i \bm r_i\) \\
+Hidden momentum: \(\bm p_{\text{hid}} = \frac{1}{c^2} (\bm m\times \bm E )\); \quad \(-\bm p_{\text{hid}} c^2 = \bm I \oint V d\bm l = \int V \bm J d\uptau\) \\
+Proper acceleration: \(\bm \alpha^\mu \equiv \frac{d\eta^\mu}{d \uptau} = \frac{d^2 x^\mu}{d \uptau^2}\); \quad \(\eta^\mu \alpha_\mu = 0\) \\
+Line charge framework: \(\bm I = 2 \lambda_v\); \quad \(\lambda_\pm = \pm \gamma_\pm \lambda_0\) \\
+\(\lambda_{\text{tot}} = \lambda_+ + \lambda_- = -\frac{2\lambda u v \gamma_u}{c^2}\); \quad \(E = \frac{\lambda_{\text{tot}}}{2\pi\epsilon_0 s}\); \quad \(F = -qu \frac{\mu_0 I}{2\pi s}\) \\
+Field transformations: \\
+\(E'_x = E_x\), \quad \(E'_y = \gamma(E_y - v B_z)\), \quad \(E'_z = \gamma(E_z + v B_y)\) \\
+\(B'_x = B_x\), \quad \(B'_y = \gamma(B_y + \frac{v}{c^2}E_z)\), \quad \(B'_z = \gamma(B_z - \frac{v}{c^2}E_y)\) \\
+Four-current: \(J^\mu = (c\rho, \bm J) = (c\rho, \rho \bm u)\); \quad \(\partial_\mu J^\mu = 0 \implies \bm \nabla \cdot \bm J + \frac{\partial \rho}{\partial t} = 0\) \\
+Proper density: $\rho = \gamma_u \rho_0$ where $\rho_0 = Q/V_0$ \\
+Four-potential: \(A^\mu = (V/c, \bm A)\); \quad Lorenz gauge: \(\partial_\mu A^\mu = 0 \implies \Box^2 A^\mu = -\mu_0 J^\mu\) \\
+Field Tensor: \(F^{\mu\nu} = \partial^\mu A^\nu - \partial^\nu A^\mu = \begin{pmatrix} 0 & E_x/c & E_y/c & E_z/c \\ -E_x/c & 0 & B_z & -B_y \\ -E_y/c & -B_z & 0 & B_x \\ -E_z/c & B_y & -B_x & 0 \end{pmatrix}\) \\
+Dual Tensor: \(\tilde{F}^{\mu\nu} = \frac{1}{2}\epsilon^{\mu\nu\kappa\lambda}F_{\kappa\lambda} = \begin{pmatrix} 0 & B_x & B_y & B_z \\ -B_x & 0 & -E_z/c & E_y/c \\ -B_y & E_z/c & 0 & -E_x/c \\ -B_z & -E_y/c & E_x/c & 0 \end{pmatrix}\) \\
+Maxwell's covariant equations: \(\partial_\nu F^{\mu\nu} = \mu_0 J^\mu\); \quad \(\partial_\nu \tilde{F}^{\mu\nu} = 0\) \\
+Invariants: \(F_{\mu\nu}F^{\mu\nu} = 2(B^2 - E^2/c^2)\); \quad \(F^{\mu\nu}\tilde{F}_{\mu\nu} = -\frac{4}{c}(\bm E \cdot \bm B)\) \\
+Identity: \(\frac{\partial F_{\alpha\beta}}{\partial(\partial_\mu A_\nu)} = \delta^\mu_\alpha \delta^\nu_\beta - \delta^\mu_\beta \delta^\nu_\alpha\)
+
+\secblock{Nice Identities}
+\(\int_V (\bm \nabla \times \bm v) d \uptau = - \oint_S \bm v \times d \bm a\) \\
+Green's 1st: \(\int_V [T \nabla^2 U + \bm \nabla T \cdot \bm \nabla U]d\uptau = \oint_S (T \bm \nabla U) \cdot d \bm a\) \\
+Green's 2nd: \(\int_V (U \nabla^2 T - T \nabla^2 U) d \uptau = \oint_S (U \bm \nabla T - T \bm \nabla U) \cdot d \bm a\) \\
+\(\nabla^2 \left(\frac{1}{\rcurs}\right) = -4\pi \delta^3(\brcurs)\); \quad \(\bm \nabla \cdot \left(\frac{\hat{\brcurs}}{\rcurs^2}\right) = 4\pi \delta^3(\brcurs)\) \\
+\(\bm \nabla \times (\bm \nabla \times \bm v) = \bm \nabla(\bm \nabla \cdot \bm v) - \nabla^2 \bm v\) \\
+\(\bm \nabla \cdot (\bm A \times \bm B) = \bm B \cdot (\bm \nabla \times \bm A) - \bm A \cdot (\bm \nabla \times \bm B)\) \\
+\(\bm \nabla \times (\bm A \times \bm B) = (\bm B \cdot \bm \nabla)\bm A - (\bm A \cdot \bm \nabla)\bm B + \bm A(\bm \nabla \cdot \bm B) - \bm B(\bm \nabla \cdot \bm A)\) \\
+\(\bm \nabla(\bm A \cdot \bm B) = \bm A \times (\bm \nabla \times \bm B) + \bm B \times (\bm \nabla \times \bm A) + (\bm A \cdot \bm \nabla)\bm B + (\bm B \cdot \bm \nabla)\bm A\) \\
+\(\bm \nabla \times (f\bm A) = f(\bm \nabla \times \bm A) - \bm A \times (\bm \nabla f)\) \\
+\(\bm \nabla \cdot (f\bm A) = f(\bm \nabla \cdot \bm A) + \bm A \cdot (\bm \nabla f)\) \\
+Vector triple: \(\bm A \times (\bm B \times \bm C) = \bm B(\bm A \cdot \bm C) - \bm C(\bm A \cdot \bm B)\) \\
+Scalar triple: \(\bm A \cdot (\bm B \times \bm C) = \bm B \cdot (\bm C \times \bm A) = \bm C \cdot (\bm A \times \bm B)\) \\
+BAC-CAB index: \(\sum_i \epsilon_{ijk}\epsilon_{ilm} = \delta_{jl}\delta_{km} - \delta_{jm}\delta_{kl}\) \\
+\(\varepsilon_{jki}\varepsilon_{jmn} = \delta_{km}\delta_{in} - \delta_{kn}\delta_{im}\) \\
+\(\varepsilon_{ijk}\varepsilon_{jmn}(\partial_m B_n)B_k = B_j\partial_j B_i - \tfrac{1}{2}\partial_i(B_k B_k)\) \\
+Spherical transforms to Cartesian: \\
+\(\hat{\bm x} = \sin \theta \cos \phi \hat{\bm r} + \cos \theta \cos \phi \hat{\bm \theta}-\sin \phi \hat{\bm \phi}\) \\
+\(\hat{\bm y} = \sin\theta \sin \phi \hat{\bm r} + \cos\theta \sin \phi \hat{\bm \theta} + \cos \phi \hat{\bm \phi}\) \\
+\(\hat{\bm z} = \cos \theta \hat{\bm r} - \sin \theta \hat{\bm \theta}\) \\
+\(\hat{\bm{r}} = \sin\theta \cos \phi \hat{\bm x} + \sin \theta \sin \phi \hat{\bm y}+\cos \theta \hat{\bm z}\) \\
+\(\hat{\bm \theta} = \cos\theta\cos\phi \hat{\bm x} + \cos\theta\sin\phi \hat{\bm y} - \sin\theta \hat{\bm z}\) \\
+\(\hat{\bm \phi} = -\sin\phi \hat{\bm x} + \cos\phi \hat{\bm y}\) \\
+\(d \bm a_r = r^2 \sin \theta d\theta d\phi \hat{\bm r}\); \quad $d\uptau = r^2\sin\theta dr d\theta d\phi$ \\
+Cylindrical transforms to Cartesian: \\
+\(\hat{\bm x} = \cos \phi \hat{\bm s} - \sin \phi \hat{\bm \phi}\); \quad \(\hat{\bm y} = \sin \phi \hat{\bm s} + \cos \phi \hat{\bm \phi}\); \quad $\hat{\bm z} = \hat{\bm z}$ \\
+\(\hat{\bm s} = \cos \phi \hat{\bm x} + \sin \phi \hat{\bm y}\); \quad \(\hat{\bm \phi} = -\sin \phi \hat{\bm x} + \cos \phi \hat{\bm y}\) \\
+$d\bm a_s = s d\phi dz \hat{\bm s}$; \quad $d\uptau = s ds d\phi dz$ \\
+Math formulas: \\
+\(\tanh x = \frac{\sinh x}{\cosh x} = \frac{e^x - e^{-x}}{e^x + e^{-x}}\); \quad \(\cos 3 \theta = 4 \cos^3 \theta - 3 \cos \theta\) \\
+\(\sum_{n=0}^{\infty} r^n = \frac{1}{1-r}\); \quad $\int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\frac{\pi}{a}}$
+
+\secblock{Honarable mentions}
+Einstein equations for GR: \(R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}\) \\
+The Dirac equation: \((i\gamma^\mu \partial_\mu - m)\psi = 0\) \\
+The TDSE: \(i\hbar \frac{\partial}{\partial t} \Psi(\mathbf{r}, t) = \hat{H} \Psi(\mathbf{r}, t)\) \\
+Entropy: \(S = k_B \ln \Omega\) \\
+Lagrangian density QED: \\
+\(\mathcal{L} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + i\bar{\psi}\gamma^\mu D_\mu \psi - m\bar{\psi}\psi\) \\
+Tensor transformations: \\
+\(T'^{i'_1 \dots i'_n}_{j'_1 \dots j'_m} = \frac{\partial x^{i'_1}}{\partial x^{i_1}} \dots \frac{\partial x^{i_n}}{\partial x^{i'_n}} \frac{\partial x^{j_1}}{\partial x^{j'_1}} \dots \frac{\partial x^{j_m}}{\partial x^{j'_m}} T^{i_1 \dots i_n}_{j_1 \dots j_m}\) \\
+Matrix Product State (MPS): \\
+\(|\Psi\rangle = \sum_{s_i} A^{(1)}_{s_1} A^{(2)}_{s_2} \dots A^{(N)}_{s_N} |s_1 s_2 \dots s_N\rangle\) \\
+Tensor Network State (TNS): \\
+\(|\Psi\rangle = \sum_{s_i,\alpha_i} A_{s_1}^{\alpha_1} A^{ \alpha_1, \alpha_2}_{s_2} \dots A^{\alpha_{N-1}}_{s_N} |s_1 s_2 \dots s_N\rangle\) \\
+Tensor contraction: \(C_{ij} = \sum_{k} A_{ik} B_{kj}\) \\
+SVD breakdown: \(M = U \Sigma V^\dagger\) \\
+EM Energy-Momentum Tensor: \\
+$T^{\mu\nu} = \frac{1}{\mu_0}\left(F^{\mu\alpha}F^\nu{}_\alpha - \frac{1}{4}\eta^{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\right)$ \\
+Proca Lagrangian (massive photon): \\
+$\mathcal{L} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}m^2 A_\mu A^\mu$
+
+\end{multicols*}
+\end{document}
