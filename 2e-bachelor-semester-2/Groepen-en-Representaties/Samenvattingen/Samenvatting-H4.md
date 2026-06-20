@@ -121,8 +121,7 @@ $$
 - Gevolg: $SU(2) \to SO(3)$ is een **2-op-1 dekkende afbeelding** ($\pm U \mapsto$ dezelfde rotatie). $SU(2)$ is de *universele dekgroep* van $SO(3)$.
 
 
-![](Figuren/topologie_SO3_vs_SU2.png)
-
+![](GROEPEN-EN-REPRESENTATIES/Figuren/topologie_SO3_vs_SU2.png)
 
 
 **Vuistregel:** lokaal (dicht bij identiteit) zijn $SO(3)$ en $SU(2)$ niet te onderscheiden; vandaar dat hun Lie-algebra's identiek zijn. Pas op globale schaal (grote rotaties) zie je het verschil.
