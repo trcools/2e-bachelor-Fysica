@@ -1,2 +1,99 @@
+
+
 \subsection{Schur's lemma}
 
+\begin{theorem}[Schur's first lemma]
+    If \(U(g)\) is an irrep and \(\forall g : \ XU(g) = U(g)X\), then \(X = c \mathds{1}\) for a constant \(c \in \mathbb{C}\). 
+\end{theorem}
+
+\begin{proof}
+    Omdat we werken over \(\mathbb{C}\), heeft \(X\) minstens 1 eigenwaarde \(\lambda \in \mathbb{C}\). 
+    
+    Bijhorende eigenruimte (lam):
+    \[
+        V_\lambda := \ker(X - \lambda\mathds{1}) = \{\, \bm v \in V \mid X \bm v = \lambda \bm v \,\}.
+    \]
+    Omdat \(\lambda\) een eigenwaarde is, geldt \(V_\lambda \neq \{0\}\).
+    \(V_\lambda\) is invariant onder \(U(g)\). Voor \(\bm v \in V_\lambda\):
+    \[
+        X\big(U(g) \bm v\big) = U(g)\big(X \bm v\big) = U(g)(\lambda \bm v) = \lambda\, U(g) \bm v,
+    \]
+    want \(X\) commuteert met \(U(g)\). Dus \(U(g) \bm v \in V_\lambda \ \forall g \implies V_\lambda\) invariante deelruimte van representatie \(U\).
+
+    Omdat \(U(g)\) een irrep is, heeft ze per definitie geen niet-triviale invariante deelruimtes.
+    
+    Door \(V_\lambda \neq \{0\}\) is enkel \( V_\lambda = V \) mogelijk.
+
+  \(V_\lambda = V \implies \forall \bm v \in V: \ X \bm v = \lambda \bm v\), dus:
+    \(
+        X = \lambda \mathds{1}  = c \mathds{1}
+    \).
+\end{proof}
+
+ Waarom de Jordan-vorm van \(X\) geen niet-triviale blokken kan bevatten?
+ 
+ Als \(X\) een Jordan-blok van dimensie \(n_i>1\) zou hebben,
+ is de corresponderende eigenruimte strikt kleiner dan de corresponderende gegeneraliseerde eigenruimte \footnote{een Jordan-blok van grootte \(n_i\) heeft een 1-dim eigenruimte,
+ maar een \(n_i\)-dim gegeneraliseerde eigenruimte}.  \(\implies V_\lambda \subsetneq V\), in tegenspraak met \(V_\lambda = V\) dat we hadden.
+
+ Analoog, als er twee verschillende eigenwaarden \(\lambda_i \neq \lambda_j\) zouden bestaan, dan is \(V_{\lambda_i}\) een eigenruimte die niet heel \(V\) inneemt wat opnieuw tot contradictie leidt met \(V_\lambda = V\).
+
+
+\begin{theorem}[Schur's second lemma]
+    Given two irreps \(U(g), V(g)\) and a rectangular matrix \(T\) such that \(\forall g : \ TU(g) = V(g)T\),
+    then either \(T = 0\), or \(U(g)\) and \(V(g)\) are equivalent and \(T\) unique up to a constant.
+\end{theorem}
+
+\begin{proof}
+    Stel \(U(g)\) werkt op een \(n\)-dim ruimte en \(V(g)\) op een \(m\)-dim ruimte, dus \(T\) is een \(m \times n\)-matrix.
+
+    \(\ker (T)\) is invariant onder \(U(g)\). Neem \(\bm v \in \ker (T)\), dan:
+    \[
+        T\big(U(g) \bm v\big) = V(g)\big(T \bm v\big) = V(g)\cdot 0 = 0,
+    \]
+    dus \(U(g) \bm v \in \ker (T)\). 
+    
+    Omdat \(U(g)\) irreducibel is, geldt
+    \[
+        \ker (T) = \{0\} \quad \text{of} \quad \ker (T) = \mathbb{C}^n.
+    \]
+
+    \(\operatorname{im} (T)\) is invariant onder \(V(g)\). Neem \(\bm w = T \bm v \in \operatorname{im} (T)\), dan
+    \[
+        V(g) \bm w = V(g)T \bm v = T U(g) \bm v \in \operatorname{im} (T).
+    \]
+    Omdat \(V(g)\) irreducibel is, geldt
+    \[
+        \operatorname{im} (T) = \{0\} \quad \text{of} \quad \operatorname{im} (T) = \mathbb{C}^m.
+    \]
+
+    We onderscheiden twee gevallen:
+    \begin{itemize}
+        \item[\(T = 0\):] Dit is wat we willen.
+        \item [\(T \neq 0\):] Dan is \(\ker (T) \neq \mathbb{C}^n\) \footnote{want \(T\) stuurt minstens één vector naar een niet-nulvector.},
+        dus \(\ker (T) = \{0\}\): \(T\) is \textbf{injectief}.
+
+        Analoog is \(\operatorname{im} (T) \neq \{0\}\), dus \(\operatorname{im} (T) = \mathbb{C}^m\): \(T\) is \textbf{surjectief}.
+
+        Gevolg: \(T\) is een vierkante, bijectieve (dus inverteerbare) matrix.
+    \end{itemize}
+
+   %equivalentie van \(U\) en \(V\). 
+   Uit \(TU(g) = V(g)T\) en de inverteerbaarheid van \(T\) volgt:
+    \[
+        U(g) = T^{-1}V(g)T \qquad \forall g,
+    \]
+
+    Stel dat ook \(S \neq 0\) voldoet aan \(SU(g) = V(g)S \ \forall g\).\footnote{Onglukkige naamgeving van de cursus.}
+    Dan is \(S\) dan ook inverteerbaar. 
+    
+    \(V(g) = SU(g)S^{-1}\) met \(V(g) = TU(g)T^{-1}\) geeft:
+    \[
+        TU(g)T^{-1} = SU(g)S^{-1} \quad\Longrightarrow\quad \big(S^{-1}T\big)U(g) = U(g)\big(S^{-1}T\big) \qquad \forall g.
+    \]
+    Schur's eerste lemma, toegepast op irrep \(U(g)\):
+    \[
+        S^{-1}T = c\,\mathds{1} \quad\Longrightarrow\quad T = c\,S, \qquad c \in \mathbb{C},
+    \]
+    waaruit het te bewijzen volgt.
+\end{proof}
