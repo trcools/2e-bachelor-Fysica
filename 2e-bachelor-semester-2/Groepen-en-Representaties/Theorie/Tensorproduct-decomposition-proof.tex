@@ -1,0 +1,39 @@
+\subsection{Tensor product decomposition}
+
+\begin{theorem}
+    Given the spin \(l_1\) and spin \(l_2\) representations of \(\mathfrak{su}(2)\), their tensor product representation decomposes as a direct sum as:
+    \[
+    l_1 \otimes l_2  \simeq \bigoplus_{l = |l_1 - l_2|}^{l_1 + l_2} l
+    \]
+    \(\simeq\) denotes 'up to basis transformation' (the two representations are equivalent).
+\end{theorem}
+\begin{proof} \footnote{Note: Dit bewijs is van externe bron. De cursus verwijst naar "Jürgen Fuchs and Christoph Schweigert. Symmetries, Lie algebras and representations: A graduate course for physicists. Cambridge University Press, 2003."}
+    We bewijzen deze decompositie door de eigenwaarden van de operator $L_3 = L_{1,3} + L_{2,3}$ te analyseren in de ongekoppelde basis.
+
+    De ongekoppelde basis van de tensorproductruimte wordt gevormd door de toestanden $|l_1, m_1\rangle \otimes |l_2, m_2\rangle$. De eigenwaarde van $L_3$ voor een dergelijke basistoestand is $m = m_1 + m_2$, waarbij $m_1 \in \{-l_1, \dots, l_1\}$ en $m_2 \in \{-l_2, \dots, l_2\}$.
+
+    Zonder verlies van algemeenheid veronderstellen we dat $l_1 \ge l_2$. We groeperen de mogelijke toestanden op basis van hun totale eigenwaarde $m$:
+    \begin{itemize}
+        \item De maximale waarde van $m$ is $l_1 + l_2$. Deze waarde kan op slechts \'{e}\'{e}n manier verkregen worden: door $m_1 = l_1$ en $m_2 = l_2$. Dit impliceert dat de representatie een hoogste-gewicht toestand bevat met $l = l_1 + l_2$.
+        \item De irreducibele representatie (irrep) met deze spin $l = l_1 + l_2$ neemt voor elke $m \in \{-(l_1+l_2), \dots, l_1+l_2\}$ precies \'{e}\'{e}n toestand in de ruimte op.
+        \item De daaropvolgende hoogste waarde is $m = l_1 + l_2 - 1$. In de ongekoppelde basis zijn er twee manieren om deze te vormen: $(m_1 = l_1, m_2 = l_2 - 1)$ en $(m_1 = l_1 - 1, m_2 = l_2)$. Aangezien \'{e}\'{e}n lineaire combinatie hiervan al deel uitmaakt van het $l = l_1 + l_2$ multiplet, blijft er precies \'{e}\'{e}n onafhankelijke toestand over. Dit vormt de nieuwe hoogste-gewicht toestand voor een irrep met $l = l_1 + l_2 - 1$.
+        \item Dit proces van aftrekking herhaalt zich. Telkens wanneer we naar een kleinere $m$ kijken, neemt het aantal manieren om deze in de ongekoppelde basis te vormen toe. Dit gaat door totdat de kleinste spin volledig is "omgeklapt" (oftewel wanneer $m_2 = -l_2$). Vanaf de waarde $m = l_1 - l_2$ neemt de degeneratie niet langer toe. De laatst toegevoegde irrep heeft dus een hoogste gewicht van $l = l_1 - l_2$ (of in het algemeen $|l_1 - l_2|$).
+    \end{itemize}
+
+    Ter controle sommeren we de dimensies van deze reeks resulterende irreps. Deze som is inderdaad exact gelijk aan de dimensie van de oorspronkelijke tensorproductruimte:
+    \[
+    \sum_{l=|l_1-l_2|}^{l_1+l_2} (2l + 1) = (2l_1 + 1)(2l_2 + 1)
+    \]
+    Omdat alle mogelijke toestanden correct toegewezen zijn en de dimensies exact overeenkomen, is hiermee aangetoond dat het tensorproduct volledig ontbindt in deze specifieke reeks van irreducibele representaties.
+\end{proof}
+
+
+\begin{example}
+    \(\bm 0 \otimes \bm d \simeq \bm d\):
+    \begin{align*}
+        \rho_0(g) = 1  \\
+        (\rho_0 \otimes \rho_d)(g) &= \rho_0(g) \otimes \rho_d(g)\\
+        &= 1 \otimes \rho_d(g) \\
+    \end{align*}
+    Inhoudelijk veranderd er niets, dus \(\bm 0 \otimes \bm d \simeq \bm d\)
+\end{example}

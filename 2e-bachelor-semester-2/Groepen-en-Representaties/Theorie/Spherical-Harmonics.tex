@@ -1,0 +1,67 @@
+\subsection{Spherical Harmonics}
+
+It can be shown that the spherical harmonics transform as:
+\[
+Y^m_l(\theta',\varphi') = \sum_{m'=-l}^l D^l_{m',m}(R) Y^{m'}_l(\theta,\varphi)
+\]
+where \(D^l_{m',m}(R)\) is the irrep of l of the rotation group:
+
+\[D^l_{m',m}(R) = \langle l, m' | R | l, m \rangle\]
+
+\[\sum_{m'=-l}^{l} D^l_{mm'} (R)D^l_{m'm''} (R') = D^l_{m m''} (R \cdot R')\]
+\[D^l(R)D^{l'}(R') = D^l(R \cdot R')\]
+
+
+
+\begin{proof}
+    We bewijzen deze relaties door gebruik te maken van de formele definitie van sferische harmonieken in de bra-ket-notatie van de kwantummechanica.
+
+    \paragraph{1. Transformatie van de sferische harmonieken}
+    De sferische harmonieken $Y_l^m(\theta, \varphi)$ representeren de golffunctie van een eigentoestand van het impulsmoment $|l, m\rangle$ in de positiebasis van de bolcoördinaten, gegeven door de projectie:
+    \[
+    Y_l^m(\theta, \varphi) = \langle \theta, \varphi | l, m \rangle
+    \]
+    Wanneer we het systeem actief roteren met een rotatieoperator $R$, transformeren de coördinaten van de positiebasis van $(\theta, \varphi)$ naar $(\theta', \varphi')$. Dit betekent dat de getransformeerde toestand in de oorspronkelijke basis overeenkomt met de ongetransformeerde toestand geëvalueerd in de nieuwe richting:
+    \[
+    Y^m_l(\theta',\varphi') = \langle \theta, \varphi | R | l, m \rangle
+    \]
+    We kunnen nu gebruikmaken van de volledigheidsrelatie (resolutie van de identiteit) binnen de irreducibele subruimte met een vaste waarde $l$. Omdat een rotatie de totale spin $l$ behoudt, geldt binnen deze subruimte:
+    \[
+    \sum_{m'=-l}^l |l, m'\rangle \langle l, m'| = \mathbb{I}_l
+    \]
+    Als we deze identiteit invoegen in de matrix-element-vergelijking, krijgen we:
+    \[
+    Y^m_l(\theta',\varphi') = \langle \theta, \varphi | \left( \sum_{m'=-l}^l |l, m'\rangle \langle l, m'| \right) R | l, m \rangle
+    \]
+    Door de sommatie en de scalaire termen naar buiten te halen, splitst dit zich op in:
+    \[
+    Y^m_l(\theta',\varphi') = \sum_{m'=-l}^l \langle \theta, \varphi | l, m'\rangle \langle l, m' | R | l, m \rangle
+    \]
+    Als we de definities van de sferische harmoniek ($Y^{m'}_l(\theta, \varphi) = \langle \theta, \varphi | l, m'\rangle$) en de Wigner $D$-matrixelementen ($D^l_{m',m}(R) = \langle l, m' | R | l, m \rangle$) invullen, vinden we direct de gezochte transformatiewet:
+    \[
+    Y^m_l(\theta',\varphi') = \sum_{m'=-l}^l D^l_{m',m}(R) Y^{m'}_l(\theta,\varphi)
+    \]
+
+    \paragraph{2. De groepsrepresentatie-eigenschap}
+    Om de samenstellingsregel voor opeenvolgende rotaties te bewijzen, beschouwen we twee opeenvolgende rotaties $R$ en $R'$. Het matrixelement van de gecombineerde rotatie $R \cdot R'$ is per definitie:
+    \[
+    D^l_{m m''} (R \cdot R') = \langle l, m | R \cdot R' | l, m'' \rangle
+    \]
+    We voegen opnieuw de volledigheidsrelatie van de basistoestanden $|l, m'\rangle$ in tussen de twee rotatieoperatoren:
+    \[
+    D^l_{m m''} (R \cdot R') = \langle l, m | R \left( \sum_{m'=-l}^l |l, m'\rangle \langle l, m'| \right) R' | l, m'' \rangle
+    \]
+    Wanneer we de sommatie naar de voorkant verplaatsen, herkennen we de afzonderlijke matrixelementen van $R$ en $R'$:
+    \[
+    D^l_{m m''} (R \cdot R') = \sum_{m'=-l}^l \langle l, m | R | l, m'\rangle \langle l, m' | R' | l, m'' \rangle
+    \]
+    Dit levert exact de gevraagde identiteit op:
+    \[
+    D^l_{m m''} (R \cdot R') = \sum_{m'=-l}^{l} D^l_{mm'} (R)D^l_{m'm''} (R')
+    \]
+    Aangezien deze sommatie over de indices $m'$ exact overeenkomt met de definitie van een matrixvermenigvuldiging (rij maal kolom), kunnen we deze volledige set vergelijkingen voor alle $m, m''$ compacter opschrijven als een matrixproduct van de irreps:
+    \[
+    D^l(R \cdot R') = D^l(R)D^l(R')
+    \]
+    Dit toont aan dat de Wigner $D$-matrices een homomorfisme vormen van de rotatiegroep naar de lineaire transformaties op de subruimte $l$, wat bewijst dat het een geldige representatie is.
+\end{proof}
