@@ -1,0 +1,98 @@
+\documentclass[a4paper,twoside]{article}
+
+
+% --- RUIMTE EN LAYOUT ---
+\usepackage{setspace}
+\setstretch{1.15}
+
+\usepackage{geometry} %size regulating
+\geometry{
+ a4paper,
+ left=25mm,
+ right=25mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\usepackage{parskip} % for better spacing between paragraphs
+
+
+% --- WISKUNDE ENSYMBOLEN ---
+\usepackage{amsmath, amssymb, amsfonts, amsthm} % For nicer math format
+\usepackage{mathrsfs} % For curly arrr
+\usepackage{bm} % For bold symbols eg \bm{\nabla}
+\usepackage{esint} % For bolletje in integrals
+\usepackage{dsfont}
+\usepackage{siunitx} % Voeg deze expliciet toe voor die graden en eenheden!
+
+\usepackage{braket} % For bra-ket notation
+
+% --- OVERIGE ---
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage[hidelinks]{hyperref} % geen kaders om linken
+\usepackage{subcaption}
+%\usepackage[dutch]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{multicol}
+
+% --- Tikz packages ---
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes, babel} % for pic (angle labels)
+\usetikzlibrary{arrows.meta,decorations.markings,calc, decorations.pathmorphing, decorations.pathreplacing, positioning, shapes, shadings, patterns}
+\usepackage{xcolor}
+\usepackage{tikz-3dplot}
+\usepackage[siunitx]{circuitikz}
+
+\usepackage{etoolbox} % ifthen
+\usepackage[outline]{contour} % glow around text
+\usepackage{xfp} % higher precision (16 digits?)
+\contourlength{1.1pt}
+
+
+
+% --- THEOREM STIJLEN MET EXTRA RUIMTE ---
+
+\theoremstyle{definition}
+\newtheorem{postulate}{Postulaat}
+\newtheorem{definition}{Definitie}
+\newtheorem{derivation}{Afleiding}
+\newtheorem{proposition}{Propositie}
+\newtheorem{example}{Voorbeeld}
+\newtheorem{lemma}{Lemma}
+\newtheorem{stelling}{Stelling}
+\newtheorem{gevolg}{Gevolg}
+
+\theoremstyle{plain}
+
+
+% --- EXTRA COMMANDO'S ---
+
+\newcommand{\dbar}{{\mkern+3mu\mathchar'26\mkern-12mu d}}
+
+% --- Titel en Introductie --- 
+
+\title{Lineaire Algebra en Meetkunde: Theorie}
+\author{T. Cools}
+\date{2025-2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    Dit zijn mijn persoonlijke probeersels om de LAM bewijzen te begrijpen en reconstrueren.
+    Dus er kunnen fouten in staan.        
+    
+\end{abstract}
+
+
+\section{Inleidende begrippen}
+\input{H1_LAM.tex}
+\section{Vectorruimten}
+\input{H2_LAM.tex}
+\section{Lineaire Afbeeldingen}
+\input{H3_LAM.tex}
+
+\end{document}
