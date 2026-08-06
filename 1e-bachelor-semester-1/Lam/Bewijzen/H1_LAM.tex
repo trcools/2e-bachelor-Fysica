@@ -1,0 +1,170 @@
+\subsection{Velden}
+
+Ik heb al wat bewijzen ervoor op papier uitgeschreven. Dus ik start niet van het begin.
+
+\begin{lemma}[ 1.1.8 (ix)]
+    Zij \(K\) een veld en a,b \(\in K \setminus \{0\}\). Dan is \((ab)^{-1} = a^{-1} b^{-1}\)
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        ab(a^{-1} b^{-1}) &= a(ba^{-1})b^{-1} 
+        = a(a^{-1}b)b^{-1} \\
+        &= (aa^{-1})(bb^{-1}) 
+        = 1 \cdot 1 
+        = 1
+    \end{align*}
+\end{proof}
+
+\subsection{Veeltermen}
+
+Dit werd niet in detail behandeld. Dit is vooral te begrijpen!
+
+\subsection{Matrices}
+
+Zij \(K\) een veld en \(n,m \in \mathds{N} \setminus \{0\}.\)
+
+\begin{lemma}[i]
+    
+    De verzameling matrices met als operatie de matrixoptelling is een groep,
+    met de nulmatrix \(0_{n,m}\) als neutraal element.
+\end{lemma}
+
+\begin{lemma}[ii]
+    De verzameling van de matrices $M_n(K)$ is een ring. Het neutraal element voor de optelling is de nulmatrix $0_n$ en het neutraal element voor de vermenigvuldiging is de eenheidsmatrix $I_n$.
+\end{lemma}
+
+\begin{lemma}[iii]
+    Voor alle $A, B \in M_{m,n}(K)$, $\lambda, \mu \in K$ is
+    \[ (\lambda\mu)A = \lambda(\mu A), \quad (\lambda + \mu)A = \lambda A + \mu A, \quad \lambda(A + B) = \lambda A + \lambda B. \]
+\end{lemma}
+
+\begin{lemma}
+    Associativiteit van matrixvermenigvuldiging: \((AB)C = A(BC)\)
+\end{lemma}
+
+\begin{proof}
+    \begin{align*}
+        A(BC) &= \sum_{l}^{n} a_{il}\left(BC\right)_{lj} 
+        = \sum_{l}^{n} a_{il} \left(\sum_{k}^n b_{lk}c_{kj}\right)  \\
+        &= \sum_{k}^n \left(  \sum_{l}^{n} a_{il}  b_{lk} \right) c_{kj}
+        = \sum_{k}^n  \left( AB \right)_{ik} c_{kj} \\
+        &= (AB)C
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    De verzameling \(GL_n(K)\) met als bewerking de matrixvermenigvuldiging is een groep.
+    Het neutrale element is \(I_n\).
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+\begin{lemma}
+    Zij \(A, B \in GL_n (K)\). Dan is \((A^{-1})^{-1} = A \) en \((AB)^{-1} = B^{-1}A^{-1}\).
+\end{lemma}
+\begin{proof}
+    \(AB = BA = I \implies B = A^{-1}\)
+    zodat \(AA^{-1} = A^{-1}A = I\).
+
+    Voor \(A^{-1}\) moeten we een \(B = (A^{-1})^{-1}\) vinden zodat:
+    \(A^{-1} B = B A^{-1} = I\). 
+
+    We zien dat \(B = A\) hieraan voldoet. Doordat deze matrices inventeerbaar zijn (\(\in GL_n(K)\)), 
+    is de inverse per definitie (1.3.8 (ii)) uniek.
+
+    Nu zoeken we nog de inverse voor \(AB\).
+    \(ABB^{-1}A^{-1} = AIA^{-1} = AA^{-1} = I\)
+
+    en
+    \(B^{-1}A^{-1}AB = B^{-1}B = I\).
+
+    Wegens uniciteit vd inverse is \((AB)^{-1} = B^{-1}A^{-1}\).
+
+\end{proof}
+
+\begin{lemma}[1.3.13]
+
+    \begin{enumerate}
+        \item[(i)] Voor alle $A, B \in M_{m,n}(K)$ is $(A + B)^t = A^t + B^t$.
+        \item[(ii)] Voor alle $A \in M_{m,n}(K)$ is $(A^t)^t = A$.
+        \item[(iii)] Voor alle $A \in M_{m,k}(K), B \in M_{k,n}(K)$ is $(AB)^t = B^t A^t$.
+        \item[(iv)] Voor alle $A \in \mathbf{GL}_n(K)$ is $A^t \in \mathbf{GL}_n(K)$ en $(A^t)^{-1} = (A^{-1})^t$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}(i)
+    \begin{align*}
+        (A+B)^t 
+        = (a_{mn} + b_{mn})^t
+        = (a_{nm} + b_{nm})
+        = a_{nm} + b_{nm}
+        = A^t + B^t
+    \end{align*}
+    
+\end{proof}
+
+\begin{proof}(ii)
+    \begin{align*}
+        (A^t)^t = (a_{ij}^t)^t = a_{ji}^t = a_{ij} = A
+    \end{align*}
+\end{proof}
+
+\begin{proof}(iii)
+    \begin{align*}
+        (AB)^t 
+        = \sum_{k} (a_{mk}b_{kn})^t 
+        = \sum_{k} (a_{km}b_{nk})
+        = \sum_{k} (b_{nk}a_{km})
+        = B^tA^t
+    \end{align*}
+\end{proof}
+
+\begin{proof}(iv)
+    \(A \in \mathbf{GL}_n(K) \implies \exists A^{-1}: AA^{-1} = A^{-1}A = I\)
+    
+    Dan is: \((AA^{-1})^t = (A^{-1}A)^t = I^t = I \implies (A^{t})^{-1} A^t = A^t(A^{t})^{-1} = I\)
+
+    met \((AA^{-1})^t  = (A^{-1})^t A^t = (A^{t})^{-1} A^t\) en \((A^{-1}A)^t = A^t(A^{-1})^t = A^t(A^{t})^{-1}\).
+
+    Want uit \(A^t(A^{t})^{-1} = I\) volgt: \((A^t)^{-1}A^t(A^{t})^{-1} = (A^t)^{-1}I\)
+    \(\implies (A^t)^{-1} = (A^{-1})^t\).
+\end{proof}
+
+
+\subsection{Stelsels van lineaire vergelijkingen}
+
+\begin{lemma}[1.4.2]
+    Beschouw een stelsel van $m$ lineaire vergelijkingen met $n$ onbekenden over het veld $K$. We noteren de vergelijkingen van dit stelsel als $R_1, \dots, R_m$.
+    
+    We construeren een nieuw stelsel van $m$ lineaire vergelijkingen met $n$ onbekenden over het veld $K$ door één van de volgende operaties toe te passen:
+    \begin{enumerate}
+        \item een vergelijking $R_i$ vervangen door de vergelijking $R_i + \lambda R_j$ voor een bepaalde $1 \le i \neq j \le m$ en $\lambda \in K$;
+        \item twee vergelijkingen van plaats verwisselen;
+        \item een vergelijking $R_i$ vervangen door $cR_i$ voor een bepaalde $1 \le i \le m$ en $c \in K \setminus \{0\}$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{stelling}[1.4.10]
+    Zij $A \in M_{m,n}(K)$. Men kan altijd een echelonmatrix bekomen door een eindig aantal opeenvolgende elementaire rijoperaties op $A$ toe te passen.
+\end{stelling}
+
+\begin{stelling}[1.4.13]
+    Zij $AX = B$ een stelsel van $m$ lineaire vergelijkingen in $n$ onbekenden over $K$, met $A \in M_{m,n}(K)$, $B \in M_{m,1}(K)$ en $X$ een kolommatrix met de $n$ onbekenden. Veronderstel dat de uitgebreide matrix $(A|B)$ een echelonmatrix is.
+    \begin{enumerate}
+        \item[(i)] Als de laatste kolom van $(A|B)$ een spilkolom is, is het stelsel strijdig.
+        \item[(ii)] Als de laatste kolom van $(A|B)$ geen spilkolom is, heeft het stelsel wel oplossingen. Zij $S \subseteq \{1, \dots, n\}$ de verzameling van indices van alle spilkolommen van $A$. De oplossingen van het stelsel kunnen we als volgt beschrijven:
+        De onbekenden $x_i$ met $i \notin S$ worden vrij gekozen in $K$, stel $x_i = t_i \in K$. De onbekenden $x_j$ met $j \in S$ zijn dan bepaald door
+        \[ x_j = b_\ell - \sum_{\substack{k > j \text{ en } k \notin S}}^{n} a_{\ell k} t_k, \tag{*} \]
+        waar $\ell$ het nummer van de rij van de spilplaats in de $j^e$-kolom is.
+    \end{enumerate}
+\end{stelling}
+
+
+\begin{gevolg}[1.4.14]
+    Zij $AX = B$ een niet-strijdig stelsel met uitgebreide matrix $(A|B)$ in echelonvorm. Het aantal vrij te kiezen onbekenden is gelijk aan het aantal onbekenden min het aantal spilkolommen.
+\end{gevolg}
