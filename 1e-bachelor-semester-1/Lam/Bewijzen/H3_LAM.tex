@@ -54,6 +54,39 @@
     \end{enumerate}
 \end{lemma}
 
-\begin{proof}
+\begin{proof}(i)
+    \([\Rightarrow]\) Stel \(f = \) injectief:
+
+    Als \(f(v) = 0\), maar \(f(0) = 0\)
+
+    \(\implies v = 0\)
+
+    \([\Leftarrow]\) Stel omgekeerd \(\ker (f) = \{0\}\):
+
+    Stel 
+    \begin{align*}
+        f(v) = f(w)
+         &\implies f(v) - f(w) = 0 \\
+         &\implies f(v-w) = 0
+         \implies v-w = 0\\
+         &\implies v = w
+    \end{align*}
+
+    Dit is per definitie injectief.
     
 \end{proof}
+
+\begin{proof}(ii)
+    \([\Rightarrow]\) Stel \(f = \) surjectief:
+
+    Dit betekend: \(\forall w \in W \, \exists v \in V: f(v) = w\)
+
+    Dus \(\{w \in W |\, \exists v \in V: f(v) = w \in W \} = W\)
+
+    \([\Leftarrow]\) Stel omgekeerd \(\operatorname{im} (f) = W\):
+
+    Per definitie van \(\operatorname{im}(f),\, \forall w \in W \,\exists v \in V: f(v) = w \).
+
+    Dit is per definitie surjectief.
+\end{proof}
+
