@@ -1,0 +1,59 @@
+\subsection{Afbeeldingen en hun eigenschappen}
+
+\begin{lemma}[3.1.3]
+    \begin{enumerate}
+        \item[(i)] Een afbeelding $f \colon A \to B$ is bijectief dan en slechts als ze injectief én surjectief is.
+        \item[(ii)] Als $f$ een bijectie is van $A$ naar $B$, dan is $|A| = |B|$, d.w.z.\ $A$ en $B$ hebben evenveel elementen.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}(i)
+    Volgt uit definities 3.1.1.
+\end{proof}
+
+\begin{proof}(ii)
+    Volgt uit definitie 3.1.1 (vi).
+\end{proof}
+
+
+\begin{lemma}[3.2.2]
+    Zij $f \colon V \to W$ een lineaire afbeelding. Dan is $\ker f \subseteq V$ een deelruimte van $V$ en $\operatorname{im} f \subseteq W$ een deelruimte van $W$.
+\end{lemma}
+
+\begin{proof}
+    \(\ker (f) = \{ v \in V |f(v) = 0\}. \)
+
+    \(\ker (f)\) is niet ledig want \(f(0) = 0\).
+    
+    Als \(v_1\) en \(v_2 \in \ker (f):\)
+    \(f(\lambda v_1 + \mu v_2) = \lambda f( v_1) + \mu f( v_2)
+    = \lambda 0 + \mu 0
+    = 0\).
+
+    \(\implies \lambda v_1 + \mu v_2 \in \ker (f)\).
+
+    Als \(w_3\) en \(w_4 \in \operatorname{im} f: f(v_3) = w_3\) en \(f(v_4) = w_4 \in W\) 
+    waarbij \(v_3,v_4 \in V\).
+
+    Ook \(\operatorname{im}(f)\) is niet leeg want: \(f(0_V) = 0_W\).
+
+    Dan 
+    \(\lambda w_3 + \mu w_4 
+    = \lambda f( v_3) + \mu f( v_4)
+    =f(\lambda v_3 + \mu v_4) \)
+
+    \(\implies \lambda w_3 + \mu w_4  \in \operatorname{im}(f) \).
+\end{proof}
+
+
+\begin{lemma}[3.2.4]
+    Zij $f \colon V \to W$ een lineaire afbeelding. Dan geldt:
+    \begin{enumerate}
+        \item[(i)] $f$ is injectief als en slechts als $\ker f = \{0\}$.
+        \item[(ii)] $f$ is surjectief als en slechts als $\operatorname{im} f = W$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    
+\end{proof}
