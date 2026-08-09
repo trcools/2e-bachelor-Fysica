@@ -67,11 +67,15 @@ Omdat \(\langle v, v \rangle \ngtr 0\) moet volgens (definitie 8.1.1) het positi
     
     Nu moeten we nog \(W + W^\perp = V\) aantonen.
     
-    \textbf{Nog verder!}
-
-    
-    Gebruiken we (dimensiestelling 2.5.4),
-    dan is \(\dim V = \dim(W^\perp)  \dim W \implies \dim(W^\perp) = \dim V - \dim W\)
+    Als \(\{b_1, \dots, b_d\}\) een orthogonale basis voor \(W\) en \(v\in V\):
+     \[v=\sum_{i=1}^{k} \langle v,b_i\rangle b_i + \left(v - \sum_{i=1}^{k} \langle v,b_i\rangle b_i \right).\]
+    De eerste term is een element van \(W\). 
+    Neem \(b_j \in \{b_1,\dots,b_d\}\) willekeurig, dan is
+    \[
+    \langle v - \sum_{i}^{d} \langle v,b_j \rangle b_i, b_j \rangle 
+    = \langle v,b_j\rangle - \sum_{i}^{d} \langle v,b_i \rangle \langle b_i,b_j \rangle
+    = \langle v,b_j \rangle - \langle v,b_j \rangle = 0.
+    \]
 \end{proof}
 
 \begin{gevolg}[8.2.6]
@@ -93,10 +97,11 @@ Omdat \(\langle v, v \rangle \ngtr 0\) moet volgens (definitie 8.1.1) het positi
 \end{lemma}
 
 \begin{proof}(i)
-    \textbf{Nog te doen!}
+    Volgt uit \(w =w + 0 \in W \oplus W^\perp \) en \(u = 0 + u \in W \oplus W^\perp\).
 \end{proof}
 \begin{proof}(ii)
-    \textbf{Nog te doen!}
+    Net als in het bewijs van gevolg 8.2.5 is
+    \[v=\sum_{i=1}^{k} \langle v,w_i\rangle w_i + \left(v - \sum_{i=1}^{k} \langle v,w_i\rangle w_i \right) \in W \oplus W^\perp.\]
 \end{proof}
 
 

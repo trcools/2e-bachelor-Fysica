@@ -128,9 +128,20 @@
     Een lineaire operator $f$ op een eindig-dimensionale $K$-vectorruimte heeft een diagonaalmatrix als matrixvoorstelling als en slechts als $V$ een basis heeft bestaande uit eigenvectoren voor $f$.
 \end{stelling}
 \begin{proof}
-    We nemen basis \(\mathcal{B} = (b_1, \dots, b_n)\)
+    $[\Rightarrow]$ Stel dat $f$ tov de basis $\mathcal{B} = \{b_1, \dots, b_n\}$ een diagonaalmatrix $A = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$ als voorstelling heeft.
+     De $i$-de kolom van $A$ is de coördinatenvector van het beeld $f(b_i)$ tov de basis $\mathcal{B}$.
+    $ \forall 1 \le i \le n$:
+    \[ f(b_i) = 0b_1 + \dots + 0b_{i-1} + \lambda_i b_i + 0b_{i+1} + \dots + 0b_n = \lambda_i b_i. \]
+    Aangezien $\mathcal{B}$ een basis is, geldt dat $b_i \neq 0$ voor alle $i$.
+    Dit betekent per definitie dat elke $b_i$ een eigenvector is van $f$ met bijhorende eigenwaarde $\lambda_i$.
+    Bijgevolg is $\mathcal{B}$ een basis bestaande uit eigenvectoren van $f$.
 
-    \textbf{Nog te bewijzen!!}
+    $[\Leftarrow]$ Zij omgekeerd $\mathcal{B} = \{b_1, \dots, b_n\}$ een basis van $V$ bestaande uit eigenvectoren voor de operator $f \in \operatorname{End}(V)$.
+    $\exists \forall 1 \le i \le n$ een scalair $\lambda_i \in K$ waarvoor:
+    \[ f(b_i) = \lambda_i b_i. \]
+    tov de basis $\mathcal{B}$:
+    \(f(b_i) = 0b_1 + \dots + \lambda_i b_i + \dots + 0b_n. \)
+    Wanneer we deze coördinatenvectoren als kolommen in de matrixvoorstelling van $f$ plaatsen, bekomen we de diagonaalmatrix $\operatorname{diag}(\lambda_1, \dots, \lambda_n)$.
 \end{proof}
 
 \begin{lemma}[6.3.3]
@@ -211,9 +222,24 @@
     Voor iedere $i$ is $\dim(\operatorname{ker}(\lambda_i \mathbf{1}_V - f)) \le n_i$. Anders gezegd, de meetkundige multipliciteit van een eigenwaarde is steeds kleiner dan of gelijk aan de algebraïsche multipliciteit van deze eigenwaarde.
 \end{lemma}
 \begin{proof}
-    \textbf{nog te doen!}
-\end{proof}
+    We noteren de eigenruimte behorende bij de eigenwaarde $\lambda_i$ met $V_i = \ker(\lambda_i \mathbf{1}_V - f)$.
+     Zij $r_i := \dim(V_i)$ de meetkundige dimensie van $\lambda_i$.
+      We tonen aan dat $(x-\lambda_i)^{r_i}$ een deler is van $\chi_f(x)$,
+      wat direct impliceert dat $r_i \le n_i$.
 
+    Stel $r = r_i$ en $\lambda = \lambda_i$.
+     Kies een basis $\{v_1, \dots, v_r\}$ voor $V_i$.
+      Wegens Gevolg 2.4.8(i) breiden we deze lineair onafhankelijke verzameling uit tot een basis voor de totale ruimte $V$:
+    \[ \mathcal{B} = \{v_1, \dots, v_r, w_1, \dots, w_s\} \quad \text{met } s = n - r. \]
+    Omdat $f(v_j) = \lambda v_j , \, \forall 1 \le j \le r$, 
+    ziet de matrixvoorstelling $A$ van $f$ tov de basis $\mathcal{B}$ er als volgt uit:
+    \[ A = \begin{pmatrix} \lambda I_r & B \\ 0 & C \end{pmatrix} \]
+    voor zekere matrices $B \in M_{r,n-r}(K)$ and $C \in M_{n-r}(K)$. Er geldt nu dat:
+    \[ \chi_f(x) = \det(x I_n - A) = \det \begin{pmatrix} (x - \lambda) I_r & -B \\ 0 & x I_{n-r} - C \end{pmatrix}. \]
+    Wanneer we deze determinant $r$ opeenvolgende malen ontwikkelen naar de eerste kolom, bekomen we:
+    \[ \chi_f(x) = (x - \lambda)^r \det(x I_{n-r} - C). \]
+    Hieruit volgt dat $(x - \lambda)^r$ een deler is van $\chi_f(x)$, waardoor de meetkundige dimensie $r$ hoogstens gelijk kan zijn aan de algebraïsche multipliciteit $n_i$.
+\end{proof}
 
 \begin{stelling}[6.3.10]
     Zij $V$ een $K$-vectorruimte en $f \colon V \to V$ een lineaire operator met karakteristieke veelterm
@@ -221,5 +247,25 @@
     Zij $V_i = \operatorname{ker}(\lambda_i \mathbf{1}_V - f)$ de eigenruimte behorende bij de eigenwaarde $\lambda_i$, voor elke $i$. Dan is $f$ diagonaliseerbaar als en slechts als voor elke eigenwaarde $\lambda_i$ geldt dat $\dim(V_i) = n_i$, of met andere woorden, als en slechts als voor iedere eigenwaarde de algebraïsche multipliciteit gelijk is aan de meetkundige multipliciteit.
 \end{stelling}
 \begin{proof}
-    \textbf{nog te doen!}
+    $\operatorname{deg}(\chi_f(x))=n \implies n = \dim V = n_1 + \dots + n_t$.
+    Voor elke eigenruimte $V_i$ kiezen we een basis $\mathcal{B}_i$.
+    Wegens Stelling 6.3.4(i) is $\mathcal{C} = \mathcal{B}_1 \cup \dots \cup \mathcal{B}_t$ lineair onafhankelijk.
+
+    \([\Leftarrow]\)
+    Stel dat $\dim(V_i) = n_i, \, \forall i$.
+     Aangezien de basissen $\mathcal{B}_i$ onderling disjunct zijn (ze horen bij verschillende eigenwaarden),
+     is het totale aantal elementen in de verzameling $\mathcal{C}$ gelijk aan:
+    \[ |\mathcal{C}| = \sum_{i=1}^t \dim(V_i) = \sum_{i=1}^t n_i = n . \]
+    Omdat $\mathcal{C}$ een lineair onafhankelijke verzameling is met $n$ elementen in een $n$-dimensionale ruimte,
+    vormt $\mathcal{C}$ een basis van $V$ bestaande uit eigenvectoren van $f$.
+    Wegens Stelling 6.3.1 is $f$ bijgevolg diagonaliseerbaar.
+
+    \([\Rightarrow]\) 
+    Veronderstel dat $\dim(V_i) < n_i$ voor een bepaalde index $i$.
+     Aangezien voor elke andere index wegens Lemma 6.3.9 geldt dat $\dim(V_j) \le n_j$,
+    is het totale aantal elementen in de lineair onafhankelijke verzameling $\mathcal{C}$ strikt kleiner dan $n$:
+    \[ |\mathcal{C}| = \sum_{j=1}^t \dim(V_j) < \sum_{j=1}^t n_j = n. \]
+    Omdat elke eigenvector van $f$ in de span van $\mathcal{C}$ moet liggen,
+    kunnen we nooit $n$ lineair onafhankelijke eigenvectoren in $V$ vinden.
+    Er bestaat dus geen basis van eigenvectoren voor $V$, wat wegens Stelling 6.3.1 impliceert dat $f$ niet diagonaliseerbaar is.
 \end{proof}
