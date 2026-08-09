@@ -31,16 +31,20 @@
     \end{enumerate}
 \end{lemma}
 \begin{proof}(i)
-    \textbf{Nog te doen!}
+    Kies als basis de eenheidsbasis in \(K^n\). \(\operatorname{im}(L_A)\) wordt voortgeebracht door \(\{Ae_1,\dots,Ae_n\}\).
+    \(Ae_i \in K^m\) is gelijk aan de \(i\)-de kolom van \(A\).
 \end{proof}
 \begin{proof}(ii)
-      \textbf{Nog te doen!}
+      Elementaire rijoperaties laten de oplossingsverzameling invariant.
 \end{proof}
 \begin{proof}(iii)
-      \textbf{Nog te doen!}
+    \(AB(v) = A(Bv) \in \operatorname{im}(A) \implies \operatorname{rk}(AB) \leq \operatorname{rk}(A) \)
+
+    \(\operatorname{rk}(AB) \leq \operatorname{rk}(B) \) volgt door hetzelfde te doen met de getransponeerde.
 \end{proof}
 \begin{proof}(iv)
-      \textbf{Nog te doen!}
+      \(B = A^{-1}AB \implies \operatorname{rk}(B) = \operatorname{rk}(A^{-1}AB) \leq \operatorname{rk}(AB)\).\\
+      Met de ongelijkheid uit (iii) volgt nu \(\operatorname{rk}(B) = \operatorname{rk}(AB)\).
 \end{proof}
 \begin{proof}(v)
       Anagloog aan (iv).
@@ -112,20 +116,32 @@ De oplossingsverzameling \(AX = w\) is:
     \end{enumerate}
 \end{stelling}
 \begin{proof}(i)
-    \textbf{Nog te doen!}
+    Uit lemma 5.3.1 (i) heeft het stelsel \(AX = w\) (een) oplossing(en) \(\iff w \in \operatorname{im}L_A\).
+    
+    \(\operatorname{rk}(A|w) 
+    = \dim \operatorname{im}(A|w)
+    = \dim \operatorname{span}(A_1,\dots,A_n,w)
+    = \dim \operatorname{span}(A_1,\dots,A_n)
+    = \dim \operatorname{im}(A)
+    = \operatorname{rk}(A)
+     \)
+
+     Want \(w = \sum_{i}^{n}\lambda_i A_i\).
 \end{proof}
 \begin{proof}(ii)
-    \textbf{Nog te doen!}
+    De oplossingsverzameling van een affiene deelruimte is \(v_0 + \ker L_A\).
+
+    \(\dim(v_0 + \ker L_A) = \dim (\ker L_A) = \dim (K^n) - \dim(\operatorname{im}L_A) = n - \operatorname{rk}(A)\).
 \end{proof}
 
 \begin{gevolg}[5.3.3]
     Beschouw het stelsel $AX = w$, $A \in M_n(K)$. Als $\operatorname{rk}(A) = n$, dan heeft het stelsel een unieke oplossing.
 \end{gevolg}
-
 \begin{proof}
-    \textbf{Nog te doen!}
-\end{proof}
+    \(\dim(v_0 + \ker L_A) = n - \operatorname{rk}(A) = 0\).
 
+    De dimensie van de oplossingsverzameling is \(0\). Dit wijst op een unieke oplossing.
+\end{proof}
 
 \subsection{ Determinanten}
 \textbf{Hiervan zijn de bewijzen niet te kennen!}
