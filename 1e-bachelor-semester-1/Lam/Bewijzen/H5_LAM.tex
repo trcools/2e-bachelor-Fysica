@@ -1,0 +1,133 @@
+\subsection{De rang van een matrix}
+
+\begin{stelling}[5.1.2]
+    Zij $A \in M_{m,n}(K)$ met kolommen $\{A_1, \dots, A_n\}$ en rijen $\{R_1, \dots, R_m\}$. Dan is $\dim \operatorname{span}(A_1, \dots, A_n) = \dim \operatorname{span}(R_1, \dots, R_m)$.
+\end{stelling}
+\begin{proof}
+    \(k = \dim(\operatorname{span}(A_1,\dots,A_n))\) we kunnen hiervoor een basis \(\mathcal{B} = \{b_1,\dots,b_k\}\) vinden met \(k\) elementen.
+
+    \(A_j = \sum_i^k x_{ij} b_i \implies A = B \cdot X\). \(B \in M_{m,k}(K)\) en \(X \in M_{k,n}(K)\).
+
+    \(R_i = \sum_j^m b_{ij} x_j \implies \dim(\operatorname{span}(R_1,\dots,R_n)) \leq \dim(\operatorname{span}(X_1,\dots,X_n))\).
+
+    We weten ook dat \(\dim(\operatorname{span}(R_1,\dots,R_n)) \leq k = \dim(\operatorname{span}(A_1,\dots,A_n))\).
+
+    Herhalen we dit voor de getransponeerde matrix,
+    dan vinden we  \(\dim(\operatorname{span}(A_1,\dots,A_n)) \leq k = \dim(\operatorname{span}(R_1,\dots,R_n))\).
+
+    Bijgevolg is \(\dim(\operatorname{span}(A_1,\dots,A_n)) = \dim(\operatorname{span}(R_1,\dots,R_n)) = k\)
+\end{proof}
+
+\begin{lemma}[5.1.6]
+    Zij $A \in M_{m,n}(K)$ met $\operatorname{rk}(A)$ de rang van $A$.
+    \begin{enumerate}
+        \item[(i)] Beschouw de lineaire afbeelding $L_A \colon K^n \to K^m \colon v \mapsto Av$. Dan is
+        \[ \operatorname{im}(L_A) = \operatorname{span}\{A_1, \dots, A_n\}; \]
+        bijgevolg is $\operatorname{dim}(\operatorname{im} L_A) = \operatorname{rk}(A)$.
+        \item[(ii)] Elementaire rijoperaties laten de rang van een matrix invariant.
+        \item[(iii)] Zij $A \in M_{m,n}(K)$ en $B \in M_{n,r}(K)$. Dan is $\operatorname{rk}(AB) \le \operatorname{rk}(A)$ en $\operatorname{rk}(AB) \le \operatorname{rk}(B)$.
+        \item[(iv)] Zij $A \in \operatorname{GL}_n(K)$ en $B \in \operatorname{Mat}_{n,r}(K)$. Dan is $\operatorname{rk}(AB) = \operatorname{rk}(B)$.
+        \item[(v)] Zij $A \in \operatorname{GL}_n(K)$ en $B \in \operatorname{Mat}_{r,n}(K)$. Dan is $\operatorname{rk}(BA) = \operatorname{rk}(B)$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}(i)
+    \textbf{Nog te doen!}
+\end{proof}
+\begin{proof}(ii)
+      \textbf{Nog te doen!}
+\end{proof}
+\begin{proof}(iii)
+      \textbf{Nog te doen!}
+\end{proof}
+\begin{proof}(iv)
+      \textbf{Nog te doen!}
+\end{proof}
+\begin{proof}(v)
+      Anagloog aan (iv).
+\end{proof}
+
+\subsection{Affiene deelruimten}
+
+\begin{lemma}[5.2.4]
+    Zij $V$ een vectorruimte, $v_1, v_2 \in V$ en $W_1, W_2$ deelruimten van $V$. Dan is $v_1 + W_1 = v_2 + W_2$ als en slechts als $W_1 = W_2$ en $v_1 - v_2 \in W_1$.
+\end{lemma}
+\begin{proof}
+    \([\Rightarrow]\) Als \(v_1 + W_1 = v_2 + W_2\): Stel \(w_0 = v_1 -v_2\).
+
+    Dan is \(W_1 + v_1-v_2= W_1 + v_0 = W_2\). Omdat \(0 \in W_2\), moet \(w_0 \in W_1\), maar dan \(W_1 + w_0 = W_1\).
+    Bijgevolg is \(W_1 = W_2\).
+
+    \([\Leftarrow]\) Stel omgekeerd $W_1 = W_2$ en $v_1 - v_2 \in W_1$:
+
+    \(v_1 + W_1 = \{v_1 + w | w\in W_1\}\) en \(v_2 + W_2 = \{v_1 - w_0 + w | w\in W_2\}\)
+
+    Het is duidelijk dat de verzamelingen \(\forall w \in W_1 \text{ en } \forall (w-w_0) \in W_1\) gelijk zijn.
+
+    \(\implies v_1 + W_1 = v_2 + W_2\).
+\end{proof}
+
+\subsection{De oplossingsverzameling van een stelsel}
+
+\begin{lemma}[5.3.1]
+    Beschouw het stelsel $AX = w$ met $A \in M_{m,n}(K)$, $w \in K^m$ en $X$ een kolomvector met $n$ onbekenden. Beschouw de lineaire afbeelding
+    \[ L_A \colon K^n \to K^m \colon v \mapsto Av. \]
+    \begin{enumerate}
+        \item[(i)] Het stelsel $AX = w$ is strijdig als en slechts als $w \notin \operatorname{im} L_A$.
+        \item[(ii)] Als het stelsel $AX = w$ niet strijdig is, dan is de oplossingsverzameling een affiene deelruimte. Als $v_0 \in K^n$ een oplossing is, dan is de oplossingsverzameling gegeven door $L_A^{-1}(w) = v_0 + \operatorname{ker} L_A$.
+        \item[(iii)] Als het stelsel homogeen is, m.a.w. van de vorm $AX = 0$, dan is de oplossingsverzameling gelijk aan de deelruimte $\operatorname{ker} L_A$.
+    \end{enumerate}
+\end{lemma}
+De oplossingsverzameling \(AX = w\) is:
+\[
+\{v\in K^n | Av = w\} = \{v \in K^n | L_A(v) = w\} = L_A^{-1}(w).
+\]
+\begin{proof}(i)
+    \(L_A^{-1}(w) = \emptyset \iff w \notin \operatorname{im} L_A\).
+\end{proof}
+\begin{proof}(ii)
+    Als \(v_0\) een oplossing is, is \(v_0 + \ker L_A \) ook een oplossing, want \(L_A (v_0 + \ker L_A) = L_A(v_0) =  w\).
+    
+    \(\implies    v_0 + \ker L_A \subseteq L_A^{-1}(w) \).
+    Om de gelijkheid aan te tonen moeten we tonen dat elke willekeurige oplossing in de affiene deelruimte ligt.
+
+    Neem \(v \in K^n\):
+    \(L_A (v_0 + v) = L_A (v_0)  + L_A ( v) = w + L_A (v)\). Waar we de lineariteit van \(L_A\) hebben toegepast.
+
+    Deze oplossing voldoet pas als \(L_A (v) = 0 \implies v \in \ker L_A \).
+
+    We concluderen dat \(L_A^{-1}(w) = v_0 + \operatorname{ker} L_A\).
+
+\end{proof}
+\begin{proof}(iii)
+    De oplossingsverzameling is \(\{v \in K^n | L_A(v) = 0\} = L_A^{-1}(0)\).
+
+    Per definitie is \(  L_A^{-1}(0) = \ker L_A\).
+\end{proof}
+
+\begin{stelling}[5.3.2]
+    Beschouw het stelsel $AX = w$ met $A \in M_{m,n}(K)$, $w \in K^m$ en $X$ een kolomvector met $n$ onbekenden.
+    \begin{enumerate}
+        \item[(i)] Het stelsel heeft een oplossing als en slechts als $\operatorname{rk}(A) = \operatorname{rk}(A|w)$.
+        \item[(ii)] Stel dat het stelsel niet strijdig is. Dan is de dimensie van de oplossingsverzameling gelijk aan $n - \operatorname{rk}(A)$.
+    \end{enumerate}
+\end{stelling}
+\begin{proof}(i)
+    \textbf{Nog te doen!}
+\end{proof}
+\begin{proof}(ii)
+    \textbf{Nog te doen!}
+\end{proof}
+
+\begin{gevolg}[5.3.3]
+    Beschouw het stelsel $AX = w$, $A \in M_n(K)$. Als $\operatorname{rk}(A) = n$, dan heeft het stelsel een unieke oplossing.
+\end{gevolg}
+
+\begin{proof}
+    \textbf{Nog te doen!}
+\end{proof}
+
+
+\subsection{ Determinanten}
+\textbf{Hiervan zijn de bewijzen niet te kennen!}
+\subsection{Inverteerbaarheid van matrices}
+\textbf{Hiervan zijn de bewijzen niet te kennen! De stellingen, eigenschappen en rekenregels zijn wel belangrijk!}

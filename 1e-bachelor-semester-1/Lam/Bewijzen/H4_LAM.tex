@@ -1,0 +1,293 @@
+\subsection{Coördinaten en matrixvoorstellingen van lineaire afbeeldingen}
+
+\begin{lemma}[4.1.4]
+    Zij $V$ een $n$-dimensionale $K$-vectorruimte en $W$ een $m$-dimensionale $K$-vectorruimte.
+    Beschouw een basis $\mathcal{B} = \{b_1, \dots, b_n\}$ van $V$ en een basis $\mathcal{C} = \{c_1, \dots, c_m\}$ van $W$.
+    \begin{enumerate}
+        \item[(i)] Voor iedere matrix $A \in M_{m,n}(K)$ bestaat er een lineaire afbeelding $f \colon V \to W$ waarvoor $A_{f,\mathcal{B},\mathcal{C}} = A$.
+        \item[(ii)] Zij $v \in V$ met $(\lambda_1, \dots, \lambda_n)^t$ de coördinatenvector van $v$ t.o.v.\ de basis $\mathcal{B}$.
+        Beschouw de coördinatenvector $(\mu_1, \dots, \mu_m)^t$ van $f(v)$ t.o.v.\ de basis $\mathcal{C}$.
+        Dan is \[ \begin{pmatrix} \mu_1 \\ \vdots \\ \mu_m \end{pmatrix} = A_{f,\mathcal{B},\mathcal{C}} \begin{pmatrix} \lambda_1 \\ \vdots \\ \lambda_n \end{pmatrix}. \]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}(i)
+
+    We definiëren de beelden van de basisvectoren $b_j \in \mathcal{B}$ adhvd kolommen van de matrix $A$:
+    \[f(b_j) = \sum_{i}^m a_{ij} c_i \quad  j \in \{ 1, \dots, n\}.\]
+
+    Wegens Lemma 3.2.6 (i) \(\exists\) een unieke lineaire afbeelding $f \colon V \to W$ die $\mathcal{B}$ afbeeldt op die vectoren. 
+
+    Per definitie van transformatiematrix $A_{f,\mathcal{B},\mathcal{C}}$ bevat
+    de $j$-de kolom de coördinaten van $f(b_j)$ tov $\mathcal{C}$.
+    Omdat we $f(b_j)$ zo gedefinieerd hebben, bevat de $j$-de kolom
+    precies de elementen $A_{1j}, \dots, A_{mj}$.
+
+    Hieruit volgt $A_{f,\mathcal{B},\mathcal{C}} = A$.
+\end{proof}
+\begin{proof}(ii)
+    \begin{align*}
+        f(v)
+        &= f\left(\sum_j^n\lambda_j b_j\right) && (f(v) = w)\\
+        &= \sum_j^n\lambda_j f\left(b_j\right) && (f(b_j) = \sum_{i}^m a_{ij} c_i)\\
+        &= \sum_j^n\lambda_j \sum_{i}^m a_{ij} c_i\\
+        &= \sum_i^m\left(\sum_j^n\lambda_j  a_{ij}\right) c_i && (w = \sum_i^m \mu_i c_i)\\
+        \implies \mu_i &= \sum_j^n\lambda_j a_{ij} \\
+    \end{align*}
+\end{proof}
+
+\begin{gevolg}[4.1.6]
+    Zij $f \colon K^n \to K^m$ een lineaire afbeelding. Dan bestaat er een matrix $A \in M_{m,n}(K)$ zodat $f = L_A$.
+\end{gevolg}
+\begin{proof}
+    \(L_A: K^n \to K^m: L_A(v) = Av\)
+
+    Zij \(\mathcal{E}_n = \{e_1, \dots, e_n\}\) de standaardbasis voor \(K^n\)
+    en \(\mathcal{E}_m = \{e_1, \dots, e_m\}\) de standaardbasis voor \(K^m\).
+
+    Er geldt: \([v]_{\mathcal{E}_n} = v\).
+
+    \(f(v) =[f(v)_{\mathcal{E}_n}] = A \cdot [v]_{\mathcal{E}_n} = Av = L_A (v)\), doordat \(f(v) = L_A (v)\, \forall v \in K^n \text{ is } f = L_A.\)
+
+    Dit kan ook via lemma 4.1.4 (ii) aangetoont worden:
+    \begin{align*}
+    f(v) &= f\left(\sum_{j=1}^n v_j e_j\right) 
+    = \sum_{j=1}^n v_j f(e_j) 
+    = \sum_{j=1}^n v_j \left( \sum_{i=1}^m a_{ij} e_i \right) 
+    = \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} v_j \right) e_i 
+    = A v = L_A(v)
+    \end{align*}
+\end{proof}
+
+\begin{lemma}[4.1.7]
+    Zij $V$ een $n$-dimensionale vectorruimte met basis $\mathcal{B}$, en zij $\beta \colon V \to K^n$ het coördinatenisomorfisme ten opzichte van $\mathcal{B}$. Zij $A, B \in M_{m,n}(K)$. Als voor alle $v \in V$ geldt dat $A\beta(v) = B\beta(v)$, dan is $A = B$.
+\end{lemma}
+\begin{proof}
+    We hebben de basis \(\mathcal{B} = (b_1,\dots,b_n)\). 
+
+    We kunnen \(v\) schrijven als lineaire som: \(v = \sum_i^n \mu_i b_i\). Dan is de isomorfisme \(\beta (v) = (\mu_1,\dots,\mu_n)^t\).
+
+    Kies \(v = b_j \implies \beta (v)= \beta(b_j) = e_j\). (Want het gegeven stelt dat dit geldt \(\forall v \in V\)!)
+
+    Bijgevolg is 
+    \(A \beta(b_j) = A_{e_j} \text{ en } B \beta(b_j) =  B_{e_j} \implies A_{e_j} = B_{e_j} \forall j \in \{1,\dots,n\} \implies A=B\).
+\end{proof}
+
+\begin{stelling}[4.1.8]
+    Zij $V$ een $n$-dimensionale $K$-vectorruimte, $W$ een $m$-dimensionale $K$-vectorruimte, en $U$ een $t$-dimensionale $K$-vectorruimte. Kies een basis $\mathcal{B}$ voor $V$, $\mathcal{C}$ voor $W$ en $\mathcal{D}$ voor $U$.
+    \begin{enumerate}
+        \item[(i)] De afbeelding
+        \[ \operatorname{Hom}_K(V, W) \to M_{m,n}(K) \colon f \mapsto A_f \]
+        \emph{(t.o.v.\ de basissen $\mathcal{B}$ en $\mathcal{C}$)} is een isomorfisme van $K$-vectorruimten.
+        \item[(ii)] Beschouw de afbeeldingen
+        \begin{align*}
+            \operatorname{Hom}_K(V, W) &\to M_{m,n}(K) \colon f \mapsto A_f, \\
+            \operatorname{Hom}_K(W, U) &\to M_{t,m}(K) \colon g \mapsto A_g, \\
+            \operatorname{Hom}_K(V, U) &\to M_{t,n}(K) \colon h \mapsto A_h,
+        \end{align*}
+        die we in (i) hebben ingevoerd. Dan geldt voor alle $f \in \operatorname{Hom}_K(V, W)$ en alle $g \in \operatorname{Hom}_K(W, U)$ dat $A_{g \circ f} = A_g A_f$.
+        \item[(iii)] De afbeelding
+        \[ \operatorname{End}_K(V) \to M_n(K) \colon f \mapsto A_f \]
+        \emph{(t.o.v.\ de basis $\mathcal{B}$)} is een isomorfisme van $K$-vectorruimten, en voor alle $f, g \in \operatorname{Hom}_K(V)$ geldt dat $A_{g \circ f} = A_g A_f$.
+        \item[(iv)] Zij $f \in \operatorname{End}_K(V)$, en zij $A_f$ de corresponderende matrix t.o.v.\ de basis $\mathcal{B}$. Dan is $f$ inverteerbaar als en slechts als $A_f$ inverteerbaar is, en in dat geval is $(A_f)^{-1} = A_{f^{-1}}$. We hebben dus een bijectieve afbeelding
+        \[ \operatorname{GL}_K(V) \to \operatorname{GL}_n(K) \colon f \mapsto A_f, \]
+        en voor alle $f, g \in \operatorname{GL}_K(V)$ is $A_{g \circ f} = A_g A_f$.
+    \end{enumerate}
+\end{stelling}
+\begin{equation*}
+\begin{tikzcd}[row sep=large, column sep=large]
+    % Bovenste rij: de vectorruimten en lineaire afbeeldingen
+    V \arrow[r, "f"] \arrow[d, "\beta"'] \arrow[rr, "g \circ f", bend left=25] & 
+    W \arrow[r, "g"] \arrow[d, "\gamma"'] & 
+    U \arrow[d, "\eta"] \\
+    % Onderste rij: de coördinatenruimten en matrixvermenigvuldigingen
+    K^n \arrow[r, "A_f"'] \arrow[rr, "A_g A_f"', bend right=25] & 
+    K^m \arrow[r, "A_g"'] & 
+    K^t
+\end{tikzcd}
+\end{equation*}
+\begin{proof}(i)
+    \(\beta: V \to K^n\) en \(\gamma: W \to K^m\),  we zien dat \(A_f \cdot \beta(v) = \gamma f(v) \).
+
+    We moeten aantonen dat \(A_{\lambda g + \mu f} = \lambda A_g + \mu A_f\).
+
+
+    \(A_{\lambda g + \mu f} \beta(v) 
+    = \gamma((\lambda g + \mu f)(v)) 
+    = \gamma(\lambda g(v) + \mu f(v)) 
+    =\lambda \gamma(g(v)) + \mu \gamma(f(v))
+    = \lambda A_g \beta(v) + \mu A_f \beta(v) 
+    =  (\lambda A_g  + \mu A_f) \beta(v)\)
+
+    Uit lemma 4.1.7 volgt dat \(A_{\lambda g + \mu f} = (\lambda A_g  + \mu A_f)  \).
+
+    Injectiviteit volgt uit lemma 4.1.7. Surjectiviteit uit 4.1.4 (i).
+    Bijgevolg is de afbeelding ook bijectief.
+    Bijectief + lineariteit = isomorfisme.
+\end{proof}
+\begin{proof}(ii)
+    \(\beta: V \to K^n\), \(\gamma: W \to K^m\) en \(\eta: U \to K^t\).
+
+    We zien dat \(A_{g\circ f} \beta (v) = \eta (g \circ f)(v)\).
+
+    \(A_{g \circ  f} \beta(v) 
+    = \eta(g \circ  f)(v) 
+    = A_g \gamma(f(v))
+    = A_g A_f \beta(v)
+    \)
+
+    Uit lemma 4.1.7 volgt dat \(A_{g \circ  f} =A_g A_f\).
+\end{proof}
+\begin{proof}(iii)
+    Het isomorf zijn volgt uit (i) met \(W = V\) en \(A_{g \circ f} = A_g A_f\) uit (ii) met \(W = U = V\).
+\end{proof}
+\begin{proof}(iv)
+    Nemen we het commutatief diagram met \(W = U = V\).
+
+    \([\Rightarrow]\) Stel \(f\) inverteerbaar:
+    
+    \(f \circ f^{-1} = f^{-1} \circ f = id_v\) uit (ii) volgt \(A_{f \circ f^{-1}} = A_f  A_{f^{-1}}  = A_{id_v} = I_n =  A_{f^{-1}}A_f = A_{f^{-1}\circ f}\).
+
+    Nu is \((A_f)^{-1} = A_{f^{-1}}\) omdat de inverse matrix uniek is.
+
+    \([\Leftarrow]\) Stel omgekeerd dat \(A_f\) inverteerbaar is:
+
+    \textbf{Nog te doen!}
+
+\end{proof}
+
+\subsection{Coördinatentransformaties}
+
+\begin{lemma}[4.2.3]
+    Zij $\mathcal{B} = \{b_1, \dots, b_n\}$ en $\mathcal{B}' = \{b_1', \dots, b_n'\}$ twee basissen voor $V$,
+    en zij $Q$ de matrix van de basisovergang van de (oude) basis $\mathcal{B}$ naar de (nieuwe) basis $\mathcal{B}'$.
+    \begin{equation*}
+    \begin{tikzcd}[row sep=large, column sep=large]
+        & V \arrow[dl, "co_{\mathcal{B}'}"'] \arrow[dr, "co_{\mathcal{B}}"] & \\
+        K^n \arrow[rr, "Q"'] & & K^n
+    \end{tikzcd}
+    \end{equation*}
+    \begin{enumerate}
+        \item[(i)] Kies een willekeurige basis $\mathcal{C} = \{c_1, \dots, c_n\}$ van $V$,
+        en noteer met $\gamma \colon V \to K^n$ het coördinatenisomorfisme ten opzichte van $\mathcal{C}$. Definieer de $n \times n$-matrices
+        \[ B = (\gamma(b_1), \dots, \gamma(b_n)) \quad \text{en} \quad B' = (\gamma(b_1'), \dots, \gamma(b_n')). \]
+        Dan is $BQ = B'$.
+        \item[(ii)] De matrix $Q$ is inverteerbaar. De inverse $Q^{-1}$ is de transitiematrix van de (nieuwe) basis $\mathcal{B}'$ naar de (oude) basis $\mathcal{B}$.
+        \item[(iii)] Zij $v \in V$, zij $(\lambda_1, \dots, \lambda_n)^t$ de coördinatenvector van $v \in V$ ten opzichte van de basis $\mathcal{B}$,
+        en zij $(\lambda_1', \dots, \lambda_n')^t$ de coördinatenvector van $v$ ten opzichte van de basis $\mathcal{B}'$.
+        Dan is \[ Q \begin{pmatrix} \lambda_1' \\ \vdots \\ \lambda_n' \end{pmatrix} = \begin{pmatrix} \lambda_1 \\ \vdots \\ \lambda_n \end{pmatrix} \quad \text{en} \quad \begin{pmatrix} \lambda_1' \\ \vdots \\ \lambda_n' \end{pmatrix} = Q^{-1} \begin{pmatrix} \lambda_1 \\ \vdots \\ \lambda_n \end{pmatrix}. \]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}(i) 
+    Per definitie is: \(b'_j = \sum_i^n q_{ij}b_i\).
+
+    Dan 
+    \begin{align*}
+        \gamma (b'_j) 
+        &=  \gamma(\sum_i^n q_{ij}b_i)
+        =  \sum_i^n q_{ij}\gamma(b_i)\\ 
+    \end{align*}
+    Als
+       \( B = (\gamma(b_1),
+       \dots, \gamma(b_n)) \text{ en } B' = (\gamma(b_1'), \dots, \gamma(b_n')),\)
+       dan geldt: \(B Q = B'\).
+\end{proof}
+\begin{proof}(ii) 
+    Dit geldt uit stelling (4.1.8) (iv), met \(f:V\to V = id_v\).
+\end{proof}
+\begin{proof}(iii)
+     \(co_{\mathcal{B}}(v) = (\lambda_1,\dots\lambda_n)^t\)
+    en
+    \(co_{\mathcal{B'}}(v) = (\lambda_1',\dots\lambda_n')^t\)
+
+    Uit het commutatief diagram lezen we af dat
+    \begin{align*}
+        Q \cdot co_{\mathcal{B'}}(v) &= co_{\mathcal{B}}(v)\\
+        Q (\lambda_1',\dots\lambda_n')^t &= (\lambda_1,\dots\lambda_n)^t\\
+         (\lambda_1',\dots\lambda_n')^t &= Q^{-1} (\lambda_1,\dots\lambda_n)^t\\
+    \end{align*}
+    Waarbij dit laatste uit (ii) volgt.
+
+    Als we stappen nog eens wiskundig mooi uitwerken:
+    \begin{align*}
+        v &= \sum_j \lambda'_j b'_j && (b'_j = \sum_i^n q_{ij}b_i) \\
+        &= \sum_j \lambda'_j \sum_i^n q_{ij}b_i \\
+         &= \sum_i^n \left(\sum_j \lambda'_j q_{ij}\right)b_i && (v = \sum_i\lambda_ib_i)\\
+          \lambda_i &=  \sum_j \lambda'_j q_{ij} && \forall i \in \{1,\dots,n\}\\
+    \end{align*}
+
+
+\end{proof}
+
+\begin{stelling}[4.2.5]
+    Zij $V, W$ eindig-dimensionale $K$-vectorruimten met $n = \dim V$ en $m = \dim W$ en kies basissen $\mathcal{B}, \mathcal{B}'$ voor $V$ en basissen $\mathcal{C}, \mathcal{C}'$ voor $W$. Beschouw de transitiematrix $Q \in \operatorname{GL}_n(K)$ van $\mathcal{B}$ naar $\mathcal{B}'$ en de transitiematrix $P \in \operatorname{GL}_m(K)$ van $\mathcal{C}$ naar $\mathcal{C}'$. Stel $A = A_{f,\mathcal{B},\mathcal{C}}$ en $A' = A_{f,\mathcal{B}',\mathcal{C}'}$; dan is
+    \[ A' = P^{-1}AQ. \]
+\end{stelling}
+\begin{proof}
+    \begin{equation*}
+    \begin{tikzcd}[row sep=huge, column sep=huge]
+        & V \arrow[r, "f"] \arrow[dl, "\beta'"'] \arrow[d, "\beta"'] & W \arrow[d, "\gamma"] \arrow[dr, "\gamma'"] & \\
+        K^n \arrow[r, "L_Q"'] & K^n  \arrow[r, "L_A"']  &  K^m \arrow[r, "L_{P^{-1}}"'] & K^m
+    \end{tikzcd}
+    \end{equation*}
+
+    Uit lemma 4.2.3 is \(P \gamma'(f(v)) = \gamma(f(v))\) en \(Q \beta'(v) = \beta(v) \).
+    We weten ook dat \(A \beta (v) = \gamma (f(v))\) en \(A' \beta'(v) = \gamma' (f(v))\).
+
+    Hieruit vinden we: \(A \beta (v)= A Q \beta'(v)  = \gamma (f(v)) = P \gamma'(f(v))\).
+
+    \(A Q \beta'(v) = P \gamma'(f(v)) = PA' \beta'(v)\)
+
+    Via lemma 4.1.7 is \(AQ = PA'\) 
+
+    Via lemma 4.2.3 (ii) is \( P\) inverteerbaar.
+    \(\implies A' = P^{-1}AQ\).
+
+\end{proof}
+
+\begin{stelling}[4.2.8]
+    Zij $f \colon V \to W$ met $n = \dim V$ en $m = \dim W$. Dan bestaat er een basis $\mathcal{B}$ van $V$ en een basis $\mathcal{C}$ van $W$ waarvoor
+    \[ A_{f,\mathcal{B},\mathcal{C}} = \left(\begin{array}{c|c}
+        I_k & 0_{k,n-k} \\ \hline
+        0_{m-k,k} & 0_{m-k,n-k}
+    \end{array}\right) \text{voor een bepaalde } k \le n, m. \]
+\end{stelling}
+\begin{proof}
+    Zij $k = \dim(\operatorname{Im}(f))$. Volgens de dimensiestelling geldt $\dim(\ker(f)) = n - k$.
+
+    Kies een basis $\{v_{k+1}, \dots, v_n\}$ voor $\ker(f)$. Omdat ze lineair onafhankelijk is in $V$, kunnen we deze aanvullen tot een volledige basis voor $V$. 
+    Zij $\mathcal{B} = \{v_1, \dots, v_k, v_{k+1}, \dots, v_n\}$ deze nieuwe basis voor $V$.
+
+    We definiëren de vectoren in het codomein als $w_i = f(v_i), \, \forall i \in \{ 1, \dots, k\}$.
+    We tonen aan dat $\{w_1, \dots, w_k\}$ lineair onafhankelijk is in $W$.
+    Stel dat er $\lambda_i$ zijn zodat:
+    $$\lambda_1 w_1 + \dots + \lambda_k w_k = 0$$
+    Per definitie van $w_i$ en de lineariteit van $f$ krijgen we:
+    $$f(\lambda_1 v_1 + \dots + \lambda_k v_k) = 0$$
+    Dit betekent dat de vector $\lambda_1 v_1 + \dots + \lambda_k v_k$ tot $\ker(f)$ behoort. Omdat we $\{v_{k+1}, \dots, v_n\}$ gekozen hebben als basis voor $\ker(f)$, kunnen we dit uitschrijven als een lineaire combinatie van die specifieke basisvectoren:
+    $$\lambda_1 v_1 + \dots + \lambda_k v_k = \mu_{k+1} v_{k+1} + \dots + \mu_n v_n$$
+    $$\implies\lambda_1 v_1 + \dots + \lambda_k v_k - \mu_{k+1} v_{k+1} - \dots - \mu_n v_n = 0$$
+    Omdat $\mathcal{B}$ een basis is voor $V$, zijn alle $v_j$ erin lineair onafhankelijk. \(\implies \lambda_i = \mu_i = 0\).  Hieruit volgt dat $\{w_1, \dots, w_k\}$ lineair onafhankelijk is.
+
+    Omdat $\{w_1, \dots, w_k\}$ een lineair onafhankelijke verzameling is van precies $k$ vectoren, en $\dim(\operatorname{Im}(f)) = k$, vormt deze set een basis voor het beeld $\operatorname{Im}(f)$.
+    We kunnen deze verzameling aanvullen tot een basis $\mathcal{C} = \{w_1, \dots, w_k, w_{k+1}, \dots, w_m\}$ voor de volledige vectorruimte $W$.
+
+    Nu bepalen we de transformatiematrix $A_{f,\mathcal{B},\mathcal{C}}$ door de beelden van de basisvectoren van $\mathcal{B}$ uit te drukken in de nieuwe basis $\mathcal{C}$:
+    $$\begin{aligned} 
+        f(v_1) &= w_1 = 1\cdot w_1 + 0\cdot w_2 + \dots + 0\cdot w_m \\ 
+        &\vdots \\ 
+        f(v_k) &= w_k = 0\cdot w_1 + \dots + 1\cdot w_k + \dots + 0\cdot w_m \\ 
+        f(v_{k+1}) &= 0 = 0\cdot w_1 + \dots + 0\cdot w_m \quad (\text{want } v_{k+1} \in \ker(f)) \\ 
+        &\vdots \\ 
+        f(v_n) &= 0 = 0\cdot w_1 + \dots + 0\cdot w_m \quad (\text{want } v_n \in \ker(f)) 
+    \end{aligned}$$
+
+    De coördinaten van deze beelden vormen de kolommen van de matrix $A_{f,\mathcal{B},\mathcal{C}}$. 
+    De eerste $k$ kolommen bevatten opeenvolgend de eerste $k$ eenheidsvectoren, wat resulteert in de identiteitsmatrix $I_k$ in de linkerbovenhoek.
+    De laatste $n-k$ kolommen bestaan uitsluitend uit nullen, omdat deze basisvectoren via de kern op nul worden afgebeeld. 
+    De resterende $m-k$ coördinaten onder de identiteitsmatrix in $W$ worden nergens geraakt, waardoor deze rijen eveneens nul zijn.
+    Dit resulteert in:
+    $$A_{f,\mathcal{B},\mathcal{C}} = \left(\begin{array}{c|c} 
+        I_k & 0_{k,n-k} \\ \hline 
+        0_{m-k,k} & 0_{m-k,n-k} 
+    \end{array}\right)$$
+\end{proof}

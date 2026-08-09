@@ -2,24 +2,22 @@
 
 \begin{lemma}[3.1.3]
     \begin{enumerate}
-        \item[(i)] Een afbeelding $f \colon A \to B$ is bijectief dan en slechts als ze injectief én surjectief is.
+        \item[(i)] Een afbeelding $f \colon A \to B$ is bijectief \(\iff\) ze injectief én surjectief is.
         \item[(ii)] Als $f$ een bijectie is van $A$ naar $B$, dan is $|A| = |B|$, d.w.z.\ $A$ en $B$ hebben evenveel elementen.
     \end{enumerate}
 \end{lemma}
-
 \begin{proof}(i)
     Volgt uit definities 3.1.1.
 \end{proof}
-
 \begin{proof}(ii)
     Volgt uit definitie 3.1.1 (vi).
 \end{proof}
 
+\subsection{Kern en beeld van een lineaire afbeelding}
 
 \begin{lemma}[3.2.2]
     Zij $f \colon V \to W$ een lineaire afbeelding. Dan is $\ker f \subseteq V$ een deelruimte van $V$ en $\operatorname{im} f \subseteq W$ een deelruimte van $W$.
 \end{lemma}
-
 \begin{proof}
     \(\ker (f) = \{ v \in V |f(v) = 0\}. \)
 
@@ -45,7 +43,6 @@
     \(\implies \lambda w_3 + \mu w_4  \in \operatorname{im}(f) \).
 \end{proof}
 
-
 \begin{lemma}[3.2.4]
     Zij $f \colon V \to W$ een lineaire afbeelding. Dan geldt:
     \begin{enumerate}
@@ -53,7 +50,6 @@
         \item[(ii)] $f$ is surjectief als en slechts als $\operatorname{im} f = W$.
     \end{enumerate}
 \end{lemma}
-
 \begin{proof}(i)
     \([\Rightarrow]\) Stel \(f = \) injectief:
 
@@ -75,7 +71,6 @@
     Dit is per definitie injectief.
     
 \end{proof}
-
 \begin{proof}(ii)
     \([\Rightarrow]\) Stel \(f = \) surjectief:
 
@@ -90,3 +85,207 @@
     Dit is per definitie surjectief.
 \end{proof}
 
+\begin{lemma}[3.2.5]
+    Zij $f \colon V \to W$ een lineaire afbeelding en zij $U \subseteq V$ een deelruimte. Beschouw de restrictie $f|_U$ van $f$ tot $U$. Dan is
+    \[ \ker f|_U = \ker f \cap U \quad \text{en} \quad \operatorname{im} f|_U \subseteq \operatorname{im} f. \]
+\end{lemma}
+\begin{proof}
+    \(\ker f|_U  = \{u \in U |f(u)=0\} = \{v \in V |f(v)=0\} \cap U= \ker f \cap U\).
+
+
+    \(\operatorname{im}f|_U = \{f(u)|u\in U\} \subseteq \{f(v)|v\in V\} = \operatorname{im} f \).
+
+\end{proof}
+
+\begin{lemma}[3.2.6]
+    Zij $V$ en $W$ twee $K$-vectorruimten, en zij $\mathcal{B}$ een basis voor $V$. Zij $f \colon V \to W$ een lineaire afbeelding. Dan geldt:
+    \begin{enumerate}
+        \item[(i)] $f$ is volledig bepaald door de beelden van de basiselementen $f(b)$ voor alle $b \in \mathcal{B}$;
+        \item[(ii)] $\operatorname{im}(f) = \operatorname{span}(\{f(b) \mid b \in \mathcal{B}\})$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}(i)
+    \(v = \sum_i \mu_i b_i\) is uniek bepaald omdat \(\mathcal{B}\) een basis is.
+
+    \begin{align*}
+        f(v) = f\left(\sum_i \mu_i b_i\right) = \sum_i \mu_i f(b_i).
+    \end{align*}
+    Wegens de uniciteit - \(f(v)\) ligt uniek vast \(\forall v \in V\) - geldt het te bewijzen.
+\end{proof}
+\begin{proof}(ii)
+    \begin{align*}
+        \operatorname{im}(f)
+        &:= \{f(v)|v\in V\}\\
+        &= \{\sum_i \mu_i f(b_i)| \mu_i \in K\}\\
+        &:= \operatorname{span}(\{f(b) \mid b \in \mathcal{B}\}).
+    \end{align*}
+\end{proof}
+
+\subsection{Injectiviteit en surjectiviteit}
+
+\begin{stelling}[3.3.1]
+    Zij $V, W$ twee $K$-vectorruimten, zij $\mathcal{B}$ een basis voor $V$, en zij $f \colon V \to W$ een lineaire afbeelding. Dan geldt:
+    \begin{enumerate}
+        \item[(i)] $f$ is injectief als en slechts als $\{f(b) \mid b \in \mathcal{B}\}$ een lineair onafhankelijke verzameling is in $W$ waarbij de elementen $f(b)$ twee aan twee verschillend zijn van elkaar;
+        \item[(ii)] $f$ is surjectief als en slechts als $\{f(b) \mid b \in \mathcal{B}\}$ een voortbrengende verzameling is in $W$;
+        \item[(iii)] $f$ is bijectief als en slechts als $\{f(b) \mid b \in \mathcal{B}\}$ een basis is in $W$ waarbij de elementen $f(b)$ twee aan twee verschillend zijn van elkaar.
+    \end{enumerate}
+\end{stelling}
+\begin{proof}(i)
+    \([\Rightarrow]\) Stel \(f\) is injectief: dus \(\ker f = \{0\}\).
+
+     \(f(v) = \sum_i \mu_i f(b_i) = f(\sum_i \mu_i b_i) =0 \iff \sum_i \mu_i b_i = 0.\)
+
+     Omdat \(\mathcal{B}\) een basis is, is \(\forall \mu \in K, \, \mu_i = 0\). Dus lineair onafhankelijk.
+
+    \([\Leftarrow]\) Stel omgekeerd \(\{f(b) \mid b \in \mathcal{B}\}\) lineair onafhankelijk:
+
+    Als \(f(v_1) = f(v_2)\):
+    \begin{align*}
+        \sum_{i} \mu_i f(b_i) &= \sum_{i} \nu_i f(b_i) \\
+        \implies 0&= \sum_{i} \mu_i f(b_i) - \sum_{i} \nu_i f(b_i)\\
+        &= \sum_{i} \left( \mu_i  -  \nu_i \right) f(b_i)
+    \end{align*}
+    
+    Wegens lineair onafhankelijk zijn is \(\mu_i = \nu_i\).
+
+    \(  f(v_1) = f(v_2)  \implies v_1 = v_2\).
+
+\end{proof}
+\begin{proof}(ii)
+
+     \([\Rightarrow]\) Stel \(f\) surjectief:
+
+     \(\forall w \in W \, \exists v \in V: f(v) = w 
+     \implies \forall w \in W: w = f(v) = \sum_{i} \mu_i f(b_i)\).
+     \begin{align*}
+        \operatorname{span}(f(b)) 
+        &= \{\sum_{i} \mu_i f(b_i) | \mu_i \in K\}\\
+        &= \{w | w \in W\} = W\\
+     \end{align*}
+    \([\Leftarrow]\) Stel omgekeerd \(\{f(b) \mid b \in \mathcal{B}\}\) voortbrengend voor \(W\):
+    \(
+    \operatorname{span}(\{f(b)\mid b \in \mathcal{B}\}) = W.
+    \)
+
+    Volgens lemma 3.2.6 (ii) is \(\operatorname{span}(\{f(b)\mid b \in \mathcal{B}\}) = \operatorname{im}(f)\implies \operatorname{im}(f) =W\).
+    
+    \(\operatorname{im}f := \{w \in W | \exists v \in V: f(v) = w\} = W\).
+
+     Wat de definitie van surjectiviteit is.
+\end{proof}
+\begin{proof}(iii)
+    Volgt uit (i) en (ii).
+\end{proof}
+
+\begin{gevolg}[3.3.5]
+    Twee $K$-vectorruimten zijn isomorf als en slechts als ze dezelfde dimensie hebben.
+\end{gevolg}
+\begin{proof}
+    Isomorfisme := bijectieve lineaire afbeelding.
+
+    \([\Rightarrow]\) Stel \(W \cong V\):
+
+    Wegens stelling 3.3.1 is er een basis voor \(V\) die ook een basis is voor \(W\).
+
+     \(\implies \dim(V) = |\mathcal{B}| = \dim(W)\).
+
+    \([\Leftarrow]\) Omgekeerd stel \(\dim(V) = \dim(W)\):
+
+    \(\dim(V) = \dim(W) = |\mathcal{B}|=|\mathcal{C}|\)
+
+    met \(|\mathcal{B}|\) een basis voor \(V\) en \(|\mathcal{C}|\) een basis voor \(W\).
+
+    We definieren een lin afb: \(f \colon V \to W: \sum_i \mu_i b_i \to \sum_i \mu_i \beta(b_i)\)
+
+    Wegens ze evenveel elementen bevatten zijn ze 2 aan 2 verschillend. 
+    Uit stelling 3.3.1 volgt nu dat \(f\) ee bijectie dus isomorfisme is.
+\end{proof}
+
+\begin{gevolg}[3.3.6]
+    Zij $K$ een veld, en zij $V$ een eindig-dimensionale $K$-vectorruimte. Stel $n = \dim_K(V)$. Dan is $V$ isomorf met de $K$-vectorruimte $K^n$.
+\end{gevolg}
+\begin{proof}
+    De K-vectorruimte \(K^n\) heeft dimensie \(n\). Het bewijs volgt nu uit gevolg 3.3.5.
+\end{proof}
+
+\begin{stelling}[3.3.7 (Dimensiestelling voor lineaire afbeeldingen)]
+    Zij $V$ een eindig-dimensionale $K$-vectorruimte, $W$ een willekeurige $K$-vectorruimte,
+    en $f \colon V \to W$ een lineaire afbeelding. Dan is
+    \[ \dim V = \dim \ker f + \dim \operatorname{im} f. \]
+\end{stelling}
+\begin{proof}
+    \textbf{Nog te doen!}
+\end{proof}
+
+\begin{gevolg}[3.3.8 (Alternatief-stelling)]
+    Zij $V, W$ $K$-vectorruimten met $\dim V = \dim W < \infty$, en zij $f \colon V \to W$ een lineaire afbeelding. De volgende eigenschappen zijn equivalent:
+    \begin{enumerate}
+        \item[(a)] $f$ is injectief;
+        \item[(b)] $f$ is surjectief;
+        \item[(c)] $f$ is bijectief.
+    \end{enumerate}
+\end{gevolg}
+\begin{proof}
+    Als \(f\) bijectief is, dan volgt per def dat \(f\) oook surjectief en injectief is.
+    
+    Nu hoeven we enkel nog \(f\) injectief \(\iff f\) surjectief aan te tonen.
+    \begin{align*}
+        f \text{ bijectief} 
+        &\iff \ker f = \{0\}\\
+        &\iff \dim\ker f = 0\\
+        &\iff \dim V = \dim\operatorname{im}f\\
+        &\iff \dim W = \dim\operatorname{im}f\\
+        &\iff \operatorname{im}f=W\\
+        &\iff f \text{ surjectief}
+    \end{align*}
+\end{proof}
+
+\subsection{Optelling en scalaire vermenigvuldiging van lineaire afbeeldingen}
+
+\begin{stelling}[3.4.5]
+    Zij $K$ een veld, en $V, W$ twee eindig-dimensionale $K$-vectorruimten.
+    Dan is $\dim \operatorname{Hom}(V, W) = \dim V \cdot \dim W$.
+\end{stelling}
+\begin{proof}
+    \textbf{Nog te doen!}
+\end{proof}
+
+\subsection{De samenstelling van lineaire afbeeldin-
+gen}
+
+\begin{lemma}[3.5.2]
+    Zij $V, W, U$ drie $K$-vectorruimten, zij $g \in \operatorname{Hom}(V, W)$ en $f \in \operatorname{Hom}(W, U)$. Dan is $f \circ g \in \operatorname{Hom}(V, U)$.
+\end{lemma}
+\begin{proof}
+    We weten dat voor \(v \in V, \, w \in W ,\, u \in U\):
+
+    \(g(v) = w \text{ en }f(w) = u\).
+
+    \((f \circ g)(v) = f(g(v)) = f(w) = u\).
+
+    Als \(\lambda,\mu \in K\) en \(v,v' \in V\):
+    \begin{align*} 
+        (f \circ g)(\lambda v + \mu v') 
+        &= f(g(\lambda v + \mu v'))  \\ 
+        &= f(\lambda g(v) + \mu g(v')) && \text{(lineariteit van \(g\)) }\\ 
+        &= \lambda f(g(v)) + \mu f(g(v')) && \text{(lineariteit van  \(f\))} \\
+        &= \lambda (f \circ g)(v) + \mu (f \circ g)(v') 
+    \end{align*}
+
+    Hieruit volgt dat \(f \circ g\) lineair is, dus \(f \circ g \in \operatorname{Hom}(V, U)\).
+\end{proof}
+
+\subsection{Inverteerbare lineaire operatoren}
+
+\begin{lemma}[3.6.2]
+    Zij $f \colon A \to B$ een afbeelding. Dan zijn de volgende uitspraken equivalent:
+    \begin{enumerate}
+        \item[(a)] Er bestaat een afbeelding $g \colon B \to A$ zodat $f \circ g = \mathbf{1}_B$ en $g \circ f = \mathbf{1}_A$.
+        \item[(b)] $f$ is bijectief.
+    \end{enumerate}
+    Indien deze uitspraken voldaan zijn, dan is $g = f^{-1}$.
+\end{lemma}
+\begin{proof}
+      \textbf{Nog te doen!}
+\end{proof}
