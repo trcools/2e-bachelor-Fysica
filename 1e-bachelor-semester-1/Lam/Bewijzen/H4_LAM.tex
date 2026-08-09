@@ -11,10 +11,8 @@
     \end{enumerate}
 \end{lemma}
 \begin{proof}(i)
-
     We definiëren de beelden van de basisvectoren $b_j \in \mathcal{B}$ adhvd kolommen van de matrix $A$:
     \[f(b_j) = \sum_{i}^m a_{ij} c_i \quad  j \in \{ 1, \dots, n\}.\]
-
     Wegens Lemma 3.2.6 (i) \(\exists\) een unieke lineaire afbeelding $f \colon V \to W$ die $\mathcal{B}$ afbeeldt op die vectoren. 
 
     Per definitie van transformatiematrix $A_{f,\mathcal{B},\mathcal{C}}$ bevat
@@ -149,12 +147,25 @@
 
     Nu is \((A_f)^{-1} = A_{f^{-1}}\) omdat de inverse matrix uniek is.
 
-    \([\Leftarrow]\) Stel omgekeerd dat \(A_f\) inverteerbaar is:
+    \([\Leftarrow]\) Stel omgekeerd dat de matrix $A_f$ inverteerbaar is, en stel $B := (A_f)^{-1}$.
 
-    \textbf{Nog te doen!}
+    Wegens Lemma 4.1.4(i) is elke matrix de matrixvoorstelling van een lineaire afbeelding .
+    Er bestaat dus een lineaire operator $g \in \operatorname{End}_K(V)$ zodanig dat \(A_g = B\) .
 
+    Aangezien $B$ de inverse matrix is van $A_f$:
+    \( A_f B = B A_f = I_n \implies A_f A_g = A_g A_f = I_n. \)
+
+    Als (ii) toepassen:
+    \( A_{f \circ g} = A_f A_g = I_n \quad \text{en} \quad A_{g \circ f} = A_g A_f = I_n. \)
+
+    Omdat $A_{id_V} = I_n$:
+    \( A_{f \circ g} = A_{id_V} \quad \text{en} \quad A_{g \circ f} = A_{id_V}. \)
+
+    Aangezien de afbeelding $h \mapsto A_h$ wegens deel (iii) een isomorfisme (en dus injectief) is,
+    volgt hieruit onmiddellijk dat:
+    \[ f \circ g = id_V \quad \text{en} \quad g \circ f = id_V\]
+    met $f^{-1} = g$.
 \end{proof}
-
 \subsection{Coördinatentransformaties}
 
 \begin{lemma}[4.2.3]
