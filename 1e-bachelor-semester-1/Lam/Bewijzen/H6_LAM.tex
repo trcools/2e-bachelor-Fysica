@@ -1,0 +1,225 @@
+\subsection{De karakteristieke veelterm van een lineaire operator}
+
+\begin{lemma}[6.1.1]
+    Zij $V$ een eindig-dimensionale $K$-vectorruimte en $f \in \operatorname{End}(V)$. Beschouw twee matrixvoorstellingen $A$ en $B$ van $f$ ten opzichte van verschillende basissen van $V$. Dan is $\det A = \det B$.
+\end{lemma}
+\begin{proof}
+    Wegens (Stelling 4.2.5) bestaat er een inverteerbare matrix $P \in \operatorname{GL}_n(K)$ zodat:
+    \begin{align*}
+        A &= P^{-1}BP\\
+        \det(A) &= \det(P^{-1}BP) = \det(P^{-1})\det(B)\det(P)\\
+        &= \det(B)\det(P^{-1})\det(P) = \det(B)\det(I)\\
+        &= \det(B)
+    \end{align*}
+\end{proof}
+
+\begin{lemma}[6.1.4]
+    Zij $V$ een eindig-dimensionale vectorruimte over een veld $K$, en zij $f \in \operatorname{End}_K(V)$ een lineaire operator, met matrixvoorstelling $A$ (ten opzichte van een willekeurige basis voor $V$). Dan is
+    \[ \chi_f(x) := \det(xI_n - A) \in K[x] \]
+    een monische veelterm van graad $n$ in de variabele $x$, en deze veelterm hangt niet af van de keuze van de basis voor $V$.
+\end{lemma}
+\begin{proof}
+    We tonen eerst aan dat \(\chi_f(x)\) basis onafhankelijk is.
+    Wegens (Stelling 4.2.5)  $\exists P \in \operatorname{GL}_n(K)$ zodat:
+    \[A = P^{-1}BP\]
+    \begin{align*}
+        \det(xI_n - A) 
+        &= \det(xI_n - P^{-1}BP)\\
+         &= \det(P(xI_n - P^{-1}BP)P^{-1})\\
+         &= \det(xPI_nP^{-1} - PP^{-1}BPP^{-1})\\
+         &= \det((xI_n - B)) \\
+    \end{align*}
+    Waarbij we gebruik hebben gemaakt van (stelling 4.2.5) en de eigenschap dat \(I_n\) commuteerd.
+
+    Doordat in de determinant alle factoren met \(x\) op de diagonaalelementen staan,
+    is de term met de hoogste graad \(\prod_{i = 1}^n (x - a_{ii})\).
+
+    Hier is de coëfficiënt van de term met de hoogste graad duidelijk 1.
+\end{proof}
+
+\begin{lemma}[6.1.6]
+    Zij $A = (a_{ij}) \in M_n(K)$ met karakteristieke veelterm
+    \[ \chi_A(x) = x^n + c_{n-1}x^{n-1} + c_{n-2}x^{n-2} + \dots + c_1x + c_0. \]
+    Dan is $c_0 = (-1)^n \det A$ en $c_{n-1} = -\sum_{i=1}^n a_{ii}$.
+\end{lemma}
+\begin{proof}
+    Stel \(x = 0\), dan is \(\chi_A(x=0) = c_0\).
+
+    \(\implies c_0 = \det(-A) = (-1)^n \det(A)\)
+
+    Waarbij we gebruik hebben gemaakt van (lemma 5.4.10 (iii)).
+
+
+
+    $$\det(xI_n - A) = \sum_{\sigma \in S_n} \operatorname{sgn}(\sigma) \prod_{i=1}^n B_{i, \sigma(i)} $$ 
+
+    De hoogste graad is \(n\) (lemma 6.1.4), deze komt overeen met de permutatie \(\sigma = id\).
+    Doordat een permutatie 2 elementen wisselt, is de hoogste graad wanneer \(\sigma \neq id, \, n-2\).
+
+    \(\implies\) de \(n-1\) term moet van de diagonaal-termen komen (\(\sigma = id\)).
+
+    \[\prod_{i=1}^n (x - a_{ii}) = x^n - \left(\sum_{i=1}^n a_{ii}\right)x^{n-1} + \dots\]
+
+    De enige \(n-1\) term die we hieruit kunnen halen is \(-\sum_{i=1}^{n} a_{ii}\).
+
+
+\end{proof}
+
+\subsection{Eigenwaarden en eigenvectoren}
+
+\begin{stelling}[6.2.5]
+    \begin{enumerate}
+        \item[(i)] Zij $A \in M_n(K)$. Een scalair $\lambda \in K$ is een eigenwaarde van $A$ als en slechts als $\chi_A(\lambda) = \det(\lambda I_n - A) = 0$.
+        \item[(ii)] Zij $V$ een $n$-dimensionale $K$-vectorruimte en $f \colon V \to V$ een lineaire operator. Een scalair $\lambda \in K$ is een eigenwaarde van $f$ als en slechts als $\chi_f(\lambda) = \det(\lambda \mathbf{1} - f) = 0$.
+    \end{enumerate}
+\end{stelling}
+\begin{proof}(i)
+    \([\Rightarrow]\) Als \(\lambda\) een eigenwaarde van \(A\), dan geldt:
+    \(f(v) = Av =\lambda v, \, 0 \neq v \in V\).
+
+    \begin{align*}
+        Av &= \lambda v\\
+        \implies 0 &= (\lambda I_n - A)v\\
+        \implies v &\in \ker(\lambda I_n - A)\\
+        \implies &\dim(\ker(\lambda I_n - A)) > 0\\
+        \implies &rk((\lambda I_n - A)) < n \\
+        \implies &\det(\lambda I_n - A) = 0
+    \end{align*}
+
+    \([\Leftarrow]\) omgekeerd als \(\det(\lambda I_n - A) = 0\):
+    \begin{align*}
+        \implies &rk((\lambda I_n - A)) < n \\
+        \implies &\dim(\ker(\lambda I_n - A)) > 0\\
+        \implies & \exists v (\neq 0) \in V: (\lambda I_n - A)v = 0 ,\\
+        \implies & \exists v (\neq 0) \in V:  Av = \lambda v
+    \end{align*}
+\end{proof}
+\begin{proof}(ii)
+    Kies een willekeurige basis \(\mathcal{B}\) van \(V\) en \(\beta \colon V \to K^n\) het  coördinatenisomorfisme. 
+    Als \(A := A_{f,\mathcal{B},\mathcal{B}}\) de matrixvoorstelling van \(f\) tov \(\mathcal{B}\).
+
+    Wegens Opmerking 4.1.5 (ii) geldt \( \forall v \in V: \beta(f(v)) = A\beta(v)\).
+    \( \forall v \in V \setminus \{0\}\) en \(\forall \lambda \in K\) gelden:
+    \[ f(v) = \lambda v \iff \beta(f(v)) = \beta(\lambda v) \iff A\beta(v) = \lambda \beta(v). \]
+
+    \(\implies v \in V \setminus \{0\}\) een eigenvector is van \(f\) met eigenwaarde \(\lambda \iff \beta(v) \in K^n \setminus \{0\}\) een eigenvector is van \(A\) met eigenwaarde \(\lambda\).
+
+    Bijgevolg is \(\lambda\) een eigenwaarde van \(f \iff \lambda\) een eigenwaarde is van \(A\).
+    Wegens (i) geldt:
+    \[ \chi_f(\lambda) = \det(\lambda \mathbf{1} - f) = \det(\lambda I_n - A) = 0. \]
+\end{proof}
+
+\begin{gevolg}[6.2.6]
+    Een lineaire operator $f$ op een $n$-dimensionale $K$-vectorruimte $V$ (of een matrix $A \in M_n(K)$) heeft hoogstens $n$ eigenwaarden.
+\end{gevolg}
+\begin{proof}
+    Uit (lemma 6.1.4) volgt dat \(\chi_f(x)\) een monische veelterm is van graad \(n\).
+
+    Uit (stelling 6.2.5) (ii) is \(\lambda\) een eigenwaarde  
+    \(\iff \chi_f(\lambda) = 0. \)
+
+    Een veelterm in \(K\) heeft hoogstens \(n\) wortels, waaruit het gevraagde geldt. 
+
+\end{proof}
+
+\subsection{Diagonaliseren van operatoren}
+
+\begin{stelling}[6.3.1]
+    Een lineaire operator $f$ op een eindig-dimensionale $K$-vectorruimte heeft een diagonaalmatrix als matrixvoorstelling als en slechts als $V$ een basis heeft bestaande uit eigenvectoren voor $f$.
+\end{stelling}
+\begin{proof}
+    We nemen basis \(\mathcal{B} = (b_1, \dots, b_n)\)
+
+    \textbf{Nog te bewijzen!!}
+\end{proof}
+
+\begin{lemma}[6.3.3]
+    Een matrix $A \in M_n(K)$ is diagonaliseerbaar als en slechts als er een matrix $P \in \operatorname{GL}_n(K)$ bestaat zodat $P^{-1}AP$ een diagonaalmatrix is.
+\end{lemma}
+\begin{proof}
+    \([\Rightarrow]\) \(A\) is diagonaliseerbaar:
+    
+    Er bestaat een basis \(\mathcal{B} = (b_1, \dots, b_n)\) uit eigenvectoren.
+
+    Als \(P = (b_1, \dots, b_n)\), dan is \(AP = (\lambda_1 b_1, \dots, \lambda_n b_n) = \operatorname{diag}(b_1, \dots, b_n) \cdot (\lambda_1,\dots,\lambda_n)\). 
+    En \(P^{-1}AP = \operatorname{diag}(\lambda_1,\dots\lambda_n)\).
+
+    \([\Leftarrow]\) Omgekeerd, \(P^{-1}AP= \operatorname{diag}(\lambda_1,\dots\lambda_n)\) :
+
+    Beschouw basis \(\mathcal{B} = (b_1, \dots, b_n)\) met \(b_i := Pe_i\)
+
+    Dan \(P^{-1}A(b_1, \dots , b_n)= \operatorname{diag}(\lambda_1,\dots\lambda_n)\)
+
+    \(\implies A(b_1, \dots , b_n)= P \operatorname{diag}(\lambda_1,\dots\lambda_n)\)
+
+    Het is duidelijk dat \(L_A \) tov \(\mathcal{B}\) de diagonaalmatrix \(P^{-1}AP\) is.
+    
+\end{proof}
+
+\begin{stelling}[6.3.4]
+    Zij $V$ een $n$-dimensionale vectorruimte, en zij $f \in \operatorname{End}(V)$.
+    \begin{enumerate}
+        \item[(i)] De eigenvectoren van $f$ die horen bij verschillende eigenwaarden, zijn lineair onafhankelijk van elkaar.
+        \item[(ii)] Als $f$ precies $n$ verschillende eigenwaarden heeft, dan is $f$ diagonaliseerbaar.
+        \item[(iii)] Als $f$ diagonaliseerbaar is, dan is $V$ de directe som van de eigenruimten van $f$ horende bij de verschillende eigenwaarden van $f$.
+    \end{enumerate}
+\end{stelling}
+\begin{proof}(i)
+    Stel dat dit niet zo was. \(\mu_1v_1 + \dots + \mu_n v_m = 0\) met \(m\) minimaal zodat alle termen niet nul zijn.
+
+
+    \(f(\mu_1v_1 + \dots + \mu_m v_m ) = \lambda_1 \mu_1 v_1 + \dots + \lambda_m \mu_m v_m = 0\)
+
+    Aangezien \(\mu_1v_1 + \dots + \mu_m v_m = 0\), dan is ook \(\lambda_1\mu_1v_1 + \dots + \lambda_1\mu_m v_m = 0\) een lineaire combinatie.
+
+    Nu is \( \lambda_1 \mu_1 v_1 + \dots + \lambda_m \mu_m v_m - (\lambda_1\mu_1v_1 + \dots + \lambda_1\mu_m v_m) = 0 \)
+
+    \(\implies (\lambda_2-\lambda_1)\mu_2 v_2 + \dots + (\lambda_n-\lambda_1)\mu_m v_m = 0 \).
+
+    Maar deze heeft minder termen dan ze minimale \(m\) die we gesteld hadden.
+
+    Dus de eigenvectoren zijn lineair onafhankelijk.
+
+\end{proof}
+\begin{proof}(ii)
+    Uit (i) zijn de eigenvectoren lineair onafhankelijk. Uit (stelling 2.4.12 (i)) vormen de eigenvectoren een basis voor V.
+    Uit (stelling 6.3.1) is \(f\) diagonaliseerbaar. 
+\end{proof}
+\begin{proof}(iii)
+    Doordat de eigenruimten die bij verschillende eigenvectoren horen lineair onafhankelijk zijn,
+    is de van gelijk welke eigenruimte van verschillende eigenvectoren \(\{0\}\).
+\end{proof}
+\begin{proof}(iii)
+    Zij $\lambda_1, \dots, \lambda_\ell$ de verschillende eigenwaarden van $f$.
+    Aangezien $f$ diagonaliseerbaar is, bestaat er wegens Stelling 6.3.1 een basis $\mathcal{B}$ voor $V$ die volledig bestaat uit eigenvectoren van $f$. 
+    
+    We kunnen deze basis $\mathcal{B}$ schrijven als de disjuncte unie van deelverzamelingen:
+    \(\mathcal{B} = \mathcal{B}_1 \cup \dots \cup \mathcal{B}_\ell \)
+    waarbij elke $\mathcal{B}_i$ precies de basisvectoren uit $\mathcal{B}$ bevat die horen bij de eigenwaarde $\lambda_i$.
+    
+    Per definitie van de eigenruimten geldt dat de eigenruimte $V_i$ behorende bij $\lambda_i$ gelijk is aan:
+    \(V_i = \operatorname{span}(\mathcal{B}_i). \)
+    
+    Omdat $\mathcal{B}$ een basis is voor $V$ en de disjuncte unie is van de verzamelingen $\mathcal{B}_i$, volgt uit de transformatiestelling voor basissen (Stelling 2.5.5, recursief toegepast op $\ell$ delen) onmiddellijk dat:
+    \[ V = \operatorname{span}(\mathcal{B}_1) \oplus \dots \oplus \operatorname{span}(\mathcal{B}_\ell) \]
+    \[ \implies V = V_1 \oplus \dots \oplus V_\ell. \]
+\end{proof}
+
+\begin{lemma}[6.3.9]
+    Zij $V$ een $K$-vectorruimte en $f \colon V \to V$ een lineaire operator met karakteristieke veelterm
+    \[ \chi_f(x) = \prod_{i=1}^t (x - \lambda_i)^{n_i} \quad \text{met } \lambda_1, \dots, \lambda_t \in K. \]
+    Voor iedere $i$ is $\dim(\operatorname{ker}(\lambda_i \mathbf{1}_V - f)) \le n_i$. Anders gezegd, de meetkundige multipliciteit van een eigenwaarde is steeds kleiner dan of gelijk aan de algebraïsche multipliciteit van deze eigenwaarde.
+\end{lemma}
+\begin{proof}
+    \textbf{nog te doen!}
+\end{proof}
+
+
+\begin{stelling}[6.3.10]
+    Zij $V$ een $K$-vectorruimte en $f \colon V \to V$ een lineaire operator met karakteristieke veelterm
+    \[ \chi_f(x) = \prod_{i=1}^t (x - \lambda_i)^{n_i} \quad \text{met } \lambda_1, \dots, \lambda_t \in K. \]
+    Zij $V_i = \operatorname{ker}(\lambda_i \mathbf{1}_V - f)$ de eigenruimte behorende bij de eigenwaarde $\lambda_i$, voor elke $i$. Dan is $f$ diagonaliseerbaar als en slechts als voor elke eigenwaarde $\lambda_i$ geldt dat $\dim(V_i) = n_i$, of met andere woorden, als en slechts als voor iedere eigenwaarde de algebraïsche multipliciteit gelijk is aan de meetkundige multipliciteit.
+\end{stelling}
+\begin{proof}
+    \textbf{nog te doen!}
+\end{proof}

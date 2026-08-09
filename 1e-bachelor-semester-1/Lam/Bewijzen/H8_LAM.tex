@@ -1,0 +1,103 @@
+\subsection{Definitie en eerste eigenschappen}
+
+\begin{lemma}[8.1.2]
+    Zij $(V, \langle \cdot, \cdot \rangle)$ een inproduct-ruimte over $K = \mathbb{R}$ of $\mathbb{C}$. Dan gelden volgende eigenschappen, voor alle $u, v, w \in V$ en alle $\lambda, \mu \in K$.
+    \begin{enumerate}
+        \item[(i)] [\emph{bi-additiviteit}] $\langle u + v, w \rangle = \langle u, w \rangle + \langle v, w \rangle$ en $\langle u, v + w \rangle = \langle u, v \rangle + \langle u, w \rangle$;
+        \item[(ii)] [\emph{sesqui-lineariteit}] $\langle \lambda v, \mu w \rangle = \lambda \overline{\mu} \cdot \langle v, w \rangle$;
+        \item[(iii)] [\emph{homogeniteit van de norm}] $\|\lambda v\| = |\lambda| \cdot \|v\|$.
+    \end{enumerate}
+    Bovendien is $\langle \cdot, \cdot \rangle$ niet-ontaard, i.e. als $u \in V$ zodanig is dat $\langle u, v \rangle = 0$ voor alle $v \in V$, dan is noodzakelijk $u = 0$.
+\end{lemma}
+\begin{proof}(i)
+    \(\langle u + v, w \rangle = \langle u, w \rangle + \langle v, w \rangle\) geldt uit (definitie 8.1.1) lineair in het eerste argument met \(a=b=1\).
+
+    En 
+    \(
+        \langle u, v + w \rangle 
+        = \overline{\langle v + w, u \rangle} 
+        = \overline{\langle v , u \rangle} + \overline{\langle w, u \rangle}
+        =\langle u, v \rangle + \langle u, w \rangle
+    \)
+\end{proof}
+\begin{proof}(ii)
+    \(
+        \langle \lambda v, \mu w \rangle 
+        = \lambda \langle  v, \mu w \rangle
+        = \lambda \overline{\langle \mu w ,v\rangle}
+        = \lambda \overline{\mu} \overline{\langle  w ,v\rangle}
+        = \lambda \overline{\mu} \cdot \langle v, w \rangle
+    \)
+\end{proof}
+\begin{proof}(iii)
+    \(\|\lambda v\| 
+    = \sqrt{\langle \lambda v, \lambda v \rangle} 
+    = \sqrt{\lambda \overline{\lambda} \cdot \langle v, v \rangle}
+    = \sqrt{\lambda \overline{\lambda}} \sqrt{ \langle v, v \rangle}
+    = |\lambda| \cdot \|v\|\)
+\end{proof}
+Om aan te tonen dat  $\langle \cdot, \cdot \rangle$ niet-ontaard is, kiezen we \(u = v\).
+
+\(\langle v, v \rangle = 0\).
+
+Omdat \(\langle v, v \rangle \ngtr 0\) moet volgens (definitie 8.1.1) het positief definiet zijn, \(v=0\).
+
+
+\begin{lemma}[8.2.2]
+    Het orthogonaal complement $W^\perp$ van een deelruimte $W \le V$ is een deelruimte van $V$. Er geldt dat $W \cap W^\perp = \{0\}$.
+\end{lemma}
+\begin{proof}
+    Per definitie van het orthogonaal complement is \(V = W \oplus W^\perp\).
+
+    We bewijzen dat \(W^\perp\) een deelruimte is:
+    Stel \(v_1,v_2 \in W^\perp\) en \(\lambda_1, \lambda_2 \in K\).
+
+    \(\langle \lambda_1 v_1 + \lambda_2 v_2,w\rangle = \lambda_1 \langle  v_1  ,w\rangle + \lambda_2  \langle v_2,w\rangle = 0\).
+
+    Stel \(v \in W \cap W^\perp\), dan \(\langle v,v \rangle = 0 \implies v = 0. \)
+\end{proof}
+
+\begin{lemma}[8.2.5]
+    Zij $K = \mathbb{R}$ of $\mathbb{C}$, en zij $(V, \langle \cdot, \cdot \rangle)$ een eindig-dimensionale inproduct-ruimte over $K$. Voor elke deelruimte $W \le V$ is het orthogonaal complement $W^\perp$ in $V$ een complementaire ruimte,
+    i.e. $W \oplus W^\perp = V$.
+    In het bijzonder is $\dim(W^\perp) = \dim V - \dim W$.
+\end{lemma}
+\begin{proof}
+    Uit (lemma 8.2.2) volgt  \(W \cap W^\perp = \{0\}\).
+    
+    Nu moeten we nog \(W + W^\perp = V\) aantonen.
+    
+    \textbf{Nog verder!}
+
+    
+    Gebruiken we (dimensiestelling 2.5.4),
+    dan is \(\dim V = \dim(W^\perp)  \dim W \implies \dim(W^\perp) = \dim V - \dim W\)
+\end{proof}
+
+\begin{gevolg}[8.2.6]
+    Zij $K = \mathbb{R}$ of $\mathbb{C}$, en zij $(V, \langle \cdot, \cdot \rangle)$ een eindig-dimensionale inproduct-ruimte over $K$. Voor elke deelruimte $W \le V$ is $(W^\perp)^\perp = W$.
+\end{gevolg}
+\begin{proof}
+    \(\dim (W^\perp) = \dim(V)-\dim(W) \)
+
+    \(\dim((W^\perp)^\perp) = \dim(V) -(\dim(V)-\dim(W)) = \dim(W)\)
+\end{proof}
+
+\begin{lemma}[8.2.9]
+    Zij $K = \mathbb{R}$ of $\mathbb{C}$, en zij $(V, \langle \cdot, \cdot \rangle)$ een eindig-dimensionale inproduct-ruimte over $K$. Beschouw een deelruimte $W \le V$.
+    \begin{enumerate}
+        \item[(i)] Voor alle $w \in W$ is $\operatorname{proj}_W(w) = w$; voor alle $u \in W^\perp$ is $\operatorname{proj}_W(u) = 0$. In het bijzonder is de orthogonale projectie een projectie-operator in de betekenis van Definitie 3.1.7.
+        \item[(ii)] Zij $\{w_1, \dots, w_k\}$ een orthonormale basis van $W$. Dan is
+        \[ \operatorname{proj}_W(v) = \sum_{j=1}^k \langle v, w_j \rangle w_j \quad \forall v \in V.\]
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}(i)
+    \textbf{Nog te doen!}
+\end{proof}
+\begin{proof}(ii)
+    \textbf{Nog te doen!}
+\end{proof}
+
+
+
