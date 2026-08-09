@@ -41,7 +41,6 @@ Zij \(K\) een veld en \(n,m \in \mathds{N} \setminus \{0\}.\)
 \begin{lemma}
     Associativiteit van matrixvermenigvuldiging: \((AB)C = A(BC)\)
 \end{lemma}
-
 \begin{proof}
     \begin{align*}
         A(BC) &= \sum_{l}^{n} a_{il}\left(BC\right)_{lj} 
@@ -57,7 +56,16 @@ Zij \(K\) een veld en \(n,m \in \mathds{N} \setminus \{0\}.\)
     Het neutrale element is \(I_n\).
 \end{lemma}
 \begin{proof}
-    
+    Er is een eenheidsmatrix \(I_n\);
+    per definitie bestaat er ook een inverse matrix \(\in GL_n(K)\). 
+    De matrixvermenigvuldiging is ook assoociatief.
+
+    Het enige dat we nog moeten aantonen is closure:
+    \(A,B \in GL_n(K) \implies AB \in GL_n(K)\).
+
+    Dus dat er voor \( AB\) een inverse bestaat namelijk \(B^{-1}A^{-1}\).
+    Dit volgt uit volgend lemma.
+
 \end{proof}
 
 \begin{lemma}
@@ -70,7 +78,7 @@ Zij \(K\) een veld en \(n,m \in \mathds{N} \setminus \{0\}.\)
     Voor \(A^{-1}\) moeten we een \(B = (A^{-1})^{-1}\) vinden zodat:
     \(A^{-1} B = B A^{-1} = I\). 
 
-    We zien dat \(B = A\) hieraan voldoet. Doordat deze matrices inventeerbaar zijn (\(\in GL_n(K)\)), 
+    We zien dat \(B = A\) hieraan voldoet. Doordat deze matrices inverteerbaar zijn (\(\in GL_n(K)\)), 
     is de inverse per definitie (1.3.8 (ii)) uniek.
 
     Nu zoeken we nog de inverse voor \(AB\).
@@ -92,34 +100,29 @@ Zij \(K\) een veld en \(n,m \in \mathds{N} \setminus \{0\}.\)
         \item[(iv)] Voor alle $A \in \mathbf{GL}_n(K)$ is $A^t \in \mathbf{GL}_n(K)$ en $(A^t)^{-1} = (A^{-1})^t$.
     \end{enumerate}
 \end{lemma}
-
 \begin{proof}(i)
-    \begin{align*}
+    \(
         (A+B)^t 
         = (a_{mn} + b_{mn})^t
         = (a_{nm} + b_{nm})
         = a_{nm} + b_{nm}
         = A^t + B^t
-    \end{align*}
-    
+    \)
 \end{proof}
-
 \begin{proof}(ii)
-    \begin{align*}
+    \(
         (A^t)^t = (a_{ij}^t)^t = a_{ji}^t = a_{ij} = A
-    \end{align*}
+    \)
 \end{proof}
-
 \begin{proof}(iii)
-    \begin{align*}
+    \(
         (AB)^t 
         = \sum_{k} (a_{mk}b_{kn})^t 
         = \sum_{k} (a_{km}b_{nk})
         = \sum_{k} (b_{nk}a_{km})
         = B^tA^t
-    \end{align*}
+    \)
 \end{proof}
-
 \begin{proof}(iv)
     \(A \in \mathbf{GL}_n(K) \implies \exists A^{-1}: AA^{-1} = A^{-1}A = I\)
     
@@ -139,19 +142,75 @@ Zij \(K\) een veld en \(n,m \in \mathds{N} \setminus \{0\}.\)
     
     We construeren een nieuw stelsel van $m$ lineaire vergelijkingen met $n$ onbekenden over het veld $K$ door één van de volgende operaties toe te passen:
     \begin{enumerate}
-        \item een vergelijking $R_i$ vervangen door de vergelijking $R_i + \lambda R_j$ voor een bepaalde $1 \le i \neq j \le m$ en $\lambda \in K$;
-        \item twee vergelijkingen van plaats verwisselen;
-        \item een vergelijking $R_i$ vervangen door $cR_i$ voor een bepaalde $1 \le i \le m$ en $c \in K \setminus \{0\}$.
+        \item[(i)] een vergelijking $R_i$ vervangen door de vergelijking $R_i + \lambda R_j$ voor een bepaalde $1 \le i \neq j \le m$ en $\lambda \in K$;
+        \item[(ii)] twee vergelijkingen van plaats verwisselen;
+        \item[(iii)] een vergelijking $R_i$ vervangen door $cR_i$ voor een bepaalde $1 \le i \le m$ en $c \in K \setminus \{0\}$.
     \end{enumerate}
+    De oplossingsverzameling van het oorspronkelijke stelsel is gelijk aan de oplossingsverzameling van het nieuwe stelsel.
 \end{lemma}
+\begin{proof}(i)
+    \([\Rightarrow]\)
 
+  \(
+    \begin{cases}
+       & \sum_i^n a_{1i}x_i = b_1\\
+       & \sum_i^n a_{2i}x_i = b_2\\
+    \end{cases}   
+  \)
+
+  \(R_1 \to R_1 + \lambda R_2:
+    \begin{cases}
+       & \sum_i^n \left(a_{1i} +\lambda a_{2i} \right)x_i = b_1 + \lambda b_2\\
+       & \sum_i^n a_{2i}x_i = b_2\\
+    \end{cases}   
+  \)
+
+  \([\leftarrow]\) Stel nu dat \((c_1,\dots,c_n)^t\) een oplossing is, dan:
+  \(
+  \begin{cases}
+       & \sum_i^n \left(a_{1i} +\lambda a_{2i} \right)c_i = b_1 + \lambda b_2\\
+       & \sum_i^n a_{2i}c_i = b_2\\
+    \end{cases}  
+  \)
+
+   \(R_1 \to R_1 - \lambda R_2: 
+   \begin{cases}
+       & \sum_i^n a_{1i}c_i = b_1\\
+       & \sum_i^n a_{2i}c_i = b_2\\
+    \end{cases}  \)
+
+    Dus \((c_1,\dots,c_n)^t\) is ook een oplossing van het oorspronkelijke stelsel.
+\end{proof}
+\begin{proof}(ii)
+    Dit laat de oplossingen triviaal onveranderd.
+\end{proof}
+\begin{proof}(iii)
+    Analoog aan (i), maar met \(R_1 \to c r_1\).
+\end{proof}
+
+\begin{gevolg}[1.4.6]
+    De oplossingsverzameling van een stelsel van lineaire vergelijkingen blijft dezelfde wanneer men op de uitgebreide matrix van het stelsel een eindig aantal elementaire rijoperaties na elkaar toepast.
+\end{gevolg}
 \begin{proof}
-    
+    Volgt direct uit lemma 1.4.2.
 \end{proof}
 
 \begin{stelling}[1.4.10]
     Zij $A \in M_{m,n}(K)$. Men kan altijd een echelonmatrix bekomen door een eindig aantal opeenvolgende elementaire rijoperaties op $A$ toe te passen.
 \end{stelling}
+\begin{proof}
+    Als $A = 0$, dan staat de matrix al in echelonvorm. Veronderstel dus dat $A \neq 0$. We bewijzen de stelling constructief door de matrix stap voor stap te reduceren voor opeenvolgende rij-indices $i$ (startend bij $i=1$):
+
+    \begin{enumerate}
+        \item[\textbf{Stap 1.}] Zoek de eerste kolom $K_j$ van links die een niet-nulelement bevat op of onder rij $i$.
+        \item[\textbf{Stap 2.}] Wissel rijen (Type II) zodat er op positie $(i, j)$ een niet-nulelement $c \neq 0$ komt te staan.
+        \item[\textbf{Stap 3.}] Vermenigvuldig de $i$-de rij met $c^{-1}$ (Type III), zodat het leidende element een $1$ (de spil) wordt.
+        \item[\textbf{Stap 4.}] Maak alle elementen onder deze spil nul door voor elke rij $k > i$ de operatie $R_k \leftarrow R_k - a_{kj}R_i$ (Type I) toe te passen.
+        \item[\textbf{Stap 5.}] Herhaal Stappen 1 tot 4 recursief op de submatrix rechtsonder de laatst gecreëerde spil. Omdat de matrix eindig is, stopt dit proces na een eindig aantal stappen.
+        \item[\textbf{Stap 6.}]  Gebruik ten slotte van rechts naar links elementaire rijoperaties van Type I om ook alle elementen boven elke spil nul te maken.
+    \end{enumerate}
+    De resulterende matrix voldoet aan alle voorwaarden van een echelonmatrix.
+\end{proof}
 
 \begin{stelling}[1.4.13]
     Zij $AX = B$ een stelsel van $m$ lineaire vergelijkingen in $n$ onbekenden over $K$, met $A \in M_{m,n}(K)$, $B \in M_{m,1}(K)$ en $X$ een kolommatrix met de $n$ onbekenden. Veronderstel dat de uitgebreide matrix $(A|B)$ een echelonmatrix is.
@@ -163,8 +222,16 @@ Zij \(K\) een veld en \(n,m \in \mathds{N} \setminus \{0\}.\)
         waar $\ell$ het nummer van de rij van de spilplaats in de $j^e$-kolom is.
     \end{enumerate}
 \end{stelling}
-
+\begin{proof}(i)
+    Als laatste kolom van \(A|B\) spilkolom is; equivalent met zeggen dat \(\sum_{i}^{n}0 x_i=1\). Strijdig!
+\end{proof}
+\begin{proof}(ii)
+    Dit volgt uit de vorm van de echelonmatrix. De oplossing van de \(\ell\)-de rij is: \(x_j = b_\ell - \sum_{k>j, k \notin S}^{n} a_{\ell k}t_k\) waarbij \(t_k\) de vrij gekozen onbekenden.
+\end{proof}
 
 \begin{gevolg}[1.4.14]
     Zij $AX = B$ een niet-strijdig stelsel met uitgebreide matrix $(A|B)$ in echelonvorm. Het aantal vrij te kiezen onbekenden is gelijk aan het aantal onbekenden min het aantal spilkolommen.
 \end{gevolg}
+\begin{proof}
+    Volgt rechtsreeks uit stelling 1.4.13.
+\end{proof}
