@@ -1,0 +1,199 @@
+\subsection{Oefenset week 11}
+Hier waren er geen theoretische oefeningen.
+\subsection{Oefenset week 10}
+
+\begin{oefening}[8.2.5] \textbf{(B)}
+    Beschouw een reële inproductruimte $(V, \langle \cdot, \cdot \rangle)$.
+    \begin{enumerate}
+        \item[(a)] Bewijs dat de stelling van Pythagoras geldt in $V$, met andere woorden dat voor alle $x, y \in V$ geldt dat
+        \[ \|x + y\|^2 = \|x\|^2 + \|y\|^2 \iff x \perp y. \]
+        \item[(b)] Bewijs dat de parallellogrameigenschap geldt in $V$, met andere woorden dat voor alle $x, y \in V$ geldt dat
+        \[ \|x + y\|^2 + \|x - y\|^2 = 2 \cdot \|x\|^2 + 2 \cdot \|y\|^2. \]
+        Waarom zou deze eigenschap deze naam krijgen?
+    \end{enumerate}
+
+    (a):
+    \begin{align*}
+    \|x + y\|^2 
+    &= \langle x+y,x+y \rangle 
+    = \langle x,x+y \rangle + \langle y,x+y \rangle 
+    = \langle x,x \rangle + \langle y,y \rangle + \langle x,y \rangle + \langle y,x \rangle\\
+    &= \|x\|^2 + \|y\|^2 + 2 \langle x,y \rangle
+    = \|x\|^2 + \|y\|^2 \iff \langle x,y \rangle = 0.
+    \end{align*}\qed
+
+    (b):
+    \begin{align*}
+        \|x + y\|^2 + \|x - y\|^2 
+        &= \|x\|^2 + \|y\|^2 + 2 \langle x,y \rangle + \|x\|^2 + \|y\|^2 - 2 \langle x,y \rangle \\
+        &= 2 \cdot \|x\|^2 + 2 \cdot \|y\|^2.
+    \end{align*}\qed
+\end{oefening}
+
+\begin{oefening}[3.2.4]
+    Voor deze en verdere oefeningen blikken we even verderop naar Definitie 7.1.1(i). Zo betekent $f^2(v)$ simpelweg $f(f(v))$ en $f^3(v)$ precies $f(f(f(v)))$.
+    
+    Zij $V$ een $\mathbb{Q}$-vectorruimte. Beschouw een lineaire operator $f \colon V \to V$ waarvoor $f^3 = \mathbf{1}_V$. Zij $a \in V$ en stel $b = 2a - f(a) - f^2(a)$. Toon aan dat
+    \begin{enumerate}
+        \item[(a)] \textbf{(B)} $\operatorname{ker}(f) = \{0\}$,
+        \item[] 
+          Stel \(v \in V: f(v) = 0 \implies f^3(v) = f(f(f(v))) = f(f(0)) = f(0) = 0.\)
+            Want \(f(0)= 0\) geldt altijd voor een lineaire afbeelding. 
+
+            Uit \(f^3 = \mathbf{1}_V \implies f^3(v) = v \implies v = 0.\) Het gevraagde geldt uit dat \(v\) arbitrair gekozen werd.
+            
+            \qed
+        \item[(b)] \textbf{(T)} het stel $\{b, f(b), f^2(b)\}$ lineair afhankelijk is.
+        
+        \(b = 2a - f(a) - f^2(a) \).
+
+        \(f(b) = f(2a - f(a) - f^2(a))
+        = 2f(a) - f^2(a) - f^3(a)
+        = -a + 2f(a) - f^2(a) \).
+
+        \(f^2(b) = f(2f(a) - f^2(a) - a)
+        = 2f(f(a)) - f(f^2(a)) - f(a)
+        = -a-f(a)+2f^2(a)\).
+
+        We berekenen de oplossingen voor \(\mu_1 (2a - f(a) - f^2(a)) + \mu_2 (-a + 2f(a) - f^2(a)) + \mu_3(-a-f(a)+2f^2(a)) = 0. \)
+
+        \(\begin{bmatrix}
+            2 & -1 & -1 \\
+            -1 & 2 & -1 \\
+            -1 & -1 & 2 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \mu_1 \\
+            \mu_2\\
+            \mu_3\\
+        \end{bmatrix}
+        = \begin{bmatrix}
+            0 \\
+            0\\
+            0\\
+        \end{bmatrix}
+        \implies 
+        \begin{bmatrix}
+            1 & 0 & -1 \\
+            0 & 1 & -1 \\
+            0 & 0 & 0 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \mu_1 \\
+            \mu_2\\
+            \mu_3\\
+        \end{bmatrix}
+        = \begin{bmatrix}
+            0 \\
+            0\\
+            0\\
+        \end{bmatrix}
+        \implies 
+        \begin{cases}
+            \mu_1 = \mu_3 \\
+            \mu_2 = \mu_3
+        \end{cases}\)
+
+        \(
+        \implies \mu b + \mu f(b) + \mu f^2(b) = 0, \, \mu \in \mathds{R}.
+        \)\qed
+    \end{enumerate}
+\end{oefening}
+
+\begin{oefening}[3.4.5] \textbf{(T)}
+    Beschouw twee eindigdimensionale $K$-vectorruimten $V$ en $W$, met $\dim(W) > 0$, en kies $v \in V \setminus \{0\}$ vast. Toon aan dat de afbeelding
+    \[ \varphi \colon \operatorname{Hom}_K(V, W) \to W \colon f \mapsto f(v) \]
+    een lineaire surjectieve afbeelding is. Welke voorwaarde op $\dim(V)$ is equivalent met de uitspraak $\varphi$ is injectief?
+
+    \textbf{Nog te doen!}
+
+\end{oefening}
+
+
+\begin{oefening}[4.2.4] \textbf{(T)}
+    Zij $V$ een vectorruimte over $K = \mathbb{R}$ of $K = \mathbb{C}$ en zij $\langle -, - \rangle \colon V \times V \to K$ een afbeelding die sesquilineair is, wat betekent dat $\langle \lambda_1 v_1 + \lambda_2 v_2, \mu_1 w_1 + \mu_2 w_2 \rangle = \lambda_1 \overline{\mu_1} \langle v_1, w_1 \rangle + \lambda_1 \overline{\mu_2} \langle v_1, w_2 \rangle + \lambda_2 \overline{\mu_1} \langle v_2, w_1 \rangle + \lambda_2 \overline{\mu_2} \langle v_2, w_2 \rangle$.
+    \begin{enumerate}
+        \item[(a)] Als we een basis $\mathcal{B}$ voor $V$ hebben, toon dan aan dat er een matrix $A$ over $K$ bestaat waarvoor
+        \[ \langle v, w \rangle = \overline{\operatorname{co}_{\mathcal{B}}(w)}^t A \operatorname{co}_{\mathcal{B}}(v), \]
+        met $\operatorname{co}_{\mathcal{B}}(u)$ de coördinaatvoorstelling van $u$ ten opzichte van de basis $\mathcal{B}$. We noemen $A$ de matrixvoorstelling van $\langle -, - \rangle$ ten opzichte van de basis $\mathcal{B}$.
+    \end{enumerate}
+    \(\mathcal{B} = (b_1, \dots, b_n) : v = \sum_{j}^{n}{\lambda_j b_j} \text{ en } w = \sum_{i}^{n}{\mu_i b_i}\),
+    met \(\operatorname{co}_{\mathcal{B}}(v)= (\lambda_1,\dots,\lambda_n)^t\text{ en }\operatorname{co}_{\mathcal{B}}(w)= (\mu_1,\dots,\mu_n)^t\).
+    
+    We definieren \(A\) met \(a_{ij} = \langle b_j,b_i \rangle\).
+
+    \(
+    \langle v,w \rangle 
+    = \langle \sum_{j}^{n}{\lambda_j b_j},\sum_{i}^{n}{\mu_i b_i} \rangle 
+    = \sum_{j}^{n}\sum_{i}^{n} \lambda_j \overline{\mu_i} \langle b_j,b_i \rangle
+    = \sum_{j}^{n}\sum_{i}^{n} \lambda_j \overline{\mu_i} a_{ij}
+    = \sum_{j}^{n}\left(\sum_{i}^{n} \overline{\mu_i} a_{ij}\right)\lambda_j 
+    = \overline{\operatorname{co}_{\mathcal{B}}(w)}^t A \operatorname{co}_{\mathcal{B}}(v)
+    \).
+
+    \qed
+    \begin{enumerate}
+        \item[(b)] Zij $\mathcal{B}$ en $\mathcal{C}$ twee basissen voor $V$ en zij $A$ en $B$ de matrixvoorstellingen van $\langle -, - \rangle$ ten opzichte van $\mathcal{B}$ en $\mathcal{C}$ respectievelijk. Als $Q$ de transitiematrix van $\mathcal{B}$ naar $\mathcal{C}$ is, toon dan aan dat $B = \overline{Q}^t A Q$.
+    \end{enumerate}
+    \begin{equation*}
+    \begin{tikzcd}[row sep=large, column sep=large]
+        % Bovenste rij: de vectorruimten en lineaire afbeeldingen
+        V \arrow[r, "id_V"] \arrow[d, "\operatorname{co}_{\mathcal{C}}"'] &
+        V \arrow[d, "\operatorname{co}_{\mathcal{B}}"'] \\
+        % Onderste rij: de coördinatenruimten en matrixvermenigvuldigingen
+        K^n \arrow[r, "L_Q"'] & 
+        K^n
+    \end{tikzcd}
+    \end{equation*}
+    We zien duidelijk dat \(Q \operatorname{co}_{\mathcal{C}} (v) = \operatorname{co}_{\mathcal{B}}(v), \, \forall v \in V\).
+    \[
+    \langle v,w \rangle 
+    = \overline{\operatorname{co}_{\mathcal{B}}(w)}^t A \operatorname{co}_{\mathcal{B}}(v)
+    = \overline{Q \operatorname{co}_{\mathcal{C}}(w)}^t A Q \operatorname{co}_{\mathcal{C}} (v)
+    = \overline{\operatorname{co}_{\mathcal{C}}(w)}^t( Q^\dagger A Q )\operatorname{co}_{\mathcal{C}} (v)
+    = \overline{\operatorname{co}_{\mathcal{C}}(w)}^t(b)\operatorname{co}_{\mathcal{C}} (v).
+    \]
+    \[
+    B = Q^\dagger A Q .
+    \]
+    \qed
+    \begin{enumerate}
+        \item[(c)] Stel de matrixvoorstelling van het standaard inproduct voor $\mathbb{C}^3$ op ten opzichte van de nieuwe basis $\{(1, 0, i)^t, (1, -i, 1)^t, (0, 0, 1)^t\}$.
+    \end{enumerate}
+    Standaard inproduct \(\implies\) standaardbasis \(\mathcal{B} = \{e_1,e_2,e_3\}\).
+
+    \(c_i = \sum_{i=1}^{3} \lambda_i b_i \implies 
+    \begin{cases}
+        c_1 = 1 \cdot b_1 + 0 \cdot b_2 + i \cdot b_3 \\
+        c_2 = 1 \cdot b_1 + (-i) \cdot b_2 + 1 \cdot b_3\\
+        c_3 = 0 \cdot b_1 + 0 \cdot b_2 + 1 \cdot b_3
+    \end{cases}
+    \implies 
+    Q= 
+    \begin{pmatrix}
+        1 & 1 & 0\\
+        0 & -i & 0 \\
+        i & 1 & 1\\
+    \end{pmatrix}
+    \).
+
+    \(P = Q^\dagger I_3 Q = 
+    \begin{pmatrix}
+        1 & 1 & 0\\
+        0 & -i & 0 \\
+        i & 1 & 1\\
+    \end{pmatrix}^\dagger
+    \begin{pmatrix}
+        1 & 1 & 0\\
+        0 & -i & 0 \\
+        i & 1 & 1\\
+    \end{pmatrix}
+    = 
+     \begin{pmatrix}
+        2 & 1-i & -i\\
+        1+i & 3 & 1 \\
+        i & 1 & 1\\
+    \end{pmatrix}
+    \)
+
+\end{oefening}
