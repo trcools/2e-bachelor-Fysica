@@ -1,0 +1,61 @@
+%===================================================================
+\section{De minimaalveelterm, Cayley--Hamilton, dualiteit}
+%===================================================================
+
+\begin{res}{Stelling}{7.1.2}
+Zij $V$ een eindig-dimensionale $K$-vectorruimte, en beschouw $f\in\mathrm{End}(V)$.
+\begin{myenum}
+\item De deelverzameling $K[f]$ is een commutatieve deelalgebra (d.w.z.\ een $K$-deelruimte en een commutatieve deelring) van $\mathrm{End}(V)$.
+\item $\dim_K K[f]\le n^2$.
+\item Er bestaat een $d\in\mathbb N$ zodat de verzameling $\{1,f,f^2,\dots,f^{d-1}\}$ een basis vormt voor $K[f]$, en $\dim K[f]=d$.
+\item Indien $f^d=-\sum_{i=0}^{d-1}a_if^i$, dan is
+\[
+\mu(x):=x^d+\sum_{i=0}^{d-1}a_ix^i\in K[x]
+\]
+de monische veelterm van de kleinste graad zodat $\mu(f)$ de nuloperator is.
+\item Zij $\varphi(x)\in K[x]$ een veelterm waarvoor geldt dat $\varphi(f)=0$. Dan is $\mu(x)$ een deler van $\varphi(x)$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{7.2.1}
+\textup{(Stelling van Cayley--Hamilton.)}
+\begin{myenum}
+\item Zij $A\in M_n(K)$ met karakteristieke veelterm $\chi_A(x)=x^n+\sum_{i=0}^{n-1}c_ix^i\in K[x]$. Dan is
+\[
+\chi_A(A)=A^n+\sum_{i=0}^{n-1}c_iA^i=0\in M_n(K).
+\]
+\item Zij $V$ een $n$-dimensionale vectorruimte over $K$, en zij $f\in\mathrm{End}(V)$ met karakteristieke veelterm $\chi_f(x)=x^n+\sum_{i=0}^{n-1}c_ix^i\in K[x]$. Dan is
+\[
+\chi_f(f)=f^n+\sum_{i=0}^{n-1}c_if^i=0\in\mathrm{End}(V),
+\]
+de nuloperator op $V$. Met andere woorden, $f^n(v)+\sum_{i=0}^{n-1}c_if^i(v)=0$ voor alle $v\in V$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{7.2.2}
+Zij $f\in\mathrm{End}(V)$ een lineaire operator op een eindig-dimensionale vectorruimte $V$. De karakteristieke veelterm $\chi_f(x)$ van $f$ is een veelvoud van de minimaalveelterm $\mu_f(x)$.
+\end{res}
+
+\begin{res}{Gevolg}{7.2.3}
+Zij $f\in\mathrm{End}(V)$ een lineaire operator op een $n$-dimensionale vectorruimte $V$. Dan is $\dim K[f]\le n$.
+\end{res}
+
+\begin{res}{Lemma}{7.3.2}
+Zij $f:V\to K$ een lineaire vorm verschillend van de nulvorm, en stel dat $\dim V=n<\infty$. Dan is $\dim(\ker f)=n-1$.
+\end{res}
+
+\begin{res}{Stelling}{7.3.9}
+Zij $V$ een eindig-dimensionale $K$-vectorruimte, en $\mathcal B=\{e_1,\dots,e_n\}$ een basis voor $V$. Dan is $\mathcal B^*:=\{\varepsilon_1,\dots,\varepsilon_n\}$ een basis voor $V^*$. In het bijzonder is $\dim V^*=\dim V$ en bijgevolg $V^*\cong V$.
+\end{res}
+
+\begin{res}{Lemma}{7.3.13}
+Zij $V$ en $W$ twee $K$-vectorruimten, en $f:V\to W$ een lineaire afbeelding.
+\begin{myenum}
+\item Voor elke $\varphi\in W^*$ is $\varphi\circ f\in V^*$.
+\item De afbeelding $f^*:W^*\to V^*:\varphi\mapsto\varphi\circ f$ is een lineaire afbeelding.
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{7.3.16}
+Zij $V$ een $n$-dimensionale $K$-vectorruimte en $W$ een $m$-dimensionale $K$-vectorruimte. Zij $f:V\to W$ een lineaire afbeelding, en zij $f^*:W^*\to V^*$ de corresponderende duale afbeelding tussen de duale ruimten. Als $A_f$ de matrixvoorstelling is ten opzichte van een basis $\mathcal B$ in $V$ en een basis $\mathcal C$ in $W$, dan is de getransponeerde matrix $A_f^t$ de matrixvoorstelling van $f^*$ ten opzichte van de duale basis van $\mathcal C$ en de duale basis van $\mathcal B$.
+\end{res}

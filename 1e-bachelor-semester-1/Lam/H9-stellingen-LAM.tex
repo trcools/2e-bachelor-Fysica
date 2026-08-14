@@ -1,0 +1,158 @@
+%===================================================================
+\section{De Euclidische ruimte $\mathbb R^n$}
+%===================================================================
+
+\begin{res}{Lemma}{9.2.2}
+Beschouw de Euclidische ruimte $\mathbb R^n$. Zij $\mathcal B=\{e_1,\dots,e_n\}$ en $\mathcal B'=\{f_1,\dots,f_n\}$ twee orthonormale basissen van $\mathbb R^n$, en zij $Q$ de matrix van de basisovergang. Als $\mathcal B$ en $\mathcal B'$ gelijk geori\"enteerd zijn, dan is $Q\in \mathsf{SO}(n)$, i.e.\ $QQ^t=Q^tQ=I_n$ en $\det Q=1$.
+\end{res}
+
+\begin{res}{Lemma}{9.2.4}
+De definitie $v\times w$ is onafhankelijk van de keuze van de positief geori\"enteerde orthonormale basis $\mathcal B=\{e_1,e_2,e_3\}$.
+\end{res}
+
+\begin{res}{Stelling}{9.2.5}
+Onderstel dat $u,v,w\in\mathbb R^3$ en $a\in\mathbb R$, dan geldt:
+\begin{myenum}
+\item $v\times w=-w\times v$;
+\item $a(v\times w)=(av)\times w=v\times(aw)$;
+\item $v\times w=0 \iff v$ en $w$ zijn lineair afhankelijk;
+\item $(u+v)\times w=u\times w+v\times w$;
+\item \textup{[tripel-product]} $u(v\times w)=(u\times v)w$;
+\item $v\times w\perp v$ en $v\times w\perp w$, met andere woorden, $v(v\times w)=w(v\times w)=0$;
+\item \textup{[formule van Lagrange]} $u\times(v\times w)=(u\cdot w)v-(u\cdot v)w$;
+\item \textup{[identiteit van Lagrange]} $(v\times w)^2=v^2w^2-(vw)^2$;
+\item als $v\ne0$ en $w\ne0$, dan geldt: $\|v\times w\|=\|v\|\cdot\|w\|\cdot\sin\angle(v,w)$;
+\item als $v\times w\ne0$, dan is $\{v,w,v\times w\}$, in deze volgorde, een positief geori\"enteerde basis voor $\mathbb R^3$;
+\item \textup{[Jacobi identiteit]} $u\times(v\times w)+v\times(w\times u)+w\times(u\times v)=0$;
+\item $(u\times v)\times(u\times w)=u(v\times w)\cdot u$;
+\item als $u\cdot w=v\cdot w$ \'en $u\times w=v\times w$ met $w\ne0$, dan is $u=v$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{9.3.4}
+Beschouw de vectorruimte $\mathbb R^n$. Een deelverzameling $D\subseteq\mathbb R^n$ is een affiene deelruimte van $\mathbb R^n$ \(\iff\)
+\[
+y+a(z-y)\in D \quad\text{voor alle } y,z\in D \text{ en alle } a\in\mathbb R. \tag{9.3}
+\]
+Meetkundig zegt dit dus precies dat een deelverzameling $D\subseteq\mathbb R^n$ een affiene deelruimte is, dan en slechts als elke rechte door 2 punten van $D$ volledig in $D$ ligt.
+\end{res}
+
+\begin{res}{Stelling}{9.3.5}
+Zij $D$ een affiene deelruimte in de Euclidische ruimte $\mathbb R^n$, en stel $\dim D=d$. Dan geldt:
+\begin{myenum}
+\item $D$ is gelijk aan de oplossingsverzameling van een stelsel van $n-d$ lineaire vergelijkingen in $n$ onbekenden over $\mathbb R$.
+\item Stel dat $D=\{X\in\mathbb R^n\mid AX=w\}$, dan is $D_0=\{X\in\mathbb R^n\mid AX=0\}$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{9.3.7}
+\begin{myenum}
+\item Zij $H$ een hypervlak in $\mathbb R^n$. Dan bestaan er re\"ele getallen $a_1,\dots,a_n,b\in\mathbb R$ zodat
+\[
+H=\{(x_1,\dots,x_n)^t\in\mathbb R^n \mid a_1x_1+\cdots+a_nx_n+b=0\}.
+\]
+\item Zij $D$ een affiene deelruimte van dimensie $d$. Dan bestaan er $n-d$ hypervlakken $H_1,\dots,H_{n-d}$ zodanig dat $D=H_1\cap\cdots\cap H_{n-d}$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{9.3.8}
+Beschouw $k$ punten $p_1,\dots,p_k$ in $\mathbb R^n$. Dan is, voor alle $i,j=1,\dots,k$,
+\[
+p_i+\mathrm{span}(p_1-p_i,\dots,p_k-p_i)=p_j+\mathrm{span}(p_1-p_j,\dots,p_k-p_j).
+\]
+Stel dat $D$ een affiene deelruimte is met $p_1,\dots,p_k\in D$, dan geldt er dat $p_1+\mathrm{span}(p_2-p_1,\dots,p_k-p_1)\subseteq D$.
+\end{res}
+
+\begin{res}{Lemma}{9.4.2}
+Beschouw in $\mathbb R^n$ een niet-nul vector $\vec n=(a_1,\dots,a_n)^t$, en een willekeurig punt $p=(p_1,\dots,p_n)^t$. Dan is er een uniek hypervlak met normaalvector $\vec n$ dat het punt $p$ bevat.
+\end{res}
+
+\begin{res}{Lemma}{9.4.3}
+Beschouw in $\mathbb R^n$ twee hypervlakken
+\[
+H=\{v\in\mathbb R^n \mid \vec n\cdot v+b=0\} \qquad\text{en}\qquad H'=\{v\in\mathbb R^n\mid \vec n'\cdot v+b'=0\}.
+\]
+Dan is $H\parallel H'$ \(\iff\) $\vec n$ en $\vec n'$ lineair afhankelijk zijn.
+\end{res}
+
+\begin{res}{Lemma}{9.4.6}
+Beschouw in $\mathbb R^n$ twee hypervlakken $H$ en $H'$, met respectieve normaalvectoren $\vec n$ en $\vec n'$. Dan is
+\[
+\angle(H,H')=\arccos\frac{|\vec n\cdot \vec n'|}{\|\vec n\|\cdot\|\vec n'\|}.
+\]
+\end{res}
+
+\begin{res}{Lemma}{9.5.1}
+Zij $H$ een hypervlak met normaalvector $\vec n$, en $L$ een rechte met richtingsvector $r$. Dan is $L\perp H$ \(\iff\) $\vec n$ en $r$ lineair afhankelijk zijn.
+\end{res}
+
+\begin{res}{Stelling}{9.5.3}
+Zij $D=q+D_0$, zij $p\in\mathbb R^n\setminus D$, en zij $L$ de loodlijn uit $p$ op $D$. Dan geldt:
+\begin{myenum}
+\item De rechte $L$ staat loodrecht op $D$, en
+\[
+L\cap D=\{q+\mathrm{proj}_{D_0}(p-q)\}=\{p-\mathrm{proj}_{D_0^\perp}(p-q)\}.
+\]
+\item $\mathrm{dist}(p,D)=\mathrm{dist}(p,L\cap D)=\|\mathrm{proj}_{D_0^\perp}(p-q)\|$.
+\item De rechte $L$ is de unieke rechte door $p$, loodrecht op $D$, met $L\cap D\ne\emptyset$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{9.5.4}
+Zij $H$ een hypervlak met vergelijking $\vec n\cdot v+b=0$, en $p$ een punt in $\mathbb R^n\setminus H$. Dan geldt:
+\begin{myenum}
+\item De loodlijn vanuit $p$ op $H$ wordt gegeven door
+\[
+L=\{v\in\mathbb R^n \mid (v-p) \text{ en } \vec n \text{ zijn lineair afhankelijk}\}.
+\]
+\item De afstand van $p$ tot $H$ is gelijk aan
+\[
+\mathrm{dist}(p,H)=\frac{|\vec n\cdot p+b|}{\|\vec n\|}.
+\]
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{9.5.5}
+Zij $p$ een punt in $\mathbb R^3$, en zij $M$ een rechte met plaatsvector $q$ en richtingsvector $r$. Veronderstel dat $p\notin M$. Dan is
+\[
+\mathrm{dist}(p,M)=\frac{\|r\times(p-q)\|}{\|r\|}.
+\]
+\end{res}
+
+\begin{res}{Lemma}{9.5.6}
+Zij $p$ een punt in $\mathbb R^n$ en $M$ een rechte met plaatsvector $q$ en richtingsvector $r$. Veronderstel dat $p\notin M$. Dan is de loodlijn $L$ vanuit $p$ op $M$ de rechte door de punten $p$ en $q+\frac{r\cdot(p-q)}{\|r\|^2}r$. De afstand van $p$ tot $M$ is gegeven door
+\[
+\mathrm{dist}(p,M)=\frac{\sqrt{\|r\|^2\|p-q\|^2-\big(r\cdot(p-q)\big)^2}}{\|r\|}.
+\]
+\end{res}
+
+\begin{res}{Lemma}{9.5.8}
+Zij $H$ en $H'$ twee niet-parallelle vlakken in $\mathbb R^3$, met respectieve normaalvectoren $\vec n$ en $\vec n'$. Dan is $H\cap H'$ een rechte met richtingsvector $\vec n\times \vec n'$.
+\end{res}
+
+\begin{res}{Lemma}{9.5.9}
+Beschouw twee kruisende rechten $L$ en $M$ in $\mathbb R^3$. Dan is er een unieke rechte $N$ die zowel $L$ als $M$ orthogonaal snijdt. Als $L$ en $M$ gegeven zijn door
+\[
+L=\{p+\lambda r \mid \lambda\in\mathbb R\}, \qquad M=\{q+\lambda s\mid \lambda\in\mathbb R\},
+\]
+dan heeft $N$ richtingsvector $r\times s$, en de snijpunten van $N$ met $L$ en $M$ zijn respectievelijk gegeven door
+\[
+y=p+\frac{(q-p)\cdot\big(s\times(r\times s)\big)}{\|r\times s\|^2}\,r \qquad\text{en}\qquad z=q+\frac{(q-p)\cdot\big(r\times(r\times s)\big)}{\|r\times s\|^2}\,s.
+\]
+Bovendien is de afstand van $L$ tot $M$ gelijk aan
+\[
+\mathrm{dist}(L,M)=\mathrm{dist}(y,z)=\frac{|(q-p)\cdot(r\times s)|}{\|r\times s\|}.
+\]
+\end{res}
+
+\begin{res}{Lemma}{9.6.2}
+Zij $Q\in \mathsf O(n)$. Dan is $\varphi:=L_Q\in E(n)$.
+\end{res}
+
+\begin{res}{Stelling}{9.6.3}
+Zij $E_0(n)$ de verzameling van de elementen van $E(n)$ die de oorsprong $0$ vasthouden. Dan is
+\begin{enumerate}[label=(\arabic*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item $E_0(n)=\mathsf O(n)$ (waarbij we $L_Q$ identificeren met $Q$),
+\item $E(n)=T(n)\mathsf O(n)$.
+\end{enumerate}
+\end{res}
