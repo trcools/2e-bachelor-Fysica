@@ -611,11 +611,11 @@ Zij $V$ een eindig-dimensionale $K$-vectorruimte en $f\in\mathrm{End}(V)$. Besch
 \end{res}
 
 \begin{res}{Lemma}{6.1.4}
-Zij $V$ een eindig-dimensionale vectorruimte over een veld $K$, en zij $f\in\mathrm{End}_K(V)$ een lineaire operator, met matrixvoorstelling $A$ (ten opzichte van een willekeurige basis voor $V$). Dan is
+Zij $V$ een eindig-dimensionale vectorruimte over een veld $K$, en zij $f\in\mathrm{End}_K(V)$ een lineaire operator, met matrixvoorstelling $A$ (tov een willekeurige basis voor $V$). Dan is
 \[
 \chi_f(x):=\det(xI_n-A)\in K[x]
 \]
-een monische veelterm van graad $n$ in de variabele $x$, en deze veelterm hangt niet af van de gekozen matrixvoorstelling $A$ van $f$.
+een monische veelterm van graad $n$ in de variabele $x$, en deze veelterm hangt niet af van de keuze van de basis voor \(V\).
 \end{res}
 
 \begin{res}{Lemma}{6.1.6}
@@ -626,6 +626,7 @@ Zij $A=(a_{ij})\in M_n(K)$ met karakteristieke veelterm
 Dan is $c_0=(-1)^n\det A$ en $c_{n-1}=-\sum_{i=1}^n a_{ii}$.
 \end{res}
 
+\subsection{Eigenwaarden en eigenvectoren}
 \begin{res}{Stelling}{6.2.5}
 \begin{myenum}
 \item Zij $A\in M_n(K)$. Een scalair $\lambda\in K$ is een eigenwaarde van $A$ \(\iff\) $\chi_A(\lambda)=\det(\lambda I_n-A)=0$.
@@ -637,12 +638,13 @@ Dan is $c_0=(-1)^n\det A$ en $c_{n-1}=-\sum_{i=1}^n a_{ii}$.
 Een lineaire operator $f$ op een $n$-dimensionale $K$-vectorruimte $V$ (of een matrix $A\in M_n(K)$) heeft hoogstens $n$ eigenwaarden.
 \end{res}
 
+\subsection{Diagonaliseren van operatoren}
 \begin{res}{Stelling}{6.3.1}
 Een lineaire operator $f$ op een eindig-dimensionale $K$-vectorruimte heeft een diagonaalmatrix als matrixvoorstelling \(\iff\) $V$ een basis heeft bestaande uit eigenvectoren voor $f$.
 \end{res}
 
 \begin{res}{Lemma}{6.3.3}
-Een matrix $A\in M_n(K)$ is diagonaliseerbaar \(\iff\) er een matrix $P\in \mathsf{GL}_n(K)$ bestaat zodat $P^{-1}AP$ een diagonaalmatrix is.
+Een matrix $A\in M_n(K)$ is diagonaliseerbaar \(\iff \exists \,  P\in \mathsf{GL}_n(K) :  P^{-1}AP\) diagonaalmatrix is.
 \end{res}
 
 \begin{res}{Stelling}{6.3.4}
@@ -659,7 +661,7 @@ Zij $V$ een $K$-vectorruimte en $f:V\to V$ een lineaire operator met karakterist
 \[
 \chi_f(x)=\prod_{i=1}^t (x-\lambda_i)^{n_i}\quad\text{met } \lambda_1,\dots,\lambda_t\in K.
 \]
-Voor iedere $i$ is $\dim(\ker(\lambda_i\vec 1_V-f))\le n_i$. Anders gezegd, de meetkundige multipliciteit van een eigenwaarde is steeds kleiner dan of gelijk aan de algebra\"ische multipliciteit van deze eigenwaarde.
+$\forall i: \dim(\ker(\lambda_i\vec 1_V-f))\le n_i$. Anders gezegd, MM van een eigenwaarde \(\leq\) AM van deze eigenwaarde.
 \end{res}
 
 \begin{res}{Stelling}{6.3.10}
@@ -667,7 +669,9 @@ Zij $V$ een $K$-vectorruimte en $f:V\to V$ een lineaire operator met karakterist
 \[
 \chi_f(x)=\prod_{i=1}^t (x-\lambda_i)^{n_i}\quad\text{met } \lambda_1,\dots,\lambda_t\in K.
 \]
-Zij $V_i=\ker(\lambda_i\vec 1_V-f)$ de eigenruimte behorende bij de eigenwaarde $\lambda_i$, voor elke $i$. Dan is $f$ diagonaliseerbaar \(\iff\) voor elke eigenwaarde $\lambda_i$ geldt dat $\dim(V_i)=n_i$, of met andere woorden, \(\iff\) voor iedere eigenwaarde de algebra\"ische multipliciteit gelijk is aan de meetkundige multipliciteit.
+Zij $V_i=\ker(\lambda_i\vec 1_V-f)$ de eigenruimte behorende bij de eigenwaarde $\lambda_i, \forall i$.
+Dan is $f$ diagonaliseerbaar \(\iff \forall \lambda_i : \dim(V_i)=n_i\), of maw,
+ \(\iff \forall \lambda_i\) AM = MM.
 \end{res}
 
 %===================================================================
@@ -678,7 +682,7 @@ Zij $V_i=\ker(\lambda_i\vec 1_V-f)$ de eigenruimte behorende bij de eigenwaarde 
 %===================================================================
 \section{Inproduct-ruimten}
 %===================================================================
-
+\subsection{Definitie en eerste eigenschappen}
 \begin{res}{Lemma}{8.1.2}
 Zij $(V,\langle\cdot,\cdot\rangle)$ een inproduct-ruimte over $K=\mathbb R$ of $\mathbb C$. Dan gelden volgende eigenschappen, voor alle $u,v,w\in V$ en alle $\lambda,\mu\in K$.
 \begin{myenum}
@@ -686,7 +690,7 @@ Zij $(V,\langle\cdot,\cdot\rangle)$ een inproduct-ruimte over $K=\mathbb R$ of $
 \item \textup{[sesqui-lineariteit]} $\langle\lambda v,\mu w\rangle=\lambda\overline\mu\cdot\langle v,w\rangle$;
 \item \textup{[homogeniteit van de norm]} $\|\lambda v\|=|\lambda|\cdot\|v\|$.
 \end{myenum}
-Bovendien is $\langle\cdot,\cdot\rangle$ niet-ontaard, i.e.\ als $u\in V$ zodanig is dat $\langle u,v\rangle=0$ voor alle $v\in V$, dan is noodzakelijk $u=0$.
+Bovendien is $\langle\cdot,\cdot\rangle$ niet-ontaard, i.e.\ als $u\in V$ zodanig is dat $\langle u,v\rangle=0, \,\forall v\in V$, dan is noodzakelijk $u=0$.
 \end{res}
 
 \begin{res}{Stelling}{8.1.7}
@@ -694,18 +698,19 @@ Bovendien is $\langle\cdot,\cdot\rangle$ niet-ontaard, i.e.\ als $u\in V$ zodani
 \[
 |\langle v,w\rangle|\le\|v\|\cdot\|w\|,
 \]
-en de gelijkheid geldt dan en slechts dan als $v$ en $w$ lineair afhankelijk zijn.
+en de gelijkheid geldt  $ \iff v$ en $w$ lineair afhankelijk zijn.
 \end{res}
 
 \begin{res}{Gevolg}{8.1.8}
-\textup{(Driehoeksongelijkheid.)} Zij $(V,\langle\cdot,\cdot\rangle)$ een inproduct-ruimte over $\mathbb R$ of $\mathbb C$. Dan geldt voor alle $v,w\in V$ dat
+\textup{(Driehoeksongelijkheid.)} Zij $(V,\langle\cdot,\cdot\rangle)$ een inproduct-ruimte over $\mathbb R$ of $\mathbb C$. Dan geldt  $\forall v,w\in V$ dat
 \[
 \|v+w\|\le\|v\|+\|w\|.
 \]
 \end{res}
-
+\subsection{Orthogonaliteit}
 \begin{res}{Lemma}{8.2.2}
-Het orthogonaal complement $W^\perp$ van een deelruimte $W\le V$ is een deelruimte van $V$. Er geldt dat $W\cap W^\perp=\{0\}$.
+Het orthogonaal complement $W^\perp$ van een deelruimte $W\le V$ is een deelruimte van $V$.
+Er geldt dat $W\cap W^\perp=\{0\}$.
 \end{res}
 
 \begin{res}{Stelling}{8.2.4}
@@ -713,11 +718,13 @@ Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een ein
 \end{res}
 
 \begin{res}{Lemma}{8.2.5}
-Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$. Voor elke deelruimte $W\le V$ is het orthogonaal complement $W^\perp$ in $V$ een complementaire ruimte, i.e.\ $W\oplus W^\perp=V$. In het bijzonder is $\dim(W^\perp)=\dim V-\dim W$.
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+\(\forall\) deelruimte $W\le V$ is het orthogonaal complement $W^\perp$ in $V$ een complementaire ruimte, i.e.\ $W\oplus W^\perp=V$. In het bijzonder is $\dim(W^\perp)=\dim V-\dim W$.
 \end{res}
 
 \begin{res}{Gevolg}{8.2.6}
-Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$. Voor elke deelruimte $W\le V$ is $(W^\perp)^\perp=W$.
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+\(\forall\) deelruimte $W\le V$ is $(W^\perp)^\perp=W$.
 \end{res}
 
 \begin{res}{Stelling}{8.2.7}
@@ -730,23 +737,34 @@ Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een ein
 \item Voor alle $w\in W$ is $\mathrm{proj}_W(w)=w$; voor alle $u\in W^\perp$ is $\mathrm{proj}_W(u)=0$. In het bijzonder is de orthogonale projectie een projectie-operator in de betekenis van Definitie 3.1.7.
 \item Zij $\{w_1,\dots,w_k\}$ een orthonormale basis van $W$. Dan is
 \[
-\mathrm{proj}_W(v)=\sum_{j=1}^k \langle v,w_j\rangle w_j.
+\mathrm{proj}_W(v)=\sum_{j=1}^k \langle v,w_j\rangle w_j,\qquad \forall v \in V.
+\]
+\item Zij \(w \in W\) met \(w \neq 0\). Dan is
+\[  
+\operatorname{proj}_w (v) = \frac{\langle v , w \rangle}{\langle w,w\rangle}w, \qquad \forall v \in V.
 \]
 \end{myenum}
 \end{res}
 
 \begin{res}{Stelling}{8.2.10}
-Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$. Beschouw een deelruimte $W\le V$ en $v\in V$. Dan geldt voor elke $w\in W\setminus\{\mathrm{proj}_W(v)\}$ dat $\mathrm{dist}(v,w)>\mathrm{dist}(v,\mathrm{proj}_W(v))$.
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+Beschouw een deelruimte $W\le V$ en $v\in V$. Dan geldt $\forall w\in W\setminus\{\mathrm{proj}_W(v)\}$ dat $\mathrm{dist}(v,w)>\mathrm{dist}(v,\mathrm{proj}_W(v))$.
 \end{res}
-
+\subsection{Gram-Schmidt orthonormalisatieproces}
 \begin{res}{Stelling}{8.3.1}
-\textup{(Gram--Schmidt orthonormalisatieproces.)} Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$. Zij $W$ een deelruimte van $V$ met basis $\{v_1,\dots,v_d\}$. We defini\"eren nu, op recursieve wijze,
-\[
-b_1=v_1,\quad b_2=v_2-\mathrm{proj}_{b_1}(v_2),\quad b_3=v_3-\mathrm{proj}_{b_1}(v_3)-\mathrm{proj}_{b_2}(v_3),
-\]
-\[
-b_4=v_4-\mathrm{proj}_{b_1}(v_4)-\mathrm{proj}_{b_2}(v_4)-\mathrm{proj}_{b_3}(v_4),\quad \dots,\quad b_d=v_d-\sum_{i=1}^{d-1}\mathrm{proj}_{b_i}(v_d).
-\]
+\textup{(Gram--Schmidt orthonormalisatieproces.)} 
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+Zij $W \le V$ met basis $\{v_1,\dots,v_d\}$.
+We defini\"eren nu, op recursieve wijze,
+\begin{align*}
+  b_1&=v_1,\\
+  b_2&=v_2-\mathrm{proj}_{b_1}(v_2),\\
+  b_3&=v_3-\mathrm{proj}_{b_1}(v_3)-\mathrm{proj}_{b_2}(v_3),\\
+  b_4&=v_4-\mathrm{proj}_{b_1}(v_4)-\mathrm{proj}_{b_2}(v_4)-\mathrm{proj}_{b_3}(v_4),\\
+  &\vdots\\
+  \quad b_d&=v_d-\sum_{i=1}^{d-1}\mathrm{proj}_{b_i}(v_d).
+\end{align*}
+
 Dan is $\{b_1,\dots,b_d\}$ een orthogonale basis voor $W$, en dus is
 \[
 \left\{\frac{b_1}{\|b_1\|},\dots,\frac{b_d}{\|b_d\|}\right\}
@@ -755,35 +773,36 @@ een orthonormale basis voor $W$.
 \end{res}
 
 \begin{res}{Stelling}{8.3.2}
-Beschouw een inproduct-ruimte $(V,\langle\cdot,\cdot\rangle)$ over $K=\mathbb R$ of $\mathbb C$. Zij $\mathcal B=\{b_1,\dots,b_n\}$ en $\mathcal B'=\{b_1',\dots,b_n'\}$ twee orthonormale basissen van $V$, en zij $Q$ de transitiematrix van $\mathcal B$ naar $\mathcal B'$. Dan is $Q^tQ=I_n$.
+Beschouw een inproduct-ruimte $(V,\langle\cdot,\cdot\rangle)$ over $K=\mathbb R$ of $\mathbb C$.
+Zij $\mathcal B=\{b_1,\dots,b_n\}$ en $\mathcal B'=\{b_1',\dots,b_n'\}$ twee orthonormale basissen van $V$,
+en zij $Q$ de transitiematrix van $\mathcal B$ naar $\mathcal B'$.
+Dan is $Q^t\overline{Q}=I_n$.
 \end{res}
-
+\subsection{Hermitische en symmetsiche operatoren}
 \begin{res}{Stelling}{8.4.2}
 Zij $f$ een hermitische operator op $\mathbb C^n$. Dan geldt:
 \begin{myenum}
 \item Alle eigenwaarden van $f$ zijn re\"eel.
 \item Eigenvectoren behorende bij twee verschillende eigenwaarden zijn orthogonaal.
-\item De operator $f$ is diagonaliseerbaar, en er bestaat steeds een orthonormale basis van eigenvectoren voor $f$.
+\item De operator $f$ is diagonaliseerbaar, en \(\exists\) steeds een orthonormale basis van eigenvectoren voor $f$.
 \end{myenum}
 \end{res}
 
 \begin{res}{Gevolg}{8.4.4}
 Beschouw de inproduct-ruimte $\mathbb R^n$ met het standaard inproduct $\langle v,w\rangle=v^tw$. Zij $A$ een symmetrische matrix in $M_n(\mathbb R)$.
-
-Alle eigenwaarden van $A$ zijn re\"eel en er bestaat een orthonormale basis van eigenvectoren voor $A$, dus $A$ is diagonaliseerbaar.
-
+Alle eigenwaarden van $A$ zijn re\"eel en \(\exists\) een orthonormale basis van eigenvectoren voor $A$, dus $A$ is diagonaliseerbaar.
 Bovendien is de transitiematrix van de standaardbasis naar een orthonormale basis $\{b_1,\dots,b_n\}$ van eigenvectoren voor $A$ een orthogonale matrix $P$, en er geldt dat
 \[
 P^tAP=\mathrm{diag}(\lambda_1,\dots,\lambda_n),
 \]
 waarbij $\lambda_1,\dots,\lambda_n$ de eigenwaarden van $A$ zijn (die alle re\"eel zijn). De $i$-de kolom van $P$ bestaat precies uit de co\"ordinaten van de eigenvector $b_i$ ten opzichte van de standaardbasis.
 \end{res}
-
+\subsection{Lineaire groepen}
 \begin{res}{Stelling}{8.5.3}
 Elke matrix $A\in \mathsf{GL}_n(K)$ is van de vorm
-\[
+\(
 A=SD,
-\]
+\)
 met $S$ een product van elementaire matrices en $D=\mathrm{diag}(1,\dots,1,d)$ met $d=\det A$.
 \end{res}
 
