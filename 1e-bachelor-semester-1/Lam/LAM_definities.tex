@@ -1,0 +1,705 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,margin=1.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+
+\titlespacing*{\section}{0pt}{1.4ex}{0.6ex}
+\titlespacing*{\subsection}{0pt}{1.1ex}{0.4ex}
+\titleformat{\section}{\normalfont\Large\bfseries}{Hoofdstuk \thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{}{0em}{}
+
+% Custom environment for definitions: #1 = number
+\newenvironment{res}[1]{%
+  \par\noindent\textbf{Definitie #1.}~\ignorespaces
+}{%
+  \par\vspace{2pt}\normalfont
+}
+
+\newlist{myenum}{enumerate}{2}
+\setlist[myenum,1]{label=(\roman*),leftmargin=1.6em,itemsep=1pt,topsep=1pt}
+
+\title{\textbf{LAM Definities}}
+\author{T. Cools}
+\date{}
+
+\begin{document}
+\maketitle
+%\vspace{-2em}
+%\begin{center}
+%\small\textit{Dit document bevat alle definities uit de cursus, in de originele volgorde en met identieke nummering.}
+%\end{center}
+%\vspace{1em}
+
+%===================================================================
+\section{Inleidende begrippen}
+%===================================================================
+
+\begin{res}{1.1.1}
+Een complex getal is een uitdrukking van de vorm $a+bi$, waarin $a,b\in\mathbb R$ en $i$ een nieuw `getal' voorstelt met de eigenschap dat $i^2=-1$.
+
+De som en het product van twee complexe getallen $a+bi$ en $c+di$ met $a,b,c,d\in\mathbb R$ is als volgt gedefinieerd:
+\[
+(a+bi)+(c+di)=(a+c)+(b+d)i, \qquad (a+bi)(c+di)=(ac-bd)+(ad+bc)i.
+\]
+We noteren $\mathbb C=\{a+bi\mid a,b\in\mathbb R\}$. De afbeelding $\iota:\mathbb C\to\mathbb C: a+bi\mapsto a-bi$ is van groot belang; we noemen $\iota$ de \textit{complexe toevoeging}, en noteren deze ook als $\iota(z)=\overline z$ voor alle $z\in\mathbb C$. We defini\"eren de \textit{norm} $\mathsf N(z)$ van een complex getal als
+\[
+\mathsf N(a+bi)=(a+bi)(\overline{a+bi})=a^2+b^2,
+\]
+en de \textit{modulus} $|z|$ van een complex getal $z$ als de vierkantswortel van de norm, i.e.\ $|a+bi|=\sqrt{a^2+b^2}$.
+\end{res}
+
+\begin{res}{1.1.4}
+Een \textit{veld} is een verzameling $K$, voorzien van twee bewerkingen, met name een \textit{optelling} en een \textit{vermenigvuldiging}, die we noteren als
+\[
+K\times K\to K:(a,b)\mapsto a+b,\qquad K\times K\to K:(a,b)\mapsto ab,
+\]
+met de volgende eigenschappen:
+\begin{description}[leftmargin=2.6em,itemsep=1pt,topsep=1pt,font=\normalfont\bfseries]
+\item[(K1)] De optelling is associatief: voor alle $a,b,c\in K$ is $(a+b)+c=a+(b+c)$.
+\item[(K2)] Er bestaat een neutraal element voor de optelling: er bestaat een $z\in K$ zodat voor alle $a\in K$ geldt dat $a+z=z+a=a$. Dit element $z$ is uniek; we noteren het als $0$.
+\item[(K3)] Elk element heeft een invers element voor de optelling: voor alle $a\in K$ bestaat er een element $b\in K$ zodat $a+b=b+a=0$. Dit element $b$ is uniek; we noteren het als $-a$.
+\item[(K4)] De optelling is commutatief: voor alle $a,b\in K$ geldt dat $a+b=b+a$.
+\item[(K5)] De vermenigvuldiging is associatief: voor alle $a,b,c\in K$ is $(ab)c=a(bc)$.
+\item[(K6)] Er bestaat een neutraal element voor de vermenigvuldiging: er bestaat een $e\in K\setminus\{0\}$ zodat voor alle $a\in K$ geldt dat $ae=ea=a$. Dit element $e$ is uniek; we noteren het als $1$.
+\item[(K7)] Elk niet-nul element heeft een invers element voor de vermenigvuldiging: voor alle $a\in K\setminus\{0\}$ bestaat er een element $c\in K\setminus\{0\}$ zodat $ac=ca=1$. Dit element $c$ is uniek; we noteren het als $a^{-1}$.
+\item[(K8)] De vermenigvuldiging is commutatief: voor alle $a,b\in K$ geldt dat $ab=ba$.
+\item[(K9)] De vermenigvuldiging is distributief t.o.v.\ de optelling: voor alle $a,b,c\in K$ is $a(b+c)=ab+ac$ en dus ook $(b+c)a=ba+ca$.
+\end{description}
+De elementen van een veld noemen we vaak \textit{scalairen}.
+\end{res}
+
+\begin{res}{1.1.9}
+Een \textit{groep} is een verzameling $G$ met daarop een bewerking $*:G\times G\to G:(a,b)\mapsto a*b$ met de volgende eigenschappen:
+\begin{description}[leftmargin=2.6em,itemsep=1pt,topsep=1pt,font=\normalfont\bfseries]
+\item[(G1)] Voor alle $a,b,c\in G$ is $(a*b)*c=a*(b*c)$.
+\item[(G2)] Er bestaat een $e\in G$ zodat voor alle $a\in G$ geldt dat $a*e=e*a=a$.
+\item[(G3)] Voor elke $a\in G$ bestaat er een element $b\in G$ zodat $a*b=b*a=e$.
+\end{description}
+Een groep is \textit{abels} of \textit{commutatief} als voor alle $a,b\in G$ geldt dat $a*b=b*a$.
+\end{res}
+
+\begin{res}{1.1.10}
+Een \textit{ring} is een verzameling $R$ met daarop een optelling en een vermenigvuldiging, die we noteren als
+\[
+R\times R\to R:(a,b)\mapsto a+b,\qquad R\times R\to R:(a,b)\mapsto ab,
+\]
+met de volgende eigenschappen:
+\begin{description}[leftmargin=2.6em,itemsep=1pt,topsep=1pt,font=\normalfont\bfseries]
+\item[(R1)] Voor alle $a,b,c\in R$ is $(a+b)+c=a+(b+c)$.
+\item[(R2)] Er bestaat een $0\in R$ zodat voor alle $a\in R$ geldt dat $a+0=0+a=a$.
+\item[(R3)] Voor alle $a\in R$ bestaat er een element $b\in R$ zodat $a+b=b+a=0$.
+\item[(R4)] Voor alle $a,b\in R$ geldt dat $a+b=b+a$.
+\item[(R5)] Voor alle $a,b,c\in R$ is $(ab)c=a(bc)$.
+\item[(R6)] Er bestaat een $1\in R$ zodat voor alle $a\in R$ geldt dat $a1=1a=a$.
+\item[(R7)] Voor alle $a,b,c\in R$ is $a(b+c)=ab+ac$ en $(b+c)a=ba+ca$.
+\end{description}
+Een ring is \textit{commutatief} als voor alle $a,b\in R$ geldt dat $ab=ba$.
+\end{res}
+
+\begin{res}{1.2.1}
+Zij $K$ een veld.
+\begin{myenum}
+\item Een \textit{veelterm} (of \textit{polynoom}) over $K$ in \'e\'en variabele $x$ is een uitdrukking
+\[
+a_mx^m+\cdots+a_1x+a_0 \quad\text{met } m\in\mathbb N \text{ en } a_0,\dots,a_m\in K.
+\]
+We noteren een veelterm vaak met $f(x),g(x),\varphi(x),\psi(x),\dots$ We zullen ook vaak gebruik maken van de compactere somnotatie, $a_0+a_1x+\cdots+a_nx^n=\sum_{i=0}^n a_ix^i$.
+\item Defini\"eer de verzameling van alle veeltermen over $K$ in \'e\'en variabele als
+\[
+K[x]:=\{a_mx^m+\cdots+a_1x+a_0 \mid m\in\mathbb N,\ a_0,\dots,a_m\in K\}.
+\]
+De optelling en vermenigvuldiging van twee veeltermen $f(x)=a_mx^m+\cdots+a_0$ en $g(x)=b_nx^n+\cdots+b_0$ in $K[x]$ worden gegeven door
+\[
+f(x)+g(x)=(a_r+b_r)x^r+\cdots+(a_1+b_1)x+(a_0+b_0), \qquad r=\max\{m,n\},
+\]
+en
+\[
+f(x)g(x)=\sum_{k=0}^{m+n}\Big(\sum_{i+j=k} a_ib_j\Big)x^k.
+\]
+\item Zij $0\ne f(x)\in K[x]$, dan is de \textit{graad} van $f(x)$ de exponent van de hoogste macht van $x$ waarvan de co\"effici\"ent in $f(x)$ niet nul is. We noteren de graad van $f(x)$ als $\deg f(x)$. Met andere woorden, als $\deg f(x)=m$, dan is $f(x)=a_mx^m+\cdots+a_1x+a_0$ met $a_0,\dots,a_m\in K$, $a_m\ne0$. Voor elke $n\in\mathbb N$ noteren we de verzameling van veeltermen met graad ten hoogste $n$ als $P_n$, m.a.w.\ $P_n=\{a_nx^n+\cdots+a_1x+a_0\mid a_0,\dots,a_n\in K\}\subsetneq K[x]$.
+\item Een veelterm $f(x)\in K[x]$ met $n:=\deg f(x)\ge0$ waarvan de co\"effici\"ent bij $x^n$ gelijk is aan $1$ noemen we een \textit{monische veelterm}. Een veelterm van graad nul noemen we ook een \textit{constante veelterm}.
+\item Zij $f(x)=a_mx^m+\cdots+a_1x+a_0\in K[x]$ en $b\in K$, we noteren $f(b):=a_mb^m+\cdots+a_1b+a_0\in K$. We noemen $b\in K$ een \textit{wortel} van $f(x)$ als en slechts als $f(b)=0$.
+\end{myenum}
+\end{res}
+
+\begin{res}{1.2.5}
+\begin{myenum}
+\item Zij $f(x),g(x)\in K[x]$. Dan is $g(x)$ een \textit{deler} van $f(x)$ als en slechts als er een $q(x)\in K[x]$ bestaat waarvoor $f(x)=g(x)q(x)$.
+\item Zij $f(x)\in K[x]$, en zij $a$ een wortel van $f(x)$. Dan is $f(x)=(x-a)^kq(x)$ voor een bepaalde $k\in\mathbb N$ ($k\ge1$) en $q(x)\in K[x]$ met $q(a)\ne0$. We noemen $k$ de \textit{multipliciteit} van de wortel $a$.
+\item Zij $f(x)\in K[x]$ een veelterm met $\deg f(x)>0$. We noemen $f(x)$ \textit{reducibel} over $K$ als $f(x)=g(x)h(x)$ met $g(x),h(x)\in K[x]$, waarbij $\deg g(x)<\deg f(x)$ en $\deg h(x)<\deg f(x)$. We noemen $f$ \textit{irreducibel} als $f$ niet reducibel is.
+\end{myenum}
+\end{res}
+
+\begin{res}{1.3.1}
+Zij $K$ een veld.
+\begin{enumerate}[label=(\arabic*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item Zij $m,n\in\mathbb N\setminus\{0\}$. Een $m\times n$-\textit{matrix} is een rechthoekig schema van elementen van $K$ dat bestaat uit $m$ rijen en $n$ kolommen. Dit wordt genoteerd als
+\[
+A=\begin{pmatrix} a_{11}&a_{12}&\dots&a_{1n}\\ a_{21}&a_{22}&\dots&a_{2n}\\ \vdots&\vdots&\vdots&\vdots\\ a_{m1}&a_{m2}&\dots&a_{mn}\end{pmatrix},
+\]
+met $a_{ij}\in K$ voor alle $1\le i\le m$ en $1\le j\le n$. De scalairen $a_{ij}$ noemen we de \textit{componenten} of \textit{elementen} van de matrix.
+\item De verzameling van alle $m\times n$-matrices over $K$ noteren we met $M_{m,n}(K)$ of $\mathrm{Mat}_{m,n}(K)$.
+\item Wanneer $n=m$ noteren we $M_{n,n}(K)$ als $M_n(K)$ of als $\mathrm{Mat}_n(K)$. We noemen deze matrices de \textit{vierkante} matrices.
+\end{enumerate}
+\end{res}
+
+\begin{res}{1.3.3}
+Zij $K$ een veld, $n,m\in\mathbb N\setminus\{0\}$.
+\begin{myenum}
+\item De \textit{nulmatrix} is de matrix $(a_{ij})\in M_{m,n}(K)$ met $a_{ij}=0$ voor alle $i,j$. We noteren deze matrix als $0_{m,n}$ of gewoon $0$; als $m=n$ gebruiken we ook $0_n$.
+\item Een matrix in $M_{m,1}(K)$ wordt een \textit{kolommatrix} genoemd. Een matrix in $M_{1,n}(K)$ wordt een \textit{rijmatrix} genoemd. We noteren $K^m:=M_{m,1}(K)$ voor de verzameling van de kolommatrices.
+\item Een matrix $(a_{ij})\in M_n(K)$ is een \textit{diagonaalmatrix} als $a_{ij}=0$ voor alle $i\ne j$. We noteren de diagonaalmatrix ook met $\mathrm{diag}(a_{11},\dots,a_{nn})$.
+\item De \textit{eenheidsmatrix} is de matrix $\mathrm{diag}(1,\dots,1)\in M_n(K)$. We noteren deze matrix als $I_n$.
+\item De matrix $(a_{ij})\in M_n(K)$ is een \textit{bovendriehoeksmatrix} als $a_{ij}=0$ voor alle $i>j$.
+\item De matrix $(a_{ij})\in M_n(K)$ is een \textit{onderdriehoeksmatrix} als $a_{ij}=0$ voor alle $i<j$.
+\item De matrix $(a_{ij})\in M_n(K)$ is \textit{symmetrisch} als $a_{ij}=a_{ji}$ voor alle $i,j$.
+\item De matrix $(a_{ij})\in M_n(K)$ is een \textit{blokdiagonaalmatrix} met blokken $A_1,\dots,A_k$, als $A$ van de vorm
+\[
+\begin{pmatrix} A_1&0&0&0\\ 0&A_2&0&0\\ &&\ddots&\\ 0&0&0&A_k\end{pmatrix}
+\]
+is, met $A_i$ een $n_i\times n_i$-matrix voor alle $i$.
+\end{myenum}
+\end{res}
+
+\begin{res}{1.3.4}
+\begin{enumerate}[label=(\arabic*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item De som van twee matrices $A=(a_{ij})\in M_{m,n}(K)$ en $B=(b_{ij})\in M_{m,n}(K)$ is de matrix $A+B:=(a_{ij}+b_{ij})\in M_{m,n}(K)$.
+\item Zij $\lambda\in K$, dan defini\"eren we het (scalair) product van de matrix $A=(a_{ij})\in M_{m,n}(K)$ met de scalair $\lambda$ als de matrix $\lambda A:=(\lambda a_{ij})\in M_{m,n}(K)$.
+\item Het product van twee matrices $A=(a_{ij})\in M_{m,k}(K)$ en $B=(b_{ij})\in M_{k,n}(K)$ is gedefinieerd als $(c_{ij}):=AB\in M_{m,n}(K)$ met
+\[
+c_{ij}=\sum_{\ell=1}^k a_{i\ell}b_{\ell j}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{ik}b_{kj}.
+\]
+\end{enumerate}
+\end{res}
+
+\begin{res}{1.3.8}
+\begin{myenum}
+\item Zij $K$ een veld en $n\in\mathbb N\setminus\{0\}$. Een matrix $A\in M_n(K)$ is \textit{inverteerbaar} als en slechts als er een matrix $B\in M_n(K)$ bestaat waarvoor $AB=BA=I_n$.
+\item Als de matrix $A\in M_n(K)$ inverteerbaar is, dan is de matrix $B$ met $AB=BA=I_n$ uniek bepaald. We noemen de matrix $B$ de \textit{inverse matrix} of kortweg de \textit{inverse} van $A$ en noteren deze met $A^{-1}$.
+\item De verzameling van de inverteerbare matrices noteren we met $\mathsf{GL}_n(K)$.
+\end{myenum}
+\end{res}
+
+\begin{res}{1.3.11}
+Zij $A=(a_{ij})\in M_{m,n}(K)$. We defini\"eren de matrix $A^t=(b_{k\ell})\in M_{n,m}(K)$ als $b_{ji}:=a_{ij}$ voor alle $1\le i\le m$, $1\le j\le n$. We noemen de matrix $A^t$ de \textit{getransponeerde matrix} van de matrix $A$.
+
+De rijen van $A$ worden dus de kolommen van $A^t$ en de kolommen van $A$ worden de rijen van $A^t$.
+\end{res}
+
+\begin{res}{1.4.1}
+\begin{myenum}
+\item Zij $K$ een veld. Een \textit{stelsel} over $K$ van $m$ lineaire vergelijkingen met $n$ onbekenden $x_1,x_2,\dots,x_n$ is een collectie van $m$ lineaire vergelijkingen over dezelfde $n$ onbekenden, i.e.\ vergelijkingen van de vorm
+\[
+\begin{cases} a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\ \qquad\qquad\vdots\\ a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=b_m,\end{cases}
+\]
+waar $a_{ij}\in K$ voor alle $1\le i\le m$, $1\le j\le n$ en $b_i\in K$ voor alle $1\le i\le m$.
+\item Een \textit{oplossing} van het bovenstaand stelsel is een $n$-tal bestaande uit $n$ scalairen $c_1,\dots,c_n\in K$ waarvoor geldt dat
+\[
+\begin{cases} a_{11}c_1+a_{12}c_2+\cdots+a_{1n}c_n=b_1\\ \qquad\qquad\vdots\\ a_{m1}c_1+a_{m2}c_2+\cdots+a_{mn}c_n=b_m.\end{cases}
+\]
+Deze oplossing noteren we vaak als $x_1=c_1,\dots,x_n=c_n$ of als $(c_1,\dots,c_n)^t$. De \textit{oplossingsverzameling} van een stelsel lineaire vergelijkingen is de verzameling van alle oplossingen van het stelsel.
+\item Een stelsel is \textit{strijdig} als het geen oplossingen heeft, m.a.w.\ als de oplossingsverzameling gelijk is aan $\emptyset$.
+\item Een stelsel is \textit{homogeen} als het van de vorm
+\[
+\begin{cases} a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=0\\ \qquad\qquad\vdots\\ a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n=0\end{cases}
+\]
+is, voor $a_{ij}\in K$ met $1\le i\le m$, $1\le j\le n$. Merk op dat een homogeen stelsel nooit strijdig is: $x_1=x_2=\cdots=x_n=0$ is namelijk steeds een oplossing.
+\end{myenum}
+\end{res}
+
+\begin{res}{1.4.3}
+Beschouw een stelsel van $m$ lineaire vergelijkingen met $n$ onbekenden over $K$, genoteerd als $AX=B$, waarbij $A\in M_{m,n}(K)$, $B\in M_{m,1}(K)$ en $X$ de kolommatrix is met de $n$ onbekenden.
+
+De $m\times(n+1)$-matrix $(A\ B)$ bekomen uit $A$ door deze aan te vullen met de kolom $B$, noemen we de \textit{uitgebreide matrix} van het stelsel. We noteren de uitgebreide matrix van dit stelsel ook als $(A|B)$; de streep geeft aan dat het de uitgebreide matrix is van een stelsel.
+\end{res}
+
+\begin{res}{1.4.5}
+Zij $A\in M_{m,n}(K)$ met rijen $A_1,\dots,A_m$. We kunnen een nieuwe matrix construeren door \'e\'en van de volgende operaties toe te passen op $A$:
+\begin{enumerate}[label=(\arabic*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item de rij $A_i$ vervangen door $A_i+\lambda A_j$ voor bepaalde $1\le i,j\le m$ en $\lambda\in K$;
+\item de rij $A_i$ verwisselen met de rij $A_j$ voor bepaalde $1\le i,j\le m$;
+\item de rij $A_i$ vervangen door $cA_i$ voor een bepaalde $1\le i\le m$ en $c\in K\setminus\{0\}$.
+\end{enumerate}
+Een dergelijke operatie noemen we een \textit{elementaire rijoperatie} van type I, II of III respectievelijk.
+\end{res}
+
+\begin{res}{1.4.8}
+Een matrix $A\in M_{m,n}(K)$ is een \textit{rij-echelonmatrix} als de volgende drie voorwaarden voldaan zijn:
+\begin{itemize}[leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item Iedere rij is van de vorm $(0\cdots0)$, $(1*\cdots*)$ of $(0\cdots0\,1*\cdots*)$, waar de sterretjes willekeurige scalairen voorstellen.
+\item Het eerste niet-nul element van de $(i+1)$-de rij ligt rechts van het eerste niet-nul element van de $i$-de rij; de nulrijen staan onderaan in de matrix.
+\item De elementen boven het eerste niet-nul element van iedere rij zijn allemaal gelijk aan nul.
+\end{itemize}
+Als een rij niet volledig gelijk is aan nul, wordt de plaats waar het eerste niet-nul element staat (dit is altijd een $1$) een \textit{spilplaats} of een \textit{pivotplaats} genoemd. Een kolom waarin een spilplaats voorkomt noemen we een \textit{spilkolom} of een \textit{pivotkolom}.
+
+Als $A$ een rij-echelonmatrix is, zeggen we ook dat $A$ in \textit{rij-echelonvorm} staat.
+\end{res}
+
+%===================================================================
+\section{Vectorruimten}
+%===================================================================
+
+\begin{res}{2.1.1}
+Een \textit{vectorruimte} over een veld $K$ (of een \textit{$K$-vectorruimte}) is een verzameling $V$ met twee bewerkingen: de optelling
+\[
+V\times V\to V:(v,w)\mapsto v+w,
+\]
+en de vermenigvuldiging met scalairen
+\[
+K\times V\to V:(\lambda,v)\mapsto\lambda v,
+\]
+die aan de volgende eigenschappen voldoen:
+\begin{description}[leftmargin=2.6em,itemsep=1pt,topsep=1pt,font=\normalfont\bfseries]
+\item[(V1)] Voor alle $v,w,u\in V$ is $(v+w)+u=v+(w+u)$.
+\item[(V2)] Er bestaat een $0_V\in V$ zodat voor alle $v\in V$ geldt dat $v+0_V=0_V+v=v$.
+\item[(V3)] Voor alle $v\in V$ bestaat er een element $w\in V$ zodat $v+w=w+v=0_V$.
+\item[(V4)] Voor alle $v,w\in V$ geldt dat $v+w=w+v$.
+\item[(V5)] Voor alle $v\in V$ en alle $\lambda,\mu\in K$ geldt $(\lambda\mu)v=\lambda(\mu v)$.
+\item[(V6)] Voor alle $v\in V$ is $1v=v$ (hier is $1\in K$ het neutraal element voor de vermenigvuldiging in $K$).
+\item[(V7)] Voor alle $v,w\in V$ en alle $\lambda,\mu\in K$ is $(\lambda+\mu)v=\lambda v+\mu v$ en $\lambda(v+w)=\lambda v+\lambda w$.
+\end{description}
+De eigenschappen (V1)--(V4) drukken uit dat $V$ met als bewerking de optelling een abelse groep is, met $0_V$ als neutraal element.
+\end{res}
+
+\begin{res}{2.2.1}
+Een deelverzameling $W$ van een $K$-vectorruimte $V$ noemt men een \textit{deelruimte} van $V$ als $W$ zelf een vectorruimte is voor de operaties van $V$; we noteren dit dan als $W\le V$.
+\end{res}
+
+\begin{res}{2.2.5}
+Zij $V$ een $K$-vectorruimte en $S\subseteq V$ een deelverzameling. Een element $v\in V$ noemt men een \textit{lineaire combinatie} van elementen van de verzameling $S$ als $v$ kan geschreven worden als
+\[
+v=\lambda_1v_1+\lambda_2v_2+\cdots+\lambda_nv_n
+\]
+met $\lambda_i\in K$ en $v_i\in S$, voor $i=1,\dots,n$.
+
+Merk op dat voor iedere $S\subseteq V$ het nulelement $0\in V$ een lineaire combinatie van elementen van de verzameling $S$ is, namelijk $0=0v_1+0v_2+\cdots+0v_n$. Deze lineaire combinatie noemt men de \textit{triviale lineaire combinatie} (van de elementen $v_1,\dots,v_n$).
+\end{res}
+
+\begin{res}{2.2.8}
+Zij $V$ een $K$-vectorruimte, en beschouw een deelverzameling $S\subseteq V$. We defini\"eren de verzameling $\mathrm{span}(S)$ als de verzameling bestaande uit alle lineaire combinaties van elementen van $S$, met andere woorden
+\[
+\mathrm{span}(S):=\{\lambda_1v_1+\cdots+\lambda_kv_k \mid k\in\mathbb N,\ \lambda_1,\dots,\lambda_k\in K,\ v_1,\dots,v_k\in S\}.
+\]
+We zeggen dat $\mathrm{span}(S)$ de deelruimte voortgebracht door $S$ is.
+\end{res}
+
+\begin{res}{2.3.1}
+Zij $V$ een $K$-vectorruimte. Een deelverzameling $S\subseteq V$ noemen we een \textit{voortbrengende verzameling} voor $V$ als $\mathrm{span}(S)=V$. Met andere woorden, $S$ is een voortbrengende verzameling voor $V$ als elk element uit $V$ een lineaire combinatie is van elementen uit $S$.
+\end{res}
+
+\begin{res}{2.3.3}
+Zij $V$ een $K$-vectorruimte met $S\subseteq V$ een deelverzameling.
+\begin{myenum}
+\item We noemen de verzameling $S$ \textit{lineair afhankelijk} als er een eindige deelverzameling $\{v_1,\dots,v_k\}\subseteq S$ bestaat waarvoor
+\[
+\lambda_1v_1+\cdots+\lambda_kv_k=0
+\]
+met $\lambda_1,\dots,\lambda_k\in K$ waarbij $\lambda_i\ne0$ voor minstens \'e\'en $i\in\{1,\dots,k\}$.
+\item Als een verzameling $S$ niet lineair afhankelijk is, noemen we $S$ \textit{lineair onafhankelijk}. Anders gezegd, $S$ is lineair onafhankelijk als voor elke eindige deelverzameling $\{v_1,\dots,v_k\}\subseteq S$ (met $k$ verschillende elementen) het enkel mogelijk is dat $\lambda_1v_1+\cdots+\lambda_kv_k=0$ met $\lambda_1,\dots,\lambda_k\in K$ als $\lambda_1=\cdots=\lambda_k=0$.
+\end{myenum}
+\end{res}
+
+\begin{res}{2.4.1}
+Zij $V$ een $K$-vectorruimte. Een deelverzameling $B\subseteq V$ is een \textit{basis} voor $V$ als aan de twee volgende voorwaarden voldaan is:
+\begin{enumerate}[label=(\arabic*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item $B$ is een voortbrengende verzameling,
+\item $B$ is een lineair onafhankelijke verzameling.
+\end{enumerate}
+\end{res}
+
+\begin{res}{2.4.5}
+We noemen een $K$-vectorruimte $V$ een \textit{eindig-dimensionale} vectorruimte als $V$ een eindige voortbrengende verzameling bevat. Een vectorruimte wordt \textit{oneindig-dimensionaal} genoemd als ze niet eindig-dimensionaal is, i.e.\ als elke voortbrengende verzameling voor $V$ oneindig is.
+\end{res}
+
+\begin{res}{2.4.10}
+Zij $V$ een eindig-dimensionale vectorruimte over een veld $K$. Het aantal elementen in een basis $B$ voor $V$ noemen we de \textit{dimensie} van $V$; we noteren dit als $\dim V$, of ook als $\dim_K V$ als we het veld $K$ expliciet willen vermelden. Als $\dim V=n$, dan noemen we $V$ een \textit{$n$-dimensionale} vectorruimte.
+\end{res}
+
+\begin{res}{2.5.1}
+Zij $V$ een $K$-vectorruimte en zij $W_1,\dots,W_k\le V$ deelruimten van $V$. De \textit{som} van de deelruimten $W_1,\dots,W_k$ is gedefinieerd als
+\[
+W_1+\cdots+W_k:=\Big\{\sum_{i=1}^k w_i \ \Big|\ w_i\in W_i \text{ voor alle } 1\le i\le k\Big\}.
+\]
+Als ieder element $v$ van $W:=W_1+\cdots+W_k$ op een unieke manier te schrijven is als $v=\sum_{i=1}^k w_i$ met $w_i\in W_i$, dan zeggen we dat $W$ een \textit{directe som} van deelruimten is en noteren dit als $W=W_1\oplus\cdots\oplus W_k$.
+
+We noteren ook $\sum_{i=1}^k W_i:=W_1+\cdots+W_k$ en $\bigoplus_{i=1}^k W_i:=W_1\oplus\cdots\oplus W_k$.
+\end{res}
+
+\begin{res}{2.5.7}
+Zij $V$ een $K$-vectorruimte en $W\le V$ een deelruimte. Een deelruimte $W'\le V$ is een \textit{complement} van $W$ in $V$ als $V=W\oplus W'$.
+\end{res}
+
+\begin{res}{2.5.10}
+Zij $W_1,\dots,W_m$ vectorruimten over $K$. Defini\"eer de verzameling
+\[
+\bigoplus_{i=1}^m W_i = W_1\oplus\cdots\oplus W_m = \{(a_1,\dots,a_m) \mid a_1\in W_1,\dots,a_m\in W_m\}.
+\]
+Defini\"eer op $\bigoplus_{i=1}^m W_i$ de volgende optelling en vermenigvuldiging met scalairen,
+\[
+(a_1,\dots,a_m)+(b_1,\dots,b_m)=(a_1+b_1,\dots,a_m+b_m)
+\]
+en
+\[
+\lambda\cdot(a_1,\dots,a_m)=(\lambda a_1,\dots,\lambda a_m)
+\]
+voor alle $a_i,b_i\in W_i$ en $\lambda\in K$. We noemen $\bigoplus_{i=1}^m W_i$ de \textit{directe som} van de vectorruimten $W_1,\dots,W_m$.
+\end{res}
+
+%===================================================================
+\section{Lineaire afbeeldingen}
+%===================================================================
+
+\begin{res}{3.1.1}
+Zij $A$ en $B$ twee verzamelingen.
+\begin{myenum}
+\item Zij $f:A\to B$ een afbeelding, en zij $C\subseteq A$. We noteren $f(C):=\{f(c)\mid c\in C\}\subseteq B$.
+\item Zij $f:A\to B$ een afbeelding, en zij $D\subseteq B$. Het \textit{inverse beeld} van $D$ is de verzameling van alle elementen in $A$ die op een element in $D$ afgebeeld worden. We noteren $f^{-1}(D):=\{a\in A\mid f(a)\in D\}\subseteq A$.
+\item Zij $f:A\to B$ een afbeelding, en zij $C\subseteq A$. Dan is $C\to B:c\mapsto f(c)$ ook een afbeelding; we noemen deze afbeelding de \textit{restrictie} van $f$ tot $C$. We noteren deze afbeelding met $f|_C:C\to B:c\mapsto f(c)$.
+\item Een afbeelding $f:A\to B$ wordt \textit{injectief} genoemd, indien elk element van $B$ hoogstens \'e\'en maal bereikt wordt door $f$, of nog, indien voor alle $a,a'\in A$ geldt dat
+\[
+f(a)=f(a') \implies a=a';
+\]
+we noemen $f$ dan een \textit{injectie} van $A$ naar (of in) $B$.
+\item Een afbeelding $f:A\to B$ wordt \textit{surjectief} genoemd, indien elk element van $B$ minstens \'e\'en maal bereikt wordt door $f$, of nog, indien voor alle $b\in B$ geldt: er bestaat een $a\in A$ zodat $f(a)=b$. We noemen $f$ dan een \textit{surjectie} van $A$ naar (of op) $B$.
+\item Een afbeelding $f:A\to B$ wordt \textit{bijectief} genoemd, indien elk element van $B$ juist \'e\'en maal bereikt wordt door $f$, of nog, indien voor alle $b\in B$ geldt: er bestaat juist \'e\'en $a\in A$ zodat $f(a)=b$. We noemen $f$ dan een \textit{bijectie} van $A$ naar $B$ (of tussen $A$ en $B$).
+\end{myenum}
+\end{res}
+
+\begin{res}{3.1.4}
+Zij $V$ en $W$ twee vectorruimten over het veld $K$.
+\begin{myenum}
+\item Een afbeelding $f:V\to W$ is een \textit{lineaire afbeelding} als
+\[
+f(\lambda v_1+\mu v_2)=\lambda f(v_1)+\mu f(v_2)
+\]
+voor alle $\lambda,\mu\in K$ en alle $v_1,v_2\in V$. Een lineaire afbeelding wordt ook een \textit{morfisme van vectorruimten} genoemd.
+\item Een lineaire afbeelding $f:V\to V$ van een vectorruimte $V$ naar zichzelf noemen we een \textit{lineaire operator} op $V$, of ook soms een \textit{endomorfisme} van $V$.
+\end{myenum}
+\end{res}
+
+\begin{res}{3.1.7}
+Een lineaire operator $p:V\to V$ op een $K$-vectorruimte $V$ noemt men een \textit{projectie-operator} of kortweg een \textit{projectie} als $p(p(v))=p(v)$ voor alle $v\in V$.
+\end{res}
+
+\begin{res}{3.2.1}
+Zij $f:V\to W$ een lineaire afbeelding tussen twee willekeurige $K$-vectorruimten; dan is de \textit{kern} van $f$ de deelverzameling
+\[
+\ker f:=\{v\in V\mid f(v)=0\}
+\]
+van $V$. Het \textit{beeld} van $f$ defini\"eren we als de deelverzameling
+\[
+\operatorname{im} f:=f(V):=\{f(v)\mid v\in V\}=\{w\in W\mid \exists v\in V: f(v)=w\}
+\]
+van $W$.
+\end{res}
+
+\begin{res}{3.3.3}
+\begin{myenum}
+\item Een bijectieve lineaire afbeelding tussen twee $K$-vectorruimten noemen we een \textit{isomorfisme}.
+\item Als er tussen twee $K$-vectorruimten een bijectieve lineaire afbeelding bestaat dan zeggen we dat de vectorruimten \textit{isomorf} zijn. Als twee $K$-vectorruimten $V$ en $W$ isomorf zijn, noteren we dit met $V\cong W$.
+\item Een \textit{automorfisme} van $V$ is een isomorfisme van $V$ naar zichzelf.
+\end{myenum}
+\end{res}
+
+\begin{res}{3.4.1}
+Zij $K$ een veld, en $V,W$ twee $K$-vectorruimten.
+\begin{myenum}
+\item De verzameling van alle lineaire afbeeldingen tussen $V$ en $W$ noteren we
+\[
+\mathrm{Hom}_K(V,W):=\{f:V\to W \mid f \text{ een lineaire afbeelding}\},
+\]
+en noemen we de \textit{ruimte van homomorfismen} van $V$ naar $W$, of ook wel de ruimte van lineaire afbeeldingen van $V$ naar $W$, of kortweg de \textit{hom-ruimte} van $V$ naar $W$.
+\item Zij $f,g\in\mathrm{Hom}_K(V,W)$ en $\lambda\in K$; dan defini\"eren we de afbeeldingen $f+g$ en $\lambda f$ als
+\[
+(f+g)(v):=f(v)+g(v) \ \text{voor alle } v\in V, \qquad (\lambda f)(v):=\lambda f(v) \ \text{voor alle } v\in V.
+\]
+\end{myenum}
+\end{res}
+
+\begin{res}{3.5.1}
+Zij $A,B,C$ drie verzamelingen, en zij $g$ een afbeelding van $A$ naar $B$ en $f$ een afbeelding van $B$ naar $C$. We defini\"eren de afbeelding
+\[
+f\circ g:A\to C:a\mapsto f(g(a)).
+\]
+We noemen deze afbeelding de \textit{samenstelling} van $f$ en $g$, we spreken $f\circ g$ uit als $f$ na $g$.
+\end{res}
+
+\begin{res}{3.5.4}
+De ruimte $\mathrm{Hom}_K(V,V)$ met als vermenigvuldiging de samenstelling vormt dus een ring; men noemt dit de \textit{endomorfismenring} van $V$ en noteert deze met $\mathrm{End}_K(V)$ of $\mathrm{End}(V)$.
+\end{res}
+
+\begin{res}{3.6.1}
+Zij $A$ en $B$ twee verzamelingen, en $f:A\to B$ een afbeelding. Als $f$ bijectief is, dan bestaat voor iedere $b\in B$ de verzameling $f^{-1}(\{b\})=\{a\in A\mid f(a)=b\}$ uit precies \'e\'en element. We defini\"eren dan de afbeelding
+\[
+f^{-1}:B\to A:b\mapsto \text{het unieke element in } f^{-1}(\{b\}).
+\]
+We noemen $f^{-1}$ de \textit{inverse afbeelding} van $f$. Om die reden noemen we een bijectieve afbeelding ook wel een \textit{inverteerbare afbeelding}.
+\end{res}
+
+\begin{res}{3.6.3}
+Zij $V$ een $K$-vectorruimte. De verzameling van alle automorfismen van $V$ noemt men de \textit{algemene lineaire groep}, en noteert men als $\mathsf{GL}_K(V)$ of $\mathsf{GL}(V)$.
+\end{res}
+
+%===================================================================
+\section{Co\"ordinaten}
+%===================================================================
+
+\begin{res}{4.1.1}
+Zij $K$ een veld, zij $V$ een $n$-dimensionale $K$-vectorruimte, en zij $\mathcal B=\{b_1,\dots,b_n\}$ een basis in $V$.
+\begin{myenum}
+\item Als $v=\sum_{i=1}^n \lambda_ib_i$, dan noemen we $(\lambda_1,\dots,\lambda_n)^t$ de \textit{co\"ordinatenvector} van $v$ ten opzichte van de basis $\mathcal B$. De elementen $\lambda_i$ zijn de \textit{co\"ordinaten} van $v$ ten opzichte van de basis $\mathcal B$.
+\item Het isomorfisme
+\[
+\beta:V\to K^n:\sum_{i=1}^n \lambda_ib_i\mapsto (\lambda_1,\dots,\lambda_n)^t,
+\]
+noemen we het \textit{co\"ordinatenisomorfisme} ten opzichte van de basis $\mathcal B$.
+\end{myenum}
+\end{res}
+
+\begin{res}{4.1.2}
+Zij $V$ een $n$-dimensionale $K$-vectorruimte en $W$ een $m$-dimensionale $K$-vectorruimte, en zij $f:V\to W$ een lineaire afbeelding. Beschouw een basis $\mathcal B=\{b_1,\dots,b_n\}$ van $V$ en een basis $\mathcal C=\{c_1,\dots,c_m\}$ van $W$.
+
+Voor iedere $j=1,\dots,n$ is $f(b_j)=\sum_{i=1}^m a_{ij}c_i$ voor bepaalde scalairen $a_{ij}\in K$. De matrix $(a_{ij})\in M_{m,n}(K)$ noemen we de \textit{matrixvoorstelling} van $f$ ten opzichte van de basissen $\mathcal B$ en $\mathcal C$. We noteren de matrixvoorstelling van $f$ ten opzichte van de basissen $\mathcal B$ en $\mathcal C$ als $A_{f,\mathcal B,\mathcal C}$ of als $A_f$ als het duidelijk is uit de context welke basissen we beschouwen.
+\end{res}
+
+\begin{res}{4.2.1}
+Zij $\mathcal B=\{b_1,\dots,b_n\}$ en $\mathcal B'=\{b_1',\dots,b_n'\}$ twee basissen voor $V$, en schrijf, voor elke $j$, $b_j'=\sum_{i=1}^n q_{ij}b_i$ voor bepaalde $q_{ij}\in K$. De matrix $Q=(q_{ij})\in M_n(K)$ noemt men de \textit{matrix van de basisovergang} of de \textit{transitiematrix} van de (oude) basis $\mathcal B$ naar de (nieuwe) basis $\mathcal B'$.
+\end{res}
+
+\begin{res}{4.2.7}
+Zij $A\in M_n(K)$. De verzameling
+\[
+\{Q^{-1}AQ \mid Q\in \mathsf{GL}_n(K)\}
+\]
+noemt men de \textit{conjugatieklasse} van $A$; de elementen van deze verzameling zijn de \textit{geconjugeerden} of \textit{toegevoegden} van $A$.
+\end{res}
+
+%===================================================================
+\section{Matrices en determinanten}
+%===================================================================
+
+\begin{res}{5.1.3}
+De \textit{rang} van de matrix $A\in M_{m,n}(K)$ is de dimensie van de deelruimte van $K^m$ (resp.\ $K^n$) voortgebracht door de kolommen (resp.\ rijen) van $A$. We noteren
+\[
+\mathrm{rk}(A):=\dim\mathrm{span}(A_1,\dots,A_n)=\dim\mathrm{span}(R_1,\dots,R_m).
+\]
+\end{res}
+
+\begin{res}{5.2.1}
+Zij $V$ een $K$-vectorruimte, beschouw een element $v\in V$ en een deelruimte $W\le V$. Defini\"eer de deelverzameling
+\[
+v+W:=\{v+w\mid w\in W\}\subseteq V;
+\]
+$v+W$ is dus de verzameling van alle sommen $v+w$ met $w\in W$. We noemen $v+W$ een \textit{affiene deelruimte} of een \textit{lineaire vari\"eteit}.
+\end{res}
+
+\begin{res}{5.2.5}
+Zij $v+W$ een affiene deelruimte van een $K$-vectorruimte $V$. Dan defini\"eren we de \textit{dimensie} van $v+W$ als $\dim(v+W):=\dim W$.
+\end{res}
+
+\begin{res}{5.4.1}
+Zij $n\in\mathbb N\setminus\{0\}$.
+\begin{myenum}
+\item Een \textit{permutatie} van $\{1,\dots,n\}$ is een bijectie $\sigma:\{1,\dots,n\}\to\{1,\dots,n\}$. De verzameling van alle permutaties van $\{1,\dots,n\}$ noteren we als $\mathrm{Sym}(n)$ of $S_n$.
+\item We stellen een permutatie $\sigma$ vaak voor door de opeenvolgende beelden $\sigma(1),\dots,\sigma(n)$ tussen haakjes te plaatsen; we noteren dus $\sigma=(i_1,\dots,i_n)$ waarbij $i_k=\sigma(k)$.
+\item Zij $\sigma=(i_1,\dots,i_n)$ een willekeurige permutatie. We kunnen steeds $(i_1,\dots,i_n)$ omvormen in $(1,\dots,n)$ door een aantal keer na elkaar twee elementen van plaats te verwisselen. Als dit mogelijk is in $k$ stappen, dan defini\"eren we het \textit{teken} (of de \textit{pariteit}) van de permutatie $\sigma$ als $\mathrm{sgn}(\sigma)=(-1)^k$; het teken is dus steeds $1$ of $-1$.
+\end{myenum}
+\end{res}
+
+\begin{res}{5.4.5}
+We noteren de afbeelding van $M_n(K)$ naar $K$ gegeven door formule (5.1) als ``$\det$'', i.e.
+\[
+\det: M_n(K)\to K: A\mapsto \det(A):=\sum_{\sigma\in S_n} \mathrm{sgn}(\sigma)a_{\sigma(1),1}\cdots a_{\sigma(n),n};
+\]
+we noemen deze afbeelding de \textit{determinantafbeelding} of kortweg de \textit{determinant}. De scalair $\det A:=\det(A)\in K$ noemen we dan de \textit{determinant} van de matrix $A\in M_n(K)$.
+\end{res}
+
+\begin{res}{5.5.2}
+\begin{myenum}
+\item De $(i,j)$-de \textit{minor} van $A$ is gedefinieerd als $\det(A_{ij})$, waar $A_{ij}\in M_{n-1}(K)$ de matrix is bekomen door in $A$ de $i$-de rij en de $j$-de kolom te schrappen.
+\item De $(i,j)$-de minor met zijn teken $\alpha_{ij}=(-1)^{i+j}\det A_{ij}$ noemt men de \textit{cofactor} van het element $a_{ij}$ uit $A$.
+\item We defini\"eren de \textit{adjunct} van een matrix $A\in M_n(K)$ als
+\[
+\mathrm{adj}(A):=\begin{pmatrix}\alpha_{11}&\alpha_{21}&\cdots&\alpha_{n1}\\ \alpha_{12}&\alpha_{22}&\cdots&\alpha_{n2}\\ \vdots&\vdots& &\vdots\\ \alpha_{1n}&\alpha_{2n}&\cdots&\alpha_{nn}\end{pmatrix},
+\]
+of dus $\mathrm{adj}(A)=(\alpha_{ij})^t$.
+\end{myenum}
+\end{res}
+
+\begin{res}{5.5.4}
+Zij $A\in \mathrm{Mat}_{m,n}(K)$, en zij $k\le\min\{m,n\}$. Een \textit{$k\times k$-minor} van $A$ is de determinant van een $k\times k$-deelmatrix die we verkrijgen door het schrappen van $m-k$ rijen en $n-k$ kolommen uit $A$.
+\end{res}
+
+%===================================================================
+\section{Lineaire operatoren}
+%===================================================================
+
+\begin{res}{6.1.2}
+Zij $V$ een eindig-dimensionale $K$-vectorruimte, en zij $f\in\mathrm{End}(V)$. Dan defini\"eren we $\det f:=\det A$ waarbij $A$ een matrixvoorstelling van $f$ t.o.v.\ een willekeurige basis is.
+\end{res}
+
+\begin{res}{6.1.3}
+Zij $K$ een willekeurig veld, en zij $K[x]$ de veeltermenring over $K$. Dan defini\"eren we de verzameling van alle $m\times n$-matrices over $K[x]$ als
+\[
+M_{m,n}(K[x])=\{(p_{ij}(x)) \mid p_{ij}(x)\in K[x] \text{ voor } i=1,\dots,m \text{ en } j=1,\dots,n\}.
+\]
+We noteren ook $M_n(K[x])=M_{n,n}(K[x])$. We defini\"eren de optelling, scalaire vermenigvuldiging en vermenigvuldiging van matrices over $K[x]$ net zoals in Definitie 1.3.4 (waar we $K$ vervangen door $K[x]$).
+\end{res}
+
+\begin{res}{6.1.5}
+\begin{myenum}
+\item Zij $f:V\to V$ een lineaire operator op een eindig-dimensionale vectorruimte $V$ over $K$. De veelterm $\chi_f(x)$ gedefinieerd in Lemma 6.1.4 noemt men de \textit{karakteristieke veelterm} van $f$.
+\item Zij $A\in M_n(K)$. De veelterm $\chi_A(x):=\det(xI_n-A)\in K[x]$ noemt men de \textit{karakteristieke veelterm} van de matrix $A$. De karakteristieke veelterm van de matrix $A$ is dus gelijk aan de karakteristieke veelterm van de lineaire operator $L_A:K^n\to K^n$.
+\item Als $\chi(x)$ de karakteristieke veelterm is van een lineaire operator (resp.\ van een matrix), dan noemen we de vergelijking $\chi(x)=0$ de \textit{karakteristieke vergelijking} van de lineaire operator (resp.\ van de matrix).
+\end{myenum}
+\end{res}
+
+\begin{res}{6.1.7}
+De som van de diagonaalelementen van een vierkante matrix $A$ noemt men het \textit{spoor} van $A$; we noteren $\mathrm{tr}(A)=a_{11}+\cdots+a_{nn}$.
+\end{res}
+
+\begin{res}{6.2.1}
+Zij $V$ een $K$-vectorruimte en $f:V\to V$ een lineaire operator.
+\begin{myenum}
+\item Een niet-nul element $0\ne v\in V$ is een \textit{eigenvector} van $f$ als $f(v)=\lambda v$ voor een $\lambda\in K$.
+\item Zij $0\ne v\in V$ een eigenvector van $f$ met $f(v)=\lambda v$. Dan is $\lambda$ een \textit{eigenwaarde} van $f$.
+\item Zij $\lambda$ een eigenwaarde van $f$. Dan is $\ker(\lambda\vec 1_V-f)$ de \textit{eigenruimte} van $f$ bij de eigenwaarde $\lambda$.
+\end{myenum}
+\end{res}
+
+\begin{res}{6.2.2}
+Zij $A\in M_n(K)$ een $n\times n$-matrix over $K$.
+\begin{myenum}
+\item Een niet-nul element $0\ne v\in K^n$ is een (rechtse) \textit{eigenvector} van $A$ als $Av=\lambda v$ voor een $\lambda\in K$.
+\item Zij $0\ne v\in K^n$ een eigenvector van $A$ met $Av=\lambda v$. Dan is $\lambda$ een \textit{eigenwaarde} van $A$.
+\item Zij $\lambda$ een eigenwaarde van $A$. Dan is
+\[
+\ker L_{(\lambda I_n-A)}=\{w\in K^n \mid (\lambda I_n-A)w=0\}
+\]
+de \textit{eigenruimte} van $A$ bij de eigenwaarde $\lambda$.
+\end{myenum}
+\end{res}
+
+\begin{res}{6.3.2}
+\begin{myenum}
+\item Een operator $f$ op een eindig-dimensionale vectorruimte $V$ is \textit{diagonaliseerbaar} als er een matrixvoorstelling van $f$ is die een diagonaalmatrix is.
+\item Een matrix $A\in M_n(K)$ is \textit{diagonaliseerbaar} als de lineaire operator $L_A:K^n\to K^n$ diagonaliseerbaar is.
+\end{myenum}
+\end{res}
+
+\begin{res}{6.3.8}
+Zij $V$ een $K$-vectorruimte en $f:V\to V$ een lineaire operator met als karakteristieke veelterm
+\[
+\chi_f(x)=\prod_{i=1}^t (x-\lambda_i)^{n_i} \quad\text{met } \lambda_1,\dots,\lambda_t\in K.
+\]
+\begin{myenum}
+\item De \textit{algebra\"ische multipliciteit} van een eigenwaarde $\lambda_i$ van $f$ is gelijk aan $n_i$, i.e.\ de multipliciteit van $\lambda_i$ als wortel van de karakteristieke veelterm $\chi_f(x)$.
+\item De \textit{meetkundige multipliciteit} van een eigenwaarde $\lambda_i$ van $f$ is gelijk aan de dimensie van de eigenruimte behorende bij $\lambda_i$, dit is dus gelijk aan $\dim\ker(\lambda_i\vec 1-f)$.
+\end{myenum}
+\end{res}
+
+%===================================================================
+\section{De minimaalveelterm, Cayley--Hamilton, dualiteit}
+%===================================================================
+
+
+%===================================================================
+\section{Inproduct-ruimten}
+%===================================================================
+
+\begin{res}{8.1.1}
+Zij $V$ een vectorruimte over het veld $K=\mathbb R$ of $K=\mathbb C$. Een afbeelding $\langle\cdot,\cdot\rangle:V\times V\to K$ wordt een \textit{inproduct} op $V$ genoemd, als aan de volgende voorwaarden is voldaan:
+\begin{itemize}[leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item[$\bullet$] \textup{[toegevoegd-symmetrisch]} $\langle v,w\rangle=\overline{\langle w,v\rangle}$ voor alle $v,w\in V$; in het bijzonder is $\langle v,v\rangle\in\mathbb R$ voor alle $v\in V$;
+\item[$\bullet$] \textup{[lineair in het eerste argument]} $\langle au+bv,w\rangle=a\langle u,w\rangle+b\langle v,w\rangle$ voor alle $u,v,w\in V$ en alle $a,b\in K$;
+\item[$\bullet$] \textup{[positief-definiet]} $\langle v,v\rangle>0$ voor alle $v\in V\setminus\{0\}$.
+\end{itemize}
+Het paar $(V,\langle\cdot,\cdot\rangle)$ wordt dan een \textit{inproduct-ruimte} genoemd. Als $V$ een inproduct-ruimte is, dan defini\"eren we de \textit{norm} van een element $v\in V$ als $\|v\|:=\sqrt{\langle v,v\rangle}$.
+\end{res}
+
+\begin{res}{8.1.3}
+Zij $V$ een inproduct-ruimte. Dan defini\"eren we, voor elke twee elementen $v,w\in V$, de \textit{afstand} tussen $v$ en $w$ als
+\[
+\mathrm{dist}(v,w):=\|w-v\|.
+\]
+\end{res}
+
+\begin{res}{8.2.1}
+Beschouw een inproduct-ruimte $(V,\langle\cdot,\cdot\rangle)$.
+\begin{myenum}
+\item Een vector $v\in V$ staat \textit{loodrecht} op een vector $w\in V$ als $\langle v,w\rangle=0$. We zeggen ook dat de vectoren $v$ en $w$ \textit{orthogonaal} zijn (ten opzichte van elkaar). We noteren dit met $v\perp w$.
+\item Een basis $B$ voor $V$ wordt \textit{orthogonaal} genoemd als geldt dat $\langle b,b'\rangle=0$ voor alle $b\ne b'\in B$.
+\item Een basis $B$ voor $V$ wordt \textit{orthonormaal} genoemd als geldt dat $\langle b,b'\rangle=0$ voor alle $b\ne b'\in B$ en $\langle b,b\rangle=1$ voor alle $b\in B$.
+\item Als $W\le V$ een deelruimte is, noemen we
+\[
+W^\perp=\{v\in V\mid \langle v,w\rangle=0 \text{ voor alle } w\in W\}
+\]
+het \textit{orthogonaal complement} van $W$.
+\end{myenum}
+\end{res}
+
+\begin{res}{8.2.8}
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+\begin{myenum}
+\item Beschouw een deelruimte $W\le V$ en een element $v\in V$. Aangezien $V=W\oplus W^\perp$, is elke $v\in V$ op een unieke manier te schrijven als $v=w+u$ met $w\in W$ en $u\in W^\perp$. We defini\"eren de \textit{orthogonale projectie} van $v$ op $W$ als het element $w\in W$, en we noteren dit als $\mathrm{proj}_W(v):=w$.
+\item Als $W$ een $1$-dimensionale deelruimte is, stel $W=\langle w\rangle$, dan noteren we $\mathrm{proj}_W(v)$ ook als $\mathrm{proj}_w(v)$.
+\end{myenum}
+\end{res}
+
+\begin{res}{8.4.1}
+\begin{myenum}
+\item Beschouw de $n$-dimensionale inproduct-ruimte $\mathbb C^n$ met het standaard inproduct $\langle v,w\rangle=v^t\overline w$. Zij $f:W\to W$ een operator op een deelruimte $W\le\mathbb C^n$. We noemen $f$ een \textit{hermitische} operator als voor alle $v,w\in W$ geldt dat
+\[
+\langle f(v),w\rangle=\langle v,f(w)\rangle. \tag{8.2}
+\]
+Als $f=L_A$ een hermitische operator is op $\mathbb C^n$, dan geldt dat voor alle $v,w\in\mathbb C^n$ dat
+\[
+v^t\overline A^t w=(Av)^t\overline w=v^t\overline{(Aw)}=v^t\overline A\overline w,
+\]
+waaruit volgt dat $\overline A^t=A$. Dergelijke matrices noemen we \textit{hermitische matrices}.
+\item We kunnen precies dezelfde definitie beschouwen voor $\mathbb R^n$ in plaats van $\mathbb C^n$; we noemen $f:W\to W$ met $W\le\mathbb R^n$ een \textit{symmetrische operator} als voor alle $v,w\in W$ de gelijkheid (8.2) geldt. Indien $f=L_A$ een symmetrische operator is op $\mathbb R^n$, dan is $A^t=A$, i.e.\ $A$ is een symmetrische matrix.
+\end{myenum}
+\end{res}
+
+\begin{res}{8.5.1}
+Een \textit{elementaire $n\times n$-matrix} is een matrix van de vorm $I_n$ plus een veelvoud van een matrixeenheid $U_{ij}$, $i\ne j$, i.e.\ de eenheidsmatrix waarbij op de $(i,j)$-de plaats het element $c_{ij}$ toegevoegd is. We noteren $E_{ij}(c)$ voor de elementaire matrix met het element $c$ op de $ij$-de plaats.
+
+Links vermenigvuldigen met een elementaire matrix $E_{ij}(c)$ komt overeen met het vervangen van de $i$-de rij in een matrix door de $i$-de rij plus $c$ keer de $j$-de rij, dus met een elementaire rij-operatie van type I.
+\end{res}
+
+\begin{res}{8.5.4}
+De deelgroep $\mathsf{SL}_n(K)$ van $\mathsf{GL}_n(K)$ die bestaat uit de matrices met determinant gelijk aan $1$ noemt men de \textit{speciale lineaire groep}.
+\end{res}
+
+\begin{res}{8.5.6}
+De \textit{orthogonale groep} en de \textit{speciale orthogonale groep} zijn de deelgroepen van $\mathsf{GL}_n(K)$ gegeven door respectievelijk
+\[
+\mathsf O_n(K):=\{A\in \mathsf{GL}_n(K) \mid AA^t=A^tA=I_n\}, \qquad \mathsf{SO}_n(K):=\mathsf O_n(K)\cap \mathsf{SL}_n(K).
+\]
+Merk op dat de elementen van $\mathsf O_n(K)$ steeds determinant $\pm1$ hebben. Indien $K=\mathbb R$, worden deze groepen vaak genoteerd als respectievelijk $\mathsf O(n)$ en $\mathsf{SO}(n)$.
+
+Veronderstel nu dat $K$ een veld is, voorzien van een involutie $\sigma$, i.e.\ een veldautomorfisme van de orde $2$ (dus $\sigma^2=1_K$ en $\sigma\ne1_K$); we noteren $a^\sigma=\overline a$ voor alle $a\in K$. We defini\"eren nu voor alle $A=(a_{ij})\in M_n(K)$ de \textit{toegevoegde matrix} $\overline A:=(\overline{a_{ij}})$. De \textit{unitaire groep} en de \textit{speciale unitaire groep} zijn dan de deelgroepen van $\mathsf{GL}_n(K)$ gegeven door respectievelijk
+\[
+\mathsf U_n(K,\sigma):=\{A\in \mathsf{GL}_n(K) \mid A\overline A^t=\overline A^tA=I_n\}, \qquad \mathsf{SU}_n(K,\sigma):=\mathsf U_n(K,\sigma)\cap \mathsf{SL}_n(K).
+\]
+Indien $K=\mathbb C$, waarbij de toevoeging de complexe toevoeging is, worden deze groepen vaak genoteerd als respectievelijk $\mathsf U(n)$ en $\mathsf{SU}(n)$.
+
+De elementen van de orthogonale groep noemen we \textit{orthogonale matrices}, de elementen van de unitaire groep noemen we \textit{unitaire matrices}.
+\end{res}
+
+%===================================================================
+\section{De Euclidische ruimte $\mathbb R^n$}
+%===================================================================
+
+
+
+\end{document}
