@@ -1,0 +1,144 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,margin=1.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+
+\titlespacing*{\section}{0pt}{1.4ex}{0.6ex}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+\newenvironment{ce}[1]{%
+  \par\noindent\textbf{Foutieve bewering:}~\textit{#1}\par\noindent\textbf{Tegenvoorbeeld:}~\ignorespaces
+}{%
+  \par\vspace{5pt}\normalfont
+}
+
+\newcommand{\concl}[1]{\par\noindent\textit{$\Rightarrow$ #1}}
+
+\title{\textbf{Tegenvoorbeelden matrices}}
+
+\begin{document}
+\maketitle
+\section{Het standaardpaar}
+Voor het merendeel van de tegenvoorbeelden hieronder volstaat dit ene paar matrices:
+\[
+A=\begin{pmatrix}0&1\\0&0\end{pmatrix}, \qquad B=\begin{pmatrix}1&0\\0&0\end{pmatrix}.
+\]
+Met:
+\[
+AB=\begin{pmatrix}0&0\\0&0\end{pmatrix}=0, \qquad BA=\begin{pmatrix}0&1\\0&0\end{pmatrix}=A, \qquad A^2=0, \qquad B^2=B, \qquad A+B=\begin{pmatrix}1&1\\0&0\end{pmatrix}.
+\]
+
+\section{Matrixvermenigvuldiging}
+
+\begin{ce}{Matrixvermenigvuldiging is commutatief: $AB=BA$.}
+Met $A,B$ als hierboven: $AB=0$ maar $BA=A\ne0$, dus $AB\ne BA$.
+\concl{Matrixvermenigvuldiging is in het algemeen \textbf{niet} commutatief.}
+\end{ce}
+
+\begin{ce}{Als $AB=0$, dan is $A=0$ of $B=0$ (geen nuldelers, zoals in een veld).}
+Met $A,B$ als hierboven zijn beide matrices niet-nul, maar $AB=0$.
+\concl{$M_n(K)$ is een ring met nuldelers: het product van twee niet-nul matrices kan toch $0$ zijn.}
+\end{ce}
+
+\begin{ce}{Als $AB=0$, dan is ook $BA=0$.}
+Met $A,B$ als hierboven: $AB=0$ maar $BA=A\ne0$.
+\concl{$AB=0$ zegt niets over $BA$.}
+\end{ce}
+
+\begin{ce}{$(A+B)^2=A^2+2AB+B^2$.}
+Met $A,B$ als hierboven: $(A+B)^2=\begin{pmatrix}1&1\\0&0\end{pmatrix}^2=\begin{pmatrix}1&1\\0&0\end{pmatrix}$, terwijl $A^2+2AB+B^2=0+0+B=\begin{pmatrix}1&0\\0&0\end{pmatrix}$. Deze zijn verschillend.
+\concl{De merkwaardige producten uit de middelbare school gelden enkel als $AB=BA$; anders krijg je $(A+B)^2=A^2+AB+BA+B^2$.}
+\end{ce}
+
+\begin{ce}{$\mathrm{tr}(AB)=\mathrm{tr}(A)\cdot\mathrm{tr}(B)$.}
+Neem $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$, $B=\begin{pmatrix}0&0\\0&1\end{pmatrix}$. Dan is $\mathrm{tr}(A)=\mathrm{tr}(B)=1$, maar $AB=0$, dus $\mathrm{tr}(AB)=0\ne1=\mathrm{tr}(A)\mathrm{tr}(B)$.
+\concl{Wel steeds waar: $\mathrm{tr}(AB)=\mathrm{tr}(BA)$ (dat is een andere, correcte, uitspraak).}
+\end{ce}
+
+\section{Rang en determinant}
+
+\begin{ce}{$\det(A+B)=\det(A)+\det(B)$.}
+Neem $A=B=I_2$. Dan $\det A=\det B=1$, maar $A+B=2I_2$ heeft $\det(A+B)=4\ne2$.
+\concl{Determinant is niet additief; wel geldt $\det(AB)=\det(A)\det(B)$ (dat klopt wel).}
+\end{ce}
+
+\begin{ce}{$\mathrm{rk}(A+B)=\mathrm{rk}(A)+\mathrm{rk}(B)$.}
+Neem $A=B=\begin{pmatrix}1&0\\0&0\end{pmatrix}$. Beide hebben rang $1$, maar $A+B=\begin{pmatrix}2&0\\0&0\end{pmatrix}$ heeft ook rang $1\ne1+1$.
+\concl{Rang is niet additief (enkel $\mathrm{rk}(AB)\le\min\{\mathrm{rk}A,\mathrm{rk}B\}$ is gegarandeerd).}
+\end{ce}
+
+\begin{ce}{$\mathrm{rk}(AB)=\min\{\mathrm{rk}(A),\mathrm{rk}(B)\}$.}
+Neem $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$, $B=\begin{pmatrix}0&0\\0&1\end{pmatrix}$, beide van rang $1$. Dan is $AB=0$, dus $\mathrm{rk}(AB)=0<1=\min\{\mathrm{rk}A,\mathrm{rk}B\}$.
+\concl{Enkel de ongelijkheid $\mathrm{rk}(AB)\le\min\{\mathrm{rk}A,\mathrm{rk}B\}$ is gegarandeerd, gelijkheid niet.}
+\end{ce}
+
+\begin{ce}{Als $A\ne0$, dan is $A$ inverteerbaar.}
+Neem $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}\ne0$. Er is geen $B$ met $AB=BA=I_2$ (de tweede rij van $AB$ is altijd nul), dus $A\notin \mathsf{GL}_2(K)$.
+\concl{Niet-nul zijn is niet voldoende; men heeft $\det A\ne0$ (equivalent $\mathrm{rk}(A)=n$) nodig.}
+\end{ce}
+
+\begin{ce}{Voor een inverteerbare matrix is $A^{-1}=A^t$.}
+Neem $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$, met $\det A=1\ne0$. Dan is $A^{-1}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}$, terwijl $A^t=\begin{pmatrix}1&0\\1&1\end{pmatrix}$. Deze zijn verschillend.
+\concl{$A^{-1}=A^t$ geldt enkel voor orthogonale matrices ($A\in \mathsf O(n)$), niet in het algemeen.}
+\end{ce}
+
+\section{Eigenwaarden en diagonaliseerbaarheid}
+
+\begin{ce}{Als $\lambda$ een eigenwaarde is van $A$ en $\mu$ een eigenwaarde is van $B$, dan is $\lambda\mu$ een eigenwaarde van $AB$.}
+Neem $A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$, $B=\begin{pmatrix}0&0\\1&0\end{pmatrix}$. Beide zijn nilpotent: de enige eigenwaarde van $A$ is $0$, en de enige eigenwaarde van $B$ is $0$ (dus het enige mogelijke product is $0\cdot0=0$). Maar
+\[
+AB=\begin{pmatrix}1&0\\0&0\end{pmatrix}
+\]
+heeft eigenwaarde $1$, die geen product is van een eigenwaarde van $A$ met een eigenwaarde van $B$.
+\concl{Eigenwaarden van $A$ en $B$ combineren zich in het algemeen \textbf{niet} tot eigenwaarden van $AB$ (enkel als $A,B$ simultaan diagonaliseerbaar zijn, klopt dit wel).}
+\end{ce}
+
+\begin{ce}{Als $\lambda$ een eigenwaarde is van $A$ en $\mu$ een eigenwaarde is van $B$, dan is $\lambda+\mu$ een eigenwaarde van $A+B$.}
+Met dezelfde $A,B$ als hierboven: enige eigenwaarde van $A$ en van $B$ is $0$, dus het enige mogelijke "som"-kandidaat is $0$. Maar
+\[
+A+B=\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\]
+heeft karakteristieke veelterm $x^2-1$, dus eigenwaarden $1$ en $-1$ -- geen van beide is $0$.
+\concl{Ook eigenwaarden van een som combineren niet zomaar; enkel $\mathrm{tr}(A+B)=\mathrm{tr}(A)+\mathrm{tr}(B)$ (som van \emph{alle} eigenwaarden, met multipliciteit) klopt wel.}
+\end{ce}
+
+\begin{ce}{Elke (re\"ele) vierkante matrix is diagonaliseerbaar.}
+Neem opnieuw $A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$. De karakteristieke veelterm is $x^2$, dus $0$ is de enige eigenwaarde met algebra\"ische multipliciteit $2$. Maar $\ker(A)=\mathrm{span}\{(1,0)^t\}$ heeft dimensie $1$: de meetkundige multipliciteit ($1$) is strikt kleiner dan de algebra\"ische multipliciteit ($2$).
+\concl{$A$ is niet diagonaliseerbaar (Stelling 6.3.10). Dit is h\'et standaardvoorbeeld van een niet-diagonaliseerbare matrix.}
+\end{ce}
+
+\begin{ce}{Elke re\"ele vierkante matrix heeft minstens \'e\'en re\"ele eigenwaarde.}
+Neem de rotatiematrix $R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$. De karakteristieke veelterm is $\chi_R(x)=x^2+1$, met wortels $\pm i\notin\mathbb R$.
+\concl{Over $K=\mathbb R$ heeft niet elke matrix een eigenwaarde; over $K=\mathbb C$ wel (Gevolg 1.2.7, grondstelling van de algebra).}
+\end{ce}
+
+\begin{ce}{Twee matrices met dezelfde eigenwaarden (met multipliciteit) zijn similar (geconjugeerd).}
+Neem de nulmatrix $Z=\begin{pmatrix}0&0\\0&0\end{pmatrix}$ en $N=\begin{pmatrix}0&1\\0&0\end{pmatrix}$. Beide hebben karakteristieke veelterm $x^2$, dus dezelfde eigenwaarden $\{0,0\}$ (en dus ook dezelfde spoor en determinant). Maar $Z$ is niet similar aan $N$: voor elke inverteerbare $P$ is $P^{-1}ZP=0\ne N$.
+\concl{Gelijke eigenwaarden (of gelijke $\chi$) impliceert geen gelijkenis (\emph{similarity}); dat vereist ook gelijke meetkundige multipliciteiten (Jordanvorm).}
+\end{ce}
+
+\begin{ce}{De minimaalveelterm $\mu_f(x)$ is steeds gelijk aan de karakteristieke veelterm $\chi_f(x)$.}
+Neem $A=I_2$. Dan is $\chi_A(x)=(x-1)^2$, maar aangezien $A-I_2=0$, voldoet reeds de graad-$1$ veelterm $\mu(x)=x-1$ aan $\mu(A)=0$. Dus $\mu_A(x)=x-1\ne\chi_A(x)$.
+\concl{$\mu_f(x)$ deelt steeds $\chi_f(x)$ (Gevolg 7.2.2), maar hoeft er niet aan gelijk te zijn.}
+\end{ce}
+
+\section{Vectorruimten en deelruimten}
+
+\begin{ce}{Het complement van een deelruimte $W$ in $V$ is uniek bepaald.}
+Neem $V=\mathbb R^2$ en $W=\mathrm{span}\{(1,0)\}$. Zowel $W_1=\mathrm{span}\{(0,1)\}$ als $W_2=\mathrm{span}\{(1,1)\}$ voldoen aan $W\oplus W_1=V=W\oplus W_2$, maar $W_1\ne W_2$.
+\concl{Een complement is niet uniek (Definitie 2.5.7); enkel het \emph{orthogonaal} complement $W^\perp$ (t.o.v.\ een vast inproduct) is uniek bepaald.}
+\end{ce}
+
+\begin{ce}{Als $\{v_1,\dots,v_k\}$ lineair onafhankelijk is in $V$ en $\dim V=k$, is dit voldoende voor eender welke $k$-tal vectoren om een basis te vormen.}
+Neem $V=\mathbb R^2$ ($\dim V=2$) en de vectoren $(1,0),(2,0)$: dit zijn $2$ vectoren, maar ze zijn lineair \emph{afhankelijk} (het is geen ``willekeurig $k$-tal'' dat automatisch onafhankelijk is).
+\concl{Stelling 2.4.12 vereist wel degelijk dat de verzameling onafhankelijk (of voortbrengend) \emph{is} -- dat moet je nog steeds nagaan; het is geen automatisme louter op basis van het aantal vectoren.}
+\end{ce}
+
+\end{document}

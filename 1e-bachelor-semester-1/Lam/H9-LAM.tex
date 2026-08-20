@@ -1,0 +1,269 @@
+%===================================================================
+\section{De Euclidische ruimte $\mathbb R^n$}
+%===================================================================
+
+\begin{res}{9.1.1}
+Zij $(V,\langle\cdot,\cdot\rangle)$ een re\"ele inproduct-ruimte. Voor elke twee niet-nul vectoren $v,w\in V$ defini\"eren we de \textit{hoek} tussen $v$ en $w$ als
+\[
+\angle(v,w):=\arccos\frac{\langle v,w\rangle}{\|v\|\cdot\|w\|},
+\]
+waarbij we aannemen dat $\arccos$ waarden aanneemt in het interval $[0,\pi]$.
+\end{res}
+
+\begin{res}{9.2.1}
+\begin{myenum}
+\item Beschouw twee geordende basissen $\mathcal B=\{e_1,\dots,e_n\}$ en $\mathcal B'=\{f_1,\dots,f_n\}$ van $\mathbb R^n$, en zij $Q$ de matrix van de basisovergang, d.w.z.\ $Q=(q_{ij})$ waarbij $f_j=q_{1j}e_1+\cdots+q_{nj}e_n$ voor alle $j\in\{1,\dots,n\}$. Als $\det(Q)>0$, dan noemen we de basissen $\mathcal B$ en $\mathcal B'$ \textit{gelijk geori\"enteerd}; als $\det(Q)<0$, dan noemen we ze \textit{tegengesteld geori\"enteerd}.
+\item Het is duidelijk dat ``gelijk geori\"enteerd zijn'' een equivalentierelatie definieert op de verzameling van geordende basissen, en dat deze verzameling bestaat uit precies twee equivalentieklassen. We kiezen willekeurig \'e\'en van deze klassen en noemen de basissen in deze klasse \textit{positief geori\"enteerd} of \textit{direct geori\"enteerd}, en we noemen de andere klasse \textit{negatief geori\"enteerd} of \textit{indirect geori\"enteerd}.
+\item Het is gebruikelijk om aan te nemen dat de standaardbasis $\{e_1,\dots,e_n\}$ van $\mathbb R^n$ positief geori\"enteerd is. Zij dan $\mathcal B=\{b_1,\dots,b_n\}$ een willekeurige basis, met transitiematrix $Q\in M_n(K)$. Als $\det Q>0$, dan is $\mathcal B$ positief geori\"enteerd; als $\det Q<0$, dan is $\mathcal B$ negatief geori\"enteerd.
+\end{myenum}
+\end{res}
+
+\begin{res}{9.2.3}
+\textup{(Vectorieel product.)} Zij $v=(x_1,x_2,x_3)^t\in\mathbb R^3$ en $w=(y_1,y_2,y_3)^t\in\mathbb R^3$ twee willekeurige elementen. Dan defini\"eren we het \textit{vectorieel product} van $v$ en $w$ als
+\[
+v\times w := (x_2y_3-x_3y_2,\ x_3y_1-x_1y_3,\ x_1y_2-x_2y_1)^t. \tag{9.1}
+\]
+We kunnen dit symbolisch schrijven als
+\[
+v\times w = \begin{vmatrix} e_1&e_2&e_3\\ x_1&x_2&x_3\\ y_1&y_2&y_3\end{vmatrix},
+\]
+waarbij we benadrukken dat dit slechts een symbolische schrijfwijze is, aangezien de $e_i$'s vectoren zijn, terwijl de $x_i$'s en $y_i$'s re\"ele getallen zijn. We kunnen dit exact neerschrijven als
+\[
+v\times w=\sum_{i=1}^3 \begin{vmatrix}\delta_{i1}&\delta_{i2}&\delta_{i3}\\ x_1&x_2&x_3\\ y_1&y_2&y_3\end{vmatrix} e_i. \tag{9.2}
+\]
+\end{res}
+
+\begin{res}{9.3.1}
+Beschouw de vectorruimte $\mathbb R^n$ met $n\ge2$.
+\begin{myenum}
+\item Een affiene deelruimte van dimensie $0$ noemen we een \textit{punt}.
+\item Een affiene deelruimte van dimensie $1$ noemen we een \textit{rechte}.
+\item Een affiene deelruimte van dimensie $2$ noemen we een \textit{vlak}.
+\item Een affiene deelruimte van dimensie $n-1$ noemen we een \textit{hypervlak}.
+\end{myenum}
+\end{res}
+
+\begin{res}{9.3.2}
+Beschouw de vectorruimte $\mathbb R^n$. Een affiene deelruimte van $\mathbb R^n$ wordt ook wel een \textit{Euclidische deelruimte} van $\mathbb R^n$ genoemd.
+\begin{myenum}
+\item Zij $D$ een affiene deelruimte van $\mathbb R^n$. Er bestaat een unieke deelruimte $W\le\mathbb R^n$ waarvoor $D=v+W$ voor een $v\in\mathbb R^n$. We noemen $W$ de \textit{geassocieerde vectordeelruimte} of de \textit{onderliggende vectordeelruimte} van $D$ en noteren $W=:D_0$. We zeggen dat $D$ een \textit{getranslateerde} is van $W$.
+\item Zij $D=v+D_0$ met $D_0\le\mathbb R^n$. Elke vector in $D$ noemen we een \textit{plaatsvector} van $D$. Elke vector in $D_0$ noemen we een \textit{richtingsvector} van $D$.
+\end{myenum}
+\end{res}
+
+\begin{res}{9.3.9}
+Beschouw $k$ punten $p_1,\dots,p_k$ in $\mathbb R^n$. Dan noemen we de affiene deelruimte $p_1+\mathrm{span}(p_2-p_1,\dots,p_k-p_1)$ de affiene deelruimte \textit{bepaald door} of \textit{opgespannen door} de punten $p_1,\dots,p_k$.
+\end{res}
+
+\begin{res}{9.3.11}
+\begin{myenum}
+\item Zij $D=v+D_0$ een affiene deelruimte van $V$. Een vector $w\in V$ noemen we \textit{parallel} aan $D$, als en slechts als $w\in D_0$; we noteren dit als $w\parallel D$.
+\item Beschouw twee affiene deelruimten $D=v+D_0$ en $D'=v'+D_0'$ van $V$. Dan noemen we $D$ en $D'$ \textit{parallel} aan elkaar als en slechts als $D_0\le D_0'$ of $D_0'\le D_0$. We noteren dit met $D\parallel D'$.
+\end{myenum}
+\end{res}
+
+\begin{res}{9.3.12}
+\begin{myenum}
+\item Zij $D=v+D_0$ een affiene deelruimte van $\mathbb R^n$. We zeggen dat een vector $w\in\mathbb R^n$ \textit{orthogonaal} op $D$ staat als en slechts als $w$ orthogonaal staat op elke vector van $D_0$; we noteren dit als $w\perp D$.
+\item Beschouw twee affiene deelruimten $D=v+D_0$ en $D'=v'+D_0'$ van $V$. Dan staan $D$ en $D'$ \textit{orthogonaal} op elkaar als en slechts als elke vector van $D_0$ loodrecht staat op elke vector van $D_0'$. We noteren dit met $D\perp D'$.
+\end{myenum}
+\end{res}
+
+\begin{res}{9.4.1}
+Zij $H$ een hypervlak in $\mathbb R^n$. $H$ is van de vorm
+\[
+H=\{(x_1,\dots,x_n)^t\in\mathbb R^n \mid a_1x_1+\cdots+a_nx_n+b=0\}
+\]
+voor zekere vaste re\"ele getallen $a_1,\dots,a_n,b\in\mathbb R$. Wanneer we de vector $(a_1,\dots,a_n)^t\in\mathbb R^n$ noteren als $\vec n$, kunnen we de vergelijking van $H$ herschrijven als
+\[
+H=\{v\in\mathbb R^n \mid \vec n\cdot v+b=0\}.
+\]
+Elke niet-nul vector $\vec m$ met $\vec m\perp H$ (of equivalent, $\vec m\perp H_0$) noemen we een \textit{normaalvector} voor $H$.
+\end{res}
+
+\begin{res}{9.4.4}
+We zeggen dat twee hypervlakken $H$ en $H'$ van $\mathbb R^n$ \textit{orthogonaal} op elkaar staan, als en slechts als hun normaalvectoren orthogonaal op elkaar staan.
+\end{res}
+
+\begin{res}{9.4.5}
+We defini\"eren de \textit{hoek} tussen twee hypervlakken als de kleinste hoek ingesloten door hun normaalvectoren.
+\end{res}
+
+\begin{res}{9.5.2}
+\begin{myenum}
+\item Zij $D$ en $D'$ twee affiene deelruimten in $\mathbb R^n$. We defini\"eren de \textit{afstand} tussen $D$ en $D'$ als de kortst mogelijke afstand tussen een punt van $D$ en een punt van $D'$. We noteren dit als $\mathrm{dist}(D,D')$.
+\item Zij $D=q+D_0$, en zij $p\in\mathbb R^n\setminus D$ een punt niet op $D$ gelegen. De \textit{loodlijn} uit $p$ op $D$ is de rechte met als plaatsvector $p$ en als richtingsvector $\mathrm{proj}_{D_0^\perp}(p-q)$, waarbij $\mathrm{proj}_{D_0^\perp}$ de orthogonale projectie is op $D_0^\perp$.
+\end{myenum}
+\end{res}
+
+\begin{res}{9.6.1}
+\begin{myenum}
+\item Beschouw de Euclidische ruimte $\mathbb R^n$. Een \textit{isometrie} van $\mathbb R^n$ is een bijectieve afbeelding $\varphi$ van $\mathbb R^n$ naar zichzelf die de afstand bewaart, i.e.\ $\mathrm{dist}(\varphi(v),\varphi(w))=\mathrm{dist}(v,w)$ voor alle $v,w\in\mathbb R^n$.
+\item De verzameling van alle isometrie\"en van $\mathbb R^n$ vormt een groep (met de samenstelling als bewerking), die we de \textit{isometriegroep} van $\mathbb R^n$ noemen; dit wordt ook de \textit{Euclidische $n$-dimensionale groep} genoemd, en we noteren deze groep als $E(n)$ of $\mathrm{ISO}(n)$.
+\item Voor elke $v\in\mathbb R^n$ beschouwen we de afbeelding $T_v:\mathbb R^n\to\mathbb R^n:w\mapsto w+v$. De verzameling $T(n):=\{T_v\mid v\in\mathbb R^n\}$ vormt een deelgroep van $E(n)$. We noemen de elementen $T_v$ \textit{translaties} van $\mathbb R^n$, en de deelgroep $T(n)$ de \textit{translatiegroep} van $\mathbb R^n$.
+\end{myenum}
+\end{res}
+
+\begin{res}{9.6.5}
+\begin{myenum}
+\item Zij $\varphi\in E(n)$, en schrijf $\varphi=T_v\varphi_0$, waarbij $\varphi_0\in E_0(n)=\mathsf O(n)$ uniek bepaald is door $\varphi$. Aangezien $\varphi_0\in \mathsf O(n)$, is $\det\varphi_0\in\{1,-1\}$. Als $\det\varphi_0=1$, noemen we $\varphi$ een \textit{directe isometrie} of een \textit{verplaatsing}; als $\det\varphi_0=-1$, noemen we $\varphi$ een \textit{indirecte isometrie}.
+\item De verzameling van alle directe isometrie\"en van $\mathbb R^n$ vormt een deelgroep van $E(n)$ die we als $E_+(n)$ noteren, en de \textit{verplaatsingsgroep} van $\mathbb R^n$ noemen.
+\end{myenum}
+\end{res}
+
+
+
+\begin{res}{Lemma}{9.2.2}
+Beschouw de Euclidische ruimte $\mathbb R^n$. Zij $\mathcal B=\{e_1,\dots,e_n\}$ en $\mathcal B'=\{f_1,\dots,f_n\}$ twee orthonormale basissen van $\mathbb R^n$, en zij $Q$ de matrix van de basisovergang. Als $\mathcal B$ en $\mathcal B'$ gelijk geori\"enteerd zijn, dan is $Q\in \mathsf{SO}(n)$, i.e.\ $QQ^t=Q^tQ=I_n$ en $\det Q=1$.
+\end{res}
+
+\begin{res}{Lemma}{9.2.4}
+De definitie $v\times w$ is onafhankelijk van de keuze van de positief geori\"enteerde orthonormale basis $\mathcal B=\{e_1,e_2,e_3\}$.
+\end{res}
+
+\begin{res}{Stelling}{9.2.5}
+Onderstel dat $u,v,w\in\mathbb R^3$ en $a\in\mathbb R$, dan geldt:
+\begin{myenum}
+\item $v\times w=-w\times v$;
+\item $a(v\times w)=(av)\times w=v\times(aw)$;
+\item $v\times w=0 \iff v$ en $w$ zijn lineair afhankelijk;
+\item $(u+v)\times w=u\times w+v\times w$;
+\item \textup{[tripel-product]} $u(v\times w)=(u\times v)w$;
+\item $v\times w\perp v$ en $v\times w\perp w$, met andere woorden, $v(v\times w)=w(v\times w)=0$;
+\item \textup{[formule van Lagrange]} $u\times(v\times w)=(u\cdot w)v-(u\cdot v)w$;
+\item \textup{[identiteit van Lagrange]} $(v\times w)^2=v^2w^2-(vw)^2$;
+\item als $v\ne0$ en $w\ne0$, dan geldt: $\|v\times w\|=\|v\|\cdot\|w\|\cdot\sin\angle(v,w)$;
+\item als $v\times w\ne0$, dan is $\{v,w,v\times w\}$, in deze volgorde, een positief geori\"enteerde basis voor $\mathbb R^3$;
+\item \textup{[Jacobi identiteit]} $u\times(v\times w)+v\times(w\times u)+w\times(u\times v)=0$;
+\item $(u\times v)\times(u\times w)=u(v\times w)\cdot u$;
+\item als $u\cdot w=v\cdot w$ \'en $u\times w=v\times w$ met $w\ne0$, dan is $u=v$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{9.3.4}
+Beschouw de vectorruimte $\mathbb R^n$. Een deelverzameling $D\subseteq\mathbb R^n$ is een affiene deelruimte van $\mathbb R^n$ \(\iff\)
+\[
+y+a(z-y)\in D \quad\text{voor alle } y,z\in D \text{ en alle } a\in\mathbb R. \tag{9.3}
+\]
+Meetkundig zegt dit dus precies dat een deelverzameling $D\subseteq\mathbb R^n$ een affiene deelruimte is, dan en slechts als elke rechte door 2 punten van $D$ volledig in $D$ ligt.
+\end{res}
+
+\begin{res}{Stelling}{9.3.5}
+Zij $D$ een affiene deelruimte in de Euclidische ruimte $\mathbb R^n$, en stel $\dim D=d$. Dan geldt:
+\begin{myenum}
+\item $D$ is gelijk aan de oplossingsverzameling van een stelsel van $n-d$ lineaire vergelijkingen in $n$ onbekenden over $\mathbb R$.
+\item Stel dat $D=\{X\in\mathbb R^n\mid AX=w\}$, dan is $D_0=\{X\in\mathbb R^n\mid AX=0\}$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{9.3.7}
+\begin{myenum}
+\item Zij $H$ een hypervlak in $\mathbb R^n$. Dan bestaan er re\"ele getallen $a_1,\dots,a_n,b\in\mathbb R$ zodat
+\[
+H=\{(x_1,\dots,x_n)^t\in\mathbb R^n \mid a_1x_1+\cdots+a_nx_n+b=0\}.
+\]
+\item Zij $D$ een affiene deelruimte van dimensie $d$. Dan bestaan er $n-d$ hypervlakken $H_1,\dots,H_{n-d}$ zodanig dat $D=H_1\cap\cdots\cap H_{n-d}$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{9.3.8}
+Beschouw $k$ punten $p_1,\dots,p_k$ in $\mathbb R^n$. Dan is, voor alle $i,j=1,\dots,k$,
+\[
+p_i+\mathrm{span}(p_1-p_i,\dots,p_k-p_i)=p_j+\mathrm{span}(p_1-p_j,\dots,p_k-p_j).
+\]
+Stel dat $D$ een affiene deelruimte is met $p_1,\dots,p_k\in D$, dan geldt er dat $p_1+\mathrm{span}(p_2-p_1,\dots,p_k-p_1)\subseteq D$.
+\end{res}
+
+\begin{res}{Lemma}{9.4.2}
+Beschouw in $\mathbb R^n$ een niet-nul vector $\vec n=(a_1,\dots,a_n)^t$, en een willekeurig punt $p=(p_1,\dots,p_n)^t$. Dan is er een uniek hypervlak met normaalvector $\vec n$ dat het punt $p$ bevat.
+\end{res}
+
+\begin{res}{Lemma}{9.4.3}
+Beschouw in $\mathbb R^n$ twee hypervlakken
+\[
+H=\{v\in\mathbb R^n \mid \vec n\cdot v+b=0\} \qquad\text{en}\qquad H'=\{v\in\mathbb R^n\mid \vec n'\cdot v+b'=0\}.
+\]
+Dan is $H\parallel H'$ \(\iff\) $\vec n$ en $\vec n'$ lineair afhankelijk zijn.
+\end{res}
+
+\begin{res}{Lemma}{9.4.6}
+Beschouw in $\mathbb R^n$ twee hypervlakken $H$ en $H'$, met respectieve normaalvectoren $\vec n$ en $\vec n'$. Dan is
+\[
+\angle(H,H')=\arccos\frac{|\vec n\cdot \vec n'|}{\|\vec n\|\cdot\|\vec n'\|}.
+\]
+\end{res}
+
+\begin{res}{Lemma}{9.5.1}
+Zij $H$ een hypervlak met normaalvector $\vec n$, en $L$ een rechte met richtingsvector $r$. Dan is $L\perp H$ \(\iff\) $\vec n$ en $r$ lineair afhankelijk zijn.
+\end{res}
+
+\begin{res}{Stelling}{9.5.3}
+Zij $D=q+D_0$, zij $p\in\mathbb R^n\setminus D$, en zij $L$ de loodlijn uit $p$ op $D$. Dan geldt:
+\begin{myenum}
+\item De rechte $L$ staat loodrecht op $D$, en
+\[
+L\cap D=\{q+\mathrm{proj}_{D_0}(p-q)\}=\{p-\mathrm{proj}_{D_0^\perp}(p-q)\}.
+\]
+\item $\mathrm{dist}(p,D)=\mathrm{dist}(p,L\cap D)=\|\mathrm{proj}_{D_0^\perp}(p-q)\|$.
+\item De rechte $L$ is de unieke rechte door $p$, loodrecht op $D$, met $L\cap D\ne\emptyset$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{9.5.4}
+Zij $H$ een hypervlak met vergelijking $\vec n\cdot v+b=0$, en $p$ een punt in $\mathbb R^n\setminus H$. Dan geldt:
+\begin{myenum}
+\item De loodlijn vanuit $p$ op $H$ wordt gegeven door
+\[
+L=\{v\in\mathbb R^n \mid (v-p) \text{ en } \vec n \text{ zijn lineair afhankelijk}\}.
+\]
+\item De afstand van $p$ tot $H$ is gelijk aan
+\[
+\mathrm{dist}(p,H)=\frac{|\vec n\cdot p+b|}{\|\vec n\|}.
+\]
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{9.5.5}
+Zij $p$ een punt in $\mathbb R^3$, en zij $M$ een rechte met plaatsvector $q$ en richtingsvector $r$. Veronderstel dat $p\notin M$. Dan is
+\[
+\mathrm{dist}(p,M)=\frac{\|r\times(p-q)\|}{\|r\|}.
+\]
+\end{res}
+
+\begin{res}{Lemma}{9.5.6}
+Zij $p$ een punt in $\mathbb R^n$ en $M$ een rechte met plaatsvector $q$ en richtingsvector $r$. Veronderstel dat $p\notin M$. Dan is de loodlijn $L$ vanuit $p$ op $M$ de rechte door de punten $p$ en $q+\frac{r\cdot(p-q)}{\|r\|^2}r$. De afstand van $p$ tot $M$ is gegeven door
+\[
+\mathrm{dist}(p,M)=\frac{\sqrt{\|r\|^2\|p-q\|^2-\big(r\cdot(p-q)\big)^2}}{\|r\|}.
+\]
+\end{res}
+
+\begin{res}{Lemma}{9.5.8}
+Zij $H$ en $H'$ twee niet-parallelle vlakken in $\mathbb R^3$, met respectieve normaalvectoren $\vec n$ en $\vec n'$. Dan is $H\cap H'$ een rechte met richtingsvector $\vec n\times \vec n'$.
+\end{res}
+
+\begin{res}{Lemma}{9.5.9}
+Beschouw twee kruisende rechten $L$ en $M$ in $\mathbb R^3$. Dan is er een unieke rechte $N$ die zowel $L$ als $M$ orthogonaal snijdt. Als $L$ en $M$ gegeven zijn door
+\[
+L=\{p+\lambda r \mid \lambda\in\mathbb R\}, \qquad M=\{q+\lambda s\mid \lambda\in\mathbb R\},
+\]
+dan heeft $N$ richtingsvector $r\times s$, en de snijpunten van $N$ met $L$ en $M$ zijn respectievelijk gegeven door
+\[
+y=p+\frac{(q-p)\cdot\big(s\times(r\times s)\big)}{\|r\times s\|^2}\,r \qquad\text{en}\qquad z=q+\frac{(q-p)\cdot\big(r\times(r\times s)\big)}{\|r\times s\|^2}\,s.
+\]
+Bovendien is de afstand van $L$ tot $M$ gelijk aan
+\[
+\mathrm{dist}(L,M)=\mathrm{dist}(y,z)=\frac{|(q-p)\cdot(r\times s)|}{\|r\times s\|}.
+\]
+\end{res}
+
+\begin{res}{Lemma}{9.6.2}
+Zij $Q\in \mathsf O(n)$. Dan is $\varphi:=L_Q\in E(n)$.
+\end{res}
+
+\begin{res}{Stelling}{9.6.3}
+Zij $E_0(n)$ de verzameling van de elementen van $E(n)$ die de oorsprong $0$ vasthouden. Dan is
+\begin{enumerate}[label=(\arabic*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item $E_0(n)=\mathsf O(n)$ (waarbij we $L_Q$ identificeren met $Q$),
+\item $E(n)=T(n)\mathsf O(n)$.
+\end{enumerate}
+\end{res}

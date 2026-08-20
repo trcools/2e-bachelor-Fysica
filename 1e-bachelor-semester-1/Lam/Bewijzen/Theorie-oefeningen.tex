@@ -1,0 +1,324 @@
+\subsection{Oefenset week 11}
+Hier waren er geen theoretische oefeningen.
+\subsection{Oefenset week 10}
+
+\begin{oefening}[8.2.5] \textbf{(B)}
+    Beschouw een reële inproductruimte $(V, \langle \cdot, \cdot \rangle)$.
+    \begin{enumerate}
+        \item[(a)] Bewijs dat de stelling van Pythagoras geldt in $V$, met andere woorden dat voor alle $x, y \in V$ geldt dat
+        \[ \|x + y\|^2 = \|x\|^2 + \|y\|^2 \iff x \perp y. \]
+        \item[(b)] Bewijs dat de parallellogrameigenschap geldt in $V$, met andere woorden dat voor alle $x, y \in V$ geldt dat
+        \[ \|x + y\|^2 + \|x - y\|^2 = 2 \cdot \|x\|^2 + 2 \cdot \|y\|^2. \]
+        Waarom zou deze eigenschap deze naam krijgen?
+    \end{enumerate}
+
+    (a):
+    \begin{align*}
+    \|x + y\|^2 
+    &= \langle x+y,x+y \rangle 
+    = \langle x,x+y \rangle + \langle y,x+y \rangle 
+    = \langle x,x \rangle + \langle y,y \rangle + \langle x,y \rangle + \langle y,x \rangle\\
+    &= \|x\|^2 + \|y\|^2 + 2 \langle x,y \rangle
+    = \|x\|^2 + \|y\|^2 \iff \langle x,y \rangle = 0.
+    \end{align*}\qed
+
+    (b):
+    \begin{align*}
+        \|x + y\|^2 + \|x - y\|^2 
+        &= \|x\|^2 + \|y\|^2 + 2 \langle x,y \rangle + \|x\|^2 + \|y\|^2 - 2 \langle x,y \rangle \\
+        &= 2 \cdot \|x\|^2 + 2 \cdot \|y\|^2.
+    \end{align*}\qed
+\end{oefening}
+
+\begin{oefening}[3.2.4]
+    Voor deze en verdere oefeningen blikken we even verderop naar Definitie 7.1.1(i). Zo betekent $f^2(v)$ simpelweg $f(f(v))$ en $f^3(v)$ precies $f(f(f(v)))$.
+    
+    Zij $V$ een $\mathbb{Q}$-vectorruimte. Beschouw een lineaire operator $f \colon V \to V$ waarvoor $f^3 = \mathbf{1}_V$. Zij $a \in V$ en stel $b = 2a - f(a) - f^2(a)$. Toon aan dat
+    \begin{enumerate}
+        \item[(a)] \textbf{(B)} $\operatorname{ker}(f) = \{0\}$,
+        \item[] 
+          Stel \(v \in V: f(v) = 0 \implies f^3(v) = f(f(f(v))) = f(f(0)) = f(0) = 0.\)
+            Want \(f(0)= 0\) geldt altijd voor een lineaire afbeelding. 
+
+            Uit \(f^3 = \mathbf{1}_V \implies f^3(v) = v \implies v = 0.\) Het gevraagde geldt uit dat \(v\) arbitrair gekozen werd.
+            
+            \qed
+        \item[(b)] \textbf{(T)} het stel $\{b, f(b), f^2(b)\}$ lineair afhankelijk is.
+        
+        \(b = 2a - f(a) - f^2(a) \).
+
+        \(f(b) = f(2a - f(a) - f^2(a))
+        = 2f(a) - f^2(a) - f^3(a)
+        = -a + 2f(a) - f^2(a) \).
+
+        \(f^2(b) = f(2f(a) - f^2(a) - a)
+        = 2f(f(a)) - f(f^2(a)) - f(a)
+        = -a-f(a)+2f^2(a)\).
+
+        We berekenen de oplossingen voor \(\mu_1 (2a - f(a) - f^2(a)) + \mu_2 (-a + 2f(a) - f^2(a)) + \mu_3(-a-f(a)+2f^2(a)) = 0. \)
+
+        \(\begin{bmatrix}
+            2 & -1 & -1 \\
+            -1 & 2 & -1 \\
+            -1 & -1 & 2 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \mu_1 \\
+            \mu_2\\
+            \mu_3\\
+        \end{bmatrix}
+        = \begin{bmatrix}
+            0 \\
+            0\\
+            0\\
+        \end{bmatrix}
+        \implies 
+        \begin{bmatrix}
+            1 & 0 & -1 \\
+            0 & 1 & -1 \\
+            0 & 0 & 0 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \mu_1 \\
+            \mu_2\\
+            \mu_3\\
+        \end{bmatrix}
+        = \begin{bmatrix}
+            0 \\
+            0\\
+            0\\
+        \end{bmatrix}
+        \implies 
+        \begin{cases}
+            \mu_1 = \mu_3 \\
+            \mu_2 = \mu_3
+        \end{cases}\)
+
+        \(
+        \implies \mu b + \mu f(b) + \mu f^2(b) = 0, \, \mu \in \mathds{R}.
+        \)\qed
+    \end{enumerate}
+\end{oefening}
+
+\begin{oefening}[3.4.5] \textbf{(T)}
+    Beschouw twee eindigdimensionale $K$-vectorruimten $V$ en $W$, met $\dim(W) > 0$, en kies $v \in V \setminus \{0\}$ vast. Toon aan dat de afbeelding
+    \[ \varphi \colon \operatorname{Hom}_K(V, W) \to W \colon f \mapsto f(v) \]
+    een lineaire surjectieve afbeelding is. Welke voorwaarde op $\dim(V)$ is equivalent met de uitspraak $\varphi$ is injectief?
+
+    \textbf{Nog te doen!}
+
+\end{oefening}
+
+\begin{oefening}[4.2.4] \textbf{(T)}
+    Zij $V$ een vectorruimte over $K = \mathbb{R}$ of $K = \mathbb{C}$ en zij $\langle -, - \rangle \colon V \times V \to K$ een afbeelding die sesquilineair is, wat betekent dat $\langle \lambda_1 v_1 + \lambda_2 v_2, \mu_1 w_1 + \mu_2 w_2 \rangle = \lambda_1 \overline{\mu_1} \langle v_1, w_1 \rangle + \lambda_1 \overline{\mu_2} \langle v_1, w_2 \rangle + \lambda_2 \overline{\mu_1} \langle v_2, w_1 \rangle + \lambda_2 \overline{\mu_2} \langle v_2, w_2 \rangle$.
+    \begin{enumerate}
+        \item[(a)] Als we een basis $\mathcal{B}$ voor $V$ hebben, toon dan aan dat er een matrix $A$ over $K$ bestaat waarvoor
+        \[ \langle v, w \rangle = \overline{\operatorname{co}_{\mathcal{B}}(w)}^t A \operatorname{co}_{\mathcal{B}}(v), \]
+        met $\operatorname{co}_{\mathcal{B}}(u)$ de coördinaatvoorstelling van $u$ ten opzichte van de basis $\mathcal{B}$. We noemen $A$ de matrixvoorstelling van $\langle -, - \rangle$ ten opzichte van de basis $\mathcal{B}$.
+    \end{enumerate}
+    \(\mathcal{B} = (b_1, \dots, b_n) : v = \sum_{j}^{n}{\lambda_j b_j} \text{ en } w = \sum_{i}^{n}{\mu_i b_i}\),
+    met \(\operatorname{co}_{\mathcal{B}}(v)= (\lambda_1,\dots,\lambda_n)^t\text{ en }\operatorname{co}_{\mathcal{B}}(w)= (\mu_1,\dots,\mu_n)^t\).
+    
+    We definieren \(A\) met \(a_{ij} = \langle b_j,b_i \rangle\).
+
+    \(
+    \langle v,w \rangle 
+    = \langle \sum_{j}^{n}{\lambda_j b_j},\sum_{i}^{n}{\mu_i b_i} \rangle 
+    = \sum_{j}^{n}\sum_{i}^{n} \lambda_j \overline{\mu_i} \langle b_j,b_i \rangle
+    = \sum_{j}^{n}\sum_{i}^{n} \lambda_j \overline{\mu_i} a_{ij}
+    = \sum_{j}^{n}\left(\sum_{i}^{n} \overline{\mu_i} a_{ij}\right)\lambda_j 
+    = \overline{\operatorname{co}_{\mathcal{B}}(w)}^t A \operatorname{co}_{\mathcal{B}}(v)
+    \).
+
+    \qed
+    \begin{enumerate}
+        \item[(b)] Zij $\mathcal{B}$ en $\mathcal{C}$ twee basissen voor $V$ en zij $A$ en $B$ de matrixvoorstellingen van $\langle -, - \rangle$ ten opzichte van $\mathcal{B}$ en $\mathcal{C}$ respectievelijk. Als $Q$ de transitiematrix van $\mathcal{B}$ naar $\mathcal{C}$ is, toon dan aan dat $B = \overline{Q}^t A Q$.
+    \end{enumerate}
+    \begin{equation*}
+    \begin{tikzcd}[row sep=large, column sep=large]
+        % Bovenste rij: de vectorruimten en lineaire afbeeldingen
+        V \arrow[r, "id_V"] \arrow[d, "\operatorname{co}_{\mathcal{C}}"'] &
+        V \arrow[d, "\operatorname{co}_{\mathcal{B}}"'] \\
+        % Onderste rij: de coördinatenruimten en matrixvermenigvuldigingen
+        K^n \arrow[r, "L_Q"'] & 
+        K^n
+    \end{tikzcd}
+    \end{equation*}
+    We zien duidelijk dat \(Q \operatorname{co}_{\mathcal{C}} (v) = \operatorname{co}_{\mathcal{B}}(v), \, \forall v \in V\).
+    \[
+    \langle v,w \rangle 
+    = \overline{\operatorname{co}_{\mathcal{B}}(w)}^t A \operatorname{co}_{\mathcal{B}}(v)
+    = \overline{Q \operatorname{co}_{\mathcal{C}}(w)}^t A Q \operatorname{co}_{\mathcal{C}} (v)
+    = \overline{\operatorname{co}_{\mathcal{C}}(w)}^t( Q^\dagger A Q )\operatorname{co}_{\mathcal{C}} (v)
+    = \overline{\operatorname{co}_{\mathcal{C}}(w)}^t(b)\operatorname{co}_{\mathcal{C}} (v).
+    \]
+    \[
+    B = Q^\dagger A Q .
+    \]
+    \qed
+    \begin{enumerate}
+        \item[(c)] Stel de matrixvoorstelling van het standaard inproduct voor $\mathbb{C}^3$ op ten opzichte van de nieuwe basis $\{(1, 0, i)^t, (1, -i, 1)^t, (0, 0, 1)^t\}$.
+    \end{enumerate}
+    Standaard inproduct \(\implies\) standaardbasis \(\mathcal{B} = \{e_1,e_2,e_3\}\).
+
+    \(c_i = \sum_{i=1}^{3} \lambda_i b_i \implies 
+    \begin{cases}
+        c_1 = 1 \cdot b_1 + 0 \cdot b_2 + i \cdot b_3 \\
+        c_2 = 1 \cdot b_1 + (-i) \cdot b_2 + 1 \cdot b_3\\
+        c_3 = 0 \cdot b_1 + 0 \cdot b_2 + 1 \cdot b_3
+    \end{cases}
+    \implies 
+    Q= 
+    \begin{pmatrix}
+        1 & 1 & 0\\
+        0 & -i & 0 \\
+        i & 1 & 1\\
+    \end{pmatrix}
+    \).
+
+    \(P = Q^\dagger I_3 Q = 
+    \begin{pmatrix}
+        1 & 1 & 0\\
+        0 & -i & 0 \\
+        i & 1 & 1\\
+    \end{pmatrix}^\dagger
+    \begin{pmatrix}
+        1 & 1 & 0\\
+        0 & -i & 0 \\
+        i & 1 & 1\\
+    \end{pmatrix}
+    = 
+     \begin{pmatrix}
+        2 & 1-i & -i\\
+        1+i & 3 & 1 \\
+        i & 1 & 1\\
+    \end{pmatrix}
+    \)
+\end{oefening}
+
+\subsection{Oefenset week 9}
+
+\begin{oefening}[6.3.5] \textbf{(B)}
+    Veronderstel dat $A \in M_n(K)$ diagonaliseerbaar is met diagonalisatie $P^{-1}AP = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$.
+    \begin{enumerate}
+        \item[(a)] Toon aan dat $A$ inverteerbaar is als en slechts als alle eigenwaarden verschillend zijn van nul, en dat in dat geval $A^{-1} = P \operatorname{diag}(\lambda_1^{-1}, \dots, \lambda_n^{-1})P^{-1}$.
+        
+        Volgens stelling 6.3.4 (i) zijn de \(n\) eigenvectoren lineair onafhankelijk,
+        volgens stelling 2.4.12 vormt \(\{v_1,\dots,v_i\}\) een basis voor \(A\), met \(v_i\) eigenvectoren zodat \(f(v_i) = \lambda_i v_i\) met \(\lambda_i\) de eigenwaarden.
+        Wegens lemma 3.6.2 is \(A\) inverteerbaar.
+
+        Betere manier:
+        \(\det(A) = \det(P) \det(\operatorname{diag}(\lambda_1, \dots, \lambda_n)) \det(P^{-1}) = \lambda_1 \cdot \dots \lambda_i \cdot \dots \lambda_n \neq 0\).
+
+        \(A = P \operatorname{diag}(\lambda_1, \dots, \lambda_n) P^{-1} \).
+
+        \(I 
+        = A^{-1}A 
+        = A^{-1}P \operatorname{diag}(\lambda_1, \dots, \lambda_n) P^{-1}
+        \implies A^{-1} = P \operatorname{diag}(\lambda_1^{-1}, \dots, \lambda_n^{-1}) P^{-1}
+        \).\qed
+    \end{enumerate}
+    \begin{enumerate}
+        \item[(b)] Toon aan dat $A^k = P \operatorname{diag}(\lambda_1^k, \dots, \lambda_n^k)P^{-1}, k \in \mathbb{N}$.
+        \begin{align*}
+        A^k 
+        &= \left( P \operatorname{diag}(\lambda_1, \dots, \lambda_n) P^{-1}\right)^k
+        =  P \operatorname{diag}(\lambda_1, \dots, \lambda_n) P^{-1}\left( P \operatorname{diag}(\lambda_1, \dots, \lambda_n) P^{-1}\right)^{k-1}\\
+        &=  P \operatorname{diag}(\lambda_1, \dots, \lambda_n)^2 P^{-1}\left( P \operatorname{diag}(\lambda_1, \dots, \lambda_n) P^{-1}\right)^{k-2}
+        = \dots =  P \operatorname{diag}(\lambda_1, \dots, \lambda_n)^k P^{-1}.
+        \end{align*}\qed
+    \end{enumerate}
+    \begin{enumerate}
+        \item[(c)] Veronderstel dat $A$ twee eigenwaarden heeft: de eigenwaarde $\lambda \neq 0$ met algebraïsche multipliciteit $s$, en de eigenwaarde $0$ met algebraïsche multipliciteit $n - s$. Toon aan dat $A^k = \lambda^{k-1}A$ voor alle $k \in \mathbb{N}$.
+        \begin{align*}
+            A^k 
+            &= P \operatorname{diag}(\lambda_1, \dots, \lambda_n)^k P^{-1}
+            = P \operatorname{diag}(\lambda, \dots, \lambda,0, \dots, 0)^k P^{-1}\\
+            &= P \left[\lambda\operatorname{diag}(1, \dots, 1,0, \dots, 0)\right]^k P^{-1}
+            = P \lambda^{k-1}\operatorname{diag}(\lambda, \dots, \lambda,0, \dots, 0) P^{-1}\\
+            &=\lambda^{k-1}P\operatorname{diag}(\lambda, \dots, \lambda,0, \dots, 0) P^{-1}
+            = \lambda^{k-1}A.
+        \end{align*}\qed
+    \end{enumerate}
+    \begin{enumerate}
+        \item[(d)] Veronderstel dat $A$ een eigenwaarde $\lambda$ met algebraïsche multipliciteit $n$ heeft. Toon aan dat $A = \lambda I_n$.
+        \begin{align*}
+            A
+            &= P\operatorname{diag}(\lambda, \dots, \lambda) P^{-1}
+            = P\lambda\operatorname{diag}(1, \dots, 1) P^{-1}
+            =\lambda P\operatorname{diag}(1, \dots, 1) P^{-1} \\
+            &= \lambda P I_n P^{-1}
+            = \lambda P P^{-1}
+            = \lambda I_n.
+        \end{align*} \qed
+    \end{enumerate}
+\end{oefening}
+
+\begin{oefening}[6.3.6]
+    Beschouw een $n$-dimensionale vectorruimte $V$ over het veld $K$, en beschouw $f, g \in \operatorname{End}(V)$. Veronderstel dat $f$ en $g$ elk $n$ verschillende eigenwaarden hebben.
+    \begin{enumerate}
+        \item[(a)] \textbf{(B)} Stel dat $fg = gf$ en dat $v$ een eigenvector van $f$ is met eigenwaarde $\lambda$, bewijs dan dat $g(v)$ ook een eigenvector is van $f$. Bij welke eigenwaarde is deze vector een eigenvector?
+   
+        Gegeven: \(f(v) = \lambda v\) en \(f(g(v)) = g(f(v)) = g(\lambda v) = \lambda g(v)\).
+        
+        Wegens \(f(g(v)) = \lambda(g(v))\) is \(g(v)\) per definitie een eigenvector.
+    \end{enumerate}
+     \begin{enumerate}
+        \item[(b)] \textbf{(T)} Bewijs dat als $fg = gf$, dat $f$ en $g$ dan dezelfde eigenvectoren hebben.
+   
+        Doordat we \(n\) verschillende eigenvectoren hebben, is elke eigenruimte 1 dimensionaal.
+        Door (a) moet \(g(v) = \mu v\) voor \(f(g(v)) = \lambda(g(v))\).
+        We kunnen dit opnieuw doen door \(f\) en \(g\) te wisselen.
+        Bijgevolg hebben \(f\) en \(g\) dezelfde eigenvectoren. 
+    \end{enumerate}
+    \begin{enumerate}
+        \item[(c)] \textbf{(T)} Toon aan dat als $f$ en $g$ dezelfde eigenvectoren hebben, dat dan $fg = gf$.
+    
+        Omgekeerd, als $f$ en $g$ dezelfde eigenvectoren hebben.
+        Stel \(f(v) = \lambda v\) en \(g(v) = \mu v\). Dan 
+
+        \(f(g(v)) 
+        = f(\mu v) 
+        = \mu f(v) 
+        = \mu\lambda v 
+        = \lambda (\mu v) 
+        = \lambda g(v)
+        = g(\lambda v)
+        = g(f(v))
+        \).
+
+        Aangezien de eigenvectoren een basis vormen, elk element kan geschreven worden als lineaire som \(\sum_{i}^{n} \nu_i v_i\),
+        waardoor \(fg=gf \) algemeen geldig is.
+    \end{enumerate}
+\end{oefening}
+
+\subsection{Oefenset week 8}
+
+\begin{oefening}[6.2.1] \textbf{(T)}
+    Veronderstel dat $f \in \operatorname{End}_K(V)$ een eigenvector $v$ heeft met bijhorende eigenwaarde $\lambda$. Toon aan dat $v$ een eigenvector is van $f^k$ met bijhorende eigenwaarde $\lambda^k$, $k \in \mathbb{N}$.
+    Toon aan dat $v$ een eigenvector is van $\sum_{i=0}^k a_i f^i$ met bijhorende eigenwaarde $\sum_{i=0}^k a_i \lambda^i$, met $a_0, \dots, a_k \in K$ en $k \in \mathbb{N}$.
+
+    \(f(v) = \lambda v \text{ als } f^n(v) = \lambda^n v \implies f^{n+1}(v) 
+    =  f(f^{n}(v)) = f(\lambda^n v) = \lambda^n f(v) = \lambda^{n+1}.\)\qed
+    \begin{align*}
+        \left(\sum_{i=0}^k a_i f^i\right)(v)
+        &= \sum_{i=0}^k a_i f^i(v) 
+        = \sum_{i=0}^k a_i \lambda^{i} v
+         = \left(\sum_{i=0}^k a_i \lambda^{i}\right) v.
+    \end{align*}\qed
+\end{oefening}
+
+\subsection{Oefenset week 7}
+
+\begin{oefening}[5.4.3] \textbf{(B)}
+    Beschouw $A \in M_n(\mathbb{C})$ met $A = -A^t$ en $n$ oneven. Toon aan dat $\det(A) = 0$.
+
+    \begin{align*}
+        \det (A) 
+        &= \det(-A^t)
+        = (-1)^n \det(A^t)
+        = -1 \det(A^t)
+        = - \det(A)\\
+        \iff \det(A) &= 0 .
+    \end{align*}\qed
+\end{oefening}

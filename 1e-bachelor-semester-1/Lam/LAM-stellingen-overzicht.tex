@@ -1,0 +1,818 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,margin=1.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+
+% Compact section titles
+%\titlespacing*{\section}{0pt}{1.4ex}{0.6ex}
+%\titlespacing*{\subsection}{0pt}{1.1ex}{0.4ex}
+\titleformat{\section}{\normalfont\Large\bfseries}{Hoofdstuk \thesection}{1em}{}
+%\titleformat{\subsection}{\normalfont\large\bfseries}{}{0em}{}
+
+% Custom environment for statements: #1 = kind (Lemma/Stelling/Gevolg), #2 = number
+\newenvironment{res}[2]{%
+  \par\noindent\textbf{#1 #2.}%~\itshape\ignorespaces
+}{%
+  \par\vspace{2pt}\normalfont
+}
+
+\newlist{myenum}{enumerate}{2}
+%\setlist[myenum,1]{label=(\roman*),leftmargin=1.6em,itemsep=1pt,topsep=1pt}
+\setlist[myenum,1]{label=(\roman*),leftmargin=1.6em,itemsep=1pt,topsep=1pt}
+
+\newcommand{\lam}{\mathbb{K}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\title{\textbf{LAM Overzicht}}
+\author{T. Cools}
+%\author{Samenvatting voor open-boek examen (nummering identiek aan de cursus)}
+\date{}
+
+\begin{document}
+\maketitle
+%\vspace{-2em}
+%\begin{center}
+%\small\textit{Dit document bevat, zonder bewijs, alle stellingen, lemma's en gevolgen uit de cursus, in de originele volgorde en met identieke nummering.}
+%\end{center}
+%\vspace{1em}
+
+%===================================================================
+\section{Inleidende begrippen}
+%===================================================================
+
+\subsection{Velden}
+\begin{res}{Lemma}{1.1.2}
+\begin{myenum}
+\item Voor alle $z\in\mathbb{C}$ is $z+\overline{z}\in\mathbb{R}$ en $z\overline{z}\in\mathbb{R}_{\ge0}$. Bovendien is $|z|=0$ \(\iff\) $z=0$, en is $z=\overline z$ \(\iff\) $z\in\mathbb R$.
+\item Elk niet-nul element $a+bi\in\mathbb C\setminus\{0\}$ heeft een inverse voor de vermenigvuldiging, namelijk
+\[
+(a+bi)^{-1}=\frac{\overline{a+bi}}{\mathsf N(a+bi)}=\frac{a-bi}{a^2+b^2}.
+\]
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{1.1.8}
+Zij $K$ een veld. Dan gelden volgende eigenschappen:
+\begin{myenum}
+\item Het neutraal element voor de optelling is uniek, m.a.w.\ stel dat er twee elementen $0,0'\in K$ bestaan zodanig dat voor alle $a\in K$ geldt dat $0+a=a+0=a$ en $0'+a=a+0'=a$, dan is $0=0'$.
+\item Het neutraal element voor de vermenigvuldiging is uniek, m.a.w.\ stel dat er twee elementen $1,1'\in K$ bestaan zodanig dat voor alle $a\in K$ geldt dat $1a=a1=a$ en $1'a=a1'=a$, dan is $1=1'$.
+\item Het inverse van een element in $K$ voor de optelling is uniek, m.a.w.\ zij $a\in K$ en stel dat er twee elementen $b,c\in K$ bestaan zodanig dat $a+b=b+a=0$ en dat $a+c=c+a=0$, dan is $b=c$. Het unieke inverse element voor de optelling noteren we als $-a$.
+\item Het inverse van een element in $K\setminus\{0\}$ voor de vermenigvuldiging is uniek, m.a.w.\ zij $a\in K\setminus\{0\}$ en stel dat er twee elementen $b,c\in K$ bestaan zodanig dat $ab=ba=1$ en dat $ac=ca=1$, dan is $b=c$. Het unieke inverse element voor de vermenigvuldiging noteren we als $a^{-1}$ of als $\tfrac1a$.
+\item Voor alle $a\in K$ geldt dat $a0=0$.
+\item Voor alle $a\in K$ geldt dat $-(-a)=a$.
+\item Voor alle $a\in K$ is $-a=(-1)a=a(-1)$, waarbij $-1$ het tegengestelde is van $1$. Bovendien is $-0=0$, en geldt, voor alle $a,b\in K$, dat
+\[
+(-a)b=-(ab),\qquad -(a+b)=(-a)+(-b),\qquad (-a)(-b)=ab.
+\]
+\item Zij $a,b\in K\setminus\{0\}$. Dan is $ab\ne0$. Anders gezegd, stel dat voor $a,b\in K$ geldt dat $ab=0$, dan is ofwel $a=0$, ofwel $b=0$.
+\item Voor alle $a,b\in K\setminus\{0\}$ is $(ab)^{-1}=a^{-1}b^{-1}$ en is $(a^{-1})^{-1}=a$.
+\end{myenum}
+\end{res}
+
+\subsection{Veeltermen}
+\begin{res}{Lemma}{1.2.2}
+\begin{myenum}
+\item De verzameling $K[x]$ met de optelling en vermenigvuldiging van veeltermen is een commutatieve ring. We noemen $K[x]$ een veeltermenring of polynomenring (over het veld $K$).
+\item Voor alle $f(x),g(x)\in K[x]$ geldt:
+\[
+\deg(f(x)+g(x))\le\max\{\deg f(x),\deg g(x)\}, \qquad \deg(f(x)\cdot g(x))=\deg f(x)+\deg g(x).
+\]
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{1.2.3}
+Zij $K[x]$ de polynomenring over een veld $K$. Zij $f(x),g(x)\in K[x]$ met $g(x)\ne0$. Dan zijn er polynomen $q(x),r(x)\in K[x]$ zodat
+\[
+f(x)=g(x)q(x)+r(x)\quad\text{met } r(x)=0 \text{ of } \deg r(x)<\deg g(x).
+\]
+\end{res}
+
+\begin{res}{Gevolg}{1.2.4}
+Zij $0\ne f(x)\in K[x]$, $K$ een veld, en zij $a\in K$. Dan is $f(a)=0$ \(\iff\) $f(x)=(x-a)q(x)$ voor zekere $q(x)\in K[x]$.
+\end{res}
+
+\begin{res}{Stelling}{1.2.6}
+\textup{(Grondstelling vd. algebra.)} Zij $f(x)\in\mathbb C[x]$ met $\deg f(x)\ge1$. Dan heeft $f(x)$ een wortel in $\mathbb C$.
+\end{res}
+
+\begin{res}{Gevolg}{1.2.7}
+Zij $f(x)\in\mathbb C[x]$ een monische veelterm met $\deg f(x)\ge1$. Dan is
+\[
+f(x)=\prod_{i=1}^m (x-a_i)^{n_i}
+\text{ voor } a_1,\dots,a_m\in\mathbb C \text{ en } n_1,\dots,n_m\in\mathbb N.
+\]
+\end{res}
+
+\subsection{Matrices}
+\begin{res}{Lemma}{1.3.6}
+Zij $K$ een veld en $n,m\in\mathbb N\setminus\{0\}$.
+\begin{myenum}
+\item De verzameling van de matrices $M_{m,n}(K)$ met als operatie de matrixoptelling is een groep, met de nulmatrix $0_{m,n}$ als neutraal element.
+\item De verzameling van de matrices $M_n(K)$ is een ring. Het neutraal element voor de optelling is de nulmatrix $0_n$ en het neutraal element voor de vermenigvuldiging is de eenheidsmatrix $I_n$.
+\item Voor alle $A,B\in M_{m,n}(K)$, $\lambda,\mu\in K$ is
+\[
+(\lambda\mu)A=\lambda(\mu A),\qquad (\lambda+\mu)A=\lambda A+\mu A,\qquad \lambda(A+B)=\lambda A+\lambda B.
+\]
+\item Voor alle $A\in M_{m,k}(K)$, $B\in M_{k,n}(K)$ en $\lambda\in K$ is $\lambda(AB)=(\lambda A)B=A(\lambda B)$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{1.3.9}
+\begin{myenum}
+\item De verzameling $\mathsf{GL}_n(K)$ met als bewerking de matrixvermenigvuldiging is een groep. Neutrale element: $I_n$.
+\item Zij $A,B\in\mathsf{GL}_n(K)$. Dan is $(A^{-1})^{-1}=A$ en $(AB)^{-1}=B^{-1}A^{-1}$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{1.3.13}
+\begin{myenum}
+\item Voor alle $A,B\in M_{m,n}(K)$ is $(A+B)^t=A^t+B^t$.
+\item Voor alle $A\in M_{m,n}(K)$ is $(A^t)^t=A$.
+\item Voor alle $A\in M_{m,k}(K)$, $B\in M_{k,n}(K)$ is $(AB)^t=B^tA^t$.
+\item Voor alle $A\in \mathsf{GL}_n(K)$ is $A^t\in \mathsf{GL}_n(K)$ en $(A^t)^{-1}=(A^{-1})^t$.
+\end{myenum}
+\end{res}
+
+\subsection{Stelsels van lineaire vergelijkingen}
+\begin{res}{Lemma}{1.4.2}
+Beschouw een stelsel van $m$ lineaire vergelijkingen met $n$ onbekenden over het veld $K$. We noteren de vergelijkingen van dit stelsel als $R_1,\dots,R_m$. We construeren een nieuw stelsel van $m$ lineaire vergelijkingen met $n$ onbekenden over het veld $K$ door \'e\'en van de volgende operaties toe te passen:
+\begin{enumerate}[label=(\arabic*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item een vergelijking $R_i$ vervangen door de vergelijking $R_i+\lambda R_j$ voor een bepaalde $1\le i\ne j\le m$ en $\lambda\in K$;
+\item twee vergelijkingen van plaats verwisselen;
+\item een vergelijking $R_i$ vervangen door $cR_i$ voor een bepaalde $1\le i\le m$ en $c\in K\setminus\{0\}$.
+\end{enumerate}
+De oplossingsverzameling van het oorspronkelijke stelsel is gelijk aan de oplossingsverzameling van het nieuwe stelsel.
+\end{res}
+
+\begin{res}{Gevolg}{1.4.6}
+De oplossingsverzameling van een stelsel van lineaire vergelijkingen blijft dezelfde wanneer men op de uitgebreide matrix van het stelsel een eindig aantal elementaire rijoperaties na elkaar toepast.
+\end{res}
+
+\begin{res}{Stelling}{1.4.10}
+Zij $A\in M_{m,n}(K)$. Men kan altijd een echelonmatrix bekomen door een eindig aantal opeenvolgende elementaire rijoperaties op $A$ toe te passen.
+\end{res}
+
+\begin{res}{Stelling}{1.4.13}
+Zij $AX=B$ een stelsel van $m$ lineaire vergelijkingen in $n$ onbekenden over $K$, met $A\in M_{m,n}(K)$, $B\in M_{m,1}(K)$ en $X$ een kolommatrix met de $n$ onbekenden. Veronderstel dat de uitgebreide matrix $(A|B)$ een echelonmatrix is.
+\begin{myenum}
+\item Als de laatste kolom van $(A|B)$ een spilkolom is, is het stelsel strijdig.
+\item Als de laatste kolom van $(A|B)$ geen spilkolom is, heeft het stelsel wel oplossingen. Zij $S\subseteq\{1,\dots,n\}$ de verzameling van indices van alle spilkolommen van $A$. De oplossingen van het stelsel kunnen we als volgt beschrijven: de onbekenden $x_i$ met $i\notin S$ worden vrij gekozen in $K$, stel $x_i=t_i\in K$. De onbekenden $x_j$ met $j\in S$ zijn dan bepaald door
+\[
+x_j=b_\ell-\sum_{\substack{k>j\ \text{en}\ k\notin S}} a_{\ell k}t_k, \tag{$*$}
+\]
+waar $\ell$ het nummer van de rij van de spilplaats in de $j^{\text e}$-kolom is.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{1.4.14}
+Zij $AX=B$ een niet-strijdig stelsel met uitgebreide matrix $(A|B)$ in echelonvorm. Het aantal vrij te kiezen onbekenden is gelijk aan het aantal onbekenden min het aantal spilkolommen.
+\end{res}
+
+%===================================================================
+\section{Vectorruimten}
+%===================================================================
+
+\subsection{Definities en eerste eigenschappen}
+\begin{res}{Lemma}{2.1.3}
+Zij $V$ een $K$-vectorruimte. We noteren het neutraal element voor de optelling in $K$ met $0_K$ en het neutraal element voor de optelling in $V$ met $0_V$.
+\begin{myenum}
+\item Het neutraal element in $V$ voor de optelling in $V$ is uniek.
+\item Elke $v\in V$ heeft een uniek tegengestelde voor de optelling; we noteren het als $-v$.
+\item Voor alle $v\in V$ is $-(-v)=v$.
+\item Voor alle $\lambda\in K$ is $\lambda 0_V=0_V$.
+\item Voor alle $v\in V$ is $0_K v=0_V$.
+\item Voor alle $v\in V$ is $(-1)v=-v$. Bovendien geldt, voor alle $v,w\in V$ en $\lambda\in K$, dat
+\[
+(-\lambda)v=-(\lambda v)=\lambda(-v),\qquad \lambda v=(-\lambda)(-v),\qquad -(v+w)=-v+(-w).
+\]
+\item Als voor een $v\in V$ en $\lambda\in K$ geldt dat $\lambda v=0$, dan is $\lambda=0_K$ of $v=0_V$.
+\end{myenum}
+\end{res}
+
+\subsection{Deelruimten, lineaire combinaties, span}
+\begin{res}{Lemma}{2.2.3}
+Zij $K$ een veld en $V$ een $K$-vectorruimte, en zij $\emptyset\ne W\subseteq V$ een deelverzameling van $V$. Dan is $W$ een deelruimte van $V$ \(\iff\)
+\[
+\lambda_1w_1+\lambda_2w_2\in W
+\]
+voor alle $w_1,w_2\in W$ en voor alle $\lambda_1,\lambda_2\in K$.
+\end{res}
+
+\begin{res}{Lemma}{2.2.9}
+Zij $V$ een $K$-vectorruimte, en zij $S\subseteq V$.
+\begin{myenum}
+\item De verzameling $\mathrm{span}(S)$ is een deelruimte van $V$.
+\item Als $S\subseteq T\subseteq V$, dan is $\mathrm{span}(S)\le\mathrm{span}(T)$.
+\end{myenum}
+\end{res}
+
+\subsection{Lineaire (on)afhankelijkheid en voortbrengendheid}
+\begin{res}{Lemma}{2.3.6}
+Zij $V$ een $K$-vectorruimte.
+\begin{myenum}
+\item Zij $\{v_1,\dots,v_n\}\subseteq V$, en zij $\lambda_1v_1+\cdots+\lambda_nv_n=0$ een lineaire combinatie met $\lambda_i\ne0$ voor een zekere $i\in\{1,\dots,n\}$. Dan is $v_i$ een lineaire combinatie van de overige $n-1$ elementen.
+\item Twee elementen in $V$ zijn lineair afhankelijk \(\iff\) de ene een scalair veelvoud van de andere is.
+\end{myenum}
+\end{res}
+
+\subsection{Basissen, dimensie}
+\begin{res}{Stelling}{2.4.4}
+Een deelverzameling $B\subseteq V$ is een basis voor $V$ \(\iff\) elk element $v\in V$ op unieke manier te schrijven is als een lineaire combinatie van de elementen uit $B$.
+\end{res}
+
+\begin{res}{Lemma}{2.4.6}
+\textup{(Lemma van Steinitz.)} Zij $V$ een eindig-dimensionale $K$-vectorruimte met $S$ een eindige voortbrengende verzameling, $|S|=n\in\mathbb N$. Dan heeft elke lineair onafhankelijke deelverzameling van $V$ hoogstens $n$ elementen.
+\end{res}
+
+\begin{res}{Stelling}{2.4.7}
+Zij $V$ een eindig-dimensionale $K$-vectorruimte. Zij $T$ een lineair onafhankelijke deelverzameling van $V$ en $S$ een voortbrengende verzameling die $T$ bevat. Dan is er een basis $B$ voor $V$ zodat $T\subseteq B\subseteq S$.
+\end{res}
+
+\begin{res}{Gevolg}{2.4.8}
+\begin{myenum}
+\item Zij $V$ een eindig-dimensionale $K$-vectorruimte, en zij $T\subseteq V$ een lineair onafhankelijke verzameling. Dan bestaat er een basis $B$ voor $V$ zodat $T\subseteq B$.
+\item Zij $V$ een eindig-dimensionale $K$-vectorruimte, en zij $S\subseteq V$ een voortbrengende verzameling. Dan bestaat er een basis $B$ voor $V$ zodat $B\subseteq S$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{2.4.9}
+Zij $V\ne\{0\}$ een eindig-dimensionale $K$-vectorruimte.
+\begin{myenum}
+\item Er is een basis in $V$.
+\item Elke basis in $V$ is eindig, en alle basissen hebben even veel elementen.
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{2.4.12}
+Zij $V$ een $n$-dimensionale $K$-vectorruimte, en zij $S\subseteq V$ een verzameling met precies $n$ elementen.
+\begin{myenum}
+\item Als $S$ lineair onafhankelijk is, dan is $S$ een basis.
+\item Als $S$ voortbrengend is, dan is $S$ een basis.
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{2.4.13}
+Zij $V$ een \textbf{oneindig}-dimensionale $K$-vectorruimte.
+\begin{myenum}
+\item Zij $T$ een lineair onafhankelijke deelverzameling van $V$ en $S$ een voortbrengende verzameling die $T$ bevat. Dan is er een basis $B$ voor $V$ zodat $T\subseteq B\subseteq S$.
+\item Er is een basis in $V$.
+\item Elke basis in $V$ is oneindig, en alle basissen hebben even veel elementen.
+\end{myenum}
+\end{res}
+
+\subsection{Som en directe som van vectorruimten}
+\begin{res}{Lemma}{2.5.2}
+Zij $V$ een $K$-vectorruimte en $W_1,W_2,W$ drie deelruimten van $V$. Dan is $W=W_1\oplus W_2$ \(\iff\) $W=W_1+W_2$ en $W_1\cap W_2=\{0\}$.
+\end{res}
+
+\begin{res}{Stelling}{2.5.4}
+Zij $V$ een $K$-vectorruimte en $W_1,W_2,W$ drie deelruimten van $V$ zodat $W=W_1\oplus W_2$.
+\begin{myenum}
+\item Als $B_1$ een basis is voor $W_1$ en $B_2$ een basis is voor $W_2$, dan is $B_1\cup B_2$ een basis voor $W$.
+\item $\dim W=\dim W_1+\dim W_2$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{2.5.5}
+Zij $V$ een $K$-vectorruimte met basis $B$, en veronderstel dat $B$ de disjuncte unie is van $B_1$ en $B_2$, d.w.z.\ $B=B_1\cup B_2$ en $B_1\cap B_2=\emptyset$. Dan is $V=\mathrm{span}(B_1)\oplus\mathrm{span}(B_2)$.
+\end{res}
+
+\begin{res}{Stelling}{2.5.6}
+\textup{(Dimensiestelling voor deelruimten.)} Zij $V$ een eindig-dimensionale $K$-vectorruimte en $W_1,W_2$ twee deelruimten van $V$. Dan is
+\[
+\dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2).
+\]
+\end{res}
+
+\begin{res}{Lemma}{2.5.8}
+Zij $W,U$ deelruimten van een $K$-vectorruimte $V$. Als $V=W+U$ dan bestaat er een deelruimte $Y\le U$ zodat $V=W\oplus Y$. In het bijzonder heeft elke deelruimte $W\le V$ een complement in $V$.
+\end{res}
+
+\begin{res}{Lemma}{2.5.11}
+Zij $W_1,\dots,W_m$ vectorruimten over $K$. De verzameling $\bigoplus_{i=1}^m W_i$ met optelling en scalaire vermenigvuldiging, is een $K$-vectorruimte.
+\end{res}
+
+\begin{res}{Lemma}{2.5.13}
+Zij $W_1,\dots,W_m$ vectorruimten over $K$, en stel $V=\bigoplus_{i=1}^m W_i$ de uitwendige directe som van $W_1,\dots,W_m$. Dan is $V$ de inwendige directe som van de vectorruimten
+\[
+W_i' = \{(0,\dots,a_i,\dots,0)\mid a_i\in W_i\},
+\]
+d.w.z.\ $V=W_1'\oplus\cdots\oplus W_m'$.
+\end{res}
+
+%===================================================================
+\section{Lineaire afbeeldingen}
+%===================================================================
+
+\subsection{Afbeeldingen en hun eigenschappen}
+\begin{res}{Lemma}{3.1.3}
+\begin{myenum}
+\item Een afbeelding $f:A\to B$ is bijectief dan en slechts dan als ze injectief \'en surjectief is.
+\item Als $f$ een bijectie is van $A$ naar $B$, dan is $|A|=|B|$, d.w.z.\ $A$ en $B$ hebben even veel elementen.
+\end{myenum}
+\end{res}
+
+\subsection{Kern en beeld van lineaire afbeeldingen}
+\begin{res}{Lemma}{3.2.2}
+Zij $f:V\to W$ een lineaire afbeelding. Dan is $\ker f\le V$ een deelruimte van $V$ en $\operatorname{im} f\le W$ een deelruimte van $W$.
+\end{res}
+
+\begin{res}{Lemma}{3.2.4}
+Zij $f:V\to W$ een lineaire afbeelding. Dan geldt:
+\begin{myenum}
+\item $f$ is injectief \(\iff\) $\ker f=\{0\}$.
+\item $f$ is surjectief \(\iff\) $\operatorname{im} f=W$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{3.2.5}
+Zij $f:V\to W$ een lineaire afbeelding en zij $U\le V$ een deelruimte. Beschouw de restrictie $f|_U$ van $f$ tot $U$. Dan is
+\[
+\ker f|_U=\ker f\cap U \qquad\text{en}\qquad \operatorname{im} f|_U\le \operatorname{im} f.
+\]
+\end{res}
+
+\begin{res}{Lemma}{3.2.6}
+Zij $V$ en $W$ twee $K$-vectorruimten, en zij $B$ een basis voor $V$. Zij $f:V\to W$ een lineaire afbeelding. Dan geldt:
+\begin{myenum}
+\item $f$ is volledig bepaald door de beelden van de basiselementen $f(b)$ voor alle $b\in B$;
+\item $\operatorname{im}(f)=\mathrm{span}\big(\{f(b)\mid b\in B\}\big)$.
+\end{myenum}
+\end{res}
+
+\subsection{Injectiviteit en surjectiviteit}
+\begin{res}{Stelling}{3.3.1}
+Zij $V,W$ twee $K$-vectorruimten, zij $B$ een basis voor $V$, en zij $f:V\to W$ een lineaire afbeelding. Dan geldt:
+\begin{myenum}
+\item $f$ is injectief \(\iff\) $\{f(b)\mid b\in B\}$ een lineair onafhankelijke verzameling is in $W$ waarbij de elementen $f(b)$ twee aan twee verschillend zijn van elkaar;
+\item $f$ is surjectief \(\iff\) $\{f(b)\mid b\in B\}$ een voortbrengende verzameling is in $W$;
+\item $f$ is bijectief \(\iff\) $\{f(b)\mid b\in B\}$ een basis is in $W$ waarbij de elementen $f(b)$ twee aan twee verschillend zijn van elkaar.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{3.3.5}
+Twee $K$-vectorruimten zijn isomorf \(\iff\) ze dezelfde dimensie hebben.
+\end{res}
+
+\begin{res}{Gevolg}{3.3.6}
+Zij $K$ een veld, en zij $V$ een eindig-dimensionale $K$-vectorruimte. Stel $n=\dim_K(V)$. Dan is $V$ isomorf met de $K$-vectorruimte $K^n$.
+\end{res}
+
+\begin{res}{Stelling}{3.3.7}
+\textup{(Dimensiestelling voor lineaire afbeeldingen.)} Zij $V$ een eindig-dimensionale $K$-vectorruimte, $W$ een willekeurige $K$-vectorruimte, en $f:V\to W$ een lineaire afbeelding. Dan is
+\[
+\dim V=\dim\ker f+\dim\operatorname{im} f.
+\]
+\end{res}
+
+\begin{res}{Gevolg}{3.3.8}
+\textup{(Alternatief-stelling.)} Zij $V,W$ $K$-vectorruimten met $\dim V=\dim W<\infty$, en zij $f:V\to W$ een lineaire afbeelding. De volgende eigenschappen zijn equivalent:
+\begin{enumerate}[label=(\alph*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item $f$ is injectief;
+\item $f$ is surjectief;
+\item $f$ is bijectief.
+\end{enumerate}
+\end{res}
+
+\subsection{Optelling en scalaire vermenigvuldiging van lineaire afbeeldingen}
+\begin{res}{Lemma}{3.4.3}
+Zij $K$ een veld, en $V,W$ twee $K$-vectorruimten. Zij $f,g\in\mathrm{Hom}_K(V,W)$ en $\lambda\in K$. Dan is $f+g\in\mathrm{Hom}_K(V,W)$ en $\lambda f\in\mathrm{Hom}_K(V,W)$. Met deze bewerkingen wordt de verzameling $\mathrm{Hom}_K(V,W)$ een $K$-vectorruimte. Het nulelement van deze vectorruimte is de nulafbeelding $0_{V,W}$.
+\end{res}
+
+\begin{res}{Stelling}{3.4.5}
+Zij $K$ een veld, en $V,W$ twee eindig-dimensionale $K$-vectorruimten. Dan is $\dim\mathrm{Hom}(V,W)=\dim V\cdot \dim W$.
+\end{res}
+
+\subsection{De samenstelling van lineaire afbeeldingen}
+\begin{res}{Lemma}{3.5.2}
+Zij $V,W,U$ drie $K$-vectorruimten, zij $g\in\mathrm{Hom}(V,W)$ en $f\in\mathrm{Hom}(W,U)$. Dan is $f\circ g\in\mathrm{Hom}(V,U)$.
+\end{res}
+
+\begin{res}{Stelling}{3.5.3}
+Zij $K$ een veld, en zij $V$ een $K$-vectorruimte. Dan is de verzameling $\mathrm{Hom}_K(V,V)$ een ring, waarbij de vermenigvuldiging gegeven is door samenstelling van operatoren:
+\[
+(fg)(v):=(f\circ g)(v)=f(g(v))\quad\text{voor alle } v\in V,
+\]
+voor alle $f,g\in\mathrm{Hom}_K(V,V)$.
+\end{res}
+
+\subsection{Inverteerbare lineaire operatoren}
+\begin{res}{Lemma}{3.6.2}
+Zij $f:A\to B$ een afbeelding. Dan zijn de volgende uitspraken equivalent:
+\begin{enumerate}[label=(\alph*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item Er bestaat een afbeelding $g:B\to A$ zodat $f\circ g=1_B$ en $g\circ f=1_A$.
+\item $f$ is bijectief.
+\end{enumerate}
+Indien deze uitspraken voldaan zijn, dan is $g=f^{-1}$.
+\end{res}
+
+\begin{res}{Lemma}{3.6.4}
+\begin{myenum}
+\item Zij $f\in\mathrm{End}(V)$, en veronderstel dat $f$ bijectief is. Dan is $f^{-1}\in\mathrm{End}(V)$ en $f^{-1}$ is eveneens bijectief. Met andere woorden, als $f\in \mathsf{GL}(V)$, dan is $f^{-1}\in \mathsf{GL}(V)$.
+\item De deelverzameling $\mathsf{GL}(V)$ van $\mathrm{End}(V)$ vormt een groep voor de samenstelling op $\mathrm{End}(V)$.
+\end{myenum}
+\end{res}
+
+%===================================================================
+\section{Co\"ordinaten}
+%===================================================================
+
+\subsection{Coördinaten en matrixvoorstellingen van lineaire afbeeldingen}
+\begin{res}{Lemma}{4.1.4}
+Zij $V$ een $n$-dimensionale $K$-vectorruimte en $W$ een $m$-dimensionale $K$-vectorruimte. Beschouw een basis $\mathcal B=\{b_1,\dots,b_n\}$ van $V$ en een basis $\mathcal C=\{c_1,\dots,c_m\}$ van $W$.
+\begin{myenum}
+\item Voor iedere matrix $A\in M_{m,n}(K)$ bestaat er een lineaire afbeelding $f:V\to W$ waarvoor $A_{f,\mathcal B,\mathcal C}=A$.
+\item Zij $v\in V$ met $(\lambda_1,\dots,\lambda_n)^t$ de co\"ordinatenvector van $v$ t.o.v.\ de basis $\mathcal B$. Beschouw de co\"ordinatenvector $(\mu_1,\dots,\mu_m)^t$ van $f(v)$ t.o.v.\ de basis $\mathcal C$. Dan is
+\[
+\begin{pmatrix}\mu_1\\ \vdots \\ \mu_m\end{pmatrix} = A_{f,\mathcal B,\mathcal C}\begin{pmatrix}\lambda_1\\ \vdots \\ \lambda_n\end{pmatrix}.
+\]
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{4.1.6}
+Zij $f:K^n\to K^m$ een lineaire afbeelding. Dan bestaat er een matrix $A\in M_{m,n}(K)$ zodat $f=L_A$.
+\end{res}
+
+\begin{res}{Lemma}{4.1.7}
+Zij $V$ een $n$-dimensionale vectorruimte met basis $\mathcal B$, en zij $\beta:V\to K^n$ het co\"ordinatenisomorfisme ten opzichte van $\mathcal B$. Zij $A,B\in M_{m,n}(K)$. Als voor alle $v\in V$ geldt dat $A\beta(v)=B\beta(v)$, dan is $A=B$.
+\end{res}
+
+\begin{res}{Stelling}{4.1.8}
+Zij $V$ een $n$-dimensionale $K$-vectorruimte, $W$ een $m$-dimensionale $K$-vectorruimte, en $U$ een $t$-dimensionale $K$-vectorruimte. Kies een basis $\mathcal B$ voor $V$, $\mathcal C$ voor $W$ en $\mathcal D$ voor $U$.
+\begin{myenum}
+\item De afbeelding \[\mathrm{Hom}_K(V,W)\to M_{m,n}(K):f\mapsto A_f\] (t.o.v.\ de basissen $\mathcal B$ en $\mathcal C$) is een isomorfisme van $K$-vectorruimten.
+\item Beschouw de afbeeldingen
+\[
+\mathrm{Hom}_K(V,W)\to M_{m,n}(K):f\mapsto A_f\] \[ \mathrm{Hom}_K(W,U)\to M_{t,m}(K):g\mapsto A_g,\] \[ \mathrm{Hom}_K(V,U)\to M_{t,n}(K):h\mapsto A_h,
+\]
+die we in (i) hebben ingevoerd. Dan geldt $\forall f\in\mathrm{Hom}_K(V,W)$ en alle $g\in\mathrm{Hom}_K(W,U)$ dat $A_{g\circ f}=A_gA_f$.
+\item De afbeelding $\mathrm{End}_K(V)\to M_n(K):f\mapsto A_f$ (t.o.v.\ de basis $\mathcal B$) is een isomorfisme van $K$-vectorruimten, en voor alle $f,g\in\mathrm{Hom}_K(V)$ geldt dat $A_{g\circ f}=A_gA_f$.
+\item Zij $f\in\mathrm{End}_K(V)$, en zij $A_f$ de corresponderende matrix t.o.v.\ de basis $\mathcal B$. Dan is $f$ inverteerbaar \(\iff\) $A_f$ inverteerbaar is, en in dat geval is $(A_f)^{-1}=A_{f^{-1}}$. We hebben dus een bijectieve afbeelding \[\mathsf{GL}_K(V)\to \mathsf{GL}_n(K):f\mapsto A_f,\] en  $\forall f,g\in \mathsf{GL}_K(V)$ is $A_{g\circ f}=A_gA_f$.
+\end{myenum}
+\end{res}
+
+\subsection{Coördinatentransformaties}
+\begin{res}{Lemma}{4.2.3}
+Zij $\mathcal B=\{b_1,\dots,b_n\}$ en $\mathcal B'=\{b_1',\dots,b_n'\}$ twee basissen voor $V$, en zij $Q$ de matrix van de basisovergang van de (oude) basis $\mathcal B$ naar de (nieuwe) basis $\mathcal B'$.
+\begin{myenum}
+\item Kies een willekeurige basis $\mathcal C=\{c_1,\dots,c_n\}$ van $V$, en noteer met $\gamma:V\to K^n$ het co\"ordinatenisomorfisme ten opzichte van $\mathcal C$. Defini\"eer de $n\times n$-matrices
+\[
+B=(\gamma(b_1),\dots,\gamma(b_n)) \quad\text{en}\quad B'=(\gamma(b_1'),\dots,\gamma(b_n')).
+\]
+Dan is $BQ=B'$.
+\item De matrix $Q$ is inverteerbaar. De inverse $Q^{-1}$ is de transitiematrix van de (nieuwe) basis $\mathcal B'$ naar de (oude) basis $\mathcal B$.
+\item Zij $v\in V$, zij $(\lambda_1,\dots,\lambda_n)^t$ de co\"ordinatenvector van $v\in V$ ten opzichte van de basis $\mathcal B$, en zij $(\lambda_1',\dots,\lambda_n')^t$ de co\"ordinatenvector van $v$ ten opzichte van de basis $\mathcal B'$. Dan is
+\[
+Q\begin{pmatrix}\lambda_1'\\ \vdots \\ \lambda_n'\end{pmatrix} = \begin{pmatrix}\lambda_1\\ \vdots \\ \lambda_n\end{pmatrix} \qquad\text{en}\qquad \begin{pmatrix}\lambda_1'\\ \vdots \\ \lambda_n'\end{pmatrix} = Q^{-1}\begin{pmatrix}\lambda_1\\ \vdots \\ \lambda_n\end{pmatrix}.
+\]
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{4.2.5}
+Zij $V,W$ eindig-dimensionale $K$-vectorruimten met $n=\dim V$ en $m=\dim W$ en kies basissen $\mathcal B,\mathcal B'$ voor $V$ en basissen $\mathcal C,\mathcal C'$ voor $W$. Beschouw de transitiematrix $Q\in \mathsf{GL}_n(K)$ van $\mathcal B$ naar $\mathcal B'$ en de transitiematrix $P\in \mathsf{GL}_m(K)$ van $\mathcal C$ naar $\mathcal C'$. Stel $A=A_{f,\mathcal B,\mathcal C}$ en $A'=A_{f,\mathcal B',\mathcal C'}$; dan is
+\[
+A'=P^{-1}AQ.
+\]
+\end{res}
+
+\begin{res}{Stelling}{4.2.8}
+Zij $f:V\to W$ met $n=\dim V$ en $m=\dim W$. Dan bestaat er een basis $\mathcal B$ van $V$ en een basis $\mathcal C$ van $W$ waarvoor
+\[
+A_{f,\mathcal B,\mathcal C}=\left(\begin{array}{c|c} I_k & 0_{k,n-k}\\\hline 0_{m-k,k} & 0_{m-k,n-k}\end{array}\right)\quad\text{voor een bepaalde } k\le n,m.
+\]
+\end{res}
+
+%===================================================================
+\section{Matrices en determinanten}
+%===================================================================
+\subsection{De rang van een matrix}
+\begin{res}{Stelling}{5.1.2}
+Zij $A\in M_{m,n}(K)$ met kolommen $\{A_1,\dots,A_n\}$ en rijen $\{R_1,\dots,R_m\}$. Dan is $\dim\mathrm{span}(A_1,\dots,A_n)=\dim\mathrm{span}(R_1,\dots,R_m)$.
+\end{res}
+
+\begin{res}{Lemma}{5.1.6}
+Zij $A\in M_{m,n}(K)$ met $\mathrm{rk}(A)$ de rang van $A$.
+\begin{myenum}
+\item Beschouw de lineaire afbeelding $L_A:K^n\to K^m:v\mapsto Av$. Dan is $\operatorname{im}(L_A)=\mathrm{span}\{A_1,\dots,A_n\}$; bijgevolg is $\dim(\operatorname{im}L_A)=\mathrm{rk}(A)$.
+\item Elementaire rijoperaties laten de rang van een matrix invariant.
+\item Zij $A\in M_{m,n}(K)$ en $B\in M_{n,r}(K)$. Dan is $\mathrm{rk}(AB)\le\mathrm{rk}(A)$ en $\mathrm{rk}(AB)\le\mathrm{rk}(B)$.
+
+\item Zij $A \in \operatorname{GL}_n(K)$ en $B \in \operatorname{Mat}_{n,r}(K)$. Dan is $\operatorname{rk}(AB) = \operatorname{rk}(B)$.
+
+\item Zij $A \in \operatorname{GL}_n(K)$ en $B \in \operatorname{Mat}_{r,n}(K)$. Dan is $\operatorname{rk}(BA) = \operatorname{rk}(B)$.
+\end{myenum}
+\end{res}
+
+\subsection{Affiene deelruimten}
+\begin{res}{Lemma}{5.2.4}
+Zij $V$ een vectorruimte, $v_1,v_2\in V$ en $W_1,W_2$ deelruimten van $V$. Dan is $v_1+W_1=v_2+W_2$ \(\iff\) $W_1=W_2$ en $v_1-v_2\in W_1$.
+\end{res}
+
+\subsection{De oplossingsverzameling van een stelsel}
+\begin{res}{Lemma}{5.3.1}
+Beschouw het stelsel $AX=w$ met $A\in M_{m,n}(K)$, $w\in K^m$ en $X$ een kolomvector met $n$ onbekenden. Beschouw de lineaire afbeelding $L_A:K^n\to K^m:v\mapsto Av$.
+\begin{myenum}
+\item Het stelsel $AX=w$ is strijdig \(\iff\) $w\notin\operatorname{im}L_A$.
+\item Als het stelsel $AX=w$ niet strijdig is, dan is de oplossingsverzameling een affiene deelruimte. Als $v_0\in K^n$ een oplossing is, dan is de oplossingsverzameling gegeven door $L_A^{-1}(w)=v_0+\ker L_A$.
+\item Als het stelsel homogeen is, m.a.w. van de vorm \(AX=0\), dan is de oplossingsverzameling = deelruimte \(\ker f\).
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{5.3.2}
+Beschouw het stelsel $AX=w$ met $A\in M_{m,n}(K)$, $w\in K^m$ en $X$ een kolomvector met $n$ onbekenden.
+\begin{myenum}
+\item Het stelsel heeft een oplossing \(\iff\) $\mathrm{rk}(A)=\mathrm{rk}(A|w)$.
+\item Stel dat het stelsel niet strijdig is. Dan is de dimensie van de oplossingsverzameling gelijk aan $n-\mathrm{rk}(A)$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{5.3.3}
+Beschouw het stelsel $AX=w$, $A\in M_n(K)$. Als $\mathrm{rk}(A)=n$, dan heeft het stelsel een unieke oplossing.
+\end{res}
+
+\subsection{Determinanten}
+\begin{res}{Stelling}{5.4.4}
+Zij $D:M_n(K)\to K$ een afbeelding die voldoet aan de eigenschappen $(\vec{D_1})$--$(\vec{D_3})$.
+\begin{myenum}
+\item Als $A\in M_n(K)$ twee gelijke kolommen heeft, dan is $D(A)=0$.
+\item Stel $A=(A_1,\dots,A_n)\in M_n(K)$, en zij $\sigma=(i_1,\dots,i_n)$ een permutatie van $\{1,\dots,n\}$. Dan is
+\[
+D(A_{i_1},\dots,A_{i_n})=\mathrm{sgn}(\sigma)D(A).
+\]
+\item Voor elke matrix $A\in M_n(K)$ geldt
+\[
+D(A)=\sum_{\sigma\in S_n}\mathrm{sgn}(\sigma)a_{\sigma(1),1}\cdots a_{\sigma(n),n}. \tag{5.1}
+\]
+\item Voor alle $A,B\in M_n(K)$ geldt dat $D(AB)=D(A)D(B)$.
+\end{myenum}
+In het bijzonder toont de formule (5.1) aan dat er ten hoogste \'e\'en afbeelding $D$ kan bestaan die aan de eigenschappen $(\vec{D_1})$--$(\vec{D_3})$ voldoet.
+\end{res}
+
+\begin{res}{Lemma}{5.4.9}
+Voor iedere $k\in\{1,\dots,n\}$ is de afbeelding $D:M_n(K)\to K$ gedefinieerd in Constructie 5.4.8 gelijk aan de determinantafbeelding. We kunnen dus de determinant van een matrix $A$ bepalen door te ontwikkelen naar de $k$-de rij, i.e.
+\[
+\det(A)=\sum_{i=1}^n (-1)^{k+i}a_{ki}\det(A_{ki}).
+\]
+\end{res}
+
+\begin{res}{Lemma}{5.4.10}
+Zij $A,B\in M_n(K)$ twee willekeurige $n\times n$-matrices. Noteer de kolommen van $A$ als $A_1,\dots,A_n$. Dan geldt:
+\begin{myenum}
+\item $\det A^t=\det A$.
+\item $\det(AB)=\det A\cdot\det B=\det(BA)$.
+\item $\det(A_1,\dots,\lambda A_i+\mu A_i',\dots,A_n)=\lambda\det(A_1,\dots,A_i,\dots,A_n)+\mu\det(A_1,\dots,A_i',\dots,A_n)$ voor alle $i\in\{1,\dots,n\}$, alle $\lambda,\mu\in K$, en alle $A_i,A_i'\in M_{n,1}(K)$.
+\item $\det(A_{i_1},\dots,A_{i_n})=\mathrm{sgn}(i_1,\dots,i_n)\det(A_1,\dots,A_n)$.
+\item Als twee willekeurige kolommen van $A$ gelijk zijn is $\det A=0$.
+\item $\det(A_1,\dots,A_n)=\det(A_1,\dots,A_i+\lambda A_k,\dots,A_n)$ voor alle $\lambda\in K$ en alle $k\ne i$.
+\item We kunnen de determinant van een matrix $A$ bepalen door te ontwikkelen naar de $k$-de kolom, i.e.
+\[
+\det(A)=\sum_{i=1}^n(-1)^{i+k}a_{ik}\det(A_{ik}).
+\]
+\end{myenum}
+De eigenschappen (iii)--(vi) zijn ook geldig voor rijen in plaats van kolommen.
+\end{res}
+
+\subsection{Inverteerbaarheid van matrices}
+\begin{res}{Stelling}{5.5.1}
+Zij $A\in M_n(K)$; dan zijn de volgende eigenschappen equivalent:
+\begin{enumerate}[label=(\alph*),leftmargin=1.8em,itemsep=1pt,topsep=1pt]
+\item $\det(A)\ne0$;
+\item $\mathrm{rk}(A)=n$;
+\item $A\in \mathsf{GL}_n(K)$.
+\end{enumerate}
+\end{res}
+
+\begin{res}{Stelling}{5.5.3}
+\begin{myenum}
+\item $ \forall A\in M_n(K): \quad A\,\mathrm{adj}(A)=\mathrm{adj}(A)A=(\det A)I_n$.
+\item $ \forall A\in \mathsf{GL}_n(K): \quad A^{-1}=(\det A)^{-1}\mathrm{adj}(A)$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{5.5.5}
+Zij $A\in M_{m,n}(K)$, en $k\le\min\{m,n\}$. Dan is $\mathrm{rk}(A)\ge k \iff \, \exists k\times k$-minor van $A \neq 0$.
+\end{res}
+
+%===================================================================
+\section{Lineaire operatoren}
+%===================================================================
+\subsection{De karakteristieke veelterm van een lineaire opeerator}
+\begin{res}{Lemma}{6.1.1}
+Zij $V$ een eindig-dimensionale $K$-vectorruimte en $f\in\mathrm{End}(V)$. Beschouw twee matrixvoorstellingen $A$ en $B$ van $f$ ten opzichte van verschillende basissen van $V$. Dan is $\det A=\det B$.
+\end{res}
+
+\begin{res}{Lemma}{6.1.4}
+Zij $V$ een eindig-dimensionale vectorruimte over een veld $K$, en zij $f\in\mathrm{End}_K(V)$ een lineaire operator, met matrixvoorstelling $A$ (tov een willekeurige basis voor $V$). Dan is
+\[
+\chi_f(x):=\det(xI_n-A)\in K[x]
+\]
+een monische veelterm van graad $n$ in de variabele $x$, en deze veelterm hangt niet af van de keuze van de basis voor \(V\).
+\end{res}
+
+\begin{res}{Lemma}{6.1.6}
+Zij $A=(a_{ij})\in M_n(K)$ met karakteristieke veelterm
+\[
+\chi_A(x)=x^n+c_{n-1}x^{n-1}+c_{n-2}x^{n-2}+\cdots+c_1x+c_0.
+\]
+Dan is $c_0=(-1)^n\det A$ en $c_{n-1}=-\sum_{i=1}^n a_{ii}$.
+\end{res}
+
+\subsection{Eigenwaarden en eigenvectoren}
+\begin{res}{Stelling}{6.2.5}
+\begin{myenum}
+\item Zij $A\in M_n(K)$. Een scalair $\lambda\in K$ is een eigenwaarde van $A$ \(\iff\) $\chi_A(\lambda)=\det(\lambda I_n-A)=0$.
+\item Zij $V$ een $n$-dimensionale $K$-vectorruimte en $f:V\to V$ een lineaire operator. Een scalair $\lambda\in K$ is een eigenwaarde van $f$ \(\iff\) $\chi_f(\lambda)=\det(\lambda\vec 1-f)=0$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{6.2.6}
+Een lineaire operator $f$ op een $n$-dimensionale $K$-vectorruimte $V$ (of een matrix $A\in M_n(K)$) heeft hoogstens $n$ eigenwaarden.
+\end{res}
+
+\subsection{Diagonaliseren van operatoren}
+\begin{res}{Stelling}{6.3.1}
+Een lineaire operator $f$ op een eindig-dimensionale $K$-vectorruimte heeft een diagonaalmatrix als matrixvoorstelling \(\iff\) $V$ een basis heeft bestaande uit eigenvectoren voor $f$.
+\end{res}
+
+\begin{res}{Lemma}{6.3.3}
+Een matrix $A\in M_n(K)$ is diagonaliseerbaar \(\iff \exists \,  P\in \mathsf{GL}_n(K) :  P^{-1}AP\) diagonaalmatrix is.
+\end{res}
+
+\begin{res}{Stelling}{6.3.4}
+Zij $V$ een $n$-dimensionale vectorruimte, en zij $f\in\mathrm{End}(V)$.
+\begin{myenum}
+\item De eigenvectoren van $f$ die horen bij verschillende eigenwaarden, zijn lineair onafhankelijk van elkaar.
+\item Als $f$ precies $n$ verschillende eigenwaarden heeft, dan is $f$ diagonaliseerbaar.
+\item Als $f$ diagonaliseerbaar is, dan is $V$ de directe som van de eigenruimten van $f$ horende bij de verschillende eigenwaarden van $f$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Lemma}{6.3.9}
+Zij $V$ een $K$-vectorruimte en $f:V\to V$ een lineaire operator met karakteristieke veelterm
+\[
+\chi_f(x)=\prod_{i=1}^t (x-\lambda_i)^{n_i}\quad\text{met } \lambda_1,\dots,\lambda_t\in K.
+\]
+$\forall i: \dim(\ker(\lambda_i\vec 1_V-f))\le n_i$. Anders gezegd, MM van een eigenwaarde \(\leq\) AM van deze eigenwaarde.
+\end{res}
+
+\begin{res}{Stelling}{6.3.10}
+Zij $V$ een $K$-vectorruimte en $f:V\to V$ een lineaire operator met karakteristieke veelterm
+\[
+\chi_f(x)=\prod_{i=1}^t (x-\lambda_i)^{n_i}\quad\text{met } \lambda_1,\dots,\lambda_t\in K.
+\]
+Zij $V_i=\ker(\lambda_i\vec 1_V-f)$ de eigenruimte behorende bij de eigenwaarde $\lambda_i, \forall i$.
+Dan is $f$ diagonaliseerbaar \(\iff \forall \lambda_i : \dim(V_i)=n_i\), of maw,
+ \(\iff \forall \lambda_i\) AM = MM.
+\end{res}
+
+%===================================================================
+\section{De minimaalveelterm, Cayley--Hamilton, dualiteit}
+%===================================================================
+
+
+%===================================================================
+\section{Inproduct-ruimten}
+%===================================================================
+\subsection{Definitie en eerste eigenschappen}
+\begin{res}{Lemma}{8.1.2}
+Zij $(V,\langle\cdot,\cdot\rangle)$ een inproduct-ruimte over $K=\mathbb R$ of $\mathbb C$. Dan gelden volgende eigenschappen, voor alle $u,v,w\in V$ en alle $\lambda,\mu\in K$.
+\begin{myenum}
+\item \textup{[bi-additiviteit]} $\langle u+v,w\rangle=\langle u,w\rangle+\langle v,w\rangle$ en $\langle u,v+w\rangle=\langle u,v\rangle+\langle u,w\rangle$;
+\item \textup{[sesqui-lineariteit]} $\langle\lambda v,\mu w\rangle=\lambda\overline\mu\cdot\langle v,w\rangle$;
+\item \textup{[homogeniteit van de norm]} $\|\lambda v\|=|\lambda|\cdot\|v\|$.
+\end{myenum}
+Bovendien is $\langle\cdot,\cdot\rangle$ niet-ontaard, i.e.\ als $u\in V$ zodanig is dat $\langle u,v\rangle=0, \,\forall v\in V$, dan is noodzakelijk $u=0$.
+\end{res}
+
+\begin{res}{Stelling}{8.1.7}
+\textup{(Ongelijkheid van Cauchy--Schwarz.)} Zij $V$ een inproduct-ruimte over $\mathbb R$ of $\mathbb C$, en $v,w\in V$ willekeurig. Dan geldt steeds
+\[
+|\langle v,w\rangle|\le\|v\|\cdot\|w\|,
+\]
+en de gelijkheid geldt  $ \iff v$ en $w$ lineair afhankelijk zijn.
+\end{res}
+
+\begin{res}{Gevolg}{8.1.8}
+\textup{(Driehoeksongelijkheid.)} Zij $(V,\langle\cdot,\cdot\rangle)$ een inproduct-ruimte over $\mathbb R$ of $\mathbb C$. Dan geldt  $\forall v,w\in V$ dat
+\[
+\|v+w\|\le\|v\|+\|w\|.
+\]
+\end{res}
+\subsection{Orthogonaliteit}
+\begin{res}{Lemma}{8.2.2}
+Het orthogonaal complement $W^\perp$ van een deelruimte $W\le V$ is een deelruimte van $V$.
+Er geldt dat $W\cap W^\perp=\{0\}$.
+\end{res}
+
+\begin{res}{Stelling}{8.2.4}
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$, stel van dimensie $d$. Dan bezit $V$ een orthonormale basis $\{b_1,\dots,b_d\}$.
+\end{res}
+
+\begin{res}{Lemma}{8.2.5}
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+\(\forall\) deelruimte $W\le V$ is het orthogonaal complement $W^\perp$ in $V$ een complementaire ruimte, i.e.\ $W\oplus W^\perp=V$. In het bijzonder is $\dim(W^\perp)=\dim V-\dim W$.
+\end{res}
+
+\begin{res}{Gevolg}{8.2.6}
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+\(\forall\) deelruimte $W\le V$ is $(W^\perp)^\perp=W$.
+\end{res}
+
+\begin{res}{Stelling}{8.2.7}
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een willekeurige inproduct-ruimte over $K$. Zij $v,w\in V$ met $v\perp w$. Dan is $\|v+w\|^2=\|v\|^2+\|w\|^2$.
+\end{res}
+
+\begin{res}{Lemma}{8.2.9}
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$. Beschouw een deelruimte $W\le V$.
+\begin{myenum}
+\item Voor alle $w\in W$ is $\mathrm{proj}_W(w)=w$; voor alle $u\in W^\perp$ is $\mathrm{proj}_W(u)=0$. In het bijzonder is de orthogonale projectie een projectie-operator in de betekenis van Definitie 3.1.7.
+\item Zij $\{w_1,\dots,w_k\}$ een orthonormale basis van $W$. Dan is
+\[
+\mathrm{proj}_W(v)=\sum_{j=1}^k \langle v,w_j\rangle w_j,\qquad \forall v \in V.
+\]
+\item Zij \(w \in W\) met \(w \neq 0\). Dan is
+\[  
+\operatorname{proj}_w (v) = \frac{\langle v , w \rangle}{\langle w,w\rangle}w, \qquad \forall v \in V.
+\]
+\end{myenum}
+\end{res}
+
+\begin{res}{Stelling}{8.2.10}
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+Beschouw een deelruimte $W\le V$ en $v\in V$. Dan geldt $\forall w\in W\setminus\{\mathrm{proj}_W(v)\}$ dat $\mathrm{dist}(v,w)>\mathrm{dist}(v,\mathrm{proj}_W(v))$.
+\end{res}
+\subsection{Gram-Schmidt orthonormalisatieproces}
+\begin{res}{Stelling}{8.3.1}
+\textup{(Gram--Schmidt orthonormalisatieproces.)} 
+Zij $K=\mathbb R$ of $\mathbb C$, en zij $(V,\langle\cdot,\cdot\rangle)$ een eindig-dimensionale inproduct-ruimte over $K$.
+Zij $W \le V$ met basis $\{v_1,\dots,v_d\}$.
+We defini\"eren nu, op recursieve wijze,
+\begin{align*}
+  b_1&=v_1,\\
+  b_2&=v_2-\mathrm{proj}_{b_1}(v_2),\\
+  b_3&=v_3-\mathrm{proj}_{b_1}(v_3)-\mathrm{proj}_{b_2}(v_3),\\
+  b_4&=v_4-\mathrm{proj}_{b_1}(v_4)-\mathrm{proj}_{b_2}(v_4)-\mathrm{proj}_{b_3}(v_4),\\
+  &\vdots\\
+  \quad b_d&=v_d-\sum_{i=1}^{d-1}\mathrm{proj}_{b_i}(v_d).
+\end{align*}
+
+Dan is $\{b_1,\dots,b_d\}$ een orthogonale basis voor $W$, en dus is
+\[
+\left\{\frac{b_1}{\|b_1\|},\dots,\frac{b_d}{\|b_d\|}\right\}
+\]
+een orthonormale basis voor $W$.
+\end{res}
+
+\begin{res}{Stelling}{8.3.2}
+Beschouw een inproduct-ruimte $(V,\langle\cdot,\cdot\rangle)$ over $K=\mathbb R$ of $\mathbb C$.
+Zij $\mathcal B=\{b_1,\dots,b_n\}$ en $\mathcal B'=\{b_1',\dots,b_n'\}$ twee orthonormale basissen van $V$,
+en zij $Q$ de transitiematrix van $\mathcal B$ naar $\mathcal B'$.
+Dan is $Q^t\overline{Q}=I_n$.
+\end{res}
+\subsection{Hermitische en symmetsiche operatoren}
+\begin{res}{Stelling}{8.4.2}
+Zij $f$ een hermitische operator op $\mathbb C^n$. Dan geldt:
+\begin{myenum}
+\item Alle eigenwaarden van $f$ zijn re\"eel.
+\item Eigenvectoren behorende bij twee verschillende eigenwaarden zijn orthogonaal.
+\item De operator $f$ is diagonaliseerbaar, en \(\exists\) steeds een orthonormale basis van eigenvectoren voor $f$.
+\end{myenum}
+\end{res}
+
+\begin{res}{Gevolg}{8.4.4}
+Beschouw de inproduct-ruimte $\mathbb R^n$ met het standaard inproduct $\langle v,w\rangle=v^tw$. Zij $A$ een symmetrische matrix in $M_n(\mathbb R)$.
+Alle eigenwaarden van $A$ zijn re\"eel en \(\exists\) een orthonormale basis van eigenvectoren voor $A$, dus $A$ is diagonaliseerbaar.
+Bovendien is de transitiematrix van de standaardbasis naar een orthonormale basis $\{b_1,\dots,b_n\}$ van eigenvectoren voor $A$ een orthogonale matrix $P$, en er geldt dat
+\[
+P^tAP=\mathrm{diag}(\lambda_1,\dots,\lambda_n),
+\]
+waarbij $\lambda_1,\dots,\lambda_n$ de eigenwaarden van $A$ zijn (die alle re\"eel zijn). De $i$-de kolom van $P$ bestaat precies uit de co\"ordinaten van de eigenvector $b_i$ ten opzichte van de standaardbasis.
+\end{res}
+\subsection{Lineaire groepen}
+\begin{res}{Stelling}{8.5.3}
+Elke matrix $A\in \mathsf{GL}_n(K)$ is van de vorm
+\(
+A=SD,
+\)
+met $S$ een product van elementaire matrices en $D=\mathrm{diag}(1,\dots,1,d)$ met $d=\det A$.
+\end{res}
+
+\begin{res}{Stelling}{8.5.5}
+Elke matrix in $\mathsf{SL}_n(K)$ is het product van elementaire matrices.
+\end{res}
+
+%===================================================================
+\section{De Euclidische ruimte $\mathbb R^n$}
+%===================================================================
+
+
+\end{document}

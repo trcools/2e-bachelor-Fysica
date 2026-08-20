@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{tikz-cd}
+
+\begin{document}
+
+
+
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+    V \arrow[r, "id_V"] \arrow[dd, "\gamma = \operatorname{co}_{\mathcal{C}}"] & V \arrow[r, "id_V"] \arrow[d, "\operatorname{co}_{\mathcal{B}'}"'] & V \arrow[d, "\operatorname{co}_{\mathcal{B}}"] \arrow[r, "id_V"] & V  \arrow[dd,"\gamma = \operatorname{co}_{\mathcal{C}}"] \\
+    & K^n_{\mathcal{B}'} \arrow[r, "Q"'] \arrow[d, "B'"'] & K^n_{\mathcal{B}} \arrow[d, "B"] & \\
+    K^n_{\mathcal{C}} \arrow[r, "I_n"] & K^n_{\mathcal{C}} \arrow[r, "I_n"] & K^n_{\mathcal{C}} \arrow[r, "I_n"] & K^n_{\mathcal{C}}
+\end{tikzcd}
+\]
+
+\end{document}
