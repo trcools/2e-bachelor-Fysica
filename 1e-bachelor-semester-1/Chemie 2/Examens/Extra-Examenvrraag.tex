@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{enumitem}
+\usepackage{parskip}
+
+\begin{document}
+
+\section*{Uitwerking Elektrochemische Cel (Zuurstofelektroden)}
+
+\subsection*{a. Halfreacties, Anode en Kathode}
+Uit het tabellenboekje volgen de twee standaardreductiehalfreacties bij $T = 298{,}15\,\text{K}$:
+\begin{align*}
+\text{Zuur milieu (pH 0):} \quad & \text{O}_2(g) + 4\text{H}^+(aq) + 4e^- \rightleftharpoons 2\text{H}_2\text{O}(l) && E^\circ_1 = +1{,}229\,\text{V} \\
+\text{Basisch milieu (pH 14):} \quad & \text{O}_2(g) + 2\text{H}_2\text{O}(l) + 4e^- \rightleftharpoons 4\text{OH}^-(aq) && E^\circ_2 = +0{,}401\,\text{V}
+\end{align*}
+
+In een galvanische cel vindt de reductie plaats aan de halfcel met de hoogste reductiepotentiaal:
+\begin{itemize}
+    \item \textbf{Kathode (reductie):} De zuurstofelektrode bij $\text{pH} = 0$ ($E^\circ = +1{,}229\,\text{V}$).
+    \item \textbf{Anode (oxidatie):} De zuurstofelektrode bij $\text{pH} = 14$ ($E^\circ = +0{,}401\,\text{V}$).
+\end{itemize}
+
+\subsection*{b \& c. Standaardcelspanning en het Verband met $K_w$}
+
+\paragraph{Standaardcelspanning ($\Delta E^\circ$):}
+\begin{equation*}
+\Delta E^\circ = E^\circ_{\text{kathode}} - E^\circ_{\text{anode}} = 1{,}229\,\text{V} - 0{,}401\,\text{V} = 0{,}828\,\text{V}
+\end{equation*}
+
+\paragraph{Verband met het waterprotonproduct ($K_w$):}
+De nettocelreactie wordt gevormd door de reductie aan de kathode op te tellen bij de ge-inverteerde oxidatiereactie aan de anode:
+\begin{align*}
+\text{Kathode:} \quad & \text{O}_2(g) + 4\text{H}^+(aq) + 4e^- \rightarrow 2\text{H}_2\text{O}(l) \\
+\text{Anode:} \quad & 4\text{OH}^-(aq) \rightarrow \text{O}_2(g) + 2\text{H}_2\text{O}(l) + 4e^- \\
+\hline
+\text{Netto:} \quad & 4\text{H}^+(aq) + 4\text{OH}^-(aq) \rightarrow 4\text{H}_2\text{O}(l) \quad \iff \quad \text{H}^+(aq) + \text{OH}^-(aq) \rightarrow \text{H}_2\text{O}(l)
+\end{align*}
+
+Dit is de omgekeerde reactie van de autoprotolyse van water ($\text{H}_2\text{O}(l) \rightleftharpoons \text{H}^+(aq) + \text{OH}^-(aq)$), verheven tot de vierde macht:
+\begin{equation*}
+K_{\text{cel}} = \frac{1}{(K_w)^4} = K_w^{-4}
+\end{equation*}
+
+Via de thermodynamische relatie $\Delta G^\circ = -n F \Delta E^\circ = -R T \ln K_{\text{cel}}$ met $n = 4$ elektronen:
+\begin{align*}
+-4 F \Delta E^\circ &= -R T \ln (K_w^{-4}) = 4 R T \ln K_w \\
+\Delta E^\circ &= -\frac{R T}{F} \ln K_w = -\frac{2{,}303 R T}{F} \log_{10} K_w
+\end{align*}
+Bij $T = 298{,}15\,\text{K}$ geldt $\frac{2{,}303 R T}{F} \approx 0{,}05916\,\text{V}$ en $K_w = 10^{-14}$:
+\begin{equation*}
+\Delta E^\circ = -0{,}05916 \times (-14) = 0{,}828\,\text{V}
+\end{equation*}
+
+\subsection*{d. Celspanning bij pH-verschuiving richting neutraal}
+
+Wanneer de pH aan beide elektroden met 1 eenheid verschuift richting neutraal:
+\begin{itemize}
+    \item Kathode: $\text{pH}$ verandert van $0 \rightarrow 1 \implies [\text{H}^+] = 10^{-1}\,\text{M}$
+    \item Anode: $\text{pH}$ verandert van $14 \rightarrow 13 \implies [\text{OH}^-] = 10^{-1}\,\text{M}$
+\end{itemize}
+
+\paragraph{Herberekening via de Nernst-vergelijking:}
+\begin{align*}
+E_{\text{kathode}} &= E^\circ_1 - \frac{0{,}05916}{4} \log \left( \frac{1}{[\text{H}^+]^4} \right) = E^\circ_1 + 0{,}05916 \log [\text{H}^+] \\
+&= 1{,}229\,\text{V} + 0{,}05916 \cdot (-1) = 1{,}1698\,\text{V} \\[1ex]
+E_{\text{anode}} &= E^\circ_2 - \frac{0{,}05916}{4} \log \left( [\text{OH}^-]^4 \right) = E^\circ_2 - 0{,}05916 \log [\text{OH}^-] \\
+&= 0{,}401\,\text{V} - 0{,}05916 \cdot (-1) = 0{,}4602\,\text{V}
+\end{align*}
+
+\paragraph{Nieuwe celspanning ($\Delta E$):}
+\begin{equation*}
+\Delta E = E_{\text{kathode}} - E_{\text{anode}} = 1{,}1698\,\text{V} - 0{,}4602\,\text{V} = 0{,}7096\,\text{V} \approx 0{,}710\,\text{V}
+\end{equation*}
+
+\end{document}
