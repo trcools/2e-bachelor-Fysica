@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{parskip, parselines, geometry}
+\begin{document}
+
+We starten met de evenwichtsvoorwaarde van de wet van Henry voor het oplossen van $\text{CO}_2$:
+\begin{equation}
+    [\text{H}_2\text{CO}_3] = K_H \cdot P_{\text{CO}_2}
+\end{equation}
+
+Vervolgens bekijken we de eerste zuurconstante $K_{a1}$:
+\begin{equation}
+    K_{a1} = \frac{[\text{H}^+][\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}
+\end{equation}
+
+Omdat het zwakke zuur in een $1:1$ verhouding dissocieert, geldt in evenwicht:
+\begin{equation}
+    [\text{H}^+] \approx [\text{HCO}_3^-]
+\end{equation}
+
+Door vergelijking (1) en (3) te substitueren in vergelijking (2), verkrijgen we:
+\begin{equation}
+    K_{a1} = \frac{[\text{H}^+]^2}{K_H \cdot P_{\text{CO}_2}}
+\end{equation}
+
+Herschrijf dit om de concentratie waterstofionen kwadratisch te isoleren:
+\begin{equation}
+    [\text{H}^+]^2 = K_{a1} \cdot K_H \cdot P_{\text{CO}_2}
+\end{equation}
+
+Neem nu de negatieve logaritme ($-\log$) van beide leden om de overstap naar de pH-schaal te maken:
+\begin{align*}
+    -\log\left([\text{H}^+]^2\right) &= -\log(K_{a1} \cdot K_H \cdot P_{\text{CO}_2}) \\
+    -2\log([\text{H}^+]) &= -\log(K_{a1} \cdot K_H \cdot P_{\text{CO}_2}) 
+\end{align*}
+
+Aangezien de definitie van pH gelijk is aan $-\log([\text{H}^+])$, kunnen we dit direct substitueren:
+\begin{align*}
+    2\text{pH} &= -\log(K_{a1} \cdot K_H \cdot P_{\text{CO}_2}) \\
+    \text{pH} &= -\frac{1}{2}\log(K_{a1} \cdot K_H \cdot P_{\text{CO}_2})
+\end{align*}
+
+\end{document}
