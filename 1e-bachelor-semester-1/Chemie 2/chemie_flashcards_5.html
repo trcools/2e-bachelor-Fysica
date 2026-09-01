@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Nomenclatuur flashcards — C1 t/m C5</title>
+<style>
+  :root{
+    --paper:#f2ede2;
+    --ink:#20241f;
+    --line:#c9c0a8;
+    --alkaan:#5b7553;
+    --alkeen:#b8892f;
+    --alkyn:#6b4e8a;
+    --haloalkaan:#8a5a44;
+    --alcohol:#4a6b8a;
+    --zuur:#8a4a5e;
+    --mono: 'Courier New', ui-monospace, monospace;
+    --serif: Georgia, 'Iowan Old Style', serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:28px 16px 60px;
+    min-height:100vh;
+  }
+  h1{
+    font-size:1.15rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    margin:0 0 4px;
+    font-weight:600;
+  }
+  .sub{
+    font-size:0.85rem;
+    color:#5a5647;
+    margin-bottom:20px;
+    text-align:center;
+    max-width:520px;
+  }
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin-bottom:18px;
+    max-width:640px;
+  }
+  .chip{
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--ink);
+    padding:6px 14px;
+    border-radius:20px;
+    font-family:var(--serif);
+    font-size:0.82rem;
+    cursor:pointer;
+    transition:background 0.15s, color 0.15s;
+  }
+  .chip[data-active="true"]{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+  .counter{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:#5a5647;
+    margin-bottom:14px;
+    letter-spacing:0.03em;
+  }
+  .stage{
+    perspective:1400px;
+    width:100%;
+    max-width:460px;
+  }
+  .card{
+    position:relative;
+    height:290px;
+    width:100%;
+    cursor:pointer;
+    transform-style:preserve-3d;
+    transition:transform 0.45s cubic-bezier(.4,.2,.2,1);
+  }
+  .card.flipped{ transform: rotateY(180deg); }
+  .face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    border:1px solid var(--ink);
+    border-radius:6px;
+    background:#fbf9f2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+    text-align:center;
+    box-shadow:3px 3px 0 var(--line);
+  }
+  .tag{
+    position:absolute;
+    top:10px;
+    left:12px;
+    font-family:var(--mono);
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    padding:2px 8px;
+    border-radius:10px;
+    color:#fff;
+  }
+  .idx{
+    position:absolute;
+    top:10px;
+    right:14px;
+    font-family:var(--mono);
+    font-size:0.7rem;
+    color:#9a9384;
+  }
+  .structwrap{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .structwrap svg{
+    max-width:100%;
+    max-height:180px;
+  }
+  .back .face{ transform: rotateY(180deg); }
+  .face.back{ transform: rotateY(180deg); }
+  .name{
+    font-size:1.3rem;
+    font-weight:600;
+  }
+  .trivial{
+    margin-top:8px;
+    font-size:0.88rem;
+    font-style:italic;
+    color:#5a5647;
+  }
+  .hint{
+    margin-top:10px;
+    font-size:0.72rem;
+    color:#9a9384;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .nav{
+    display:flex;
+    gap:14px;
+    margin-top:22px;
+  }
+  .nav button, .shuffle{
+    font-family:var(--serif);
+    font-size:0.9rem;
+    padding:9px 20px;
+    border-radius:6px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:var(--paper);
+    cursor:pointer;
+  }
+  .nav button:active, .shuffle:active{ transform:translateY(1px); }
+  .markrow{
+    display:flex;
+    gap:14px;
+    margin-top:16px;
+  }
+  .markrow button{
+    font-family:var(--serif);
+    font-size:0.95rem;
+    padding:10px 22px;
+    border-radius:6px;
+    cursor:pointer;
+  }
+  .markBtn-right{
+    border:1px solid #3f6b3f;
+    background:#e4efe0;
+    color:#2c4a2c;
+  }
+  .markBtn-wrong{
+    border:1px solid #8a4a44;
+    background:#f3e3e0;
+    color:#6b2f2a;
+  }
+  .score{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:#5a5647;
+    margin-top:16px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .score .ok{ color:#3f6b3f; }
+  .score .bad{ color:#8a4a44; }
+  .score button{
+    font-family:var(--serif);
+    font-size:0.78rem;
+    padding:5px 12px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .shuffle{
+    margin-top:14px;
+    background:transparent;
+    color:var(--ink);
+  }
+  @media (max-width:480px){
+    .card{ height:270px; }
+    .name{ font-size:1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Naamgeving flashcards</h1>
+<div class="sub">Alle 114 moleculen tot 5 koolstofatomen — alkanen · alkenen · alkynen · halogeenalkanen (F, Cl, Br, I) · alcoholen · carbonzuren. Voorkant: structuur (vertakkingen als zijtak getekend) — achterkant: naam.</div>
+
+<div class="controls" id="filters"></div>
+<div class="counter" id="counter"></div>
+
+<div class="stage">
+  <div class="card" id="card">
+    <div class="face front">
+      <div class="tag" id="tagFront"></div>
+      <div class="idx" id="idxFront"></div>
+      <div class="structwrap" id="structwrap"></div>
+      <div class="hint">tik om de naam te zien</div>
+    </div>
+    <div class="face back">
+      <div class="tag" id="tagBack"></div>
+      <div class="idx" id="idxBack"></div>
+      <div class="name" id="nameText"></div>
+      <div class="trivial" id="trivialText"></div>
+      <div class="hint">tik om terug te draaien</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <button id="prevBtn">&larr; vorige</button>
+  <button id="nextBtn">volgende &rarr;</button>
+</div>
+<div class="markrow" id="markRow" style="display:none;">
+  <button class="markBtn-wrong" id="wrongBtn">&#10007; fout</button>
+  <button class="markBtn-right" id="rightBtn">&#10003; juist</button>
+</div>
+<button class="shuffle" id="shuffleBtn">&#8635; door elkaar husselen</button>
+<div class="score" id="scoreRow">
+  <span><span class="ok" id="scoreOk">0</span> juist &middot; <span class="bad" id="scoreBad">0</span> fout</span>
+  <button id="reviewWrongBtn">herhaal fouten (<span id="wrongCount">0</span>)</button>
+  <button id="resetScoreBtn">reset score</button>
+</div>
+
+<script>
+/* ============ kleuren / labels per klasse ============ */
+const COLORS = {
+  alkaan: '#5b7553',
+  alkeen: '#b8892f',
+  alkyn: '#6b4e8a',
+  haloalkaan: '#8a5a44',
+  alcohol: '#4a6b8a',
+  zuur: '#8a4a5e'
+};
+const LABELS = {
+  alkaan: 'alkaan',
+  alkeen: 'alkeen',
+  alkyn: 'alkyn',
+  haloalkaan: 'halogeenalkaan',
+  alcohol: 'alcohol',
+  zuur: 'carbonzuur'
+};
+
+/* ============================================================
+   STRUCTUUR-RENDERER
+   Elke molecule wordt beschreven als een "chain" (hoofdketen,
+   links->rechts) + "bonds" (bindingsorde tussen opeenvolgende
+   ketenatomen: 1=enkel, 2=dubbel, 3=drievoudig).
+   Een keten-positie is ofwel:
+     - "plain"   : geen vertakking -> compacte inline tekst (CH3, CH2, CH, C...)
+     - "branches": draagt CH3-vertakking(en) en/of OH/halogeen -> expliciete
+                   C-knoop met loodrechte stokjes naar de substituenten
+     - "cooh"    : het carbonzuur-koolstofatoom -> expliciete C-knoop met
+                   dubbele binding naar O (boven) en OH (onder)
+   ============================================================ */
+
+function seg(chain, bonds, i){
+  const n = chain.length;
+  const leftBond  = i>0 ? bonds[i-1] : 0;
+  const rightBond = i<n-1 ? bonds[i] : 0;
+  const chainUsed = leftBond + rightBond;
+  const isLeftEnd = (i===0);
+  const isRightEnd = (i===n-1);
+  const el = chain[i];
+  if(el.cooh){
+    const remaining = 1 - chainUsed; // 0 of 1 (enkel methaanzuur heeft 1 H op de zuurgroep-C)
+    return {type:'cooh', chainUsed, remaining, isLeftEnd, isRightEnd, n};
+  }
+  const branches = el.branches || [];
+  if(branches.length>0){
+    const nonChainValence = 4 - chainUsed;
+    const remainingH = nonChainValence - branches.length;
+    return {type:'explicit', branches, remainingH, chainUsed, isLeftEnd, isRightEnd, n};
+  }
+  const remainingH = 4 - chainUsed;
+  return {type:'inline', remainingH, isLeftEnd, isRightEnd, n};
+}
+
+function inlineLabel(remainingH, isLeftEnd){
+  const subs = {0:'',1:'',2:'\u2082',3:'\u2083',4:'\u2084'};
+  const hpart = remainingH>0 ? ('H'+subs[remainingH]) : '';
+  return isLeftEnd ? (hpart+'C') : ('C'+hpart);
+}
+
+function labelHalfWidth(label){
+  // ruwe schatting van tekstbreedte voor het plaatsen van bindingslijnen
+  const visibleLen = label.replace(/[\u2080-\u2089]/g,'x').length;
+  return 7 + visibleLen*7.5;
+}
+
+function directionsFor(segData){
+  if(segData.n===1) return ['up','down','left','right'];
+  if(segData.isLeftEnd) return ['up','down','left'];
+  if(segData.isRightEnd) return ['up','down','right'];
+  return ['up','down'];
+}
+
+function buildSVG(spec){
+  const chain = spec.chain, bonds = spec.bonds;
+  const n = chain.length;
+  const segs = chain.map((_,i)=>seg(chain,bonds,i));
+
+  const SPACING = 95, Y_MID = 110, H = 220;
+  let LEFT_PAD, WIDTH;
+  if(n===1){ LEFT_PAD = 110; WIDTH = 220; }
+  else { LEFT_PAD = 80; WIDTH = 80 + (n-1)*SPACING + 80; }
+  const x = segs.map((_,i)=> LEFT_PAD + i*SPACING);
+
+  let svg = '';
+  const halfW = []; // voor bindingslijnen
+
+  segs.forEach((s,i)=>{
+    const cx = x[i];
+    if(s.type==='inline'){
+      const label = inlineLabel(s.remainingH, s.isLeftEnd);
+      halfW[i] = labelHalfWidth(label);
+      svg += `<text x="${cx}" y="${Y_MID+6}" text-anchor="middle" class="atom">${label}</text>`;
+    } else if(s.type==='explicit'){
+      halfW[i] = 11;
+      svg += `<text x="${cx}" y="${Y_MID+6}" text-anchor="middle" class="atom">C</text>`;
+      const items = [...s.branches, ...Array(Math.max(0,s.remainingH)).fill('H')];
+      const dirs = directionsFor(s);
+      items.forEach((label,k)=>{
+        svg += drawStub(cx, Y_MID, dirs[k], label, 1);
+      });
+    } else if(s.type==='cooh'){
+      halfW[i] = 11;
+      svg += `<text x="${cx}" y="${Y_MID+6}" text-anchor="middle" class="atom">C</text>`;
+      const dirs = directionsFor(s);
+      svg += drawStub(cx, Y_MID, dirs[0], 'O', 2);
+      svg += drawStub(cx, Y_MID, dirs[1], 'OH', 1);
+      if(s.remaining>0){
+        svg += drawStub(cx, Y_MID, dirs[2], 'H', 1);
+      }
+    }
+  });
+
+  // bindingslijnen tussen opeenvolgende ketenposities
+  for(let i=0;i<n-1;i++){
+    const order = bonds[i];
+    const x1 = x[i] + halfW[i] + 2;
+    const x2 = x[i+1] - halfW[i+1] - 2;
+    svg += drawBond(x1, x2, Y_MID, order, 'h');
+  }
+
+  return `<svg viewBox="0 0 ${WIDTH} ${H}" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      .atom{ font-family:'Courier New', ui-monospace, monospace; font-size:19px; fill:#20241f; }
+      .lbl{ font-family:'Courier New', ui-monospace, monospace; font-size:16px; fill:#20241f; }
+      .bond{ stroke:#20241f; stroke-width:2; }
+    </style>
+    ${svg}
+  </svg>`;
+}
+
+function drawStub(cx, cy, dir, label, order){
+  // tekent een stokje (enkel/dubbel) van de centrale C naar een substituent-label
+  let lx, ly, x1,y1,x2,y2, anchor='middle';
+  if(dir==='up'){ x1=cx; y1=cy-13; x2=cx; y2=cy-36; lx=cx; ly=cy-46; }
+  if(dir==='down'){ x1=cx; y1=cy+13; x2=cx; y2=cy+36; lx=cx; ly=cy+54; }
+  if(dir==='left'){ x1=cx-11; y1=cy; x2=cx-34; y2=cy; lx=cx-40; ly=cy+6; anchor='end'; }
+  if(dir==='right'){ x1=cx+11; y1=cy; x2=cx+34; y2=cy; lx=cx+40; ly=cy+6; anchor='start'; }
+  const vertical = (dir==='up'||dir==='down');
+  let line = drawBond(vertical?y1:x1, vertical?y2:x2, vertical?cx:cy, order, vertical?'v':'h');
+  return line + `<text x="${lx}" y="${ly}" text-anchor="${anchor}" class="lbl">${label}</text>`;
+}
+
+function drawBond(a1, a2, fixedCoord, order, orientation){
+  // orientation 'h': a1/a2 zijn x-coördinaten, fixedCoord is y
+  // orientation 'v': a1/a2 zijn y-coördinaten, fixedCoord is x
+  const offsets = order===1 ? [0] : order===2 ? [-3,3] : [-5,0,5];
+  let out = '';
+  offsets.forEach(off=>{
+    if(orientation==='h'){
+      out += `<line x1="${a1}" y1="${fixedCoord+off}" x2="${a2}" y2="${fixedCoord+off}" class="bond"/>`;
+    } else {
+      out += `<line x1="${fixedCoord+off}" y1="${a1}" x2="${fixedCoord+off}" y2="${a2}" class="bond"/>`;
+    }
+  });
+  return out;
+}
+
+/* ============================================================
+   DATA
+   ============================================================ */
+
+// --- Alkanen (8) ---
+const alkanen = [
+  {struct:{chain:[{}], bonds:[]}, n:'methaan'},
+  {struct:{chain:[{},{}], bonds:[1]}, n:'ethaan'},
+  {struct:{chain:[{},{},{}], bonds:[1,1]}, n:'propaan'},
+  {struct:{chain:[{},{},{},{}], bonds:[1,1,1]}, n:'butaan'},
+  {struct:{chain:[{},{branches:['CH3']},{}], bonds:[1,1]}, n:'2-methylpropaan', t:'isobutaan'},
+  {struct:{chain:[{},{},{},{},{}], bonds:[1,1,1,1]}, n:'pentaan'},
+  {struct:{chain:[{},{branches:['CH3']},{},{}], bonds:[1,1,1]}, n:'2-methylbutaan', t:'isopentaan'},
+  {struct:{chain:[{},{branches:['CH3','CH3']},{}], bonds:[1,1]}, n:'2,2-dimethylpropaan', t:'neopentaan'}
+].map(x=>({...x, cat:'alkaan'}));
+
+// --- Alkenen (10) ---
+const alkenen = [
+  {struct:{chain:[{},{}], bonds:[2]}, n:'etheen'},
+  {struct:{chain:[{},{},{}], bonds:[2,1]}, n:'propeen'},
+  {struct:{chain:[{},{},{},{}], bonds:[2,1,1]}, n:'but-1-een'},
+  {struct:{chain:[{},{},{},{}], bonds:[1,2,1]}, n:'but-2-een'},
+  {struct:{chain:[{},{branches:['CH3']},{}], bonds:[2,1]}, n:'2-methylpropeen'},
+  {struct:{chain:[{},{},{},{},{}], bonds:[2,1,1,1]}, n:'pent-1-een'},
+  {struct:{chain:[{},{},{},{},{}], bonds:[1,2,1,1]}, n:'pent-2-een'},
+  {struct:{chain:[{},{branches:['CH3']},{},{}], bonds:[2,1,1]}, n:'2-methylbut-1-een'},
+  {struct:{chain:[{},{},{branches:['CH3']},{}], bonds:[2,1,1]}, n:'3-methylbut-1-een'},
+  {struct:{chain:[{},{},{branches:['CH3']},{}], bonds:[1,2,1]}, n:'2-methylbut-2-een'}
+].map(x=>({...x, cat:'alkeen'}));
+
+// --- Alkynen (7) ---
+const alkynen = [
+  {struct:{chain:[{},{}], bonds:[3]}, n:'ethyn'},
+  {struct:{chain:[{},{},{}], bonds:[3,1]}, n:'propyn'},
+  {struct:{chain:[{},{},{},{}], bonds:[3,1,1]}, n:'but-1-yn'},
+  {struct:{chain:[{},{},{},{}], bonds:[1,3,1]}, n:'but-2-yn'},
+  {struct:{chain:[{},{},{},{},{}], bonds:[3,1,1,1]}, n:'pent-1-yn'},
+  {struct:{chain:[{},{},{},{},{}], bonds:[1,3,1,1]}, n:'pent-2-yn'},
+  {struct:{chain:[{},{},{branches:['CH3']},{}], bonds:[3,1,1]}, n:'3-methylbut-1-yn'}
+].map(x=>({...x, cat:'alkyn'}));
+
+// --- Carbonzuren (9) ---
+const zuren = [
+  {struct:{chain:[{cooh:true}], bonds:[]}, n:'methaanzuur', t:'mierenzuur'},
+  {struct:{chain:[{cooh:true},{}], bonds:[1]}, n:'ethaanzuur', t:'azijnzuur'},
+  {struct:{chain:[{cooh:true},{},{}], bonds:[1,1]}, n:'propaanzuur'},
+  {struct:{chain:[{cooh:true},{},{},{}], bonds:[1,1,1]}, n:'butaanzuur'},
+  {struct:{chain:[{cooh:true},{branches:['CH3']},{}], bonds:[1,1]}, n:'2-methylpropaanzuur'},
+  {struct:{chain:[{cooh:true},{},{},{},{}], bonds:[1,1,1,1]}, n:'pentaanzuur'},
+  {struct:{chain:[{cooh:true},{branches:['CH3']},{},{}], bonds:[1,1,1]}, n:'2-methylbutaanzuur'},
+  {struct:{chain:[{cooh:true},{},{branches:['CH3']},{}], bonds:[1,1,1]}, n:'3-methylbutaanzuur'},
+  {struct:{chain:[{cooh:true},{branches:['CH3','CH3']},{}], bonds:[1,1]}, n:'2,2-dimethylpropaanzuur'}
+].map(x=>({...x, cat:'zuur'}));
+
+// --- 16 basis-skeletten voor de substitutieplaats (alcoholen & halogeenalkanen) ---
+const skeletons = [
+  {chain:[{sub:true}], bonds:[]},
+  {chain:[{},{sub:true}], bonds:[1]},
+  {chain:[{sub:true},{},{}], bonds:[1,1]},
+  {chain:[{},{sub:true},{}], bonds:[1,1]},
+  {chain:[{sub:true},{},{},{}], bonds:[1,1,1]},
+  {chain:[{},{sub:true},{},{}], bonds:[1,1,1]},
+  {chain:[{sub:true},{branches:['CH3']},{}], bonds:[1,1]},
+  {chain:[{},{branches:['CH3'],sub:true},{}], bonds:[1,1]},
+  {chain:[{sub:true},{},{},{},{}], bonds:[1,1,1,1]},
+  {chain:[{},{sub:true},{},{},{}], bonds:[1,1,1,1]},
+  {chain:[{},{},{sub:true},{},{}], bonds:[1,1,1,1]},
+  {chain:[{sub:true},{branches:['CH3']},{},{}], bonds:[1,1,1]},
+  {chain:[{sub:true},{},{branches:['CH3']},{}], bonds:[1,1,1]},
+  {chain:[{},{},{branches:['CH3'],sub:true},{}], bonds:[1,1,1]},
+  {chain:[{},{sub:true},{branches:['CH3']},{}], bonds:[1,1,1]},
+  {chain:[{sub:true},{branches:['CH3','CH3']},{}], bonds:[1,1]}
+];
+
+function resolveSkeleton(sk, subLabel){
+  return {
+    chain: sk.chain.map(pos=>{
+      const branches = pos.branches ? [...pos.branches] : [];
+      if(pos.sub) branches.push(subLabel);
+      return {branches};
+    }),
+    bonds: sk.bonds
+  };
+}
+
+// --- Alcoholen (16) ---
+const alcoholNames = [
+  {n:'methanol'}, {n:'ethanol'}, {n:'propaan-1-ol'}, {n:'propaan-2-ol', t:'isopropanol'},
+  {n:'butaan-1-ol'}, {n:'butaan-2-ol'}, {n:'2-methylpropaan-1-ol', t:'isobutanol'}, {n:'2-methylpropaan-2-ol', t:'tert-butanol'},
+  {n:'pentaan-1-ol'}, {n:'pentaan-2-ol'}, {n:'pentaan-3-ol'}, {n:'2-methylbutaan-1-ol'},
+  {n:'3-methylbutaan-1-ol', t:'isopentanol'}, {n:'2-methylbutaan-2-ol', t:'tert-amylalcohol'},
+  {n:'3-methylbutaan-2-ol'}, {n:'2,2-dimethylpropaan-1-ol', t:'neopentylalcohol'}
+];
+const alcoholen = skeletons.map((sk,i)=>({
+  struct: resolveSkeleton(sk, 'OH'),
+  n: alcoholNames[i].n,
+  t: alcoholNames[i].t,
+  cat: 'alcohol'
+}));
+
+// --- Halogeenalkanen (64 = 16 posities x 4 halogenen) ---
+const haloNameTemplates = [
+  '{H}methaan', '{H}ethaan', '1-{H}propaan', '2-{H}propaan',
+  '1-{H}butaan', '2-{H}butaan', '1-{H}-2-methylpropaan', '2-{H}-2-methylpropaan',
+  '1-{H}pentaan', '2-{H}pentaan', '3-{H}pentaan', '1-{H}-2-methylbutaan',
+  '1-{H}-3-methylbutaan', '2-{H}-2-methylbutaan', '2-{H}-3-methylbutaan', '1-{H}-2,2-dimethylpropaan'
+];
+const halogenen = [
+  {sym:'F', pref:'fluor'}, {sym:'Cl', pref:'chloor'}, {sym:'Br', pref:'broom'}, {sym:'I', pref:'jood'}
+];
+const halogeenalkanen = [];
+skeletons.forEach((sk,i)=>{
+  halogenen.forEach(h=>{
+    halogeenalkanen.push({
+      struct: resolveSkeleton(sk, h.sym),
+      n: haloNameTemplates[i].replace('{H}', h.pref),
+      cat: 'haloalkaan'
+    });
+  });
+});
+
+let deck = [...alkanen, ...alkenen, ...alkynen, ...halogeenalkanen, ...alcoholen, ...zuren];
+let activeFilter = 'alle';
+let order = deck.map((_,i)=>i);
+let pos = 0;
+let flipped = false;
+let reviewMode = false;
+
+const scoreTally = { ok:0, bad:0 };
+const wrongSet = new Set(); // deck-indices die de laatste keer "fout" gemarkeerd werden
+
+function currentDeckIndices(){
+  if(activeFilter==='alle') return deck.map((_,i)=>i);
+  return deck.map((_,i)=>i).filter(i=>deck[i].cat===activeFilter);
+}
+
+function buildFilters(){
+  const wrap = document.getElementById('filters');
+  const cats = [['alle','alles'],['alkaan','alkanen'],['alkeen','alkenen'],['alkyn','alkynen'],['haloalkaan','halogeenalkanen'],['alcohol','alcoholen'],['zuur','carbonzuren']];
+  cats.forEach(([key,label])=>{
+    const b = document.createElement('button');
+    b.className='chip';
+    b.textContent = label + (key==='alle' ? ` (${deck.length})` : ` (${deck.filter(d=>d.cat===key).length})`);
+    b.dataset.key = key;
+    b.dataset.active = key==='alle' ? 'true':'false';
+    b.onclick = ()=>{
+      activeFilter = key;
+      reviewMode = false;
+      [...wrap.children].forEach(c=>c.dataset.active = (c.dataset.key===key) ? 'true':'false');
+      order = currentDeckIndices();
+      shuffleOrder(order);
+      pos = 0;
+      flipped = false;
+      render();
+    };
+    wrap.appendChild(b);
+  });
+}
+
+function shuffleOrder(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+}
+
+function render(){
+  if(order.length===0){ order = currentDeckIndices(); }
+  const item = deck[order[pos]];
+  document.getElementById('structwrap').innerHTML = buildSVG(item.struct);
+  document.getElementById('nameText').textContent = item.n;
+  document.getElementById('trivialText').textContent = item.t ? `(triviale naam: ${item.t})` : '';
+  const tagF = document.getElementById('tagFront');
+  const tagB = document.getElementById('tagBack');
+  tagF.textContent = LABELS[item.cat];
+  tagB.textContent = LABELS[item.cat];
+  tagF.style.background = COLORS[item.cat];
+  tagB.style.background = COLORS[item.cat];
+  const hideTag = (activeFilter==='alle');
+  tagF.style.display = hideTag ? 'none' : 'block';
+  tagB.style.display = hideTag ? 'none' : 'block';
+  document.getElementById('idxFront').textContent = (pos+1)+' / '+order.length;
+  document.getElementById('idxBack').textContent = (pos+1)+' / '+order.length;
+  document.getElementById('counter').textContent = reviewMode
+    ? `herhaling fouten — kaart ${pos+1} van ${order.length}`
+    : `kaart ${pos+1} van ${order.length}`;
+  document.getElementById('card').classList.toggle('flipped', flipped);
+  document.getElementById('markRow').style.display = flipped ? 'flex' : 'none';
+  updateScoreUI();
+}
+
+function updateScoreUI(){
+  document.getElementById('scoreOk').textContent = scoreTally.ok;
+  document.getElementById('scoreBad').textContent = scoreTally.bad;
+  document.getElementById('wrongCount').textContent = wrongSet.size;
+}
+
+function goNext(){
+  pos = (pos+1) % order.length;
+  flipped = false;
+  render();
+}
+
+document.getElementById('card').onclick = ()=>{
+  flipped = !flipped;
+  document.getElementById('card').classList.toggle('flipped', flipped);
+  document.getElementById('markRow').style.display = flipped ? 'flex' : 'none';
+};
+document.getElementById('nextBtn').onclick = goNext;
+document.getElementById('prevBtn').onclick = ()=>{
+  pos = (pos-1+order.length) % order.length;
+  flipped = false;
+  render();
+};
+document.getElementById('shuffleBtn').onclick = ()=>{
+  shuffleOrder(order);
+  pos = 0;
+  flipped = false;
+  render();
+};
+document.getElementById('rightBtn').onclick = ()=>{
+  const dIdx = order[pos];
+  scoreTally.ok++;
+  wrongSet.delete(dIdx);
+  goNext();
+};
+document.getElementById('wrongBtn').onclick = ()=>{
+  const dIdx = order[pos];
+  scoreTally.bad++;
+  wrongSet.add(dIdx);
+  goNext();
+};
+document.getElementById('reviewWrongBtn').onclick = ()=>{
+  if(wrongSet.size===0) return;
+  reviewMode = true;
+  order = [...wrongSet];
+  shuffleOrder(order);
+  pos = 0;
+  flipped = false;
+  render();
+};
+document.getElementById('resetScoreBtn').onclick = ()=>{
+  scoreTally.ok = 0;
+  scoreTally.bad = 0;
+  wrongSet.clear();
+  updateScoreUI();
+};
+
+buildFilters();
+order = currentDeckIndices();
+shuffleOrder(order);
+render();
+</script>
+</body>
+</html>
