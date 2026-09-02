@@ -1,0 +1,241 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[dutch]{babel}
+\usepackage{amsmath, amssymb, geometry, booktabs, parskip}
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+
+
+\section{Thermodynamische Afleidingen: Chemisch Evenwicht}
+
+\subsection{ Voorwaarde voor Chemisch Evenwicht}
+Beschouw een algemene chemische reactie:
+\begin{equation}
+    \sum_{R} \nu_R R \rightleftharpoons \sum_{P} \nu_P P
+\end{equation}
+De verandering van de Gibbs vrije energie $dG$ bij constante druk $P$ en temperatuur $T$ wordt gegeven door de som van de chemische potentialen $\mu_i$:
+\begin{equation}
+    dG = \sum_{i} \mu_i dn_i
+\end{equation}
+Met de vorderingsgraad $\xi$ geldt $dn_i = \nu_i d\xi$ (waarbij de stoichiometrische coëfficiënt $\nu_i$ positief is voor producten en negatief voor reagentia). Dit leidt tot:
+\begin{equation}
+    \left( \frac{\partial G}{\partial \xi} \right)_{T,P} = \Delta_{\text{r}}G = \sum_{i} \nu_i \mu_i \implies dG = \Delta_r G d \xi
+\end{equation}
+In een thermodynamische \textbf{evenwichtstoestand } bereikt de vrije enthalpie een minimum, wat betekent dat de afgeleide nul wordt: $\left( \frac{\partial G}{\partial \xi} \right)_{T,P} = 0$.
+
+\subsection{De Evenwichtsconstante $K^\circ$}
+De chemische potentiaal van een component in een ideaal mengsel is gerelateerd aan zijn standaard chemische potentiaal $\mu_i^\circ$ en zijn activiteit $a_i$:
+\begin{equation}
+    \mu_i = \mu_i^\circ + RT \ln a_i
+\end{equation}
+Substitutie van deze uitdrukking in de evenwichtsvoorwaarde levert:
+\begin{align}
+    0 &= \sum_{i} \nu_i \left( \mu_i^\circ + RT \ln a_i \right) \\
+    0 &= \sum_{i} \nu_i \mu_i^\circ + RT \sum_{i} \nu_i \ln a_i \\
+    0 &= \Delta_{\text{r}}G^\circ + RT \ln \left( \prod_{i} a_i^{\nu_i} \right)
+\end{align}
+Hierbij definieert de term $\prod_{i} a_i^{\nu_i}$ de thermodynamische evenwichtsconstante $K^\circ$. We kunnen dit herschrijven tot de fundamentele relatie:
+\begin{equation}
+    \Delta_{\text{r}}G^\circ = -RT \ln K^\circ
+\end{equation}
+
+\subsection{ Relatie tussen het Drukmodel ($K_p^\circ$) en Molfractiemodel ($K_x$)}
+Voor ideale gassen wordt de activiteit gedefinieerd als $a_i = \frac{p_i}{P^\circ}$. Volgens de wet van Dalton is de partiële druk gerelateerd aan de molfractie via $p_i = x_i P_{\text{tot}}$. We werken $K_p^\circ$ uit:
+\begin{align}
+    K_p^\circ &= \prod_{i} \left( \frac{p_i}{P^\circ} \right)^{\nu_i} \\
+              &= \prod_{i} \left( \frac{x_i P_{\text{tot}}}{P^\circ} \right)^{\nu_i} \\
+              &= \left( \prod_{i} x_i^{\nu_i} \right) \left( \frac{P_{\text{tot}}}{P^\circ} \right)^{\sum \nu_i}
+\end{align}
+Door $K_x = \prod_{i} x_i^{\nu_i}$ te definiëren en het verschil in gasmollen $\Delta \nu = \sum_P \nu_P - \sum_R \nu_R$ in te voeren, verkrijgen we de drukcorrectie-formule:
+\begin{equation}
+    K_x = K_p^\circ \left( \frac{P_{\text{tot}}}{P^\circ} \right)^{-\Delta \nu}
+\end{equation}
+
+\subsection{ Temperatuursafhankelijkheid: Van 't Hoff-vergelijking}
+Om de invloed van de temperatuur op de evenwichtsconstante analytisch te bepalen, vertrekken we vanuit de Gibbs-Helmholtz vergelijking:
+\begin{equation}
+    \left( \frac{\partial (\Delta_{\text{r}}G^\circ / T)}{\partial T} \right)_P = -\frac{\Delta_{\text{r}}H^\circ}{T^2}
+\end{equation}
+Substitueer de evenwichtsrelatie $\Delta_{\text{r}}G^\circ / T = -R \ln K^\circ$ in de afgeleide:
+\begin{align}
+    \left( \frac{\partial (-R \ln K^\circ)}{\partial T} \right)_P &= -\frac{\Delta_{\text{r}}H^\circ}{T^2} \\
+    \frac{\partial \ln K^\circ}{\partial T} &= \frac{\Delta_{\text{r}}H^\circ}{RT^2}
+\end{align}
+Door deze differentiaalvergelijking te integreren over een temperatuursinterval $[T_1, T_2]$, onder de \textbf{benadering dat de reactie-enthalpie $\Delta_{\text{r}}H^\circ$ nagenoeg constant blijft} ( warmtecapaciteit = cst), verkrijgen we de geïntegreerde vorm:
+\begin{equation}
+    \boxed{
+    \ln \left( \frac{K^\circ(T_2)}{K^\circ(T_1)} \right) = -\frac{\Delta_{\text{r}}H^\circ}{R} \left( \frac{1}{T_2} - \frac{1}{T_1} \right)
+    }
+\end{equation}
+
+
+\section{Uitgewerkte Voorbeelden: Chemisch Evenwicht}
+
+\subsection{Voorbeeld 1: Vorming van Stikstofmonoxide (NO)}
+
+Dit voorbeeld illustreert een evenwichtsreactie waarbij het aantal mol gas in het systeem niet verandert ($\Delta \nu = 0$). Dit heeft een fundamentele invloed op de drukafhankelijkheid van het systeem.
+
+\subsubsection{ Reactievergelijking en Stoichiometrie}
+De directe synthese van stikstofmonoxide uit stikstofgas en zuurstofgas luidt:
+\begin{equation}
+    \text{N}_2(g) + \text{O}_2(g) \rightleftharpoons 2\text{NO}(g)
+\end{equation}
+Het verschil in het stoichiometrisch aantal mol gas is $\Delta \nu = 2 - (1 + 1) = 0$.
+
+\subsubsection{ Drukafhankelijkheid}
+De algemene vergelijking die het verband legt tussen de molfractie-evenwichtsconstante $K_x$ en de thermodynamische evenwichtsconstante $K_p^\circ$ is:
+\begin{equation}
+    K_x = K_p^\circ \left( \frac{P_{\text{tot}}}{P^\circ} \right)^{-\Delta \nu}
+\end{equation}
+Aangezien $\Delta \nu = 0$, vereenvoudigt dit onmiddellijk tot:
+\begin{equation}
+    K_x = K_p^\circ \left( \frac{P_{\text{tot}}}{P^\circ} \right)^{0} = K_p^\circ
+\end{equation}
+\textbf{Conclusie:} Het liggingspunt van dit evenwicht is volledig \textit{onafhankelijk van de totale druk}. Compressie of expansie van het systeem zal de omzettingsgraad niet beïnvloeden, wat perfect aansluit bij het Principe van Le Chatelier.
+
+\subsubsection{ Massabalans in functie van omzettingsgraad $\alpha$}
+Beschouw een stoichiometrisch beginmengsel van 1 mol $\text{N}_2$ en 1 mol $\text{O}_2$. Zij $\alpha$ de omzettingsgraad (de fractie van de reagentia die wegreageert).
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lccc}
+        \toprule
+        & $\text{N}_2$ & $\text{O}_2$ & $\text{NO}$ \\
+        \midrule
+        Begin ($n_0$) & 1 & 1 & 0 \\
+        Verandering ($\Delta n$) & $-\alpha$ & $-\alpha$ & $+2\alpha$ \\
+        Evenwicht ($n_{eq}$) & $1-\alpha$ & $1-\alpha$ & $2\alpha$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Het totale aantal mol gas bij evenwicht blijft ongewijzigd:
+\begin{equation}
+    n_{\text{tot}} = (1-\alpha) + (1-\alpha) + 2\alpha = 2 \text{ mol}
+\end{equation}
+De molfracties in het evenwichtsmengsel worden hierdoor:
+\begin{equation}
+    x_{\text{N}_2} = \frac{1-\alpha}{2}, \quad x_{\text{O}_2} = \frac{1-\alpha}{2}, \quad x_{\text{NO}} = \frac{2\alpha}{2} = \alpha
+\end{equation}
+
+\subsubsection{ Relatie tussen K en $\alpha$}
+Door deze molfracties in te vullen in de uitdrukking voor de evenwichtsconstante $K_x$ verkrijgen we:
+\begin{align}
+    K_x &= \frac{x_{\text{NO}}^2}{x_{\text{N}_2} \cdot x_{\text{O}_2}} \\
+        &= \frac{\alpha^2}{\left(\frac{1-\alpha}{2}\right) \cdot \left(\frac{1-\alpha}{2}\right)} \\
+        &= \frac{4\alpha^2}{(1-\alpha)^2}
+\end{align}
+Omdat $K_x = K_p^\circ$, kunnen we de relatie oplossen naar $\alpha$:
+\begin{equation}
+    K_p^\circ = \left( \frac{2\alpha}{1-\alpha} \right)^2 \implies \sqrt{K_p^\circ} = \frac{2\alpha}{1-\alpha}
+\end{equation}
+Het isoleren van $\alpha$ levert de exacte analytische uitdrukking:
+\begin{align}
+    (1-\alpha) \sqrt{K_p^\circ} &= 2\alpha \\
+    \sqrt{K_p^\circ} &= \alpha \left( 2 + \sqrt{K_p^\circ} \right) \\
+    \alpha &= \frac{\sqrt{K_p^\circ}}{2 + \sqrt{K_p^\circ}}
+\end{align}
+\subsubsection{ Temperatuursafhankelijkheid (Thermodynamische Context)}
+De synthese van NO is een uitgesproken \textbf{endotherme} reactie ($\Delta_r H^\circ > 0$) ten gevolge van de bijzonder hoge activeringsenergie en bindingsenthalpie van de stikstof-stikstof drievoudige binding ($\text{N}\equiv\text{N}$). Conform de vergelijking van Van 't Hoff stijgt $K_p^\circ$ (en dus ook $\alpha$) sterk naarmate de temperatuur toeneemt. Dit thermodynamische principe verklaart waarom NO primair gevormd wordt bij zeer hoge temperaturen, zoals in verbrandingsmotoren.
+
+\subsection{Voorbeeld 2: Ozonvorming uit Zuurstof}
+We bestuderen de vorming van ozon uit zuurstofgas:
+\begin{equation}
+    3\text{O}_2(g) \rightleftharpoons 2\text{O}_3(g)
+\end{equation}
+Het verschil in het aantal mol gas bedraagt $\Delta \nu = 2 - 3 = -1$.
+De relatie tussen de molfractie-evenwichtsconstante $K_x$ en de drukafhankelijke constante $K_p^\circ$ is:
+\begin{equation}
+    K_x = K_p^\circ \left( \frac{P}{P^\circ} \right)^{-\Delta \nu} = K_p^\circ \left( \frac{P}{P^\circ} \right)^{1}
+\end{equation}
+Omdat er slechts twee componenten zijn, geldt voor de molfracties $x_{\text{O}_2} + x_{\text{O}_3} = 1$. Het reactiequotiënt $Q_x$ in evenwicht is:
+\begin{equation}
+    K_x = \frac{x_{\text{O}_3}^2}{x_{\text{O}_2}^3} = \frac{x_{\text{O}_3}^2}{(1 - x_{\text{O}_3})^3}
+\end{equation}
+
+
+\subsubsection{Geval 1: Kamertemperatuur ($T = 298\text{ K}$, $P = 1\text{ bar}$)}
+Gegeven de standaard vrije vormingsenthalpie $\Delta_f G^\circ(\text{O}_3) = 163{,}2 \text{ kJ/mol}$.
+\begin{align}
+    \Delta_r G^\circ &= 2 \cdot 163{,}2 = 326{,}4 \text{ kJ/mol} \\
+    K_p^\circ &= \exp\left( -\frac{326400}{8{,}314 \cdot 298} \right) \approx 6 \cdot 10^{-58}
+\end{align}
+Aangezien $P = 1\text{ bar} = P^\circ$, is $K_x = K_p^\circ$. Omdat $K_x$ extreem klein is, kunnen we de benadering $(1 - x_{\text{O}_3}) \approx 1$ toepassen in de noemer:
+\begin{equation}
+    x_{\text{O}_3}^2 \approx 6 \cdot 10^{-58} \implies x_{\text{O}_3} \approx 7{,}7 \cdot 10^{-29}
+\end{equation}
+Conclusie: Bij standaardomstandigheden is er thermodynamisch gezien nagenoeg geen ozon aanwezig.
+
+\subsubsection{Geval 2: Verhoogde temperatuur en verlaagde druk ($T = 500\text{ K}$, $P = 0{,}1\text{ bar}$)}
+We berekenen de vrije enthalpie bij $500\text{ K}$, gebruikmakend van $\Delta_r H^\circ = 285{,}4 \text{ kJ/mol}$ en $\Delta_r S^\circ = -137{,}5 \text{ J/(K}\cdot\text{mol)}$ (waarbij we deze waarden als constant beschouwen over dit temperatuursinterval).
+\begin{align}
+    \Delta_r G^\circ(500\text{ K}) &= \Delta_r H^\circ - T \Delta_r S^\circ \\
+    &= 285400 - 500 \cdot (-137{,}5) = 354150 \text{ J/mol} \\
+    K_p^\circ(500\text{ K}) &= \exp\left( -\frac{354150}{8{,}314 \cdot 500} \right) \approx 9{,}9 \cdot 10^{-38}
+\end{align}
+Toepassing van de drukcorrectie voor $P = 0{,}1\text{ bar}$:
+\begin{equation}
+    K_x = 9{,}9 \cdot 10^{-38} \cdot \left( \frac{0{,}1}{1} \right)^{1} = 9{,}9 \cdot 10^{-39}
+\end{equation}
+\textit{(Opmerking: Uit de lesnotities bleek een licht andere afronding rond $10^{-37}$, afhankelijk van het exacte gebruik van de $\Delta_r G$ waarde. Het principe blijft identiek.)} \\
+Met dezelfde benadering als in Casus 1:
+\begin{equation}
+    x_{\text{O}_3}^2 \approx 9{,}9 \cdot 10^{-39} \implies x_{\text{O}_3} \approx 3{,}1 \cdot 10^{-20}
+\end{equation}
+Door de hogere temperatuur (en het endotherme karakter van de reactie) schuift het evenwicht lichtjes op naar rechts, al blijft de hoeveelheid ozon verwaarloosbaar.
+
+\vspace{1cm}
+
+\subsection{Voorbeeld 3: Ammoniaksynthese (Haber-Bosch)}
+De synthese van ammoniak is een klassiek voorbeeld om de massabalans en drukafhankelijkheid (Principe van Le Chatelier) analytisch uit te werken:
+\begin{equation}
+    \text{N}_2(g) + 3\text{H}_2(g) \rightleftharpoons 2\text{NH}_3(g)
+\end{equation}
+Voor deze reactie geldt $\Delta \nu = 2 - (1 + 3) = -2$.
+
+\subsubsection{Massabalans in functie van de omzettingsgraad $\alpha$}
+Stel dat we starten met een stoichiometrisch mengsel van 1 mol $\text{N}_2$ en 3 mol $\text{H}_2$. Zij $\alpha$ de fractie stikstofgas die is omgezet bij evenwicht.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lccc}
+        \toprule
+        & $\text{N}_2$ & $\text{H}_2$ & $\text{NH}_3$ \\
+        \midrule
+        Begin ($n_0$) & 1 & 3 & 0 \\
+        Verandering ($\Delta n$) & $-\alpha$ & $-3\alpha$ & $+2\alpha$ \\
+        Evenwicht ($n_{eq}$) & $1-\alpha$ & $3(1-\alpha)$ & $2\alpha$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Het totale aantal mol gas bij evenwicht is:
+\begin{equation}
+    n_{\text{tot}} = (1-\alpha) + 3(1-\alpha) + 2\alpha = 4 - 2\alpha = 2(2-\alpha)
+\end{equation}
+De molfracties in evenwicht zijn dan:
+\begin{equation}
+    x_{\text{N}_2} = \frac{1-\alpha}{2(2-\alpha)}, \quad x_{\text{H}_2} = \frac{3(1-\alpha)}{2(2-\alpha)}, \quad x_{\text{NH}_3} = \frac{2\alpha}{2(2-\alpha)} = \frac{\alpha}{2-\alpha}
+\end{equation}
+
+\subsubsection{Relatie met Evenwichtsconstanten en Drukafhankelijkheid}
+We stellen $K_x$ op in functie van $\alpha$:
+\begin{align}
+    K_x &= \frac{x_{\text{NH}_3}^2}{x_{\text{N}_2} x_{\text{H}_2}^3} \\
+        &= \frac{\left( \frac{\alpha}{2-\alpha} \right)^2}{\left( \frac{1-\alpha}{2(2-\alpha)} \right) \left( \frac{3(1-\alpha)}{2(2-\alpha)} \right)^3} \\
+        &= \frac{16 \alpha^2 (2-\alpha)^2}{27 (1-\alpha)^4}
+\end{align}
+De drukafhankelijkheid wordt gedicteerd door $\Delta \nu = -2$:
+\begin{equation}
+    K_x = K_p^\circ \left( \frac{P_{\text{tot}}}{P^\circ} \right)^{-\Delta \nu} = K_p^\circ \left( \frac{P_{\text{tot}}}{P^\circ} \right)^2
+\end{equation}
+Hieruit volgt:
+\begin{equation}
+    \frac{16 \alpha^2 (2-\alpha)^2}{27 (1-\alpha)^4} = K_p^\circ \left( \frac{P_{\text{tot}}}{P^\circ} \right)^2
+\end{equation}
+\textbf{Thermodynamische analyse:} 
+Omdat $K_p^\circ$ enkel afhankelijk is van temperatuur, moet het rechterlid stijgen wanneer de totale druk $P_{\text{tot}}$ toeneemt. Om de gelijkheid te behouden, moet de linkerterm (en dus de omzettingsgraad $\alpha$) groter worden. Dit is het wiskundige bewijs dat een drukverhoging het evenwicht naar de producten (ammoniak) verschuift.
+
+
+\end{document}
